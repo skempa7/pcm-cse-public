@@ -754,7 +754,7 @@ def delivered_fact_metadata(fact, text):
 def conversation_route(utterance):
     """High-confidence conversational acts take priority over keyword matching."""
     text=nlp.normalize(utterance)
-    if re.search(r"\b(?:how do you know (?:it'?s|this is|that it|you have|that you have)|who (?:told you.*(?:diagnos|illness)|diagnosed)|why do you (?:think|say) (?:it'?s|this is)|how (?:can|could) you know (?:it'?s|this is))\b",text):
+    if re.search(r"\b(?:how do you know (?:it'?s|this is|that it|you have|that you have)|who diagnosed (?:this|the current)|why do you (?:think|say) (?:it'?s|this is)|how (?:can|could) you know (?:it'?s|this is))\b",text):
         return 'diagnostic_uncertainty'
     if re.search(r"\bwhat were you (?:doing|up to)|\bwhat (?:activity|were you doing).*?(?:start|began|onset)",text):
         return 'onset_activity'
