@@ -16,3 +16,14 @@ The room combines user-supplied InteriorTest geometry with the earlier folder's 
 This is not an independent readiness certification. Existing grading limitations and the development-preview status remain. Gestures are approximate; residual clothing overlap and some pose-contact limitations remain. No claim of photorealism or accurate lip synchronization is made.
 
 The browser debrief check exposed a pre-existing division-by-zero error in coached untimed attempts with an examination. Time feedback now uses the actual untimed policy and displays elapsed time without a percentage or deadline. Coached, guided, independent, and rehearsal timing-feedback regressions were added.
+
+
+## Room clearance and surface repair — September 10, 2026
+
+Expanded the room to 12 × 12.8 × 7.5 meters; updated camera clearance accordingly. Removed the hanging pendant fixtures. Kept furnishings at their original scale and moved them outward. Reduced the flag size and grouped it with original framed educational prints and landscape artwork.
+
+Female anatomical skin retains the body atlas, with smooth normals across duplicate patch-boundary vertices. Female arms and sleeves now taper smoothly around the existing skeleton; bone lengths, posture clips, facial morphs, clinical facts and grading are unchanged.
+
+Verification: eight actual Chrome orbit scenarios spanning seated, standing, supine and prone; three female builds and male standing/prone. Each completed 6.72 radians of mouse dragging. No room occlusion at 56 sampled center sightlines; no page JavaScript errors. The installed private scene also rendered successfully. A public encounter exercised examination feedback, record notification, reload, reduced motion, SOAP submission and displayed debrief. Existing known grading limitations still apply; this is not clinical validation of the grading engine. All four timing presets and 24 disclosed-behavior checks passed. Saved private database files were preserved.
+
+Not every possible angle, animation combination or case was tested. Existing room-source licensing notices remain in force.
