@@ -100,7 +100,19 @@ function clearPendingReveals(){
 let room = { view:'front', region:null, instrument:'', position:'seated',
              running:null, runTimer:null, runEnd:null, performed:{} };
 let voice = { rec:null, listening:false, hands_free:false, speak:true, supported:false,
-              muteUntil:0, failed:false, pending:null };
+              muteUntil:0, failed:false, pending:null,
+              // ONE finalized utterance must produce ONE message. `lastFinal`
+              // is the highest final result index already submitted in the
+              // CURRENT recognition session; a continuous session keeps
+              // delivering the whole results array, so without a watermark an
+              // earlier final is resubmitted every time a later one arrives.
+              lastFinal:-1,
+              // True from just before the patient becomes audible until just
+              // after. Audio captured in this window is the app's own voice.
+              suppressed:false,
+              // Secondary defence only: identical text within a moment is a
+              // duplicate event, not a deliberate repeat.
+              lastSentText:'', lastSentAt:0 };
 
 /* ---------- api ---------- */
 async function api(path, body) {
@@ -276,12 +288,12 @@ async function leaveForWorkspace(kind){
   if(!await window.pcmEnterWorkbench(kind))return false;
   clearContextFeedback();return true;
 }
-function portalContext(){return {boot:BOOT,view,api,onData:data=>Object.assign(BOOT,data),past:panelPast,scoring:panelAssume,voice:panelVoice,wirePast:wirePastPanel,wireVoice:wireVoicePanel};}
+function portalContext(){return {boot:BOOT,view,api,onData:data=>Object.assign(BOOT,data),past:panelPast,scoring:panelAssume,wirePast:wirePastPanel};}
 async function route(){
   const epoch=++routeEpoch,id=location.hash.replace(/^#\/?/, '');
   window.pcmPortal?.invalidate();
   if (/^learn(?:\/|$)/.test(id)) {document.body.dataset.workspace='learn';window.pcmStudy.render(id);return;}
-  const kind=!id||id==='home'?'home':['practice','progress','scoring','voice'].includes(id)?id:null;
+  const kind=!id||id==='home'?'home':['practice','progress','scoring'].includes(id)?id:null;
   if(kind){
     if(!await leaveForWorkspace(kind)||epoch!==routeEpoch)return;
     document.body.dataset.workspace=kind;window.pcmPortal?.nav(kind);
@@ -420,8 +432,6 @@ function renderLobby(){
           <button type="button" class="segbtn" data-talk="voice" aria-pressed="${talk === 'voice'}">Speak</button>
         </div>
         <span id="voiceOk" class="badge b-mute">checking…</span>
-        <button class="btn sm ghost" id="btnVoicePanel" type="button" aria-expanded="false"
-          aria-controls="extraPanel">Voice &amp; audio settings</button>
       </div>
       <p class="small muted" id="talkNote" style="margin-top:var(--sp-2)"></p>
     </section>
@@ -463,7 +473,6 @@ function renderLobby(){
   $('#btnAssume').onclick = e => togglePanel('assume', e.currentTarget);
   $('#btnReview').onclick = e => togglePanel('review', e.currentTarget);
   $('#btnPast').onclick = e => togglePanel('past', e.currentTarget);
-  $('#btnVoicePanel').onclick = e => togglePanel('voice', e.currentTarget);
   refreshLobbyHistory();
 
   applyReveal(uiMode); paintTalkNote(); probeVoice();
@@ -533,7 +542,6 @@ function togglePanel(which, btn){
   if (btn) btn.setAttribute('aria-expanded', 'true');
   if (which === 'assume') p.innerHTML = panelAssume();
   else if (which === 'review') p.innerHTML = panelReview();
-  else if (which === 'voice') { p.innerHTML = panelVoice(); wireVoicePanel(); }
   else p.innerHTML = panelPast();
   if (which === 'past') wirePastPanel();
   const h = $('h2', p); if (h) { h.setAttribute('tabindex', '-1'); h.focus(); }
@@ -638,32 +646,6 @@ function panelReview(){
     <span class="badge b-warn">Internal consistency check only</span> and
     <span class="badge b-warn">Guideline-checked, not clinician-approved</span>.
     None of them is clinician approval.</p></div>`;
-}
-function panelVoice(){
-  return `<div class="disclosure-body"><h2>Voice &amp; audio</h2>
-    <label class="opt ${voice.speak ? 'sel' : ''}" id="speakOpt">
-      <input type="checkbox" id="speakChk" ${voice.speak ? 'checked' : ''}>
-      <span><b>The patient speaks aloud</b><span class="small muted">Uses your browser's
-      built-in speech synthesis. While the patient is speaking the microphone is
-      suspended, so the app never transcribes the patient's own voice back as
-      yours.</span></span></label>
-    <h3>What speaking can and cannot do here</h3>
-    <ul class="tight small">
-      <li>Browser recognition may send audio to the browser provider. This local engine
-      receives the recognized text. There is no uploaded-recording or paid transcription service in this edition.</li>
-      <li>Push-to-talk: hold the microphone button, or focus the microphone button and hold <kbd>Space</kbd>. Double-click the button for hands-free.</li>
-      <li>A turn the recognizer was unsure about is marked uncertain and is not scored as
-      a definite error. It lands in the composer so you can edit it before it is sent.</li>
-      <li>If the microphone fails, the app says so, records the interruption on your
-      integrity report, and typing keeps working — nothing is lost.</li>
-      <li>Speaking and typing obey identical clinical rules. Only the pacing measurement
-      differs, and the debrief says which mode produced it.</li>
-    </ul></div>`;
-}
-function wireVoicePanel(){
-  const chk = $('#speakChk'); if (!chk) return;
-  chk.onchange = e => { voice.speak = e.target.checked;
-    $('#speakOpt').classList.toggle('sel', e.target.checked); savePrefs();window.dispatchEvent(new Event('pcm-speech-preference')); };
 }
 function panelPast(){
   const rows = BOOT.sessions || [], reveal=!!MODES[currentUiMode()]?.reveal;
@@ -816,7 +798,7 @@ function positionRoomFrame(){
   const b=slot.getBoundingClientRect();host.hidden=false;Object.assign(host.style,{left:(b.left+window.scrollX)+'px',top:(b.top+window.scrollY)+'px',width:b.width+'px',height:b.height+'px'});
 }
 function mountPatientFrame(){
-  let host=$('#roomFrameHost');if(!host){host=document.createElement('div');host.id='roomFrameHost';host.innerHTML=`<iframe id="unityFrame" src="patient3d/index.html?v=compact-controls-1" title="Interactive patient and examination room" allow="autoplay"></iframe>`;document.body.append(host);roomFrameReady=false;$('#unityFrame').onload=notifyPublicState;}
+  let host=$('#roomFrameHost');if(!host){host=document.createElement('div');host.id='roomFrameHost';host.innerHTML=`<iframe id="unityFrame" src="patient3d/index.html?v=exam-guide-1" title="Interactive patient and examination room" allow="autoplay"></iframe>`;document.body.append(host);roomFrameReady=false;$('#unityFrame').onload=notifyPublicState;}
   roomViewportObserver?.disconnect();roomViewportObserver=new ResizeObserver(positionRoomFrame);for(const target of [$('#roomViewport'),$('#patientVoiceSettings'),document.body])if(target)roomViewportObserver.observe(target);positionRoomFrame();if(roomFrameReady&&$('#unityStatus'))$('#unityStatus').textContent=patientDisplayLabel();notifyPublicState();
 }
 window.addEventListener('resize',positionRoomFrame);document.addEventListener('scroll',positionRoomFrame,true);
@@ -1103,6 +1085,15 @@ async function sendSay(textOverride, confidence){
   const input = $('#say');
   const text = (textOverride !== undefined ? textOverride : (input ? input.value : '')).trim();
   if (!text) return;
+  // Secondary defence, not the fix: if a recognition event is somehow
+  // delivered twice, the identical text arrives within milliseconds. Saying
+  // the same thing again deliberately takes far longer than this window, so a
+  // real repeated phrase is still sent as its own turn.
+  if (textOverride !== undefined) {
+    const now = Date.now();
+    if (text === voice.lastSentText && now - voice.lastSentAt < 1200) return;
+    voice.lastSentText = text; voice.lastSentAt = now;
+  }
   if(S.ai_patient_enabled&&window.pcmAISend)return window.pcmAISend(text);
   if (textOverride === undefined && input) {keepDraft('conversation',sid,text);input.value = '';autogrow(input);}
   pushTurn('me', 'You', text);
@@ -1695,21 +1686,33 @@ function setupVoice(){
   if (!voice.rec) {
     const rec = new SR();
     rec.continuous = true; rec.interimResults = true; rec.lang = 'en-US';
-    rec.onstart = () => { setPatientState('listening');
+    rec.onstart = () => { voice.lastFinal = -1; setPatientState('listening');
       voiceBar('Listening. Release to send, or press Escape to cancel this turn.'); };
     rec.onresult = e => {
       // The patient's synthesized voice must never be transcribed back as the
       // student's own turn: anything heard while speech synthesis is speaking,
       // or in the short tail after it, is discarded.
-      if (Date.now() < voice.muteUntil ||
-          (window.speechSynthesis && window.speechSynthesis.speaking)) return;
+      if (voice.suppressed || Date.now() < voice.muteUntil ||
+          (window.speechSynthesis && window.speechSynthesis.speaking)) {
+        // Audio captured while the patient is audible is the app's own voice.
+        // Discarding the pending results is not enough on its own: a result
+        // finalized here would otherwise be delivered again once the mute
+        // window lapses, so the watermark is advanced past it as well.
+        voice.lastFinal = Math.max(voice.lastFinal, e.results.length - 1);
+        return;
+      }
       let interim = '';
-      for (let i = e.resultIndex; i < e.results.length; i++) {
+      // Start at the session watermark, not e.resultIndex: a continuous
+      // session re-delivers earlier finals, and resultIndex alone re-submits
+      // them. Each final index is spoken once and only once.
+      for (let i = Math.max(e.resultIndex, voice.lastFinal + 1); i < e.results.length; i++) {
         const r = e.results[i];
         if (r.isFinal) {
+          voice.lastFinal = i;
           const c = r[0].confidence;
           const conf = (c === undefined || c === 0) ? null : c;
           const text = r[0].transcript.trim();
+          if (!text) continue;
           if (conf !== null && conf < 0.65) stageUncertain(text, conf);
           else sendSay(text, conf);
         } else interim += r[0].transcript;
@@ -1735,7 +1738,8 @@ function setupVoice(){
       voice.listening = false;
     };
     rec.onend = () => {
-      if (voice.listening && voice.hands_free && !window.pcmNaturalBusy && Date.now() >= voice.muteUntil) { try { rec.start(); } catch(e){} }
+      if (voice.listening && voice.hands_free && !voice.suppressed && !voice.patientSpeaking
+          && !window.pcmNaturalBusy && Date.now() >= voice.muteUntil) { try { rec.start(); } catch(e){} }
       else if (!voice.failed) { setPatientState('idle'); voiceBar(''); }
     };
     voice.rec = rec;
@@ -1751,10 +1755,42 @@ function setupVoice(){
     btn.onkeyup = e => { if (!e.metaKey && !e.ctrlKey && !e.altKey && (e.key === ' ' || e.key === 'Enter')) { e.preventDefault(); stopListening(); } };
     btn.ondblclick = () => { voice.hands_free = !voice.hands_free;
       toast(voice.hands_free ? 'Hands-free listening on' : 'Hands-free listening off');
-      if (!voice.hands_free) stopListening(); };
+      // Toggling always returns to a known state: one recognition instance is
+      // reused for the page, and each session starts with a clean watermark so
+      // repeated toggling cannot accumulate handlers or replay old results.
+      voice.suppressed = false; voice.lastFinal = -1;
+      if (!voice.hands_free) stopListening();
+      else if (!voice.listening) startListening(); };
   }
   voiceBar('Hold the microphone button, or focus it and hold Space or Enter, to talk. ' +
     'Double-click the button for hands-free.');
+}
+/* The patient is about to be audible. `abort()` is deliberate: `stop()` asks
+   the recognizer to FINALIZE what it has buffered, which is then delivered
+   through onresult once the mute window has lapsed -- that is how the
+   patient's own greeting was reaching the transcript and being sent back as
+   the student's turn. `abort()` discards it instead. */
+function suppressListeningForPatient(){
+  voice.suppressed = true;
+  voice.patientSpeaking = true;
+  if (voice.rec) { try { voice.rec.abort(); } catch(e){ try { voice.rec.stop(); } catch(e2){} } }
+  const el = $('#interim'); if (el) el.textContent = '';
+}
+/* The patient has finished. Resume a FRESH recognition session after a short
+   tail, so a room echo of the last word cannot open the next utterance. */
+function resumeListeningAfterPatient(){
+  voice.patientSpeaking = false;
+  voice.muteUntil = Date.now() + 350;
+  notifyPublicState();
+  setPatientState('idle');
+  setTimeout(() => {
+    voice.suppressed = false;
+    if (!voice.hands_free || !voice.rec) return;
+    if (S?.phase !== 'encounter' || window.pcmNaturalBusy) return;
+    voice.listening = true;
+    voice.lastFinal = -1;
+    try { voice.rec.start(); } catch(e){}
+  }, 400);
 }
 function startListening(){
   if (!voice.rec || voice.listening) return;
@@ -1785,7 +1821,8 @@ function stageUncertain(text, conf){
 function interruptPatient(){
   window.pcmAIInterrupt?.();
   window.pcmNaturalVoice?.stop();voice.muteUntil=Date.now()+350;
-  voice.patientSpeaking=false;setPatientState('idle');notifyPublicState();
+  voice.patientSpeaking=false;voice.suppressed=false;voice.lastFinal=-1;
+  setPatientState('idle');notifyPublicState();
   const speechStatus=$('#naturalVoiceStatus');if(speechStatus)speechStatus.textContent='Speech stopped.';
   try { if (window.speechSynthesis && window.speechSynthesis.speaking) {
     window.speechSynthesis.cancel();
@@ -1793,39 +1830,94 @@ function interruptPatient(){
     setPatientState('idle');
   } } catch(e){}
 }
+/* Stop patient audio for a PREFERENCE change. Deliberately narrower than
+   interruptPatient(): it cancels local playback only and never signals a
+   user-initiated delivery interruption, because turning the toggle off is not
+   the learner cutting the patient off mid-sentence. It also leaves the
+   clinician's microphone and hands-free preference untouched. */
+function silencePatientAudio(){
+  try{ window.speechSynthesis?.cancel(); }catch(e){}
+  voice.patientSpeaking=false;
+  setPatientState('idle');
+  notifyPublicState();
+  // Recognition was suspended for speech that is no longer playing; let it
+  // resume on the normal path, but only if the user still had it listening.
+  if(voice.suppressed) resumeListeningAfterPatient();
+}
 function stopVoice(){
   window.pcmNaturalVoice?.stop();voice.muteUntil=0;voice.patientSpeaking=false;
-  voice.listening = false; voice.hands_free = false;
-  try { if (voice.rec) voice.rec.stop(); } catch(e){}
+  voice.listening = false; voice.hands_free = false; voice.suppressed = false;
+  voice.lastFinal = -1; voice.lastSentText = ''; voice.lastSentAt = 0;
+  // abort() discards anything buffered; stop() would finalize and deliver it
+  // after the listener believes it has been switched off.
+  try { if (voice.rec) voice.rec.abort(); } catch(e){ try { voice.rec.stop(); } catch(e2){} }
   try { window.speechSynthesis.cancel(); } catch(e){}
+  const el = $('#interim'); if (el) el.textContent = '';
 }
 function patientIsListening(){
   return S?.phase==='encounter'&&!voice.patientSpeaking&&!window.pcmAISpeaking&&Boolean(voice.listening||window.pcmAIRecording||(document.activeElement===$('#say')&&$('#say')?.value));
 }
 function configurePatientSpeech(utterance){
-  return window.pcmDeviceSpeech?.configure(utterance,{pace:S?.demeanor?.pace})||'Browser/system default';
+  // The patient's sex comes from the case's AUTHORED presentation, never from
+  // the name or the rendered model. `presentation.appearance()` is explicit
+  // about not guessing, so this is the one field allowed to pick the voice.
+  return window.pcmDeviceSpeech?.configure(utterance,
+    {pace:S?.demeanor?.pace, sex:S?.appearance?.presentation}) || {available:false};
+}
+/* The fixed voice for this patient is missing from this runtime. The policy is
+   two voices only, so nothing is substituted: the patient stays silent and the
+   Voice control shows the shortfall once. Text is unaffected. */
+let voiceUnavailableTold=false;
+function reportVoiceUnavailable(info){
+  const want=info?.required?.name;
+  setPatientState('idle');
+  window.dispatchEvent(new CustomEvent('pcm-voice-unavailable',{detail:info||{}}));
+  if(voiceUnavailableTold)return;
+  voiceUnavailableTold=true;
+  toast(want ? 'The patient voice ('+want+') is not installed in this browser. The conversation still works in text.'
+             : 'This browser has no speech voices available. The conversation still works in text.');
 }
 window.pcmConfigureSpeech=configurePatientSpeech;
-window.pcmSpeechOptions={enabled:()=>voice.speak,phase:()=>S?.phase,setEnabled:value=>{voice.speak=!!value;LS.set('prefs',Object.assign({},LS.get('prefs')||{},{speak:voice.speak}));if(!voice.speak)interruptPatient();window.dispatchEvent(new Event('pcm-speech-preference'));}};
+/* Speak one delivered segment with the patient's fixed voice.
+   Replaces the retired paid-provider player and keeps its callback contract
+   (onstart/onend/onerror) so the delivery/acknowledgement flow is untouched.
+   An unavailable voice reports through onerror rather than substituting. */
+window.pcmSpeakSegment=(text,{onstart,onend,onerror}={})=>{
+  if(!voice.speak){onerror?.();return;}   // the toggle governs every speech path
+  if(!window.speechSynthesis){onerror?.();return;}
+  try{
+    const u=new SpeechSynthesisUtterance(text);
+    const info=configurePatientSpeech(u);
+    if(!info||!info.available){reportVoiceUnavailable(info);onerror?.();return;}
+    u.onstart=()=>onstart?.();
+    u.onend=()=>onend?.();
+    u.onerror=()=>onerror?.();
+    window.speechSynthesis.speak(u);
+  }catch(e){onerror?.();}
+};
+window.pcmSpeechOptions={enabled:()=>voice.speak,phase:()=>S?.phase,setEnabled:value=>{voice.speak=!!value;LS.set('prefs',Object.assign({},LS.get('prefs')||{},{speak:voice.speak}));if(!voice.speak)silencePatientAudio();window.dispatchEvent(new Event('pcm-speech-preference'));}};
 function speak(text){
-  if(window.pcmNaturalVoice){
-    setPatientState('preparing');voice.muteUntil=Infinity;
-    if(voice.rec){try{voice.rec.stop();}catch{}}
-    const done=()=>{voice.patientSpeaking=false;notifyPublicState();voice.muteUntil=Date.now()+350;setPatientState("idle");if(voice.hands_free&&voice.rec)setTimeout(()=>{if(S?.phase==="encounter"&&voice.hands_free&&!window.pcmNaturalBusy){try{voice.rec.start();}catch{}}},400);};
-    window.pcmNaturalVoice.play(text,{session_id:S?.id,onstart:()=>{voice.patientSpeaking=true;notifyPublicState();setPatientState("speaking");},onend:done,onerror:()=>{done();toast('Audio could not finish. The patient response remains available in the conversation.');}});return;
-  }
+  if (!voice.speak) return;                       // toggle is authoritative
   if (!window.speechSynthesis) { setPatientState('idle'); return; }
   try {
     const u = new SpeechSynthesisUtterance(text);
-    configurePatientSpeech(u);
-    // Suspend recognition for the whole time the patient is audible.
-    u.onstart = () => { voice.patientSpeaking=true;notifyPublicState();setPatientState('speaking');
-      voice.muteUntil = Date.now() + 60000;
-      if (voice.listening && voice.rec) { try { voice.rec.stop(); } catch(e){} } };
-    u.onend = () => { voice.patientSpeaking=false;notifyPublicState();voice.muteUntil = Date.now() + 350; setPatientState('idle');
-      if (voice.hands_free && voice.rec) { voice.listening = true;
-        setTimeout(() => { try { voice.rec.start(); } catch(e){} }, 400); } };
-    u.onerror = () => { voice.patientSpeaking=false;notifyPublicState();voice.muteUntil = 0; setPatientState('idle'); };
+    const info = configurePatientSpeech(u);
+    if (info && info.loading) {
+      // Chrome delivers its voice list asynchronously. Wait for exactly one
+      // voiceschanged, then decide once -- no polling, no growing queue.
+      const retry = () => { window.speechSynthesis.removeEventListener('voiceschanged', retry); speak(text); };
+      window.speechSynthesis.addEventListener('voiceschanged', retry, { once: true });
+      return;
+    }
+    if (!info || !info.available) { reportVoiceUnavailable(info); return; }
+    u.onstart = () => { notifyPublicState(); setPatientState('speaking'); };
+    u.onend = () => { resumeListeningAfterPatient(); };
+    u.onerror = () => { resumeListeningAfterPatient(); };
+    // Suppress BEFORE speaking, not in onstart: onstart fires once audio is
+    // already playing, leaving a window in which the microphone hears the
+    // opening words of the patient's own reply.
+    suppressListeningForPatient();
+    voice.muteUntil = Date.now() + 60000;
     window.speechSynthesis.speak(u);
   } catch(e) { setPatientState('idle'); }
 }

@@ -1,36 +1,268 @@
-/* Generic supplementary technique teaching. Never a clinical finding or exam credit. */
-(()=>{
-const lessons={
- lungs:{title:'Compare the lungs',region:'Lungs',source:'https://stanfordmedicine25.stanford.edu/the25/pulmonary.html',steps:[
-  {title:'Same level, other side',text:'This is a posterior view. After listening at an upper right field, compare the matching left field before moving lower.',question:'Where should your next comparison be?',choices:['The matching upper left field','The right base'],answer:0,why:'Paired positions help you notice asymmetry instead of relying on memory across the whole chest.'},
-  {title:'Make the comparison fair',text:'The path pairs right and left fields. Explain the examination, maintain appropriate exposure and draping, and listen on skin while the patient breathes through an open mouth.',question:'What should stay comparable?',choices:['Only the side that sounds louder','The level and listening conditions'],answer:1,why:'Use a systematic comparison. A drawing cannot establish what this patient’s lungs sound like.'},
-  {title:'Continue down in pairs',text:'Now move to the next level and compare across. Your course describes six posterior fields, with side-to-side comparison, mouth open and on skin.',question:'After the next right-sided position…',choices:['Compare the left at the same level','Document both bases as clear'],answer:0,why:'You still need to actually obtain each finding. A normal upper field does not establish normal lower fields.'},
-  {title:'Transfer the pattern',text:'The same paired-comparison habit applies when percussing appropriate lung fields. Listen, compare, move; do not let the diagram replace your examination choices.',question:'What can you document from this demonstration alone?',choices:['No patient-specific examination finding','Normal breath sounds bilaterally'],answer:0,why:'This was technique rehearsal. Perform an examination in the actual encounter to obtain evidence.'}
- ]},
- abdomen:{title:'Sequence the abdominal exam',region:'Abdomen',source:'https://www.merckmanuals.com/professional/gastrointestinal-disorders/acute-abdomen-and-surgical-gastroenterology/acute-abdominal-pain',steps:[
-  {title:'Look before you touch',text:'The same patient is shown supine for this visual rehearsal; the recorded encounter position is unchanged. Explain the examination, check comfort, and expose only what is needed. Begin by inspecting the abdomen.',question:'After inspection, what comes next in the usual sequence?',choices:['Deep palpation immediately','Auscultation'],answer:1,why:'Use a repeatable sequence: inspect, auscultate, percuss, palpate.'},
-  {title:'Listen before percussion and palpation',text:'The stethoscope represents auscultation. You must select the areas and technique you intend to perform in the real encounter.',question:'What follows auscultation?',choices:['Percussion, then palpation','Assume all quadrants are normal'],answer:0,why:'A sequence supports recall, but each finding still needs an actual examination action.'},
-  {title:'Percuss, then begin gently',text:'The placement ring illustrates where an action could occur; it does not animate a hand or verify finger technique or force. Before palpation, ask where the pain is greatest.',question:'Where should gentle palpation begin?',choices:['Away from the area of greatest pain','At the most painful point with deep pressure'],answer:0,why:'Start gently away from maximal pain, watch the patient, and adapt to comfort and clinical context.'},
-  {title:'Apply it to this encounter',text:'Do not treat the sequence as a demand to complete every maneuver in every patient. Appropriate urgency, comfort and the clinical question guide your choices.',question:'An omitted maneuver allows you to write…',choices:['A normal finding if it is likely','That it was not assessed, when relevant'],answer:1,why:'Hidden case truth is not documentation evidence. Only obtained or authorized supplied findings belong in Objective.'}
- ]},
- positional:{title:'Prepare a positional test',region:'Neurologic',source:'https://www.entnet.org/resource/aao-hnsf-updated-cpg-bppv-press-release-fact-sheet/',steps:[
-  {title:'Check suitability first',text:'Before a Dix–Hallpike maneuver, assess whether the history fits positional vertigo, explain the test, and assess safe neck movement and relevant cervical or vascular risks. This visual guide is not permission to move this patient in the actual encounter.',question:'What comes before head or body movement?',choices:['Immediately lower the patient','Establish suitability and obtain permission'],answer:1,why:'If neck movement is unsafe or suitability is uncertain, do not force the maneuver; choose an appropriate alternative or seek supervision.'},
-  {title:'Turn, support, then reposition',text:'The angle guide shows about 45° of head rotation for the illustrated side. The patient’s head does not perform this rotation. The examiner must support the patient and head throughout the actual maneuver; this overlay is a preparation aid, not a hands-on demonstration.',question:'What must be maintained while repositioning?',choices:['Support and the intended head orientation','Unrestricted neck extension'],answer:0,why:'The usual maneuver uses the selected head rotation and about 20° neck extension when safely positioned supine. No unsupported rapid movement is demonstrated here.'},
-  {title:'Observe rather than assume',text:'The line indicates where head support is needed; the supine model does not reproduce the required neck extension. Observe symptoms and the eyes after appropriate positioning. No nystagmus is shown: the case result must come from the actual examination system.',question:'Does reaching this position prove a positive result?',choices:['Yes, the position establishes the diagnosis','No, symptoms and eye findings must be assessed'],answer:1,why:'The diagnostic result depends on observed findings. A generic animation cannot supply them.'},
-  {title:'Keep side-specific evidence',text:'The alternate angle guide points toward the other side; the model’s head remains neutral. Return the patient safely upright and consider the other side when appropriate; do not credit an untested side.',question:'After testing one side only, what is supported?',choices:['Only that side’s obtained findings','Normal results on both sides'],answer:0,why:'Now select the actual maneuver and explicit components in the encounter. Cervical suitability is a prerequisite, not automatic credit from watching this lesson.'}
- ]}
-};
-let lessonId=null,step=0,answered=false,priorFocus=null;
-const launch=document.createElement('button');launch.id='techniqueLaunch';launch.textContent='Learn an examination sequence';launch.hidden=true;document.querySelector('#room').append(launch);
-const panel=document.createElement('section');panel.id='techniquePanel';panel.hidden=true;panel.setAttribute('aria-label','Interactive technique teaching');document.querySelector('#room').append(panel);
-window.pcmTechniqueNotice=message=>{const feedback=panel.querySelector('.tech-feedback');if(feedback)feedback.textContent=message;else status(message);};
-function report(event,extra={}){send({type:'pcm-unity-teaching',sessionId:state.sessionId,lessonId,step,event,...extra})}
-function stop(){if(instance)instance.SendMessage('EncounterBridge','StopTechnique','');panel.hidden=true;lessonId=null;apply();priorFocus?.focus()}
-function menu(){if(!['guided','coached'].includes(state.mode))return;priorFocus=document.activeElement;panel.hidden=false;panel.innerHTML='<button class="tech-close" aria-label="Close technique studio">×</button><small>SUPPLEMENTARY TEACHING</small><h2>Rehearse a sequence</h2><p>Practice with an overlay on your current patient. Temporary viewing positions do not change the recorded encounter position or create findings.</p>'+Object.entries(lessons).map(([id,l])=>'<button class="lesson-choice" data-lesson="'+id+'">'+l.title+'</button>').join('');panel.querySelector('.tech-close').onclick=stop;panel.querySelectorAll('[data-lesson]').forEach(b=>b.onclick=()=>{lessonId=b.dataset.lesson;step=0;report('start');render()})}
-function render(){const lesson=lessons[lessonId],item=lesson.steps[step];answered=false;panel.hidden=false;$('drawer').hidden=true;panel.innerHTML='<button class="tech-close" aria-label="Close technique studio">×</button><small>TECHNIQUE OVERLAY · '+(step+1)+' / '+lesson.steps.length+'</small><h2>'+item.title+'</h2><p>'+item.text+'</p><strong>'+item.question+'</strong><div class="tech-choices">'+item.choices.map((c,i)=>'<button data-answer="'+i+'">'+c+'</button>').join('')+'</div><div class="tech-feedback" role="status"></div><button id="techNext" hidden>Next comparison</button><p class="tech-limit">No patient findings or examination credit are created. <a target="_blank" rel="noopener" href="'+lesson.source+'">Clinical reference</a></p>';
- panel.querySelector('.tech-close').onclick=stop;panel.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>{const correct=Number(b.dataset.answer)===item.answer;report('answer',{choice:b.textContent,correct});panel.querySelector('.tech-feedback').textContent=(correct?'Yes. ':'Try again. ')+item.why;if(correct){answered=true;panel.querySelectorAll('[data-answer]').forEach(x=>x.disabled=true);const next=$('techNext');next.hidden=false;next.textContent=step===lesson.steps.length-1?'Return and choose an actual exam':'Next comparison';}});
- $('techNext').onclick=()=>{if(!answered)return;if(step===lesson.steps.length-1){const region=lesson.region;report('complete');stop();openRegion(region);status('Choose the actual examination and components now. The lesson itself obtained no findings.');}else{step++;render()}};
- if(instance)instance.SendMessage('EncounterBridge','ShowTechnique',JSON.stringify({lesson:lessonId,step}));panel.querySelector('h2').tabIndex=-1;panel.querySelector('h2').focus();window.pcmTechniqueState?.();
-}
-launch.onclick=menu;window.pcmTechniqueState=()=>{const allowed=['guided','coached'].includes(state.mode)&&state.phase==='encounter';launch.hidden=!allowed;launch.disabled=!!pending||state.busyMs>0;if(!allowed||state.busyMs>0){if(!panel.hidden)stop()}if(lessonId){$('name').textContent='Patient · technique overlay';$('phase').textContent='Technique rehearsal · no patient findings';}if(lessonId)document.querySelectorAll('[data-region],#perform,#comfort,#hygiene,#position,[data-posture],[data-view],#resetView,#adjustView,[data-camera]').forEach(b=>b.disabled=true)};
+/* Physical-exam rehearsal: an instructional step-through, not a quiz.
+ *
+ * WHAT CHANGED AND WHY
+ * The previous version asked a multiple-choice question after each step. That
+ * tests recall of trivia about a sequence rather than teaching the sequence,
+ * and it made the feature slow to use for its actual purpose: reminding a
+ * student what to physically do shortly before a CSE. Every step now answers
+ * three questions -- what do I do, what am I checking, what can I write -- and
+ * the student clicks forward through them.
+ *
+ * DOCUMENTATION DISCIPLINE
+ * The closing screen assembles a SOAP line from the steps the student actually
+ * completed. A step that was skipped contributes nothing. This is deliberate:
+ * a rehearsal tool that hands over a full normal template would be teaching
+ * students to document examinations they did not perform.
+ *
+ * ENCOUNTER SAFETY
+ * This overlay reads nothing from the case and writes nothing back. It does not
+ * call an examination, change posture, or create evidence, and it no longer
+ * disables the encounter controls or moves the patient, so opening it mid
+ * encounter costs nothing.
+ */
+(() => {
+  const EXAMS = window.PCM_EXAM_SEQUENCES || {};
+  let examId = null, step = 0, done = [], mode = 'learn', priorFocus = null, region = null;
+
+  const launch = document.createElement('button');
+  launch.id = 'techniqueLaunch';
+  launch.type = 'button';
+  launch.textContent = 'Exam guide';
+  launch.title = 'Rehearse a basic physical examination sequence';
+  launch.hidden = true;
+  document.querySelector('#room').append(launch);
+
+  const panel = document.createElement('section');
+  panel.id = 'techniquePanel';
+  panel.hidden = true;
+  panel.setAttribute('aria-label', 'Physical examination rehearsal');
+  document.querySelector('#room').append(panel);
+
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  window.pcmTechniqueNotice = message => {
+    const el = panel.querySelector('.tech-note');
+    if (el) el.textContent = message;
+  };
+
+  function report(event, extra = {}) {
+    try {
+      send({ type: 'pcm-unity-teaching', sessionId: state.sessionId, lessonId: examId, step, event, ...extra });
+    } catch (e) { /* telemetry is never load-bearing */ }
+  }
+
+  function close() {
+    panel.hidden = true;
+    examId = null; step = 0; done = []; region = null;
+    apply();
+    priorFocus?.focus();
+  }
+
+  /* ---------- demonstration diagrams ---------------------------------- */
+  /* Simple, legible schematics. Clarity is the goal, not anatomical
+     realism: numbered placements, left/right pairing and direction of travel
+     are what a student needs in order to remember a sequence. */
+  const BODY = {
+    'torso-front': '<path d="M32 14 q18 -8 36 0 l6 16 -10 5 2 52 q-16 6 -32 0 l2 -52 -10 -5z" class="tb"/>' +
+                   '<line x1="50" y1="24" x2="50" y2="85" class="tm"/>',
+    'torso-back': '<path d="M32 14 q18 -8 36 0 l6 16 -10 5 2 52 q-16 6 -32 0 l2 -52 -10 -5z" class="tb"/>' +
+                  '<line x1="50" y1="20" x2="50" y2="85" class="tm"/>',
+    abdomen: '<rect x="24" y="22" width="52" height="56" rx="16" class="tb"/>',
+    head: '<ellipse cx="50" cy="42" rx="24" ry="29" class="tb"/><path d="M38 72 h24 l4 14 h-32z" class="tb"/>',
+    arm: '<path d="M18 30 q30 6 62 34" class="tb tl"/><circle cx="82" cy="68" r="7" class="tb"/>',
+    joint: '<path d="M20 28 v18 q0 10 12 10 h36 q12 0 12 -10 v-18" class="tb tl"/>' +
+           '<path d="M20 68 v-4" class="tb tl"/><path d="M80 68 v-4" class="tb tl"/>',
+  };
+
+  function diagram(demo) {
+    if (!demo) return '';
+    const marks = demo.marks || [];
+    const shapes = marks.map(m => {
+      const cls = 'mk mk-' + (m.kind || 'zone');
+      const title = m.title ? '<title>' + esc(m.title) + '</title>' : '';
+      const label = m.label ? '<text x="' + m.x + '" y="' + (m.y + 2.6) + '" class="mkl">' + esc(m.label) + '</text>' : '';
+      return '<g>' + title + '<circle cx="' + m.x + '" cy="' + m.y + '" r="' + m.r + '" class="' + cls + '"/>' + label + '</g>';
+    }).join('');
+    const arrows = (demo.arrows || []).map(([a, b, style]) => {
+      const from = marks[a], to = marks[b];
+      if (!from || !to) return '';
+      const cls = style === 'compare' ? 'ar ar-compare' : style === 'apart' ? 'ar ar-apart' : 'ar';
+      return '<line x1="' + from.x + '" y1="' + from.y + '" x2="' + to.x + '" y2="' + to.y +
+             '" class="' + cls + '" marker-end="url(#tri)"' +
+             (style === 'compare' ? ' marker-start="url(#tri)"' : '') + '/>';
+    }).join('');
+    const quads = demo.quadrants
+      ? '<line x1="50" y1="22" x2="50" y2="78" class="tq"/><line x1="24" y1="50" x2="76" y2="50" class="tq"/>' : '';
+    const path = demo.path === 'H'
+      ? '<path d="M36 46 v10 M36 51 h28 M64 46 v10" class="tp"/>'
+      : demo.path === 'arc' ? '<path d="M30 60 q20 -26 40 0" class="tp"/>' : '';
+    // Cropped viewBox: the schematics occupy the middle of the 0-100 space, so
+    // a full-square view letterboxes them into a small figure inside a wide
+    // panel. Mark coordinates stay in the same 0-100 space.
+    return '<figure class="tech-demo"><svg viewBox="14 2 72 96" role="img" aria-label="' +
+      esc(demo.caption || 'Examination diagram') + '">' +
+      '<defs><marker id="tri" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="5" markerHeight="5" orient="auto">' +
+      '<path d="M0 0 L8 4 L0 8z" class="arh"/></marker></defs>' +
+      (BODY[demo.view] || '') + quads + path + arrows + shapes + '</svg>' +
+      '<figcaption>' + esc(demo.caption || '') + '</figcaption></figure>';
+  }
+
+  /* ---------- screens -------------------------------------------------- */
+  function head(label) {
+    return '<button class="tech-close" type="button" aria-label="Close the examination guide">×</button>' +
+           '<small>' + esc(label) + '</small>';
+  }
+
+  function menu() {
+    priorFocus = document.activeElement;
+    examId = null; step = 0; done = [];
+    panel.hidden = false;
+    panel.className = 'tech-menu';
+    panel.innerHTML = head('PHYSICAL EXAM REHEARSAL') +
+      '<h2>Choose an examination</h2>' +
+      '<p class="tech-sub">Short, CSE-sized sequences. What to do, what to check, what to write.</p>' +
+      Object.values(EXAMS).map(e =>
+        '<button class="exam-choice" type="button" data-exam="' + e.id + '">' +
+        '<span class="ex-title">' + esc(e.title) + '</span>' +
+        '<span class="ex-blurb">' + esc(e.blurb) + '</span>' +
+        '<span class="ex-time">' + esc(e.duration) + ' · ' + e.steps.length + ' steps</span>' +
+        '</button>').join('') +
+      '<p class="tech-limit">Rehearsal only — no findings or examination credit are recorded.</p>';
+    wire();
+    panel.querySelectorAll('[data-exam]').forEach(b => {
+      b.onclick = () => { examId = b.dataset.exam; step = 0; done = []; mode = 'learn'; report('start'); render(); };
+    });
+    focusHeading();
+  }
+
+  function render() {
+    const exam = EXAMS[examId];
+    if (!exam) return menu();
+    if (mode === 'quick') return quick();
+    if (step >= exam.steps.length) return summary();
+    const item = exam.steps[step];
+    const total = exam.steps.length;
+    panel.hidden = false;
+    panel.className = 'tech-step';
+    panel.innerHTML = head(exam.title.toUpperCase() + ' · STEP ' + (step + 1) + ' OF ' + total) +
+      '<div class="tech-bar" role="progressbar" aria-valuemin="1" aria-valuemax="' + total +
+      '" aria-valuenow="' + (step + 1) + '">' +
+      exam.steps.map((s, i) => '<span class="' + (i < step ? 'done' : i === step ? 'now' : '') + '"></span>').join('') +
+      '</div>' +
+      '<h2>' + esc(item.title) + '</h2>' +
+      diagram(item.demo) +
+      '<p class="tech-do">' + esc(item.instruction) + '</p>' +
+      '<dl class="tech-facts">' +
+      '<dt>Checking for</dt><dd>' + esc(item.assessing) + '</dd>' +
+      '<dt>Normal</dt><dd>' + esc(item.normal) + '</dd>' +
+      '</dl>' +
+      (item.soap ? '<p class="tech-soap"><span>SOAP</span>' + esc(item.soap) + '</p>' : '') +
+      '<p class="tech-note" role="status"></p>' +
+      '<div class="tech-nav">' +
+      '<button type="button" id="techBack"' + (step === 0 ? ' disabled' : '') + '>← Back</button>' +
+      // Skipping is a real option, and the closing note reflects it. Without
+      // this the sequence could only ever be completed in full, and the
+      // documentation discipline would never actually be exercised.
+      '<button type="button" id="techSkip" class="ghost" title="Advance without counting this step as performed">Skip</button>' +
+      '<button type="button" id="techNext" class="primary">' +
+      (step === total - 1 ? 'Finish' : 'Next →') + '</button>' +
+      '</div>' +
+      (step === 0 && exam.position ? '<p class="tech-pos">' + esc(exam.position) + '</p>' : '');
+    wire();
+    panel.querySelector('#techBack').onclick = () => { if (step > 0) { step--; render(); } };
+    panel.querySelector('#techNext').onclick = () => {
+      if (!done.includes(item.id)) done.push(item.id);
+      step++; report('step'); render();
+    };
+    panel.querySelector('#techSkip').onclick = () => {
+      done = done.filter(id => id !== item.id);
+      step++; report('skip'); render();
+    };
+    focusHeading();
+  }
+
+  function summary() {
+    const exam = EXAMS[examId];
+    // Only the steps actually completed may contribute to the note.
+    const performed = exam.steps.filter(s => done.includes(s.id));
+    const fragments = performed.map(s => s.soap).filter(Boolean);
+    const line = fragments.length
+      ? exam.soapPrefix + ' ' + fragments.join(', ').replace(/\s+/g, ' ') + '.'
+      : null;
+    const skipped = exam.steps.filter(s => !done.includes(s.id));
+    panel.hidden = false;
+    panel.className = 'tech-done';
+    panel.innerHTML = head(exam.title.toUpperCase() + ' · COMPLETE') +
+      '<h2>What you can document</h2>' +
+      '<ul class="tech-checks">' +
+      performed.map(s => '<li class="yes">' + esc(s.title) + '</li>').join('') +
+      skipped.map(s => '<li class="no">' + esc(s.title) + ' — not performed</li>').join('') +
+      '</ul>' +
+      (line ? '<pre class="tech-note-out">' + esc(line) + '</pre>'
+            : '<p class="tech-sub">You skipped every step, so there is nothing to document.</p>') +
+      (skipped.length
+        ? '<p class="tech-warn">Only the components you performed appear above. Do not document a step you skipped.</p>'
+        : '') +
+      (exam.optional && exam.optional.length
+        ? '<h3>Optional, if relevant</h3><ul class="tech-opt">' +
+          exam.optional.map(o => '<li><b>' + esc(o.title) + '</b> — ' + esc(o.why) + '</li>').join('') + '</ul>'
+        : '') +
+      '<div class="tech-nav">' +
+      '<button type="button" id="techAgain">Rehearse again</button>' +
+      '<button type="button" id="techQuick" class="primary">Quick reference</button>' +
+      '</div>' +
+      '<button type="button" class="tech-link" id="techMenu">← All examinations</button>';
+    wire();
+    panel.querySelector('#techAgain').onclick = () => { step = 0; done = []; mode = 'learn'; render(); };
+    panel.querySelector('#techQuick').onclick = () => { mode = 'quick'; render(); };
+    panel.querySelector('#techMenu').onclick = menu;
+    report('complete', { performed: performed.length, skipped: skipped.length });
+    focusHeading();
+  }
+
+  function quick() {
+    const exam = EXAMS[examId];
+    const line = exam.soapPrefix + ' ' + exam.steps.map(s => s.soap).filter(Boolean).join(', ') + '.';
+    panel.hidden = false;
+    panel.className = 'tech-quick';
+    panel.innerHTML = head(exam.title.toUpperCase() + ' · QUICK SEQUENCE') +
+      '<h2>' + esc(exam.title) + '</h2>' +
+      '<p class="tech-sub">' + esc(exam.duration) + '</p>' +
+      '<ol class="tech-seq">' + exam.steps.map(s =>
+        '<li><b>' + esc(s.title) + '</b><span>' + esc(s.instruction.split('.')[0]) + '</span></li>').join('') +
+      '</ol>' +
+      '<p class="tech-soap-label">If entirely normal:</p>' +
+      '<pre class="tech-note-out">' + esc(line) + '</pre>' +
+      '<p class="tech-warn">Document only what you actually performed.</p>' +
+      '<div class="tech-nav">' +
+      '<button type="button" id="techLearn">Step-by-step</button>' +
+      '<button type="button" id="techMenu2" class="primary">← All examinations</button>' +
+      '</div>';
+    wire();
+    panel.querySelector('#techLearn').onclick = () => { mode = 'learn'; step = 0; done = []; render(); };
+    panel.querySelector('#techMenu2').onclick = menu;
+    focusHeading();
+  }
+
+  function wire() {
+    const close_ = panel.querySelector('.tech-close');
+    if (close_) close_.onclick = close;
+  }
+  function focusHeading() {
+    const h = panel.querySelector('h2');
+    if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); }
+  }
+
+  panel.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagation(); close(); } });
+  launch.onclick = () => (panel.hidden ? menu() : close());
+
+  /* The guide is available whenever the student is with the patient. It no
+     longer disables the encounter controls: it reads nothing from the case and
+     changes nothing, so there is no reason to take the encounter away. */
+  window.pcmTechniqueState = () => {
+    const allowed = state.phase === 'encounter';
+    launch.hidden = !allowed;
+    if (!allowed && !panel.hidden) close();
+  };
 })();

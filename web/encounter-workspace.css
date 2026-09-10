@@ -36,7 +36,21 @@ body.encounter-workspace-active .ew-room #roomViewport{flex:1 1 0;height:0!impor
 .ew-room .composer .hint{font-size:10px;line-height:1.3;margin:5px 0 0}.ew-room .interim:empty{display:none}
 .ew-bottom{grid-column:1/-1;grid-row:2;display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:12px;padding:5px 7px;background:var(--surface);min-width:0}
 .ew-bottom-tools{display:flex;align-items:center;gap:6px;min-width:0}.ew-bottom .btn{min-height:34px;padding:6px 10px;font-size:12px;white-space:nowrap}
-.ew-position{display:flex;gap:6px;align-items:center;font-size:11px;color:var(--ink-2)}.ew-position select{width:auto;max-width:175px;font-size:12px;min-height:34px;padding:5px 24px 5px 8px}
+/* Position is a segmented control: every supported position is one click, the
+   current one is shown by state AND label weight (never colour alone), and the
+   selection is only ever painted from the engine's recorded posture. */
+.ew-position{display:inline-flex;align-items:stretch;gap:0;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--surface-2);min-width:0}
+.ew-pos{display:inline-flex;align-items:center;gap:4px;border:0;border-right:1px solid var(--line);background:transparent;color:var(--ink-2);font-size:11px;font-weight:500;padding:6px 9px;min-height:34px;white-space:nowrap;cursor:pointer}
+.ew-pos:last-child{border-right:0}
+.ew-pos:hover:not(:disabled){background:var(--surface-3);color:var(--ink)}
+.ew-pos:focus-visible{outline:3px solid var(--focus);outline-offset:-3px;z-index:1}
+.ew-pos[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);font-weight:650}
+.ew-pos:disabled{opacity:.5;cursor:wait}
+.ew-pos-i{font-size:10px;opacity:.75}
+.ew-pos[aria-pressed="true"] .ew-pos-i{opacity:1}
+/* Voice is a toggle, so its state is carried by label text and aria-pressed. */
+.ew-toggle.is-on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:600}
+.ew-toggle.is-unavailable{opacity:.55;text-decoration:line-through}
 .ew-bottom #btnEnd{margin-left:auto;white-space:nowrap;font-size:12px;min-height:34px;padding:6px 12px}
 .ew-stored[hidden]{display:none!important}.ew-record-note{font-size:11px;padding:8px 12px;margin:0;color:var(--ink-2);border-bottom:1px solid var(--line)}
 .ew-room .ew-panel-title{padding:11px 12px 8px;flex:0 0 auto}.ew-panel-title h2{font-size:17px;margin:0 0 4px}.ew-panel-title span{font-size:11px}
@@ -50,10 +64,10 @@ body.encounter-workspace-active #ewPanelGuide>#encounterGuide{margin:0!important
 .ew-guide-loading{padding:15px}.ew-room .ai-conversation{flex:0 0 auto;margin:6px;max-height:125px;overflow:auto;font-size:11px}.ew-room .voice-bar{font-size:11px;padding:5px 10px;flex:0 0 auto}
 .ew-sheet{position:fixed;inset:0;margin:auto;width:min(720px,calc(100vw - 28px));max-width:none;max-height:calc(100dvh - 40px);padding:0;border:1px solid var(--line);border-radius:18px;background:var(--surface);color:var(--ink);box-shadow:0 20px 90px #102b4450;overflow:hidden}.ew-sheet::backdrop{background:#102b4466}.ew-sheet[open]{display:flex;flex-direction:column}.ew-sheet-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);flex:0 0 auto}.ew-sheet-head h2{font-size:19px;margin:0}.ew-sheet-body{padding:16px 18px;min-height:0;overflow:auto;font-size:13px}.ew-sheet-body>details>summary{display:none}.ew-sheet-body #patientVoiceSettings{margin:0!important;padding:0!important;max-width:none}.ew-sheet-body .bedside-card{padding:0;border:0;box-shadow:none}.ew-sheet-body .rapport{display:grid;grid-template-columns:1fr 1fr;gap:7px}.ew-sheet-body .scene-help{padding:0;background:transparent}.ew-sheet-body .ew-view-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.ew-sheet-body .guide-route,.ew-sheet-body .guide-coverage{display:block!important}.ew-sheet-body .guide-route select{font-size:13px}.ew-sheet-body .guide-route{margin:0;padding:0;border:0}.ew-sheet-body #toolRefuse{margin-top:12px}
 body.encounter-workspace-active .room.ew-room.patient-focus{grid-template-columns:minmax(0,2.8fr) minmax(300px,1fr)}
-@media(max-width:1150px){body.encounter-workspace-active .room.ew-room{grid-template-columns:minmax(0,1.4fr) minmax(330px,1fr);gap:7px}.ew-room .unity-heading h2{font-size:16px}.ew-room .unity-heading{padding:7px 9px}.ew-room .state-pill{max-width:120px;overflow:hidden}.ew-bottom .btn{font-size:11px;padding:6px 8px}.ew-position select{max-width:155px}.ew-position span{display:none}}
+@media(max-width:1150px){body.encounter-workspace-active .room.ew-room{grid-template-columns:minmax(0,1.4fr) minmax(330px,1fr);gap:7px}.ew-room .unity-heading h2{font-size:16px}.ew-room .unity-heading{padding:7px 9px}.ew-room .state-pill{max-width:120px;overflow:hidden}.ew-bottom .btn{font-size:11px;padding:6px 8px}.ew-pos{padding:6px 7px;font-size:10px}.ew-pos-i{display:none}}
 @media(max-height:680px) and (min-width:850px){.ew-room .ew-panel-title{padding:7px 10px}.ew-panel-title h2{font-size:15px}.ew-panel-title span{display:none}.ew-exam-filters{gap:5px;padding-bottom:5px}.ew-exam-filters label{gap:2px}.ew-exam-filters select,.ew-exam-filters input{min-height:29px;padding:4px 6px}.ew-room .composer #say{min-height:45px!important;height:45px!important;max-height:65px!important}.ew-right>.composer{padding:6px 8px}.ew-tabs button{padding:7px 3px}.ew-guide-scroll{padding:7px 9px}.ew-room .guide-actions .btn,.ew-room .guide-navigation .btn,.ew-room #ewGuideMore{min-height:27px;padding:4px 6px}.ew-guide-footer{padding:5px 8px}.ew-room .guide-current{padding:7px}.ew-room .guide-current blockquote{margin:5px 0;padding:5px 7px}.ew-room .guide-current .guide-message{display:none}.ew-room .guide-current-label{display:none}.ew-room .guide-urgency{margin:0}.ew-room .guide-position{max-width:95px}.ew-room .guide-case-context{display:none}}
-@media(max-width:849px){body.encounter-workspace-active #view{padding:6px!important}body.encounter-workspace-active .room.ew-room,body.encounter-workspace-active .room.ew-room.patient-focus{grid-template-columns:minmax(0,1fr) minmax(290px,1fr);gap:6px;grid-template-rows:minmax(0,1fr) 46px}.ew-room .unity-heading{align-items:flex-start;flex-direction:column;gap:3px}.ew-room .unity-heading h2{font-size:15px}.ew-room .unity-heading .patient-heading-actions{width:100%;justify-content:space-between}.ew-room .unity-heading .state-pill{font-size:9px}.ew-bottom-tools{gap:4px}.ew-bottom .btn{font-size:10px;padding:5px 7px}.ew-position select{max-width:119px;font-size:10px}.ew-bottom #btnEnd{font-size:10px;padding:5px 8px}.ew-bottom{gap:5px;padding:4px}.ew-room .composer #stopPatient{font-size:10px;padding:5px}.ew-room .composer #btnSay{font-size:10px;padding:5px}}
-@media(max-width:619px),(max-height:420px){body.encounter-workspace-active .room.ew-room,body.encounter-workspace-active .room.ew-room.patient-focus{height:auto;max-height:none;display:flex!important;flex-direction:column}.ew-room>.unity-room{height:45dvh;min-height:250px}.ew-right{height:65dvh;min-height:370px}.ew-bottom{position:sticky;bottom:5px;z-index:8;flex-wrap:wrap;min-height:48px}.ew-bottom-tools{flex-wrap:wrap}.ew-room .unity-heading{flex-direction:row}.ew-room .unity-heading .patient-heading-actions{width:auto}.ew-sheet-body .ew-view-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:849px){body.encounter-workspace-active #view{padding:6px!important}body.encounter-workspace-active .room.ew-room,body.encounter-workspace-active .room.ew-room.patient-focus{grid-template-columns:minmax(0,1fr) minmax(290px,1fr);gap:6px;grid-template-rows:minmax(0,1fr) 46px}.ew-room .unity-heading{align-items:flex-start;flex-direction:column;gap:3px}.ew-room .unity-heading h2{font-size:15px}.ew-room .unity-heading .patient-heading-actions{width:100%;justify-content:space-between}.ew-room .unity-heading .state-pill{font-size:9px}.ew-bottom-tools{gap:4px}.ew-bottom .btn{font-size:10px;padding:5px 7px}.ew-pos{padding:5px 6px;font-size:10px}.ew-pos-i{display:none}.ew-bottom #btnEnd{font-size:10px;padding:5px 8px}.ew-bottom{gap:5px;padding:4px}.ew-room .composer #stopPatient{font-size:10px;padding:5px}.ew-room .composer #btnSay{font-size:10px;padding:5px}}
+@media(max-width:619px),(max-height:420px){body.encounter-workspace-active .room.ew-room,body.encounter-workspace-active .room.ew-room.patient-focus{height:auto;max-height:none;display:flex!important;flex-direction:column}.ew-room>.unity-room{height:45dvh;min-height:250px}.ew-right{height:65dvh;min-height:370px}.ew-bottom{position:sticky;bottom:5px;z-index:8;flex-wrap:wrap;min-height:48px}.ew-position{flex-wrap:wrap}.ew-bottom-tools{flex-wrap:wrap}.ew-room .unity-heading{flex-direction:row}.ew-room .unity-heading .patient-heading-actions{width:auto}.ew-sheet-body .ew-view-grid{grid-template-columns:1fr 1fr}}
 
 .ew-latest-reply{display:none;align-items:flex-start;gap:6px;border-top:1px solid var(--line);background:var(--surface-2);padding:6px 9px;flex:0 0 auto;min-height:0}.ew-latest-reply p{font-size:11px;line-height:1.4;max-height:46px;overflow:auto;margin:0;flex:1;min-width:0}.ew-latest-reply .btn{font-size:10px;padding:3px 5px;min-height:24px;white-space:nowrap}.ew-room:not([data-workspace-tab=talk]):not([data-workspace-tab=record]) .ew-latest-reply{display:flex}#ewPanelGuide .guide-route,#ewPanelGuide .guide-coverage{display:none!important}
 
@@ -122,3 +136,22 @@ body.encounter-workspace-active #ewGuideCard>#encounterGuide{display:block!impor
 .ew-talk-guide>summary{position:sticky;top:0;z-index:2;cursor:pointer;padding:9px 12px;background:var(--accent);color:var(--on-accent);font-size:13px;font-weight:700}.ew-talk-guide>summary span{float:right;font-size:11px;font-weight:500}
 #ewPanelTalk #ewGuideCard{max-height:none;min-height:0;padding:12px;border:0}.ew-talk-guide:not([open]) #ewGuideCard{display:none}
 @media(max-width:500px){.ew-action-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Bedside: grouped by purpose, with actions and suggestions visibly distinct.
+   An action carries a tick (state, not a lock - it stays repeatable); a
+   suggestion carries a chevron because it only reaches the composer. */
+.ew-bedside{display:flex;flex-direction:column;gap:14px}
+.ew-bs-group h3{margin:0 0 2px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.ew-bs-note{margin:0 0 7px;font-size:11px;color:var(--ink-2);line-height:1.45}
+.ew-bs-items{display:flex;flex-direction:column;gap:4px}
+.ew-bs{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:8px 10px;
+  border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);
+  font-size:12.5px;line-height:1.35;cursor:pointer}
+.ew-bs:hover{border-color:var(--accent);background:var(--surface-2)}
+.ew-bs:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.ew-bs-tick{flex:0 0 auto;width:15px;text-align:center;color:var(--ink-3);font-size:12px}
+.ew-bs.used .ew-bs-tick{color:var(--ok,#2b7d5f)}
+.ew-bs.used{background:var(--surface-2)}
+.ew-bs-done{margin-left:auto;font-size:9.5px;color:var(--ink-3);letter-spacing:.05em;text-transform:uppercase}
+.ew-bs-status{margin:2px 0 0;font-size:11px;color:var(--accent);min-height:0}
+.ew-bs-status:empty{display:none}

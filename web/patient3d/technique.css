@@ -1,2 +1,120 @@
-#techniqueLaunch{position:absolute;left:14px;bottom:66px;background:#fff3cc;border-color:#c59b40;font-size:12px;z-index:2}#techniqueLaunch[hidden]{display:none}
-#techniquePanel{position:absolute;left:14px;top:78px;width:310px;max-width:calc(100% - 28px);max-height:calc(100% - 105px);overflow:auto;background:#fffdf5f7;border:1px solid #b7bfa4;border-radius:12px;padding:15px;box-shadow:0 8px 25px #123c3b25;z-index:4;color:#203d3c}#techniquePanel[hidden]{display:none}#techniquePanel small{font-size:9px;letter-spacing:.06em;color:#526762}#techniquePanel h2{font-size:17px;margin:8px 22px 8px 0}#techniquePanel p{font-size:12px;line-height:1.55;margin:9px 0}#techniquePanel strong{font-size:12px;line-height:1.45;display:block}.tech-close{float:right;padding:0 7px;border:0;background:transparent;font-size:20px}.lesson-choice,.tech-choices button{display:block;width:100%;text-align:left;margin-top:7px;font-size:12px}.tech-feedback{font-size:12px;line-height:1.5;margin:8px 0;color:#3b624c}#techNext{width:100%;background:#205e53;color:white;font-size:12px}.tech-limit{font-size:10px!important;color:#61706a}#techniquePanel a{color:#286957}
+/* Physical-exam rehearsal panel and its launch control.
+   The launcher is a small utility, deliberately not a primary simulation
+   control: bottom-left, low contrast until hovered. */
+#techniqueLaunch{position:absolute;left:12px;bottom:12px;z-index:3;
+  font-size:11px;line-height:1;padding:6px 10px;border-radius:14px;
+  background:#fffdf5e0;border:1px solid #b9c4b2;color:#39544e;
+  box-shadow:0 1px 4px #12343221;opacity:.82;transition:opacity .12s,background .12s}
+#techniqueLaunch::before{content:"◳";margin-right:5px;opacity:.7}
+#techniqueLaunch:hover,#techniqueLaunch:focus-visible{opacity:1;background:#fff;border-color:#39796c}
+#techniqueLaunch[hidden]{display:none}
+
+#techniquePanel{position:absolute;left:12px;bottom:46px;width:296px;
+  max-width:calc(100% - 24px);max-height:calc(100% - 62px);overflow:auto;
+  background:#fffdf6fa;border:1px solid #b7bfa4;border-radius:14px;padding:14px;
+  box-shadow:0 10px 30px #123c3b2e;z-index:6;color:#203d3c;
+  font:13px/1.5 system-ui,sans-serif}
+#techniquePanel[hidden]{display:none}
+#techniquePanel small{display:block;font-size:9px;letter-spacing:.07em;color:#5c716b;margin-bottom:4px}
+#techniquePanel h2{font-size:16px;margin:2px 22px 8px 0;line-height:1.25}
+#techniquePanel h2:focus{outline:none}
+#techniquePanel h3{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#5c716b;margin:14px 0 6px}
+.tech-close{position:absolute;right:8px;top:8px;padding:2px 7px;border:0;
+  background:transparent;font-size:19px;line-height:1;color:#5c716b;cursor:pointer}
+.tech-close:hover{color:#1d3b36}
+.tech-sub{font-size:11.5px;color:#5c716b;margin:0 0 10px}
+.tech-limit{font-size:9.5px;color:#6d7c76;margin:12px 0 0}
+.tech-pos{font-size:10.5px;color:#5c716b;margin:9px 0 0;padding-top:8px;border-top:1px dashed #cdd6c6}
+
+/* menu */
+.exam-choice{display:block;width:100%;text-align:left;margin-top:6px;padding:8px 10px;
+  border:1px solid #cbd5c4;border-radius:10px;background:#fff;cursor:pointer}
+.exam-choice:hover{border-color:#39796c;background:#f3f9f4}
+.ex-title{display:block;font-size:13px;font-weight:650;color:#1d3b36}
+.ex-blurb{display:block;font-size:11px;color:#556963;margin-top:1px}
+.ex-time{display:block;font-size:9.5px;color:#7a8a83;margin-top:3px}
+
+/* progress */
+.tech-bar{display:flex;gap:3px;margin:0 0 10px}
+.tech-bar span{flex:1;height:3px;border-radius:2px;background:#d8e0d3}
+.tech-bar span.done{background:#7fae9d}
+.tech-bar span.now{background:#205e53}
+
+/* step body */
+.tech-do{margin:8px 0;font-size:12.5px}
+.tech-facts{display:grid;grid-template-columns:auto 1fr;gap:2px 8px;margin:8px 0;font-size:11.5px}
+.tech-facts dt{color:#5c716b;white-space:nowrap}
+.tech-facts dd{margin:0;color:#22423c}
+.tech-soap{margin:8px 0 0;padding:7px 9px;background:#eef5ef;border-left:3px solid #205e53;
+  border-radius:0 7px 7px 0;font-size:11.5px;color:#1d3b36}
+.tech-soap span{display:block;font-size:9px;letter-spacing:.07em;color:#4d7a6c;margin-bottom:2px}
+.tech-note{font-size:11px;color:#8a5a1f;margin:6px 0 0;min-height:0}
+.tech-note:empty{display:none}
+
+/* diagram */
+.tech-demo{margin:8px 0;padding:0;background:#f5f8f2;border:1px solid #dbe3d6;border-radius:9px}
+.tech-demo svg{display:block;width:100%;height:150px}
+.tech-demo figcaption{font-size:10px;color:#5c716b;text-align:center;padding:0 6px 6px}
+.tb{fill:#e4ece1;stroke:#93a894;stroke-width:1.4}
+.tb.tl{fill:none}
+.tm{stroke:#b6c4b4;stroke-width:.8;stroke-dasharray:2 2}
+.tq{stroke:#b6c4b4;stroke-width:.8;stroke-dasharray:2 2}
+.tp{fill:none;stroke:#c08a2e;stroke-width:1.4;stroke-dasharray:3 2}
+.mk{stroke-width:1.5}
+.mk-scope{fill:#205e53;stroke:#14413a}
+.mk-hand{fill:#c08a2e;stroke:#8d6316}
+.mk-tap{fill:#5b7fa8;stroke:#3c5c80}
+.mk-look{fill:#7a5ba8;stroke:#553c7b}
+.mk-move{fill:none;stroke:#205e53;stroke-width:2;stroke-dasharray:3 2}
+.mk-zone{fill:#20655312;stroke:#4d8a7a;stroke-width:1.2;stroke-dasharray:3 2}
+.mkl{font-size:6.5px;font-weight:700;fill:#fff;text-anchor:middle;pointer-events:none}
+.mk-zone+.mkl,.mk-move+.mkl{fill:#20443d}
+.ar{stroke:#205e53;stroke-width:1.1}
+.ar-compare{stroke:#c08a2e;stroke-width:1.3;stroke-dasharray:3 2}
+.ar-apart{stroke:#5b7fa8;stroke-width:1.3}
+.arh{fill:#205e53}
+
+/* navigation */
+.tech-nav{display:flex;gap:6px;margin-top:11px}
+.tech-nav button{flex:1;font-size:12px;padding:7px 8px;border-radius:8px;
+  border:1px solid #b9c4b2;background:#fff;color:#25443e;cursor:pointer}
+.tech-nav button:hover:not(:disabled){border-color:#39796c}
+.tech-nav button:disabled{opacity:.42;cursor:default}
+.tech-nav button.ghost{flex:0 0 auto;padding:7px 10px;color:#6d7c76;font-size:11px}
+.tech-nav button.primary{background:#205e53;border-color:#205e53;color:#fff}
+.tech-nav button.primary:hover{background:#18544a}
+.tech-link{display:block;width:100%;margin-top:7px;padding:5px;border:0;background:transparent;
+  color:#4d7a6c;font-size:11px;cursor:pointer;text-align:center}
+.tech-link:hover{text-decoration:underline}
+
+/* summary */
+.tech-checks{list-style:none;padding:0;margin:6px 0 10px;font-size:12px}
+.tech-checks li{padding:2px 0 2px 17px;position:relative}
+.tech-checks li.yes::before{content:"✓";position:absolute;left:0;color:#2b7d5f;font-weight:700}
+.tech-checks li.no{color:#8b7a63}
+.tech-checks li.no::before{content:"○";position:absolute;left:0;color:#b09a76}
+.tech-note-out{margin:0;padding:9px 10px;background:#1d3b36;color:#eef5ef;border-radius:8px;
+  font:11.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;word-break:break-word}
+.tech-warn{font-size:10.5px;color:#8a5a1f;margin:7px 0 0}
+.tech-opt{margin:0;padding-left:16px;font-size:11px;color:#4f635d}
+.tech-opt li{margin:3px 0}
+.tech-opt b{color:#22423c}
+.tech-soap-label{font-size:10px;letter-spacing:.05em;color:#5c716b;margin:11px 0 5px;text-transform:uppercase}
+
+/* quick reference */
+.tech-seq{margin:4px 0 0;padding-left:18px;font-size:12px}
+.tech-seq li{margin:5px 0}
+.tech-seq b{display:block;color:#1d3b36}
+.tech-seq span{display:block;font-size:11px;color:#5c716b}
+
+/* Small windows: the panel becomes a bottom sheet so it can never cover the
+   patient controls or run off the edge of the viewport. */
+@media (max-width:620px),(max-height:520px){
+  #techniquePanel{left:6px;right:6px;bottom:44px;width:auto;max-width:none;
+    max-height:min(72vh,420px);border-radius:12px}
+  #techniqueLaunch{left:6px;bottom:6px}
+  .tech-demo svg{height:120px}
+}
+@media (prefers-reduced-motion:reduce){
+  #techniqueLaunch{transition:none}
+}

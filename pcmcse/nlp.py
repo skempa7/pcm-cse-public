@@ -67,6 +67,28 @@ def _norm_cached(text: str) -> str:
     return normalize(text)
 
 
+@functools.lru_cache(maxsize=8192)
+def _prefix_re(term: str):
+    return re.compile(r"(?<![a-z0-9])" + re.escape(term))
+
+
+def word_start_in(term: str, text: str) -> bool:
+    """Substring match anchored to a word start.
+
+    Trigger lists are written as word prefixes -- "smok" is meant to reach
+    "smoking", "medic" to reach "medications" -- so a plain substring test is
+    the natural reading of them. Unanchored, though, it also matches INSIDE a
+    word: the trigger "where" fires on "any-where-", so "does it move
+    anywhere?" reaches the location fact and the patient answers where the
+    pain is instead of whether it radiates. Anchoring the left edge keeps
+    every intended prefix match and removes the infix and suffix ones.
+    """
+    term = _norm_cached(term)
+    if not term:
+        return False
+    return _prefix_re(term).search(text) is not None
+
+
 def word_in(term: str, text: str) -> bool:
     """Match a term at a word start, allowing inflections but not infixes.
 
@@ -427,9 +449,11 @@ def trigger_score(utterance: str, trigger: dict) -> float:
         p = normalize(phrase)
         if not p:
             return False
-        # Substring first (cheap, and how trigger lists are written), then a
-        # word-start match so "smok" reaches "smoker".
-        return p in hay or p in exp or word_in(p, hay) or word_in(p, exp)
+        # Word-start substring first (how trigger lists are written: "smok"
+        # reaches "smoker"), then the inflection-aware match. The substring is
+        # anchored so a trigger cannot fire from inside a longer word.
+        return (word_start_in(p, hay) or word_start_in(p, exp)
+                or word_in(p, hay) or word_in(p, exp))
 
     for phrase in trigger.get("not", []):
         if present(phrase):

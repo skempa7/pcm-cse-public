@@ -154,6 +154,17 @@ code, .mono { font-family: var(--font-mono); font-size: .9em; }
 hr { border: 0; border-top: 1px solid var(--line-soft); margin: var(--sp-4) 0; }
 
 :focus-visible { outline: none; box-shadow: var(--ring); border-radius: var(--r-xs); }
+
+/* Programmatic landing targets. `main#view` and section headings carry
+   tabindex="-1" and are focused after a phase change so assistive technology
+   announces the new view -- that behavior is deliberate and stays. They are
+   not keyboard-reachable, though, so the ring communicates nothing: on a fresh
+   load Chrome treats the programmatic focus as :focus-visible and paints a
+   ring around the whole content area, which only clears once a click switches
+   the interaction modality to pointer. Suppressing the ring HERE, rather than
+   removing the focus call or blanking outlines globally, keeps the
+   accessibility behavior and the focus ring on every real control. */
+[tabindex="-1"]:focus, [tabindex="-1"]:focus-visible { outline: none; box-shadow: none; }
 .sr-only {
   position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
