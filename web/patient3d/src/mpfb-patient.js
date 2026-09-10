@@ -74,7 +74,7 @@ export function createMPFBPatient(scene, options = {}) {
   const assetName=presentation==='male'?'public-male-standard.glb':'public-female-'+(bodyBuild||'standard')+'.glb';
   return createAnimatedPatient(scene, {
     preciseSkinnedPicking:true, label: 'Patient', rootName: 'MPFB public patient', presentation,
-    assetUrl: new URL('../assets/'+assetName+'?v='+(presentation==='male'?'male-native-anatomy-2-female-external-1':'female-shape-1'),import.meta.url).href,
+    assetUrl: new URL('../assets/'+assetName+'?v=patient-shirts-1',import.meta.url).href,
     capabilityMetadata: {model:'mpfb-public-patient',trial:false,bodyBuild:bodyBuild||'original'},
     isEligible: state => state.appearance?.model === 'mpfb-public-patient' && state.appearance?.presentation === presentation,
     controlNames: {blink:['Blink'],speech:['Speech'],concern:['Concern'],discomfort:['Discomfort'],hairSupport:['PCM_HairSupineSupport'],hairProneSupport:['PCM_HairProneSupport']},
