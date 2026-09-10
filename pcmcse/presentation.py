@@ -246,3 +246,35 @@ def demeanor(case, ledger):
                                  "gesture": baseline["gesture"], "pace": baseline["pace"]},
                 interaction_evidence={"acknowledgments": acknowledgments, "explicit_user_interruptions": interruptions},
                 disclosure="Illustrative communication style; not a clinical finding or a measure of symptom change.")
+
+
+def gesture(case, ledger):
+    """Illustrate a disclosed complaint, never reveal an undisclosed finding.
+
+    Region comes from the doorway/opening or an actually delivered affirmative
+    patient statement. A location indication does not assert ongoing pain.
+    """
+    lines=case.get("station", {}).get("doorway", [])
+    if isinstance(lines, str): lines=[lines]
+    opening=" ".join(str(x) for x in lines)
+    def region_of(text):
+        text=_normalize(text)
+        if re.search(r"\b(?:no|denies|without)\b", text): return "none"
+        if re.search(r"\b(?:headache|migraine|head hurts)\b", text): return "head"
+        if not re.search(r"\b(?:pain|hurts?|aching|ache|pressure|burning|sore)\b", text): return "none"
+        for region, pattern in [("flank",r"flank|side"),("abdomen",r"abdom|stomach|belly"),("chest",r"chest"),("back",r"back"),("shoulder",r"shoulder"),("knee",r"knee")]:
+            if re.search(pattern,text): return region
+        return "none"
+    region=region_of(opening);source_seq=None;side="unspecified";text=opening
+    for ev in ledger.events:
+        if ev.get("kind")!=evidence.PATIENT or ev.get("meta",{}).get("no_information") or ev.get("meta",{}).get("uncertain"): continue
+        candidate=ev.get("text","");r=region_of(candidate)
+        # Only personal affirmative symptom statements; not generic discussion.
+        if r!="none" and re.search(r"\b(?:i|my|it|the pain|this pain)\b",_normalize(candidate)):
+            region=r;text=candidate;source_seq=ev.get("seq")
+    normalized=_normalize(text)
+    if re.search(r"\bleft(?:[- ]sided)?\b",normalized):side="left"
+    elif re.search(r"\bright(?:[- ]sided)? (?:side|flank|shoulder|knee|abdomen|chest|back)\b",normalized):side="right"
+    return {"version":"disclosed-gesture-v1","region":region,"side":side,
+            "disclosed":region!="none","source_seq":source_seq,"clinical_evidence":False,
+            "meaning":"Illustrates the reported location; does not establish tenderness or a new finding."}

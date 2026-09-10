@@ -816,7 +816,7 @@ function positionRoomFrame(){
   const b=slot.getBoundingClientRect();host.hidden=false;Object.assign(host.style,{left:(b.left+window.scrollX)+'px',top:(b.top+window.scrollY)+'px',width:b.width+'px',height:b.height+'px'});
 }
 function mountPatientFrame(){
-  let host=$('#roomFrameHost');if(!host){host=document.createElement('div');host.id='roomFrameHost';host.innerHTML=`<iframe id="unityFrame" src="patient3d/index.html?v=shirt-lower-1" title="Interactive patient and examination room" allow="autoplay"></iframe>`;document.body.append(host);roomFrameReady=false;$('#unityFrame').onload=notifyPublicState;}
+  let host=$('#roomFrameHost');if(!host){host=document.createElement('div');host.id='roomFrameHost';host.innerHTML=`<iframe id="unityFrame" src="patient3d/index.html?v=living-clinic-1" title="Interactive patient and examination room" allow="autoplay"></iframe>`;document.body.append(host);roomFrameReady=false;$('#unityFrame').onload=notifyPublicState;}
   roomViewportObserver?.disconnect();roomViewportObserver=new ResizeObserver(positionRoomFrame);for(const target of [$('#roomViewport'),$('#patientVoiceSettings'),document.body])if(target)roomViewportObserver.observe(target);positionRoomFrame();if(roomFrameReady&&$('#unityStatus'))$('#unityStatus').textContent=patientDisplayLabel();notifyPublicState();
 }
 window.addEventListener('resize',positionRoomFrame);document.addEventListener('scroll',positionRoomFrame,true);
@@ -2690,7 +2690,7 @@ function notifyPublicState(){
   frame.contentWindow?.postMessage({type:'pcm-unity-state',state:{
     sessionId:S.id,caseId:S.case_id,phase:S.phase,mode:S.learning_mode||mode().key,
     respiratoryRate:Number.parseFloat((S.station_chart?.vitals||S.station?.vitals||{}).R)||null,visualDemo:S.visual_demo==='humgen-trial'?'humgen-trial':null,patientName:S.patient_name,patientReply:lastPatient?.text||'',posture:S.patient_posture||'seated',
-    comparePrevious:false,appearance:S.appearance||{},affect:S.affect||{},demeanor:S.demeanor||{},listening:patientIsListening(),speaking:Boolean(window.pcmAISpeaking||voice.patientSpeaking),remainingMs:S.phase_ends_at?Math.max(0,S.phase_ends_at-now()):null,
+    comparePrevious:false,appearance:S.appearance||{},affect:S.affect||{},gesture:S.gesture||{},demeanor:S.demeanor||{},listening:patientIsListening(),speaking:Boolean(window.pcmAISpeaking||voice.patientSpeaking),remainingMs:S.phase_ends_at?Math.max(0,S.phase_ends_at-now()):null,
     busyMs,eventSeq:S.event_seq||Math.max(0,...transcript.map(e=>e.seq||0)),
     reducedMotion:!!LS.get('reducedMotion')||window.matchMedia('(prefers-reduced-motion: reduce)').matches,
     examCatalog:unityCatalog()

@@ -65,6 +65,8 @@ export async function createClinicalTable(scene,{shadowGenerator,assetUrl}={}){
  const linen=scene.getMaterialByName('Pillow linen');
  if(fabric&&linen){linen.albedoTexture=fabric.albedoTexture;linen.bumpTexture=fabric.bumpTexture;linen.metallicTexture=fabric.metallicTexture;linen.useRoughnessFromMetallicTextureAlpha=false;linen.useRoughnessFromMetallicTextureGreen=true;linen.useMetallnessFromMetallicTextureBlue=true;linen.albedoColor=Color3.FromHexString('#eef1e9').toLinearSpace();}
  const upholstery=scene.getMaterialByName('Clinical upholstery');
+ if(upholstery){upholstery.albedoColor=Color3.FromHexString('#bca58a').toLinearSpace();upholstery.roughness=.72;upholstery.metallic=0;}
+ for(const [name,color]of [['Upholstery piping','#8f775d'],['Table enamel','#eeeae3'],['Powder coated frame','#9d9c94']]){const m=scene.getMaterialByName(name);if(m)m.albedoColor=Color3.FromHexString(color).toLinearSpace();}
  if(upholstery&&fabric?.bumpTexture){upholstery.bumpTexture=fabric.bumpTexture.clone();upholstery.bumpTexture.uScale=12;upholstery.bumpTexture.vScale=12;upholstery.bumpTexture.level=.035;upholstery.invertNormalMapX=false;upholstery.invertNormalMapY=true;}
  for(const mesh of imported.meshes){mesh.isPickable=false;mesh.receiveShadows=true;if(mesh.getTotalVertices()>0)shadowGenerator?.addShadowCaster(mesh);}
  const fittedNames=new Set(['Main upholstered cushion','Main cushion tailored seam','Fresh main examination paper','Upholstered leg extension','Leg cushion tailored seam','Fresh leg examination paper']);

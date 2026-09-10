@@ -1,3 +1,4 @@
+import {createPatientGestures,gestureIntent} from './patient-gestures.js';
 /**
  * Shared runtime for authored, skinned patient assets.
  *
@@ -161,7 +162,7 @@ function normalizeNames(value) { return Array.isArray(value) ? value : typeof va
  */
 export function createAnimatedPatient(scene, options = {}) {
   const started = nowMs(), label = options.label || 'Patient';
-  let appearanceSignature = '';
+  let appearanceSignature = ''; let gestures=null,gestureStarted=0,gestureReplyUntil=0;
   const ownedResources = [];
   const status = (state, message = '') => options.onStatus?.({state, message});
   let container = null, disposed = false, failed = false, wanted = false, loaded = false;
@@ -200,6 +201,7 @@ export function createAnimatedPatient(scene, options = {}) {
     for (const target of controls[name] || []) target.influence = clamp(value);
   }
   function zeroMotion() {
+    gestures?.restore();
     for (const name of Object.keys(controls)) write(name, 0);
     for (const entry of Object.values(body)) restore(entry);
   }
@@ -223,6 +225,7 @@ export function createAnimatedPatient(scene, options = {}) {
       if (group) {
         group.start(false); group.goToFrame(group.from); group.pause();
         for (const [key, entry] of Object.entries(body)) body[key] = nodeRest(entry?.node);
+        gestures?.capture();
         if (previous && state.phase === 'encounter' && !state.reducedMotion && (options.postureTransitionMs || 0) > 0) {
           const after = poseNodes.map(nodeRest);
           const crossfade=['standing','prone'].includes(previous)||['standing','prone'].includes(posture);
@@ -237,6 +240,7 @@ export function createAnimatedPatient(scene, options = {}) {
   const controller = {
     root, metrics, capabilities, ready: null,
     get transition() { return poseTransition ? {kind:poseTransition.kind,progress:clamp((nowMs()-poseTransition.started)/poseTransition.duration)} : null; },
+    get gesture() { return metrics.gesture; },
     get loaded() { return loaded && !disposed && !failed; },
     get visible() { return root.isEnabled(); },
     get postureSupported() { return supported(); },
@@ -262,7 +266,9 @@ export function createAnimatedPatient(scene, options = {}) {
       if (state.sessionId && state.sessionId !== nextState.sessionId) {
         acknowledgeUntil = 0; examinedAt = 0; zeroMotion();
       }
-      state = nextState;
+      if(nextState.patientReply && nextState.patientReply!==state.patientReply){gestureStarted=nowMs();gestureReplyUntil=gestureStarted+7000;}
+      if(nextState.gesture?.region!==state.gesture?.region)gestureStarted=nowMs();
+      state = {...nextState,gestureStartedAt:gestureStarted,gestureReplyUntil};
       applyPosture();
       updateAppearance();
       show();
@@ -282,6 +288,8 @@ export function createAnimatedPatient(scene, options = {}) {
       const dt = Math.min(.1, Math.max(0, (now - (last || now)) / 1000));
       last = now;
       const intention = patientAnimationIntent(state, now, {acknowledgeUntil, examinedAt});
+      intention.discomfort=Math.min(.85,intention.discomfort*1.35+(gestureIntent(state,now).expression||0)*1.8);
+      intention.blink=Math.max(intention.blink,intention.discomfort*.20);
       // Do not leave an open mouth after speech interruption or after note phase.
       // Other expression targets use a brief, frame-rate-independent transition.
       for (const [name, goal] of [['blink', intention.blink], ['speech', intention.speech], ['discomfort', intention.discomfort], ['concern', intention.concern], ['warmth', intention.warmth]]) {
@@ -331,6 +339,8 @@ export function createAnimatedPatient(scene, options = {}) {
         worldEyeRotation(body.eyeLeft, intention.gazeX, intention.gazeY, lookTarget);
         worldEyeRotation(body.eyeRight, intention.gazeX, intention.gazeY, lookTarget);
       }
+      metrics.gesture=gestures?.animate(state,now);
+      scene.metadata={...scene.metadata,patientGesture:metrics.gesture};
       metrics.animationFrames++;
     },
     ownsMesh(mesh) { return !!mesh && mesh.isEnabled?.() !== false && (mesh === root || mesh.isDescendantOf?.(root)) && controller.visible; },
@@ -409,6 +419,7 @@ export function createAnimatedPatient(scene, options = {}) {
       }
       // Exact rig nodes must be verified in the export manifest. Absence means
       // unsupported, not a best-guess lookup that bends a facial control bone.
+      gestures=createPatientGestures(container);
       body.head = nodeRest(importedNode(container, options.rigNodes?.head || 'head'));
       body.chest = nodeRest(importedNode(container, options.rigNodes?.chest || 'spine.003'));
       const landmarks = {eyeLeft: 'eyeball.L', eyeRight: 'eyeball.R', head: 'head',

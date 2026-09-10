@@ -13,7 +13,7 @@ import {Color3} from '@babylonjs/core/Maths/math.color.js';
 export async function applyClinicalEnvironment(scene, options = {}) {
   const base = options.assetBase || new URL('../assets/polyhaven/', import.meta.url).href;
   const begun = performance.now();
-  const report = {version: 'polyhaven-clinical-v3', materials: {}, failures: [], environment: false};
+  const report = {version: 'reference-clinic-v1', materials: {}, failures: [], environment: false};
   const resources = [];
   const url = file => new URL(file, base).href;
   function texture(file, data, repeat) {
@@ -33,8 +33,8 @@ export async function applyClinicalEnvironment(scene, options = {}) {
   async function material(short, {tint = '#ffffff', repeat = 1, normal = .24} = {}) {
     const maps = await Promise.all([
       texture(`${short}-color.jpg`, false, repeat),
-      texture(`${short}-normal.png`, true, repeat),
-      texture(`${short}-orm.png`, true, repeat),
+      texture(`${short}-normal.${short==='floor'?'jpg':'png'}`, true, repeat),
+      texture(`${short}-orm.${short==='floor'?'jpg':'png'}`, true, repeat),
     ]);
     const mat = new PBRMaterial(`Poly Haven ${short}`, scene);
     mat.albedoColor = Color3.FromHexString(tint).toLinearSpace();
@@ -55,7 +55,7 @@ export async function applyClinicalEnvironment(scene, options = {}) {
     return mat;
   }
   const assignments = [
-    ['plaster', {tint: '#ffffff', repeat: 3, normal: .055},
+    ['plaster', {tint: '#e8e2dd', repeat: 1, normal: .022},
       mesh => ['Back wall', 'Left wall', 'Corridor wall', 'Wall above doorway'].includes(mesh.name)],
     ['wood', {tint: '#ffffff', repeat: 1, normal: .16},
       mesh => mesh.name === 'Hinged examination-room door' || /^Cabinet( door(\.\d+)?)?$/.test(mesh.name)],
@@ -65,6 +65,7 @@ export async function applyClinicalEnvironment(scene, options = {}) {
   const materialTasks = assignments.map(async ([name, settings, match]) => {
     try {
       const mat = await material(name, settings);
+      if(name==='plaster'){mat.albedoTexture=null;mat.albedoColor=Color3.FromHexString('#dedbd6').toLinearSpace();}
       const meshes = scene.meshes.filter(match);
       for (const mesh of meshes) mesh.material = mat;
       report.materials[name] = meshes.map(mesh => mesh.name);
@@ -90,7 +91,7 @@ export async function applyClinicalEnvironment(scene, options = {}) {
       }
       hdr.rotationY = options.rotationY ?? 1.35;
       scene.environmentTexture = hdr;
-      scene.environmentIntensity = options.environmentIntensity ?? .49;
+      scene.environmentIntensity = options.environmentIntensity ?? .60;
       const image = scene.imageProcessingConfiguration;
       image.toneMappingEnabled = true;
       image.toneMappingType = ImageProcessingConfiguration.TONEMAPPING_ACES;
@@ -98,18 +99,18 @@ export async function applyClinicalEnvironment(scene, options = {}) {
       image.contrast = 1.06;
       const key = scene.getLightByName('Window light');
       if (key) {
-        key.intensity = options.keyIntensity ?? 1.55;
+        key.intensity = options.keyIntensity ?? 1.10;
         key.diffuse = new Color3(1, .975, .94);
       }
       const soft = scene.getLightByName('Soft room light');
       if (soft) {
-        soft.intensity = .20;
+        soft.intensity = .30;
         soft.diffuse = new Color3(.96, .975, 1);
         soft.groundColor = new Color3(.43, .45, .43);
       }
       const fill = scene.getLightByName('Portrait fill');
       if (fill) {
-        fill.intensity = .24;
+        fill.intensity = .32;
         fill.diffuse = new Color3(1, .985, .97);
       }
       report.environment = true;

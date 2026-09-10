@@ -13,8 +13,8 @@ export function conversationFrame(face,lap,preset,posture){
   const target=preset==='face'?face.add(V(0,0,.05)):Vector3.Lerp(face,lap,preset==='full'?.65:.42);
   return {target,position:target.add(preset==='face'?V(.07,.64,.20):preset==='full'?V(1.55,1.80,.64):V(.75,1.18,.48)),fov:preset==='face'?.56:preset==='full'?.77:.65};
  }
- const target=preset==='face'?face.add(V(0,-.065,0)):preset==='full'?Vector3.Lerp(face,lap,.95).add(V(0,.04,.05)):face.add(V(0,-.14,0));
- return {target,position:target.add(preset==='face'?V(.06,0,.62):preset==='full'?V(.24,.13,2.90):V(.10,.03,.94)),fov:preset==='face'?.56:preset==='full'?.77:.65};
+ const target=preset==='face'?face.add(V(0,-.065,0)):preset==='full'?Vector3.Lerp(face,lap,.95).add(V(0,.04,.05)):Vector3.Lerp(face,lap,.43);
+ return {target,position:target.add(preset==='face'?V(.06,0,.62):preset==='full'?V(.24,.13,2.90):V(.12,.06,1.60)),fov:preset==='face'?.56:preset==='full'?.77:.65};
 }
 
 /** Follow the animated landmarks directly while easing the camera's offset.

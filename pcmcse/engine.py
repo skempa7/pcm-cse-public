@@ -1177,6 +1177,7 @@ def state_payload(s):
                        and s.case["id"] == "renal-colicky-flank"
                        and presentation.appearance(s.case)["presentation"] == "male" else None,
         "affect": presentation.affect(s.case, s.ledger),
+        "gesture": presentation.gesture(s.case, s.ledger),
         "demeanor": presentation.demeanor(s.case, s.ledger),
         "ai_patient_enabled": bool(s.settings.get("ai_patient_enabled")),
         # UI activity only: never expose withheld fact IDs or create new evidence.
