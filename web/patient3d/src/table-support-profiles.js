@@ -102,7 +102,7 @@ export const TABLE_SUPPORT_PROFILES=Object.freeze({
     }
   },
   "male": {
-    "sourceHash": "9d2e2775fdb5f5d4a8851fdf0c70520e72a586af6f9c879a774bbb65f0943924",
+    "sourceHash": "18381c9cfb0068a3f1eac69a29775d08dc9a269bfd61b648c8a7169fcf134d32",
     "heightM": 1.78,
     "backCushionM": 1.0205955924987793,
     "calfCushionM": 1.0182466926574707,
