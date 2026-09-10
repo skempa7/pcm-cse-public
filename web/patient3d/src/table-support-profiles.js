@@ -3,7 +3,7 @@
  * Table contour is visual support, not a measured clinical finding. */
 export const TABLE_SUPPORT_PROFILES=Object.freeze({
   "short-slender": {
-    "sourceHash": "64451a2cf01579774f5cd6862d289281658e7c5d6f7c1f895873686a5b7d99d9",
+    "sourceHash": "45735e294846b9459a467d61ce1b6435c340d880de244e889f892905825ba2db",
     "heightM": 1.650968064367671,
     "backCushionM": 1.0346928062438965,
     "calfCushionM": 1.0409779968261719,
@@ -36,7 +36,7 @@ export const TABLE_SUPPORT_PROFILES=Object.freeze({
     }
   },
   "standard": {
-    "sourceHash": "c59ab1013efd64f0885ace851f3b3fbcbe7d2b9c6a880ac134d43c78023e50be",
+    "sourceHash": "9860e897a71077ab26cd28a665bca0f80b9ded6007b3a86f22dd20a1fb22ca1f",
     "heightM": 1.701859975690505,
     "backCushionM": 1.0403252067565918,
     "calfCushionM": 1.0455835285186768,
@@ -69,7 +69,7 @@ export const TABLE_SUPPORT_PROFILES=Object.freeze({
     }
   },
   "tall-full": {
-    "sourceHash": "fdf3dc4d9af83d9c9027ffde49fdb99e9d037f99c9258bb894f4773377253e07",
+    "sourceHash": "6536d82f96e2cb19af532c7de2ffcb52d803ba0d0623ab79f64fbaefb6e9172a",
     "heightM": 1.752623918382822,
     "backCushionM": 1.0453677597045898,
     "calfCushionM": 1.0524888458251953,
@@ -102,7 +102,7 @@ export const TABLE_SUPPORT_PROFILES=Object.freeze({
     }
   },
   "male": {
-    "sourceHash": "b89a6f1f444aebad3c02608e9c4059b54eebdbae03bbedd777fee4b9b48f0d60",
+    "sourceHash": "9d2e2775fdb5f5d4a8851fdf0c70520e72a586af6f9c879a774bbb65f0943924",
     "heightM": 1.78,
     "backCushionM": 1.0205955924987793,
     "calfCushionM": 1.0182466926574707,

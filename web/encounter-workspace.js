@@ -21,8 +21,8 @@ function selectTab(name,focus=false){
  active.tab=name;
  qa('[data-ew-tab]',active.root).forEach(b=>{const selected=b.dataset.ewTab===name;b.setAttribute('aria-selected',String(selected));b.tabIndex=selected?0:-1;});
  qa('[data-ew-panel]',active.root).forEach(p=>p.hidden=p.dataset.ewPanel!==name);
- const stream=q('#stream');if(stream){q(name==='record'?'#ewRecordLog':'#ewTalkLog',active.root).append(stream);active.convo.classList.toggle('full-record',name==='record');q('.ew-right',active.root).classList.toggle('full-record',name==='record');}
- if(name==='exam'){refreshExam();}if(name==='record'&&stream)stream.scrollTop=stream.scrollHeight;
+ const stream=q('#stream');if(stream){q(name==='guide'?'#ewGuideChat':'#ewTalkLog',active.root).append(stream);active.convo.classList.remove('full-record');q('.ew-right',active.root).classList.remove('full-record');stream.scrollTop=stream.scrollHeight;}
+ if(name==='exam')refreshExam();if(name==='record')renderRecord();
  if(focus)q('[data-ew-tab="'+name+'"]',active.root)?.focus({preventScroll:true});
  active.root.dataset.workspaceTab=name;fit();
 }
@@ -38,17 +38,36 @@ function audioSettings(){
  dialog.addEventListener('close',()=>unsubscribe?.(),{once:true});select.onchange=()=>{const result=device?.choose(select.value);if(result?.error)status.textContent=result.error;else if(result&&!result.saved)status.textContent='Voice changed for this page. Browser storage could not save the preference.';};q('#ewRefreshVoices',host).onclick=()=>device?.refresh();device?.refresh();
 }
 function makeExam(panel){
- panel.innerHTML='<div class="ew-panel-title"><h2>Examine your patient</h2><span class="small muted">Choose the action and its technique.</span></div><div class="ew-exam-filters"><label>Region<select id="ewRegion"><option value="">All regions</option>'+catalog().map(g=>'<option>'+E(g.region)+'</option>').join('')+'</select></label><label>Instrument<select id="instSel">'+INSTRUMENTS.map(i=>'<option value="'+E(i[0])+'">'+E(i[1])+'</option>').join('')+'</select></label><label class="ew-search">Find an examination<input id="manSearch" type="search" placeholder="Search an action…"></label><label class="ew-search">Action<select id="ewManeuver"><option value="">Select a region or search first</option></select></label></div><div id="regionList" hidden><button data-region="" type="button">All regions</button></div><div id="manCount" class="tiny muted" aria-live="polite"></div><div class="ew-exam-detail" tabindex="0" aria-label="Examination technique"><div id="manList"><p class="small">The same examination catalog is available for every case. Selecting an action does not release a finding.</p></div></div><div class="ew-exam-footer"><div id="examRunning" role="status" class="small"></div><button class="btn primary" id="ewPerform" disabled>Perform selected action</button></div>';
- q('#ewRegion',panel).onchange=e=>{room.region=e.target.value||null;refreshExam(true);};q('#instSel',panel).value=room.instrument||'';q('#instSel',panel).onchange=e=>{room.instrument=e.target.value;refreshExam(true);};q('#manSearch',panel).oninput=()=>refreshExam(true);q('#regionList button',panel).onclick=()=>{room.region=null;q('#ewRegion',panel).value='';refreshExam(true);};q('#ewManeuver',panel).onchange=drawManeuver;q('#ewPerform',panel).onclick=perform;
+ panel.innerHTML='<div class="ew-panel-title"><h2>Choose an examination</h2><span id="ewExamScope"></span></div><div class="ew-board-search"><input id="manSearch" type="search" aria-label="Find an examination" placeholder="Find an action…"><button class="btn sm ghost" id="ewExamAll" aria-pressed="false">All actions</button></div><select id="ewManeuver" hidden aria-hidden="true"><option value="">Choose an action</option></select><div id="regionList" hidden><button data-region="" type="button">All regions</button></div><div id="manCount" class="tiny muted" aria-live="polite"></div><div class="ew-exam-scroll"><div id="ewExamBoard"></div><div class="ew-exam-detail" hidden tabindex="-1" aria-label="Examination technique"><button class="btn sm ghost" id="ewExamBack">← Actions</button><div id="manList"></div></div></div><div class="ew-exam-footer" hidden><div id="examRunning" role="status" class="small"></div><button class="btn primary" id="ewPerform" disabled>Perform selected action</button></div>';
+ q('#manSearch',panel).oninput=()=>refreshExam(true);q('#regionList button',panel).onclick=()=>{active.showAllExams=true;refreshExam(true);};q('#ewExamAll',panel).onclick=()=>{active.showAllExams=!active.showAllExams;refreshExam(true);};q('#ewManeuver',panel).onchange=drawManeuver;q('#ewPerform',panel).onclick=perform;q('#ewExamBack',panel).onclick=()=>{q('#ewManeuver',panel).value='';drawManeuver();};
+}
+// Complaint-based navigation uses only the doorway and information already delivered.
+// It never reads hidden expected maneuvers, diagnoses or the case answer key.
+function relevantRegions(s){
+ if(s?.learning_mode==='rehearsal')return null;
+ const text=[s?.station_chart?.doorway,s?.station?.doorway,...(s?.transcript||[]).filter(e=>e.kind==='patient_reply'&&!e.meta?.no_information).map(e=>e.text)].filter(Boolean).join(' ').toLowerCase();
+ const regions=new Set(['General']);let matched=false;
+ const add=(pattern,names)=>{if(pattern.test(text)){matched=true;names.forEach(n=>regions.add(n));}};
+ add(/cough|chest|breath|wheez|palpitation|edema|swelling|faint|syncope/,['Heart','Lungs','Extremities','HEENT']);
+ add(/abdom|stomach|flank|urina|urine|urinary|dysuria|hematuria|kidney|bowel|vomit|nausea|diarrh|stool|constipat|swallow/,['Abdomen','Heart','Lungs','HEENT']);
+ add(/headache|dizz|vertigo|weak|numb|tingl|balance|confus|seizure|speech|vision/,['Neurologic','HEENT','Neck','Heart','Musculoskeletal']);
+ add(/back pain|back hurts|back ache|injur|joint|shoulder|knee|hip pain|neck pain|leg pain|arm pain/,['Musculoskeletal','Neurologic','Extremities','Neck','Osteopathic']);
+ add(/sore throat|ear pain|sinus|fever|fatigue/,['HEENT','Neck','Heart','Lungs','Abdomen']);
+ regions.add('Skin');return matched?regions:null;
 }
 function refreshExam(reset=false){if(!active)return;const panel=q('#ewPanelExam'),sel=q('#ewManeuver',panel);if(!panel||!sel)return;
- const search=q('#manSearch',panel).value.trim().toLowerCase(),region=q('#ewRegion',panel).value,methods=INSTRUMENTS.find(x=>x[0]===q('#instSel',panel).value)?.[2]||[];
- const list=catalog().flatMap(g=>g.maneuvers.map(m=>({...m,region:g.region}))).filter(m=>(!region||m.region===region)&&(!methods.length||methods.includes(m.method))&&(!search||(m.label+' '+m.region+' '+(m.notes||'')+' '+m.components.join(' ')).toLowerCase().includes(search)));
+ const search=q('#manSearch',panel).value.trim().toLowerCase(),regions=relevantRegions(latest),all=active.showAllExams||!regions||!!search;
+ const list=catalog().flatMap(g=>g.maneuvers.map(m=>({...m,region:g.region}))).filter(m=>(all||regions.has(m.region))&&(!search||(m.label+' '+m.region+' '+(m.notes||'')+' '+m.components.join(' ')).toLowerCase().includes(search)));
+ if(!all&&regions){const order=[...regions];list.sort((a,b)=>order.indexOf(a.region)-order.indexOf(b.region));}
  const old=sel.value,signature=list.map(m=>m.id).join('|');active.examList=list;
- if(reset||signature!==sel.dataset.signature){sel.innerHTML='<option value="">Choose an action</option>'+list.map(m=>'<option value="'+E(m.id)+'">'+E(m.label)+'</option>').join('');sel.dataset.signature=signature;if(list.some(m=>m.id===old))sel.value=old;if(search&&list.length===1)sel.value=list[0].id;drawManeuver();}
- q('#manCount',panel).textContent=list.length+' available actions';updateExamStatus();
+ if(reset||signature!==sel.dataset.signature){sel.innerHTML='<option value="">Choose an action</option>'+list.map(m=>'<option value="'+E(m.id)+'">'+E(m.label)+'</option>').join('');sel.dataset.signature=signature;if(!reset&&list.some(m=>m.id===old))sel.value=old;if(search&&list.length===1)sel.value=list[0].id;
+ q('#ewExamBoard',panel).innerHTML=list.length?[...new Set(list.map(m=>m.region))].map(region=>'<section class="ew-action-group"><h3>'+E(region)+'</h3><div class="ew-action-grid">'+list.filter(m=>m.region===region).map(m=>'<button type="button" class="ew-action-tile" data-exam-action="'+E(m.id)+'"><span aria-hidden="true">'+({inspection:'◉',auscultation:'◖',palpation:'✋',percussion:'⋯'}[m.method]||'✚')+'</span><b>'+E(m.label)+'</b><small>'+E(m.method)+' · '+m.duration_s+'s</small></button>').join('')+'</div></section>').join(''):'<p class="ew-empty">No matching actions. Try a shorter search.</p>';
+ qa('[data-exam-action]',panel).forEach(b=>b.onclick=()=>{sel.value=b.dataset.examAction;drawManeuver();q('.ew-exam-detail',panel).focus({preventScroll:true});});drawManeuver();}
+ q('#ewExamScope',panel).textContent=latest?.learning_mode==='rehearsal'?'Full catalog · choose your own approach':all?'All actions · select only what is indicated':'Complaint & related systems · choose what fits';
+ const toggle=q('#ewExamAll',panel);toggle.hidden=latest?.learning_mode==='rehearsal'||!regions;toggle.textContent=active.showAllExams?'Focused actions':'All actions';toggle.setAttribute('aria-pressed',String(!!active.showAllExams));q('#manCount',panel).textContent=list.length+' actions · select a tile for sites and technique';updateExamStatus();
 }
 function drawManeuver(){if(!active)return;const p=q('#ewPanelExam'),mid=q('#ewManeuver',p).value,m=active.examList?.find(x=>x.id===mid);active.maneuver=mid;
+ q('#ewExamBoard',p).hidden=!!m;q('.ew-exam-detail',p).hidden=!m;q('.ew-exam-footer',p).hidden=!m;
  q('#manList',p).innerHTML=m?'<div class="maneuver" data-m="'+E(mid)+'"><div class="man-head"><b class="m-label">'+E(m.label)+'</b><span class="m-method">'+E(m.method)+'</span><span class="tiny muted">~'+m.duration_s+'s</span></div>'+(m.notes?'<p class="man-note">'+E(m.notes)+'</p>':'')+'<fieldset class="chips"><legend>Sites & technique</legend>'+m.components.map(c=>'<label class="chip"><input type="checkbox" value="'+E(c)+'"><span>'+E(c.replaceAll('_',' '))+'</span></label>').join('')+'</fieldset><p class="tiny muted">Only selected, completed actions release findings. Positioning alone does not establish a finding.</p></div>':'<p class="small muted">Choose a relevant action. The simulator will ask for specific sites and technique when needed.</p>';
  q('#manList',p).onchange=updateExamStatus;updateExamStatus();
 }
@@ -57,17 +76,35 @@ function updateExamStatus(){if(!active)return;const p=q('#ewPanelExam'),b=q('#ew
 }
 async function perform(){if(!active||!latest||latest.phase!=='encounter')return;const ctx=active,p=q('#ewPanelExam'),m=ctx.examList.find(x=>x.id===q('#ewManeuver',p).value);if(!m||q('#ewPerform',p).disabled)return;const sid=latest.id,components=qa('.chips input:checked',p).map(x=>x.value);ctx.examSending=true;updateExamStatus();
  try{const r=await api('/api/session/'+sid+'/exam',{maneuver_id:m.id,components,source_text:'Perform: '+m.label+(components.length?' ('+components.join(', ')+')':'')+' — patient '+recordedPosition()});if(active!==ctx||S?.id!==sid)return;if(r.error){toast(r.message||'That examination could not be performed. Your selections are preserved.');return;}if(r.state)S=Object.assign({},S,r.state);(r.events||[]).forEach(deliverEvent);if(r.state?.transcript)paintStream(S.transcript||[]);paintExamProgress();notifyPublicState();}
+ catch{if(active===ctx)toast('Connection interrupted. Your selections are preserved. Reconnect and check the record before retrying.');}
  finally{ctx.examSending=false;if(active===ctx)updateExamStatus();}
 }
-function arrangeGuide(){if(!active)return;const panel=q('#encounterGuide');if(!panel||!active.root.contains(panel))return;const dest=q('#ewPanelGuide');if(!dest)return;if(panel.parentElement!==dest)dest.append(panel);
+function renderRecord(){
+ const host=q('#ewRecordLog');if(!host||!active)return;
+ const events=latest?.transcript||[],signature=JSON.stringify(events);if(signature===active.recordSignature)return;active.recordSignature=signature;
+ const open=new Set(qa('details[open][data-record]',host).map(n=>n.dataset.record));
+ const groups={'Supplied information':[],'History obtained':[],'Examinations & findings':[],'Needs clarification':[]};let question='Patient volunteered information';
+ for(const ev of events){const meta=ev.meta||{};if(ev.kind==='student_utterance'){question=ev.text;continue;}
+ let group,label,status='✓',detail=ev.text;
+ if(ev.kind==='station_info'){group='Supplied information';label=meta.label||(/vital/i.test(ev.text)?'Doorway vitals':'Doorway information');}
+ else if(ev.kind==='patient_reply'){group=meta.no_information||meta.uncertain?'Needs clarification':'History obtained';label=meta.volunteered?'Volunteered history':question;status=group==='Needs clarification'?'?':'✓';}
+ else if(ev.kind==='exam_finding'){group='Examinations & findings';label=meta.label||meta.maneuver_id||'Examination finding';detail+=(meta.components?.length?'\nSites / technique: '+meta.components.join(', '):'');}
+ else if(ev.kind==='exam_refused'){group='Needs clarification';label='Examination declined';status='!';}
+ else continue;
+ const rows=groups[group],prior=rows.find(x=>x.label===label);if(prior){prior.details.push({seq:ev.seq,text:detail});}else rows.push({label,status,seq:ev.seq,details:[{seq:ev.seq,text:detail}]});
+ }
+ host.innerHTML=Object.entries(groups).map(([label,rows])=>'<section class="ew-record-group"><h3>'+E(label)+' <span>'+rows.length+'</span></h3>'+(rows.length?rows.map(row=>'<details data-record="'+row.seq+'" '+(open.has(String(row.seq))?'open':'')+'><summary><span class="ew-check '+(row.status==='✓'?'':'uncertain')+'" aria-label="'+(row.status==='✓'?'Recorded':'Not established')+'">'+row.status+'</span><span>'+E(row.label)+'</span></summary><div>'+row.details.map(e=>'<p>'+E(e.text)+'</p><small>Encounter evidence #'+e.seq+'</small>').join('')+'</div></details>').join(''):'<p class="ew-empty">Nothing recorded here yet.</p>')+'</section>').join('');
+}
+function arrangeGuide(){if(!active)return;const panel=q('#encounterGuide');if(!panel||!active.root.contains(panel))return;const dest=q('#ewGuideCard');if(!dest)return;if(panel.parentElement!==dest)dest.append(panel);
  if(panel.classList.contains('case-guide')&&!q('.ew-guide-scroll',panel)){
   const scroll=document.createElement('div');scroll.className='ew-guide-scroll';const footer=document.createElement('div');footer.className='ew-guide-footer';const actions=q('.guide-current .guide-actions',panel),nav=q('.guide-navigation',panel);const contents=[...panel.children];contents.forEach(n=>scroll.append(n));if(actions)footer.append(actions);if(nav)footer.append(nav);panel.append(scroll,footer);
   const route=q('.guide-route',panel);const moreActions=document.createElement('div');moreActions.className='guide-navigation';[q('#guideRecommend',panel),q('#guideDefer',panel)].filter(Boolean).forEach(n=>moreActions.append(n));if(route){route.append(moreActions);const urgency=q('.guide-urgency',panel);if(urgency)route.append(urgency);}const draft=q('#guideDraft',panel);if(draft)draft.textContent='Draft question';const help=q('#unstuckButton',panel);if(help)help.textContent='Get unstuck';
-  const extra=button('Path & evidence','ewGuideMore','ghost');(nav||footer).append(extra);extra.onclick=()=>sheet('Your encounter path and obtained evidence',[q('.guide-route',panel),q('.guide-coverage',panel)]);
+  const extra=button('Steps','ewGuideMore','ghost');(nav||footer).append(extra);extra.onclick=()=>sheet('Your encounter path and obtained evidence',[q('.guide-route',panel),q('.guide-coverage',panel)]);
   qa('.guide-route,.guide-coverage',panel).forEach(n=>n.hidden=true);
   extra.addEventListener('click',()=>qa('.ew-sheet .guide-route,.ew-sheet .guide-coverage').forEach(n=>n.hidden=false));
  }
  if(!panel.classList.contains('case-guide'))panel.classList.add('coaching-open');
+ if(!panel.dataset.sidebarWired){panel.dataset.sidebarWired='true';panel.addEventListener('click',e=>{if(e.target.closest('#guideDraft')){selectTab('talk');q('#say')?.focus({preventScroll:true});}if(e.target.closest('#unstuckButton')){const body=q('#recoveryBody',panel);if(body)sheet('Get unstuck · pause, orient, choose',[body]);}});}
 }
 function mount(s){
  const root=q('#view .experience-room'),convo=q('.convo',root);if(!root||!convo)return;if(active?.root===root){latest=s;return;}cleanup();latest=s;
@@ -85,9 +122,11 @@ function mount(s){
  q('#toggleRecord',root).onclick=()=>selectTab(active.tab==='record'?'talk':'record');
  qa('[data-ew-tab]',work).forEach(b=>{b.onclick=()=>selectTab(b.dataset.ewTab);b.onkeydown=e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const tabs=qa('[data-ew-tab]',work);let i=tabs.indexOf(b);i=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;selectTab(tabs[i].dataset.ewTab,true);};});
  const say=q('#say');say.onfocus=null;const focus=q('#patientFocus');focus.onclick=()=>{const expanded=root.classList.toggle('patient-focus');focus.textContent=expanded?'Return to split view':'Expand patient view';focus.setAttribute('aria-pressed',String(expanded));setUiMeta(s.id,{...uiMeta(s.id),expandedPatient:expanded});fit();};
+ const guidePane=q('#ewPanelGuide',work);if(guidePane){const card=document.createElement('div');card.id='ewGuideCard';while(guidePane.firstChild)card.append(guidePane.firstChild);const chat=document.createElement('div');chat.id='ewGuideChat';chat.setAttribute('aria-label','Conversation alongside your guide');const label=document.createElement('div');label.className='ew-guide-chat-label';label.textContent='Conversation · listen, then choose your next move';guidePane.append(card,label,chat);}
+ const recordNote=q('.ew-record-note',work);recordNote.textContent='✓ Recorded in this encounter. Expand a row for the answer or finding. These checks are not rubric scores.';
  makeExam(q('#ewPanelExam'));selectTab(active.tab);arrangeGuide();fit();
 }
-function extras(){if(!active)return;arrangeGuide();const ai=q('#aiConversation');if(ai&&active.root.contains(ai)&&ai.parentElement!==q('#ewPanelTalk'))q('#ewPanelTalk').prepend(ai);const pane=q('#ewPanelGuide');if(pane&&q('#encounterGuide',pane))q('.ew-guide-loading',pane)?.remove();}
+function extras(){if(!active)return;arrangeGuide();if(active.tab==='record')renderRecord();const ai=q('#aiConversation');if(ai&&active.root.contains(ai)&&ai.parentElement!==q('#ewPanelTalk'))q('#ewPanelTalk').prepend(ai);const pane=q('#ewPanelGuide');if(pane&&q('#encounterGuide',pane))q('.ew-guide-loading',pane)?.remove();}
 window.pcmEncounterWorkspaceState=s=>{latest=s;if(!s||s.phase!=='encounter'){cleanup();return;}if(!active||active.root!==q('#view .experience-room')){requestAnimationFrame(()=>{if(latest?.phase==='encounter'){mount(latest);window.pcmEncounterWorkspaceState(latest);}});return;}if(active){const pos=q('#ewPosition');if(pos&&!pos.disabled)pos.value=s.patient_posture||'seated';updateExamStatus();const last=(s.transcript||[]).filter(x=>['patient_reply','patient'].includes(x.kind)).slice(-1)[0];const text=q('.ew-latest-reply p');if(text&&text.textContent!==(last?.text||'Your conversation appears here.'))text.textContent=last?.text||'Your conversation appears here.';extras();}};
 window.openExamPanel=function(){if(active){selectTab('exam');return;}return priorExam?.();};
 const observer=new MutationObserver(()=>{if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;if(document.body.dataset.phase!=='encounter'){cleanup();return;}if(typeof S!=='undefined'&&S?.phase==='encounter'){mount(S);extras();fit();}});});observer.observe(document.getElementById('view'),{childList:true,subtree:true});new MutationObserver(()=>{if(document.body.dataset.phase!=='encounter')cleanup();}).observe(document.body,{attributes:true,attributeFilter:['data-phase']});document.addEventListener('toggle',e=>{const detail=e.target;if(active&&detail instanceof HTMLDetailsElement&&detail.open&&detail.closest('.public-notice')){detail.open=false;sheet('About this public edition',[detail]);}},{capture:true});window.addEventListener('resize',fit);if(typeof S!=='undefined'&&S?.phase==='encounter')window.pcmEncounterWorkspaceState(S);

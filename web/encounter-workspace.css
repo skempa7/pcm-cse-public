@@ -62,3 +62,35 @@ body.encounter-workspace-active .room.ew-room.patient-focus{grid-template-column
 body.encounter-workspace-active #app{min-height:0}body.encounter-workspace-active #view{flex:0 0 auto}.ew-room .ew-guide-footer #ewGuideMore{margin:0}.ew-room .ew-guide-footer .guide-navigation{justify-content:space-between;flex-wrap:nowrap}.ew-room .ew-guide-footer .guide-actions{display:flex;flex-wrap:nowrap}.ew-room .ew-guide-footer .guide-actions .primary{flex:1}.ew-room .case-guide-top .eyebrow{display:none}.ew-room .ew-guide-footer{padding:6px 9px}
 
 .ew-small-screen{display:none}@media(max-width:619px),(max-height:420px){.ew-small-screen{display:block;font-size:11px;line-height:1.4;margin:3px 4px 6px;color:var(--ink-2)}}
+
+/* Focused bedside tools: one next action, a real conversation, and obtained evidence. */
+@media(min-width:850px){body.encounter-workspace-active .room.ew-room:not(.patient-focus){grid-template-columns:minmax(0,1.3fr) minmax(410px,1fr)!important}}
+.ew-tabs{padding:5px;gap:4px}.ew-tabs button{padding:10px 6px;font-size:13px}.ew-tabs button span{margin-right:5px}
+#ewGuideCard{flex:0 1 auto;max-height:55%;min-height:140px;overflow:auto;border-bottom:1px solid var(--line);padding:12px 14px}
+body.encounter-workspace-active #ewGuideCard>#encounterGuide{display:block!important;margin:0!important;padding:0!important;border:0!important;box-shadow:none;background:transparent!important}
+#ewGuideCard .ew-guide-scroll{padding:0;overflow:visible}#ewGuideCard .ew-guide-footer{padding:7px 0 0;border:0;background:transparent}
+#ewGuideCard .case-guide-top{display:flex;align-items:center;justify-content:space-between}#ewGuideCard .case-guide-top h2{font-size:13px;margin:0;color:var(--ink-2)}
+#ewGuideCard .guide-current{border:0;border-radius:0;background:transparent;margin:8px 0 0;padding:0}
+#ewGuideCard .guide-current h3{font-size:15px;line-height:1.35;margin:5px 0}
+#ewGuideCard .guide-current blockquote{border-left:3px solid var(--accent);font-size:15px;line-height:1.45;padding:4px 10px;margin:8px 0;background:transparent}
+#ewGuideCard .guide-why{font-size:12px;line-height:1.45;margin:6px 0}
+#ewGuideCard .guide-current-label{display:flex;font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em}
+#ewGuideCard .guide-message:empty,#ewGuideCard .guide-sources,#ewGuideCard .guide-case-context,#ewGuideCard #guideApplication,#ewGuideCard #recoveryBody,#ewGuideCard .reasoning-expand,#ewGuideCard .guided-first{display:none!important}
+#ewGuideCard .guide-message:not(:empty){display:block;font-size:11px}
+#ewGuideCard .guide-route,#ewGuideCard .guide-coverage{display:none!important}
+#ewGuideCard .guide-actions .btn,#ewGuideCard .guide-navigation .btn{font-size:12px;min-height:32px;padding:6px 9px}
+#ewGuideCard .guide-technique{padding:4px 0;background:transparent}#ewGuideCard .guide-technique>.small{display:none}
+#ewGuideCard .guide-navigation{margin:7px 0 0;gap:7px}#ewGuideCard .guide-current-label>span+span{display:none}
+#ewGuideChat{display:flex;flex:1 1 48%;min-height:110px;overflow:hidden}.ew-guide-chat-label{font-size:10px;letter-spacing:.02em;padding:7px 13px 0;color:var(--ink-2)}
+.ew-room[data-workspace-tab=guide] .ew-latest-reply{display:none!important}.ew-room .stream .bubble{font-size:14px;line-height:1.5}.ew-room .stream .turn{margin-bottom:12px}
+.ew-board-search{display:flex;gap:6px;align-items:center;padding:0 12px 9px}.ew-board-search input{flex:1;min-width:0;font-size:13px;padding:8px 10px;border-radius:9px}.ew-board-search .btn{font-size:11px;white-space:nowrap}
+.ew-exam-scroll{flex:1;min-height:0;overflow:auto;padding:0 12px 12px}#ewExamBoard[hidden],.ew-exam-detail[hidden],.ew-exam-footer[hidden]{display:none!important}
+.ew-exam-scroll .ew-exam-detail{padding:0;overflow:visible}.ew-action-group{margin:0 0 15px}.ew-action-group h3,.ew-record-group h3{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-2);margin:10px 0 8px}
+.ew-action-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.ew-action-tile{display:grid;grid-template-columns:22px 1fr;gap:5px 7px;align-items:start;text-align:left;padding:12px 10px;border:1px solid var(--line);border-radius:11px;background:var(--surface-2);color:var(--ink);cursor:pointer;min-height:83px;font:inherit}
+.ew-action-tile:hover{border-color:var(--accent);background:var(--surface)}.ew-action-tile>span{grid-row:1/3;font-size:19px;color:var(--accent)}.ew-action-tile b{font-size:12px;line-height:1.35}.ew-action-tile small{font-size:10px;color:var(--ink-2)}
+#ewRecordLog{display:block;overflow:auto;padding:3px 14px 14px}.ew-record-group{margin:8px 0 18px}.ew-record-group h3{display:flex;justify-content:space-between}.ew-record-group details{border:0;border-bottom:1px solid var(--line);border-radius:0;padding:0;margin:0;background:transparent;color:var(--ink)}
+.ew-record-group summary{display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.45;padding:11px 0;cursor:pointer;list-style:none}.ew-record-group summary::-webkit-details-marker{display:none}.ew-check{display:inline-grid;place-items:center;width:21px;height:21px;flex:none;border-radius:6px;background:var(--surface-2);color:var(--accent);font-weight:bold}.ew-check.uncertain{color:var(--ink-2)}
+.ew-record-group details>div{padding:0 4px 11px 30px}.ew-record-group p{font-size:13px;line-height:1.5;white-space:pre-line;margin:4px 0}.ew-record-group small{font-size:10px;color:var(--ink-2)}.ew-record-group .ew-empty{font-size:12px;color:var(--ink-2);padding:5px 0}.ew-record-note{line-height:1.5}
+.ew-right>.composer .hint{font-size:10px}.ew-room .composer #say{border-radius:12px;min-height:52px!important;height:52px!important}.ew-room .composer #stopPatient{font-size:10px}
+@media(max-height:720px){#ewGuideCard{padding:9px 12px;flex-basis:58%}#ewGuideCard .guide-current h3{font-size:13px}#ewGuideCard .guide-current blockquote{font-size:13px;margin:5px 0}#ewGuideCard .guide-why{font-size:11px}.ew-guide-chat-label{padding-top:4px}#ewGuideCard .guide-actions .btn,#ewGuideCard .guide-navigation .btn{min-height:28px;padding:4px 8px;font-size:11px}}
+@media(max-width:849px){.ew-action-grid{gap:6px}.ew-action-tile{padding:9px 7px;grid-template-columns:17px 1fr}.ew-tabs button{font-size:11px}.ew-tabs button span{font-size:13px;margin-right:2px}}
