@@ -1238,9 +1238,11 @@ def state_payload(s):
         payload["transcript"] = [
             {"seq": e["seq"], "kind": e["kind"], "text": e["text"], "t_ms": e["t_ms"],
              "time": "%d:%02d" % (e["t_ms"] // 60000, (e["t_ms"] // 1000) % 60),
-             "meta": {k: v for k, v in e["meta"].items()
+             "meta": {"has_clinical_information": bool(e["meta"].get("facts_released") or e["meta"].get("concepts")),
+                      "supplied_kind": ("vitals" if e["meta"].get("vitals") else "doorway" if e["meta"].get("doorway") else "result") if e["kind"] == evidence.STATION_INFO else None,
+                      **{k: v for k, v in e["meta"].items()
                       if k in ("volunteered", "uncertain", "label", "documented_as",
-                               "no_information", "maneuver_id", "components", "source", "request_id")}}
+                               "no_information", "maneuver_id", "components", "source", "request_id")}}}
             for e in s.ledger.events
             if e["kind"] in (evidence.STUDENT, evidence.PATIENT,
                              evidence.EXAM_FINDING, evidence.EXAM_REFUSED,

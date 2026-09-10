@@ -115,6 +115,7 @@
     panel.querySelector('#guideDecisionContinue')?.addEventListener('click',()=>move(active.id,'defer'));
     panel.querySelector('#guideOpenExam')?.addEventListener('click',()=>{
       if(typeof openExamPanel!=='function'){panel.querySelector('[data-guide-message]').textContent='Use the Examination control beside the patient to choose this action.';return;}
+      if(window.pcmFocusExam?.(active.maneuver_id))return;
       openExamPanel();document.querySelector('#regionList [data-region=""]')?.click();
       const search=document.getElementById('manSearch');if(search){search.value=active.title;search.dispatchEvent(new Event('input',{bubbles:true}));search.focus();}
     });

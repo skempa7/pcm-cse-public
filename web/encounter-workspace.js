@@ -14,7 +14,7 @@ function sheet(title,nodes){
 }
 function closeSheet(){if(openedSheet?.open)openedSheet.close();}
 function restoreVoice(){const box=q('#patientVoiceSettings')||voiceNode;if(box&&voiceAnchor?.isConnected){voiceAnchor.replaceWith(box);voiceAnchor=null;}}
-function cleanup(){if(!active)return;closeSheet();restoreVoice();document.body.classList.remove('encounter-workspace-active');document.documentElement.style.removeProperty('--ew-available');active=null;}
+function cleanup(){if(!active)return;clearTimeout(active.outcomeTimer);closeSheet();restoreVoice();document.body.classList.remove('encounter-workspace-active');document.documentElement.style.removeProperty('--ew-available');active=null;}
 function fit(){if(!active)return;const room=active.root;if(!room.isConnected)return;const top=Math.max(0,room.getBoundingClientRect().top);document.documentElement.style.setProperty('--ew-available',Math.max(280,innerHeight-top-8)+'px');positionRoomFrame?.();}
 function selectTab(name,focus=false){
  if(!active||!q('[data-ew-tab="'+name+'"]',active.root))return;
@@ -60,7 +60,7 @@ function relevantRegions(s){
 // exclusive positions or unrelated special tests just to release more findings.
 function quickActions(m){
  if(m.id==='vitals_review')return [];
- const bundle=(key,label,components)=>({...m,actionKey:m.id+':'+key,label,components});
+ const bundle=(key,label,components)=>({...m,searchLabel:m.label,actionKey:m.id+':'+key,label,components});
  const groups={
   heent_eyes:[['inspect','Inspect pupils, conjunctivae, sclerae and corneas',['pupils','conjunctivae','sclerae','cornea']],['eye-movement','Check extraocular movements',['extraocular movements']],['fundus','Perform fundoscopic examination',['fundoscopic']]],
   neck_rom:[['rom','Check neck flexion and rotation',['flexion','rotation']],['brudzinski','Perform Brudzinski test',['brudzinski']],['kernig','Perform Kernig test',['kernig']]],
@@ -80,7 +80,7 @@ function quickActions(m){
 
 function refreshExam(reset=false){if(!active)return;const panel=q('#ewPanelExam'),sel=q('#ewManeuver',panel);if(!panel||!sel)return;
  const search=q('#manSearch',panel).value.trim().toLowerCase(),regions=relevantRegions(latest),all=active.showAllExams||!regions||!!search;
- const list=catalog().flatMap(g=>g.maneuvers.flatMap(m=>quickActions({...m,region:g.region}))).filter(m=>(all||regions.has(m.region))&&(!search||(m.label+' '+m.region+' '+(m.notes||'')+' '+m.components.join(' ')).toLowerCase().includes(search)));
+ const list=catalog().flatMap(g=>g.maneuvers.flatMap(m=>quickActions({...m,region:g.region}))).filter(m=>(all||regions.has(m.region))&&(!search||(m.label+' '+m.searchLabel+' '+m.id+' '+m.region+' '+(m.notes||'')+' '+m.components.join(' ')).toLowerCase().includes(search)));
  if(!all&&regions){const order=[...regions];list.sort((a,b)=>order.indexOf(a.region)-order.indexOf(b.region));}
  const old=sel.value,signature=list.map(m=>m.actionKey).join('|');active.examList=list;
  if(reset||signature!==sel.dataset.signature){sel.innerHTML='<option value="">Choose an action</option>'+list.map(m=>'<option value="'+E(m.actionKey)+'">'+E(m.label)+'</option>').join('');sel.dataset.signature=signature;if(!reset&&list.some(m=>m.actionKey===old))sel.value=old;if(search&&list.length===1)sel.value=list[0].actionKey;
@@ -114,23 +114,24 @@ function syncExamOutcome(s){
  else if(action.kind==='exam_refused')outcome('Examination declined',action.text);
  else if(meta.status==='not_simulated')outcome(title+' — result unavailable','This case has no authored result for this action. The action is recorded, but it provides no finding to document. This does not mean the examination is clinically irrelevant or normal.');
  else if(meta.status==='interrupted')outcome('Examination interrupted','No findings were released. Check the encounter phase before trying again.');
- else if(meta.status!=='in_progress')outcome(title+' — no finding released','The selected sites or technique did not release a finding. Review your selections. Do not document a normal result from this action.');
+ else if(meta.status!=='in_progress')outcome(title+' — no finding released','The selected sites or technique did not release a finding. Check the required position and technique. Do not document a normal result from this action.');
 }
 function renderRecord(){
  const host=q('#ewRecordLog');if(!host||!active)return;
- const events=latest?.transcript||[],signature=JSON.stringify(events);if(signature===active.recordSignature)return;active.recordSignature=signature;
+ const events=latest?.transcript||[],activity=(latest?.examination_activity||[]).filter(e=>['not_simulated','interrupted'].includes(e.meta?.status)),signature=JSON.stringify([events,activity]);if(signature===active.recordSignature)return;active.recordSignature=signature;
  const open=new Set(qa('details[open][data-record]',host).map(n=>n.dataset.record));
- const groups={'Supplied information':[],'History obtained':[],'Examinations & findings':[],'Needs clarification':[]};let question='Patient volunteered information';
+ const groups={'Supplied information':[],'History obtained':[],'Examinations & findings':[],'Needs clarification':[],'Actions without findings':[],'Communication':[]};let question='Patient volunteered information';
  for(const ev of events){const meta=ev.meta||{};if(ev.kind==='student_utterance'){question=ev.text;continue;}
  let group,label,status='✓',detail=ev.text;
- if(ev.kind==='station_info'){group='Supplied information';label=meta.label||(/vital/i.test(ev.text)?'Doorway vitals':'Doorway information');}
- else if(ev.kind==='patient_reply'){group=meta.no_information||meta.uncertain?'Needs clarification':'History obtained';label=meta.volunteered?'Volunteered history':question;status=group==='Needs clarification'?'?':'✓';}
+ if(ev.kind==='station_info'){group='Supplied information';label=meta.label||(meta.supplied_kind==='vitals'?'Doorway vitals':meta.supplied_kind==='result'?'Supplied result':'Doorway information');}
+ else if(ev.kind==='patient_reply'){group=meta.no_information||meta.uncertain?'Needs clarification':meta.has_clinical_information===false?'Communication':'History obtained';label=group==='Communication'?'Introductions and conversation':meta.volunteered?'Volunteered history':question;status=group==='Needs clarification'?'?':group==='Communication'?'•':'✓';}
  else if(ev.kind==='exam_finding'){group='Examinations & findings';label=meta.label||meta.maneuver_id||'Examination finding';detail+=(meta.components?.length?'\nSites / technique: '+meta.components.join(', '):'');}
  else if(ev.kind==='exam_refused'){group='Needs clarification';label='Examination declined';status='!';}
  else continue;
  const rows=groups[group],prior=rows.find(x=>x.label===label);if(prior){prior.details.push({seq:ev.seq,text:detail});}else rows.push({label,status,seq:ev.seq,details:[{seq:ev.seq,text:detail}]});
  }
- host.innerHTML=Object.entries(groups).map(([label,rows])=>'<section class="ew-record-group"><h3>'+E(label)+' <span>'+rows.length+'</span></h3>'+(rows.length?rows.map(row=>'<details data-record="'+row.seq+'" '+(open.has(String(row.seq))?'open':'')+'><summary><span class="ew-check '+(row.status==='✓'?'':'uncertain')+'" aria-label="'+(row.status==='✓'?'Recorded':'Not established')+'">'+row.status+'</span><span>'+E(row.label)+'</span></summary><div>'+row.details.map(e=>'<p>'+E(e.text)+'</p><small>Encounter evidence #'+e.seq+'</small>').join('')+'</div></details>').join(''):'<p class="ew-empty">Nothing recorded here yet.</p>')+'</section>').join('');
+ for(const ev of activity)groups['Actions without findings'].push({label:ev.meta.label||ev.meta.maneuver_id,status:'!',seq:ev.seq,details:[{seq:ev.seq,text:ev.meta.status==='interrupted'?'Interrupted before findings were obtained.':'No authored result is available for this action. Do not document a normal finding.'}]});
+ host.innerHTML=Object.entries(groups).filter(([label,rows])=>rows.length||['History obtained','Examinations & findings'].includes(label)).map(([label,rows])=>'<section class="ew-record-group"><h3>'+E(label)+' <span>'+rows.length+'</span></h3>'+(rows.length?rows.map(row=>'<details data-record="'+row.seq+'" '+(open.has(String(row.seq))?'open':'')+'><summary><span class="ew-check '+(row.status==='✓'?'':'uncertain')+'" aria-label="'+(row.status==='✓'?'Recorded':'Not established')+'">'+row.status+'</span><span>'+E(row.label)+'</span></summary><div>'+row.details.map(e=>'<p>'+E(e.text)+'</p><small>Encounter evidence #'+e.seq+'</small>').join('')+'</div></details>').join(''):'<p class="ew-empty">Nothing recorded here yet.</p>')+'</section>').join('');
 }
 function arrangeGuide(){if(!active)return;const panel=q('#encounterGuide');if(!panel||!active.root.contains(panel))return;const dest=q('#ewGuideCard');if(!dest)return;if(panel.parentElement!==dest)dest.append(panel);
  if(panel.classList.contains('case-guide')&&!q('.ew-guide-scroll',panel)){
@@ -140,7 +141,16 @@ function arrangeGuide(){if(!active)return;const panel=q('#encounterGuide');if(!p
   qa('.guide-route,.guide-coverage',panel).forEach(n=>n.hidden=true);
   extra.addEventListener('click',()=>qa('.ew-sheet .guide-route,.ew-sheet .guide-coverage').forEach(n=>n.hidden=false));
  }
- if(!panel.classList.contains('case-guide'))panel.classList.add('coaching-open');
+ if(!panel.classList.contains('case-guide')){
+  panel.classList.add('coaching-open','ew-coached');
+  const steps=q('.encounter-steps',panel);
+  if(steps&&!q('#ewCoachStage',panel)){
+   const wrap=document.createElement('label');wrap.className='ew-coach-stage';wrap.textContent='Focus';
+   const select=document.createElement('select');select.id='ewCoachStage';select.setAttribute('aria-label','Coaching focus');
+   const buttons=qa('[data-step]',steps);select.innerHTML=buttons.map(b=>'<option value="'+E(b.dataset.step)+'">'+E(b.textContent.trim().replace(/^(\d+)/,'$1 · '))+'</option>').join('');select.value=buttons.find(b=>b.getAttribute('aria-pressed')==='true')?.dataset.step||'';
+   select.onchange=()=>buttons.find(b=>b.dataset.step===select.value)?.click();wrap.append(select);steps.before(wrap);steps.hidden=true;
+  }
+ }
  if(!panel.dataset.sidebarWired){panel.dataset.sidebarWired='true';panel.addEventListener('click',e=>{if(e.target.closest('#guideDraft')){selectTab('talk');q('#say')?.focus({preventScroll:true});}if(e.target.closest('#unstuckButton')){const body=q('#recoveryBody',panel);if(body)sheet('Get unstuck · pause, orient, choose',[body]);}});}
 }
 function mount(s){
@@ -165,6 +175,7 @@ function mount(s){
 }
 function extras(){if(!active)return;arrangeGuide();if(active.tab==='record')renderRecord();const ai=q('#aiConversation');if(ai&&active.root.contains(ai)&&ai.parentElement!==q('#ewPanelTalk'))q('#ewPanelTalk').prepend(ai);const pane=q('#ewPanelGuide');if(pane&&q('#encounterGuide',pane))q('.ew-guide-loading',pane)?.remove();}
 window.pcmEncounterWorkspaceState=s=>{latest=s;if(!s||s.phase!=='encounter'){cleanup();return;}if(!active||active.root!==q('#view .experience-room')){requestAnimationFrame(()=>{if(latest?.phase==='encounter'){mount(latest);window.pcmEncounterWorkspaceState(latest);}});return;}if(active){const pos=q('#ewPosition');if(pos&&!pos.disabled)pos.value=s.patient_posture||'seated';updateExamStatus();syncExamOutcome(s);const last=(s.transcript||[]).filter(x=>['patient_reply','patient'].includes(x.kind)).slice(-1)[0];const text=q('.ew-latest-reply p');if(text&&text.textContent!==(last?.text||'Your conversation appears here.'))text.textContent=last?.text||'Your conversation appears here.';extras();}};
+window.pcmFocusExam=function(id){if(!active)return false;selectTab('exam');const search=q('#manSearch');search.value=id;search.dispatchEvent(new Event('input',{bubbles:true}));search.focus({preventScroll:true});return true;};
 window.openExamPanel=function(){if(active){selectTab('exam');return;}return priorExam?.();};
 const observer=new MutationObserver(()=>{if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;if(document.body.dataset.phase!=='encounter'){cleanup();return;}if(typeof S!=='undefined'&&S?.phase==='encounter'){mount(S);extras();fit();}});});observer.observe(document.getElementById('view'),{childList:true,subtree:true});new MutationObserver(()=>{if(document.body.dataset.phase!=='encounter')cleanup();}).observe(document.body,{attributes:true,attributeFilter:['data-phase']});document.addEventListener('toggle',e=>{const detail=e.target;if(active&&detail instanceof HTMLDetailsElement&&detail.open&&detail.closest('.public-notice')){detail.open=false;sheet('About this public edition',[detail]);}},{capture:true});window.addEventListener('resize',fit);if(typeof S!=='undefined'&&S?.phase==='encounter')window.pcmEncounterWorkspaceState(S);
 })();

@@ -3,22 +3,23 @@
 (()=>{
  'use strict';
  const originalFetch=window.fetch.bind(window),base=new URL('./',location.href),pending=new Map();
- let worker,counter=0,resolveReady,rejectReady;
+ let worker,counter=0,resolveReady,rejectReady,terminalError=null;
  const ready=new Promise((resolve,reject)=>{resolveReady=resolve;rejectReady=reject;});ready.catch(()=>{});
  function message(text){const el=document.getElementById('localEngineStatus');if(el)el.textContent=text;}
+ function fail(error){terminalError=error;message(error);rejectReady(Error(error));for(const resolve of pending.values())resolve({status:503,body:{error}});pending.clear();}
  async function start(){
   if(!navigator.locks)throw Error('This browser cannot safely coordinate saved attempts. Use a current Chrome, Edge, Firefox or Safari.');
   await navigator.locks.request('pcm-public-engine-v1',{mode:'exclusive',ifAvailable:true},async lock=>{
    if(!lock)throw Error('This app is already open in another tab. Close that tab, then reload this one to resume the same saved work.');
-   worker=new Worker(new URL('engine-worker.mjs?v=conversation-actions-1',base),{type:'module'});
+   worker=new Worker(new URL('engine-worker.mjs?v=audit-1',base),{type:'module'});
    worker.onmessage=event=>{
     const data=event.data;
     if(data.type==='progress')message(data.message);
     else if(data.type==='ready'){message('Saved on this browser · Computer voice · No paid services');resolveReady();}
-    else if(data.type==='fatal'){message('Could not start: '+data.message);rejectReady(Error(data.message));}
-    else if(pending.has(data.id)){pending.get(data.id)(data);pending.delete(data.id);}
+    else if(data.type==='fatal'){fail('Could not start: '+data.message);}
+    else if(pending.has(data.id)){if(data.status>=500)message(data.body?.error||'The last action could not be saved.');pending.get(data.id)(data);pending.delete(data.id);}
    };
-   worker.onerror=()=>{const error='The local engine stopped. Reload to restore saved work; copy any visible unsaved note first.';message(error);rejectReady(Error(error));for(const resolve of pending.values())resolve({status:503,body:{error}});pending.clear();};
+   worker.onerror=()=>{const error='The local engine stopped. Reload to restore saved work; copy any visible unsaved note first.';fail(error);};
    await new Promise(()=>{}); // Keep the exclusive lock for this tab's lifetime.
   });
  }
@@ -26,7 +27,7 @@
   const raw=typeof input==='string'?input:input.url||String(input),url=new URL(raw,location.href);
   const localPath=url.pathname.startsWith(base.pathname)?'/'+url.pathname.slice(base.pathname.length):url.pathname;
   if(url.origin===location.origin && localPath.startsWith('/api/')){
-   await ready;
+   await ready;if(terminalError)throw Error(terminalError);
    const result=await new Promise(resolve=>{const id=++counter;pending.set(id,resolve);worker.postMessage({id,path:localPath+url.search,method:options.method||'GET',body:options.body||'{}'});});
    return new Response(JSON.stringify(result.body),{status:result.status,headers:{'Content-Type':'application/json'}});
   }

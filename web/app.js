@@ -2512,7 +2512,7 @@ function tabPractice(r){
   const A = (n.A || []).concat(['', '', '']).slice(0, 3);
   const Pn = (n.P || []).concat(['', '', '']).slice(0, 3);
   return `<div class="card"><h2>Deliberate practice</h2>
-    <p class="small muted">Your original timed submission and its score are kept exactly as
+    <p class="small muted">Your original submission and its score are kept exactly as
     they are. Everything started here is a <b>separate record</b> — a branch names the
     attempt and the moment it grew from, and never overwrites the attempt you just
     finished.</p>
@@ -2525,9 +2525,8 @@ function tabPractice(r){
 
   <div class="card"><h3>Retry from a missed moment</h3>
     <p class="small muted">Each one opens a fresh encounter on this same station that
-    resumes at that moment. The patient retains information already delivered. Guided retries
-    remain untimed; other retries use coached assistance with the original timing preset and remaining time.
-    If no encounter time remains, the retry is explicitly untimed and guided.
+    resumes at that moment. The patient retains information already delivered. Guided retries stay guided; other retries use coached assistance. All retries from a missed moment
+    are untimed. The original attempt keeps its timing and score.
     The encounter timeline continues from the selected moment. It is a new attempt, scored on its own.</p>
     ${!moments.length ? '<p class="small">Nothing was flagged to retry.</p>'
       : moments.map((m, i) => `<div class="item ${m.kind === 'rubric' ? 'bad' : m.kind === 'exam' ? 'warn' : 'info'}">
