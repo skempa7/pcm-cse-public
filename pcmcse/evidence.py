@@ -141,6 +141,20 @@ class Ledger:
                 done.add(cid)
         return done
 
+    def courtesy_components(self) -> dict:
+        """Sub-components satisfied per courtesy, accumulated across turns.
+
+        Two separate turns may each cover half of a two-part item; the union is
+        what the checklist should reflect.
+        """
+        out = {}
+        for ev in self.by_kind(COURTESY):
+            cid = ev["meta"].get("courtesy_id")
+            if not cid:
+                continue
+            out.setdefault(cid, set()).update(ev["meta"].get("components") or [])
+        return {k: sorted(v) for k, v in out.items()}
+
     def counseling_topics(self) -> dict:
         out = {}
         for ev in self.by_kind(COUNSELING):

@@ -175,9 +175,30 @@ def _courtesy_hits(text):
             if nlp.normalize(trig) in t:
                 if intent_mod.courtesy_is_negated(text, trig):
                     break
-                out.append(c)
+                out.append(dict(c, matched_components=_courtesy_components(c, t)))
                 break
     return out
+
+
+def _courtesy_components(entry, normalized):
+    """Which named sub-components of a courtesy this text actually satisfies.
+
+    A courtesy with components is only partly done by a turn that covers one of
+    them: asking a patient's name does not establish that their preferred form
+    of address was asked. Returned so the checklist can show what is genuinely
+    outstanding rather than the whole item as undone.
+    """
+    components = entry.get("components")
+    if not components:
+        return []
+    hit = []
+    for name, triggers in components.items():
+        for trigger in triggers:
+            if nlp.normalize(trigger) in normalized:
+                if not intent_mod.courtesy_is_negated(normalized, trigger):
+                    hit.append(name)
+                break
+    return hit
 
 
 # ---------------------------------------------------------------------------
@@ -427,7 +448,8 @@ class Session:
         courtesy = _courtesy_hits(text)
         for c in courtesy:
             self.ledger.add(evidence.COURTESY, text, t_ms=t,
-                            meta={"courtesy_id": c["id"], "label": c["label"]})
+                            meta={"courtesy_id": c["id"], "label": c["label"],
+                                  "components": c.get("matched_components") or []})
             out["events"].append({"kind": "courtesy", "label": c["label"]})
 
         # 2. Counselling / plan discussion
@@ -1191,6 +1213,12 @@ def state_payload(s):
         "demeanor": presentation.demeanor(s.case, s.ledger),
         "ai_patient_enabled": bool(s.settings.get("ai_patient_enabled")),
         # UI activity only: never expose withheld fact IDs or create new evidence.
+        # The checklist and coach read RECOGNISED evidence from the ledger,
+        # not which helper button was pressed, so work done in the
+        # clinician's own words counts the same as work done through a
+        # suggestion.
+        "courtesy_done": sorted(s.ledger.courtesy_done()),
+        "courtesy_components": s.ledger.courtesy_components(),
         "examination_activity": [
             {"seq": ev["seq"], "kind": ev["kind"], "text": "", "meta": {
                 key: ev.get("meta", {}).get(key) for key in

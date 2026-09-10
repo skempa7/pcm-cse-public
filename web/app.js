@@ -1053,15 +1053,24 @@ function matchesCourtesy(b, label){
   return !!key && String(label || '').toLowerCase().indexOf(key) >= 0;
 }
 function courtesyDone(){
+  // The ENGINE's recognised evidence is the source of truth. It previously
+  // marked an item done only when the typed text exactly equalled the helper
+  // button's canned sentence, so asking "what is your name" in your own words
+  // — and getting an answer — left the item looking untouched. The engine
+  // already records a courtesy event for the behaviour however it was phrased;
+  // this reads that, so independent and assisted work count the same.
   const map = courtesyStore();
-  // A reload with an empty cache still knows what was said: the frozen
-  // transcript carries the student's own turns.
-  (S.transcript || []).forEach(t => {
+  (S?.courtesy_done || []).forEach(id => { map[id] = true; });
+  // The frozen transcript still backs a reload whose local cache is empty.
+  (S?.transcript || []).forEach(t => {
     if (t.kind !== 'student_utterance') return;
     BEDSIDE.forEach(b => { if (t.text === b.say) map[b.id] = true; });
   });
   return map;
 }
+/* Sub-components recognised per courtesy, so a two-part item can show what is
+   genuinely still outstanding rather than all-or-nothing. */
+function courtesyParts(){ return (S && S.courtesy_components) || {}; }
 function paintRapport(){
   const wrap = $('#rapport'); if (!wrap) return;
   const done = courtesyDone();

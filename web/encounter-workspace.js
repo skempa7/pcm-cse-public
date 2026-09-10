@@ -111,6 +111,16 @@ function bedsideGroups(){
   }
   return groups;
 }
+
+// Two-part bedside items report what is still outstanding rather than showing
+// the whole item as undone once half of it is genuinely complete.
+const COURTESY_PARTS={confirm_name:['name','preferred_address']};
+const PART_LABEL={name:'name asked',preferred_address:'preferred name'};
+function remainingLabel(id,parts){
+ const all=COURTESY_PARTS[id]||[];
+ const left=all.filter(x=>!parts.includes(x));
+ return left.length? (left.map(x=>PART_LABEL[x]||x).join(', ')+' still to ask') : '';
+}
 function bedsideStatus(message){
   const el=q('#ewBedsideStatus');if(el)el.textContent=message||'';
 }
@@ -120,12 +130,16 @@ function openBedside(){
   host.innerHTML=bedsideGroups().map(g=>
     '<section class="ew-bs-group"><h3>'+E(g.title)+'</h3><p class="ew-bs-note">'+E(g.note)+'</p><div class="ew-bs-items">'+
     g.items.map((it,i)=>{
-      const used=g.kind==='action'&&it.id&&done[it.id];
+      const parts=(typeof courtesyParts==='function')?(courtesyParts()[it.id]||[]):[];
+      const total=(typeof COURTESY_PARTS!=='undefined'&&COURTESY_PARTS[it.id])||null;
+      const partial=!!(total&&parts.length&&parts.length<total.length);
+      const used=g.kind==='action'&&it.id&&done[it.id]&&!partial;
       return '<button type="button" class="ew-bs'+(used?' used':'')+'" data-kind="'+g.kind+'" data-say="'+E(it.say)+'"'+
         (it.why?' title="'+E(it.why)+'"':'')+'>'+
         (g.kind==='action'?'<span class="ew-bs-tick" aria-hidden="true">'+(used?'✓':'○')+'</span>':'<span class="ew-bs-tick" aria-hidden="true">›</span>')+
         '<span>'+E(it.label)+'</span>'+
-        (used?'<span class="ew-bs-done">done</span>':'')+'</button>';
+        (used?'<span class="ew-bs-done">done</span>'
+             :partial?'<span class="ew-bs-done ew-bs-partial">'+E(remainingLabel(it.id,parts))+'</span>':'')+'</button>';
     }).join('')+'</div></section>').join('')+
     '<p class="ew-bs-status" id="ewBedsideStatus" role="status"></p>';
   sheet('Bedside',[host]);

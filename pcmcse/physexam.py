@@ -97,9 +97,34 @@ COURTESY = [
      "duration_s": 8, "triggers": ["my name is", "i am a student doctor",
      "i'm a student doctor", "student doctor", "introduce myself", "i'll be seeing you"]},
     {"id": "confirm_name", "label": "Confirm patient name / preferred address",
-     "duration_s": 6, "triggers": ["how would you like to be addressed",
-     "what would you like me to call you", "can you confirm your name",
-     "is it alright if i call you", "may i call you", "your full name"]},
+   "duration_s": 6,
+   # This item has TWO components. The learner may do either independently and
+   # in their own words, so the triggers cover ordinary phrasings, and the
+   # components are tracked separately: asking the name does not establish that
+   # the preferred form of address was asked. The completion rule for scoring
+   # is unchanged -- any trigger still records the courtesy -- but the
+   # components let the checklist and the coach say what is actually
+   # outstanding instead of showing the whole item as undone.
+   "components": {
+     "name": ["can you confirm your name", "your full name", "what is your name",
+              "what's your name", "whats your name", "may i have your name",
+              "could i get your name", "can you tell me your name",
+              "tell me your name", "state your name", "your name for me",
+              "confirm your name", "who am i speaking", "who am i talking"],
+     "preferred_address": ["how would you like to be addressed",
+              "what would you like me to call you", "what should i call you",
+              "how should i address you", "is it alright if i call you",
+              "may i call you", "what do you prefer to be called",
+              "what would you prefer i call you", "preferred name",
+              "how do you like to be addressed"],
+   },
+   "triggers": ["how would you like to be addressed", "what would you like me to call you",
+                "can you confirm your name", "is it alright if i call you", "may i call you",
+                "your full name", "what is your name", "what's your name", "whats your name",
+                "may i have your name", "could i get your name", "can you tell me your name",
+                "tell me your name", "state your name", "your name for me",
+                "confirm your name", "what should i call you", "how should i address you",
+                "who am i speaking", "who am i talking", "preferred name"]},
     {"id": "hand_hygiene", "label": "Wash or sanitize hands",
      "duration_s": 12, "triggers": ["wash my hands", "washing my hands",
      "sanitize my hands", "hand sanitizer", "hand hygiene", "clean my hands",
@@ -129,6 +154,21 @@ COURTESY = [
      "duration_s": 5, "triggers": ["this may be cold", "this might be cold",
      "going to be a little cold", "warm my hands", "warm up the stethoscope"]},
 ]
+
+# Where a courtesy declares sub-components, its trigger list is derived from
+# them. Maintaining two parallel lists let them drift: the component list knew
+# "what would you prefer i call you" while the trigger list did not, so the
+# turn earned nothing at all.
+for _entry in COURTESY:
+    _components = _entry.get("components")
+    if _components:
+        _merged = list(_entry.get("triggers") or [])
+        for _phrases in _components.values():
+            for _phrase in _phrases:
+                if _phrase not in _merged:
+                    _merged.append(_phrase)
+        _entry["triggers"] = _merged
+
 
 COURTESY_BY_ID = {c["id"]: c for c in COURTESY}
 
