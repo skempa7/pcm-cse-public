@@ -751,9 +751,18 @@ def delivered_fact_metadata(fact, text):
 
 
 
+def identity_fields(utterance):
+    """Identity requests use supplied demographics, never lexical fact guesses."""
+    text=nlp.normalize(utterance)
+    name=bool(re.search(r"\b(?:your (?:full )?name|what (?:should|can|may) i call you|what would you like me to call you)\b",text))
+    age=bool(re.search(r"\b(?:how old are you|your age|name and age|name and your age)\b",text))
+    return name,age
+
+
 def conversation_route(utterance):
     """High-confidence conversational acts take priority over keyword matching."""
     text=nlp.normalize(utterance)
+    if any(identity_fields(utterance)):return 'identity'
     if re.search(r"\b(?:how do you know (?:it'?s|this is|that it|you have|that you have)|who diagnosed (?:this|the current)|why do you (?:think|say) (?:it'?s|this is)|how (?:can|could) you know (?:it'?s|this is))\b",text):
         return 'diagnostic_uncertainty'
     if re.search(r"\bwhat were you (?:doing|up to)|\bwhat (?:activity|were you doing).*?(?:start|began|onset)",text):
@@ -807,6 +816,14 @@ class PatientEngine:
 
     def _respond_inner(self, utterance, text, state, meta):
         route=conversation_route(utterance)
+        if route=='identity':
+            name,age=identity_fields(utterance)
+            pat=self.case['patient']
+            meta['kind']='identity_response'
+            parts=[]
+            if name:parts.append("My name is %s." % pat['name'])
+            if age:parts.append("I am %s years old." % pat['age'])
+            return ' '.join(parts)
         if route=='introduction':
             meta['kind']='introduction_response'
             return 'Hello. Thank you for introducing yourself. I am ready to talk.'
