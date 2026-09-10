@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="day">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self' blob:; media-src 'self' blob:; font-src 'self' data:; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta charset="utf-8">
+<title>PCM Practice · Free Community Preview</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="public.css">
+<script src="public-runtime.js"></script>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="learning.css">
+<link rel="stylesheet" href="experience.css">
+<link rel="stylesheet" href="study.css">
+</head>
+<body>
+<a class="skip-link" href="#view">Skip to the station</a>
+<div id="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-symbol" aria-hidden="true">✳</span><span class="mark">PCM <span class="brand-light">Practice</span></span>
+      <span class="sub" id="brandSub">COM 6000 · Principles of Clinical Medicine I</span>
+    </div>
+    <nav class="workspace-nav" aria-label="Main navigation"><button class="btn ghost sm" data-destination="practice">Practice</button><button class="btn ghost sm" data-destination="learn">Learn</button><button class="btn ghost sm" data-destination="progress">Progress</button></nav>
+    <div class="spacer"></div>
+    <span id="phaseChip" class="phase-chip hidden"></span>
+    <div id="clock" class="clock hidden" role="timer" aria-label="Time remaining in this phase">
+      <span class="lbl" id="clockLabel">remaining</span>
+      <span class="digits" id="clockDigits">--:--</span>
+    </div>
+    <button id="themeToggle" class="btn ghost sm" type="button">Evening</button>
+    <button id="btnHome" class="btn ghost sm hidden" type="button">Exit to menu</button>
+  </header>
+  <main id="view" tabindex="-1"></main>
+</div>
+<div id="liveRegion" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+<div id="alertRegion" class="sr-only" role="alert" aria-live="assertive" aria-atomic="true"></div>
+<div id="overlayRoot"></div>
+<script src="device-voice.js"></script>
+<script src="study.js"></script>
+<script src="app.js"></script>
+
+<script src="learning.js"></script>
+
+</body>
+</html>

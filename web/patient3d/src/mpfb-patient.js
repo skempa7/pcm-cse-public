@@ -1,0 +1,119 @@
+/** Patient asset configuration for the authored young-adult-women cohort. */
+import {Color3} from '@babylonjs/core/Maths/math.color.js';
+import {Texture} from '@babylonjs/core/Materials/Textures/texture.js';
+import {MorphTarget} from '@babylonjs/core/Morph/morphTarget.js';
+import {MorphTargetManager} from '@babylonjs/core/Morph/morphTargetManager.js';
+import {Matrix,Vector3} from '@babylonjs/core/Maths/math.vector.js';
+import {createAnimatedPatient} from './animated-patient.js';
+import {prepareMPFBHairSupport} from './mpfb-support.js';
+
+const HAIR = Object.freeze({blonde:'#d4ba82',brunette:'#62412e',black:'#282322',ginger:'#b96c40'});
+const SKIN = Object.freeze(['#fffaf6','#fff1e5','#f5e8dc']);
+const CLOTHING = new Set(['PCM_FittedKnit','PCM_FittedCasual','PCM_Sneakers']);
+const EYE_ANGLE = Math.PI / 60;
+/** Sparse attention glances, not a repeated clinical eye-movement sign. */
+export function mpfbGazeIntent(state={}, now=0) {
+  if(state.reducedMotion || state.phase!=='encounter')return{x:0,y:0};
+  const seconds=Math.max(0,now/1000), cycle=Math.floor(seconds/54.3), t=seconds%54.3;
+  const events=[[4.1,.035,-.008],[12.0,-.028,.011],[23.4,.022,-.009],[30.2,.037,.003],[39.8,-.032,-.008],[51.1,.024,.010]];
+  const event=events.find(([start])=>t>=start&&t<start+2.15);
+  if(!event)return{x:0,y:0};
+  const u=t-event[0], smooth=x=>x*x*(3-2*x);
+  const strength=u<.26?smooth(u/.26):u>1.45?1-smooth((u-1.45)/.7):1;
+  const attention=(state.listening===true || state.speaking===true) ? .38 : 1;
+  const drift=.82+.18*Math.sin((cycle+1)*7.31+event[0]);
+  return{x:event[1]*strength*attention*drift,y:event[2]*strength*attention*drift};
+}
+/** Generate restrained, reproducible geometry controls from the actual eye
+ * halves. These are not exported FACS controls or a diagnostic gaze exam. */
+export function prepareMPFBEyeGeometry(container,scene) {
+  const mesh=container.meshes.find(mesh=>mesh.name==='PCM_Eyes');
+  const positions=mesh?.getVerticesData('position'),normals=mesh?.getVerticesData('normal');
+  if(!positions || mesh.morphTargetManager)return{gazeUnavailable:'Eye geometry already has controls or is unavailable.'};
+  const bounds=[{min:Vector3.Zero().setAll(Infinity),max:Vector3.Zero().setAll(-Infinity),count:0},{min:Vector3.Zero().setAll(Infinity),max:Vector3.Zero().setAll(-Infinity),count:0}];
+  for(let i=0;i<positions.length;i+=3){const v=Vector3.FromArray(positions,i),b=bounds[v.x<0?0:1];b.min=Vector3.Minimize(b.min,v);b.max=Vector3.Maximize(b.max,v);b.count++;}
+  if(bounds.some(b=>b.count<250||b.count>650||b.max.x-b.min.x>.04||b.max.x-b.min.x<.02))return{gazeUnavailable:'Eye dimensions require a fresh asset review.'};
+  const centers=bounds.map(b=>b.min.add(b.max).scale(.5)),manager=new MorphTargetManager(scene),names=[];
+  for(const [name,yaw,pitch] of [['PCM_GazeLeft',-EYE_ANGLE,0],['PCM_GazeRight',EYE_ANGLE,0],['PCM_GazeUp',0,-EYE_ANGLE],['PCM_GazeDown',0,EYE_ANGLE]]){
+    const rotation=Matrix.RotationYawPitchRoll(yaw,pitch,0),target=new MorphTarget(name,0,scene),points=new Float32Array(positions.length),directions=normals?new Float32Array(normals.length):null;
+    for(let i=0;i<positions.length;i+=3){const p=Vector3.FromArray(positions,i),center=centers[p.x<0?0:1];Vector3.TransformCoordinates(p.subtract(center),rotation).add(center).toArray(points,i);if(directions)Vector3.TransformNormal(Vector3.FromArray(normals,i),rotation).toArray(directions,i);}
+    target.setPositions(points);if(directions)target.setNormals(directions);manager.addTarget(target);names.push(name);
+  }
+  mesh.morphTargetManager=manager;if(!container.morphTargetManagers.includes(manager))container.morphTargetManagers.push(manager);
+  return{generatedMorphTargets:names,centers:centers.map(c=>c.asArray()),maximumDegrees:3,gazeMechanism:'Runtime geometric eye targets rotate both verified eye halves by at most 3 degrees. Sparse attention glances; not FACS, nystagmus, or examination evidence.'};
+}
+export function applyMPFBWardrobe(container, appearance = {}) {
+  const anatomy=appearance.outfit==='clinical-anatomy';
+  for(const mesh of container.meshes){
+    if(mesh.name.startsWith('PCM_Public'))mesh.setEnabled(!anatomy);
+    if(mesh.name==='PCM_AnatomyManikin')mesh.setEnabled(anatomy);
+  }
+}
+export function mpfbAppearanceChoices(appearance = {}) {
+  return {
+    skin: SKIN[Math.max(0,Math.min(2,Math.round(Number(appearance.skinTone)||0)))],
+    hair: HAIR[appearance.hairColor] || HAIR.brunette,
+    eyes: appearance.eyeColor === 'green' ? 'green' : 'blue',
+  };
+}
+function color(hex) { return Color3.FromHexString(hex).toLinearSpace(); }
+function loadTexture(url, scene) {
+  return new Promise((resolve,reject) => {
+    let timer;
+    const texture = new Texture(url,scene,false,false,Texture.TRILINEAR_SAMPLINGMODE,
+      () => {clearTimeout(timer);resolve(texture);},
+      (message) => {clearTimeout(timer);texture.dispose();reject(new Error(`Eye texture unavailable: ${message || url}`));});
+    texture.gammaSpace = true;
+    timer = setTimeout(()=>{texture.dispose();reject(new Error('Eye texture did not finish loading.'));},7000);
+  });
+}
+export function createMPFBPatient(scene, options = {}) {
+  let eyes = {};
+  const bodyBuild=['short-slender','standard','tall-full'].includes(options.bodyBuild)?options.bodyBuild:null;
+  const presentation=options.presentation==='male'?'male':'female';
+  const assetName=presentation==='male'?'public-male-standard.glb':'public-female-'+(bodyBuild||'standard')+'.glb';
+  return createAnimatedPatient(scene, {
+    preciseSkinnedPicking:true, label: 'Patient', rootName: 'MPFB public patient', presentation,
+    assetUrl: new URL('../assets/'+assetName,import.meta.url).href,
+    capabilityMetadata: {model:'mpfb-public-patient',trial:false,bodyBuild:bodyBuild||'original'},
+    isEligible: state => state.appearance?.model === 'mpfb-public-patient' && state.appearance?.presentation === presentation,
+    controlNames: {blink:['Blink'],speech:['Speech'],concern:['Concern'],discomfort:['Discomfort'],hairSupport:['PCM_HairSupineSupport']},
+    requiredControls:['blink','speech','concern','discomfort'],
+    requiredMeshes:['PCM_PublicBody'],
+    supportedPostures:['seated','supine'],requiredPostures:['seated','supine'],
+    postureClips:{seated:'PCM_Seated',supine:'PCM_Supine'},postureTransitionMs:600,
+    rigNodes:{head:'head',chest:'spine_03',eyeLeft:'no-eye-bone-left',eyeRight:'no-eye-bone-right'},
+    landmarkNodes:{face:'Face',chest:'Chest',abdomen:'Abdomen',lap:'Lap',neck:'neck_01'},
+    requiredLandmarks:['face','chest','abdomen','lap'],
+    readyMessage:'Patient ready.',
+    prepareGeometry:(container,scene)=>({...prepareMPFBEyeGeometry(container,scene),...(presentation==='female'?prepareMPFBHairSupport(container,scene,options.bodyBuild):{})}),
+    poseControlValues:posture=>({hairSupport:posture==='supine'?1:0}),gazeIntent:mpfbGazeIntent,gazeMorphRadians:EYE_ANGLE,
+    async prepare(container) {
+      const textures = await Promise.allSettled(['blue','green'].map(shade=>loadTexture(new URL(`../assets/mpfb-eyes-${shade}.png`,import.meta.url).href,scene)));
+      const failed = textures.find(result=>result.status==='rejected');
+      if(failed){for(const item of textures)if(item.status==='fulfilled')item.value.dispose();throw failed.reason;}
+      eyes = {blue:textures[0].value,green:textures[1].value};
+      return Object.values(eyes);
+    },
+    applyAppearance(container, appearance) {
+      applyMPFBWardrobe(container, appearance);
+      const choices = mpfbAppearanceChoices(appearance);
+      for(const material of container.materials){
+        if(material.name==='PCM_Mat_Skin'){material.albedoColor=color(choices.skin);material.roughness=.57;material.metallic=0;material.environmentIntensity=.78;}
+        if(material.name==='PCM_Mat_LongHair'){
+          material.albedoColor=color(choices.hair);
+          // Depth-sort the visible surface before blending its strand edges.
+          // The exported overlapping cards otherwise reveal rear-layer holes at
+          // the crown. Geometry, licensed alpha texels and contact stay intact.
+          material.needDepthPrePass=true;material.roughness=.66;material.environmentIntensity=.85;material.specularIntensity=.38;material.backFaceCulling=false;
+        }
+        if(material.name==='PCM_Mat_Eyes'){
+          // The authored image changes the iris while retaining white sclera.
+          // Tinting the entire material would incorrectly color the whole eye.
+          material.albedoColor=Color3.White();material.albedoTexture=eyes[choices.eyes];material.roughness=.19;material.metallic=0;material.environmentIntensity=.9;if(material.clearCoat){material.clearCoat.isEnabled=true;material.clearCoat.intensity=.28;material.clearCoat.roughness=.20;}
+        }
+      }
+    },
+    ...options,
+  });
+}

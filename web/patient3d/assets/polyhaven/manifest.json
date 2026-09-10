@@ -1,0 +1,117 @@
+{
+  "license": "CC0-1.0",
+  "license_url": "https://polyhaven.com/license",
+  "blender_version": "5.2.1 LTS",
+  "source_library": "Local Poly Haven asset library (see SOURCES.txt)",
+  "source_blend": "Poly Haven Starter Assets.blend",
+  "assets": [
+    "https://polyhaven.com/a/painted_plaster_wall",
+    "https://polyhaven.com/a/wood_table_001",
+    "https://polyhaven.com/a/fabric_pattern_07",
+    "https://polyhaven.com/a/studio_small_03"
+  ],
+  "conversion": "Blender image scaling; documented clean-room palette grading preserving scanned luminance variation; OpenGL normals; linear ORM R=1 G=roughness B=0; no displacement; 1024x512 HDR.",
+  "files": [
+    {
+      "file": "plaster-color.jpg",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 137311,
+      "sha256": "6469775524cfc6749e476a976e0a77e5a8db3a1729fe305c2795adcdc30f7e5a",
+      "source": "painted_plaster_wall/textures/painted_plaster_wall_diff_2k.jpg",
+      "source_sha256": "6fd812ed8dd5be1873c29aeef38ce9bf1fb30a22c6d4b3a12db725e98c26a1be",
+      "color_space": "sRGB"
+    },
+    {
+      "file": "plaster-normal.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 506830,
+      "sha256": "bcc3b683ab66d102501b46f19001ee4ccbe48910ab106d47f26df84044088583",
+      "source": "painted_plaster_wall/textures/painted_plaster_wall_nor_gl_2k.exr",
+      "source_sha256": "d87603e82bd6ef9f2e92f239fc990323844f482b6f2afcc7a9b86cb5f17571b6",
+      "color_space": "Non-Color"
+    },
+    {
+      "file": "plaster-orm.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 156419,
+      "sha256": "daeb4298b3e9532597dbb0033f1172b8ecd1a1f179fd279933fc80cdf28d7748",
+      "source": "painted_plaster_wall/textures/painted_plaster_wall_rough_2k.exr",
+      "source_sha256": "f66eaeec6ed05f5df54db93095fbf33c6098de16e972027c65a47cd84fc1ed76",
+      "color_space": "Non-Color"
+    },
+    {
+      "file": "wood-color.jpg",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 221927,
+      "sha256": "4100afc5d1212c8f05dde010034435a87b1a04115acca69bdbb0e6ae2704b51a",
+      "source": "wood_table_001/textures/wood_table_001_diff_2k.jpg",
+      "source_sha256": "63ae5cd186197b40f18bc020fe2b652bb08df4d9fc6240c6cbf8a7e3bc32c096",
+      "color_space": "sRGB"
+    },
+    {
+      "file": "wood-normal.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 278253,
+      "sha256": "c0d88f56d900f7ee117b5f7dee11d9f2fe752c542a43283984a5710e19738ea2",
+      "source": "wood_table_001/textures/wood_table_001_nor_gl_2k.exr",
+      "source_sha256": "fd4517af568855d2db638fd1e5209228a682c4cd2f4a62505726be8106880dda",
+      "color_space": "Non-Color"
+    },
+    {
+      "file": "wood-orm.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 249694,
+      "sha256": "36612cd859b57c117c07b5ffd5417ff6e59c8e6a00291e2ed24a2fc5c422ced1",
+      "source": "wood_table_001/textures/wood_table_001_rough_2k.jpg",
+      "source_sha256": "c788876d80e4d96598590631f8de92447fb1b0ba1265a812514ee717d270ac3e",
+      "color_space": "Non-Color"
+    },
+    {
+      "file": "fabric-color.jpg",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 86712,
+      "sha256": "cdcc627cacd831a04f4c30bfd8df8541fa8eddd148cfd4732ee0db31065dcdf7",
+      "source": "fabric_pattern_07/textures/fabric_pattern_07_col_1_2k.png",
+      "source_sha256": "f203cf81ba9761b19dadc630ad3ef03ca6621e2eb19cead531e6b3e0f5bd6da0",
+      "color_space": "sRGB"
+    },
+    {
+      "file": "fabric-normal.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 549628,
+      "sha256": "6b3ba1fd523b7cfe7ca3b0956a9e5d7d31e3621aaa47fa15f55df21985413a5e",
+      "source": "fabric_pattern_07/textures/fabric_pattern_07_nor_gl_2k.exr",
+      "source_sha256": "c8229718a44925ab0b6f2933c26fa4f20bfc93f69ba39464704a472d0dc09fb2",
+      "color_space": "Non-Color"
+    },
+    {
+      "file": "fabric-orm.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 309244,
+      "sha256": "9a26b5c1a6c44708b9bb95067e1e5077f190a236e3e07da18c6c78bba67c969a",
+      "source": "fabric_pattern_07/textures/fabric_pattern_07_rough_2k.jpg",
+      "source_sha256": "be3e311614ee6f31d4cb4a774ed678b7a64189d3e1a55ad71033142185da270a",
+      "color_space": "Non-Color"
+    },
+    {
+      "file": "studio-small-03-1k.hdr",
+      "width": 1024,
+      "height": 512,
+      "bytes": 1678988,
+      "sha256": "e27dc6674d00b5faa25e3ae8aeb165c89c6aebcb121a96aa32d73d77bc7c5113",
+      "source": "studio_small_03/studio_small_03_2k.hdr",
+      "source_sha256": "156c2946a6cd0c1d8b662cd97e8a492436331ec2418a33901a324f4420618076",
+      "color_space": "Non-Color"
+    }
+  ],
+  "total_bytes": 4175006
+}

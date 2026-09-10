@@ -1,0 +1,16 @@
+{
+  "name": "pcm-patient3d-pilot",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/room.js --bundle --minify --format=esm --outdir=dist"
+  },
+  "dependencies": {
+    "@babylonjs/core": "9.25.0",
+    "@babylonjs/loaders": "9.25.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}
