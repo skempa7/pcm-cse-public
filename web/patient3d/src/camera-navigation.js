@@ -28,7 +28,7 @@ export function createCameraNavigation({canvas,camera,allowed=()=>true,constrain
  function remember(){referenceRadius=camera.radius;}
  function setAdjusting(value){release();adjusting=!!value&&allowed();canvas.classList.toggle('adjusting-view',adjusting);if(adjusting){remember();onInteraction();}onChange(adjusting);return adjusting;}
  function move(horizontal=0,vertical=0,distance=0){
-  if(!adjusting||!allowed()||![horizontal,vertical,distance].every(Number.isFinite)){if(!allowed())setAdjusting(false);return false;}
+  if(!allowed()||![horizontal,vertical,distance].every(Number.isFinite)){if(!allowed())setAdjusting(false);return false;}
   onInteraction();const limits=constraints()||{},steps=Math.max(1,Math.min(180,Math.ceil(Math.max(Math.abs(horizontal),Math.abs(vertical))/.045)));
   for(let i=0;i<steps;i++){
    // Alpha stays unwrapped, so crossing ±pi/2pi never flips or hits a stop.
@@ -42,7 +42,7 @@ export function createCameraNavigation({canvas,camera,allowed=()=>true,constrain
   }
   return true;
  }
- const down=event=>{if(!adjusting||!allowed()||event.pointerType!=='mouse'||event.button!==0||event.ctrlKey||event.metaKey||event.altKey)return;release();drag={id:event.pointerId,x:event.clientX,y:event.clientY};try{canvas.setPointerCapture?.(event.pointerId);}catch{drag=null;}};
+ const down=event=>{if(!allowed()||event.pointerType!=='mouse'||event.button!==0||event.ctrlKey||event.metaKey||event.altKey)return;release();drag={id:event.pointerId,x:event.clientX,y:event.clientY};try{canvas.setPointerCapture?.(event.pointerId);}catch{drag=null;}};
  const movePointer=event=>{if(!drag||event.pointerId!==drag.id)return;if(!allowed()||event.ctrlKey||event.metaKey||event.altKey){release();return;}const dx=event.clientX-drag.x,dy=event.clientY-drag.y;drag.x=event.clientX;drag.y=event.clientY;move(-dx*.006,-dy*.006);};
  const up=event=>{if(event.pointerId===drag?.id)release();};
  canvas.addEventListener('pointerdown',down);canvas.addEventListener('pointermove',movePointer);canvas.addEventListener('pointerup',up);canvas.addEventListener('pointercancel',up);canvas.addEventListener('lostpointercapture',up);
