@@ -1,33 +1,33 @@
 {
-  "revision": "sidebar-shirts-2",
-  "scope": "Clothed-view garment appearance only; clinical data and anatomical view are unchanged.",
+  "revision": "reference-style-1",
+  "scope": "Clothing textures and visual style; no clinical logic changes.",
   "assets": [
     {
       "file": "public-female-short-slender.glb",
-      "sha256": "5675818d5a28e3a447a6a27afa9148dff9ebfa027637bee0d74129870b09ff7c",
-      "bytes": 18623100,
-      "shirt": "Navy long sleeve with AMERICA 250 centered on abdomen"
+      "sha256": "9ca0581885ca756218e7ba5b4b89135a82d64e9115a6266cc9049fba73489b27",
+      "bytes": 20566412,
+      "shirt": "Navy long sleeve; muted AMERICA 250 higher on torso; original garment fit"
     },
     {
       "file": "public-female-standard.glb",
-      "sha256": "904bd6dd0e87d4f74e4129136f6633351b5e5322862c05d7aaa9a8597d8b77d2",
-      "bytes": 18610572,
-      "shirt": "Navy long sleeve with AMERICA 250 centered on abdomen"
+      "sha256": "b89131beb864d993b420a54b0e6cdeefa78c9190fa8cfa365f99715c385ba6a6",
+      "bytes": 20553872,
+      "shirt": "Navy long sleeve; muted AMERICA 250 higher on torso; original garment fit"
     },
     {
       "file": "public-female-tall-full.glb",
-      "sha256": "a5ee77954cf50a721c91f6f49c681b48163d0b0950127697cf8450824e068cef",
-      "bytes": 18600220,
-      "shirt": "Navy long sleeve with AMERICA 250 centered on abdomen"
+      "sha256": "c94e129ebf5025f1904d5fd25ae109bd3730f2dc477709779991c7bbe2ea6fca",
+      "bytes": 20543516,
+      "shirt": "Navy long sleeve; muted AMERICA 250 higher on torso; original garment fit"
     },
     {
       "file": "public-male-standard.glb",
-      "sha256": "18381c9cfb0068a3f1eac69a29775d08dc9a269bfd61b648c8a7169fcf134d32",
-      "bytes": 15168696,
-      "shirt": "Washed charcoal reference portrait with sleeve graphics"
+      "sha256": "d8fd8653547354a1a011855c5a76841785a3931c7185a2a91fe15d79cb8f13cf",
+      "bytes": 15080252,
+      "shirt": "Charcoal long sleeve, plain sleeves/front; faded portrait and WANGHAF on back; original garment fit"
     }
   ],
-  "verification": "Restored original long-sleeve index buffers for every model; all other GLB bytes including shirt textures preserved. Quick live sidebar and female sleeve checks; no full clinical re-review.",
+  "verification": "See REFERENCE-STYLE.md and reference-style.json for current checks and limitations.",
   "male_shirt_revision": "charcoal-shirt-1",
   "female_shirt_revision": "navy-shirts-1"
 }
