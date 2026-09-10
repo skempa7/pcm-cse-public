@@ -393,26 +393,24 @@ def _time_feedback(ledger, session, parsed):
     counsel = ledger.by_kind(evidence.COUNSELING)
     first_counsel = min((e["t_ms"] for e in counsel), default=None)
 
-    guided = session.settings.get("learning_mode") == "guided" and session.settings.get("simulation_runtime") == "interactive"
+    untimed = allowed <= 0 or session.is_untimed_phase("encounter")
     notes = []
-    if guided:
-        notes.append("This guided encounter was untimed. You spent %s practicing; speed is not scored in this mode." % _mmss(used))
+    if untimed:
+        notes.append("This practice encounter was untimed. You spent %s practicing; speed is not scored in this mode." % _mmss(used))
     elif used >= allowed - 1500:
         notes.append("The encounter ran to the buzzer.")
     else:
         notes.append("You closed the encounter with %s left. Unused encounter "
                      "time is not added to the note period — no course rule "
                      "supports carry-over." % _mmss(allowed - used))
-    if guided:
+    if untimed:
         notes.append("No examination was performed." if first_exam is None else "Your first examination started at %s elapsed." % _mmss(first_exam))
     elif first_exam is None:
-        notes.append("No examination was performed. The 14 minutes covers "
-                     "history, physical exam and discussion.")
+        notes.append("No examination was performed. The encounter allowance covers history, physical examination, and discussion.")
     else:
         pct = 100.0 * first_exam / allowed
         notes.append("You started examining at %s (%.0f%% of the way through). "
-                     "A common shape is history to about the 8-minute mark, exam "
-                     "to about 12, then discussion." % (_mmss(first_exam), pct))
+                     "Leave time for focused history, physical examination, and discussion." % (_mmss(first_exam), pct))
     if first_counsel is None:
         notes.append("No plan discussion was recorded. The course flags this: "
                      "'many students gave a closure and provided an assessment, "
@@ -421,13 +419,13 @@ def _time_feedback(ledger, session, parsed):
         notes.append("You began discussing the plan at %s." % _mmss(first_counsel))
 
     if session.row["submit_reason"] == "time_expired":
-        notes.append("The note was submitted automatically when the nine minutes "
+        notes.append("The note was submitted automatically when its allotted time "
                      "expired. What is scored is exactly what was on screen at "
                      "that moment.")
     return {
         "encounter_used_s": round(used / 1000),
-        "encounter_allowed_s": None if guided else session.preset["encounter_s"],
-        "untimed": guided,
+        "encounter_allowed_s": None if untimed else session.preset["encounter_s"],
+        "untimed": untimed,
         "student_turns": len(turns),
         "first_exam_at": _mmss(first_exam) if first_exam is not None else None,
         "first_plan_talk_at": _mmss(first_counsel) if first_counsel is not None else None,

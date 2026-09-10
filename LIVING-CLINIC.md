@@ -14,3 +14,5 @@ The room combines user-supplied InteriorTest geometry with the earlier folder's 
 - No paid API requests were made. No case data or existing saved attempts were migrated or reset.
 
 This is not an independent readiness certification. Existing grading limitations and the development-preview status remain. Gestures are approximate; residual clothing overlap and some pose-contact limitations remain. No claim of photorealism or accurate lip synchronization is made.
+
+The browser debrief check exposed a pre-existing division-by-zero error in coached untimed attempts with an examination. Time feedback now uses the actual untimed policy and displays elapsed time without a percentage or deadline. Coached, guided, independent, and rehearsal timing-feedback regressions were added.
