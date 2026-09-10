@@ -1,13 +1,16 @@
-"""Create clothed patients and neutral clinical manikins from local MPFB source scenes.
-Usage: Blender --factory-startup -b --python tools/export_public_patients.py
-Public meshes replace covered anatomy with opaque garment surfaces. The editable
-private source is read only. No proprietary/trial assets are used.
+"""Export the existing clinical patient views without replacing human skin.
+Female runtime GLBs retain the exact original binary payload (geometry, skin,
+textures, morphs, skeleton and animation). Only public wardrobe node names change.
+The original MPFB source scenes and runtime assets are opened read-only.
+Set PCM_PRIVATE_ASSETS to the original MPFB source directory and PCM_PRIVATE_GLBS
+to its already-exported patient3d/assets directory. No trial assets are used.
 """
 from pathlib import Path
-import bpy,json,math,os
+import bpy,json,math,os,struct
 from mathutils import Vector
 ROOT=Path(__file__).resolve().parents[1]
 SOURCE=Path(os.environ['PCM_PRIVATE_ASSETS'])
+RUNTIME=Path(os.environ['PCM_PRIVATE_GLBS'])
 OUT=ROOT/'web/patient3d/assets';OUT.mkdir(parents=True,exist_ok=True)
 EDIT=ROOT/'editable-public-assets';EDIT.mkdir(exist_ok=True)
 
@@ -32,9 +35,22 @@ def subset(source,name,polys,material=None):
  for p in mesh.polygons:p.use_smooth=True
  return obj
 
-def clothmat():
- m=bpy.data.materials.new('PCM_OpaqueBlackCotton');m.use_nodes=True;bs=m.node_tree.nodes.get('Principled BSDF');bs.inputs['Base Color'].default_value=(.008,.009,.012,1);bs.inputs['Roughness'].default_value=.87;bs.inputs['Specular IOR Level'].default_value=.19
- return m
+NODE_NAMES={'PCM_FemaleBody':'PCM_AnatomicalBody',
+ 'PCM_FemaleBody_Covered':'PCM_PublicBody','PCM_FittedKnit':'PCM_PublicKnit',
+ 'PCM_FittedCasual':'PCM_PublicTrousers','PCM_Sneakers':'PCM_PublicShoes'}
+
+def copy_female_runtime(build):
+ source=RUNTIME/('mpfb-female-'+build+'.glb')
+ data=source.read_bytes();length,kind=struct.unpack_from('<II',data,12)
+ assert data[:4]==b'glTF' and kind==0x4e4f534a
+ doc=json.loads(data[20:20+length])
+ for node in doc['nodes']:
+  if node.get('name') in NODE_NAMES:node['name']=NODE_NAMES[node['name']]
+ payload=json.dumps(doc,separators=(',',':')).encode();payload+=b' '*((-len(payload))%4)
+ binary=data[20+length:]
+ out=struct.pack('<4sII',b'glTF',2,20+len(payload)+len(binary))+struct.pack('<II',len(payload),kind)+payload+binary
+ (OUT/('public-female-'+build+'.glb')).write_bytes(out)
+ print('EXACT_FEMALE_RUNTIME',build,flush=True)
 
 def male_deform(co,height):
  x,y,z=co;u=z/height
@@ -53,22 +69,24 @@ def male_deform(co,height):
 
 for build,sex in ([('standard','male')] if os.environ.get('PCM_PUBLIC_MALE_ONLY') else [('short-slender','female'),('standard','female'),('tall-full','female'),('standard','male')]):
  bpy.ops.wm.open_mainfile(filepath=str(SOURCE/'variants'/build/'MPFB-female-patient.blend'))
+ if sex=='female':
+  for old,new in NODE_NAMES.items():bpy.data.objects[old].name=new
+  bpy.ops.wm.save_as_mainfile(filepath=str(EDIT/('public-female-'+build+'.blend')))
+  copy_female_runtime(build)
+  continue
  body=bpy.data.objects['PCM_FemaleBody'];rig=body.parent
  rig.animation_data.action=None
  from mathutils import Matrix
  rig.location=(0,0,0);rig.rotation_quaternion=(1,0,0,0)
  for b in rig.pose.bones:b.matrix_basis=Matrix.Identity(4)
- h=max(v.co.z for v in body.data.vertices);male=sex=='male';black=clothmat()
+ h=max(v.co.z for v in body.data.vertices);male=sex=='male'
  if male:
   for key in body.data.shape_keys.key_blocks:
    for v in key.data:v.co=male_deform(v.co,h)
   for v in body.data.vertices:v.co=male_deform(v.co,h)
- # Neutral clinical manikin: retain surface orientation, remove photographic
- # skin texture and detailed intimate anatomy. This is not a diagnostic model.
- manikin=subset(body,'PCM_AnatomyManikin',list(body.data.polygons))
- mat=bpy.data.materials.new('PCM_ClinicalManikin');mat.use_nodes=True
- bs=mat.node_tree.nodes.get('Principled BSDF');bs.inputs['Base Color'].default_value=(.57,.59,.57,1);bs.inputs['Roughness'].default_value=.72;bs.inputs['Specular IOR Level'].default_value=.22
- manikin.data.materials.clear();manikin.data.materials.append(mat)
+ # Existing male torso adaptation uses the original human skin material.
+ # It is an approximate surface model, not a genital-examination model.
+ manikin=subset(body,'PCM_AnatomicalBody',list(body.data.polygons))
  # Smooth the central anterior pelvic surface. Vaginal, rectal, and genital
  # examination detail is intentionally excluded from this public teaching view.
  adjacency=[set() for _ in manikin.data.vertices]
@@ -102,8 +120,7 @@ for build,sex in ([('standard','male')] if os.environ.get('PCM_PUBLIC_MALE_ONLY'
  keep=[rig,skin,manikin]+clothes+[bpy.data.objects[n] for n in ['PCM_Eyes','PCM_Eyebrows','PCM_Teeth','PCM_Tongue']]
  if not male:keep.append(bpy.data.objects['PCM_LongHair'])
  keep += [bpy.data.objects[n] for n in ['Face','Chest','Abdomen','Lap']]
- # Remove all source bodies and alternative outfits from the exported source as
- # well as the runtime. Garments cannot be toggled to reveal underlying anatomy.
+ # Keep only the clothed and anatomical presentations with the shared rig.
  for obj in list(bpy.data.objects):
   if obj not in keep:bpy.data.objects.remove(obj,do_unlink=True)
  # Discard unused source datablocks before saving the public editable file.

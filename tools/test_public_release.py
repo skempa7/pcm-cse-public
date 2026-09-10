@@ -31,12 +31,15 @@ assert sum(cases.get(x['id'])['patient']['sex']=='male' for x in rows)==6
 s=call('/api/session',{'case_id':rows[0]['id'],'learning_mode':'rehearsal'});sid=s['id'];call('/api/teaching',status=409);call('/api/session/'+sid+'/start',{});deadline=engine.load(sid).row['phase_ends_at'];call('/api/teaching/access',{'confirm':True,'attempt_ids':[sid]});assert engine.load(sid).row['phase_ends_at']==deadline;assert engine.load(sid).row['assisted'];call('/api/teaching')
 for path in ['/api/voice','/api/ai/status','/api/session/'+sid+'/ai-turn','/api/session/'+sid+'/transcribe']:
  call(path,{} if path.endswith(('ai-turn','transcribe','voice')) else None,status=404)
-# Public artifacts contain a neutral clinical manikin, not private nude assets.
+# Both wardrobe states share the original clinical skin material.
 # Public artifacts are a closed, explicit runtime package, no provider modules.
 for name in ['ai_patient.py','natural_voice.py','conversation.py']:assert not (ROOT/'pcmcse'/name).exists()
 assets=[]
 for p in (ROOT/'web/patient3d/assets').glob('public-*.glb'):
- data=p.read_bytes();n=struct.unpack_from('<I',data,12)[0];g=json.loads(data[20:20+n]);names={n.get('name') for n in g['nodes']};assert 'PCM_PublicBody' in names and 'PCM_AnatomyManikin' in names;assert not {'PCM_FemaleBody','PCM_FemaleBody_Source','PCM_FemaleBody_Covered'} & names;assert {'PCM_Seated','PCM_Supine'}<={a['name'] for a in g['animations']};assert {'PCM_PublicKnit','PCM_PublicTrousers','PCM_PublicShoes'}<=names
+ data=p.read_bytes();n=struct.unpack_from('<I',data,12)[0];g=json.loads(data[20:20+n]);names={n.get('name') for n in g['nodes']};assert 'PCM_PublicBody' in names and 'PCM_AnatomicalBody' in names;assert not {'PCM_FemaleBody','PCM_FemaleBody_Source','PCM_FemaleBody_Covered'} & names;assert {'PCM_Seated','PCM_Supine'}<={a['name'] for a in g['animations']};assert {'PCM_PublicKnit','PCM_PublicTrousers','PCM_PublicShoes'}<=names
+ anatomy=next(node for node in g['nodes'] if node.get('name')=='PCM_AnatomicalBody')
+ assert all(g['materials'][p['material']]['name']=='PCM_Mat_Skin' for p in g['meshes'][anatomy['mesh']]['primitives'])
+ assert not any(m.get('name')=='PCM_ClinicalManikin' for m in g['materials'])
  assets.append({'file':p.name,'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)})
 assert len(assets)==4
 out={'result':'PASS','playable_paths':len(report),'women':18,'men':6,'checks':report,'assets':assets,'limits':'Structural/route regression checks, not independent clinical validation. Existing grading defects remain.'}

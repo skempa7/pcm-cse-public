@@ -1,4 +1,4 @@
-/** Patient asset configuration for the authored young-adult-women cohort. */
+/** Shared clinical patient views for the authored adult public cohort. */
 import {Color3} from '@babylonjs/core/Maths/math.color.js';
 import {Texture} from '@babylonjs/core/Materials/Textures/texture.js';
 import {MorphTarget} from '@babylonjs/core/Morph/morphTarget.js';
@@ -46,7 +46,7 @@ export function applyMPFBWardrobe(container, appearance = {}) {
   const anatomy=appearance.outfit==='clinical-anatomy';
   for(const mesh of container.meshes){
     if(mesh.name.startsWith('PCM_Public'))mesh.setEnabled(!anatomy);
-    if(mesh.name==='PCM_AnatomyManikin')mesh.setEnabled(anatomy);
+    if(mesh.name==='PCM_AnatomicalBody')mesh.setEnabled(anatomy);
   }
 }
 export function mpfbAppearanceChoices(appearance = {}) {
@@ -74,12 +74,12 @@ export function createMPFBPatient(scene, options = {}) {
   const assetName=presentation==='male'?'public-male-standard.glb':'public-female-'+(bodyBuild||'standard')+'.glb';
   return createAnimatedPatient(scene, {
     preciseSkinnedPicking:true, label: 'Patient', rootName: 'MPFB public patient', presentation,
-    assetUrl: new URL('../assets/'+assetName,import.meta.url).href,
+    assetUrl: new URL('../assets/'+assetName+'?v=clinical-anatomy-2',import.meta.url).href,
     capabilityMetadata: {model:'mpfb-public-patient',trial:false,bodyBuild:bodyBuild||'original'},
     isEligible: state => state.appearance?.model === 'mpfb-public-patient' && state.appearance?.presentation === presentation,
     controlNames: {blink:['Blink'],speech:['Speech'],concern:['Concern'],discomfort:['Discomfort'],hairSupport:['PCM_HairSupineSupport']},
     requiredControls:['blink','speech','concern','discomfort'],
-    requiredMeshes:['PCM_PublicBody'],
+    requiredMeshes:['PCM_PublicBody','PCM_AnatomicalBody'],
     supportedPostures:['seated','supine'],requiredPostures:['seated','supine'],
     postureClips:{seated:'PCM_Seated',supine:'PCM_Supine'},postureTransitionMs:600,
     rigNodes:{head:'head',chest:'spine_03',eyeLeft:'no-eye-bone-left',eyeRight:'no-eye-bone-right'},
