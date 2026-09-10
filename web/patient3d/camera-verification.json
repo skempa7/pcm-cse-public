@@ -1,0 +1,38 @@
+{
+  "feature": "Deliberate 360-degree patient orbit",
+  "built_at_utc": "2026-09-10T07:05:38.380067+00:00",
+  "renderer": "Babylon.js 9.25.0",
+  "build": "node node_modules/esbuild/bin/esbuild src/room.js --bundle --minify --format=esm --outdir=dist",
+  "tests": "node tests/camera-navigation.mjs; python3 -m unittest tests.test_camera_navigation",
+  "results": {
+    "portable_math_event_sweeps": "passed",
+    "ui_source_contract": "passed",
+    "representative_browser": "Builder personally operated private coached renal-flank-pain seated front/back/front orbit beyond360deg, then prone Full patient orbit and Zoom out. Screenshots emitted through CUA. The later above-support-height correction was tested mathematically; independent browser retest pending.",
+    "limitations": "Conservative world-space mesh bounds plus padding, not exact triangle collision or a clinical observation. All360horizontal angles are available; vertical angles are limited by patient/table/room clearance. Desktop mouse drag only; trackpad pinch, touch, wheel and browser zoom are not captured."
+  },
+  "sha256": {
+    "src/camera-navigation.js": "d6870721c443cf0ebd96d970b6d2c671369065b6d46a9ed0f049a92833478bb7",
+    "src/room.js": "0d603a03a423df9e11bab68ec63f5a21a80e3c300968b40e6269bbad845459ab",
+    "src/mpfb-patient.js": "3b366e8a556979b2bd424ce661b33e405c22a56fde0bbaa2ddfcd99d9c34ffc5",
+    "src/clinical-table.js": "7dea4b197b2864c6c31bd5eb53645b44af90e787102a5f3d8c21c447f653675b",
+    "src/table-support-profiles.js": "61bc5d3d9768648b1903fc4545cbce915a290feeca7934577836f635350714ec",
+    "index.html": "bd6b8354b7b887c8fb81e426d5af4a7ec0a3d9e87eefb1bbeee2fee56e8a0363",
+    "room.css": "99a5ea5a8db82665a21604a12e172d6f3ab09ec789e6117c77eec27e42a46625",
+    "dist/room.js": "99aa488e87365d8ca40c3e7d58123ef7e2c5be6420fe87eb97699833bff1bc0f",
+    "tests/camera-navigation.mjs": "f895c139c51138ba7c2cccc26951dc760e47c1b80547664531b2130d91de078f"
+  },
+  "final_asset_rebuild": {
+    "reason": "Final asset cache and support sourceHash metadata refreshed; camera logic and support contours unchanged since tests.",
+    "sha256": {
+      "src/camera-navigation.js": "d6870721c443cf0ebd96d970b6d2c671369065b6d46a9ed0f049a92833478bb7",
+      "src/room.js": "0d603a03a423df9e11bab68ec63f5a21a80e3c300968b40e6269bbad845459ab",
+      "src/mpfb-patient.js": "be1f73a993b585dd1924a318a52ee6d80fcd388808e4c9fb82705e193d12e59f",
+      "src/clinical-table.js": "7dea4b197b2864c6c31bd5eb53645b44af90e787102a5f3d8c21c447f653675b",
+      "src/table-support-profiles.js": "1459e730352bab97f66ef4392466619974ed71c4f32dcd3f441d02388e7f5149",
+      "index.html": "bd6b8354b7b887c8fb81e426d5af4a7ec0a3d9e87eefb1bbeee2fee56e8a0363",
+      "room.css": "99a5ea5a8db82665a21604a12e172d6f3ab09ec789e6117c77eec27e42a46625",
+      "dist/room.js": "653c4a8e356b3fceb0a576220a831388eb9a6d0ecd6e3781ab1bdefda681e2aa",
+      "tests/camera-navigation.mjs": "f895c139c51138ba7c2cccc26951dc760e47c1b80547664531b2130d91de078f"
+    }
+  }
+}

@@ -74,20 +74,20 @@ export function createMPFBPatient(scene, options = {}) {
   const assetName=presentation==='male'?'public-male-standard.glb':'public-female-'+(bodyBuild||'standard')+'.glb';
   return createAnimatedPatient(scene, {
     preciseSkinnedPicking:true, label: 'Patient', rootName: 'MPFB public patient', presentation,
-    assetUrl: new URL('../assets/'+assetName+'?v=clinical-anatomy-2',import.meta.url).href,
+    assetUrl: new URL('../assets/'+assetName+'?v=male-native-anatomy-2-female-external-1',import.meta.url).href,
     capabilityMetadata: {model:'mpfb-public-patient',trial:false,bodyBuild:bodyBuild||'original'},
     isEligible: state => state.appearance?.model === 'mpfb-public-patient' && state.appearance?.presentation === presentation,
-    controlNames: {blink:['Blink'],speech:['Speech'],concern:['Concern'],discomfort:['Discomfort'],hairSupport:['PCM_HairSupineSupport']},
+    controlNames: {blink:['Blink'],speech:['Speech'],concern:['Concern'],discomfort:['Discomfort'],hairSupport:['PCM_HairSupineSupport'],hairProneSupport:['PCM_HairProneSupport']},
     requiredControls:['blink','speech','concern','discomfort'],
     requiredMeshes:['PCM_PublicBody','PCM_AnatomicalBody'],
-    supportedPostures:['seated','supine'],requiredPostures:['seated','supine'],
-    postureClips:{seated:'PCM_Seated',supine:'PCM_Supine'},postureTransitionMs:600,
+    supportedPostures:['seated','supine','standing','prone'],requiredPostures:['seated','supine','standing','prone'],
+    postureClips:{seated:'PCM_Seated',supine:'PCM_Supine',standing:'PCM_Standing',prone:'PCM_Prone'},postureTransitionMs:600,
     rigNodes:{head:'head',chest:'spine_03',eyeLeft:'no-eye-bone-left',eyeRight:'no-eye-bone-right'},
     landmarkNodes:{face:'Face',chest:'Chest',abdomen:'Abdomen',lap:'Lap',neck:'neck_01'},
     requiredLandmarks:['face','chest','abdomen','lap'],
     readyMessage:'Patient ready.',
     prepareGeometry:(container,scene)=>({...prepareMPFBEyeGeometry(container,scene),...(presentation==='female'?prepareMPFBHairSupport(container,scene,options.bodyBuild):{})}),
-    poseControlValues:posture=>({hairSupport:posture==='supine'?1:0}),gazeIntent:mpfbGazeIntent,gazeMorphRadians:EYE_ANGLE,
+    poseControlValues:posture=>({hairSupport:posture==='supine'?1:0,hairProneSupport:posture==='prone'?1:0}),gazeIntent:mpfbGazeIntent,gazeMorphRadians:EYE_ANGLE,
     async prepare(container) {
       const textures = await Promise.allSettled(['blue','green'].map(shade=>loadTexture(new URL(`../assets/mpfb-eyes-${shade}.png`,import.meta.url).href,scene)));
       const failed = textures.find(result=>result.status==='rejected');

@@ -35,6 +35,8 @@ const mmss = ms => { if (ms == null) return '--:--';
   const t = Math.max(0, Math.round(ms / 1000));
   return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
 const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
+const isUntimedAttempt = (attempt=S) => !!attempt && (attempt.preset?.untimed === true || attempt.learning_mode === 'guided');
+const phaseAllowance = seconds => mmss(Number(seconds || 0) * 1000);
 
 let feedbackEpoch=0,announceTimer=null,alertTimer=null;
 function clearContextFeedback(){
@@ -182,10 +184,10 @@ function stations() {
    front-end framing, so it is kept beside the session id in this browser and
    never presented as something the engine scored. */
 const MODES = {
-  guided:{key:'guided',name:'Guided encounter',icon:'○',preset:'practice',time:'Untimed learning · accelerated examination actions',desc:'Build a repeatable approach with memory cues, short demonstrations and immediate practice.',reveal:true,coach:true},
-  coached:{key:'coached',name:'Coached encounter',icon:'◐',preset:'practice',time:'14:00 encounter → 2:00 organize → 9:00 note',desc:'Lead the encounter, with targeted help available when you lose your place. Assistance is tracked separately.',reveal:true,coach:true},
-  independent:{key:'independent',name:'Independent practice',icon:'◇',preset:'practice',time:'14:00 encounter → 2:00 organize → 9:00 note',desc:'Complete the encounter yourself, then use the evidence-based debrief to choose your next practice.',reveal:true,coach:false},
-  rehearsal:{key:'rehearsal',name:'Exam rehearsal',icon:'◆',preset:'course',time:'14:00 encounter → 9:00 note',desc:'Course timing, sealed case titles and no teaching help during the encounter or SOAP period.',reveal:false,coach:false}
+  guided:{key:'guided',name:'Guided encounter',icon:'☀',preset:'guided_untimed',time:'Untimed encounter and SOAP note',desc:'Build a repeatable approach with memory cues, demonstrations and immediate practice.',reveal:true,coach:true},
+  coached:{key:'coached',name:'Coached encounter',icon:'◐',preset:'coached_untimed',time:'Untimed encounter and SOAP note',desc:'Lead at your own pace, with targeted help whenever you need it. Assistance is tracked separately.',reveal:true,coach:true},
+  independent:{key:'independent',name:'Independent practice',icon:'◇',preset:'independent_extended',time:'30 min encounter → 5 min organize → 20 min note',desc:'Complete the encounter yourself with extended practice time, then reflect on the evidence-based feedback.',reveal:true,coach:false},
+  rehearsal:{key:'rehearsal',name:'Exam rehearsal',icon:'◆',preset:'course',time:'14 min encounter → 9 min note',desc:'Course timing, sealed case titles and no teaching help during the encounter or SOAP period.',reveal:false,coach:false}
 };
 function normalizeMode(value){return value==='practice'||value==='drill'?'coached':(MODES[value]?value:'coached');}
 const DRILLS = {
@@ -217,7 +219,7 @@ function drillOf() {
 function startTick(){ if (tick) clearInterval(tick); tick = setInterval(paintClock, 250); paintClock(); }
 function paintClock(){
   if (!S) { clockEl.classList.add('hidden'); return; }
-  if(!S.phase_ends_at){if(['briefing','submitted'].includes(S.phase)){clockEl.classList.add('hidden');return;}clockEl.classList.remove('hidden');clockDigits.textContent='Untimed';clockLabel.textContent='guided learning';clockEl.setAttribute('aria-label','Untimed guided learning');clockEl.classList.remove('warn','crit');$$('[data-clock]').forEach(el=>el.textContent='Untimed');return;}
+  if(!S.phase_ends_at){if(['briefing','submitted'].includes(S.phase)){clockEl.classList.add('hidden');return;}clockEl.classList.remove('hidden');clockDigits.textContent='Untimed';clockLabel.textContent=S.learning_mode==='guided'?'guided learning':'coached practice';clockEl.setAttribute('aria-label','Untimed '+clockLabel.textContent);clockEl.classList.remove('warn','crit');$$('[data-clock]').forEach(el=>el.textContent='Untimed');return;}
   const left = S.phase_ends_at - now();
   clockEl.classList.remove('hidden');
   const txt = mmss(left);
@@ -263,14 +265,37 @@ function renderPhase(force){
 }
 
 /* ---------- session plumbing ---------- */
-function route(){
-  const id = location.hash.replace(/^#\/?/, '');
-  if (/^(learn|progress)(?:\/|$)/.test(id)) { window.pcmStudy.render(id); return; }
-  if (id) openSession(id); else renderLobby();
+let routeEpoch=0;
+async function leaveForWorkspace(kind){
+  const active=S&&S.phase!=='submitted';
+  if(active){
+    const timed=!!S.phase_ends_at;
+    const message='Leave this attempt for '+({home:'Home',practice:'the case library',progress:'your progress',scoring:'the scoring guide',voice:'voice settings',session:'another attempt'}[kind]||'this workspace')+'? Your work will be saved and you can resume from Home or Progress.'+(timed?' The current timer keeps running; leaving does not add time.':' This attempt remains untimed.');
+    if(!await confirmChoice(message)){history.replaceState(null,'','#/'+S.id);return false;}
+  }
+  if(!await window.pcmEnterWorkbench(kind))return false;
+  clearContextFeedback();return true;
 }
-async function openSession(id){
+function portalContext(){return {boot:BOOT,view,api,onData:data=>Object.assign(BOOT,data),past:panelPast,scoring:panelAssume,voice:panelVoice,wirePast:wirePastPanel,wireVoice:wireVoicePanel};}
+async function route(){
+  const epoch=++routeEpoch,id=location.hash.replace(/^#\/?/, '');
+  window.pcmPortal?.invalidate();
+  if (/^learn(?:\/|$)/.test(id)) {document.body.dataset.workspace='learn';window.pcmStudy.render(id);return;}
+  const kind=!id||id==='home'?'home':['practice','progress','scoring','voice'].includes(id)?id:null;
+  if(kind){
+    if(!await leaveForWorkspace(kind)||epoch!==routeEpoch)return;
+    document.body.dataset.workspace=kind;window.pcmPortal?.nav(kind);
+    if(brandSub)brandSub.textContent='Your clinical skills workspace';
+    if(kind==='practice')renderLobby();else window.pcmPortal.render(kind,portalContext());
+    return;
+  }
+  if(S?.id&&S.id!==id&&(!await leaveForWorkspace('session')||epoch!==routeEpoch))return;
+  document.body.dataset.workspace='encounter';openSession(id,epoch);
+}
+async function openSession(id,epoch=routeEpoch){
   document.querySelectorAll('[data-destination]').forEach(b=>b.setAttribute('aria-current',b.dataset.destination==='practice'?'page':'false'));
   const st = await api('/api/session/' + id);
+  if(epoch!==routeEpoch)return;
   if (st.error || !st.phase) { location.hash = ''; return renderLobby(); }
   clearPendingReveals();
   S = st;recoverScratch();lastPhase = null;
@@ -307,20 +332,18 @@ async function refresh(){
 /* ======================================================================== */
 function renderLobby(){
   document.querySelectorAll('[data-destination]').forEach(b=>b.setAttribute('aria-current',b.dataset.destination==='practice'?'page':'false'));
+  document.body.dataset.workspace='practice';
   clearContextFeedback();
   window.scrollTo({top:0,behavior:'instant'});
   if (poll) clearInterval(poll);
   if (tick) clearInterval(tick);
   clearPendingReveals();
   S = null; lastPhase = null; RESULTS = null;document.body.dataset.phase='lobby';entryPending=null;positionRoomFrame();
-  // Drop the session out of the address bar without firing another route pass.
-  if (location.hash) {
-    try { history.replaceState(null, '', location.pathname + location.search); }
-    catch(e) { location.hash = ''; }
-  }
+  // Keep this workspace addressable separately from the student dashboard.
+  history.replaceState(null, '', location.pathname + location.search + '#practice');
   clockEl.classList.add('hidden'); chipEl.classList.add('hidden');
   homeBtn.classList.add('hidden');
-  if (brandSub) brandSub.textContent = 'COM 6000 · Principles of Clinical Medicine I';
+  if (brandSub) brandSub.textContent = 'Your clinical skills workspace';
 
   const prefs = LS.get('prefs') || {};
   const uiMode = normalizeMode(prefs.ui_mode);
@@ -333,9 +356,9 @@ function renderLobby(){
   view.innerHTML = `
   <div class="wrap-mid">
     <div class="lobby-hero">
-      <div class="eyebrow">Clinical skills examination · practice station</div>
-      <h1>Find your rhythm.<br><em>Meet your next patient.</em></h1>
-      <p>A place to practice the questions, find your next step, and build confidence—one patient at a time.</p>
+      <div class="eyebrow">Patient encounter library</div>
+      <h1>Choose your next encounter.</h1>
+      <p>Choose your support, explore a presentation, then read the doorway before entering.</p>
       <div class="hero-path" aria-label="Practice journey"><span>01 &nbsp; Meet</span><span>02 &nbsp; Explore</span><span>03 &nbsp; Reflect</span></div>
     </div>
 
@@ -370,13 +393,13 @@ function renderLobby(){
     </section>
 
     <section class="card" aria-labelledby="stationH">
-      <div class="card-head"><h2 id="stationH">Who will you meet today?</h2><div class="spacer"></div>
+      <div class="card-head"><h2 id="stationH">Explore the patient presentations</h2><div class="spacer"></div>
         <label class="sr-only" for="sysPick">Limit a random draw to one system</label>
         <select id="sysPick" style="width:auto;max-width:220px">
           <option value="">Any system</option>
           ${(BOOT.systems || []).map(s => `<option>${esc(s)}</option>`).join('')}
         </select>
-        <button class="btn sm" id="btnRandom" type="button">Surprise me</button>
+        <button class="btn sm" id="btnRandom" type="button">Draw a mixed case</button>
       </div>
       <p class="small muted" id="revealNote"></p>
       <div class="station-grid" role="radiogroup" aria-labelledby="stationH" id="stationGrid">
@@ -447,7 +470,7 @@ function renderLobby(){
   window.pcmLearningRender?.(null);
 }
 function refreshLobbyHistory(){
-  if(S || !$('#stationGrid')) return;
+  if(S || (!$('#stationGrid')&&!$('#progressWorkspace'))) return;
   const rows=BOOT.sessions||[], past=$('#btnPast'), resume=$('#btnResume');
   if(past) past.textContent=`Past attempts (${rows.length})`;
   const open=rows.find(s=>s.phase!=='submitted');
@@ -458,7 +481,7 @@ function refreshLobbyHistory(){
   const panel=$('#extraPanel');
   if(panel?.dataset.open==='past'){
     panel.innerHTML=panelPast();
-    $$('[data-open]',panel).forEach(b=>{b.onclick=()=>{location.hash='#/'+b.dataset.open;};});
+    wirePastPanel();
   }
 }
 function currentUiMode(){ const r = $('input[name=uimode]:checked'); return r ? r.value : 'coached'; }
@@ -494,6 +517,7 @@ function applyReveal(uiMode){
     $('input', card).setAttribute('aria-label', stationTitle(c.id) +
       (m.reveal ? ' — ' + c.title : ' — contents sealed'));
   });
+  window.pcmPortal?.decoratePractice(uiMode,m.reveal);
 }
 function paintTalkNote(){
   const el = $('#talkNote'); if (!el) return;
@@ -511,24 +535,93 @@ function togglePanel(which, btn){
   else if (which === 'review') p.innerHTML = panelReview();
   else if (which === 'voice') { p.innerHTML = panelVoice(); wireVoicePanel(); }
   else p.innerHTML = panelPast();
-  if (which === 'past') $$('[data-open]', p).forEach(b => { b.onclick = () => {
-    location.hash = '#/' + b.dataset.open; }; });
+  if (which === 'past') wirePastPanel();
   const h = $('h2', p); if (h) { h.setAttribute('tabindex', '-1'); h.focus(); }
 }
 function panelAssume(){
-  return `<div class="disclosure-body"><h2>Scoring assumptions</h2>
-    <p class="small muted">Everything the course materials do not settle. Each one is
-    repeated on every results screen, so no interpretation is ever invisible.</p>
-    ${(BOOT.assumptions || []).map(a => `<div class="item ${a.status === 'provisional' ? 'warn' : a.status === 'practice-mod' ? 'info' : 'mute'}">
-      <h4>${esc(a.topic)} <span class="badge ${a.status === 'provisional' ? 'b-warn' : 'b-mute'}">${esc(a.status)}</span></h4>
-      <div class="small"><b>${esc(a.value)}</b></div>
-      <div class="small muted">${esc(a.detail)}</div></div>`).join('')}
-    <div class="callout warn"><b>MOTHERR has no published source.</b> A search across
-    NBOME, AACOM, the American Academy of Osteopathy, PubMed and the COMLEX 2-PE review
-    guide found nothing citable. The expansion used here was derived from the six sample
-    plans in your own student manual — every one lands on exactly three distinct
-    elements of this set. If your facilitator states a different expansion, nothing else
-    in the grader moves.</div></div>`;
+  // Point values and row names: PCM 2026 Student Manual, SOAP grading Table 4.
+  // This is a learner guide only; pcmcse/grader.py remains the scoring authority.
+  const subjective = [
+    ['age_sex','Age and sex','State the supplied patient age and sex accurately.'],
+    ['cc_clear','Chief complaint','Name the main reason for the visit clearly.'],
+    ['onset_location','Onset / location','Describe when the symptom began and where it occurs.'],
+    ['duration_chronological','Duration / chronology','Explain its duration and course over time.'],
+    ['character_quality','Character / quality','Describe what the symptom feels like in the patient’s words.'],
+    ['severity_quantity','Severity / quantity','Record the severity or amount you established.'],
+    ['alleviating_aggravating','Alleviating / aggravating','Record what improves or worsens the symptom.'],
+    ['associated_past_treatments','Associated symptoms / prior episodes / treatment','Include relevant associated symptoms, prior similar episodes, and treatments tried.'],
+    ['pmh_psh','Past medical and surgical history','Ask and document both medical conditions and operations.'],
+    ['medications','Medications','Document the medication history you obtained, including relevant nonprescription products.'],
+    ['social_history','Social history','Always address tobacco, alcohol, and drug use; add relevant context.'],
+    ['family_history','Family history','Address biological parents and siblings.'],
+    ['allergies','Allergies','Document the allergy history actually obtained; include reported reactions when known.'],
+    ['ros','Review of systems','Obtain and document 3 symptoms in each of 3 pertinent systems: 9 symptoms total.'],
+  ];
+  const objective = [
+    ['vitals','Vitals','Put the supplied doorway measurements first in Objective. They are authorized information; you do not need to pretend you measured them.'],
+    ['general','General','Describe the general findings you actually observed or were supplied.'],
+    ['heart_lungs','Heart and lungs','Document both, using separate Heart: and Lungs: headers and the specific findings you obtained.'],
+    ['most_relevant','Most relevant system','Expand the examination of the area of concern. Include the pertinent methods and results you actually obtained; a generic normal statement is insufficient.'],
+    ['other_systems','Other system(s)','Record the other relevant examination findings you obtained under their own headers.'],
+    ['osteopathic','Osteopathic','Document the examined level and the dysfunction you established.'],
+  ];
+  const table = (rows, points) => `<div class="table-scroll"><table class="rows"><thead><tr><th scope="col">Scored item</th><th scope="col">What to do</th><th scope="col">Points</th></tr></thead><tbody>${rows.map(([id,label,action])=>`<tr data-scoring-row="${id}"><th scope="row">${esc(label)}</th><td>${esc(action)}</td><td class="pts">${points}</td></tr>`).join('')}</tbody></table></div>`;
+  const weights = [['Subjective',28],['Objective',30],['Assessment',15],['Plan',25],['Spelling / style',2]];
+  return `<div class="disclosure-body" id="scoring-guide"><h2>How to earn the SOAP points</h2>
+    <p>The PCM SOAP rubric has <b>100 available points</b>. Use this guide to collect the information you need and put it in the correct part of your note. It describes the rubric; the app’s automated feedback can still make mistakes.</p>
+    <div class="exam-summary" aria-label="SOAP rubric point distribution">${weights.map(([label,points])=>`<div class="es" data-scoring-category="${esc(label)}" data-points="${points}"><div class="n">${points}</div><div class="k">${esc(label)}</div></div>`).join('')}</div>
+    <p class="small muted">Course source: Student Manual, PCM 2026 SOAP note grading table (Table 4). Source details are listed below.</p>
+    <div class="callout info"><b>Obtain it → document it → support it.</b> Ask the question or complete the specific examination, then document the information delivered to you. Doorway vitals count as supplied evidence. A hidden case fact, a body-view change, or a teaching animation does not establish a finding. Put a differential in Assessment and a proposed future action in Plan.</div>
+
+    <details class="item" open><summary><b>Subjective — 28 points</b> · 14 history items, 2 points each</summary>
+      <p class="small">Use clear headers: CC, HPI, PMH/PSH, Medications, Social History, Family History, Allergies, and ROS. Write accurate, specific history; do not invent a negative answer to fill a row.</p>
+      ${table(subjective,2)}
+    </details>
+    <details class="item"><summary><b>Objective — 30 points</b> · 6 examination items, 5 points each</summary>
+      <p class="small">Start with <b>Vitals:</b>, then use separate examination headers. Describe findings rather than writing <b>“Normal.”</b> Use approved abbreviations. The needed detail depends on the clinical concern.</p>
+      ${table(objective,5)}
+      <p class="small">Record supplied test results and an actual examination refusal in Objective. Never document an unperformed maneuver as a normal examination.</p>
+    </details>
+    <details class="item"><summary><b>Assessment — 15 points</b> · 3 differentials, 5 points each</summary>
+      <ol class="tight small"><li>Number the diagnoses <b>1, 2, 3</b>, with the <b>most likely first</b>.</li><li>Choose diagnoses that fit the encounter, rather than vague labels or unrelated possibilities.</li><li>Use <b>3 different VINDICATE elements</b>, as required by the rubric.</li></ol>
+      <p class="small"><b>VINDICATE — organize your differential:</b> <b>V</b>ascular; <b>I</b>nfectious / inflammatory; <b>N</b>eoplastic; <b>D</b>egenerative / deficiency; <b>I</b>atrogenic / intoxication; <b>C</b>ongenital; <b>A</b>utoimmune / allergic; <b>T</b>raumatic; <b>E</b>ndocrine / metabolic.</p>
+      <p class="small">Use the categories to consider relevant causes, then choose the diagnoses best supported by this encounter. A reasonable differential is a clinical inference. It does not authorize adding unasked symptoms or unperformed findings to S or O.</p>
+    </details>
+    <details class="item"><summary><b>Plan — 25 points</b> · 3 plans + education + follow-up</summary>
+      <div class="table-scroll"><table class="rows"><thead><tr><th scope="col">Scored item</th><th scope="col">What to do</th><th scope="col">Points</th></tr></thead><tbody>
+        <tr data-scoring-row="plan1"><th scope="row">Plan 1</th><td>Number it 1 and match Assessment 1. Include at least 3 different MOTHERR elements, selected appropriately for this diagnosis.</td><td class="pts">5</td></tr>
+        <tr data-scoring-row="plan2"><th scope="row">Plan 2</th><td>Number it 2 and match Assessment 2. Include at least 3 different MOTHERR elements.</td><td class="pts">5</td></tr>
+        <tr data-scoring-row="plan3"><th scope="row">Plan 3</th><td>Number it 3 and match Assessment 3. Include at least 3 different MOTHERR elements.</td><td class="pts">5</td></tr>
+        <tr data-scoring-row="education"><th scope="row">Specific education</th><td>Include concrete, relevant patient instructions in at least one plan. State what the patient should do rather than writing only “counseled.”</td><td class="pts">5</td></tr>
+        <tr data-scoring-row="followup"><th scope="row">Specific follow-up / disposition</th><td>Put the specific follow-up in <b>Plan 1</b>. Give an interval, or an appropriate disposition when applicable.</td><td class="pts">5</td></tr>
+      </tbody></table></div>
+      <p class="small"><b>MOTHERR — organize your plan:</b> <b>M</b>edications; <b>O</b>steopathic treatment (OMT); <b>T</b>esting; <b>H</b>umanistic / supportive needs; <b>E</b>ducation; <b>R</b>eferral; <b>R</b>eturn / follow-up.</p>
+      <p class="small"><b>Humanistic / supportive needs:</b> Consider daily function, comfort, support, and the patient’s ability to carry out the plan. Include appropriate supportive measures, such as activity modification or hydration, when relevant.</p>
+      <p class="small">Make each plan specific; name the body location for imaging. Three tests are not three different MOTHERR elements. Do not add unnecessary treatment merely to fill a category.</p>
+    </details>
+    <details class="item"><summary><b>Spelling and style — 2 points</b> · a clear, readable note</summary>
+      <p class="small">Proofread spelling and wording, organize the note under the required headings, and keep statements specific and unambiguous. Other rubric conditions still apply within their own rows.</p>
+    </details>
+
+    <h3>During the encounter: a separate part of your performance</h3>
+    <p class="small">The standardized-patient checklist and interpersonal-skills assessment are separate from the 100-point SOAP rubric. The app reports their feedback separately; it does not invent a combined course score.</p>
+    <ul class="tight small"><li>Introduce yourself, use hand hygiene and gloves before the physical examination, and obtain permission while explaining what you are doing.</li><li>Take a focused history and select relevant examination actions. Use the taught sequence and stated technique; include the appropriate osteopathic examination.</li><li>Attend to comfort, draping, and assistance with position changes. Listen, clarify, and discuss the plan before closing.</li><li>For the course’s specified invasive examinations, state the intended examination when warranted and document the patient’s refusal. These are not performed at the station.</li></ul>
+    <p class="small muted">A virtual interaction cannot verify hands-on pressure, true stethoscope contact, eye contact, or physical technique. Changing a camera or patient position earns no examination finding by itself.</p>
+
+    <h3>A final check before submitting</h3>
+    <p class="small"><b>History:</b> relevant chronology, background history, and 3 × 3 ROS. <b>Objective:</b> supplied vitals first, specific obtained findings, and correct headers. <b>Assessment:</b> 3 numbered, defensible diagnoses, most likely first. <b>Plan:</b> 3 corresponding plans, 3 distinct elements each, specific education, and follow-up/disposition in Plan 1.</p>
+    <p class="small">The confirmed timing is <b>14 minutes for the encounter and 9 minutes for the SOAP note</b>. Guided and Coached are untimed. Independent practice allows 30 minutes for the encounter, 5 to organize, and 20 for the note. Exam rehearsal uses the course timing without an organization break. Earlier saved attempts retain their original preset.</p>
+
+    <h3 id="scoring-guide-sources">Where these requirements come from</h3>
+    <ul class="tight small"><li><b>Student Manual, revised June 2026:</b> SOAP grading Table 4 supplies the point values and conditions; the blank note form and patient/interpersonal checklists supply the structure and separate encounter expectations.</li><li><b>PCM I syllabus, Fall 2026:</b> §III, pages 4–5, supplies timing, focused encounter, documentation, and invasive-examination refusal rules; §VII describes competency-based pass/fail.</li><li><b>Intro to PCM I:</b> PDF pages 21–27 clarify abbreviations, supplied results/refusals, specificity, section placement, and false documentation.</li><li><b>Interpersonal Skills:</b> PDF pages 27–33 clarify examination sequence, draping, structural examination, and Heart/Lungs header wording.</li></ul>
+
+    <p class="small muted"><b>Mnemonic sources:</b> <a href="https://rad.uw.edu/online-musculoskeletal-radiology-book/general-principles" target="_blank" rel="noopener noreferrer">University of Washington</a> and <a href="https://www.acponline.org/sites/default/files/documents/clinical_information/journals_publications/books/teaching_clinical_reasoning/web_extras.pdf" target="_blank" rel="noopener noreferrer">ACP, Table w-2</a> publish VINDICATE variants with different D/I groupings; the app retains the mapping shown above. MOTHERR is a working expansion: the supplied course materials do not define its letters, and a complete authoritative online expansion was not found.</p>
+
+    <h3>Assumptions, app defaults, and what remains unknown</h3>
+    <p class="small">The point values above are confirmed. These details are not all settled by the course, or describe the simulator rather than the real examination. There is no published numeric SOAP passing cutoff or stated weighting that combines SOAP, encounter, and interpersonal performance.</p>
+    <details class="item"><summary><b>Review the active interpretations and limitations</b></summary>
+      ${(BOOT.assumptions || []).map(a => `<div class="item ${a.status === 'provisional' ? 'warn' : a.status === 'practice-mod' ? 'info' : 'mute'}"><h4>${esc(a.topic)} <span class="badge ${a.status === 'provisional' ? 'b-warn' : 'b-mute'}">${esc(a.status)}</span></h4><div class="small"><b>${esc(a.value)}</b></div><div class="small muted">${esc(a.detail)}</div></div>`).join('')}
+    </details></div>`;
 }
 function panelReview(){
   return `<div class="disclosure-body"><h2>Case review status</h2>
@@ -573,17 +666,107 @@ function wireVoicePanel(){
     $('#speakOpt').classList.toggle('sel', e.target.checked); savePrefs();window.dispatchEvent(new Event('pcm-speech-preference')); };
 }
 function panelPast(){
-  const rows = BOOT.sessions || [];
+  const rows = BOOT.sessions || [], reveal=!!MODES[currentUiMode()]?.reveal;
+  const choices=(BOOT.cases||[]).map(c=>`<option value="${esc(c.id)}">${esc(stationTitle(c.id))}${reveal?' — '+esc(c.title):''}</option>`).join('');
   return `<div class="disclosure-body"><h2>Past attempts</h2>
-    <p class="small muted">Every attempt on this machine, kept exactly as it was recorded.
-    Nothing here is ever overwritten by a retry or a revision.</p>
-    ${!rows.length ? '<p class="muted small">None yet.</p>' : rows.map(h => `<div class="hist-row">
+    <p class="small muted">Retries and revisions keep each original attempt intact. Use Reset progress below only when you want to remove saved work.</p>
+    ${!rows.length ? '<p class="muted small">No saved attempts yet.</p>' : rows.map(h => `<div class="hist-row">
       <span class="small muted">${esc(new Date(h.created_at).toLocaleString())}</span>
       <span>${esc(stationTitle(h.case_id))} <span class="tiny muted">${esc(h.preset || '')} · ${esc(h.interaction_mode || '')}</span></span>
       <span class="ph">${h.graded ? '<span class="badge b-ok">graded</span>'
         : '<span class="badge b-mute">' + esc(h.phase) + '</span>'}</span>
       <span><button class="btn sm" type="button" data-open="${esc(h.id)}">Open</button></span>
-    </div>`).join('')}</div>`;
+    </div>`).join('')}
+    ${S?'':`<details class="progress-reset-tools" id="progressResetTools"><summary>Reset progress</summary>
+      <p class="small">Start fresh for one presentation, including all its variations, or for the whole library. You can review what will be removed before confirming.</p>
+      <div class="progress-reset-actions"><label for="resetProgressCase">Presentation<select id="resetProgressCase"><option value="">Choose a presentation…</option>${choices}</select></label>
+        <button class="btn" type="button" id="resetCaseProgress" disabled>Reset case progress</button>
+        <button class="btn" type="button" id="resetAllProgress">Reset all progress</button></div>
+      <p id="progressResetStatus" class="small muted" role="status"></p><div id="progressResetConfirm"></div>
+    </details>`}</div>`;
+}
+function clearResetLocalWork(scope,caseId,attemptIds){
+  const ids=new Set(attemptIds),known=['pcmcse.ui.','pcmcse.performed.','pcmcse.courtesy.','pcmcse.entrance.','pcm-camera.'];
+  let cleared=true;
+  try{
+    const keys=Array.from({length:localStorage.length},(_,i)=>localStorage.key(i)).filter(Boolean);
+    for(const key of keys){
+      const draft=/^pcmcse\.draft\.(?:scratch|note|conversation)\.(.+)$/.exec(key);
+      const attemptKey=draft?ids.has(draft[1]):known.some(prefix=>key.startsWith(prefix)&&ids.has(key.slice(prefix.length)));
+      const reflection=key.startsWith('pcmcse.written-reflection.')&&(scope==='all'||key.startsWith('pcmcse.written-reflection.'+caseId+'.'));
+      if(attemptKey||reflection)localStorage.removeItem(key);
+    }
+  }catch{cleared=false;}
+  if(ids.has(window.pcmLastAttempt))window.pcmLastAttempt=null;
+  return cleared;
+}
+function wirePastPanel(){
+  const panel=$('#extraPanel');if(!panel)return;
+  $$('[data-open]',panel).forEach(b=>{b.onclick=()=>{location.hash='#/'+b.dataset.open;};});
+  if(S)return;
+  const select=$('#resetProgressCase',panel),caseButton=$('#resetCaseProgress',panel),allButton=$('#resetAllProgress',panel);
+  if(!select||!caseButton||!allButton)return;
+  select.onchange=()=>{progressResetPreview++;caseButton.disabled=!select.value;$('#progressResetConfirm',panel).innerHTML='';$('#progressResetStatus',panel).textContent='';};
+  caseButton.onclick=()=>showProgressResetConfirmation('case',select.value,caseButton);
+  allButton.onclick=()=>showProgressResetConfirmation('all',null,allButton);
+}
+let progressResetPreview=0;
+async function showProgressResetConfirmation(scope,caseId,trigger){
+  if(S||(!$('#stationGrid')&&!$('#progressWorkspace'))||(scope==='case'&&!caseById(caseId)))return;
+  const host=$('#progressResetConfirm'),status=$('#progressResetStatus');if(!host||!status)return;
+  const requestId=++progressResetPreview;
+  const label=scope==='all'?'all presentations':stationTitle(caseId)+' and all its variations';
+  status.textContent='Checking all saved progress, including older attempts…';
+  host.innerHTML='<button class="btn" type="button" id="cancelResetPreview">Cancel</button>';
+  const previewCancel=$('#cancelResetPreview');previewCancel.focus();previewCancel.onclick=()=>{progressResetPreview++;host.innerHTML='';status.textContent='';trigger?.focus();};
+  const previewPayload={scope};if(scope==='case')previewPayload.case_id=caseId;
+  let preview;
+  try{
+    const response=await fetch('/api/progress/reset-preview',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(previewPayload)});preview=await response.json();
+    if(!response.ok||preview.error)throw Error(preview.message||preview.error||'Reset details could not be loaded.');
+    if(!Number.isInteger(preview.attempt_count)||!Number.isInteger(preview.unfinished_count)||preview.attempt_count<0||preview.unfinished_count<0)throw Error('Reset counts could not be verified.');
+  }catch(error){if(requestId===progressResetPreview&&host.isConnected){status.textContent=error.message+' No progress was removed.';host.innerHTML='';trigger?.focus();}return;}
+  if(S||(!$('#stationGrid')&&!$('#progressWorkspace'))||!host.isConnected||requestId!==progressResetPreview)return;
+  const unfinished=preview.unfinished_count,attemptCount=preview.attempt_count,reflections=preview.study_progress_count||0;
+  status.textContent='';
+  host.innerHTML=`<section class="callout warn" role="group" aria-labelledby="progressResetHeading" aria-describedby="progressResetDescription">
+    <h3 id="progressResetHeading">Reset ${esc(label)}?</h3>
+    <p id="progressResetDescription">This permanently removes ${attemptCount} saved attempt${attemptCount===1?'':'s'}, including their notes, scores, encounter records and learning activity, plus ${reflections} saved written reflection${reflections===1?'':'s'} and any browser reflection drafts for ${esc(label)}. This cannot be undone.</p>
+    ${unfinished?`<label class="opt"><input type="checkbox" id="resetIncludeUnfinished"><span>Also remove ${unfinished} unfinished attempt${unfinished===1?'':'s'} and ${unfinished===1?'its':'their'} notes</span></label>`:''}
+    <div class="progress-reset-actions"><button class="btn" type="button" id="cancelProgressReset">Cancel</button>
+      <button class="btn danger" type="button" id="confirmProgressReset" ${unfinished?'disabled':''}>Permanently reset ${scope==='all'?'all progress':'case progress'}</button></div>
+  </section>`;
+  const cancel=$('#cancelProgressReset'),confirm=$('#confirmProgressReset'),checkbox=$('#resetIncludeUnfinished');
+  cancel.onclick=()=>{host.innerHTML='';if(trigger?.isConnected)trigger.focus();};
+  if(checkbox)checkbox.onchange=()=>{confirm.disabled=!checkbox.checked;};
+  cancel.focus();
+  confirm.onclick=async()=>{
+    if(S||(!$('#stationGrid')&&!$('#progressWorkspace'))||(unfinished&&!checkbox?.checked))return;
+    const payload={scope,confirm:true,include_in_progress:!!checkbox?.checked};if(scope==='case')payload.case_id=caseId;
+    const controls=$$('button,input,select',$('#progressResetTools')),disabledBefore=new Map(controls.map(c=>[c,c.disabled]));
+    controls.forEach(c=>c.disabled=true);host.setAttribute('aria-busy','true');status.textContent='Resetting the selected progress…';
+    try{
+      const response=await fetch('/api/progress/reset',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}),result=await response.json();
+      if(response.status===409){
+        const latest=await api('/api/bootstrap');if(!latest.error){BOOT.sessions=latest.sessions||[];BOOT.progress=latest.progress||{};}
+        refreshLobbyHistory();const tools=$('#progressResetTools');if(tools)tools.open=true;
+        const message='Saved attempts changed. Nothing was reset. Review the refreshed history, then choose Reset progress again.';
+        const updated=$('#progressResetStatus');if(updated)updated.textContent=message;alertNow(message);return;
+      }
+      if(!response.ok||!result.ok)throw Error(result.message||result.error||'The reset could not be confirmed.');
+      if(!Array.isArray(result.sessions)||!Array.isArray(result.deleted_attempt_ids))throw Error('The reset response was incomplete.');
+      const remaining=result.sessions,ids=result.deleted_attempt_ids;
+      const cleared=clearResetLocalWork(scope,caseId,ids);BOOT.sessions=remaining;BOOT.progress=result.progress||{};
+      refreshLobbyHistory();$('#learningLibrary')?.remove();window.pcmLearningRender?.(null);
+      window.dispatchEvent(new CustomEvent('pcm-progress-reset',{detail:{scope,case_id:caseId,attempt_ids:ids}}));
+      const message=`Progress reset for ${label}: ${result.deleted?.attempts??ids.length} attempt${(result.deleted?.attempts??ids.length)===1?'':'s'} removed.`+(cleared?'':' Saved progress was removed, but browser draft storage could not be cleared.');
+      toast(message);$('#btnPast')?.focus();
+    }catch(error){
+      if(status.isConnected)status.textContent=(error.message||'The reset could not be confirmed.')+' Cancel and reopen Reset progress to refresh history before trying again.';
+      controls.forEach(c=>c.disabled=disabledBefore.get(c));confirm.disabled=true;host.removeAttribute('aria-busy');
+      alertNow(status.textContent);cancel.focus();
+    }
+  };
 }
 
 async function begin(random, opts){
@@ -625,14 +808,16 @@ async function begin(random, opts){
 /* 2. DOORWAY                                                                */
 /* ======================================================================== */
 let roomFrameReady=false,entryPending=null,roomViewportObserver=null;
+const patientDisplayStates=new Map();
+function patientDisplayLabel(){const status=patientDisplayStates.get(S?.id);return status==='ready'?'Patient ready':status==='loading'?'Preparing patient…':status==='failed'?'Patient display unavailable · text controls available':roomFrameReady?'Room ready · preparing patient':'Preparing room…';}
 function positionRoomFrame(){
   const host=$('#roomFrameHost'),slot=$('#roomViewport');if(!host)return;
   if(!slot||!S||!['briefing','encounter'].includes(S.phase)){host.hidden=true;return;}
   const b=slot.getBoundingClientRect();host.hidden=false;Object.assign(host.style,{left:(b.left+window.scrollX)+'px',top:(b.top+window.scrollY)+'px',width:b.width+'px',height:b.height+'px'});
 }
 function mountPatientFrame(){
-  let host=$('#roomFrameHost');if(!host){host=document.createElement('div');host.id='roomFrameHost';host.innerHTML=`<iframe id="unityFrame" src="patient3d/index.html?v=clinical-anatomy-2" title="Interactive patient and examination room" allow="autoplay"></iframe>`;document.body.append(host);roomFrameReady=false;$('#unityFrame').onload=notifyPublicState;}
-  roomViewportObserver?.disconnect();roomViewportObserver=new ResizeObserver(positionRoomFrame);for(const target of [$('#roomViewport'),$('#patientVoiceSettings'),document.body])if(target)roomViewportObserver.observe(target);positionRoomFrame();if(roomFrameReady&&$('#unityStatus'))$('#unityStatus').textContent='Interactive room ready';notifyPublicState();
+  let host=$('#roomFrameHost');if(!host){host=document.createElement('div');host.id='roomFrameHost';host.innerHTML=`<iframe id="unityFrame" src="patient3d/index.html?v=postures-4" title="Interactive patient and examination room" allow="autoplay"></iframe>`;document.body.append(host);roomFrameReady=false;$('#unityFrame').onload=notifyPublicState;}
+  roomViewportObserver?.disconnect();roomViewportObserver=new ResizeObserver(positionRoomFrame);for(const target of [$('#roomViewport'),$('#patientVoiceSettings'),document.body])if(target)roomViewportObserver.observe(target);positionRoomFrame();if(roomFrameReady&&$('#unityStatus'))$('#unityStatus').textContent=patientDisplayLabel();notifyPublicState();
 }
 window.addEventListener('resize',positionRoomFrame);document.addEventListener('scroll',positionRoomFrame,true);
 function setEntryStatus(text){const el=$('#entryStatus');if(el)el.textContent=text;}
@@ -643,7 +828,7 @@ async function completeEntrance(id){
   if(S?.id!==request.sid)return;
   if(next.error){entryPending=null;$('#go').disabled=false;$('#skipEntrance').disabled=false;setEntryStatus('Unable to confirm entry. Reconnect to check the encounter clock before continuing.');$('#unityFrame')?.contentWindow?.postMessage({type:'pcm-room-reset-entry'},location.origin);return;}
   LS.set('entrance.'+request.sid,{skipped:request.skip,transition_ms:Math.round(performance.now()-request.at),phase_started_at:next.phase_started_at,phase_ends_at:next.phase_ends_at});
-  entryPending=null;S=next;renderPhase(true);announce(S.learning_mode==='guided'?'You are in the room. Your guided encounter is untimed.':'You are in the room. Your 14-minute encounter has started.');
+  entryPending=null;S=next;renderPhase(true);announce(isUntimedAttempt()?'You are in the room. Your encounter is untimed.':'You are in the room. Your encounter has started with '+phaseAllowance(S.preset.encounter_s)+' available.');
 }
 function dispatchEntrance(){
   if(!entryPending||entryPending.starting||!roomFrameReady)return;
@@ -665,10 +850,10 @@ function renderDoorway(){
   view.innerHTML=`<div class="arrival-layout">
     <section class="arrival-scene card" aria-label="Outside the examination room"><div class="arrival-caption"><span class="eyebrow">${esc(st.hidden_label||stationTitle(S.case_id))}</span><h2>Outside the room</h2><p>Take a moment. Your patient is just inside.</p></div><div id="roomViewport"></div><div class="arrival-foot"><span class="arrival-dot" aria-hidden="true"></span>Encounter not started</div></section>
     <section class="doorway" aria-label="Posted station information"><div class="doorway-head"><span class="eyebrow">Posted beside the door</span><h1>Your station brief</h1><p class="small muted">Review this information before you enter.</p></div><div class="doorway-body">
-      <ul class="doorway-lines">${(st.doorway||[]).map(l=>`<li>${esc(S.learning_mode==='guided'&&/^You have \d+ minutes/.test(l)?'Guided practice is untimed. The course encounter is 14 minutes.':/^Vital signs (?:are|can be)/i.test(l)?'Vital signs are supplied at this station.':l)}</li>`).join('')}</ul>
+      <ul class="doorway-lines">${(st.doorway||[]).map(l=>`<li>${esc(/^You have \d+ minutes/.test(l)?(isUntimedAttempt()?'This practice encounter is untimed.':'This encounter allows '+phaseAllowance(pre.encounter_s)+'.'):/^Vital signs (?:are|can be)/i.test(l)?'Vital signs are supplied at this station.':l)}</li>`).join('')}</ul>
       <section class="doorway-vitals" aria-labelledby="doorwayVitals"><div class="card-head"><h2 id="doorwayVitals">Vital signs</h2><span class="badge b-mute">Supplied information</span></div>${chartHtml({vitals:st.vitals||{},supplied_results:[]})}</section>
-      <div class="doorway-facts"><div class="fact"><dt>Encounter</dt><dd>${S.learning_mode==='guided'?'Untimed':'14:00'}</dd></div>${pre.organize_s?'<div class="fact"><dt>Organize</dt><dd>2:00</dd></div>':''}<div class="fact"><dt>SOAP</dt><dd>${S.learning_mode==='guided'?'Untimed':'9:00'}</dd></div></div>
-      <p class="tiny muted">${pre.organize_s?'The 2-minute organization interval is your practice addition. ':''}The encounter starts after entry, when your controls are ready.</p>
+      <div class="doorway-facts"><div class="fact"><dt>Encounter</dt><dd>${isUntimedAttempt()?'Untimed':phaseAllowance(pre.encounter_s)}</dd></div>${pre.organize_s?'<div class="fact"><dt>Organize</dt><dd>'+phaseAllowance(pre.organize_s)+'</dd></div>':''}<div class="fact"><dt>SOAP</dt><dd>${isUntimedAttempt()?'Untimed':phaseAllowance(pre.note_s)}</dd></div></div>
+      <p class="tiny muted">${pre.modified?'Practice timing is modified; exam rehearsal uses the course’s 14-minute encounter and 9-minute SOAP period. ':''}The encounter starts after entry, when your controls are ready.</p>
       <label class="motion-preference"><input id="entryReduced" type="checkbox" ${LS.get('reducedMotion')||window.matchMedia('(prefers-reduced-motion: reduce)').matches?'checked':''}> Reduce motion and skip the entrance animation</label>
       <button class="btn primary big" id="go" type="button">Enter room <span aria-hidden="true">→</span></button><button class="btn ghost" id="skipEntrance" type="button">Skip animation &amp; enter</button>
       <p id="entryStatus" class="entry-status" role="status">Preparing the room. Review your station while it loads.</p><button class="btn sm ghost" id="entryFallback" type="button">Enter with accessible controls</button>
@@ -721,7 +906,9 @@ const INTERVIEW_PROMPTS = [
 // Only positions the encounter engine and patient rig can actually perform.
 const POSITIONS = [
   ['seated','Seated on the table'],
-  ['supine','Supine']
+  ['supine','Supine · face up'],
+  ['standing','Standing beside the table'],
+  ['prone','Prone · face down']
 ];
 function recordedPosition(){
   return POSITIONS.some(p=>p[0]===S?.patient_posture)?S.patient_posture:'seated';
@@ -767,8 +954,7 @@ function renderRoom(){
         <button class="btn primary" id="toolExam" type="button">Examine patient <span aria-hidden="true">↗</span></button>
         <button class="btn" id="toolChart" type="button">Doorway &amp; vitals</button>
         ${m.coach?'<button class="btn ghost" id="quickUnstuck" type="button">Get unstuck</button>':''}
-        ${(S.visual_demo==='humgen-trial'||(S.appearance?.model==='mpfb-young-woman'&&new URL(location.href).searchParams.get('comparePatient')==='1'&&S.learning_mode!=='rehearsal'))?'<button class="btn ghost" id="comparePatient">Compare previous patient</button>':''}
-        <span class="tiny muted" id="unityStatus">${roomFrameReady?'Interactive room ready':'Preparing room…'}</span>
+        <span class="tiny muted" id="unityStatus">${patientDisplayLabel()}</span>
       </div>
       <details class="scene-help"><summary>View &amp; examination controls</summary><p>Use Face, Upper body, Full patient or Reset to frame your patient. Choose Adjust view for deliberate camera movement. Ordinary scrolling and browser zoom remain available. Select a body region or choose Examine patient; a region opens your choices, and only a completed examination releases its findings. Expressions and demeanor do not establish examination findings.</p><button class="btn sm" id="unityFallback" type="button">Accessible examination controls</button><p class="tiny muted">Keyboard: Alt+1 conversation · Alt+2 examination · Alt+3 doorway chart.</p></details>
     </section>
@@ -797,7 +983,6 @@ function renderRoom(){
   $('#btnEnd').onclick=confirmEnd;$('#toolExam').onclick=openExamPanel;$('#unityFallback').onclick=openExamPanel;
   $('#toolChart').onclick=()=>openOverlay('Doorway information & vital signs',`<div class="doorway-vitals">${chartHtml(chart)}</div><ul class="doorway-lines">${(chart.doorway||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`);
   if($('#quickUnstuck'))$('#quickUnstuck').onclick=()=>{const guide=$('#encounterGuide');if(guide){guide.scrollIntoView({block:'center',behavior:LS.get('reducedMotion')?'instant':'smooth'});$('#unstuckButton')?.click();}};
-  if($('#comparePatient')){$('#comparePatient').textContent=uiMeta(S.id).comparePrevious?'Return to current patient':'Compare previous patient';$('#comparePatient').onclick=e=>{const old=uiMeta(S.id);setUiMeta(S.id,{...old,comparePrevious:!old.comparePrevious});e.currentTarget.textContent=!old.comparePrevious?'Return to current patient':'Compare previous patient';notifyPublicState();};}
   $('#patientFocus').onclick=e=>{const active=$('.experience-room').classList.toggle('patient-focus');setUiMeta(S.id,{...uiMeta(S.id),expandedPatient:active});e.currentTarget.setAttribute('aria-pressed',String(active));e.currentTarget.textContent=active?'Return to split view':'Expand patient view';positionRoomFrame();$('.unity-room').scrollIntoView({block:'start',behavior:LS.get('reducedMotion')||window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});};
   $('#toggleRecord').onclick=e=>{const active=$('.convo').classList.toggle('full-record');e.currentTarget.setAttribute('aria-pressed',String(active));e.currentTarget.textContent=active?'Dialogue view':'Full record';};
   $('#unityFrame').onload=notifyPublicState;const tp=$('#toolPrompts');if(tp)tp.onclick=openPromptsPanel;$('#toolRefuse').onclick=openRefusePanel;
@@ -1236,7 +1421,7 @@ function examPanelHtml(){
         <label class="sr-only" for="posSel">Patient position</label>
         <select id="posSel">${POSITIONS.map(p =>
           `<option value="${p[0]}" ${room.position === p[0] ? 'selected' : ''}>${esc(p[1])}</option>`).join('')}</select>
-        <p class="tiny muted" style="margin-top:var(--sp-2)">A position change is recorded only after the patient responds. The same position is used in the 3D room and encounter record. Seated and supine positions are currently available.</p>
+        <p class="tiny muted" style="margin-top:var(--sp-2)">A position change is recorded only after the patient responds. The same position is used in the 3D room and encounter record. Seated, supine, standing and prone positions are available. Positioning alone does not establish an examination finding.</p>
 
         <h3 style="font-size:var(--fs-md);margin-top:var(--sp-3)">Instrument</h3>
         <label class="sr-only" for="instSel">Instrument</label>
@@ -1469,6 +1654,8 @@ function cancelRunningExam(){
   room.running = null;
 }
 function paintExamProgress(){
+  // Refresh the open examination workspace when evidence arrives asynchronously.
+  paintExamSummary();
   const el = $('#examProgressSub'); if (!el) return;
   const n = Object.keys(performedMap()).length;
   el.textContent = n ? (n + ' maneuver' + (n === 1 ? '' : 's') + ' performed · body map and technique')
@@ -1654,7 +1841,7 @@ function renderOrganize(){
       <div class="clock" role="timer" aria-label="Organization interval remaining">
         <span class="digits" data-clock>--:--</span></div>
       <p class="small muted" style="max-width:56ch">Organize your thinking. The encounter
-      record is frozen. ${S.learning_mode==='guided'?'The untimed SOAP workspace opens':'The SOAP timer starts'} automatically when this ends. No new patient contact happens here.</p>
+      record is frozen. ${isUntimedAttempt()?'The untimed SOAP workspace opens':'The SOAP timer starts'} automatically when this ends. No new patient contact happens here.</p>
       <button class="btn primary" id="skip" type="button">Start the SOAP note now</button>
     </div>
     <div class="card"><div class="card-head">
@@ -2119,7 +2306,7 @@ function tabTimeline(r){
   const kindClass = k => k === 'patient_reply' ? 'k-patient'
     : (k === 'exam_action' || k === 'exam_finding' || k === 'exam_refused') ? 'k-exam'
     : (k === 'system' || k === 'station_info') ? 'k-system' : '';
-  return `<div class="card"><h2>${r.timing?.untimed ? 'Your guided encounter timeline' : 'How your encounter time was used'}</h2>
+  return `<div class="card"><h2>${r.timing?.untimed ? 'Your untimed encounter timeline' : 'How your encounter time was used'}</h2>
     <p class="small muted">Every recorded event in order, with the bar showing how far into
     the encounter it happened. Examinations show start, completion and released findings. Duration is shown once, at completion; these milestones belong to one action.</p>
     <div class="row">${Object.keys(RESULTS.evidence_summary || {}).map(k =>
@@ -2493,6 +2680,7 @@ function tabAbout(r){
 /* The web app owns evidence; Unity receives public encounter state only. */
 function unityCatalog(){return catalog().flatMap(group=>group.maneuvers?group.maneuvers.map(m=>({...m,region:group.region})): [group]);}
 function notifyPublicState(){
+  window.pcmEncounterWorkspaceState?.(S);
   if(S){room.position=recordedPosition();const pos=$('#posSel');if(pos&&!pos.disabled)pos.value=room.position;}
   window.pcmLearningState?.(S);
   window.pcmAIState?.(S);
@@ -2501,8 +2689,8 @@ function notifyPublicState(){
   const busyMs=Math.max(0,Number(S.pending_exam?.due_at||0)-now());
   frame.contentWindow?.postMessage({type:'pcm-unity-state',state:{
     sessionId:S.id,caseId:S.case_id,phase:S.phase,mode:S.learning_mode||mode().key,
-    respiratoryRate:Number.parseFloat((S.station_chart?.vitals||S.station?.vitals||{}).R)||null,visualDemo:S.visual_demo==='humgen-trial'&&!uiMeta(S.id).comparePrevious?'humgen-trial':null,patientName:S.patient_name,patientReply:lastPatient?.text||'',posture:S.patient_posture||'seated',
-    comparePrevious:!!uiMeta(S.id).comparePrevious,appearance:S.appearance||{},affect:S.affect||{},demeanor:S.demeanor||{},listening:patientIsListening(),speaking:Boolean(window.pcmAISpeaking||voice.patientSpeaking),remainingMs:S.phase_ends_at?Math.max(0,S.phase_ends_at-now()):null,
+    respiratoryRate:Number.parseFloat((S.station_chart?.vitals||S.station?.vitals||{}).R)||null,visualDemo:S.visual_demo==='humgen-trial'?'humgen-trial':null,patientName:S.patient_name,patientReply:lastPatient?.text||'',posture:S.patient_posture||'seated',
+    comparePrevious:false,appearance:S.appearance||{},affect:S.affect||{},demeanor:S.demeanor||{},listening:patientIsListening(),speaking:Boolean(window.pcmAISpeaking||voice.patientSpeaking),remainingMs:S.phase_ends_at?Math.max(0,S.phase_ends_at-now()):null,
     busyMs,eventSeq:S.event_seq||Math.max(0,...transcript.map(e=>e.seq||0)),
     reducedMotion:!!LS.get('reducedMotion')||window.matchMedia('(prefers-reduced-motion: reduce)').matches,
     examCatalog:unityCatalog()
@@ -2512,7 +2700,7 @@ window.addEventListener('message',event=>{
   const frame=$('#unityFrame');if(!frame||event.source!==frame.contentWindow||event.origin!==location.origin)return;const d=event.data||{};
   if(d.type==='pcm-unity-ready'||d.type==='pcm-room-ready'){roomFrameReady=true;if(S?.phase==='briefing'&&!entryPending)setEntryStatus('Ready when you are. The clock starts after you enter.');notifyPublicState();if(entryPending)dispatchEntrance();}
   if(d.type==='pcm-room-entered')completeEntrance(d.requestId);
-  if(['pcm-trial-status','pcm-patient-status'].includes(d.type)&&S&&d.sessionId===S.id){const b=$('#unityStatus');if(b)b.textContent=d.status==='ready'?'Patient ready':d.status==='loading'?'Preparing patient…':'Patient display unavailable';if(S.phase==='briefing'&&entryPending&&d.status==='loading')setEntryStatus('Preparing the detailed patient… Your encounter clock has not started.');}
+  if(['pcm-trial-status','pcm-patient-status'].includes(d.type)&&S&&d.sessionId===S.id){patientDisplayStates.set(S.id,d.status);const b=$('#unityStatus');if(b)b.textContent=patientDisplayLabel();if(S.phase==='briefing'&&entryPending&&d.status==='loading')setEntryStatus('Preparing the detailed patient… Your encounter clock has not started.');}
   if(d.type==='pcm-motion-preference'&&S&&d.sessionId===S.id&&typeof d.reducedMotion==='boolean'){LS.set('reducedMotion',d.reducedMotion);if($('#entryReduced'))$('#entryReduced').checked=d.reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;notifyPublicState();}
   if(d.type==='pcm-unity-error'&&S?.phase==='briefing'){setEntryStatus('The 3D room is unavailable. Your timer has not started. Use accessible controls to continue.');}
 });
@@ -2520,7 +2708,7 @@ const unityRequests=new Map();
 window.addEventListener('message',async event=>{
   const frame=$('#unityFrame');if(!frame||event.source!==frame.contentWindow||event.origin!==location.origin)return;
   const data=event.data||{};
-  if(data.type==='pcm-unity-ready'){const badge=$('#unityStatus');if(badge)badge.textContent='Interactive room ready';notifyPublicState();return;}
+  if(data.type==='pcm-unity-ready'){const badge=$('#unityStatus');if(badge)badge.textContent=patientDisplayLabel();notifyPublicState();return;}
   if(data.type==='pcm-unity-error'){const badge=$('#unityStatus');if(badge)badge.textContent='Use accessible controls';toast('The 3D room is unavailable. Conversation and examination controls still work.');return;}
   if(data.type==='pcm-unity-teaching'&&S&&data.sessionId===S.id){
     const r=await api(`/api/session/${S.id}/room-lesson`,data);
@@ -2573,29 +2761,25 @@ window.pcmConfirmChoice=confirmChoice;
 window.pcmActiveAttempt=()=>S?.phase!=='submitted'?S?.id:null;
 window.pcmEnterWorkbench=async kind=>{
   if(S?.phase==='note'){const saved=await persistNote();if(!saved.saved){toast('Your draft could not be saved. Reconnect before leaving.');location.hash='#/'+S.id;return false;}}
-  if(S?.phase==='organize'){const value=$('#scratch')?.value??S.scratch??'';keepDraft('scratch',S.id,value);if(!await saveScratch(S.id,value)){toast('Keep this page open until your draft saves.');return false;}}
+  if(S?.phase==='organize'){const value=$('#scratch')?.value??S.scratch??'';keepDraft('scratch',S.id,value);const result=await saveScratch(S.id,value);if(!result.saved){toast('Your organization draft could not sync. Keep this page open and reconnect.');history.replaceState(null,'','#/'+S.id);return false;}}
   if(S)window.pcmLastAttempt=S.id;
   stopVoice();cancelRunningExam();closeOverlay(true);clearPendingReveals();
   if(poll)clearInterval(poll);if(tick)clearInterval(tick);S=null;lastPhase=null;document.body.dataset.phase=kind;positionRoomFrame();clockEl.classList.add('hidden');chipEl.classList.add('hidden');homeBtn.classList.add('hidden');window.scrollTo(0,0);return true;
 };
-document.querySelectorAll('[data-destination]').forEach(b=>b.onclick=async()=>{
- if(b.dataset.destination==='practice'){await homeBtn.onclick();return;}
- location.hash='#'+b.dataset.destination;
-});
+window.pcmNavigate=destination=>{
+  const target=['home','practice','learn','progress','scoring','voice'].includes(destination)?destination:'home';
+  if(location.hash==='#'+target)route();else location.hash='#'+target;
+};
+window.pcmPortalCases=()=>BOOT?.cases||[];
+window.pcmPortalMode=()=>{const mode=currentUiMode();return {mode,reveal:MODES[mode]?.reveal};};
+window.pcmPortal?.setupNavigation();
 window.pcmStart=begin;
 window.pcmRefreshLobbyHistory=refreshLobbyHistory;
 
 /* ======================================================================== */
 /* boot                                                                      */
 /* ======================================================================== */
-homeBtn.onclick = async () => {
-  if (S && S.phase !== 'submitted' &&
-      !await confirmChoice('Leave this station? It stays on the local engine and you can reopen it ' +
-               'from Past attempts.')) return;
-  if(S?.phase==='organize'){const value=$('#scratch')?.value??S.scratch??'';keepDraft('scratch',S.id,value);await saveScratch(S.id,value);}
-  if(S?.phase==='note'){const saved=await persistNote();if(!saved.saved){toast('Your draft could not be saved. Keep this page open and reconnect.');return;}}
-  stopVoice(); cancelRunningExam(); closeOverlay(true); renderLobby();
-};
+homeBtn.onclick = () => window.pcmNavigate('home');
 window.addEventListener('hashchange', route);
 document.addEventListener('visibilitychange', () => { if (!document.hidden && S) refresh(); });
 window.addEventListener('offline', () => {

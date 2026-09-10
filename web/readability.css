@@ -1,0 +1,38 @@
+/* All learning and voice surfaces share the actual day/evening theme tokens. */
+:root {
+  --paper: var(--surface);
+  --muted: var(--ink-2);
+  --learning-teal: var(--accent);
+  --learning-paper: var(--surface);
+  --learning-ink: var(--ink);
+  --learning-line: var(--line);
+}
+.patient-voice-settings,.device-voice-settings {
+  background:var(--surface);color:var(--ink);border-color:var(--line);
+}
+.patient-voice-settings summary {color:var(--ink);min-height:32px;align-content:center;}
+.patient-voice-settings p,.patient-voice-settings label {color:var(--ink-2);line-height:1.65;}
+.patient-voice-settings select {color:var(--ink);background:var(--surface-2);}
+.reasoning-map article {background:var(--surface-2);color:var(--ink);border:1px solid var(--line);}
+.reasoning-map article h3 {color:var(--ink);line-height:1.4;}
+.reasoning-map article p {color:var(--ink-2);line-height:1.65;}
+.decision-fork>div {background:var(--surface-3);color:var(--ink);border-top-color:var(--accent-line);}
+.decision-fork b {color:var(--ink);}
+.recovery-routine b,.coverage-strip strong {color:var(--accent);}
+.repair-practice {background:var(--surface)!important;color:var(--ink);}
+.reasoning-expand summary,.guided-first summary {color:var(--ink);min-height:38px;align-content:center;}
+:root[data-theme] .reader-meta,:root[data-theme] .example-turn.action,
+:root[data-theme] .doorway-written {background:var(--surface-2);color:var(--ink);border-color:var(--line);}
+.written-vitals dt,.turn-phase,.source-link blockquote small {color:var(--ink-2);}
+:root[data-theme] .obtained-finding {background:var(--surface);color:var(--ink);}
+.example-turn p>b {color:var(--accent);}
+:root[data-theme] .example-note {background:var(--surface-2);color:var(--ink);border-color:var(--line);}
+.example-note h3 {color:var(--accent);border-color:var(--line);}
+.variant-note,.clinical-priority {background:var(--warn-soft);color:var(--ink);border-color:var(--warn-line);}
+.source-link summary span {background:var(--accent-soft);color:var(--accent);}
+.guide-purpose {padding:9px 12px;line-height:1.55;}
+.table-scroll {overflow-x:auto;max-width:100%;}
+@media(max-width:650px){.decision-fork{grid-template-columns:1fr}.patient-voice-settings select{width:100%;max-width:100%}.patient-voice-settings label{width:100%}}
+@media print{.reasoning-map article,.decision-fork>div,.example-note,.doorway-written,.example-turn.action,.obtained-finding{background:white!important;color:black!important}.reasoning-map article p,.example-note h3{color:black!important}}
+
+body[data-workspace="voice"] #patientVoiceSettings,.portal-audio-settings{border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--ink);padding:22px!important;margin-bottom:22px!important}.portal-audio-settings select{display:block;max-width:620px;margin:10px 0 18px;width:100%}.portal-audio-settings p{color:var(--ink-2)}

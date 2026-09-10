@@ -4,7 +4,11 @@
  * examination overview. All presets are identical for current/previous assets. */
 import {Vector3} from '@babylonjs/core/Maths/math.vector.js';
 const V=(x,y,z)=>new Vector3(x,y,z);
-export function conversationFrame(face,lap,preset,lyingDown){
+export function conversationFrame(face,lap,preset,posture){
+ const lyingDown=posture===true||posture==='supine'||posture==='prone';
+ if(posture==='prone'&&preset==='face'){
+  const target=face.clone();return{target,position:target.add(V(-1.0,.23,.08)),fov:.56};
+ }
  if(lyingDown){
   const target=preset==='face'?face.add(V(0,0,.05)):Vector3.Lerp(face,lap,preset==='full'?.65:.42);
   return {target,position:target.add(preset==='face'?V(.07,.64,.20):preset==='full'?V(1.55,1.80,.64):V(.75,1.18,.48)),fov:preset==='face'?.56:preset==='full'?.77:.65};

@@ -43,6 +43,42 @@ PRESETS = {
     },
 }
 
+# New-mode presets are additive. Do not retime historical attempts by changing
+# the legacy practice/course definitions above: each saved row retains its key.
+PRESETS.update({
+    "guided_untimed": {
+        "key": "guided_untimed", "label": "Guided learning — untimed",
+        "encounter_s": 0, "organize_s": 0, "note_s": 0,
+        "untimed": True, "modified": True,
+        "modification_note": "Guided learning has no encounter or SOAP deadline. Advance when ready; this is not course-timing rehearsal.",
+    },
+    "coached_untimed": {
+        "key": "coached_untimed", "label": "Coached practice — untimed",
+        "encounter_s": 0, "organize_s": 0, "note_s": 0,
+        "untimed": True, "modified": True,
+        "modification_note": "Coached practice has no encounter or SOAP deadline. Specific examination actions still take their configured duration. Advance when ready.",
+    },
+    "independent_extended": {
+        "key": "independent_extended", "label": "Independent practice — extended timing",
+        "encounter_s": 30 * 60, "organize_s": 5 * 60, "note_s": 20 * 60,
+        "untimed": False, "modified": True,
+        "modification_note": "The 30-minute encounter, 5-minute organization interval, and 20-minute SOAP period are student-requested practice allowances. Only exam rehearsal uses the actual course timing.",
+    },
+})
+
+MODE_PRESETS = {
+    "guided": "guided_untimed", "coached": "coached_untimed",
+    "independent": "independent_extended", "rehearsal": "course",
+}
+
+
+def preset_for_learning_mode(mode, requested=None):
+    """Resolve timing for a NEW attempt only; never apply this on session load."""
+    if mode in MODE_PRESETS:
+        return MODE_PRESETS[mode]
+    return requested if requested in PRESETS else DEFAULT_PRESET
+
+
 DEFAULT_PRESET = "practice"
 
 
@@ -125,14 +161,14 @@ MOTHERR = {
                   "nitroglycerin", "sumatriptan", "cyclobenzaprine", "muscle relaxant"],
     },
     "O": {
-        "name": "OMT (osteopathic manipulative treatment)",
+        "name": "Osteopathic treatment (OMT)",
         "hints": ["omt", "omm", "osteopathic manipul", "muscle energy", "counterstrain",
                   "myofascial", "hvla", "rib raise", "soft tissue", "lymphatic pump",
                   "still technique", "balanced ligamentous", "facilitated positional",
                   "cranial", "manipulative treatment"],
     },
     "T": {
-        "name": "Tests (labs, imaging, diagnostic procedures)",
+        "name": "Testing (labs, imaging, diagnostic procedures)",
         "hints": ["cbc", "bmp", "cmp", "lft", "tsh", "a1c", "lipid", "d-dimer", "bnp",
                   "troponin", "ekg", "ecg", "x-ray", "xray", "radiograph", "ct ", "mri",
                   "ultrasound", "us ", "echo", "urinalysis", "u/a", "urine culture",
@@ -142,7 +178,7 @@ MOTHERR = {
                   "monospot", "rapid strep", "pregnancy test", "lumbar puncture"],
     },
     "H": {
-        "name": "Holistic / lifestyle / supportive care",
+        "name": "Humanistic / supportive needs",
         "hints": ["rest", "elevate", "ice", "heat", "moist heat", "hydrat", "fluids",
                   "increase fluids", "diet", "low salt", "low sodium", "exercise",
                   "weight loss", "sleep", "humidifier", "salt water gargle",
@@ -173,15 +209,18 @@ MOTHERR = {
 
 MNEMONIC_PROVENANCE = {
     "VINDICATE": (
-        "PROVISIONAL. The PCM 2026 grading table requires '3 different elements "
-        "of VINDICATE' but no PCM document expands the letters. This app uses "
-        "the standard nine-element set."
+        "The course requires three different elements but does not define the "
+        "letters in the supplied materials. Published clinical teaching uses "
+        "several groupings. This app retains its existing category mapping; "
+        "UW Radiology and ACP illustrate variants, including different D/I "
+        "groupings, rather than confirming this exact expansion."
     ),
     "MOTHERR": (
-        "PROVISIONAL. The PCM 2026 grading table requires 'at least three "
-        "different elements (of MOTHERR)' but no PCM document expands the "
-        "letters. This expansion was chosen because it is the only one "
-        "consistent with all six sample plans in the student manual."
+        "Working expansion: medications, osteopathic treatment, testing, "
+        "humanistic/supportive needs, education, referral, and return/follow-up. "
+        "The supplied course materials require MOTHERR but do not define its "
+        "letters, and a complete authoritative online expansion was not found. "
+        "The existing category IDs and supportive-care recognition are retained."
     ),
 }
 
@@ -300,11 +339,11 @@ def assumption_manifest(settings: dict) -> list:
         {
             "topic": "Timing preset",
             "value": preset["label"],
-            "detail": "Encounter %d:%02d, organization %d:%02d, note %d:%02d." % (
+            "detail": ("Untimed encounter and SOAP writing; advance to the next phase when ready." if preset.get("untimed") else "Encounter %d:%02d, organization %d:%02d, note %d:%02d." % (
                 preset["encounter_s"] // 60, preset["encounter_s"] % 60,
                 preset["organize_s"] // 60, preset["organize_s"] % 60,
                 preset["note_s"] // 60, preset["note_s"] % 60,
-            ) + ((" " + preset["modification_note"]) if preset["modified"] else ""),
+            )) + ((" " + preset["modification_note"]) if preset["modified"] else ""),
             "status": "practice-mod" if preset["modified"] else "confirmed",
         },
         {

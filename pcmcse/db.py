@@ -166,6 +166,22 @@ def create_session(case_id, preset, interaction_mode, assisted, settings,
     if case is None:
         from . import cases
         case = cases.resolve(case_id)
+    # New practice presets freeze their actual timing in the posted brief and
+    # supplied encounter record. Never rewrite a historical snapshot or ledger.
+    if preset in ("guided_untimed", "coached_untimed", "independent_extended"):
+        from . import config
+        import copy
+        case = copy.deepcopy(case)
+        timing = config.PRESETS[preset]
+        wording = ("This practice encounter and SOAP period are untimed."
+                   if timing.get("untimed") else
+                   "You have %d minutes for this practice encounter, followed by "
+                   "%d minutes to organize and %d minutes for the SOAP note."
+                   % (timing["encounter_s"] // 60, timing["organize_s"] // 60,
+                      timing["note_s"] // 60))
+        case["station"]["doorway"] = [
+            wording if line.startswith("You have ") and "minutes" in line else line
+            for line in case["station"].get("doorway", [])]
     sid = new_id()
     ts = now_ms()
     stamp = version_mod.stamp()
@@ -244,7 +260,9 @@ def create_branch(parent_row, ledger_json, patient_state, settings, case,
     submission stays exactly what it was and a retry can never be mistaken for
     it.
     """
-    from . import version as version_mod
+    from . import version as version_mod, config
+    preset = settings.get("preset", parent_row["preset"])
+    untimed = config.PRESETS[preset].get("untimed") or settings.get("learning_mode") == "guided"
     sid = new_id()
     ts = now_ms()
     stamp = version_mod.stamp()
@@ -257,10 +275,10 @@ def create_branch(parent_row, ledger_json, patient_state, settings, case,
             "rubric_version, engine_version, case_version, schema_version, "
             "case_snapshot, parent_session_id, branch_from_seq, branch_label) "
             "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-            (sid, ts, ts, parent_row["case_id"], parent_row["preset"],
+            (sid, ts, ts, parent_row["case_id"], preset,
              parent_row["interaction_mode"], 1,
              "encounter", ts - max(0, int(elapsed_ms)),
-             None if settings.get('learning_mode') == 'guided' else ts + max(0, int(remaining_ms)),
+             None if untimed else ts + max(0, int(remaining_ms)),
              json.dumps(settings), ledger_json, json.dumps(patient_state),
              stamp["app"], stamp["rubric"], stamp["engine"],
              version_mod.case_version(case), stamp["schema"],
@@ -326,4 +344,90 @@ def delete_session(sid):
         conn.execute("DELETE FROM sessions WHERE id=?", (sid,))
         conn.commit()
     finally:
+        conn.close()
+
+class ProgressResetConflict(ValueError):
+    """A requested reset includes unfinished work, so nothing was removed."""
+    def __init__(self, active_attempts):
+        super().__init__('This reset includes unfinished attempts and notes. Confirm their removal separately to continue. Nothing was reset.')
+        self.active_attempts = active_attempts
+
+
+def reset_progress(scope, case_id=None, *, confirmed=False, include_in_progress=False):
+    """Reset case-derived history atomically, protecting open work by default.
+
+    Patient/case definitions, settings, and AI spending records are never part
+    of a study reset. A single-case reset includes every variant and retry.
+    Removing unfinished attempts requires the separate explicit option.
+    """
+    if confirmed is not True:
+        raise ValueError('Explicit progress-reset confirmation required.')
+    if not isinstance(scope, str) or scope not in ('all', 'case'):
+        raise ValueError('Choose all progress or one case.')
+    if type(include_in_progress) is not bool:
+        raise ValueError('The unfinished-attempt option must be true or false.')
+    if scope == 'case':
+        from . import cases
+        if not isinstance(case_id, str) or not cases.get(case_id):
+            raise ValueError('Unknown case for progress reset.')
+    elif case_id is not None:
+        raise ValueError('An all-progress reset must not include a case ID.')
+
+    where = 'case_id = ?' if scope == 'case' else '1 = 1'
+    params = (case_id,) if scope == 'case' else ()
+    conn = connect()
+    try:
+        # Lock before examining active attempts: a concurrent writer cannot
+        # start/change an attempt between the protection check and deletion.
+        conn.execute('BEGIN IMMEDIATE')
+        targets = [dict(row) for row in conn.execute(
+            'SELECT id, case_id, phase FROM sessions WHERE ' + where +
+            ' ORDER BY created_at, id', params)]
+        active = [row for row in targets if row['phase'] != 'submitted']
+        if active and not include_in_progress:
+            raise ProgressResetConflict(active)
+        tables = {r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type = 'table'")}
+        deleted = {'unfinished_attempts': len(active)}
+        for table in ('revisions', 'learning_events', 'bridge_requests', 'patient_deliveries'):
+            deleted[table] = (conn.execute(
+                'DELETE FROM ' + table + ' WHERE session_id IN '
+                '(SELECT id FROM sessions WHERE ' + where + ')', params).rowcount
+                if table in tables else 0)
+        deleted['attempts'] = conn.execute('DELETE FROM sessions WHERE ' + where, params).rowcount
+        deleted['study_progress'] = (conn.execute('DELETE FROM study_progress WHERE ' + where, params).rowcount
+                                     if 'study_progress' in tables else 0)
+        conn.commit()
+        return {'scope': scope, 'case_id': case_id, 'deleted': deleted,
+                'included_in_progress': include_in_progress,
+                'deleted_attempt_ids': [row['id'] for row in targets]}
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        conn.close()
+
+
+def preview_progress_reset(scope, case_id=None):
+    """Count the complete reset scope using one read-only database snapshot."""
+    if not isinstance(scope, str) or scope not in ('all', 'case'):
+        raise ValueError('Choose all progress or one case.')
+    if scope == 'case':
+        from . import cases
+        if not isinstance(case_id, str) or not cases.get(case_id):
+            raise ValueError('Unknown case for progress reset.')
+    elif case_id is not None:
+        raise ValueError('An all-progress reset must not include a case ID.')
+    where = 'case_id = ?' if scope == 'case' else '1 = 1'
+    params = (case_id,) if scope == 'case' else ()
+    conn = connect()
+    try:
+        conn.execute('PRAGMA query_only = ON')
+        conn.execute('BEGIN')
+        row = conn.execute("SELECT COUNT(*), SUM(CASE WHEN phase != 'submitted' THEN 1 ELSE 0 END) FROM sessions WHERE " + where, params).fetchone()
+        has_study = conn.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='study_progress'").fetchone()
+        study = conn.execute('SELECT COUNT(*) FROM study_progress WHERE ' + where, params).fetchone()[0] if has_study else 0
+        return {'scope': scope, 'case_id': case_id, 'attempt_count': row[0],
+                'unfinished_count': row[1] or 0, 'study_progress_count': study}
+    finally:
+        conn.rollback()
         conn.close()

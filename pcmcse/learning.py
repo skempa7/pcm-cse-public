@@ -16,8 +16,13 @@ STEPS = [
 
 def record(sid, kind, payload):
     with db.connect() as conn:
+        conn.execute('BEGIN IMMEDIATE')
+        previous = conn.execute('SELECT MAX(created_at) FROM learning_events WHERE session_id=?',(sid,)).fetchone()[0]
+        # Millisecond ties must preserve navigation order rather than sorting
+        # random UUIDs (for example, select → defer → restore).
+        created_at = max(db.now_ms(), (previous + 1) if previous is not None else 0)
         conn.execute('INSERT INTO learning_events VALUES(?,?,?,?,?)',
-                     (uuid.uuid4().hex, sid, db.now_ms(), kind, json.dumps(payload)))
+                     (uuid.uuid4().hex, sid, created_at, kind, json.dumps(payload)))
 
 def events(sid):
     with db.connect() as conn:
@@ -113,33 +118,69 @@ def state(s):
         application={'text':'You used a cue and then obtained new encounter evidence. Try the same principle in a changed situation.','transfer':None if completed else transfer_item(latest['payload']['step'])}
         if completed:application['text']='Transfer exercise completed. Try your next action independently; cues remain available if needed.'
     out.update(steps=steps(s), selected=selected, inferred=True, application=application,
-               timing='Untimed encounter and note; examinations shortened for demonstration.' if mode=='guided' else ' → '.join(
+               timing=('Untimed encounter and note; examinations shortened for demonstration.' if mode=='guided' else 'Untimed encounter and note; examination actions keep their normal duration.') if s.preset.get('untimed') or mode=='guided' else ' → '.join(
                    '%d-minute %s' % (s.preset[key]//60,label) for key,label in
                    [('encounter_s','encounter'),('organize_s','organization'),('note_s','note')]
                    if s.preset[key]) + '.',
                reasoning_map=s.case.get('teaching',{}).get('reasoning_map',[]))
+    out['hint_history'] = hint_history(s)
+    if mode == 'guided':
+        from . import guide
+        out['case_guide'] = guide.state(s)
     return out
 
-def hint(s, step_id=None):
+def hint(s, step_id=None, level=None):
     if not allowed(s):
         raise PermissionError('Coaching is unavailable in independent practice and exam rehearsal.')
-    step_id=step_id or state(s).get('selected','orient')
-    step=next((x for x in steps(s) if x['id']==step_id),steps(s)[0])
-    prior=[e for e in events(s.id) if e['kind']=='hint' and e['payload']['step']==step['id']]
-    # A deliberate retrieval interval, enforced beyond the UI.
-    if prior and len(prior)<3 and db.now_ms()-prior[-1]['created_at']<5000:
-        return {'wait':True,'text':'Take a breath and choose one next action. A stronger cue is available after five seconds.'}
-    level=min(3,len(prior)+1)
+    step_id = step_id or state(s).get('selected','orient')
+    choices = {x['id']:x for x in steps(s)}
+    if step_id not in choices:
+        raise ValueError('Unknown cue step.')
+    step = choices[step_id]
+    prior = [e for e in events(s.id) if e['kind']=='hint' and e['payload']['step']==step_id]
+    highest = max([e['payload']['level'] for e in prior] or [0])
+    if level is not None and (type(level) is not int or not 1 <= level <= 3):
+        raise ValueError('Choose cue 1, 2, or 3.')
+    requested = level if level is not None else min(3,highest+1)
+    if requested > highest+1:
+        raise ValueError('Unlock the preceding cue first.')
+    replay = requested <= highest
+    if not replay and prior and db.now_ms()-prior[-1]['created_at']<5000:
+        return {'wait':True,'step':step_id,'unlocked':highest,
+                'wait_ms':max(0,5000-(db.now_ms()-prior[-1]['created_at'])),
+                'text':'Take a breath and choose one next action. A stronger cue is available after five seconds.'}
+    result = cue_payload(s,step,requested)
+    if not replay:
+        record(s.id,'hint',{'step':step_id,'level':requested,'after_seq':len(s.ledger.events)})
+        s.set(assisted=1);s.save()
+    result.update(replay=replay,unlocked=max(highest,requested),
+                  wait_ms=0 if max(highest,requested)>=3 else
+                  max(0,5000-(db.now_ms()-prior[-1]['created_at'])) if replay and prior else 5000)
+    return result
+
+
+def cue_payload(s,step,level):
     facts=[{'seq':e['seq'],'text':e['text'],'kind':e['kind']} for e in s.ledger.events
            if e['kind'] in (evidence.PATIENT,evidence.EXAM_FINDING,evidence.STATION_INFO,evidence.EXAM_REFUSED)][-5:]
-    result={'step':step['id'],'level':level,'phase':s.row['phase'], 'purpose':step['purpose'],
+    result={'step':step['id'],'level':level,'phase':s.row['phase'],'purpose':step['purpose'],
             'routine':['Pause: one slow breath.','Place: name this phase.','Purpose: what am I trying to learn?','Proceed: choose just one relevant action.'],
             'cue':step['cue'],'obtained':facts,'text':step['cue']}
-    if level>=2: result.update(question=step['question'],text=step['question'])
-    if level>=3: result.update(why=step['why'],text=step['why'])
-    record(s.id,'hint',{'step':step['id'],'level':level,'after_seq':len(s.ledger.events)})
-    s.set(assisted=1);s.save()
+    if level>=2:result.update(question=step['question'],text=step['question'])
+    if level>=3:result.update(why=step['why'],text=step['why'])
     return result
+
+
+def hint_history(s):
+    if not allowed(s):return {}
+    evs=events(s.id)
+    out={}
+    for step in steps(s):
+        prior=[e for e in evs if e['kind']=='hint' and e['payload']['step']==step['id']]
+        highest=max([e['payload']['level'] for e in prior] or [0])
+        out[step['id']]={'unlocked':highest,
+            'wait_ms':max(0,5000-(db.now_ms()-prior[-1]['created_at'])) if prior and highest<3 else 0,
+            'cues':[cue_payload(s,step,level) for level in range(1,highest+1)]}
+    return out
 
 def repair(s):
     """Known evidence is the entire exercise; hidden findings never enter its stem."""

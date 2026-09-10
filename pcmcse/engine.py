@@ -21,6 +21,7 @@ from . import nlp, patient, physexam, presentation, historical_cases
 from . import version as version_mod
 
 PHASES = ["briefing", "encounter", "organize", "note", "submitted"]
+PATIENT_POSITIONS = ("seated", "supine", "standing", "prone")
 
 # --- utterance classification ----------------------------------------------
 
@@ -240,7 +241,18 @@ class Session:
             return None
         return max(0, ends - db.now_ms())
 
+    def is_untimed_phase(self, phase=None):
+        phase = phase or self.row["phase"]
+        # Additive preset keys keep every historical coached/independent row's
+        # timing intact. Historical guided encounters/notes were already
+        # untimed; their old organization interval remains unchanged.
+        return bool(self.preset.get("untimed")) or (
+            self.settings.get("learning_mode") == "guided"
+            and phase in ("encounter", "note"))
+
     def phase_duration_s(self):
+        if self.row["phase"] in ("encounter", "organize", "note") and self.is_untimed_phase():
+            return None
         return {
             "encounter": self.preset["encounter_s"],
             "organize": self.preset["organize_s"],
@@ -278,7 +290,7 @@ class Session:
             return
         now = db.now_ms()
         self.set(phase="encounter", phase_started_at=now,
-                 phase_ends_at=None if self.settings.get("learning_mode") == "guided"
+                 phase_ends_at=None if self.is_untimed_phase("encounter")
                  else now + self.preset["encounter_s"] * 1000)
         self.ledger.add(evidence.SYSTEM, "Encounter started.", t_ms=0,
                         phase="encounter", meta={"event": "phase_start"})
@@ -319,14 +331,14 @@ class Session:
         now = at_ms if expired else db.now_ms()
         if self.preset["organize_s"] > 0:
             self.set(phase="organize", phase_started_at=now,
-                     phase_ends_at=now + self.preset["organize_s"] * 1000)
+                     phase_ends_at=None if self.is_untimed_phase("organize") else now + self.preset["organize_s"] * 1000)
         else:
             self._start_note(at_ms=at_ms)
 
     def _start_note(self, at_ms=None):
         now = at_ms if at_ms is not None else db.now_ms()
         self.set(phase="note", phase_started_at=now,
-                 phase_ends_at=None if self.settings.get("learning_mode") == "guided"
+                 phase_ends_at=None if self.is_untimed_phase("note")
                  else now + self.preset["note_s"] * 1000)
 
     def end_encounter_now(self):
@@ -544,23 +556,55 @@ class Session:
         return out
 
     def position_patient(self, position):
-        if self.row['phase']!='encounter':
-            raise ValueError('Encounter actions are locked in this phase.')
-        if position not in ('seated','supine'):
+        """Persist simulated positioning, without supplying examination findings.
+
+        A pose is not evidence of normal balance, gait, strength, tolerance, or
+        orthostatic measurements. Those still require their specific actions.
+        """
+        if not isinstance(position, str) or position not in PATIENT_POSITIONS:
             raise ValueError('Unknown position')
+        self.finish_pending()
+        self.advance_if_expired()
+        if self.row['phase'] != 'encounter':
+            raise ValueError('Encounter actions are locked in this phase.')
         if self.row.get('pending_exam_json'):
             raise ValueError('Wait for the examination to finish before repositioning.')
-        spec=self.case.get('patient',{}).get('position_rules',{}).get(position,{})
-        accepted=bool(spec.get('allowed',True))
-        self.ledger.add(evidence.COURTESY,'Offered assistance positioning the patient '+position+'.',t_ms=self.elapsed_ms(),
-                        meta={'courtesy_id':'position_help','position':position,'accepted':accepted,'simulated':True})
-        if accepted:self.pstate['posture']=position
-        events=[]
+        rules = self.case.get('patient', {}).get('position_rules', {})
+        spec = rules.get(position, {})
+        rule_position = position
+        # The authored orthopnea response explicitly refuses lying flat. Keep
+        # that same refusal for face-down positioning rather than demonstrating
+        # a newly tolerated flat position. An authored prone rule takes priority.
+        # This conservative simulation rule releases only the existing reply.
+        flat_rule = rules.get('supine', {})
+        if (position == 'prone' and position not in rules
+                and flat_rule.get('allowed') is False
+                and 'symptom_position_intolerance' in flat_rule.get('fact_ids', [])):
+            spec = flat_rule
+            rule_position = 'supine'
+        accepted = bool(spec.get('allowed', True))
+        previous = self.pstate.get('posture', 'seated')
+        meta = {'courtesy_id': 'position_help', 'position': position,
+                'previous_position': previous, 'accepted': accepted,
+                'simulated': True, 'no_finding': True}
+        if rule_position != position:
+            meta['position_rule'] = 'authored_flat_position_refusal'
+            meta['rule_position'] = rule_position
+        self.ledger.add(evidence.COURTESY,
+                        'Offered assistance positioning the patient ' + position + '.',
+                        t_ms=self.elapsed_ms(), meta=meta)
+        if accepted:
+            self.pstate['posture'] = position
+        events = []
         if spec.get('reply'):
-            reply,meta=patient.PatientEngine(self.case).behavior_response(spec,self.pstate)
-            meta.update(position=position,position_accepted=accepted)
-            ev=self.ledger.add(evidence.PATIENT,reply,t_ms=self.elapsed_ms(),meta=meta)
-            events.append({'kind':'patient','text':reply,'seq':ev['seq'],'t_ms':ev['t_ms'],'volunteered':True})
+            reply, response_meta = patient.PatientEngine(self.case).behavior_response(spec, self.pstate)
+            response_meta.update(position=position, position_accepted=accepted)
+            if rule_position != position:
+                response_meta.update(position_rule='authored_flat_position_refusal',
+                                     rule_position=rule_position)
+            ev = self.ledger.add(evidence.PATIENT, reply, t_ms=self.elapsed_ms(), meta=response_meta)
+            events.append({'kind': 'patient', 'text': reply, 'seq': ev['seq'],
+                           't_ms': ev['t_ms'], 'volunteered': True})
         self.save()
         return events
 
@@ -695,8 +739,8 @@ class Session:
         completed_at = t + duration * 1000
 
         # --- interrupted: the encounter ends before this examination does ---
-        limit = self.preset["encounter_s"] * 1000
-        if realtime and completed_at > limit:
+        limit = None if self.is_untimed_phase("encounter") else self.preset["encounter_s"] * 1000
+        if realtime and limit is not None and completed_at > limit:
             self.ledger.add(
                 evidence.EXAM_ACTION, source_text or man["label"], t_ms=t,
                 meta={"status": "interrupted", "maneuver_id": maneuver_id,
@@ -841,8 +885,8 @@ class Session:
 
     # -- results ----------------------------------------------------------
     def compute_results(self, note_payload=None, label="timed submission"):
-        if label == "timed submission" and self.settings.get("learning_mode") == "guided":
-            label = "guided untimed submission"
+        if label == "timed submission" and self.is_untimed_phase("note"):
+            label = "%s untimed submission" % self.settings.get("learning_mode", "practice")
         payload = note_payload if note_payload is not None \
             else self.original_note()
         parsed = note_mod.parse(payload)
@@ -949,11 +993,11 @@ class Session:
             "preset_key": self.preset["key"],
             "modified": self.preset["modified"],
             "modification_note": self.preset["modification_note"],
-            "untimed": self.settings.get("learning_mode")=="guided",
-            "encounter_allowed_s": None if self.settings.get("learning_mode")=="guided" else self.preset["encounter_s"],
+            "untimed": self.is_untimed_phase("encounter"),
+            "encounter_allowed_s": None if self.is_untimed_phase("encounter") else self.preset["encounter_s"],
             "encounter_used_s": round(used / 1000),
             "organize_s": self.preset["organize_s"],
-            "note_allowed_s": None if self.settings.get("learning_mode")=="guided" else self.preset["note_s"],
+            "note_allowed_s": None if self.is_untimed_phase("note") else self.preset["note_s"],
             "submit_reason": self.row["submit_reason"],
             "carry_over": False,
             "carry_over_note": config.SCORING_DEFAULTS["carry_over_note"],
@@ -991,6 +1035,11 @@ class Session:
                         "configured length. This is an assisted practice "
                         "condition, not the timed station." % scale,
             }
+        if self.is_untimed_phase("encounter"):
+            return {
+                "condition": "untimed practice", "realtime": True, "scale": 1.0,
+                "note": "Each specific examination still takes its full configured duration and must finish before findings appear. The encounter itself has no deadline.",
+            }
         return {
             "condition": "timed station",
             "realtime": True,
@@ -1024,8 +1073,9 @@ def branch_from(sid, from_seq, label=""):
     the parent had actually produced by then -- so a fact the learner obtained
     after that moment has to be obtained again.
 
-    The clock resumes with the encounter time that was left, because a retry
-    that hands back the whole fourteen minutes is not a retry of that moment.
+    The new coached/guided retry keeps the recorded chronology but follows the
+    current untimed learning preset. The original attempt's clock, preset,
+    evidence, note and score remain unchanged.
     """
     parent = load(sid)
     if not any(e.get('seq') == int(from_seq) for e in parent.ledger.events):
@@ -1067,17 +1117,16 @@ def branch_from(sid, from_seq, label=""):
             pstate['posture']=ev['meta'].get('position',pstate['posture'])
 
     at_ms = events[-1].get("t_ms", 0)
-    limit = parent.preset["encounter_s"] * 1000
-    remaining = max(0, limit - at_ms)
-    exhausted = remaining == 0
-    mode = 'guided' if parent.settings.get('learning_mode') == 'guided' or exhausted else 'coached'
-    branch_settings = dict(parent.settings, learning_mode=mode)
+    # This is a new learning attempt, never a retiming of the parent. New
+    # coached/guided retries use their current untimed mode contract.
+    mode = 'guided' if parent.settings.get('learning_mode') == 'guided' else 'coached'
+    branch_settings = dict(parent.settings, learning_mode=mode,
+                           preset=config.preset_for_learning_mode(mode))
     branch_settings['scoring'] = dict(parent.settings.get('scoring',{}),
         realtime_exam_durations=True, exam_time_scale=.15 if mode=='guided' else 1.0)
-    timing_text = ('No original encounter time remains; this is an untimed guided retry.' if exhausted else
-                  'Guided retry remains untimed.' if mode=='guided' else
-                   'Coached retry uses the original timing preset with %d:%02d left.' %
-                   (remaining // 60000, (remaining // 1000) % 60))
+    remaining = 0  # The new preset is untimed; the branch keeps elapsed history.
+    timing_text = ('Guided retry is untimed.' if mode=='guided' else
+                   'Coached retry is untimed. The original attempt retains its timing and score.')
 
     marker = dict(events[-1])
     branch_ledger = events + [{

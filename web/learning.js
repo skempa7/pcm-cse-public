@@ -2,6 +2,7 @@
 (()=>{
   const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   let current=null, learning=null, loading=false, selected='orient',lastEvidenceKey='',lobbyRequest=0;
+  if(!document.getElementById('caseGuideStyles')){const style=document.createElement('link');style.id='caseGuideStyles';style.rel='stylesheet';style.href=new URL('./guided.css?v=portal-1',location.href).href;document.head.append(style);}
   const request=async(path,body)=>{try{const r=await fetch(path,{method:body?'POST':'GET',headers:{'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});const d=await r.json();if(!r.ok)throw Error(d.error||'Request failed');return d;}catch(e){return {error:e.message};}};
   function lobby(){
     if(document.getElementById('learningLibrary'))return;
@@ -32,10 +33,11 @@
       document.getElementById('variantNotice').textContent=v.value!==previous?'This case is set to its base presentation. Choose another variation if you prefer.':'';
     };
     grid.addEventListener('change',refreshVariants);refreshVariants();
-    const conceal=()=>{const exam=document.querySelector('input[name=uimode]:checked')?.value==='rehearsal';document.getElementById('variantChoice').closest('label').hidden=exam;};
+    const conceal=()=>{const mode=typeof currentUiMode==='function'?currentUiMode():document.querySelector('input[name=uimode]:checked')?.value;const reveal=typeof MODES!=='undefined'?!!MODES[mode]?.reveal:['guided','coached'].includes(mode);document.getElementById('variantChoice').closest('label').hidden=!reveal;window.pcmPortal?.decoratePractice(mode,reveal);};
     document.querySelectorAll('input[name=uimode]').forEach(x=>x.addEventListener('change',conceal));conceal();filter();
     document.getElementById('btnRandom').onclick=()=>{const pool=visible();if(!pool.length)return;const c=pool[Math.floor(Math.random()*pool.length)];const base=document.querySelector('input[name=uimode]:checked')?.value!=='rehearsal'&&document.getElementById('variantChoice').value==='base';window.pcmStart(false,{case_id:c.id,variant_id:base?'base':'random'});};
-    document.getElementById('btnStart').onclick=()=>window.pcmStart(false,{variant_id:document.querySelector('input[name=uimode]:checked')?.value==='rehearsal'?'random':document.getElementById('variantChoice').value});
+    document.getElementById('btnStart').onclick=()=>window.pcmStart(false,{variant_id:['independent','rehearsal'].includes(document.querySelector('input[name=uimode]:checked')?.value)?'random':document.getElementById('variantChoice').value});
+    if(typeof currentUiMode==='function'&&typeof MODES!=='undefined')window.pcmPortal?.decoratePractice(currentUiMode(),MODES[currentUiMode()]?.reveal);
   }
   async function render(s){
     current=s;
@@ -53,25 +55,94 @@
     if(!['guided','coached'].includes(s.learning_mode)||!['encounter','organize','note'].includes(s.phase))return;
     const data=await request(`/api/session/${s.id}/learning`);if(current?.id!==s.id||data.error||!data.available)return;
     learning=data;selected=data.selected;
+    if(s.learning_mode==='guided'&&data.case_guide){renderCaseGuide(s,data);return;}
     let panel=document.getElementById('encounterGuide');if(!panel){panel=document.createElement('section');panel.id='encounterGuide';panel.className='encounter-guide';const wrap=document.querySelector('#coachDock')||document.querySelector('#view .wrap-wide,#view .wrap-mid,#view .room-shell')||document.getElementById('view');wrap.prepend(panel);}
     panel.classList.toggle('coaching-open',s.learning_mode==='guided'&&s.phase==='encounter');
     panel.innerHTML=`<div class="guide-top"><div><span class="eyebrow">Your encounter compass</span><h2>Find your next step.</h2></div><span class="small">${E(data.timing)}</span><button class="btn sm ghost guide-expand" id="toggleGuide" aria-expanded="${s.learning_mode==='guided'&&s.phase==='encounter'}">Show approach</button><button class="btn primary" id="unstuckButton">Help me get unstuck</button></div><nav class="encounter-steps" aria-label="Mental sequence">${data.steps.map((x,i)=>`<button class="step-button ${x.id===selected?'active':''}" data-step="${E(x.id)}" aria-pressed="${x.id===selected}"><span>${i+1}</span>${E(x.label)}</button>`).join('')}</nav><div class="guide-purpose" id="guidePurpose"></div><div id="recoveryBody" aria-live="polite"></div><div id="guideApplication" aria-live="polite"></div><details class="reasoning-expand"><summary>See how questions change the next decision</summary><div class="reasoning-map">${(data.reasoning_map||[]).map(x=>`<article><h3>${E(x.question||x.label||'A discriminating question')}</h3><p>${E(x.why||'')}</p><div class="decision-fork"><div><b>If present</b><p>${E(x.if_present||'Consider how this changes urgency.')}</p></div><div><b>If absent</b><p>${E(x.if_absent||'Reconsider likelihood; absence alone may not exclude disease.')}</p></div></div><p>${E(x.next_action||'')}</p><p class="small">Document: ${E(x.document||'Only the answer you actually obtained.')}</p></article>`).join('')||'<p>Complaint → working possibilities → a discriminating question → a relevant examination → interpretation → explanation → evidence-supported SOAP.</p>'}</div></details>`;
     document.getElementById('toggleGuide').onclick=e=>{const opened=panel.classList.toggle('coaching-open');e.currentTarget.setAttribute('aria-expanded',String(opened));e.currentTarget.textContent=opened?'Hide approach':'Show approach';};
     const purpose=()=>{const st=data.steps.find(x=>x.id===selected);document.getElementById('guidePurpose').textContent=st?.purpose||'';};purpose();
-    panel.querySelectorAll('[data-step]').forEach(b=>b.onclick=async()=>{selected=b.dataset.step;await request(`/api/session/${s.id}/stage`,{step:selected});panel.querySelectorAll('[data-step]').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b));});document.getElementById('recoveryBody').innerHTML='';purpose();});
+    panel.querySelectorAll('[data-step]').forEach(b=>b.onclick=async()=>{selected=b.dataset.step;await request(`/api/session/${s.id}/stage`,{step:selected});panel.querySelectorAll('[data-step]').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b));});document.getElementById('recoveryBody').innerHTML='';purpose();const history=data.hint_history?.[selected];if(history?.unlocked)drawHint(s,{...history.cues[history.unlocked-1],unlocked:history.unlocked,wait_ms:history.wait_ms,replay:true});});
     document.getElementById('unstuckButton').onclick=()=>showHint(s);
     if(s.learning_mode==='guided'&&s.phase==='encounter'){
       const exercise=document.createElement('details');exercise.className='guided-first';exercise.innerHTML='<summary>Practice the first move</summary><p>You have introduced yourself. Before narrowing to yes/no questions, which move helps you build a shared agenda?</p><div class="choice-row"><button class="btn" data-first="0">Start listing diagnoses.</button><button class="btn" data-first="1">Invite the patient’s story.</button><button class="btn" data-first="2">Skip to examination.</button></div><p class="first-result" role="status"></p>';
       panel.append(exercise);exercise.querySelectorAll('[data-first]').forEach(b=>b.onclick=()=>{exercise.querySelector('.first-result').textContent=b.dataset.first==='1'?'Yes. Now ask an open invitation in your own words, listen, then clarify one detail.':'Pause and recall the purpose: understand their concern before narrowing the story. Try again.';});
     }
   }
-  async function showHint(s){
-    const result=await request(`/api/session/${s.id}/hint`,{});const body=document.getElementById('recoveryBody');if(!body||current?.id!==s.id)return;
-    if(result.step)selected=result.step;
-    if(result.error||result.wait){body.textContent=result.error||result.text;return;}
-    body.innerHTML=`<div class="recovery-card"><div class="recovery-routine">${result.routine.map((x,i)=>`<span><b>${i+1}</b>${E(x)}</span>`).join('')}</div><div class="recovery-columns"><div><span class="eyebrow">Cue ${result.level} of 3</span><h3>${E(result.text)}</h3><p>Think for a moment. Choose one question or action yourself.</p>${result.level<3?'<button class="btn" id="moreHint" disabled>Stronger cue in 5 seconds</button>':'<p class="small">Now apply the principle using your own words.</p>'}${result.question?'<button class="btn ghost" id="tryCue">Put this question in my draft</button>':''}</div><details><summary>What you have actually obtained</summary>${result.obtained.map(e=>`<p class="evidence-quote"><span>#${e.seq}</span> ${E(e.text)}</p>`).join('')||'<p>No patient disclosures or completed examinations yet. Begin with the complaint.</p>'}</details></div></div>`;
-    const more=document.getElementById('moreHint');if(more){setTimeout(()=>{if(more.isConnected){more.disabled=false;more.textContent='Give me a stronger cue';}},5100);more.onclick=()=>showHint(s);}
-    document.getElementById('tryCue')?.addEventListener('click',()=>{const input=document.getElementById('say')||document.querySelector('.composer textarea');if(input){input.value=result.question;input.focus();input.dispatchEvent(new Event('input',{bubbles:true}));}else body.insertAdjacentHTML('beforeend','<p>Apply the question in your own words in the encounter or note.</p>');});
+  function draftQuestion(question,host){
+    const input=document.getElementById('say')||document.querySelector('.composer textarea');
+    if(!input){host?.insertAdjacentHTML('beforeend','<p role="status">Return to the encounter composer to practice this line.</p>');return;}
+    if(input.value.trim()&&input.value.trim()!==question.trim()&&!window.confirm('Replace your unsent question with this practice draft?'))return;
+    input.value=question;input.dispatchEvent(new Event('input',{bubbles:true}));input.focus();
+    const status=host?.querySelector('[data-guide-message]');if(status)status.textContent='Draft ready. Review or edit it, then send it to the patient.';
+  }
+  const mentalStep=group=>({connect:'orient',opening:'orient',pattern:'pattern',discriminate:'discriminate',background:'discriminate',context:'discriminate',perspective:'discriminate',ros:'discriminate',prepare:'examine',examine:'examine',close:'close',document:'document'}[group]||'orient');
+  function coverageHtml(coverage){
+    return `<p class="small">${E(coverage.note)}</p><div class="guide-evidence-grid"><div><h4>Subjective foundations</h4>${coverage.history.map(x=>`<p><span class="guide-evidence-status ${x.obtained?'obtained':''}">${x.obtained?'Obtained':'Review'}</span> ${E(x.label)}</p>`).join('')}<h4>Relevant ROS topics obtained</h4>${coverage.ros.map(x=>`<p><b>${E(x.system)}</b> ${x.obtained}/${x.target} ${x.topics.length?'· '+E(x.topics.join(', ')):''}</p>`).join('')}</div><div><h4>Objective evidence</h4>${coverage.objective.map(x=>`<p><span class="guide-evidence-status ${x.obtained?'obtained':''}">${x.obtained?'Obtained':'Review'}</span> ${E(x.label)}</p>`).join('')}</div></div>`;
+  }
+  function renderCaseGuide(s,data){
+    const guide=data.case_guide;if(!guide)return;
+    let panel=document.getElementById('encounterGuide');
+    if(!panel){panel=document.createElement('section');panel.id='encounterGuide';} const guideHost=s.phase==='encounter'?document.querySelector('#view .convo'):null; if(guideHost){guideHost.prepend(panel);}else if(!panel.isConnected){(document.getElementById('coachDock')||document.getElementById('view')).prepend(panel);}
+    panel.className='encounter-guide case-guide coaching-open';
+    const active=guide.tasks.find(t=>t.id===guide.selected)||guide.tasks[0],index=guide.tasks.indexOf(active),group=guide.groups.find(g=>g.id===active.group);
+    selected=mentalStep(active.group);
+    const sameGroup=guide.tasks.filter(t=>t.group===active.group),groupIndex=sameGroup.indexOf(active)+1;
+    const ready=active.status==='obtained',deferred=active.status==='deferred';
+    panel.innerHTML=`<div class="case-guide-top"><div><span class="eyebrow">Guided encounter · ${E(guide.variant_label)}</span><h2>${E(group?.label||'Your next move')}</h2></div><span class="guide-position">${groupIndex}/${sameGroup.length} in this phase</span></div>
+      <div class="guide-case-context"><b>${E(guide.title)}</b><span>${E(data.timing)}</span></div>
+      ${guide.urgent?`<details class="guide-urgency"><summary>Prioritize urgent care when needed</summary><p>${E(guide.notice)} Continue nonurgent practice only while care permits; do not delay escalation to finish a checklist.</p></details>`:''}
+      <article class="guide-current" aria-live="polite"><div class="guide-current-label"><span>${ready?'✓ Evidence recorded':deferred?'Deferred · no credit':active.status==='review'?'Coverage checkpoint · review':'Your next move'}</span><span>One step at a time</span></div>
+      <h3>${E(active.kind==='question'&&active.title===active.question?'Ask, listen, then follow the answer':active.title)}</h3>
+      ${active.question?`<blockquote>${E(active.question)}</blockquote>`:''}
+      <p class="guide-why"><b>Why:</b> ${E(active.why)}</p>
+      ${active.kind==='exam'?`<div class="guide-technique"><b>Sites and technique to consider</b><p>${E((active.components||[]).join(' · ')||'General observation')}</p>${active.technique?`<details><summary>Technique note</summary><p>${E(active.technique)}</p></details>`:''}<p class="small">${active.focused_subset?'This path selects the authored key special test. Additional tests remain available when indicated.':'A focused selection from this case’s written example; other catalog actions remain available when indicated.'} Select the appropriate components yourself. No result is supplied until the examination finishes.</p></div>`:''}
+      ${active.kind==='checkpoint'?coverageHtml(guide.coverage):''}${active.kind==='decision'?`<p class="small">${E(active.decision_note)}</p>`:''}
+      ${active.evidence_ids?.length?`<p class="guide-sources">Evidence: ${active.evidence_ids.map(n=>'#'+n).join(', ')}. ${active.kind==='question'?'The spoken reply remains in your encounter record.':''}</p>`:''}
+      <div class="guide-actions">${active.question&&s.phase==='encounter'?'<button class="btn primary" id="guideDraft">Draft this question</button>':''}${active.kind==='exam'&&s.phase==='encounter'?'<button class="btn primary" id="guideOpenExam">Open this examination</button>':''}${active.kind==='document'&&s.phase==='encounter'?'<button class="btn primary" id="guideFinish">Go to Finish encounter</button>':''}${active.kind==='decision'?'<button class="btn primary" id="guideChart">Review doorway &amp; vitals</button><button class="btn" id="guideDecisionContinue">Continue focused history</button>':''}<button class="btn ghost" id="unstuckButton">Help me get unstuck</button></div><p class="small guide-message" data-guide-message role="status">${ready?'You can revisit this step or move on.':deferred?'This step was deferred. It remains absent from your evidence until actually obtained.':'Drafting, opening an examination, or moving through this guide does not add evidence.'}</p>
+      </article><div class="guide-navigation"><button class="btn sm" id="guidePrevious" ${index===0?'disabled':''}>← Previous</button><button class="btn sm" id="guideNext" ${index===guide.tasks.length-1?'disabled':''}>Next →</button><button class="btn sm ghost" id="guideRecommend">Next needed step</button>${!ready?`<button class="btn sm ghost" id="guideDefer">${deferred?'Restore this step':'Defer this step'}</button>`:''}</div>
+      <details class="guide-route"><summary>Browse the encounter path · ${guide.completed} supported, ${guide.deferred} deferred</summary><label>Jump to a step<select id="guideJump">${guide.groups.map(g=>`<optgroup label="${E(g.label)}">${guide.tasks.filter(t=>t.group===g.id).map(t=>`<option value="${E(t.id)}" ${t.id===active.id?'selected':''}>${t.status==='obtained'?'✓ ':t.status==='deferred'?'Deferred: ':t.status==='review'?'Review: ':''}${E(t.title)}</option>`).join('')}</optgroup>`).join('')}</select></label><p class="small">${E(guide.source_note)}</p><p class="small">${E(guide.limits)}</p></details>
+      <details class="guide-coverage"><summary>What can my Subjective and Objective contain so far?</summary>${coverageHtml(guide.coverage)}<p class="small">${E(guide.checkpoint_note)}</p></details>
+      <div id="recoveryBody" aria-live="polite"></div><div id="guideApplication" aria-live="polite"></div>`;
+    const move=async(step,action='select')=>{const response=await request(`/api/session/${s.id}/guide`,{step,action});if(current?.id!==s.id)return;if(response.error){panel.querySelector('[data-guide-message]').textContent=response.error;return;}learning.case_guide=response;renderCaseGuide(s,learning);};
+    panel.querySelector('#guidePrevious').onclick=()=>move(guide.tasks[index-1].id);
+    panel.querySelector('#guideNext').onclick=()=>move(guide.tasks[index+1].id);
+    panel.querySelector('#guideRecommend').onclick=()=>move(guide.recommended);
+    panel.querySelector('#guideJump').onchange=e=>move(e.target.value);
+    panel.querySelector('#guideDefer')?.addEventListener('click',()=>move(active.id,deferred?'restore':'defer'));
+    panel.querySelector('#guideDraft')?.addEventListener('click',()=>draftQuestion(active.question,panel));
+    panel.querySelector('#unstuckButton').onclick=()=>showHint(s);
+    panel.querySelector('#guideChart')?.addEventListener('click',()=>document.getElementById('toolChart')?.click());
+    panel.querySelector('#guideDecisionContinue')?.addEventListener('click',()=>move(active.id,'defer'));
+    panel.querySelector('#guideOpenExam')?.addEventListener('click',()=>{
+      if(typeof openExamPanel!=='function'){panel.querySelector('[data-guide-message]').textContent='Use the Examination control beside the patient to choose this action.';return;}
+      openExamPanel();document.querySelector('#regionList [data-region=""]')?.click();
+      const search=document.getElementById('manSearch');if(search){search.value=active.title;search.dispatchEvent(new Event('input',{bubbles:true}));search.focus();}
+    });
+    panel.querySelector('#guideFinish')?.addEventListener('click',()=>{const button=document.getElementById('btnEnd')||[...document.querySelectorAll('button')].find(b=>/finish encounter|end encounter/i.test(b.textContent)&&!panel.contains(b));if(button){button.scrollIntoView({block:'center',behavior:'auto'});button.focus();}else panel.querySelector('[data-guide-message]').textContent='Use Finish encounter in the encounter controls when you are ready to write.';});
+    const history=data.hint_history?.[selected];if(history?.unlocked){const cue=history.cues[history.unlocked-1];drawHint(s,{...cue,unlocked:history.unlocked,wait_ms:history.wait_ms,replay:true});}
+    showApplication(data,s);
+  }
+  function drawHint(s,result){
+    const body=document.getElementById('recoveryBody');if(!body||current?.id!==s.id)return;
+    const unlocked=result.unlocked||result.level;
+    body.innerHTML=`<div class="recovery-card"><div class="recovery-routine">${result.routine.map((x,i)=>`<span><b>${i+1}</b>${E(x)}</span>`).join('')}</div><div class="cue-tabs" role="group" aria-label="Unlocked memory cues">${[1,2,3].map(n=>`<button class="btn sm" data-cue="${n}" aria-pressed="${n===result.level}" ${n>unlocked?'disabled':''}>Cue ${n}${n>unlocked?' · locked':''}</button>`).join('')}</div><h3>${E(result.text)}</h3><p class="small">${result.replay?'Revisiting an unlocked cue adds no assistance count.':'Pause and choose one action yourself before requesting more detail.'}</p><div class="guide-actions"><button class="btn sm" id="cueBack" ${result.level<=1?'disabled':''}>← Previous cue</button><button class="btn sm" id="cueNext" ${result.level>=unlocked?'disabled':''}>Next cue →</button>${unlocked<3?'<button class="btn" id="moreHint" disabled>Stronger cue shortly</button>':''}${result.question?'<button class="btn ghost" id="tryCue">Draft this cue question</button>':''}</div><details><summary>What you have actually obtained</summary>${result.obtained.map(e=>`<p class="evidence-quote"><span>#${e.seq}</span> ${E(e.text)}</p>`).join('')||'<p>No patient disclosures or completed examinations yet. Begin with the complaint.</p>'}</details></div>`;
+    body.querySelectorAll('[data-cue]').forEach(b=>b.onclick=()=>showHint(s,Number(b.dataset.cue),result.step));
+    body.querySelector('#cueBack').onclick=()=>showHint(s,result.level-1,result.step);
+    body.querySelector('#cueNext').onclick=()=>showHint(s,result.level+1,result.step);
+    const more=body.querySelector('#moreHint');if(more){const unlock=()=>{if(more.isConnected){more.disabled=false;more.textContent='Unlock cue '+(unlocked+1);}};if(result.wait_ms>0)setTimeout(unlock,result.wait_ms+50);else unlock();more.onclick=()=>showHint(s,unlocked+1,result.step);}
+    body.querySelector('#tryCue')?.addEventListener('click',()=>draftQuestion(result.question,document.getElementById('encounterGuide')));
+  }
+  async function showHint(s,level=null,step=null){
+    const cueStep=step||selected;
+    const prior=learning?.hint_history?.[cueStep];
+    const requested=level??(prior?.unlocked||null);
+    const payload={step:cueStep};if(requested)payload.level=requested;
+    const result=await request(`/api/session/${s.id}/hint`,payload);const body=document.getElementById('recoveryBody');
+    if(!body||current?.id!==s.id)return;
+    if(result.error||result.wait){body.insertAdjacentHTML('beforeend',`<p role="status">${E(result.error||result.text)}</p>`);return;}
+    learning.hint_history=learning.hint_history||{};
+    const saved=learning.hint_history[cueStep]||{unlocked:0,cues:[]};saved.unlocked=result.unlocked;saved.wait_ms=result.wait_ms;saved.cues[result.level-1]=result;learning.hint_history[cueStep]=saved;
+    drawHint(s,result);
   }
   async function repairPanel(s){
     if(document.getElementById('repairPractice'))return;
@@ -95,6 +166,7 @@
     if(key===lastEvidenceKey||loading)return;lastEvidenceKey=key;loading=true;
     const data=await request(`/api/session/${s.id}/learning`);loading=false;
     if(current?.id!==s.id||data.error||!data.available)return;
+    if(s.learning_mode==='guided'&&data.case_guide){learning=data;renderCaseGuide(s,data);return;}
     const previousStep=selected;learning=data;selected=data.selected;
     if(previousStep!==selected){const old=document.getElementById('recoveryBody');if(old)old.innerHTML='';}
     const panel=document.getElementById('encounterGuide');if(!panel)return;

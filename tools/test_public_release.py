@@ -11,7 +11,7 @@ rows=call('/api/bootstrap')['cases'];assert len(rows)==24
 report=[]
 for index,row in enumerate(rows):
  for variant in ['base']+[v['id'] for v in row['variants']]:
-  c=cases.resolve(row['id'],variant);sex=c['patient']['sex'];s=call('/api/session',{'case_id':row['id'],'variant_id':variant,'learning_mode':'coached'});sid=s['id']
+  c=cases.resolve(row['id'],variant);sex=c['patient']['sex'];s=call('/api/session',{'case_id':row['id'],'variant_id':variant,'learning_mode':'independent'});sid=s['id']
   loaded=engine.load(sid);assert loaded.row['phase']=='briefing' and not loaded.row['phase_ends_at']
   s=call('/api/session/'+sid+'/start',{});assert s['phase']=='encounter';assert any(e['kind']==evidence.STATION_INFO for e in engine.load(sid).ledger.events);deadline=engine.load(sid).row['phase_ends_at']
   call('/api/session/'+sid+'/say',{'text':'What brings you in today?'})
@@ -36,7 +36,7 @@ for path in ['/api/voice','/api/ai/status','/api/session/'+sid+'/ai-turn','/api/
 for name in ['ai_patient.py','natural_voice.py','conversation.py']:assert not (ROOT/'pcmcse'/name).exists()
 assets=[]
 for p in (ROOT/'web/patient3d/assets').glob('public-*.glb'):
- data=p.read_bytes();n=struct.unpack_from('<I',data,12)[0];g=json.loads(data[20:20+n]);names={n.get('name') for n in g['nodes']};assert 'PCM_PublicBody' in names and 'PCM_AnatomicalBody' in names;assert not {'PCM_FemaleBody','PCM_FemaleBody_Source','PCM_FemaleBody_Covered'} & names;assert {'PCM_Seated','PCM_Supine'}<={a['name'] for a in g['animations']};assert {'PCM_PublicKnit','PCM_PublicTrousers','PCM_PublicShoes'}<=names
+ data=p.read_bytes();n=struct.unpack_from('<I',data,12)[0];g=json.loads(data[20:20+n]);names={n.get('name') for n in g['nodes']};assert 'PCM_PublicBody' in names and 'PCM_AnatomicalBody' in names;assert not {'PCM_FemaleBody','PCM_FemaleBody_Source','PCM_FemaleBody_Covered'} & names;assert {'PCM_Seated','PCM_Supine','PCM_Standing','PCM_Prone'}<={a['name'] for a in g['animations']};assert {'PCM_PublicKnit','PCM_PublicTrousers','PCM_PublicShoes'}<=names
  anatomy=next(node for node in g['nodes'] if node.get('name')=='PCM_AnatomicalBody')
  assert all(g['materials'][p['material']]['name']=='PCM_Mat_Skin' for p in g['meshes'][anatomy['mesh']]['primitives'])
  assert not any(m.get('name')=='PCM_ClinicalManikin' for m in g['materials'])

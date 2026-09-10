@@ -77,6 +77,38 @@ class Handler:
         if int(self.headers.get('Content-Length') or 0) > 1500000:
             return self._json({'error': 'Request too large.'}, 413)
         body = self._body()
+
+        if p == '/api/progress/reset-preview':
+            if (not isinstance(body, dict) or set(body) - {'scope', 'case_id'}
+                    or (body.get('scope') == 'all' and 'case_id' in body)):
+                return self._json({'error': 'Invalid progress-reset preview request.'}, 400)
+            with _LOCK:
+                try:
+                    return self._json(db.preview_progress_reset(body.get('scope'), body.get('case_id')))
+                except ValueError as exc:
+                    return self._json({'error': str(exc)}, 400)
+                except db.sqlite3.Error:
+                    return self._json({'error': 'Progress could not be read. Please try again.'}, 503)
+
+        if p == '/api/progress/reset':
+            if not isinstance(body, dict) or set(body) - {'scope', 'case_id', 'confirm', 'include_in_progress'}:
+                return self._json({'error': 'Invalid progress-reset request.'}, 400)
+            if body.get('scope') == 'all' and 'case_id' in body:
+                return self._json({'error': 'An all-progress reset must not include a case ID.'}, 400)
+            with _LOCK:
+                try:
+                    reset = db.reset_progress(body.get('scope'), body.get('case_id'),
+                                              confirmed=body.get('confirm'),
+                                              include_in_progress=body.get('include_in_progress', False))
+                except db.ProgressResetConflict as exc:
+                    return self._json({'error': str(exc), 'active_attempts': exc.active_attempts,
+                                       'reset': False}, 409)
+                except ValueError as exc:
+                    return self._json({'error': str(exc)}, 400)
+                except db.sqlite3.Error:
+                    return self._json({'error': 'Progress could not be reset. The reset transaction was rolled back; please try again.'}, 503)
+                return self._json({'ok': True, **reset, 'progress': learning.progress(),
+                                   'sessions': db.list_sessions()})
         if p == '/api/teaching/access':
             with _LOCK:
                 if body.get('confirm') is not True:
@@ -117,9 +149,8 @@ class Handler:
             mode = {'practice': 'guided', 'drill': 'coached'}.get(mode, mode)
             if mode not in learning.MODES:
                 return self._json({'error': 'Unknown learning mode'}, 400)
-            preset = 'course' if mode == 'rehearsal' else 'practice'
-            preset = next((k for (k, v) in config.PRESETS.items() if v['organize_s'] == (0 if mode == 'rehearsal' else 120)), preset)
-            settings.update(learning_mode=mode, simulation_runtime='interactive')
+            preset = config.preset_for_learning_mode(mode, preset)
+            settings.update(preset=preset, learning_mode=mode, simulation_runtime='interactive')
             visual_demo = body.get('visual_demo')
             if visual_demo:
                 return self._json({'error': 'The development trial selector is retired. Choose an active library presentation.'}, 400)
@@ -145,10 +176,18 @@ class Handler:
             s = engine.load(sid)
             if not s:
                 return self._json({'error': 'no such session'}, 404)
+            if action == 'guide':
+                from pcmcse import guide
+                try:
+                    return self._json(guide.navigate(s,body))
+                except PermissionError as exc:
+                    return self._json({'error':str(exc)},403)
+                except ValueError as exc:
+                    return self._json({'error':str(exc)},400)
             if action in ('hint', 'stage', 'repair'):
                 try:
                     if action == 'hint':
-                        return self._json(learning.hint(s, body.get('step')))
+                        return self._json(learning.hint(s, body.get("step"), body.get("level")))
                     if action == 'repair':
                         return self._json(learning.answer_repair(s, body))
                     if not learning.allowed(s):
@@ -203,7 +242,7 @@ class Handler:
                     events = [result]
                 elif kind == 'position':
                     position = body.get('position')
-                    if position not in ('seated', 'supine'):
+                    if not isinstance(position, str) or position not in engine.PATIENT_POSITIONS:
                         return self._json({'error': 'Unknown position'}, 400)
                     if s.row.get('pending_exam_json'):
                         return self._json({'error': 'Wait for the examination to finish before repositioning.'}, 409)

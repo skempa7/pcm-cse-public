@@ -1,0 +1,56 @@
+{
+  "asset": "public-male-standard",
+  "addon": "MPFB 2.0.17",
+  "generation": "Fresh HumanService.create_human from neutral MPFB base, gender macro 1.0. No female patient mesh or female facial coordinates used.",
+  "age_basis": "MPFB young-adult macro age .5; authored profile 25 years. Reference screenshot age UI is not followed.",
+  "authored_macro": {
+    "gender": 1.0,
+    "age": 0.5,
+    "muscle": 0.56,
+    "weight": 0.44,
+    "proportions": 0.52,
+    "height": 0.5393295288085938,
+    "cupsize": 0.5,
+    "firmness": 0.5,
+    "race": {
+      "caucasian": 1.0,
+      "asian": 0.0,
+      "african": 0.0
+    }
+  },
+  "glb_sha256": "0fe26a2ea00d406dbf5056f0d84fc12540b30bde4df9fcd5cdce5c4486974bce",
+  "bytes": 13401960,
+  "triangles": 107960,
+  "posture_clips": [
+    "PCM_Seated",
+    "PCM_Supine",
+    "PCM_Standing",
+    "PCM_Prone"
+  ],
+  "morphs": [
+    "Blink",
+    "Speech",
+    "Warmth",
+    "Concern",
+    "Discomfort"
+  ],
+  "licenses": {
+    "MPFB anatomy and core outfit/eyes/skin/shoes": "CC0",
+    "Hair": "Bald; no scalp hair mesh",
+    "External male anatomical mesh": "CC0 added content by Thomas Larsson / MHX2; https://thomasmakehuman.wordpress.com/license-information/; source makehumancommunity/mhx2-makehuman-exchange import_runtime_mhx2/data/hm8/genitalia/penis.mxa",
+    "Fitted fisherman knit": "CC0, MRT, source pack shirts01"
+  },
+  "review": "Source-to-reimported GLB surface and anchor comparison passed across all four poses; runtime four-pose wardrobe and direct table geometry checks passed. Direct live-app appearance and motion evaluation is separate.",
+  "body_coverage": "Native adult male body with licensed MHX2 external flaccid penile/scrotal surface integrated into anatomical mesh. Clothing view contains no external surface. No internal examination anatomy.",
+  "pectoral_correction": "Neutral cupsize .5 and firmness .5 suppress subtractive breast-detail targets. MPFB does not attenuate these by the zero female macro; male macro geometry now supplies the chest contours.",
+  "external_geometry": {
+    "source": "https://github.com/makehumancommunity/mhx2-makehuman-exchange/blob/d31fa95ddf9c9e4c7e7c3f21a865c94dfec92131/import_runtime_mhx2/data/hm8/genitalia/penis.mxa",
+    "asset_uuid": "4af5093b-aabe-4ed8-9476-b81272b9fba0",
+    "source_sha256": "8422c06f2162b4b26bbd304cdeed63e70d1e4795094110a8676ea63bbd3e981d",
+    "source_vertices": 242,
+    "source_quads": 230,
+    "visibility": "Joined to PCM_AnatomicalBody; hidden with every anatomical vertex in clothed mode.",
+    "motion": "Pelvis skinning, no sexual-state bones or controls. External anatomical surface only; no internal vaginal/speculum/rectal examination implementation.",
+    "review": "General-purpose visual model; not a validated clinical anatomy atlas."
+  }
+}
