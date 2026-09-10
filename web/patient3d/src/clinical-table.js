@@ -13,7 +13,14 @@ const PRONE_SUPPORT_PROFILES=Object.freeze({"base":{"cushion":[[-0.5,1.038],[-0.
 function proneProfile(bodyBuild,presentation){return PRONE_SUPPORT_PROFILES[presentation==='male'?'male':bodyBuild]||PRONE_SUPPORT_PROFILES.base;}
 export function proneCushionHeight(z,bodyBuild,presentation='female',outfit='unclothed'){
  const clothed=!['unclothed','clinical-anatomy'].includes(outfit),allowance=clothed?(.011+(presentation==='male'?.007:0))+(.022-(presentation==='male'?.007:0))*smooth(.50,.64,z):0;
- return rawProneCushionHeight(z,bodyBuild,presentation)-allowance;
+ // Small mattress compression under the updated female thorax; measured against
+ // the authored rest shape. Clinical findings and all patient pose clips stay unchanged.
+ const chestCenters={base:-.481,'short-slender':-.492,standard:-.502,'tall-full':-.510};
+ const chestWidths={base:.094,'short-slender':.096,standard:.098,'tall-full':.101};
+ const chestDepths={base:.018,'short-slender':.0185,standard:.019,'tall-full':.0195};
+ const key=Object.hasOwn(chestCenters,bodyBuild)?bodyBuild:'base',t=(z-chestCenters[key])/chestWidths[key];
+ const chestRelief=presentation==='female'&&Math.abs(t)<1?chestDepths[key]*(1+Math.cos(Math.PI*t))/2:0;
+ return rawProneCushionHeight(z,bodyBuild,presentation)-allowance-chestRelief;
 }
 function rawProneCushionHeight(z,bodyBuild,presentation){
  const rows=proneProfile(bodyBuild,presentation).cushion;

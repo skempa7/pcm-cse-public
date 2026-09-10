@@ -1,5 +1,7 @@
 # Female external anatomical surface
 
+This records the external-surface integration. A later body-proportion adjustment is documented in `FEMALE-PROPORTIONS.md`; original integration-preservation measurements below refer to the earlier export step, not a claim that the later proportions are unchanged.
+
 The existing female patient models now have a neutral external vulvar surface in their anatomical view. The clothed view is unchanged. This is a surface approximation for orientation, not a patient-specific finding or a simulation of a genital examination. It adds no encounter evidence, scoring criteria, pathology, sexual-response state, internal vaginal canal, speculum interaction, or rectal examination. The previously parked internal-examination modules remain excluded.
 
 ## Asset and license provenance

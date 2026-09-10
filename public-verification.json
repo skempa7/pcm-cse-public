@@ -512,17 +512,17 @@
   "assets": [
     {
       "file": "public-female-short-slender.glb",
-      "sha256": "73281741461f052ed5f2afbfc10de5338a134a36199ddeb63ae6e799289c79d0",
+      "sha256": "87397c7b161cee3f12427784e6bbb72f52d8b8280f7000567fdb248bc34cefef",
       "bytes": 17199716
     },
     {
       "file": "public-female-tall-full.glb",
-      "sha256": "04fa4c4df8023f475b00bef32242e00181becb6228f6a6324767e384cc7b2602",
+      "sha256": "6d5aa9b8bff8e50a3d2e37d755215cae5398347e4fcaf5d5e7bd3bb12c17b672",
       "bytes": 17176836
     },
     {
       "file": "public-female-standard.glb",
-      "sha256": "00172e5faed557dc7e77356c03b0800ffd1fd49617f1685dc92fdab06a4cdd72",
+      "sha256": "62640afd5890081f1051c01cfea1e1a947db0990d4544354c670139bf27d304d",
       "bytes": 17187192
     },
     {
@@ -531,5 +531,11 @@
       "bytes": 13401960
     }
   ],
-  "limits": "Structural/route regression checks, not independent clinical validation. Existing grading defects remain."
+  "limits": "Structural/route regression checks, not independent clinical validation. Existing grading defects remain.",
+  "previous_route_check_scope": "The 72 route checks above were run before female-shape-1; clinical logic is unchanged. They are not a new independent review of this asset update.",
+  "asset_update": {
+    "revision": "female-shape-1",
+    "independent_review": "Skipped at user request",
+    "basic_checks": "Imported poses, wardrobe and support checks; asset identity, parity, syntax and bundles."
+  }
 }
