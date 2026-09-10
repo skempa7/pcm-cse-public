@@ -352,11 +352,72 @@ def test_long_conversation():
               f"conversation\n{c.transcript()}")
 
 
+
+# ==========================================================================
+# M. Clinician STATEMENTS are not history questions
+# ==========================================================================
+# The failure: "I'm going to wash my hands before we start." was answered with
+# a symptom history, because "start" and "before" are trigger words on the
+# onset and past-episode facts. A turn that narrates the clinician's own action
+# must never be routed into the clinical matcher.
+BEDSIDE_STATEMENTS = [
+    "Hello, my name is Sebastian, I'm a student doctor and I'll be seeing you today.",
+    'Can you confirm your name for me, and how would you like to be addressed?',
+    "I'm going to wash my hands before we start.",
+    'Is it okay if I examine you now?',
+    "I'm going to put on gloves before I examine you.",
+    "I'm going to drape you so you stay covered.",
+    'Let me help you with your gown.',
+    'Let me help you lie back on the table.',
+    'Are you comfortable? Let me know if anything I do hurts.',
+    "This might be cold \u2014 let me warm my hands first.",
+]
+
+
+def test_m_statements_are_not_questions():
+    group = "M:statements-not-questions"
+    for cid in sorted(cases.all_cases()):
+        case = cases.resolve(cid, "base")
+        # A case may AUTHOR a comfort reply that deliberately discloses a fact;
+        # that is reviewed content, not a keyword accident.
+        allowed = set((case["patient"].get("comfort_response") or {}).get("fact_ids") or [])
+        for text in BEDSIDE_STATEMENTS:
+            c = Conversation(cid)
+            reply, meta = c.say(text)
+            got = set(meta.get("facts_released") or [])
+            authored = got and got <= allowed and meta.get("kind") == "behavior"
+            check(group, not got or authored,
+                  f"{cid}: bedside statement {text[:44]!r} released clinical history "
+                  f"{sorted(got)} -> {reply[:80]!r}")
+            check(group, bool(reply.strip()),
+                  f"{cid}: bedside statement {text[:44]!r} got no reply at all")
+
+
+def test_m_questions_still_answered():
+    """The guard must not swallow real questions."""
+    group = "M:questions-still-work"
+    probes = [('When did the pain start?', 'onset'),
+              ('Where is the pain?', 'location'),
+              ('Do you have any allergies?', 'allergies')]
+    for cid in sorted(cases.all_cases()):
+        case = cases.resolve(cid, "base")
+        for question, category in probes:
+            facts = [f for f in case["facts"] if f.get("category") == category]
+            if not facts:
+                continue
+            lines = [nlp.normalize(l) for f in facts
+                     for l in (f.get("sp_says") or [f.get("value", "")]) if l]
+            c = Conversation(cid)
+            reply, _ = c.say(question)
+            check(group, any(l in nlp.normalize(reply) for l in lines),
+                  f"{cid}: {question!r} stopped being answered: {reply[:80]!r}")
+
 def main():
     groups = [test_a_screenshot, test_b_paraphrases, test_c_answer_plus_question,
               test_d_polarity, test_f_no_antecedent, test_g_topic_change,
               test_h_resolved_once, test_i_followups, test_j_fact_integrity,
-              test_k_lifecycle, test_l_input_parity, test_long_conversation]
+              test_k_lifecycle, test_l_input_parity, test_long_conversation,
+              test_m_statements_are_not_questions, test_m_questions_still_answered]
     for g in groups:
         before = len(FAILURES)
         g()

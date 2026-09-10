@@ -517,6 +517,47 @@ _ACT_RES = [(name, re.compile(p, re.I)) for name, p in _ACTS]
 _MAX_ACT_WORDS = 12
 
 
+# A clinician narrating their OWN action is not asking for clinical history.
+# "I'm going to wash my hands before we start." contains the words "start" and
+# "before", which are trigger words on the onset and past-episode facts, so
+# without this it is answered with a symptom history. What the turn is DOING
+# has to be read before deciding what information it wants.
+#
+# Deliberately first-person and procedural. "Let me ask you about your
+# medications" and "Let's talk about your allergies" are NOT matched: those are
+# invitations to discuss a topic, and answering them is right.
+_SELF_NARRATION = re.compile(
+    r"^(?:\s*(?:ok(?:ay)?|alright|right|so|now|first|next)[,\s]+)*"
+    r"(?:i'?m going to|i am going to|i'?m about to|i am about to|i'?ll|i will|"
+    r"let me|i'?d like to|i would like to|i want to|i need to)\s+"
+    r"(?!ask\b|talk\b|discuss\b|go over\b|review\b|hear\b|start by asking\b)",
+    re.I)
+# Procedural verbs that confirm the narration is an action, not a question in
+# disguise. Keeps "I'll be honest with you" out.
+_ACTION_VERB = re.compile(
+    r"\b(?:wash|sanitiz|clean|glove|drape|cover|examine|exam|listen|auscultat|"
+    r"palpat|press|feel|percuss|inspect|look at|check|measure|take your|"
+    r"lower|raise|lift|position|help you|move|step out|step outside|"
+    r"give you a moment|get a chaperone|wear|put on|warm)\b", re.I)
+
+
+def is_self_narration(text):
+    """Is this the clinician describing an action they are about to perform?
+
+    A turn that also asks something is NOT self-narration: it is compound, and
+    the question deserves its answer.
+    """
+    if not text:
+        return False
+    stripped = text.strip()
+    if "?" in stripped:
+        return False
+    if re.search(r"\b(?:what|when|where|why|how|which|who|do you|did you|have you|"
+                 r"are you|can you|could you|is there|any\b)", stripped, re.I):
+        return False
+    return bool(_SELF_NARRATION.match(stripped) and _ACTION_VERB.search(stripped))
+
+
 def read_act(text):
     """Name the conversational act a clinician turn performs, or None.
 

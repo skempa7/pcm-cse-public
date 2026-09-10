@@ -39,6 +39,7 @@ import random
 import re
 
 from . import dialogue, lexicon, nlp
+from . import physexam as _physexam
 
 _ANYTHING_ELSE = [
     "anything else", "anything more", "is there anything", "something else",
@@ -792,6 +793,37 @@ def identity_fields(utterance):
     return name,age
 
 
+def courtesy_statement(utterance):
+    """Is this turn a bedside courtesy rather than a request for history?
+
+    Uses the SAME trigger vocabulary the encounter engine credits courtesy
+    with, so the two cannot disagree about what a courtesy is.
+
+    A courtesy that also names a clinical topic ("are you comfortable, and when
+    did the pain start?") is NOT pure courtesy: the question deserves its
+    answer, and segmentation handles the compound.
+    """
+    text = nlp.normalize(utterance)
+    if not text:
+        return None
+    hit = None
+    for entry in _physexam.COURTESY:
+        for trigger in entry["triggers"]:
+            if nlp.normalize(trigger) in text:
+                hit = entry
+                break
+        if hit:
+            break
+    if not hit:
+        return None
+    # Strip the courtesy wording, then see whether a clinical topic remains.
+    remainder = text
+    for trigger in hit["triggers"]:
+        remainder = remainder.replace(nlp.normalize(trigger), " ")
+    subjects = [t for t in dialogue.topics_in(remainder)
+                if t not in ("name", "age", "sex")]
+    return None if subjects else hit["id"]
+
 def conversation_route(utterance):
     """High-confidence conversational acts take priority over keyword matching."""
     text=nlp.normalize(utterance)
@@ -1378,6 +1410,27 @@ class PatientEngine:
         #    "That sounds uncomfortable. When did the burning start?" must still
         #    get the onset answered.
         ack = self._acknowledgement(text, state, meta)
+
+        # 3a. Is the clinician narrating an action rather than asking anything?
+        #     This MUST precede clinical matching. "I'm going to wash my hands
+        #     before we start" contains the trigger words "start" and "before",
+        #     so the matcher answers it with a symptom history. Reporting no
+        #     information here hands the turn to engine.py's courtesy /
+        #     plan-acknowledgement path, which replies in character AND records
+        #     the bedside action.
+        courtesy_only = courtesy_statement(utterance)
+        if courtesy_only:
+            # A bedside courtesy is not a history question. Without this the
+            # clinical matcher answers "is it okay if I examine you now?" with
+            # a current-symptom fact, because of the word "now".
+            meta['kind'] = 'courtesy_statement'
+            meta['no_information'] = True
+            return self.rng.choice(['Okay.', 'That\'s fine.', 'Sure.', 'Of course.'])
+
+        if dialogue.is_self_narration(utterance):
+            meta['kind'] = 'action_narrated'
+            meta['no_information'] = True
+            return self.rng.choice(['Okay.', 'Alright.', 'Sure, go ahead.', 'That\'s fine.'])
 
         # 3b. Is this clinician turn ANSWERING the patient's own question?
         #     This must precede clinical matching: "no" is a complete answer to
