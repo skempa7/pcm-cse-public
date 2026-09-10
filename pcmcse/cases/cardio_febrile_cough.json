@@ -288,15 +288,15 @@
       "I am a bus dispatcher."
     ],
     "history_family_1": [
-      "Mother has asthma",
+      "My mother is fifty-two and she has asthma.", "Mother has asthma",
       "mother"
     ],
     "history_family_2": [
-      "father hypertension",
+      "My father is fifty-five and he has high blood pressure.", "father hypertension",
       "father"
     ],
     "history_family_3": [
-      "one healthy sister.",
+      "I have one sister, she's twenty-seven and she's healthy.", "one healthy sister.",
       "sister"
     ],
     "patient_concern": [
@@ -1643,9 +1643,9 @@
       "id": "history_family_1",
       "category": "family",
       "checklist": "h_history_family_1",
-      "value": "Mother has asthma",
+      "value": "My mother is fifty-two and she has asthma.",
       "sp_says": [
-        "Mother has asthma"
+        "My mother is fifty-two and she has asthma."
       ],
       "triggers": {
         "any": [
@@ -1661,7 +1661,7 @@
       "concepts": {
         "history_family_1": {
           "polarity": "positive",
-          "value": "Mother has asthma"
+          "value": "My mother is fifty-two and she has asthma."
         }
       },
       "example_questions": [
@@ -1670,11 +1670,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "Mother has asthma",
+            "text": "My mother is fifty-two and she has asthma.",
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has asthma"
+                "value": "My mother is fifty-two and she has asthma."
               }
             },
             "complete_fact": true
@@ -1687,9 +1687,9 @@
       "id": "history_family_2",
       "category": "family",
       "checklist": "h_history_family_2",
-      "value": "father hypertension",
+      "value": "My father is fifty-five and he has high blood pressure.",
       "sp_says": [
-        "father hypertension"
+        "My father is fifty-five and he has high blood pressure."
       ],
       "triggers": {
         "any": [
@@ -1705,7 +1705,7 @@
       "concepts": {
         "history_family_2": {
           "polarity": "positive",
-          "value": "father hypertension"
+          "value": "My father is fifty-five and he has high blood pressure."
         }
       },
       "example_questions": [
@@ -1714,11 +1714,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "father hypertension",
+            "text": "My father is fifty-five and he has high blood pressure.",
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father hypertension"
+                "value": "My father is fifty-five and he has high blood pressure."
               }
             },
             "complete_fact": true
@@ -1731,9 +1731,9 @@
       "id": "history_family_3",
       "category": "family",
       "checklist": "h_history_family_3",
-      "value": "one healthy sister.",
+      "value": "I have one sister, she's twenty-seven and she's healthy.",
       "sp_says": [
-        "one healthy sister."
+        "I have one sister, she's twenty-seven and she's healthy."
       ],
       "triggers": {
         "any": [
@@ -1749,7 +1749,7 @@
       "concepts": {
         "history_family_3": {
           "polarity": "positive",
-          "value": "one healthy sister."
+          "value": "I have one sister, she's twenty-seven and she's healthy."
         }
       },
       "example_questions": [
@@ -1758,11 +1758,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "one healthy sister.",
+            "text": "I have one sister, she's twenty-seven and she's healthy.",
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "one healthy sister."
+                "value": "I have one sister, she's twenty-seven and she's healthy."
               }
             },
             "complete_fact": true
@@ -2331,15 +2331,15 @@
       },
       {
         "id": "h_history_family_1",
-        "text": "Mother has asthma"
+        "text": "My mother is fifty-two and she has asthma."
       },
       {
         "id": "h_history_family_2",
-        "text": "father hypertension"
+        "text": "My father is fifty-five and he has high blood pressure."
       },
       {
         "id": "h_history_family_3",
-        "text": "one healthy sister."
+        "text": "I have one sister, she's twenty-seven and she's healthy."
       },
       {
         "id": "h_patient_concern",
@@ -2443,7 +2443,7 @@
     ]
   },
   "model_note": {
-    "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25 yo m. Patient reports: The cough began 4 days ago. The discomfort is in my right lower chest. The pain stays there. It is a sharp pain when I cough or breathe deeply. The pain is 5/10. The fever began the next day and the cough is getting worse. My coworker had a respiratory illness last week. Acetaminophen lowers the fever for a few hours. Coughing and deep breathing worsen the pain. I took acetaminophen 500 mg twice yesterday. I have not had an episode like this before. I cough up yellow sputum. I am short of breath on stairs. I measured 101.5 at home. I had shaking chills last night. I feel wiped out. The right chest pain is worse with a deep breath.\n\nPatient perspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: Mother has asthma; father hypertension; one healthy sister.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n",
+    "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25 yo m. Patient reports: The cough began 4 days ago. The discomfort is in my right lower chest. The pain stays there. It is a sharp pain when I cough or breathe deeply. The pain is 5/10. The fever began the next day and the cough is getting worse. My coworker had a respiratory illness last week. Acetaminophen lowers the fever for a few hours. Coughing and deep breathing worsen the pain. I took acetaminophen 500 mg twice yesterday. I have not had an episode like this before. I cough up yellow sputum. I am short of breath on stairs. I measured 101.5 at home. I had shaking chills last night. I feel wiped out. The right chest pain is worse with a deep breath.\n\nPatient perspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: My mother is fifty-two and she has asthma.; My father is fifty-five and he has high blood pressure.; I have one sister, she's twenty-seven and she's healthy.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n",
     "O": "Vitals: T 101.3 F oral, P 102 bpm, BP 122/76 mmHg, R 22 rpm, Pulse Ox 95% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Tired appearing, alert and oriented, speaking full sentences.\n\nHeart: Regular tachycardia without murmur.\n\nLungs: Focal inspiratory crackles and bronchial breath sounds at the right posterior base. Dullness over the right posterior base compared with the left. Tactile fremitus is increased at the right posterior base.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
     "A": [
       "1. Community-acquired pneumonia",
@@ -2958,15 +2958,15 @@
             "I am a bus dispatcher."
           ],
           "history_family_1": [
-            "Mother has asthma",
+            "My mother is fifty-two and she has asthma.", "Mother has asthma",
             "mother"
           ],
           "history_family_2": [
-            "father hypertension",
+            "My father is fifty-five and he has high blood pressure.", "father hypertension",
             "father"
           ],
           "history_family_3": [
-            "one healthy sister.",
+            "I have one sister, she's twenty-seven and she's healthy.", "one healthy sister.",
             "sister"
           ],
           "patient_concern": [
@@ -4313,9 +4313,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother has asthma",
+            "value": "My mother is fifty-two and she has asthma.",
             "sp_says": [
-              "Mother has asthma"
+              "My mother is fifty-two and she has asthma."
             ],
             "triggers": {
               "any": [
@@ -4331,7 +4331,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has asthma"
+                "value": "My mother is fifty-two and she has asthma."
               }
             },
             "example_questions": [
@@ -4340,11 +4340,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother has asthma",
+                  "text": "My mother is fifty-two and she has asthma.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother has asthma"
+                      "value": "My mother is fifty-two and she has asthma."
                     }
                   },
                   "complete_fact": true
@@ -4357,9 +4357,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "father hypertension",
+            "value": "My father is fifty-five and he has high blood pressure.",
             "sp_says": [
-              "father hypertension"
+              "My father is fifty-five and he has high blood pressure."
             ],
             "triggers": {
               "any": [
@@ -4375,7 +4375,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father hypertension"
+                "value": "My father is fifty-five and he has high blood pressure."
               }
             },
             "example_questions": [
@@ -4384,11 +4384,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "father hypertension",
+                  "text": "My father is fifty-five and he has high blood pressure.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "father hypertension"
+                      "value": "My father is fifty-five and he has high blood pressure."
                     }
                   },
                   "complete_fact": true
@@ -4401,9 +4401,9 @@
             "id": "history_family_3",
             "category": "family",
             "checklist": "h_history_family_3",
-            "value": "one healthy sister.",
+            "value": "I have one sister, she's twenty-seven and she's healthy.",
             "sp_says": [
-              "one healthy sister."
+              "I have one sister, she's twenty-seven and she's healthy."
             ],
             "triggers": {
               "any": [
@@ -4419,7 +4419,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "one healthy sister."
+                "value": "I have one sister, she's twenty-seven and she's healthy."
               }
             },
             "example_questions": [
@@ -4428,11 +4428,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "one healthy sister.",
+                  "text": "I have one sister, she's twenty-seven and she's healthy.",
                   "concepts": {
                     "history_family_3": {
                       "polarity": "positive",
-                      "value": "one healthy sister."
+                      "value": "I have one sister, she's twenty-seven and she's healthy."
                     }
                   },
                   "complete_fact": true
@@ -4784,15 +4784,15 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother has asthma"
+              "text": "My mother is fifty-two and she has asthma."
             },
             {
               "id": "h_history_family_2",
-              "text": "father hypertension"
+              "text": "My father is fifty-five and he has high blood pressure."
             },
             {
               "id": "h_history_family_3",
-              "text": "one healthy sister."
+              "text": "I have one sister, she's twenty-seven and she's healthy."
             },
             {
               "id": "h_patient_concern",
@@ -4895,7 +4895,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25 yo m. Patient reports: The cough began 7 days ago. The discomfort is in my right lower chest. The pain stays there. It is a sharp pain when I cough or breathe deeply. The pain is 5/10. The fever began the next day and the cough is getting worse. My coworker had a respiratory illness last week. Acetaminophen lowers the fever for a few hours. Coughing and deep breathing worsen the pain. I took acetaminophen 500 mg twice yesterday. I have not had an episode like this before. I cough up yellow sputum. I am short of breath on stairs. I measured 101.5 at home. I had shaking chills last night. I feel wiped out. The right chest pain is worse with a deep breath.\n\nPatient perspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: Mother has asthma; father hypertension; one healthy sister.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n",
+          "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25 yo m. Patient reports: The cough began 7 days ago. The discomfort is in my right lower chest. The pain stays there. It is a sharp pain when I cough or breathe deeply. The pain is 5/10. The fever began the next day and the cough is getting worse. My coworker had a respiratory illness last week. Acetaminophen lowers the fever for a few hours. Coughing and deep breathing worsen the pain. I took acetaminophen 500 mg twice yesterday. I have not had an episode like this before. I cough up yellow sputum. I am short of breath on stairs. I measured 101.5 at home. I had shaking chills last night. I feel wiped out. The right chest pain is worse with a deep breath.\n\nPatient perspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: My mother is fifty-two and she has asthma.; My father is fifty-five and he has high blood pressure.; I have one sister, she's twenty-seven and she's healthy.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n",
           "O": "Vitals: T 101.3 F oral, P 102 bpm, BP 122/76 mmHg, R 22 rpm, Pulse Ox 95% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Tired appearing, alert and oriented, speaking full sentences.\n\nHeart: Regular tachycardia without murmur.\n\nLungs: Focal inspiratory crackles and bronchial breath sounds at the right posterior base. Dullness over the right posterior base compared with the left. Tactile fremitus is increased at the right posterior base.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Community-acquired pneumonia",
@@ -5179,15 +5179,15 @@
             "I am a bus dispatcher."
           ],
           "history_family_1": [
-            "Mother has asthma",
+            "My mother is fifty-two and she has asthma.", "Mother has asthma",
             "mother"
           ],
           "history_family_2": [
-            "father hypertension",
+            "My father is fifty-five and he has high blood pressure.", "father hypertension",
             "father"
           ],
           "history_family_3": [
-            "one healthy sister.",
+            "I have one sister, she's twenty-seven and she's healthy.", "one healthy sister.",
             "sister"
           ],
           "patient_concern": [
@@ -6537,9 +6537,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother has asthma",
+            "value": "My mother is fifty-two and she has asthma.",
             "sp_says": [
-              "Mother has asthma"
+              "My mother is fifty-two and she has asthma."
             ],
             "triggers": {
               "any": [
@@ -6555,7 +6555,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has asthma"
+                "value": "My mother is fifty-two and she has asthma."
               }
             },
             "example_questions": [
@@ -6564,11 +6564,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother has asthma",
+                  "text": "My mother is fifty-two and she has asthma.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother has asthma"
+                      "value": "My mother is fifty-two and she has asthma."
                     }
                   },
                   "complete_fact": true
@@ -6581,9 +6581,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "father hypertension",
+            "value": "My father is fifty-five and he has high blood pressure.",
             "sp_says": [
-              "father hypertension"
+              "My father is fifty-five and he has high blood pressure."
             ],
             "triggers": {
               "any": [
@@ -6599,7 +6599,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father hypertension"
+                "value": "My father is fifty-five and he has high blood pressure."
               }
             },
             "example_questions": [
@@ -6608,11 +6608,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "father hypertension",
+                  "text": "My father is fifty-five and he has high blood pressure.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "father hypertension"
+                      "value": "My father is fifty-five and he has high blood pressure."
                     }
                   },
                   "complete_fact": true
@@ -6625,9 +6625,9 @@
             "id": "history_family_3",
             "category": "family",
             "checklist": "h_history_family_3",
-            "value": "one healthy sister.",
+            "value": "I have one sister, she's twenty-seven and she's healthy.",
             "sp_says": [
-              "one healthy sister."
+              "I have one sister, she's twenty-seven and she's healthy."
             ],
             "triggers": {
               "any": [
@@ -6643,7 +6643,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "one healthy sister."
+                "value": "I have one sister, she's twenty-seven and she's healthy."
               }
             },
             "example_questions": [
@@ -6652,11 +6652,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "one healthy sister.",
+                  "text": "I have one sister, she's twenty-seven and she's healthy.",
                   "concepts": {
                     "history_family_3": {
                       "polarity": "positive",
-                      "value": "one healthy sister."
+                      "value": "I have one sister, she's twenty-seven and she's healthy."
                     }
                   },
                   "complete_fact": true
@@ -7053,15 +7053,15 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother has asthma"
+              "text": "My mother is fifty-two and she has asthma."
             },
             {
               "id": "h_history_family_2",
-              "text": "father hypertension"
+              "text": "My father is fifty-five and he has high blood pressure."
             },
             {
               "id": "h_history_family_3",
-              "text": "one healthy sister."
+              "text": "I have one sister, she's twenty-seven and she's healthy."
             },
             {
               "id": "h_patient_concern",
@@ -7168,7 +7168,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25 yo m. Patient reports: The cough began 4 days ago. The discomfort is in my right lower chest. The pain stays there. It is a sharp pain when I cough or breathe deeply. The pain is 5/10. The fever began the next day and the cough is getting worse. My coworker had a respiratory illness last week. Acetaminophen lowers the fever for a few hours. Coughing and deep breathing worsen the pain. I took acetaminophen 500 mg twice yesterday. I have not had an episode like this before. I cough up yellow sputum. I am short of breath on stairs. I measured 101.5 at home. I had shaking chills last night. I feel wiped out. The right chest pain is worse with a deep breath.\n\nPatient perspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: Mother has asthma; father hypertension; one healthy sister.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n\nPatient concern: I cannot read small print on medicine bottles without my glasses.\n",
+          "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25 yo m. Patient reports: The cough began 4 days ago. The discomfort is in my right lower chest. The pain stays there. It is a sharp pain when I cough or breathe deeply. The pain is 5/10. The fever began the next day and the cough is getting worse. My coworker had a respiratory illness last week. Acetaminophen lowers the fever for a few hours. Coughing and deep breathing worsen the pain. I took acetaminophen 500 mg twice yesterday. I have not had an episode like this before. I cough up yellow sputum. I am short of breath on stairs. I measured 101.5 at home. I had shaking chills last night. I feel wiped out. The right chest pain is worse with a deep breath.\n\nPatient perspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: My mother is fifty-two and she has asthma.; My father is fifty-five and he has high blood pressure.; I have one sister, she's twenty-seven and she's healthy.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n\nPatient concern: I cannot read small print on medicine bottles without my glasses.\n",
           "O": "Vitals: T 101.3 F oral, P 102 bpm, BP 122/76 mmHg, R 22 rpm, Pulse Ox 95% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Tired appearing, alert and oriented, speaking full sentences.\n\nHeart: Regular tachycardia without murmur.\n\nLungs: Focal inspiratory crackles and bronchial breath sounds at the right posterior base. Dullness over the right posterior base compared with the left. Tactile fremitus is increased at the right posterior base.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Community-acquired pneumonia",

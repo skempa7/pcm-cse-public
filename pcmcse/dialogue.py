@@ -779,9 +779,43 @@ def _dedupe(parts):
     return out
 
 
-def join(parts):
-    """Combine answered parts into one reply, in the order they were asked."""
+def _is_continuation(previous, nxt):
+    """Was `nxt` authored as the tail of `previous` rather than a new sentence?
+
+    Many history facts are authored as deliberate pairs -- "Hypertension" plus
+    "no known thyroid or structural heart disease." -- meant to read as one
+    clause. Joined with a bare space they become an ungrammatical run-on:
+    "Hypertension no known thyroid or structural heart disease."
+    """
+    if not previous or not nxt:
+        return False
+    if _SENTENCE_END.search(previous):
+        return False
+    first = nxt.lstrip()[:1]
+    # A lowercase opener after an unterminated fragment continues it. A capital
+    # letter starts a new sentence, and "I" is a sentence of its own.
+    return bool(first) and first.islower()
+
+
+def join_spoken(parts):
+    """Join authored fact lines into one grammatical utterance.
+
+    Each line is preserved VERBATIM. Only the separator between lines changes,
+    so the delivery contract -- which matches a fact's approved text inside the
+    line it was spoken in -- is completely unaffected.
+    """
     parts = _dedupe([p.strip() for p in parts if p and p.strip()])
     if not parts:
         return ""
-    return " ".join(_terminate(p) for p in parts)
+    out = parts[0]
+    for nxt in parts[1:]:
+        if _is_continuation(out, nxt):
+            out += ", " + nxt
+        else:
+            out = _terminate(out) + " " + nxt
+    return _terminate(out)
+
+
+def join(parts):
+    """Combine answered parts into one reply, in the order they were asked."""
+    return join_spoken(parts)

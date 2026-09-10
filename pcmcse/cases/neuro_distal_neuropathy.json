@@ -218,13 +218,13 @@
       "I have not noticed an open sore on my feet."
     ],
     "history_pmh_1": [
-      "Type 2 diabetes diagnosed at age 18,10 years ago",
+      "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago", "Type 2 diabetes diagnosed at age 18,10 years ago",
       "medical history",
       "medical problems",
       "past medical"
     ],
     "history_pmh_2": [
-      "last A1c was high but does not recall the number.",
+      "and my last A1c was high, though I don't remember the number.", "last A1c was high but does not recall the number.",
       "last A1c was high but does not recall the number",
       "medical history",
       "medical problems",
@@ -285,19 +285,19 @@
       "I am a cashier."
     ],
     "history_family_1": [
-      "Mother had diabetes",
+      "My mother is fifty-two and she has diabetes.", "Mother had diabetes",
       "mother"
     ],
     "history_family_2": [
-      "father hypertension",
+      "My father's fifty-five and he has high blood pressure.", "father hypertension",
       "father"
     ],
     "history_family_3": [
-      "brother healthy",
+      "I have a brother who's thirty-one, and he's healthy.", "brother healthy",
       "brother"
     ],
     "history_family_4": [
-      "no hereditary neuropathy known."
+      "As far as I know, nerve problems like this don't run in my family.", "no hereditary neuropathy known."
     ],
     "patient_concern": [
       "Will I lose my feet like someone I know?"
@@ -1260,9 +1260,9 @@
       "id": "history_pmh_1",
       "category": "pmh",
       "checklist": "h_history_pmh_1",
-      "value": "Type 2 diabetes diagnosed at age 18,10 years ago",
+      "value": "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago",
       "sp_says": [
-        "Type 2 diabetes diagnosed at age 18,10 years ago"
+        "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago"
       ],
       "triggers": {
         "any": [
@@ -1276,7 +1276,7 @@
       "concepts": {
         "history_pmh_1": {
           "polarity": "positive",
-          "value": "Type 2 diabetes diagnosed at age 18,10 years ago"
+          "value": "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago"
         }
       },
       "example_questions": [
@@ -1285,11 +1285,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "Type 2 diabetes diagnosed at age 18,10 years ago",
+            "text": "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago",
             "concepts": {
               "history_pmh_1": {
                 "polarity": "positive",
-                "value": "Type 2 diabetes diagnosed at age 18,10 years ago"
+                "value": "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago"
               }
             },
             "complete_fact": true
@@ -1302,9 +1302,9 @@
       "id": "history_pmh_2",
       "category": "pmh",
       "checklist": "h_history_pmh_2",
-      "value": "last A1c was high but does not recall the number.",
+      "value": "and my last A1c was high, though I don't remember the number.",
       "sp_says": [
-        "last A1c was high but does not recall the number."
+        "and my last A1c was high, though I don't remember the number."
       ],
       "triggers": {
         "any": [
@@ -1318,7 +1318,7 @@
       "concepts": {
         "history_pmh_2": {
           "polarity": "positive",
-          "value": "last A1c was high but does not recall the number."
+          "value": "and my last A1c was high, though I don't remember the number."
         }
       },
       "example_questions": [
@@ -1327,11 +1327,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "last A1c was high but does not recall the number.",
+            "text": "and my last A1c was high, though I don't remember the number.",
             "concepts": {
               "history_pmh_2": {
                 "polarity": "positive",
-                "value": "last A1c was high but does not recall the number."
+                "value": "and my last A1c was high, though I don't remember the number."
               }
             },
             "complete_fact": true
@@ -1684,9 +1684,9 @@
       "id": "history_family_1",
       "category": "family",
       "checklist": "h_history_family_1",
-      "value": "Mother had diabetes",
+      "value": "My mother is fifty-two and she has diabetes.",
       "sp_says": [
-        "Mother had diabetes"
+        "My mother is fifty-two and she has diabetes."
       ],
       "triggers": {
         "any": [
@@ -1702,7 +1702,7 @@
       "concepts": {
         "history_family_1": {
           "polarity": "positive",
-          "value": "Mother had diabetes"
+          "value": "My mother is fifty-two and she has diabetes."
         }
       },
       "example_questions": [
@@ -1711,11 +1711,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "Mother had diabetes",
+            "text": "My mother is fifty-two and she has diabetes.",
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother had diabetes"
+                "value": "My mother is fifty-two and she has diabetes."
               }
             },
             "complete_fact": true
@@ -1728,9 +1728,9 @@
       "id": "history_family_2",
       "category": "family",
       "checklist": "h_history_family_2",
-      "value": "father hypertension",
+      "value": "My father's fifty-five and he has high blood pressure.",
       "sp_says": [
-        "father hypertension"
+        "My father's fifty-five and he has high blood pressure."
       ],
       "triggers": {
         "any": [
@@ -1746,7 +1746,7 @@
       "concepts": {
         "history_family_2": {
           "polarity": "positive",
-          "value": "father hypertension"
+          "value": "My father's fifty-five and he has high blood pressure."
         }
       },
       "example_questions": [
@@ -1755,11 +1755,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "father hypertension",
+            "text": "My father's fifty-five and he has high blood pressure.",
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father hypertension"
+                "value": "My father's fifty-five and he has high blood pressure."
               }
             },
             "complete_fact": true
@@ -1772,9 +1772,9 @@
       "id": "history_family_3",
       "category": "family",
       "checklist": "h_history_family_3",
-      "value": "brother healthy",
+      "value": "I have a brother who's thirty-one, and he's healthy.",
       "sp_says": [
-        "brother healthy"
+        "I have a brother who's thirty-one, and he's healthy."
       ],
       "triggers": {
         "any": [
@@ -1790,7 +1790,7 @@
       "concepts": {
         "history_family_3": {
           "polarity": "positive",
-          "value": "brother healthy"
+          "value": "I have a brother who's thirty-one, and he's healthy."
         }
       },
       "example_questions": [
@@ -1799,11 +1799,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "brother healthy",
+            "text": "I have a brother who's thirty-one, and he's healthy.",
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "brother healthy"
+                "value": "I have a brother who's thirty-one, and he's healthy."
               }
             },
             "complete_fact": true
@@ -1816,9 +1816,9 @@
       "id": "history_family_4",
       "category": "family",
       "checklist": "h_history_family_4",
-      "value": "no hereditary neuropathy known.",
+      "value": "As far as I know, nerve problems like this don't run in my family.",
       "sp_says": [
-        "no hereditary neuropathy known."
+        "As far as I know, nerve problems like this don't run in my family."
       ],
       "triggers": {
         "any": [
@@ -1834,7 +1834,7 @@
       "concepts": {
         "history_family_4": {
           "polarity": "positive",
-          "value": "no hereditary neuropathy known."
+          "value": "As far as I know, nerve problems like this don't run in my family."
         }
       },
       "example_questions": [
@@ -1843,11 +1843,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "no hereditary neuropathy known.",
+            "text": "As far as I know, nerve problems like this don't run in my family.",
             "concepts": {
               "history_family_4": {
                 "polarity": "positive",
-                "value": "no hereditary neuropathy known."
+                "value": "As far as I know, nerve problems like this don't run in my family."
               }
             },
             "complete_fact": true
@@ -2340,11 +2340,11 @@
       },
       {
         "id": "h_history_pmh_1",
-        "text": "Type 2 diabetes diagnosed at age 18,10 years ago"
+        "text": "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago"
       },
       {
         "id": "h_history_pmh_2",
-        "text": "last A1c was high but does not recall the number."
+        "text": "and my last A1c was high, though I don't remember the number."
       },
       {
         "id": "h_history_psh_1",
@@ -2380,19 +2380,19 @@
       },
       {
         "id": "h_history_family_1",
-        "text": "Mother had diabetes"
+        "text": "My mother is fifty-two and she has diabetes."
       },
       {
         "id": "h_history_family_2",
-        "text": "father hypertension"
+        "text": "My father's fifty-five and he has high blood pressure."
       },
       {
         "id": "h_history_family_3",
-        "text": "brother healthy"
+        "text": "I have a brother who's thirty-one, and he's healthy."
       },
       {
         "id": "h_history_family_4",
-        "text": "no hereditary neuropathy known."
+        "text": "As far as I know, nerve problems like this don't run in my family."
       },
       {
         "id": "h_patient_concern",
@@ -2506,7 +2506,7 @@
     ]
   },
   "model_note": {
-    "S": "cc: Gradual tingling and numbness in both feet\n\nHPI: 28 yo m. Patient reports: It started 4 months ago. It began in the toes of both feet. It has spread up to the ankles, not into my hands. It is tingling, burning and reduced feeling. Burning is 5/10 at night. It has gradually spread and is now present daily. There was no injury. Taking the bedsheet off my feet helps. The bedsheet touching my feet and nighttime worsen it. I tried a foot cream without benefit. I have not had this before. Both feet feel numb. They tingle and burn at night. I have been more thirsty lately.\n\nPatient perspective: Will I lose my feet like someone I know?\n\nPMH: Type 2 diabetes diagnosed at age 18,10 years ago; last A1c was high but does not recall the number.\n\nPSH: No surgery or admissions.\n\nMeds: Metformin 1000 mg twice daily; sometimes misses the evening dose.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink monthly. No recreational drugs. Cashier; lives with wife; eats an unrestricted diet.\n\nFH: Mother had diabetes; father hypertension; brother healthy; no hereditary neuropathy known.\n\nROS: Neurologic - Reports numbness. Reports paresthesia. Denies weakness. General - Reports polydipsia. Denies weight loss. Denies fever. Gastrointestinal - Denies diarrhea. Denies constipation. Denies nausea.\n",
+    "S": "cc: Gradual tingling and numbness in both feet\n\nHPI: 28 yo m. Patient reports: It started 4 months ago. It began in the toes of both feet. It has spread up to the ankles, not into my hands. It is tingling, burning and reduced feeling. Burning is 5/10 at night. It has gradually spread and is now present daily. There was no injury. Taking the bedsheet off my feet helps. The bedsheet touching my feet and nighttime worsen it. I tried a foot cream without benefit. I have not had this before. Both feet feel numb. They tingle and burn at night. I have been more thirsty lately.\n\nPatient perspective: Will I lose my feet like someone I know?\n\nPMH: Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago; and my last A1c was high, though I don't remember the number.\n\nPSH: No surgery or admissions.\n\nMeds: Metformin 1000 mg twice daily; sometimes misses the evening dose.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink monthly. No recreational drugs. Cashier; lives with wife; eats an unrestricted diet.\n\nFH: My mother is fifty-two and she has diabetes.; My father's fifty-five and he has high blood pressure.; I have a brother who's thirty-one, and he's healthy.; As far as I know, nerve problems like this don't run in my family.\n\nROS: Neurologic - Reports numbness. Reports paresthesia. Denies weakness. General - Reports polydipsia. Denies weight loss. Denies fever. Gastrointestinal - Denies diarrhea. Denies constipation. Denies nausea.\n",
     "O": "Vitals: T 98.2 F oral, P 78 bpm, BP 136/82 mmHg, R 16 rpm, Pulse Ox 98% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert and comfortable at rest.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nNeuro: Reduced light touch and vibration symmetrically from toes to ankles. Achilles reflexes reduced bilaterally; patellar reflexes 2+. Lower extremity strength 5/5 bilaterally.\n\nSkin: Skin of feet intact, without visible ulceration.\n\nExt: Dorsalis pedis pulses palpable and symmetric.\n\nOsteopathic: C1 paraspinal tissue texture change with mild tenderness on the right.",
     "A": [
       "1. Diabetic distal symmetric polyneuropathy",
@@ -2958,13 +2958,13 @@
             "I have not noticed an open sore on my feet."
           ],
           "history_pmh_1": [
-            "Type 2 diabetes diagnosed at age 18,10 years ago",
+            "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago", "Type 2 diabetes diagnosed at age 18,10 years ago",
             "medical history",
             "medical problems",
             "past medical"
           ],
           "history_pmh_2": [
-            "last A1c was high but does not recall the number.",
+            "and my last A1c was high, though I don't remember the number.", "last A1c was high but does not recall the number.",
             "last A1c was high but does not recall the number",
             "medical history",
             "medical problems",
@@ -3025,19 +3025,19 @@
             "I am a cashier."
           ],
           "history_family_1": [
-            "Mother had diabetes",
+            "My mother is fifty-two and she has diabetes.", "Mother had diabetes",
             "mother"
           ],
           "history_family_2": [
-            "father hypertension",
+            "My father's fifty-five and he has high blood pressure.", "father hypertension",
             "father"
           ],
           "history_family_3": [
-            "brother healthy",
+            "I have a brother who's thirty-one, and he's healthy.", "brother healthy",
             "brother"
           ],
           "history_family_4": [
-            "no hereditary neuropathy known."
+            "As far as I know, nerve problems like this don't run in my family.", "no hereditary neuropathy known."
           ],
           "patient_concern": [
             "Will I lose my feet like someone I know?"
@@ -4000,9 +4000,9 @@
             "id": "history_pmh_1",
             "category": "pmh",
             "checklist": "h_history_pmh_1",
-            "value": "Type 2 diabetes diagnosed at age 18,10 years ago",
+            "value": "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago",
             "sp_says": [
-              "Type 2 diabetes diagnosed at age 18,10 years ago"
+              "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago"
             ],
             "triggers": {
               "any": [
@@ -4016,7 +4016,7 @@
             "concepts": {
               "history_pmh_1": {
                 "polarity": "positive",
-                "value": "Type 2 diabetes diagnosed at age 18,10 years ago"
+                "value": "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago"
               }
             },
             "example_questions": [
@@ -4025,11 +4025,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Type 2 diabetes diagnosed at age 18,10 years ago",
+                  "text": "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago",
                   "concepts": {
                     "history_pmh_1": {
                       "polarity": "positive",
-                      "value": "Type 2 diabetes diagnosed at age 18,10 years ago"
+                      "value": "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago"
                     }
                   },
                   "complete_fact": true
@@ -4042,9 +4042,9 @@
             "id": "history_pmh_2",
             "category": "pmh",
             "checklist": "h_history_pmh_2",
-            "value": "last A1c was high but does not recall the number.",
+            "value": "and my last A1c was high, though I don't remember the number.",
             "sp_says": [
-              "last A1c was high but does not recall the number."
+              "and my last A1c was high, though I don't remember the number."
             ],
             "triggers": {
               "any": [
@@ -4058,7 +4058,7 @@
             "concepts": {
               "history_pmh_2": {
                 "polarity": "positive",
-                "value": "last A1c was high but does not recall the number."
+                "value": "and my last A1c was high, though I don't remember the number."
               }
             },
             "example_questions": [
@@ -4067,11 +4067,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "last A1c was high but does not recall the number.",
+                  "text": "and my last A1c was high, though I don't remember the number.",
                   "concepts": {
                     "history_pmh_2": {
                       "polarity": "positive",
-                      "value": "last A1c was high but does not recall the number."
+                      "value": "and my last A1c was high, though I don't remember the number."
                     }
                   },
                   "complete_fact": true
@@ -4424,9 +4424,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother had diabetes",
+            "value": "My mother is fifty-two and she has diabetes.",
             "sp_says": [
-              "Mother had diabetes"
+              "My mother is fifty-two and she has diabetes."
             ],
             "triggers": {
               "any": [
@@ -4442,7 +4442,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother had diabetes"
+                "value": "My mother is fifty-two and she has diabetes."
               }
             },
             "example_questions": [
@@ -4451,11 +4451,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother had diabetes",
+                  "text": "My mother is fifty-two and she has diabetes.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother had diabetes"
+                      "value": "My mother is fifty-two and she has diabetes."
                     }
                   },
                   "complete_fact": true
@@ -4468,9 +4468,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "father hypertension",
+            "value": "My father's fifty-five and he has high blood pressure.",
             "sp_says": [
-              "father hypertension"
+              "My father's fifty-five and he has high blood pressure."
             ],
             "triggers": {
               "any": [
@@ -4486,7 +4486,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father hypertension"
+                "value": "My father's fifty-five and he has high blood pressure."
               }
             },
             "example_questions": [
@@ -4495,11 +4495,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "father hypertension",
+                  "text": "My father's fifty-five and he has high blood pressure.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "father hypertension"
+                      "value": "My father's fifty-five and he has high blood pressure."
                     }
                   },
                   "complete_fact": true
@@ -4512,9 +4512,9 @@
             "id": "history_family_3",
             "category": "family",
             "checklist": "h_history_family_3",
-            "value": "brother healthy",
+            "value": "I have a brother who's thirty-one, and he's healthy.",
             "sp_says": [
-              "brother healthy"
+              "I have a brother who's thirty-one, and he's healthy."
             ],
             "triggers": {
               "any": [
@@ -4530,7 +4530,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "brother healthy"
+                "value": "I have a brother who's thirty-one, and he's healthy."
               }
             },
             "example_questions": [
@@ -4539,11 +4539,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "brother healthy",
+                  "text": "I have a brother who's thirty-one, and he's healthy.",
                   "concepts": {
                     "history_family_3": {
                       "polarity": "positive",
-                      "value": "brother healthy"
+                      "value": "I have a brother who's thirty-one, and he's healthy."
                     }
                   },
                   "complete_fact": true
@@ -4556,9 +4556,9 @@
             "id": "history_family_4",
             "category": "family",
             "checklist": "h_history_family_4",
-            "value": "no hereditary neuropathy known.",
+            "value": "As far as I know, nerve problems like this don't run in my family.",
             "sp_says": [
-              "no hereditary neuropathy known."
+              "As far as I know, nerve problems like this don't run in my family."
             ],
             "triggers": {
               "any": [
@@ -4574,7 +4574,7 @@
             "concepts": {
               "history_family_4": {
                 "polarity": "positive",
-                "value": "no hereditary neuropathy known."
+                "value": "As far as I know, nerve problems like this don't run in my family."
               }
             },
             "example_questions": [
@@ -4583,11 +4583,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "no hereditary neuropathy known.",
+                  "text": "As far as I know, nerve problems like this don't run in my family.",
                   "concepts": {
                     "history_family_4": {
                       "polarity": "positive",
-                      "value": "no hereditary neuropathy known."
+                      "value": "As far as I know, nerve problems like this don't run in my family."
                     }
                   },
                   "complete_fact": true
@@ -4820,11 +4820,11 @@
             },
             {
               "id": "h_history_pmh_1",
-              "text": "Type 2 diabetes diagnosed at age 18,10 years ago"
+              "text": "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago"
             },
             {
               "id": "h_history_pmh_2",
-              "text": "last A1c was high but does not recall the number."
+              "text": "and my last A1c was high, though I don't remember the number."
             },
             {
               "id": "h_history_psh_1",
@@ -4860,19 +4860,19 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother had diabetes"
+              "text": "My mother is fifty-two and she has diabetes."
             },
             {
               "id": "h_history_family_2",
-              "text": "father hypertension"
+              "text": "My father's fifty-five and he has high blood pressure."
             },
             {
               "id": "h_history_family_3",
-              "text": "brother healthy"
+              "text": "I have a brother who's thirty-one, and he's healthy."
             },
             {
               "id": "h_history_family_4",
-              "text": "no hereditary neuropathy known."
+              "text": "As far as I know, nerve problems like this don't run in my family."
             },
             {
               "id": "h_patient_concern",
@@ -4985,7 +4985,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Gradual tingling and numbness in both feet\n\nHPI: 28 yo m. Patient reports: It started 7 months ago. It began in the toes of both feet. It has spread up to the ankles, not into my hands. It is tingling, burning and reduced feeling. Burning is 5/10 at night. It has gradually spread and is now present daily. There was no injury. Taking the bedsheet off my feet helps. The bedsheet touching my feet and nighttime worsen it. I tried a foot cream without benefit. I have not had this before. Both feet feel numb. They tingle and burn at night. I have been more thirsty lately.\n\nPatient perspective: Will I lose my feet like someone I know?\n\nPMH: Type 2 diabetes diagnosed at age 18,10 years ago; last A1c was high but does not recall the number.\n\nPSH: No surgery or admissions.\n\nMeds: Metformin 1000 mg twice daily; sometimes misses the evening dose.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink monthly. No recreational drugs. Cashier; lives with wife; eats an unrestricted diet.\n\nFH: Mother had diabetes; father hypertension; brother healthy; no hereditary neuropathy known.\n\nROS: Neurologic - Reports numbness. Reports paresthesia. Denies weakness. General - Reports polydipsia. Denies weight loss. Denies fever. Gastrointestinal - Denies diarrhea. Denies constipation. Denies nausea.\n",
+          "S": "cc: Gradual tingling and numbness in both feet\n\nHPI: 28 yo m. Patient reports: It started 7 months ago. It began in the toes of both feet. It has spread up to the ankles, not into my hands. It is tingling, burning and reduced feeling. Burning is 5/10 at night. It has gradually spread and is now present daily. There was no injury. Taking the bedsheet off my feet helps. The bedsheet touching my feet and nighttime worsen it. I tried a foot cream without benefit. I have not had this before. Both feet feel numb. They tingle and burn at night. I have been more thirsty lately.\n\nPatient perspective: Will I lose my feet like someone I know?\n\nPMH: Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago; and my last A1c was high, though I don't remember the number.\n\nPSH: No surgery or admissions.\n\nMeds: Metformin 1000 mg twice daily; sometimes misses the evening dose.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink monthly. No recreational drugs. Cashier; lives with wife; eats an unrestricted diet.\n\nFH: My mother is fifty-two and she has diabetes.; My father's fifty-five and he has high blood pressure.; I have a brother who's thirty-one, and he's healthy.; As far as I know, nerve problems like this don't run in my family.\n\nROS: Neurologic - Reports numbness. Reports paresthesia. Denies weakness. General - Reports polydipsia. Denies weight loss. Denies fever. Gastrointestinal - Denies diarrhea. Denies constipation. Denies nausea.\n",
           "O": "Vitals: T 98.2 F oral, P 78 bpm, BP 136/82 mmHg, R 16 rpm, Pulse Ox 98% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert and comfortable at rest.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nNeuro: Reduced light touch and vibration symmetrically from toes to ankles. Achilles reflexes reduced bilaterally; patellar reflexes 2+. Lower extremity strength 5/5 bilaterally.\n\nSkin: Skin of feet intact, without visible ulceration.\n\nExt: Dorsalis pedis pulses palpable and symmetric.\n\nOsteopathic: C1 paraspinal tissue texture change with mild tenderness on the right.",
           "A": [
             "1. Diabetic distal symmetric polyneuropathy",
@@ -5199,13 +5199,13 @@
             "I have not noticed an open sore on my feet."
           ],
           "history_pmh_1": [
-            "Type 2 diabetes diagnosed at age 18,10 years ago",
+            "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago", "Type 2 diabetes diagnosed at age 18,10 years ago",
             "medical history",
             "medical problems",
             "past medical"
           ],
           "history_pmh_2": [
-            "last A1c was high but does not recall the number.",
+            "and my last A1c was high, though I don't remember the number.", "last A1c was high but does not recall the number.",
             "last A1c was high but does not recall the number",
             "medical history",
             "medical problems",
@@ -5266,19 +5266,19 @@
             "I am a cashier."
           ],
           "history_family_1": [
-            "Mother had diabetes",
+            "My mother is fifty-two and she has diabetes.", "Mother had diabetes",
             "mother"
           ],
           "history_family_2": [
-            "father hypertension",
+            "My father's fifty-five and he has high blood pressure.", "father hypertension",
             "father"
           ],
           "history_family_3": [
-            "brother healthy",
+            "I have a brother who's thirty-one, and he's healthy.", "brother healthy",
             "brother"
           ],
           "history_family_4": [
-            "no hereditary neuropathy known."
+            "As far as I know, nerve problems like this don't run in my family.", "no hereditary neuropathy known."
           ],
           "patient_concern": [
             "Will I lose my feet like someone I know?"
@@ -6244,9 +6244,9 @@
             "id": "history_pmh_1",
             "category": "pmh",
             "checklist": "h_history_pmh_1",
-            "value": "Type 2 diabetes diagnosed at age 18,10 years ago",
+            "value": "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago",
             "sp_says": [
-              "Type 2 diabetes diagnosed at age 18,10 years ago"
+              "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago"
             ],
             "triggers": {
               "any": [
@@ -6260,7 +6260,7 @@
             "concepts": {
               "history_pmh_1": {
                 "polarity": "positive",
-                "value": "Type 2 diabetes diagnosed at age 18,10 years ago"
+                "value": "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago"
               }
             },
             "example_questions": [
@@ -6269,11 +6269,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Type 2 diabetes diagnosed at age 18,10 years ago",
+                  "text": "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago",
                   "concepts": {
                     "history_pmh_1": {
                       "polarity": "positive",
-                      "value": "Type 2 diabetes diagnosed at age 18,10 years ago"
+                      "value": "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago"
                     }
                   },
                   "complete_fact": true
@@ -6286,9 +6286,9 @@
             "id": "history_pmh_2",
             "category": "pmh",
             "checklist": "h_history_pmh_2",
-            "value": "last A1c was high but does not recall the number.",
+            "value": "and my last A1c was high, though I don't remember the number.",
             "sp_says": [
-              "last A1c was high but does not recall the number."
+              "and my last A1c was high, though I don't remember the number."
             ],
             "triggers": {
               "any": [
@@ -6302,7 +6302,7 @@
             "concepts": {
               "history_pmh_2": {
                 "polarity": "positive",
-                "value": "last A1c was high but does not recall the number."
+                "value": "and my last A1c was high, though I don't remember the number."
               }
             },
             "example_questions": [
@@ -6311,11 +6311,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "last A1c was high but does not recall the number.",
+                  "text": "and my last A1c was high, though I don't remember the number.",
                   "concepts": {
                     "history_pmh_2": {
                       "polarity": "positive",
-                      "value": "last A1c was high but does not recall the number."
+                      "value": "and my last A1c was high, though I don't remember the number."
                     }
                   },
                   "complete_fact": true
@@ -6668,9 +6668,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother had diabetes",
+            "value": "My mother is fifty-two and she has diabetes.",
             "sp_says": [
-              "Mother had diabetes"
+              "My mother is fifty-two and she has diabetes."
             ],
             "triggers": {
               "any": [
@@ -6686,7 +6686,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother had diabetes"
+                "value": "My mother is fifty-two and she has diabetes."
               }
             },
             "example_questions": [
@@ -6695,11 +6695,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother had diabetes",
+                  "text": "My mother is fifty-two and she has diabetes.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother had diabetes"
+                      "value": "My mother is fifty-two and she has diabetes."
                     }
                   },
                   "complete_fact": true
@@ -6712,9 +6712,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "father hypertension",
+            "value": "My father's fifty-five and he has high blood pressure.",
             "sp_says": [
-              "father hypertension"
+              "My father's fifty-five and he has high blood pressure."
             ],
             "triggers": {
               "any": [
@@ -6730,7 +6730,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father hypertension"
+                "value": "My father's fifty-five and he has high blood pressure."
               }
             },
             "example_questions": [
@@ -6739,11 +6739,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "father hypertension",
+                  "text": "My father's fifty-five and he has high blood pressure.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "father hypertension"
+                      "value": "My father's fifty-five and he has high blood pressure."
                     }
                   },
                   "complete_fact": true
@@ -6756,9 +6756,9 @@
             "id": "history_family_3",
             "category": "family",
             "checklist": "h_history_family_3",
-            "value": "brother healthy",
+            "value": "I have a brother who's thirty-one, and he's healthy.",
             "sp_says": [
-              "brother healthy"
+              "I have a brother who's thirty-one, and he's healthy."
             ],
             "triggers": {
               "any": [
@@ -6774,7 +6774,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "brother healthy"
+                "value": "I have a brother who's thirty-one, and he's healthy."
               }
             },
             "example_questions": [
@@ -6783,11 +6783,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "brother healthy",
+                  "text": "I have a brother who's thirty-one, and he's healthy.",
                   "concepts": {
                     "history_family_3": {
                       "polarity": "positive",
-                      "value": "brother healthy"
+                      "value": "I have a brother who's thirty-one, and he's healthy."
                     }
                   },
                   "complete_fact": true
@@ -6800,9 +6800,9 @@
             "id": "history_family_4",
             "category": "family",
             "checklist": "h_history_family_4",
-            "value": "no hereditary neuropathy known.",
+            "value": "As far as I know, nerve problems like this don't run in my family.",
             "sp_says": [
-              "no hereditary neuropathy known."
+              "As far as I know, nerve problems like this don't run in my family."
             ],
             "triggers": {
               "any": [
@@ -6818,7 +6818,7 @@
             "concepts": {
               "history_family_4": {
                 "polarity": "positive",
-                "value": "no hereditary neuropathy known."
+                "value": "As far as I know, nerve problems like this don't run in my family."
               }
             },
             "example_questions": [
@@ -6827,11 +6827,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "no hereditary neuropathy known.",
+                  "text": "As far as I know, nerve problems like this don't run in my family.",
                   "concepts": {
                     "history_family_4": {
                       "polarity": "positive",
-                      "value": "no hereditary neuropathy known."
+                      "value": "As far as I know, nerve problems like this don't run in my family."
                     }
                   },
                   "complete_fact": true
@@ -7109,11 +7109,11 @@
             },
             {
               "id": "h_history_pmh_1",
-              "text": "Type 2 diabetes diagnosed at age 18,10 years ago"
+              "text": "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago"
             },
             {
               "id": "h_history_pmh_2",
-              "text": "last A1c was high but does not recall the number."
+              "text": "and my last A1c was high, though I don't remember the number."
             },
             {
               "id": "h_history_psh_1",
@@ -7149,19 +7149,19 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother had diabetes"
+              "text": "My mother is fifty-two and she has diabetes."
             },
             {
               "id": "h_history_family_2",
-              "text": "father hypertension"
+              "text": "My father's fifty-five and he has high blood pressure."
             },
             {
               "id": "h_history_family_3",
-              "text": "brother healthy"
+              "text": "I have a brother who's thirty-one, and he's healthy."
             },
             {
               "id": "h_history_family_4",
-              "text": "no hereditary neuropathy known."
+              "text": "As far as I know, nerve problems like this don't run in my family."
             },
             {
               "id": "h_patient_concern",
@@ -7278,7 +7278,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Gradual tingling and numbness in both feet\n\nHPI: 28 yo m. Patient reports: It started 4 months ago. It began in the toes of both feet. It has spread up to the ankles, not into my hands. It is tingling, burning and reduced feeling. Burning is 5/10 at night. It has gradually spread and is now present daily. There was no injury. Taking the bedsheet off my feet helps. The bedsheet touching my feet and nighttime worsen it. I tried a foot cream without benefit. I have not had this before. Both feet feel numb. They tingle and burn at night. I have been more thirsty lately.\n\nPatient perspective: Will I lose my feet like someone I know?\n\nPMH: Type 2 diabetes diagnosed at age 18,10 years ago; last A1c was high but does not recall the number.\n\nPSH: No surgery or admissions.\n\nMeds: Metformin 1000 mg twice daily; sometimes misses the evening dose.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink monthly. No recreational drugs. Cashier; lives with wife; eats an unrestricted diet.\n\nFH: Mother had diabetes; father hypertension; brother healthy; no hereditary neuropathy known.\n\nROS: Neurologic - Reports numbness. Reports paresthesia. Denies weakness. General - Reports polydipsia. Denies weight loss. Denies fever. Gastrointestinal - Denies diarrhea. Denies constipation. Denies nausea.\n\nPatient concern: I cannot see the bottoms of my feet clearly.\n",
+          "S": "cc: Gradual tingling and numbness in both feet\n\nHPI: 28 yo m. Patient reports: It started 4 months ago. It began in the toes of both feet. It has spread up to the ankles, not into my hands. It is tingling, burning and reduced feeling. Burning is 5/10 at night. It has gradually spread and is now present daily. There was no injury. Taking the bedsheet off my feet helps. The bedsheet touching my feet and nighttime worsen it. I tried a foot cream without benefit. I have not had this before. Both feet feel numb. They tingle and burn at night. I have been more thirsty lately.\n\nPatient perspective: Will I lose my feet like someone I know?\n\nPMH: Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago; and my last A1c was high, though I don't remember the number.\n\nPSH: No surgery or admissions.\n\nMeds: Metformin 1000 mg twice daily; sometimes misses the evening dose.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink monthly. No recreational drugs. Cashier; lives with wife; eats an unrestricted diet.\n\nFH: My mother is fifty-two and she has diabetes.; My father's fifty-five and he has high blood pressure.; I have a brother who's thirty-one, and he's healthy.; As far as I know, nerve problems like this don't run in my family.\n\nROS: Neurologic - Reports numbness. Reports paresthesia. Denies weakness. General - Reports polydipsia. Denies weight loss. Denies fever. Gastrointestinal - Denies diarrhea. Denies constipation. Denies nausea.\n\nPatient concern: I cannot see the bottoms of my feet clearly.\n",
           "O": "Vitals: T 98.2 F oral, P 78 bpm, BP 136/82 mmHg, R 16 rpm, Pulse Ox 98% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert and comfortable at rest.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nNeuro: Reduced light touch and vibration symmetrically from toes to ankles. Achilles reflexes reduced bilaterally; patellar reflexes 2+. Lower extremity strength 5/5 bilaterally.\n\nSkin: Skin of feet intact, without visible ulceration.\n\nExt: Dorsalis pedis pulses palpable and symmetric.\n\nOsteopathic: C1 paraspinal tissue texture change with mild tenderness on the right.",
           "A": [
             "1. Diabetic distal symmetric polyneuropathy",

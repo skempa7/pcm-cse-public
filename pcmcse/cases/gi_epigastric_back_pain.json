@@ -282,15 +282,15 @@
       "I am a restaurant manager."
     ],
     "history_family_1": [
-      "Mother has diabetes",
+      "My mom is fifty-six and she has diabetes.", "Mother has diabetes",
       "mother"
     ],
     "history_family_2": [
-      "father has hyperlipidemia",
+      "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.", "father has hyperlipidemia",
       "father"
     ],
     "history_family_3": [
-      "sister healthy.",
+      "I have a sister who's twenty-five and she's healthy.", "sister healthy.",
       "sister"
     ],
     "patient_concern": [
@@ -1631,9 +1631,9 @@
       "id": "history_family_1",
       "category": "family",
       "checklist": "h_history_family_1",
-      "value": "Mother has diabetes",
+      "value": "My mom is fifty-six and she has diabetes.",
       "sp_says": [
-        "Mother has diabetes"
+        "My mom is fifty-six and she has diabetes."
       ],
       "triggers": {
         "any": [
@@ -1649,7 +1649,7 @@
       "concepts": {
         "history_family_1": {
           "polarity": "positive",
-          "value": "Mother has diabetes"
+          "value": "My mom is fifty-six and she has diabetes."
         }
       },
       "example_questions": [
@@ -1658,11 +1658,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "Mother has diabetes",
+            "text": "My mom is fifty-six and she has diabetes.",
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has diabetes"
+                "value": "My mom is fifty-six and she has diabetes."
               }
             },
             "complete_fact": true
@@ -1675,9 +1675,9 @@
       "id": "history_family_2",
       "category": "family",
       "checklist": "h_history_family_2",
-      "value": "father has hyperlipidemia",
+      "value": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.",
       "sp_says": [
-        "father has hyperlipidemia"
+        "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood."
       ],
       "triggers": {
         "any": [
@@ -1693,7 +1693,7 @@
       "concepts": {
         "history_family_2": {
           "polarity": "positive",
-          "value": "father has hyperlipidemia"
+          "value": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood."
         }
       },
       "example_questions": [
@@ -1702,11 +1702,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "father has hyperlipidemia",
+            "text": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.",
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father has hyperlipidemia"
+                "value": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood."
               }
             },
             "complete_fact": true
@@ -1719,9 +1719,9 @@
       "id": "history_family_3",
       "category": "family",
       "checklist": "h_history_family_3",
-      "value": "sister healthy.",
+      "value": "I have a sister who's twenty-five and she's healthy.",
       "sp_says": [
-        "sister healthy."
+        "I have a sister who's twenty-five and she's healthy."
       ],
       "triggers": {
         "any": [
@@ -1737,7 +1737,7 @@
       "concepts": {
         "history_family_3": {
           "polarity": "positive",
-          "value": "sister healthy."
+          "value": "I have a sister who's twenty-five and she's healthy."
         }
       },
       "example_questions": [
@@ -1746,11 +1746,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "sister healthy.",
+            "text": "I have a sister who's twenty-five and she's healthy.",
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "sister healthy."
+                "value": "I have a sister who's twenty-five and she's healthy."
               }
             },
             "complete_fact": true
@@ -2346,15 +2346,15 @@
       },
       {
         "id": "h_history_family_1",
-        "text": "Mother has diabetes"
+        "text": "My mom is fifty-six and she has diabetes."
       },
       {
         "id": "h_history_family_2",
-        "text": "father has hyperlipidemia"
+        "text": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood."
       },
       {
         "id": "h_history_family_3",
-        "text": "sister healthy."
+        "text": "I have a sister who's twenty-five and she's healthy."
       },
       {
         "id": "h_patient_concern",
@@ -2485,7 +2485,7 @@
     ]
   },
   "model_note": {
-    "S": "cc: Severe upper abdominal pain radiating to the back\n\nHPI: 28 yo f. Patient reports: It started 12 hours ago. It is in the upper middle abdomen. It goes through to the mid-back. It is a deep, severe constant pain. It is 9/10. It has worsened and has not let up. It started after dinner; I had several alcoholic drinks over the weekend. Leaning forward helps slightly. Eating and lying flat worsen it. An antacid did not help. I had no previous episode this severe. I feel very nauseated. I have vomited 4 times and cannot keep water down. I feel weak. My heart feels fast with the pain.\n\nPatient perspective: Are you going to judge me because I drink?\n\nPMH: High triglycerides diagnosed 2 years ago; no known gallstones.\n\nPSH: No abdominal surgeries.\n\nMeds: Fenofibrate 145 mg daily, often missed.\n\nAllergies: No known drug allergies.\n\nSH: Quit tobacco 2 years ago after 3 pack-years. Usually 3 beers nightly; 6 drinks at a gathering 2 days ago. No recreational drugs. Restaurant manager; lives with husband.\n\nFH: Mother has diabetes; father has hyperlipidemia; sister healthy.\n\nROS: Gastrointestinal - Reports nausea. Reports vomiting. Denies melena. General - Denies fever. Reports fatigue. Denies weight loss. Cardiovascular - Denies chest pain. Reports palpitations. Denies syncope.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+    "S": "cc: Severe upper abdominal pain radiating to the back\n\nHPI: 28 yo f. Patient reports: It started 12 hours ago. It is in the upper middle abdomen. It goes through to the mid-back. It is a deep, severe constant pain. It is 9/10. It has worsened and has not let up. It started after dinner; I had several alcoholic drinks over the weekend. Leaning forward helps slightly. Eating and lying flat worsen it. An antacid did not help. I had no previous episode this severe. I feel very nauseated. I have vomited 4 times and cannot keep water down. I feel weak. My heart feels fast with the pain.\n\nPatient perspective: Are you going to judge me because I drink?\n\nPMH: High triglycerides diagnosed 2 years ago; no known gallstones.\n\nPSH: No abdominal surgeries.\n\nMeds: Fenofibrate 145 mg daily, often missed.\n\nAllergies: No known drug allergies.\n\nSH: Quit tobacco 2 years ago after 3 pack-years. Usually 3 beers nightly; 6 drinks at a gathering 2 days ago. No recreational drugs. Restaurant manager; lives with husband.\n\nFH: My mom is fifty-six and she has diabetes.; My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.; I have a sister who's twenty-five and she's healthy.\n\nROS: Gastrointestinal - Reports nausea. Reports vomiting. Denies melena. General - Denies fever. Reports fatigue. Denies weight loss. Cardiovascular - Denies chest pain. Reports palpitations. Denies syncope.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
     "O": "Vitals: T 99.4 F oral, P 112 bpm, BP 110/72 mmHg, R 22 rpm, Pulse Ox 97% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Leaning forward, visibly distressed by pain.\n\nHeart: Regular tachycardia without murmur.\n\nLungs: Breath sounds present bilaterally without focal crackles.\n\nAbd: On inspection, mild upper abdominal distention. Bowel sounds reduced in the examined quadrants. Marked epigastric tenderness. No involuntary guarding during gentle assessment. Tympany over the abdomen.\n\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
     "A": [
       "1. Acute pancreatitis",
@@ -2994,15 +2994,15 @@
             "I am a restaurant manager."
           ],
           "history_family_1": [
-            "Mother has diabetes",
+            "My mom is fifty-six and she has diabetes.", "Mother has diabetes",
             "mother"
           ],
           "history_family_2": [
-            "father has hyperlipidemia",
+            "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.", "father has hyperlipidemia",
             "father"
           ],
           "history_family_3": [
-            "sister healthy.",
+            "I have a sister who's twenty-five and she's healthy.", "sister healthy.",
             "sister"
           ],
           "patient_concern": [
@@ -4343,9 +4343,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother has diabetes",
+            "value": "My mom is fifty-six and she has diabetes.",
             "sp_says": [
-              "Mother has diabetes"
+              "My mom is fifty-six and she has diabetes."
             ],
             "triggers": {
               "any": [
@@ -4361,7 +4361,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has diabetes"
+                "value": "My mom is fifty-six and she has diabetes."
               }
             },
             "example_questions": [
@@ -4370,11 +4370,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother has diabetes",
+                  "text": "My mom is fifty-six and she has diabetes.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother has diabetes"
+                      "value": "My mom is fifty-six and she has diabetes."
                     }
                   },
                   "complete_fact": true
@@ -4387,9 +4387,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "father has hyperlipidemia",
+            "value": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.",
             "sp_says": [
-              "father has hyperlipidemia"
+              "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood."
             ],
             "triggers": {
               "any": [
@@ -4405,7 +4405,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father has hyperlipidemia"
+                "value": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood."
               }
             },
             "example_questions": [
@@ -4414,11 +4414,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "father has hyperlipidemia",
+                  "text": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "father has hyperlipidemia"
+                      "value": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood."
                     }
                   },
                   "complete_fact": true
@@ -4431,9 +4431,9 @@
             "id": "history_family_3",
             "category": "family",
             "checklist": "h_history_family_3",
-            "value": "sister healthy.",
+            "value": "I have a sister who's twenty-five and she's healthy.",
             "sp_says": [
-              "sister healthy."
+              "I have a sister who's twenty-five and she's healthy."
             ],
             "triggers": {
               "any": [
@@ -4449,7 +4449,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "sister healthy."
+                "value": "I have a sister who's twenty-five and she's healthy."
               }
             },
             "example_questions": [
@@ -4458,11 +4458,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "sister healthy.",
+                  "text": "I have a sister who's twenty-five and she's healthy.",
                   "concepts": {
                     "history_family_3": {
                       "polarity": "positive",
-                      "value": "sister healthy."
+                      "value": "I have a sister who's twenty-five and she's healthy."
                     }
                   },
                   "complete_fact": true
@@ -4763,15 +4763,15 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother has diabetes"
+              "text": "My mom is fifty-six and she has diabetes."
             },
             {
               "id": "h_history_family_2",
-              "text": "father has hyperlipidemia"
+              "text": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood."
             },
             {
               "id": "h_history_family_3",
-              "text": "sister healthy."
+              "text": "I have a sister who's twenty-five and she's healthy."
             },
             {
               "id": "h_patient_concern",
@@ -4901,7 +4901,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Severe upper abdominal pain radiating to the back\n\nHPI: 28 yo f. Patient reports: It started 6 hours ago. It is in the upper middle abdomen. It goes through to the mid-back. It is a deep, severe constant pain. It is 9/10. It has worsened and has not let up. It started after dinner; I had several alcoholic drinks over the weekend. Leaning forward helps slightly. Eating and lying flat worsen it. An antacid did not help. I had no previous episode this severe. I feel very nauseated. I have vomited 4 times and cannot keep water down. I feel weak. My heart feels fast with the pain.\n\nPatient perspective: Are you going to judge me because I drink?\n\nPMH: High triglycerides diagnosed 2 years ago; no known gallstones.\n\nPSH: No abdominal surgeries.\n\nMeds: Fenofibrate 145 mg daily, often missed.\n\nAllergies: No known drug allergies.\n\nSH: Quit tobacco 2 years ago after 3 pack-years. Usually 3 beers nightly; 6 drinks at a gathering 2 days ago. No recreational drugs. Restaurant manager; lives with husband.\n\nFH: Mother has diabetes; father has hyperlipidemia; sister healthy.\n\nROS: Gastrointestinal - Reports nausea. Reports vomiting. Denies melena. General - Denies fever. Reports fatigue. Denies weight loss. Cardiovascular - Denies chest pain. Reports palpitations. Denies syncope.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+          "S": "cc: Severe upper abdominal pain radiating to the back\n\nHPI: 28 yo f. Patient reports: It started 6 hours ago. It is in the upper middle abdomen. It goes through to the mid-back. It is a deep, severe constant pain. It is 9/10. It has worsened and has not let up. It started after dinner; I had several alcoholic drinks over the weekend. Leaning forward helps slightly. Eating and lying flat worsen it. An antacid did not help. I had no previous episode this severe. I feel very nauseated. I have vomited 4 times and cannot keep water down. I feel weak. My heart feels fast with the pain.\n\nPatient perspective: Are you going to judge me because I drink?\n\nPMH: High triglycerides diagnosed 2 years ago; no known gallstones.\n\nPSH: No abdominal surgeries.\n\nMeds: Fenofibrate 145 mg daily, often missed.\n\nAllergies: No known drug allergies.\n\nSH: Quit tobacco 2 years ago after 3 pack-years. Usually 3 beers nightly; 6 drinks at a gathering 2 days ago. No recreational drugs. Restaurant manager; lives with husband.\n\nFH: My mom is fifty-six and she has diabetes.; My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.; I have a sister who's twenty-five and she's healthy.\n\nROS: Gastrointestinal - Reports nausea. Reports vomiting. Denies melena. General - Denies fever. Reports fatigue. Denies weight loss. Cardiovascular - Denies chest pain. Reports palpitations. Denies syncope.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
           "O": "Vitals: T 99.4 F oral, P 112 bpm, BP 110/72 mmHg, R 22 rpm, Pulse Ox 97% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Leaning forward, visibly distressed by pain.\n\nHeart: Regular tachycardia without murmur.\n\nLungs: Breath sounds present bilaterally without focal crackles.\n\nAbd: On inspection, mild upper abdominal distention. Bowel sounds reduced in the examined quadrants. Marked epigastric tenderness. No involuntary guarding during gentle assessment. Tympany over the abdomen.\n\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Acute pancreatitis",
@@ -5179,15 +5179,15 @@
             "I am a restaurant manager."
           ],
           "history_family_1": [
-            "Mother has diabetes",
+            "My mom is fifty-six and she has diabetes.", "Mother has diabetes",
             "mother"
           ],
           "history_family_2": [
-            "father has hyperlipidemia",
+            "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.", "father has hyperlipidemia",
             "father"
           ],
           "history_family_3": [
-            "sister healthy.",
+            "I have a sister who's twenty-five and she's healthy.", "sister healthy.",
             "sister"
           ],
           "patient_concern": [
@@ -6531,9 +6531,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother has diabetes",
+            "value": "My mom is fifty-six and she has diabetes.",
             "sp_says": [
-              "Mother has diabetes"
+              "My mom is fifty-six and she has diabetes."
             ],
             "triggers": {
               "any": [
@@ -6549,7 +6549,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has diabetes"
+                "value": "My mom is fifty-six and she has diabetes."
               }
             },
             "example_questions": [
@@ -6558,11 +6558,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother has diabetes",
+                  "text": "My mom is fifty-six and she has diabetes.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother has diabetes"
+                      "value": "My mom is fifty-six and she has diabetes."
                     }
                   },
                   "complete_fact": true
@@ -6575,9 +6575,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "father has hyperlipidemia",
+            "value": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.",
             "sp_says": [
-              "father has hyperlipidemia"
+              "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood."
             ],
             "triggers": {
               "any": [
@@ -6593,7 +6593,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father has hyperlipidemia"
+                "value": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood."
               }
             },
             "example_questions": [
@@ -6602,11 +6602,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "father has hyperlipidemia",
+                  "text": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "father has hyperlipidemia"
+                      "value": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood."
                     }
                   },
                   "complete_fact": true
@@ -6619,9 +6619,9 @@
             "id": "history_family_3",
             "category": "family",
             "checklist": "h_history_family_3",
-            "value": "sister healthy.",
+            "value": "I have a sister who's twenty-five and she's healthy.",
             "sp_says": [
-              "sister healthy."
+              "I have a sister who's twenty-five and she's healthy."
             ],
             "triggers": {
               "any": [
@@ -6637,7 +6637,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "sister healthy."
+                "value": "I have a sister who's twenty-five and she's healthy."
               }
             },
             "example_questions": [
@@ -6646,11 +6646,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "sister healthy.",
+                  "text": "I have a sister who's twenty-five and she's healthy.",
                   "concepts": {
                     "history_family_3": {
                       "polarity": "positive",
-                      "value": "sister healthy."
+                      "value": "I have a sister who's twenty-five and she's healthy."
                     }
                   },
                   "complete_fact": true
@@ -6996,15 +6996,15 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother has diabetes"
+              "text": "My mom is fifty-six and she has diabetes."
             },
             {
               "id": "h_history_family_2",
-              "text": "father has hyperlipidemia"
+              "text": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood."
             },
             {
               "id": "h_history_family_3",
-              "text": "sister healthy."
+              "text": "I have a sister who's twenty-five and she's healthy."
             },
             {
               "id": "h_patient_concern",
@@ -7138,7 +7138,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Severe upper abdominal pain radiating to the back\n\nHPI: 28 yo f. Patient reports: It started 12 hours ago. It is in the upper middle abdomen. It goes through to the mid-back. It is a deep, severe constant pain. It is 9/10. It has worsened and has not let up. It started after dinner; I had several alcoholic drinks over the weekend. Leaning forward helps slightly. Eating and lying flat worsen it. An antacid did not help. I had no previous episode this severe. I feel very nauseated. I have vomited 4 times and cannot keep water down. I feel weak. My heart feels fast with the pain.\n\nPatient perspective: Are you going to judge me because I drink?\n\nPMH: High triglycerides diagnosed 2 years ago; no known gallstones.\n\nPSH: No abdominal surgeries.\n\nMeds: Fenofibrate 145 mg daily, often missed.\n\nAllergies: No known drug allergies.\n\nSH: Quit tobacco 2 years ago after 3 pack-years. Usually 3 beers nightly; 6 drinks at a gathering 2 days ago. No recreational drugs. Restaurant manager; lives with husband.\n\nFH: Mother has diabetes; father has hyperlipidemia; sister healthy.\n\nROS: Gastrointestinal - Reports nausea. Reports vomiting. Denies melena. General - Denies fever. Reports fatigue. Denies weight loss. Cardiovascular - Denies chest pain. Reports palpitations. Denies syncope.\n\nPatient concern: I am embarrassed discussing alcohol in front of staff.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+          "S": "cc: Severe upper abdominal pain radiating to the back\n\nHPI: 28 yo f. Patient reports: It started 12 hours ago. It is in the upper middle abdomen. It goes through to the mid-back. It is a deep, severe constant pain. It is 9/10. It has worsened and has not let up. It started after dinner; I had several alcoholic drinks over the weekend. Leaning forward helps slightly. Eating and lying flat worsen it. An antacid did not help. I had no previous episode this severe. I feel very nauseated. I have vomited 4 times and cannot keep water down. I feel weak. My heart feels fast with the pain.\n\nPatient perspective: Are you going to judge me because I drink?\n\nPMH: High triglycerides diagnosed 2 years ago; no known gallstones.\n\nPSH: No abdominal surgeries.\n\nMeds: Fenofibrate 145 mg daily, often missed.\n\nAllergies: No known drug allergies.\n\nSH: Quit tobacco 2 years ago after 3 pack-years. Usually 3 beers nightly; 6 drinks at a gathering 2 days ago. No recreational drugs. Restaurant manager; lives with husband.\n\nFH: My mom is fifty-six and she has diabetes.; My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.; I have a sister who's twenty-five and she's healthy.\n\nROS: Gastrointestinal - Reports nausea. Reports vomiting. Denies melena. General - Denies fever. Reports fatigue. Denies weight loss. Cardiovascular - Denies chest pain. Reports palpitations. Denies syncope.\n\nPatient concern: I am embarrassed discussing alcohol in front of staff.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
           "O": "Vitals: T 99.4 F oral, P 112 bpm, BP 110/72 mmHg, R 22 rpm, Pulse Ox 97% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Leaning forward, visibly distressed by pain.\n\nHeart: Regular tachycardia without murmur.\n\nLungs: Breath sounds present bilaterally without focal crackles.\n\nAbd: On inspection, mild upper abdominal distention. Bowel sounds reduced in the examined quadrants. Marked epigastric tenderness. No involuntary guarding during gentle assessment. Tympany over the abdomen.\n\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Acute pancreatitis",

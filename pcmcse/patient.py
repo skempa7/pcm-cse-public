@@ -591,6 +591,27 @@ def compound_history_domains(question):
     return domains
 
 
+_FAMILY_SCOPE=re.compile(r"\b(?:family|relatives?|mothers?|fathers?|mom|mum|dad|parents?|siblings?|brothers?|sisters?|grandmothers?|grandfathers?|grandparents?)\b|\bruns in\b")
+# Naming a relative is not always a family-history ask: "do you live with your
+# family?" and "do you have a family doctor?" are the patient's own social
+# history and must keep their existing routes.
+_FAMILY_NOT_HISTORY=re.compile(r"\bfamily (?:doctor|physician|practice|practitioner|medicine)\b|\blive (?:with|alone)\b|\bliving (?:with|situation)\b|\bhousehold\b|who (?:do you|else) live")
+
+
+def family_scoped(question):
+    """Whether this ask is about a relative rather than about the patient.
+
+    "Any medical problems in your family?" contains the patient's own PMH
+    trigger ("medical problems") word for word, and the authored family
+    trigger is the two-word phrase "family history", which it does not
+    contain. Without a scope test the patient answers a question about her
+    father with her own diagnoses.
+    """
+    q=nlp.normalize(question)
+    if _FAMILY_NOT_HISTORY.search(q):return False
+    return bool(_FAMILY_SCOPE.search(q))
+
+
 def current_status_subject_matches(fact, clause):
     """A present-state question cannot borrow a different symptom's status."""
     if fact.get('current_status_condition')=='head_still' and not re.search(r'(?:head|sitting|sit|keeping).*still|sitting quietly|between.*(?:spell|episode)',clause,re.I):return False
@@ -764,6 +785,10 @@ def regional_fact_allowed(fact,question):
     if fid in ('symptom_leg_weakness','symptom_weakness') and re.search(r'\b(?:arms?|hands?|fingers?|face|upper limbs?)\b',q) and not re.search(r'\b(?:legs?|lower limbs?|feet)\b',q):return False
     if fid=='symptom_saddle_numbness':
         return bool(re.search(r'saddle|perine|between (?:your |the )?legs|groin',q) and re.search(r'numb|sensation|sensory|(?:less|reduced|lost|loss of) feeling|wiping',q))
+    # A relative's history is not the patient's. These categories share their
+    # trigger words with family questions ("medical problems", "surgery"), so
+    # the scope has to disqualify them rather than merely outrank them.
+    if fact.get('category') in ('pmh','psh','medications','allergies') and family_scoped(question):return False
     return True
 
 
@@ -1316,7 +1341,7 @@ class PatientEngine:
             parts=[]
             if name:parts.append("My name is %s." % pat['name'])
             if age:parts.append("I am %s years old." % pat['age'])
-            return ' '.join(parts)
+            return dialogue.join_spoken(parts)
         if route=='introduction':
             meta['kind']='introduction_response'
             return 'Hello. Thank you for introducing yourself. I am ready to talk.'
@@ -1325,7 +1350,7 @@ class PatientEngine:
             return "I do not know what is causing these symptoms. I am here to find out."
         if route=='onset_activity' and not _instruction_or_other_person(utterance):
             facts=[f for f in self.facts.values() if f.get('onset_activity') is True]
-            if facts:return ' '.join(self._say(f,state,meta)for f in facts[:2])
+            if facts:return dialogue.join_spoken([self._say(f,state,meta) for f in facts[:2]])
             meta.update(kind='non_answer',no_information=True,unscripted_topic=True)
             return 'The case does not specify what I was doing at the moment it started.'
         if re.fullmatch(r'(?:may|can|could) i explain (?:the |this |a )?(?:physical )?(?:exam|examination)(?: i would like to do)?[ .?]*',text):
@@ -1337,7 +1362,7 @@ class PatientEngine:
             topic=named.group(1)
             pattern=r'(?:kidney|renal|ureteral)?\s*stones?' if 'stone' in topic and 'gall' not in topic else re.escape(topic).rstrip('s')+r's?'
             selected=[f for f in self.facts.values() if f.get('category') in ('pmh','past_occurrence') and re.search(pattern,self._fact_text(f),re.I)]
-            if selected:return ' '.join(self._say(f,state,meta) for f in selected[:3])
+            if selected:return dialogue.join_spoken([self._say(f,state,meta) for f in selected[:3]])
             meta.update(kind='non_answer',no_information=True,unscripted_topic=True)
             return 'I do not have an answer about that past condition in this simulated case. Please treat it as unavailable, not as a denial.'
         if re.search(r'\bwhat (?:worries|concerns) you (?:the )?most\b|\bwhat are you (?:most )?worried about\b',text) and not _instruction_or_other_person(utterance):
@@ -1379,7 +1404,7 @@ class PatientEngine:
             return proposal
 
         complete=exact_authored_compound_history(self.case,utterance)
-        if complete:return ' '.join(self._say(f,state,meta) for f in complete[:3])
+        if complete:return dialogue.join_spoken([self._say(f,state,meta) for f in complete[:3]])
 
         posture=posture_history_topics(utterance)
         if posture is not None:
@@ -1391,7 +1416,7 @@ class PatientEngine:
             if missing or not parts:parts.append('I do not have an answer to that in this simulated case. Please treat it as information unavailable, not as a denial.')
             if not selected:meta.update(kind='non_answer',no_information=True,unscripted_topic=True)
             if missing:meta['unavailable_topics']=missing
-            return ' '.join(parts)
+            return dialogue.join_spoken(parts)
 
         focused=focused_history_topics(utterance)
         if focused is not None:
@@ -1404,7 +1429,7 @@ class PatientEngine:
                 parts.append('I do not have an answer to that in this simulated case. Please treat it as information unavailable, not as a denial.')
             if not selected:meta.update(kind='non_answer',no_information=True,unscripted_topic=True)
             if missing:meta['unavailable_topics']=missing
-            return ' '.join(parts)
+            return dialogue.join_spoken(parts)
 
         # 3. An acknowledgement can prefix a real answer rather than replace it.
         #    "That sounds uncomfortable. When did the burning start?" must still
@@ -1456,7 +1481,7 @@ class PatientEngine:
         followup = self._followup_hits(utterance, state)
         if followup:
             parts = [self._say(fact, state, meta) for fact, _ in followup[:2]]
-            return self._join(ack, " ".join(p for p in parts if p))
+            return self._join(ack, dialogue.join_spoken(parts))
 
         # 5. Direct questions: which facts does this reach?
         dimension_result = self._dimension_match(utterance, state)
@@ -1486,7 +1511,7 @@ class PatientEngine:
                 meta['unavailable_dimensions'] = missing_dimensions
                 parts.append('I do not have information about '+', '.join({'current_status':'whether the symptom is present right now','last_known_well':'when I was last completely well'}.get(d,d) for d in missing_dimensions)+' in this simulated case.')
             self._maybe_follow_on(hits, state, meta, parts)
-            return self._join(ack, " ".join(p for p in parts if p))
+            return self._join(ack, dialogue.join_spoken(parts))
 
         # 6. A symptom this patient simply does not have.  The denial enters the
         #    record because the student ASKED -- silence still never becomes a
@@ -2126,6 +2151,20 @@ class PatientEngine:
         focused=focused_fact_ids(utterance)
         if focused is not None:return [(f,3.0) for f in self.facts.values() if f['id'] in focused and regional_fact_allowed(f,utterance)]
         text = nlp.normalize(utterance)
+        # A bare "family" carries no authored trigger of its own -- those name
+        # the members ("mother", "father") or the phrase "family history" -- so
+        # "anyone in your family" reached no family fact at all. Member-specific
+        # asks still route through their own triggers and never arrive here.
+        if re.search(r'\bfamily\b|\brelatives?\b|\bruns in\b|\bparents?\b',text) and family_scoped(utterance):
+            relatives=[f for f in self.facts.values() if f.get('category')=='family']
+            # "Are your parents still living?" asks about two named people.
+            # Answering with the siblings as well would release history the
+            # student never asked for, and the ledger must not credit that.
+            if re.search(r'\bparents?\b',text) and not re.search(r'\bfamily\b|\brelatives?\b',text):
+                parents=[f for f in relatives
+                         if re.search(r'\b(?:mother|father|mom|mum|dad|parent)',self._fact_text(f),re.I)]
+                if parents:relatives=parents
+            if relatives:return [(f,3.0) for f in relatives]
         domains=compound_history_domains(utterance)
         if len(domains)>1 or domains==['allergies']:
             return [(f,3.0) for f in self.facts.values() if f.get('category') in domains]

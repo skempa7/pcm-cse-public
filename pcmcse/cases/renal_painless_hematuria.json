@@ -290,19 +290,19 @@
       "I am a print-shop designer."
     ],
     "history_family_1": [
-      "Mother had hypertension",
+      "My mother is sixty-two and she has high blood pressure.", "Mother had hypertension",
       "mother"
     ],
     "history_family_2": [
-      "father died of stroke at 76",
+      "My father died of a stroke when he was seventy-six.", "father died of stroke at 76",
       "father"
     ],
     "history_family_3": [
-      "sister healthy",
+      "I have one sister, she's thirty-two and she's healthy.", "sister healthy",
       "sister"
     ],
     "history_family_4": [
-      "no known hereditary kidney disease."
+      "Kidney disease doesn't run in my family as far as I know.", "no known hereditary kidney disease."
     ],
     "patient_concern": [
       "It stopped, so could we just wait?"
@@ -1714,9 +1714,9 @@
       "id": "history_family_1",
       "category": "family",
       "checklist": "h_history_family_1",
-      "value": "Mother had hypertension",
+      "value": "My mother is sixty-two and she has high blood pressure.",
       "sp_says": [
-        "Mother had hypertension"
+        "My mother is sixty-two and she has high blood pressure."
       ],
       "triggers": {
         "any": [
@@ -1732,7 +1732,7 @@
       "concepts": {
         "history_family_1": {
           "polarity": "positive",
-          "value": "Mother had hypertension"
+          "value": "My mother is sixty-two and she has high blood pressure."
         }
       },
       "example_questions": [
@@ -1741,11 +1741,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "Mother had hypertension",
+            "text": "My mother is sixty-two and she has high blood pressure.",
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother had hypertension"
+                "value": "My mother is sixty-two and she has high blood pressure."
               }
             },
             "complete_fact": true
@@ -1758,9 +1758,9 @@
       "id": "history_family_2",
       "category": "family",
       "checklist": "h_history_family_2",
-      "value": "father died of stroke at 76",
+      "value": "My father died of a stroke when he was seventy-six.",
       "sp_says": [
-        "father died of stroke at 76"
+        "My father died of a stroke when he was seventy-six."
       ],
       "triggers": {
         "any": [
@@ -1776,7 +1776,7 @@
       "concepts": {
         "history_family_2": {
           "polarity": "positive",
-          "value": "father died of stroke at 76"
+          "value": "My father died of a stroke when he was seventy-six."
         }
       },
       "example_questions": [
@@ -1785,11 +1785,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "father died of stroke at 76",
+            "text": "My father died of a stroke when he was seventy-six.",
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father died of stroke at 76"
+                "value": "My father died of a stroke when he was seventy-six."
               }
             },
             "complete_fact": true
@@ -1802,9 +1802,9 @@
       "id": "history_family_3",
       "category": "family",
       "checklist": "h_history_family_3",
-      "value": "sister healthy",
+      "value": "I have one sister, she's thirty-two and she's healthy.",
       "sp_says": [
-        "sister healthy"
+        "I have one sister, she's thirty-two and she's healthy."
       ],
       "triggers": {
         "any": [
@@ -1820,7 +1820,7 @@
       "concepts": {
         "history_family_3": {
           "polarity": "positive",
-          "value": "sister healthy"
+          "value": "I have one sister, she's thirty-two and she's healthy."
         }
       },
       "example_questions": [
@@ -1829,11 +1829,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "sister healthy",
+            "text": "I have one sister, she's thirty-two and she's healthy.",
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "sister healthy"
+                "value": "I have one sister, she's thirty-two and she's healthy."
               }
             },
             "complete_fact": true
@@ -1846,9 +1846,9 @@
       "id": "history_family_4",
       "category": "family",
       "checklist": "h_history_family_4",
-      "value": "no known hereditary kidney disease.",
+      "value": "Kidney disease doesn't run in my family as far as I know.",
       "sp_says": [
-        "no known hereditary kidney disease."
+        "Kidney disease doesn't run in my family as far as I know."
       ],
       "triggers": {
         "any": [
@@ -1864,7 +1864,7 @@
       "concepts": {
         "history_family_4": {
           "polarity": "positive",
-          "value": "no known hereditary kidney disease."
+          "value": "Kidney disease doesn't run in my family as far as I know."
         }
       },
       "example_questions": [
@@ -1873,11 +1873,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "no known hereditary kidney disease.",
+            "text": "Kidney disease doesn't run in my family as far as I know.",
             "concepts": {
               "history_family_4": {
                 "polarity": "positive",
-                "value": "no known hereditary kidney disease."
+                "value": "Kidney disease doesn't run in my family as far as I know."
               }
             },
             "complete_fact": true
@@ -2479,19 +2479,19 @@
       },
       {
         "id": "h_history_family_1",
-        "text": "Mother had hypertension"
+        "text": "My mother is sixty-two and she has high blood pressure."
       },
       {
         "id": "h_history_family_2",
-        "text": "father died of stroke at 76"
+        "text": "My father died of a stroke when he was seventy-six."
       },
       {
         "id": "h_history_family_3",
-        "text": "sister healthy"
+        "text": "I have one sister, she's thirty-two and she's healthy."
       },
       {
         "id": "h_history_family_4",
-        "text": "no known hereditary kidney disease."
+        "text": "Kidney disease doesn't run in my family as far as I know."
       },
       {
         "id": "h_patient_concern",
@@ -2622,7 +2622,7 @@
     ]
   },
   "model_note": {
-    "S": "cc: Visible blood in urine without pain\n\nHPI: 28 yo f. Patient reports: I first saw blood 5 days ago. The blood appears in the urine, not from the vagina. There is no flank or groin pain. The urine is pink-red without clots. It happened twice, throughout the stream. It stopped between episodes. I had a sore throat and a cold 2 days before the urine changed color; no strenuous exercise, trauma or procedure. It cleared on its own. There is no clear trigger. I have taken no treatment. This has never happened before. I saw pink-red urine twice.\n\nPatient perspective: It stopped, so could we just wait?\n\nPMH: Hypertension; no kidney stones or prior urinary disease.\n\nPSH: Appendectomy at age 18; no urinary procedures.\n\nMeds: Lisinopril 10 mg daily; no anticoagulants.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Print-shop designer; lives with husband.\n\nFH: Mother had hypertension; father died of stroke at 76; sister healthy; no known hereditary kidney disease.\n\nROS: Urinary - Reports hematuria. Denies dysuria. Denies frequency. General - Denies fever. Denies weight loss. Denies fatigue. Gastrointestinal - Denies nausea. Denies vomiting. Denies abdominal pain.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+    "S": "cc: Visible blood in urine without pain\n\nHPI: 28 yo f. Patient reports: I first saw blood 5 days ago. The blood appears in the urine, not from the vagina. There is no flank or groin pain. The urine is pink-red without clots. It happened twice, throughout the stream. It stopped between episodes. I had a sore throat and a cold 2 days before the urine changed color; no strenuous exercise, trauma or procedure. It cleared on its own. There is no clear trigger. I have taken no treatment. This has never happened before. I saw pink-red urine twice.\n\nPatient perspective: It stopped, so could we just wait?\n\nPMH: Hypertension; no kidney stones or prior urinary disease.\n\nPSH: Appendectomy at age 18; no urinary procedures.\n\nMeds: Lisinopril 10 mg daily; no anticoagulants.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Print-shop designer; lives with husband.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of a stroke when he was seventy-six.; I have one sister, she's thirty-two and she's healthy.; Kidney disease doesn't run in my family as far as I know.\n\nROS: Urinary - Reports hematuria. Denies dysuria. Denies frequency. General - Denies fever. Denies weight loss. Denies fatigue. Gastrointestinal - Denies nausea. Denies vomiting. Denies abdominal pain.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
     "O": "Vitals: T 98.3 F oral, P 76 bpm, BP 132/80 mmHg, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Comfortable and well appearing.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nAbd: Abdomen not distended; healed lower abdominal scar. Bowel sounds present. No focal abdominal or suprapubic tenderness. Tympanic over examined quadrants. Neither costovertebral angle is tender.\n\nOsteopathic: T10 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
     "A": [
       "1. IgA nephropathy with visible hematuria",
@@ -3135,19 +3135,19 @@
             "I am a print-shop designer."
           ],
           "history_family_1": [
-            "Mother had hypertension",
+            "My mother is sixty-two and she has high blood pressure.", "Mother had hypertension",
             "mother"
           ],
           "history_family_2": [
-            "father died of stroke at 76",
+            "My father died of a stroke when he was seventy-six.", "father died of stroke at 76",
             "father"
           ],
           "history_family_3": [
-            "sister healthy",
+            "I have one sister, she's thirty-two and she's healthy.", "sister healthy",
             "sister"
           ],
           "history_family_4": [
-            "no known hereditary kidney disease."
+            "Kidney disease doesn't run in my family as far as I know.", "no known hereditary kidney disease."
           ],
           "patient_concern": [
             "It stopped, so could we just wait?"
@@ -4559,9 +4559,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother had hypertension",
+            "value": "My mother is sixty-two and she has high blood pressure.",
             "sp_says": [
-              "Mother had hypertension"
+              "My mother is sixty-two and she has high blood pressure."
             ],
             "triggers": {
               "any": [
@@ -4577,7 +4577,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother had hypertension"
+                "value": "My mother is sixty-two and she has high blood pressure."
               }
             },
             "example_questions": [
@@ -4586,11 +4586,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother had hypertension",
+                  "text": "My mother is sixty-two and she has high blood pressure.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother had hypertension"
+                      "value": "My mother is sixty-two and she has high blood pressure."
                     }
                   },
                   "complete_fact": true
@@ -4603,9 +4603,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "father died of stroke at 76",
+            "value": "My father died of a stroke when he was seventy-six.",
             "sp_says": [
-              "father died of stroke at 76"
+              "My father died of a stroke when he was seventy-six."
             ],
             "triggers": {
               "any": [
@@ -4621,7 +4621,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father died of stroke at 76"
+                "value": "My father died of a stroke when he was seventy-six."
               }
             },
             "example_questions": [
@@ -4630,11 +4630,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "father died of stroke at 76",
+                  "text": "My father died of a stroke when he was seventy-six.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "father died of stroke at 76"
+                      "value": "My father died of a stroke when he was seventy-six."
                     }
                   },
                   "complete_fact": true
@@ -4647,9 +4647,9 @@
             "id": "history_family_3",
             "category": "family",
             "checklist": "h_history_family_3",
-            "value": "sister healthy",
+            "value": "I have one sister, she's thirty-two and she's healthy.",
             "sp_says": [
-              "sister healthy"
+              "I have one sister, she's thirty-two and she's healthy."
             ],
             "triggers": {
               "any": [
@@ -4665,7 +4665,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "sister healthy"
+                "value": "I have one sister, she's thirty-two and she's healthy."
               }
             },
             "example_questions": [
@@ -4674,11 +4674,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "sister healthy",
+                  "text": "I have one sister, she's thirty-two and she's healthy.",
                   "concepts": {
                     "history_family_3": {
                       "polarity": "positive",
-                      "value": "sister healthy"
+                      "value": "I have one sister, she's thirty-two and she's healthy."
                     }
                   },
                   "complete_fact": true
@@ -4691,9 +4691,9 @@
             "id": "history_family_4",
             "category": "family",
             "checklist": "h_history_family_4",
-            "value": "no known hereditary kidney disease.",
+            "value": "Kidney disease doesn't run in my family as far as I know.",
             "sp_says": [
-              "no known hereditary kidney disease."
+              "Kidney disease doesn't run in my family as far as I know."
             ],
             "triggers": {
               "any": [
@@ -4709,7 +4709,7 @@
             "concepts": {
               "history_family_4": {
                 "polarity": "positive",
-                "value": "no known hereditary kidney disease."
+                "value": "Kidney disease doesn't run in my family as far as I know."
               }
             },
             "example_questions": [
@@ -4718,11 +4718,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "no known hereditary kidney disease.",
+                  "text": "Kidney disease doesn't run in my family as far as I know.",
                   "concepts": {
                     "history_family_4": {
                       "polarity": "positive",
-                      "value": "no known hereditary kidney disease."
+                      "value": "Kidney disease doesn't run in my family as far as I know."
                     }
                   },
                   "complete_fact": true
@@ -5031,19 +5031,19 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother had hypertension"
+              "text": "My mother is sixty-two and she has high blood pressure."
             },
             {
               "id": "h_history_family_2",
-              "text": "father died of stroke at 76"
+              "text": "My father died of a stroke when he was seventy-six."
             },
             {
               "id": "h_history_family_3",
-              "text": "sister healthy"
+              "text": "I have one sister, she's thirty-two and she's healthy."
             },
             {
               "id": "h_history_family_4",
-              "text": "no known hereditary kidney disease."
+              "text": "Kidney disease doesn't run in my family as far as I know."
             },
             {
               "id": "h_patient_concern",
@@ -5173,7 +5173,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Visible blood in urine without pain\n\nHPI: 28 yo f. Patient reports: I first saw blood 2 weeks ago. The blood appears in the urine, not from the vagina. There is no flank or groin pain. The urine is pink-red without clots. It happened twice, throughout the stream. It stopped between episodes. I had a sore throat and a cold 2 days before the urine changed color; no strenuous exercise, trauma or procedure. It cleared on its own. There is no clear trigger. I have taken no treatment. This has never happened before. I saw pink-red urine twice.\n\nPatient perspective: It stopped, so could we just wait?\n\nPMH: Hypertension; no kidney stones or prior urinary disease.\n\nPSH: Appendectomy at age 18; no urinary procedures.\n\nMeds: Lisinopril 10 mg daily; no anticoagulants.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Print-shop designer; lives with husband.\n\nFH: Mother had hypertension; father died of stroke at 76; sister healthy; no known hereditary kidney disease.\n\nROS: Urinary - Reports hematuria. Denies dysuria. Denies frequency. General - Denies fever. Denies weight loss. Denies fatigue. Gastrointestinal - Denies nausea. Denies vomiting. Denies abdominal pain.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+          "S": "cc: Visible blood in urine without pain\n\nHPI: 28 yo f. Patient reports: I first saw blood 2 weeks ago. The blood appears in the urine, not from the vagina. There is no flank or groin pain. The urine is pink-red without clots. It happened twice, throughout the stream. It stopped between episodes. I had a sore throat and a cold 2 days before the urine changed color; no strenuous exercise, trauma or procedure. It cleared on its own. There is no clear trigger. I have taken no treatment. This has never happened before. I saw pink-red urine twice.\n\nPatient perspective: It stopped, so could we just wait?\n\nPMH: Hypertension; no kidney stones or prior urinary disease.\n\nPSH: Appendectomy at age 18; no urinary procedures.\n\nMeds: Lisinopril 10 mg daily; no anticoagulants.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Print-shop designer; lives with husband.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of a stroke when he was seventy-six.; I have one sister, she's thirty-two and she's healthy.; Kidney disease doesn't run in my family as far as I know.\n\nROS: Urinary - Reports hematuria. Denies dysuria. Denies frequency. General - Denies fever. Denies weight loss. Denies fatigue. Gastrointestinal - Denies nausea. Denies vomiting. Denies abdominal pain.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
           "O": "Vitals: T 98.3 F oral, P 76 bpm, BP 132/80 mmHg, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Comfortable and well appearing.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nAbd: Abdomen not distended; healed lower abdominal scar. Bowel sounds present. No focal abdominal or suprapubic tenderness. Tympanic over examined quadrants. Neither costovertebral angle is tender.\n\nOsteopathic: T10 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. IgA nephropathy with visible hematuria",
@@ -5459,19 +5459,19 @@
             "I am a print-shop designer."
           ],
           "history_family_1": [
-            "Mother had hypertension",
+            "My mother is sixty-two and she has high blood pressure.", "Mother had hypertension",
             "mother"
           ],
           "history_family_2": [
-            "father died of stroke at 76",
+            "My father died of a stroke when he was seventy-six.", "father died of stroke at 76",
             "father"
           ],
           "history_family_3": [
-            "sister healthy",
+            "I have one sister, she's thirty-two and she's healthy.", "sister healthy",
             "sister"
           ],
           "history_family_4": [
-            "no known hereditary kidney disease."
+            "Kidney disease doesn't run in my family as far as I know.", "no known hereditary kidney disease."
           ],
           "patient_concern": [
             "It stopped, so could we just wait?"
@@ -6886,9 +6886,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother had hypertension",
+            "value": "My mother is sixty-two and she has high blood pressure.",
             "sp_says": [
-              "Mother had hypertension"
+              "My mother is sixty-two and she has high blood pressure."
             ],
             "triggers": {
               "any": [
@@ -6904,7 +6904,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother had hypertension"
+                "value": "My mother is sixty-two and she has high blood pressure."
               }
             },
             "example_questions": [
@@ -6913,11 +6913,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother had hypertension",
+                  "text": "My mother is sixty-two and she has high blood pressure.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother had hypertension"
+                      "value": "My mother is sixty-two and she has high blood pressure."
                     }
                   },
                   "complete_fact": true
@@ -6930,9 +6930,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "father died of stroke at 76",
+            "value": "My father died of a stroke when he was seventy-six.",
             "sp_says": [
-              "father died of stroke at 76"
+              "My father died of a stroke when he was seventy-six."
             ],
             "triggers": {
               "any": [
@@ -6948,7 +6948,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father died of stroke at 76"
+                "value": "My father died of a stroke when he was seventy-six."
               }
             },
             "example_questions": [
@@ -6957,11 +6957,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "father died of stroke at 76",
+                  "text": "My father died of a stroke when he was seventy-six.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "father died of stroke at 76"
+                      "value": "My father died of a stroke when he was seventy-six."
                     }
                   },
                   "complete_fact": true
@@ -6974,9 +6974,9 @@
             "id": "history_family_3",
             "category": "family",
             "checklist": "h_history_family_3",
-            "value": "sister healthy",
+            "value": "I have one sister, she's thirty-two and she's healthy.",
             "sp_says": [
-              "sister healthy"
+              "I have one sister, she's thirty-two and she's healthy."
             ],
             "triggers": {
               "any": [
@@ -6992,7 +6992,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "sister healthy"
+                "value": "I have one sister, she's thirty-two and she's healthy."
               }
             },
             "example_questions": [
@@ -7001,11 +7001,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "sister healthy",
+                  "text": "I have one sister, she's thirty-two and she's healthy.",
                   "concepts": {
                     "history_family_3": {
                       "polarity": "positive",
-                      "value": "sister healthy"
+                      "value": "I have one sister, she's thirty-two and she's healthy."
                     }
                   },
                   "complete_fact": true
@@ -7018,9 +7018,9 @@
             "id": "history_family_4",
             "category": "family",
             "checklist": "h_history_family_4",
-            "value": "no known hereditary kidney disease.",
+            "value": "Kidney disease doesn't run in my family as far as I know.",
             "sp_says": [
-              "no known hereditary kidney disease."
+              "Kidney disease doesn't run in my family as far as I know."
             ],
             "triggers": {
               "any": [
@@ -7036,7 +7036,7 @@
             "concepts": {
               "history_family_4": {
                 "polarity": "positive",
-                "value": "no known hereditary kidney disease."
+                "value": "Kidney disease doesn't run in my family as far as I know."
               }
             },
             "example_questions": [
@@ -7045,11 +7045,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "no known hereditary kidney disease.",
+                  "text": "Kidney disease doesn't run in my family as far as I know.",
                   "concepts": {
                     "history_family_4": {
                       "polarity": "positive",
-                      "value": "no known hereditary kidney disease."
+                      "value": "Kidney disease doesn't run in my family as far as I know."
                     }
                   },
                   "complete_fact": true
@@ -7403,19 +7403,19 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother had hypertension"
+              "text": "My mother is sixty-two and she has high blood pressure."
             },
             {
               "id": "h_history_family_2",
-              "text": "father died of stroke at 76"
+              "text": "My father died of a stroke when he was seventy-six."
             },
             {
               "id": "h_history_family_3",
-              "text": "sister healthy"
+              "text": "I have one sister, she's thirty-two and she's healthy."
             },
             {
               "id": "h_history_family_4",
-              "text": "no known hereditary kidney disease."
+              "text": "Kidney disease doesn't run in my family as far as I know."
             },
             {
               "id": "h_patient_concern",
@@ -7549,7 +7549,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Visible blood in urine without pain\n\nHPI: 28 yo f. Patient reports: I first saw blood 5 days ago. The blood appears in the urine, not from the vagina. There is no flank or groin pain. The urine is pink-red without clots. It happened twice, throughout the stream. It stopped between episodes. I had a sore throat and a cold 2 days before the urine changed color; no strenuous exercise, trauma or procedure. It cleared on its own. There is no clear trigger. I have taken no treatment. This has never happened before. I saw pink-red urine twice.\n\nPatient perspective: It stopped, so could we just wait?\n\nPMH: Hypertension; no kidney stones or prior urinary disease.\n\nPSH: Appendectomy at age 18; no urinary procedures.\n\nMeds: Lisinopril 10 mg daily; no anticoagulants.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Print-shop designer; lives with husband.\n\nFH: Mother had hypertension; father died of stroke at 76; sister healthy; no known hereditary kidney disease.\n\nROS: Urinary - Reports hematuria. Denies dysuria. Denies frequency. General - Denies fever. Denies weight loss. Denies fatigue. Gastrointestinal - Denies nausea. Denies vomiting. Denies abdominal pain.\n\nPatient concern: I am leaving town in 2 weeks and planned to deal with this afterward.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+          "S": "cc: Visible blood in urine without pain\n\nHPI: 28 yo f. Patient reports: I first saw blood 5 days ago. The blood appears in the urine, not from the vagina. There is no flank or groin pain. The urine is pink-red without clots. It happened twice, throughout the stream. It stopped between episodes. I had a sore throat and a cold 2 days before the urine changed color; no strenuous exercise, trauma or procedure. It cleared on its own. There is no clear trigger. I have taken no treatment. This has never happened before. I saw pink-red urine twice.\n\nPatient perspective: It stopped, so could we just wait?\n\nPMH: Hypertension; no kidney stones or prior urinary disease.\n\nPSH: Appendectomy at age 18; no urinary procedures.\n\nMeds: Lisinopril 10 mg daily; no anticoagulants.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Print-shop designer; lives with husband.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of a stroke when he was seventy-six.; I have one sister, she's thirty-two and she's healthy.; Kidney disease doesn't run in my family as far as I know.\n\nROS: Urinary - Reports hematuria. Denies dysuria. Denies frequency. General - Denies fever. Denies weight loss. Denies fatigue. Gastrointestinal - Denies nausea. Denies vomiting. Denies abdominal pain.\n\nPatient concern: I am leaving town in 2 weeks and planned to deal with this afterward.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
           "O": "Vitals: T 98.3 F oral, P 76 bpm, BP 132/80 mmHg, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Comfortable and well appearing.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nAbd: Abdomen not distended; healed lower abdominal scar. Bowel sounds present. No focal abdominal or suprapubic tenderness. Tympanic over examined quadrants. Neither costovertebral angle is tender.\n\nOsteopathic: T10 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. IgA nephropathy with visible hematuria",

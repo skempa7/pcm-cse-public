@@ -274,11 +274,11 @@
       "I am a graphic designer."
     ],
     "history_family_1": [
-      "Mother has hypertension",
+      "My mom is fifty-six and she has high blood pressure.", "Mother has hypertension",
       "mother"
     ],
     "history_family_2": [
-      "father and brother are healthy.",
+      "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine.", "father and brother are healthy.",
       "father",
       "brother"
     ],
@@ -1657,9 +1657,9 @@
       "id": "history_family_1",
       "category": "family",
       "checklist": "h_history_family_1",
-      "value": "Mother has hypertension",
+      "value": "My mom is fifty-six and she has high blood pressure.",
       "sp_says": [
-        "Mother has hypertension"
+        "My mom is fifty-six and she has high blood pressure."
       ],
       "triggers": {
         "any": [
@@ -1675,7 +1675,7 @@
       "concepts": {
         "history_family_1": {
           "polarity": "positive",
-          "value": "Mother has hypertension"
+          "value": "My mom is fifty-six and she has high blood pressure."
         }
       },
       "example_questions": [
@@ -1684,11 +1684,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "Mother has hypertension",
+            "text": "My mom is fifty-six and she has high blood pressure.",
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has hypertension"
+                "value": "My mom is fifty-six and she has high blood pressure."
               }
             },
             "complete_fact": true
@@ -1701,9 +1701,9 @@
       "id": "history_family_2",
       "category": "family",
       "checklist": "h_history_family_2",
-      "value": "father and brother are healthy.",
+      "value": "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine.",
       "sp_says": [
-        "father and brother are healthy."
+        "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine."
       ],
       "triggers": {
         "any": [
@@ -1719,7 +1719,7 @@
       "concepts": {
         "history_family_2": {
           "polarity": "positive",
-          "value": "father and brother are healthy."
+          "value": "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine."
         }
       },
       "example_questions": [
@@ -1728,11 +1728,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "father and brother are healthy.",
+            "text": "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine.",
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father and brother are healthy."
+                "value": "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine."
               }
             },
             "complete_fact": true
@@ -2433,11 +2433,11 @@
       },
       {
         "id": "h_history_family_1",
-        "text": "Mother has hypertension"
+        "text": "My mom is fifty-six and she has high blood pressure."
       },
       {
         "id": "h_history_family_2",
-        "text": "father and brother are healthy."
+        "text": "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine."
       },
       {
         "id": "h_patient_concern",
@@ -2576,7 +2576,7 @@
     ]
   },
   "model_note": {
-    "S": "cc: Burning urination without systemic symptoms\n\nHPI: 29 yo f. Patient reports: The burning began 2 days ago. It burns at the urethra when I pass urine. There is no pain into my back or groin. It is a stinging burning sensation. The burning is 4/10 and I urinate about every hour. It happens with every urination. It started after intercourse but there was no injury. Drinking water makes the urine sting a little less. Urinating triggers it. I have increased fluids but taken no medicine. I had one bladder infection 3 years ago. It burns when I urinate. I need to go every hour. I get sudden urges to go. There is mild low abdominal pressure.\n\nPatient perspective: Do I have a kidney infection?\n\nPMH: No diabetes, kidney disease or immunosuppression.\n\nPSH: No surgery or hospitalizations.\n\nMeds: No daily medicines.\n\nAllergies: Sulfonamide antibiotic caused hives.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Graphic designer; lives with husband; one established partner; uses condoms; last menstrual period 2 weeks ago, pregnancy not suspected.\n\nFH: Mother has hypertension; father and brother are healthy.\n\nROS: Urinary - Reports dysuria. Reports frequency. Reports urgency. Denies flank pain. General - Denies fever. Denies chills. Denies fatigue. Gastrointestinal - Denies nausea. Denies vomiting. Reports abdominal pain.",
+    "S": "cc: Burning urination without systemic symptoms\n\nHPI: 29 yo f. Patient reports: The burning began 2 days ago. It burns at the urethra when I pass urine. There is no pain into my back or groin. It is a stinging burning sensation. The burning is 4/10 and I urinate about every hour. It happens with every urination. It started after intercourse but there was no injury. Drinking water makes the urine sting a little less. Urinating triggers it. I have increased fluids but taken no medicine. I had one bladder infection 3 years ago. It burns when I urinate. I need to go every hour. I get sudden urges to go. There is mild low abdominal pressure.\n\nPatient perspective: Do I have a kidney infection?\n\nPMH: No diabetes, kidney disease or immunosuppression.\n\nPSH: No surgery or hospitalizations.\n\nMeds: No daily medicines.\n\nAllergies: Sulfonamide antibiotic caused hives.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Graphic designer; lives with husband; one established partner; uses condoms; last menstrual period 2 weeks ago, pregnancy not suspected.\n\nFH: My mom is fifty-six and she has high blood pressure.; My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine.\n\nROS: Urinary - Reports dysuria. Reports frequency. Reports urgency. Denies flank pain. General - Denies fever. Denies chills. Denies fatigue. Gastrointestinal - Denies nausea. Denies vomiting. Reports abdominal pain.",
     "O": "Vitals: T 98.4 F oral, P 78 bpm, BP 116/72 mmHg, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Comfortable and well hydrated.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nAbd: Abdomen not distended. Bowel sounds present. Mild suprapubic tenderness. Tympanic over the examined quadrants. No tenderness with gentle bilateral costovertebral angle percussion.\n\nOsteopathic: T10 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
     "A": [
       "1. Acute cystitis",
@@ -3075,11 +3075,11 @@
             "I am a graphic designer."
           ],
           "history_family_1": [
-            "Mother has hypertension",
+            "My mom is fifty-six and she has high blood pressure.", "Mother has hypertension",
             "mother"
           ],
           "history_family_2": [
-            "father and brother are healthy.",
+            "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine.", "father and brother are healthy.",
             "father",
             "brother"
           ],
@@ -4458,9 +4458,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother has hypertension",
+            "value": "My mom is fifty-six and she has high blood pressure.",
             "sp_says": [
-              "Mother has hypertension"
+              "My mom is fifty-six and she has high blood pressure."
             ],
             "triggers": {
               "any": [
@@ -4476,7 +4476,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has hypertension"
+                "value": "My mom is fifty-six and she has high blood pressure."
               }
             },
             "example_questions": [
@@ -4485,11 +4485,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother has hypertension",
+                  "text": "My mom is fifty-six and she has high blood pressure.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother has hypertension"
+                      "value": "My mom is fifty-six and she has high blood pressure."
                     }
                   },
                   "complete_fact": true
@@ -4502,9 +4502,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "father and brother are healthy.",
+            "value": "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine.",
             "sp_says": [
-              "father and brother are healthy."
+              "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine."
             ],
             "triggers": {
               "any": [
@@ -4520,7 +4520,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father and brother are healthy."
+                "value": "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine."
               }
             },
             "example_questions": [
@@ -4529,11 +4529,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "father and brother are healthy.",
+                  "text": "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "father and brother are healthy."
+                      "value": "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine."
                     }
                   },
                   "complete_fact": true
@@ -4935,11 +4935,11 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother has hypertension"
+              "text": "My mom is fifty-six and she has high blood pressure."
             },
             {
               "id": "h_history_family_2",
-              "text": "father and brother are healthy."
+              "text": "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine."
             },
             {
               "id": "h_patient_concern",
@@ -5077,7 +5077,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Burning urination without systemic symptoms\n\nHPI: 29 yo f. Patient reports: The burning began 4 days ago. It burns at the urethra when I pass urine. There is no pain into my back or groin. It is a stinging burning sensation. The burning is 4/10 and I urinate about every hour. It happens with every urination. It started after intercourse but there was no injury. Drinking water makes the urine sting a little less. Urinating triggers it. I have increased fluids but taken no medicine. I had one bladder infection 3 years ago. It burns when I urinate. I need to go every hour. I get sudden urges to go. There is mild low abdominal pressure.\n\nPatient perspective: Do I have a kidney infection?\n\nPMH: No diabetes, kidney disease or immunosuppression.\n\nPSH: No surgery or hospitalizations.\n\nMeds: No daily medicines.\n\nAllergies: Sulfonamide antibiotic caused hives.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Graphic designer; lives with husband; one established partner; uses condoms; last menstrual period 2 weeks ago, pregnancy not suspected.\n\nFH: Mother has hypertension; father and brother are healthy.\n\nROS: Urinary - Reports dysuria. Reports frequency. Reports urgency. Denies flank pain. General - Denies fever. Denies chills. Denies fatigue. Gastrointestinal - Denies nausea. Denies vomiting. Reports abdominal pain.",
+          "S": "cc: Burning urination without systemic symptoms\n\nHPI: 29 yo f. Patient reports: The burning began 4 days ago. It burns at the urethra when I pass urine. There is no pain into my back or groin. It is a stinging burning sensation. The burning is 4/10 and I urinate about every hour. It happens with every urination. It started after intercourse but there was no injury. Drinking water makes the urine sting a little less. Urinating triggers it. I have increased fluids but taken no medicine. I had one bladder infection 3 years ago. It burns when I urinate. I need to go every hour. I get sudden urges to go. There is mild low abdominal pressure.\n\nPatient perspective: Do I have a kidney infection?\n\nPMH: No diabetes, kidney disease or immunosuppression.\n\nPSH: No surgery or hospitalizations.\n\nMeds: No daily medicines.\n\nAllergies: Sulfonamide antibiotic caused hives.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Graphic designer; lives with husband; one established partner; uses condoms; last menstrual period 2 weeks ago, pregnancy not suspected.\n\nFH: My mom is fifty-six and she has high blood pressure.; My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine.\n\nROS: Urinary - Reports dysuria. Reports frequency. Reports urgency. Denies flank pain. General - Denies fever. Denies chills. Denies fatigue. Gastrointestinal - Denies nausea. Denies vomiting. Reports abdominal pain.",
           "O": "Vitals: T 98.4 F oral, P 78 bpm, BP 116/72 mmHg, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Comfortable and well hydrated.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nAbd: Abdomen not distended. Bowel sounds present. Mild suprapubic tenderness. Tympanic over the examined quadrants. No tenderness with gentle bilateral costovertebral angle percussion.\n\nOsteopathic: T10 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Acute cystitis",
@@ -5347,11 +5347,11 @@
             "I am a graphic designer."
           ],
           "history_family_1": [
-            "Mother has hypertension",
+            "My mom is fifty-six and she has high blood pressure.", "Mother has hypertension",
             "mother"
           ],
           "history_family_2": [
-            "father and brother are healthy.",
+            "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine.", "father and brother are healthy.",
             "father",
             "brother"
           ],
@@ -6733,9 +6733,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother has hypertension",
+            "value": "My mom is fifty-six and she has high blood pressure.",
             "sp_says": [
-              "Mother has hypertension"
+              "My mom is fifty-six and she has high blood pressure."
             ],
             "triggers": {
               "any": [
@@ -6751,7 +6751,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has hypertension"
+                "value": "My mom is fifty-six and she has high blood pressure."
               }
             },
             "example_questions": [
@@ -6760,11 +6760,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother has hypertension",
+                  "text": "My mom is fifty-six and she has high blood pressure.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother has hypertension"
+                      "value": "My mom is fifty-six and she has high blood pressure."
                     }
                   },
                   "complete_fact": true
@@ -6777,9 +6777,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "father and brother are healthy.",
+            "value": "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine.",
             "sp_says": [
-              "father and brother are healthy."
+              "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine."
             ],
             "triggers": {
               "any": [
@@ -6795,7 +6795,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father and brother are healthy."
+                "value": "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine."
               }
             },
             "example_questions": [
@@ -6804,11 +6804,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "father and brother are healthy.",
+                  "text": "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "father and brother are healthy."
+                      "value": "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine."
                     }
                   },
                   "complete_fact": true
@@ -7255,11 +7255,11 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother has hypertension"
+              "text": "My mom is fifty-six and she has high blood pressure."
             },
             {
               "id": "h_history_family_2",
-              "text": "father and brother are healthy."
+              "text": "My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine."
             },
             {
               "id": "h_patient_concern",
@@ -7401,7 +7401,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Burning urination without systemic symptoms\n\nHPI: 29 yo f. Patient reports: The burning began 2 days ago. It burns at the urethra when I pass urine. There is no pain into my back or groin. It is a stinging burning sensation. The burning is 4/10 and I urinate about every hour. It happens with every urination. It started after intercourse but there was no injury. Drinking water makes the urine sting a little less. Urinating triggers it. I have increased fluids but taken no medicine. I had one bladder infection 3 years ago. It burns when I urinate. I need to go every hour. I get sudden urges to go. There is mild low abdominal pressure.\n\nPatient perspective: Do I have a kidney infection?\n\nPMH: No diabetes, kidney disease or immunosuppression.\n\nPSH: No surgery or hospitalizations.\n\nMeds: No daily medicines.\n\nAllergies: Sulfonamide antibiotic caused hives.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Graphic designer; lives with husband; one established partner; uses condoms; last menstrual period 2 weeks ago, pregnancy not suspected.\n\nFH: Mother has hypertension; father and brother are healthy.\n\nROS: Urinary - Reports dysuria. Reports frequency. Reports urgency. Denies flank pain. General - Denies fever. Denies chills. Denies fatigue. Gastrointestinal - Denies nausea. Denies vomiting. Reports abdominal pain.\n\nPatient concern: I usually stop antibiotics as soon as the burning stops.",
+          "S": "cc: Burning urination without systemic symptoms\n\nHPI: 29 yo f. Patient reports: The burning began 2 days ago. It burns at the urethra when I pass urine. There is no pain into my back or groin. It is a stinging burning sensation. The burning is 4/10 and I urinate about every hour. It happens with every urination. It started after intercourse but there was no injury. Drinking water makes the urine sting a little less. Urinating triggers it. I have increased fluids but taken no medicine. I had one bladder infection 3 years ago. It burns when I urinate. I need to go every hour. I get sudden urges to go. There is mild low abdominal pressure.\n\nPatient perspective: Do I have a kidney infection?\n\nPMH: No diabetes, kidney disease or immunosuppression.\n\nPSH: No surgery or hospitalizations.\n\nMeds: No daily medicines.\n\nAllergies: Sulfonamide antibiotic caused hives.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Graphic designer; lives with husband; one established partner; uses condoms; last menstrual period 2 weeks ago, pregnancy not suspected.\n\nFH: My mom is fifty-six and she has high blood pressure.; My dad's fifty-eight and he's healthy, and I have one brother who's thirty-two and doing fine.\n\nROS: Urinary - Reports dysuria. Reports frequency. Reports urgency. Denies flank pain. General - Denies fever. Denies chills. Denies fatigue. Gastrointestinal - Denies nausea. Denies vomiting. Reports abdominal pain.\n\nPatient concern: I usually stop antibiotics as soon as the burning stops.",
           "O": "Vitals: T 98.4 F oral, P 78 bpm, BP 116/72 mmHg, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Comfortable and well hydrated.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nAbd: Abdomen not distended. Bowel sounds present. Mild suprapubic tenderness. Tympanic over the examined quadrants. No tenderness with gentle bilateral costovertebral angle percussion.\n\nOsteopathic: T10 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Acute cystitis",

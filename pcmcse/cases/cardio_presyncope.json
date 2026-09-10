@@ -283,15 +283,15 @@
       "I am a librarian."
     ],
     "history_family_1": [
-      "Mother has hypertension",
+      "My mother is sixty-two and she has high blood pressure.", "Mother has hypertension",
       "mother"
     ],
     "history_family_2": [
-      "father died of pneumonia at 80",
+      "My father died of pneumonia when he was eighty.", "father died of pneumonia at 80",
       "father"
     ],
     "history_family_3": [
-      "one healthy brother.",
+      "I have one brother, he's thirty-two and he's healthy.", "one healthy brother.",
       "brother"
     ],
     "patient_concern": [
@@ -1619,9 +1619,9 @@
       "id": "history_family_1",
       "category": "family",
       "checklist": "h_history_family_1",
-      "value": "Mother has hypertension",
+      "value": "My mother is sixty-two and she has high blood pressure.",
       "sp_says": [
-        "Mother has hypertension"
+        "My mother is sixty-two and she has high blood pressure."
       ],
       "triggers": {
         "any": [
@@ -1637,7 +1637,7 @@
       "concepts": {
         "history_family_1": {
           "polarity": "positive",
-          "value": "Mother has hypertension"
+          "value": "My mother is sixty-two and she has high blood pressure."
         }
       },
       "example_questions": [
@@ -1646,11 +1646,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "Mother has hypertension",
+            "text": "My mother is sixty-two and she has high blood pressure.",
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has hypertension"
+                "value": "My mother is sixty-two and she has high blood pressure."
               }
             },
             "complete_fact": true
@@ -1663,9 +1663,9 @@
       "id": "history_family_2",
       "category": "family",
       "checklist": "h_history_family_2",
-      "value": "father died of pneumonia at 80",
+      "value": "My father died of pneumonia when he was eighty.",
       "sp_says": [
-        "father died of pneumonia at 80"
+        "My father died of pneumonia when he was eighty."
       ],
       "triggers": {
         "any": [
@@ -1681,7 +1681,7 @@
       "concepts": {
         "history_family_2": {
           "polarity": "positive",
-          "value": "father died of pneumonia at 80"
+          "value": "My father died of pneumonia when he was eighty."
         }
       },
       "example_questions": [
@@ -1690,11 +1690,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "father died of pneumonia at 80",
+            "text": "My father died of pneumonia when he was eighty.",
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father died of pneumonia at 80"
+                "value": "My father died of pneumonia when he was eighty."
               }
             },
             "complete_fact": true
@@ -1707,9 +1707,9 @@
       "id": "history_family_3",
       "category": "family",
       "checklist": "h_history_family_3",
-      "value": "one healthy brother.",
+      "value": "I have one brother, he's thirty-two and he's healthy.",
       "sp_says": [
-        "one healthy brother."
+        "I have one brother, he's thirty-two and he's healthy."
       ],
       "triggers": {
         "any": [
@@ -1725,7 +1725,7 @@
       "concepts": {
         "history_family_3": {
           "polarity": "positive",
-          "value": "one healthy brother."
+          "value": "I have one brother, he's thirty-two and he's healthy."
         }
       },
       "example_questions": [
@@ -1734,11 +1734,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "one healthy brother.",
+            "text": "I have one brother, he's thirty-two and he's healthy.",
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "one healthy brother."
+                "value": "I have one brother, he's thirty-two and he's healthy."
               }
             },
             "complete_fact": true
@@ -2286,15 +2286,15 @@
       },
       {
         "id": "h_history_family_1",
-        "text": "Mother has hypertension"
+        "text": "My mother is sixty-two and she has high blood pressure."
       },
       {
         "id": "h_history_family_2",
-        "text": "father died of pneumonia at 80"
+        "text": "My father died of pneumonia when he was eighty."
       },
       {
         "id": "h_history_family_3",
-        "text": "one healthy brother."
+        "text": "I have one brother, he's thirty-two and he's healthy."
       },
       {
         "id": "h_patient_concern",
@@ -2402,7 +2402,7 @@
     ]
   },
   "model_note": {
-    "S": "cc: Lightheadedness after standing\n\nHPI: 29 yo m. Patient reports: It began 3 days ago. It feels like lightheadedness in my head, not spinning. There is no pain radiating anywhere. My vision dims and I feel faint. It lasts about 20 seconds and I need to hold a chair. It happens after standing, then settles. My blood pressure medicine dose increased last week. Sitting or lying down makes it stop. Standing quickly and hot showers provoke it. I started standing more slowly. I have not had this before. My vision dims when I stand.\n\nPatient perspective: I am scared I will fall while I am alone.\n\nPMH: Hypertension; no heart disease or diabetes.\n\nPSH: No operations or prior hospital admissions.\n\nMeds: Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One glass of wine weekly. No recreational drugs. Librarian; lives with wife; has been drinking less water to avoid bathroom trips.\n\nFH: Mother has hypertension; father died of pneumonia at 80; one healthy brother.\n\nROS: Neurologic - Reports presyncope. Denies vertigo. Denies focal weakness. Cardiovascular - Denies syncope. Denies palpitations. Denies chest pain. Gastrointestinal - Denies melena. Denies vomiting. Denies diarrhea.\n",
+    "S": "cc: Lightheadedness after standing\n\nHPI: 29 yo m. Patient reports: It began 3 days ago. It feels like lightheadedness in my head, not spinning. There is no pain radiating anywhere. My vision dims and I feel faint. It lasts about 20 seconds and I need to hold a chair. It happens after standing, then settles. My blood pressure medicine dose increased last week. Sitting or lying down makes it stop. Standing quickly and hot showers provoke it. I started standing more slowly. I have not had this before. My vision dims when I stand.\n\nPatient perspective: I am scared I will fall while I am alone.\n\nPMH: Hypertension; no heart disease or diabetes.\n\nPSH: No operations or prior hospital admissions.\n\nMeds: Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One glass of wine weekly. No recreational drugs. Librarian; lives with wife; has been drinking less water to avoid bathroom trips.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of pneumonia when he was eighty.; I have one brother, he's thirty-two and he's healthy.\n\nROS: Neurologic - Reports presyncope. Denies vertigo. Denies focal weakness. Cardiovascular - Denies syncope. Denies palpitations. Denies chest pain. Gastrointestinal - Denies melena. Denies vomiting. Denies diarrhea.\n",
     "O": "Vitals: T 98.3 F oral, P 78 bpm, BP 126/76 mmHg seated, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Comfortable while seated.\n\nHeart: Regular rhythm, S1 and S2 without murmur. After 5 minutes supine BP 126/76, pulse 78; at 1 minute standing BP 102/64, pulse 92 with lightheadedness; at 3 minutes standing BP 104/66, pulse 90.\n\nLungs: Breath sounds clear bilaterally.\n\nNeuro: Strength 5/5 in both arms and legs.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
     "A": [
       "1. Medication-associated orthostatic hypotension",
@@ -2899,15 +2899,15 @@
             "I am a librarian."
           ],
           "history_family_1": [
-            "Mother has hypertension",
+            "My mother is sixty-two and she has high blood pressure.", "Mother has hypertension",
             "mother"
           ],
           "history_family_2": [
-            "father died of pneumonia at 80",
+            "My father died of pneumonia when he was eighty.", "father died of pneumonia at 80",
             "father"
           ],
           "history_family_3": [
-            "one healthy brother.",
+            "I have one brother, he's thirty-two and he's healthy.", "one healthy brother.",
             "brother"
           ],
           "patient_concern": [
@@ -4235,9 +4235,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother has hypertension",
+            "value": "My mother is sixty-two and she has high blood pressure.",
             "sp_says": [
-              "Mother has hypertension"
+              "My mother is sixty-two and she has high blood pressure."
             ],
             "triggers": {
               "any": [
@@ -4253,7 +4253,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has hypertension"
+                "value": "My mother is sixty-two and she has high blood pressure."
               }
             },
             "example_questions": [
@@ -4262,11 +4262,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother has hypertension",
+                  "text": "My mother is sixty-two and she has high blood pressure.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother has hypertension"
+                      "value": "My mother is sixty-two and she has high blood pressure."
                     }
                   },
                   "complete_fact": true
@@ -4279,9 +4279,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "father died of pneumonia at 80",
+            "value": "My father died of pneumonia when he was eighty.",
             "sp_says": [
-              "father died of pneumonia at 80"
+              "My father died of pneumonia when he was eighty."
             ],
             "triggers": {
               "any": [
@@ -4297,7 +4297,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father died of pneumonia at 80"
+                "value": "My father died of pneumonia when he was eighty."
               }
             },
             "example_questions": [
@@ -4306,11 +4306,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "father died of pneumonia at 80",
+                  "text": "My father died of pneumonia when he was eighty.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "father died of pneumonia at 80"
+                      "value": "My father died of pneumonia when he was eighty."
                     }
                   },
                   "complete_fact": true
@@ -4323,9 +4323,9 @@
             "id": "history_family_3",
             "category": "family",
             "checklist": "h_history_family_3",
-            "value": "one healthy brother.",
+            "value": "I have one brother, he's thirty-two and he's healthy.",
             "sp_says": [
-              "one healthy brother."
+              "I have one brother, he's thirty-two and he's healthy."
             ],
             "triggers": {
               "any": [
@@ -4341,7 +4341,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "one healthy brother."
+                "value": "I have one brother, he's thirty-two and he's healthy."
               }
             },
             "example_questions": [
@@ -4350,11 +4350,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "one healthy brother.",
+                  "text": "I have one brother, he's thirty-two and he's healthy.",
                   "concepts": {
                     "history_family_3": {
                       "polarity": "positive",
-                      "value": "one healthy brother."
+                      "value": "I have one brother, he's thirty-two and he's healthy."
                     }
                   },
                   "complete_fact": true
@@ -4668,15 +4668,15 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother has hypertension"
+              "text": "My mother is sixty-two and she has high blood pressure."
             },
             {
               "id": "h_history_family_2",
-              "text": "father died of pneumonia at 80"
+              "text": "My father died of pneumonia when he was eighty."
             },
             {
               "id": "h_history_family_3",
-              "text": "one healthy brother."
+              "text": "I have one brother, he's thirty-two and he's healthy."
             },
             {
               "id": "h_patient_concern",
@@ -4783,7 +4783,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Lightheadedness after standing\n\nHPI: 29 yo m. Patient reports: It began 1 day ago. It feels like lightheadedness in my head, not spinning. There is no pain radiating anywhere. My vision dims and I feel faint. It lasts about 20 seconds and I need to hold a chair. It happens after standing, then settles. My blood pressure medicine dose increased last week. Sitting or lying down makes it stop. Standing quickly and hot showers provoke it. I started standing more slowly. I have not had this before. My vision dims when I stand.\n\nPatient perspective: I am scared I will fall while I am alone.\n\nPMH: Hypertension; no heart disease or diabetes.\n\nPSH: No operations or prior hospital admissions.\n\nMeds: Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One glass of wine weekly. No recreational drugs. Librarian; lives with wife; has been drinking less water to avoid bathroom trips.\n\nFH: Mother has hypertension; father died of pneumonia at 80; one healthy brother.\n\nROS: Neurologic - Reports presyncope. Denies vertigo. Denies focal weakness. Cardiovascular - Denies syncope. Denies palpitations. Denies chest pain. Gastrointestinal - Denies melena. Denies vomiting. Denies diarrhea.\n",
+          "S": "cc: Lightheadedness after standing\n\nHPI: 29 yo m. Patient reports: It began 1 day ago. It feels like lightheadedness in my head, not spinning. There is no pain radiating anywhere. My vision dims and I feel faint. It lasts about 20 seconds and I need to hold a chair. It happens after standing, then settles. My blood pressure medicine dose increased last week. Sitting or lying down makes it stop. Standing quickly and hot showers provoke it. I started standing more slowly. I have not had this before. My vision dims when I stand.\n\nPatient perspective: I am scared I will fall while I am alone.\n\nPMH: Hypertension; no heart disease or diabetes.\n\nPSH: No operations or prior hospital admissions.\n\nMeds: Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One glass of wine weekly. No recreational drugs. Librarian; lives with wife; has been drinking less water to avoid bathroom trips.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of pneumonia when he was eighty.; I have one brother, he's thirty-two and he's healthy.\n\nROS: Neurologic - Reports presyncope. Denies vertigo. Denies focal weakness. Cardiovascular - Denies syncope. Denies palpitations. Denies chest pain. Gastrointestinal - Denies melena. Denies vomiting. Denies diarrhea.\n",
           "O": "Vitals: T 98.3 F oral, P 78 bpm, BP 126/76 mmHg seated, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Comfortable while seated.\n\nHeart: Regular rhythm, S1 and S2 without murmur. After 5 minutes supine BP 126/76, pulse 78; at 1 minute standing BP 102/64, pulse 92 with lightheadedness; at 3 minutes standing BP 104/66, pulse 90.\n\nLungs: Breath sounds clear bilaterally.\n\nNeuro: Strength 5/5 in both arms and legs.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Medication-associated orthostatic hypotension",
@@ -5058,15 +5058,15 @@
             "I am a librarian."
           ],
           "history_family_1": [
-            "Mother has hypertension",
+            "My mother is sixty-two and she has high blood pressure.", "Mother has hypertension",
             "mother"
           ],
           "history_family_2": [
-            "father died of pneumonia at 80",
+            "My father died of pneumonia when he was eighty.", "father died of pneumonia at 80",
             "father"
           ],
           "history_family_3": [
-            "one healthy brother.",
+            "I have one brother, he's thirty-two and he's healthy.", "one healthy brother.",
             "brother"
           ],
           "patient_concern": [
@@ -6397,9 +6397,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother has hypertension",
+            "value": "My mother is sixty-two and she has high blood pressure.",
             "sp_says": [
-              "Mother has hypertension"
+              "My mother is sixty-two and she has high blood pressure."
             ],
             "triggers": {
               "any": [
@@ -6415,7 +6415,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has hypertension"
+                "value": "My mother is sixty-two and she has high blood pressure."
               }
             },
             "example_questions": [
@@ -6424,11 +6424,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother has hypertension",
+                  "text": "My mother is sixty-two and she has high blood pressure.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother has hypertension"
+                      "value": "My mother is sixty-two and she has high blood pressure."
                     }
                   },
                   "complete_fact": true
@@ -6441,9 +6441,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "father died of pneumonia at 80",
+            "value": "My father died of pneumonia when he was eighty.",
             "sp_says": [
-              "father died of pneumonia at 80"
+              "My father died of pneumonia when he was eighty."
             ],
             "triggers": {
               "any": [
@@ -6459,7 +6459,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father died of pneumonia at 80"
+                "value": "My father died of pneumonia when he was eighty."
               }
             },
             "example_questions": [
@@ -6468,11 +6468,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "father died of pneumonia at 80",
+                  "text": "My father died of pneumonia when he was eighty.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "father died of pneumonia at 80"
+                      "value": "My father died of pneumonia when he was eighty."
                     }
                   },
                   "complete_fact": true
@@ -6485,9 +6485,9 @@
             "id": "history_family_3",
             "category": "family",
             "checklist": "h_history_family_3",
-            "value": "one healthy brother.",
+            "value": "I have one brother, he's thirty-two and he's healthy.",
             "sp_says": [
-              "one healthy brother."
+              "I have one brother, he's thirty-two and he's healthy."
             ],
             "triggers": {
               "any": [
@@ -6503,7 +6503,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "one healthy brother."
+                "value": "I have one brother, he's thirty-two and he's healthy."
               }
             },
             "example_questions": [
@@ -6512,11 +6512,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "one healthy brother.",
+                  "text": "I have one brother, he's thirty-two and he's healthy.",
                   "concepts": {
                     "history_family_3": {
                       "polarity": "positive",
-                      "value": "one healthy brother."
+                      "value": "I have one brother, he's thirty-two and he's healthy."
                     }
                   },
                   "complete_fact": true
@@ -6875,15 +6875,15 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother has hypertension"
+              "text": "My mother is sixty-two and she has high blood pressure."
             },
             {
               "id": "h_history_family_2",
-              "text": "father died of pneumonia at 80"
+              "text": "My father died of pneumonia when he was eighty."
             },
             {
               "id": "h_history_family_3",
-              "text": "one healthy brother."
+              "text": "I have one brother, he's thirty-two and he's healthy."
             },
             {
               "id": "h_patient_concern",
@@ -6994,7 +6994,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Lightheadedness after standing\n\nHPI: 29 yo m. Patient reports: It began 3 days ago. It feels like lightheadedness in my head, not spinning. There is no pain radiating anywhere. My vision dims and I feel faint. It lasts about 20 seconds and I need to hold a chair. It happens after standing, then settles. My blood pressure medicine dose increased last week. Sitting or lying down makes it stop. Standing quickly and hot showers provoke it. I started standing more slowly. I have not had this before. My vision dims when I stand.\n\nPatient perspective: I am scared I will fall while I am alone.\n\nPMH: Hypertension; no heart disease or diabetes.\n\nPSH: No operations or prior hospital admissions.\n\nMeds: Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One glass of wine weekly. No recreational drugs. Librarian; lives with wife; has been drinking less water to avoid bathroom trips.\n\nFH: Mother has hypertension; father died of pneumonia at 80; one healthy brother.\n\nROS: Neurologic - Reports presyncope. Denies vertigo. Denies focal weakness. Cardiovascular - Denies syncope. Denies palpitations. Denies chest pain. Gastrointestinal - Denies melena. Denies vomiting. Denies diarrhea.\n\nPatient concern: I have stairs at home and nobody there during the day.\n",
+          "S": "cc: Lightheadedness after standing\n\nHPI: 29 yo m. Patient reports: It began 3 days ago. It feels like lightheadedness in my head, not spinning. There is no pain radiating anywhere. My vision dims and I feel faint. It lasts about 20 seconds and I need to hold a chair. It happens after standing, then settles. My blood pressure medicine dose increased last week. Sitting or lying down makes it stop. Standing quickly and hot showers provoke it. I started standing more slowly. I have not had this before. My vision dims when I stand.\n\nPatient perspective: I am scared I will fall while I am alone.\n\nPMH: Hypertension; no heart disease or diabetes.\n\nPSH: No operations or prior hospital admissions.\n\nMeds: Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One glass of wine weekly. No recreational drugs. Librarian; lives with wife; has been drinking less water to avoid bathroom trips.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of pneumonia when he was eighty.; I have one brother, he's thirty-two and he's healthy.\n\nROS: Neurologic - Reports presyncope. Denies vertigo. Denies focal weakness. Cardiovascular - Denies syncope. Denies palpitations. Denies chest pain. Gastrointestinal - Denies melena. Denies vomiting. Denies diarrhea.\n\nPatient concern: I have stairs at home and nobody there during the day.\n",
           "O": "Vitals: T 98.3 F oral, P 78 bpm, BP 126/76 mmHg seated, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Comfortable while seated.\n\nHeart: Regular rhythm, S1 and S2 without murmur. After 5 minutes supine BP 126/76, pulse 78; at 1 minute standing BP 102/64, pulse 92 with lightheadedness; at 3 minutes standing BP 104/66, pulse 90.\n\nLungs: Breath sounds clear bilaterally.\n\nNeuro: Strength 5/5 in both arms and legs.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Medication-associated orthostatic hypotension",

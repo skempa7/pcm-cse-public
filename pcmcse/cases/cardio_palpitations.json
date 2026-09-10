@@ -282,19 +282,19 @@
       "I am a software analyst."
     ],
     "history_family_1": [
-      "Mother has hypertension",
+      "My mother is fifty-four and she has high blood pressure.", "Mother has hypertension",
       "mother"
     ],
     "history_family_2": [
-      "father has atrial fibrillation",
+      "My father is fifty-seven and he has atrial fibrillation.", "father has atrial fibrillation",
       "father"
     ],
     "history_family_3": [
-      "sister is healthy",
+      "My sister is twenty-four and she's healthy.", "sister is healthy",
       "sister"
     ],
     "history_family_4": [
-      "no sudden death before age 50."
+      "Nobody in my family has died suddenly before the age of fifty, as far as I know.", "no sudden death before age 50."
     ],
     "patient_concern": [
       "Does this mean I am having a heart attack?"
@@ -1657,9 +1657,9 @@
       "id": "history_family_1",
       "category": "family",
       "checklist": "h_history_family_1",
-      "value": "Mother has hypertension",
+      "value": "My mother is fifty-four and she has high blood pressure.",
       "sp_says": [
-        "Mother has hypertension"
+        "My mother is fifty-four and she has high blood pressure."
       ],
       "triggers": {
         "any": [
@@ -1675,7 +1675,7 @@
       "concepts": {
         "history_family_1": {
           "polarity": "positive",
-          "value": "Mother has hypertension"
+          "value": "My mother is fifty-four and she has high blood pressure."
         }
       },
       "example_questions": [
@@ -1684,11 +1684,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "Mother has hypertension",
+            "text": "My mother is fifty-four and she has high blood pressure.",
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has hypertension"
+                "value": "My mother is fifty-four and she has high blood pressure."
               }
             },
             "complete_fact": true
@@ -1701,9 +1701,9 @@
       "id": "history_family_2",
       "category": "family",
       "checklist": "h_history_family_2",
-      "value": "father has atrial fibrillation",
+      "value": "My father is fifty-seven and he has atrial fibrillation.",
       "sp_says": [
-        "father has atrial fibrillation"
+        "My father is fifty-seven and he has atrial fibrillation."
       ],
       "triggers": {
         "any": [
@@ -1719,7 +1719,7 @@
       "concepts": {
         "history_family_2": {
           "polarity": "positive",
-          "value": "father has atrial fibrillation"
+          "value": "My father is fifty-seven and he has atrial fibrillation."
         }
       },
       "example_questions": [
@@ -1728,11 +1728,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "father has atrial fibrillation",
+            "text": "My father is fifty-seven and he has atrial fibrillation.",
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father has atrial fibrillation"
+                "value": "My father is fifty-seven and he has atrial fibrillation."
               }
             },
             "complete_fact": true
@@ -1745,9 +1745,9 @@
       "id": "history_family_3",
       "category": "family",
       "checklist": "h_history_family_3",
-      "value": "sister is healthy",
+      "value": "My sister is twenty-four and she's healthy.",
       "sp_says": [
-        "sister is healthy"
+        "My sister is twenty-four and she's healthy."
       ],
       "triggers": {
         "any": [
@@ -1763,7 +1763,7 @@
       "concepts": {
         "history_family_3": {
           "polarity": "positive",
-          "value": "sister is healthy"
+          "value": "My sister is twenty-four and she's healthy."
         }
       },
       "example_questions": [
@@ -1772,11 +1772,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "sister is healthy",
+            "text": "My sister is twenty-four and she's healthy.",
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "sister is healthy"
+                "value": "My sister is twenty-four and she's healthy."
               }
             },
             "complete_fact": true
@@ -1789,9 +1789,9 @@
       "id": "history_family_4",
       "category": "family",
       "checklist": "h_history_family_4",
-      "value": "no sudden death before age 50.",
+      "value": "Nobody in my family has died suddenly before the age of fifty, as far as I know.",
       "sp_says": [
-        "no sudden death before age 50."
+        "Nobody in my family has died suddenly before the age of fifty, as far as I know."
       ],
       "triggers": {
         "any": [
@@ -1807,7 +1807,7 @@
       "concepts": {
         "history_family_4": {
           "polarity": "positive",
-          "value": "no sudden death before age 50."
+          "value": "Nobody in my family has died suddenly before the age of fifty, as far as I know."
         }
       },
       "example_questions": [
@@ -1816,11 +1816,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "no sudden death before age 50.",
+            "text": "Nobody in my family has died suddenly before the age of fifty, as far as I know.",
             "concepts": {
               "history_family_4": {
                 "polarity": "positive",
-                "value": "no sudden death before age 50."
+                "value": "Nobody in my family has died suddenly before the age of fifty, as far as I know."
               }
             },
             "complete_fact": true
@@ -2498,19 +2498,19 @@
       },
       {
         "id": "h_history_family_1",
-        "text": "Mother has hypertension"
+        "text": "My mother is fifty-four and she has high blood pressure."
       },
       {
         "id": "h_history_family_2",
-        "text": "father has atrial fibrillation"
+        "text": "My father is fifty-seven and he has atrial fibrillation."
       },
       {
         "id": "h_history_family_3",
-        "text": "sister is healthy"
+        "text": "My sister is twenty-four and she's healthy."
       },
       {
         "id": "h_history_family_4",
-        "text": "no sudden death before age 50."
+        "text": "Nobody in my family has died suddenly before the age of fifty, as far as I know."
       },
       {
         "id": "h_patient_concern",
@@ -2627,7 +2627,7 @@
     ]
   },
   "model_note": {
-    "S": "cc: Episodes of racing and irregular heartbeat\n\nHPI: 27 yo f. Patient reports: The first episode was 2 weeks ago; this continuous episode began 6 hours ago. The fluttering is in the center of my chest. There is no pain spreading elsewhere. It feels fast and irregular rather than like one hard beat. This episode makes ordinary walking uncomfortable. Earlier episodes lasted 10 minutes, but this one is continuous. I was sitting at work when it began. Rest has not stopped this episode. Energy drinks seem to bring episodes on. I stopped drinking coffee today but it is still happening. These episodes are new; I had no earlier history of palpitations. My heart feels fast and uneven. I feel a little short of breath when walking. I have less energy today.\n\nPatient perspective: Does this mean I am having a heart attack?\n\nPMH: Hypertension; no known thyroid or structural heart disease.\n\nPSH: No surgeries or hospitalizations.\n\nMeds: Amlodipine 5 mg daily; no supplements or decongestants.\n\nAllergies: Penicillin causes hives.\n\nSH: Never smoked tobacco. Two beers most evenings. No cocaine, amphetamines or other recreational drugs. Software analyst; lives with husband; drinks 3 energy drinks on workdays.\n\nFH: Mother has hypertension; father has atrial fibrillation; sister is healthy; no sudden death before age 50.\n\nROS: Cardiovascular - Reports palpitations. Denies chest pain. Denies syncope. Respiratory - Reports dyspnea. Denies cough. Denies hemoptysis. General - Denies fever. Reports fatigue. Denies weight loss.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+    "S": "cc: Episodes of racing and irregular heartbeat\n\nHPI: 27 yo f. Patient reports: The first episode was 2 weeks ago; this continuous episode began 6 hours ago. The fluttering is in the center of my chest. There is no pain spreading elsewhere. It feels fast and irregular rather than like one hard beat. This episode makes ordinary walking uncomfortable. Earlier episodes lasted 10 minutes, but this one is continuous. I was sitting at work when it began. Rest has not stopped this episode. Energy drinks seem to bring episodes on. I stopped drinking coffee today but it is still happening. These episodes are new; I had no earlier history of palpitations. My heart feels fast and uneven. I feel a little short of breath when walking. I have less energy today.\n\nPatient perspective: Does this mean I am having a heart attack?\n\nPMH: Hypertension; no known thyroid or structural heart disease.\n\nPSH: No surgeries or hospitalizations.\n\nMeds: Amlodipine 5 mg daily; no supplements or decongestants.\n\nAllergies: Penicillin causes hives.\n\nSH: Never smoked tobacco. Two beers most evenings. No cocaine, amphetamines or other recreational drugs. Software analyst; lives with husband; drinks 3 energy drinks on workdays.\n\nFH: My mother is fifty-four and she has high blood pressure.; My father is fifty-seven and he has atrial fibrillation.; My sister is twenty-four and she's healthy.; Nobody in my family has died suddenly before the age of fifty, as far as I know.\n\nROS: Cardiovascular - Reports palpitations. Denies chest pain. Denies syncope. Respiratory - Reports dyspnea. Denies cough. Denies hemoptysis. General - Denies fever. Reports fatigue. Denies weight loss.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
     "O": "Vitals: T 98.2 F oral, P 126 bpm, BP 124/78 mmHg, R 18 rpm, Pulse Ox 98% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Speaking comfortably at rest.\n\nHeart: Tachycardic and irregularly irregular rhythm; no murmur heard.\n\nExt: Radial pulse is rapid and irregular.\n\nLungs: Bilateral breath sounds without crackles or wheeze.\n\nHEENT: Thyroid not enlarged and nontender.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
     "A": [
       "1. Atrial fibrillation",
@@ -3134,19 +3134,19 @@
             "I am a software analyst."
           ],
           "history_family_1": [
-            "Mother has hypertension",
+            "My mother is fifty-four and she has high blood pressure.", "Mother has hypertension",
             "mother"
           ],
           "history_family_2": [
-            "father has atrial fibrillation",
+            "My father is fifty-seven and he has atrial fibrillation.", "father has atrial fibrillation",
             "father"
           ],
           "history_family_3": [
-            "sister is healthy",
+            "My sister is twenty-four and she's healthy.", "sister is healthy",
             "sister"
           ],
           "history_family_4": [
-            "no sudden death before age 50."
+            "Nobody in my family has died suddenly before the age of fifty, as far as I know.", "no sudden death before age 50."
           ],
           "patient_concern": [
             "Does this mean I am having a heart attack?"
@@ -4509,9 +4509,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother has hypertension",
+            "value": "My mother is fifty-four and she has high blood pressure.",
             "sp_says": [
-              "Mother has hypertension"
+              "My mother is fifty-four and she has high blood pressure."
             ],
             "triggers": {
               "any": [
@@ -4527,7 +4527,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has hypertension"
+                "value": "My mother is fifty-four and she has high blood pressure."
               }
             },
             "example_questions": [
@@ -4536,11 +4536,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother has hypertension",
+                  "text": "My mother is fifty-four and she has high blood pressure.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother has hypertension"
+                      "value": "My mother is fifty-four and she has high blood pressure."
                     }
                   },
                   "complete_fact": true
@@ -4553,9 +4553,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "father has atrial fibrillation",
+            "value": "My father is fifty-seven and he has atrial fibrillation.",
             "sp_says": [
-              "father has atrial fibrillation"
+              "My father is fifty-seven and he has atrial fibrillation."
             ],
             "triggers": {
               "any": [
@@ -4571,7 +4571,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father has atrial fibrillation"
+                "value": "My father is fifty-seven and he has atrial fibrillation."
               }
             },
             "example_questions": [
@@ -4580,11 +4580,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "father has atrial fibrillation",
+                  "text": "My father is fifty-seven and he has atrial fibrillation.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "father has atrial fibrillation"
+                      "value": "My father is fifty-seven and he has atrial fibrillation."
                     }
                   },
                   "complete_fact": true
@@ -4597,9 +4597,9 @@
             "id": "history_family_3",
             "category": "family",
             "checklist": "h_history_family_3",
-            "value": "sister is healthy",
+            "value": "My sister is twenty-four and she's healthy.",
             "sp_says": [
-              "sister is healthy"
+              "My sister is twenty-four and she's healthy."
             ],
             "triggers": {
               "any": [
@@ -4615,7 +4615,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "sister is healthy"
+                "value": "My sister is twenty-four and she's healthy."
               }
             },
             "example_questions": [
@@ -4624,11 +4624,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "sister is healthy",
+                  "text": "My sister is twenty-four and she's healthy.",
                   "concepts": {
                     "history_family_3": {
                       "polarity": "positive",
-                      "value": "sister is healthy"
+                      "value": "My sister is twenty-four and she's healthy."
                     }
                   },
                   "complete_fact": true
@@ -4641,9 +4641,9 @@
             "id": "history_family_4",
             "category": "family",
             "checklist": "h_history_family_4",
-            "value": "no sudden death before age 50.",
+            "value": "Nobody in my family has died suddenly before the age of fifty, as far as I know.",
             "sp_says": [
-              "no sudden death before age 50."
+              "Nobody in my family has died suddenly before the age of fifty, as far as I know."
             ],
             "triggers": {
               "any": [
@@ -4659,7 +4659,7 @@
             "concepts": {
               "history_family_4": {
                 "polarity": "positive",
-                "value": "no sudden death before age 50."
+                "value": "Nobody in my family has died suddenly before the age of fifty, as far as I know."
               }
             },
             "example_questions": [
@@ -4668,11 +4668,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "no sudden death before age 50.",
+                  "text": "Nobody in my family has died suddenly before the age of fifty, as far as I know.",
                   "concepts": {
                     "history_family_4": {
                       "polarity": "positive",
-                      "value": "no sudden death before age 50."
+                      "value": "Nobody in my family has died suddenly before the age of fifty, as far as I know."
                     }
                   },
                   "complete_fact": true
@@ -5116,19 +5116,19 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother has hypertension"
+              "text": "My mother is fifty-four and she has high blood pressure."
             },
             {
               "id": "h_history_family_2",
-              "text": "father has atrial fibrillation"
+              "text": "My father is fifty-seven and he has atrial fibrillation."
             },
             {
               "id": "h_history_family_3",
-              "text": "sister is healthy"
+              "text": "My sister is twenty-four and she's healthy."
             },
             {
               "id": "h_history_family_4",
-              "text": "no sudden death before age 50."
+              "text": "Nobody in my family has died suddenly before the age of fifty, as far as I know."
             },
             {
               "id": "h_patient_concern",
@@ -5244,7 +5244,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Episodes of racing and irregular heartbeat\n\nHPI: 27 yo f. Patient reports: The first episode was 2 weeks ago; this continuous episode began 30 hours ago. The fluttering is in the center of my chest. There is no pain spreading elsewhere. It feels fast and irregular rather than like one hard beat. This episode makes ordinary walking uncomfortable. Earlier episodes lasted 10 minutes, but this one is continuous. I was sitting at work when it began. Rest has not stopped this episode. Energy drinks seem to bring episodes on. I stopped drinking coffee today but it is still happening. These episodes are new; I had no earlier history of palpitations. My heart feels fast and uneven. I feel a little short of breath when walking. I have less energy today.\n\nPatient perspective: Does this mean I am having a heart attack?\n\nPMH: Hypertension; no known thyroid or structural heart disease.\n\nPSH: No surgeries or hospitalizations.\n\nMeds: Amlodipine 5 mg daily; no supplements or decongestants.\n\nAllergies: Penicillin causes hives.\n\nSH: Never smoked tobacco. Two beers most evenings. No cocaine, amphetamines or other recreational drugs. Software analyst; lives with husband; drinks 3 energy drinks on workdays.\n\nFH: Mother has hypertension; father has atrial fibrillation; sister is healthy; no sudden death before age 50.\n\nROS: Cardiovascular - Reports palpitations. Denies chest pain. Denies syncope. Respiratory - Reports dyspnea. Denies cough. Denies hemoptysis. General - Denies fever. Reports fatigue. Denies weight loss.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+          "S": "cc: Episodes of racing and irregular heartbeat\n\nHPI: 27 yo f. Patient reports: The first episode was 2 weeks ago; this continuous episode began 30 hours ago. The fluttering is in the center of my chest. There is no pain spreading elsewhere. It feels fast and irregular rather than like one hard beat. This episode makes ordinary walking uncomfortable. Earlier episodes lasted 10 minutes, but this one is continuous. I was sitting at work when it began. Rest has not stopped this episode. Energy drinks seem to bring episodes on. I stopped drinking coffee today but it is still happening. These episodes are new; I had no earlier history of palpitations. My heart feels fast and uneven. I feel a little short of breath when walking. I have less energy today.\n\nPatient perspective: Does this mean I am having a heart attack?\n\nPMH: Hypertension; no known thyroid or structural heart disease.\n\nPSH: No surgeries or hospitalizations.\n\nMeds: Amlodipine 5 mg daily; no supplements or decongestants.\n\nAllergies: Penicillin causes hives.\n\nSH: Never smoked tobacco. Two beers most evenings. No cocaine, amphetamines or other recreational drugs. Software analyst; lives with husband; drinks 3 energy drinks on workdays.\n\nFH: My mother is fifty-four and she has high blood pressure.; My father is fifty-seven and he has atrial fibrillation.; My sister is twenty-four and she's healthy.; Nobody in my family has died suddenly before the age of fifty, as far as I know.\n\nROS: Cardiovascular - Reports palpitations. Denies chest pain. Denies syncope. Respiratory - Reports dyspnea. Denies cough. Denies hemoptysis. General - Denies fever. Reports fatigue. Denies weight loss.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
           "O": "Vitals: T 98.2 F oral, P 126 bpm, BP 124/78 mmHg, R 18 rpm, Pulse Ox 98% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Speaking comfortably at rest.\n\nHeart: Tachycardic and irregularly irregular rhythm; no murmur heard.\n\nExt: Radial pulse is rapid and irregular.\n\nLungs: Bilateral breath sounds without crackles or wheeze.\n\nHEENT: Thyroid not enlarged and nontender.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Atrial fibrillation",
@@ -5522,19 +5522,19 @@
             "I am a software analyst."
           ],
           "history_family_1": [
-            "Mother has hypertension",
+            "My mother is fifty-four and she has high blood pressure.", "Mother has hypertension",
             "mother"
           ],
           "history_family_2": [
-            "father has atrial fibrillation",
+            "My father is fifty-seven and he has atrial fibrillation.", "father has atrial fibrillation",
             "father"
           ],
           "history_family_3": [
-            "sister is healthy",
+            "My sister is twenty-four and she's healthy.", "sister is healthy",
             "sister"
           ],
           "history_family_4": [
-            "no sudden death before age 50."
+            "Nobody in my family has died suddenly before the age of fifty, as far as I know.", "no sudden death before age 50."
           ],
           "patient_concern": [
             "Does this mean I am having a heart attack?"
@@ -6900,9 +6900,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother has hypertension",
+            "value": "My mother is fifty-four and she has high blood pressure.",
             "sp_says": [
-              "Mother has hypertension"
+              "My mother is fifty-four and she has high blood pressure."
             ],
             "triggers": {
               "any": [
@@ -6918,7 +6918,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has hypertension"
+                "value": "My mother is fifty-four and she has high blood pressure."
               }
             },
             "example_questions": [
@@ -6927,11 +6927,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother has hypertension",
+                  "text": "My mother is fifty-four and she has high blood pressure.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother has hypertension"
+                      "value": "My mother is fifty-four and she has high blood pressure."
                     }
                   },
                   "complete_fact": true
@@ -6944,9 +6944,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "father has atrial fibrillation",
+            "value": "My father is fifty-seven and he has atrial fibrillation.",
             "sp_says": [
-              "father has atrial fibrillation"
+              "My father is fifty-seven and he has atrial fibrillation."
             ],
             "triggers": {
               "any": [
@@ -6962,7 +6962,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father has atrial fibrillation"
+                "value": "My father is fifty-seven and he has atrial fibrillation."
               }
             },
             "example_questions": [
@@ -6971,11 +6971,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "father has atrial fibrillation",
+                  "text": "My father is fifty-seven and he has atrial fibrillation.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "father has atrial fibrillation"
+                      "value": "My father is fifty-seven and he has atrial fibrillation."
                     }
                   },
                   "complete_fact": true
@@ -6988,9 +6988,9 @@
             "id": "history_family_3",
             "category": "family",
             "checklist": "h_history_family_3",
-            "value": "sister is healthy",
+            "value": "My sister is twenty-four and she's healthy.",
             "sp_says": [
-              "sister is healthy"
+              "My sister is twenty-four and she's healthy."
             ],
             "triggers": {
               "any": [
@@ -7006,7 +7006,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "sister is healthy"
+                "value": "My sister is twenty-four and she's healthy."
               }
             },
             "example_questions": [
@@ -7015,11 +7015,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "sister is healthy",
+                  "text": "My sister is twenty-four and she's healthy.",
                   "concepts": {
                     "history_family_3": {
                       "polarity": "positive",
-                      "value": "sister is healthy"
+                      "value": "My sister is twenty-four and she's healthy."
                     }
                   },
                   "complete_fact": true
@@ -7032,9 +7032,9 @@
             "id": "history_family_4",
             "category": "family",
             "checklist": "h_history_family_4",
-            "value": "no sudden death before age 50.",
+            "value": "Nobody in my family has died suddenly before the age of fifty, as far as I know.",
             "sp_says": [
-              "no sudden death before age 50."
+              "Nobody in my family has died suddenly before the age of fifty, as far as I know."
             ],
             "triggers": {
               "any": [
@@ -7050,7 +7050,7 @@
             "concepts": {
               "history_family_4": {
                 "polarity": "positive",
-                "value": "no sudden death before age 50."
+                "value": "Nobody in my family has died suddenly before the age of fifty, as far as I know."
               }
             },
             "example_questions": [
@@ -7059,11 +7059,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "no sudden death before age 50.",
+                  "text": "Nobody in my family has died suddenly before the age of fifty, as far as I know.",
                   "concepts": {
                     "history_family_4": {
                       "polarity": "positive",
-                      "value": "no sudden death before age 50."
+                      "value": "Nobody in my family has died suddenly before the age of fifty, as far as I know."
                     }
                   },
                   "complete_fact": true
@@ -7552,19 +7552,19 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother has hypertension"
+              "text": "My mother is fifty-four and she has high blood pressure."
             },
             {
               "id": "h_history_family_2",
-              "text": "father has atrial fibrillation"
+              "text": "My father is fifty-seven and he has atrial fibrillation."
             },
             {
               "id": "h_history_family_3",
-              "text": "sister is healthy"
+              "text": "My sister is twenty-four and she's healthy."
             },
             {
               "id": "h_history_family_4",
-              "text": "no sudden death before age 50."
+              "text": "Nobody in my family has died suddenly before the age of fifty, as far as I know."
             },
             {
               "id": "h_patient_concern",
@@ -7684,7 +7684,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Episodes of racing and irregular heartbeat\n\nHPI: 27 yo f. Patient reports: The first episode was 2 weeks ago; this continuous episode began 6 hours ago. The fluttering is in the center of my chest. There is no pain spreading elsewhere. It feels fast and irregular rather than like one hard beat. This episode makes ordinary walking uncomfortable. Earlier episodes lasted 10 minutes, but this one is continuous. I was sitting at work when it began. Rest has not stopped this episode. Energy drinks seem to bring episodes on. I stopped drinking coffee today but it is still happening. These episodes are new; I had no earlier history of palpitations. My heart feels fast and uneven. I feel a little short of breath when walking. I have less energy today.\n\nPatient perspective: Does this mean I am having a heart attack?\n\nPMH: Hypertension; no known thyroid or structural heart disease.\n\nPSH: No surgeries or hospitalizations.\n\nMeds: Amlodipine 5 mg daily; no supplements or decongestants.\n\nAllergies: Penicillin causes hives.\n\nSH: Never smoked tobacco. Two beers most evenings. No cocaine, amphetamines or other recreational drugs. Software analyst; lives with husband; drinks 3 energy drinks on workdays.\n\nFH: Mother has hypertension; father has atrial fibrillation; sister is healthy; no sudden death before age 50.\n\nROS: Cardiovascular - Reports palpitations. Denies chest pain. Denies syncope. Respiratory - Reports dyspnea. Denies cough. Denies hemoptysis. General - Denies fever. Reports fatigue. Denies weight loss.\n\nPatient concern: I work nights and worry I cannot stay awake without energy drinks.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+          "S": "cc: Episodes of racing and irregular heartbeat\n\nHPI: 27 yo f. Patient reports: The first episode was 2 weeks ago; this continuous episode began 6 hours ago. The fluttering is in the center of my chest. There is no pain spreading elsewhere. It feels fast and irregular rather than like one hard beat. This episode makes ordinary walking uncomfortable. Earlier episodes lasted 10 minutes, but this one is continuous. I was sitting at work when it began. Rest has not stopped this episode. Energy drinks seem to bring episodes on. I stopped drinking coffee today but it is still happening. These episodes are new; I had no earlier history of palpitations. My heart feels fast and uneven. I feel a little short of breath when walking. I have less energy today.\n\nPatient perspective: Does this mean I am having a heart attack?\n\nPMH: Hypertension; no known thyroid or structural heart disease.\n\nPSH: No surgeries or hospitalizations.\n\nMeds: Amlodipine 5 mg daily; no supplements or decongestants.\n\nAllergies: Penicillin causes hives.\n\nSH: Never smoked tobacco. Two beers most evenings. No cocaine, amphetamines or other recreational drugs. Software analyst; lives with husband; drinks 3 energy drinks on workdays.\n\nFH: My mother is fifty-four and she has high blood pressure.; My father is fifty-seven and he has atrial fibrillation.; My sister is twenty-four and she's healthy.; Nobody in my family has died suddenly before the age of fifty, as far as I know.\n\nROS: Cardiovascular - Reports palpitations. Denies chest pain. Denies syncope. Respiratory - Reports dyspnea. Denies cough. Denies hemoptysis. General - Denies fever. Reports fatigue. Denies weight loss.\n\nPatient concern: I work nights and worry I cannot stay awake without energy drinks.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
           "O": "Vitals: T 98.2 F oral, P 126 bpm, BP 124/78 mmHg, R 18 rpm, Pulse Ox 98% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Speaking comfortably at rest.\n\nHeart: Tachycardic and irregularly irregular rhythm; no murmur heard.\n\nExt: Radial pulse is rapid and irregular.\n\nLungs: Bilateral breath sounds without crackles or wheeze.\n\nHEENT: Thyroid not enlarged and nontender.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Atrial fibrillation",

@@ -281,16 +281,16 @@
       "I am an architect."
     ],
     "history_family_1": [
-      "Mother has hypertension",
+      "My mom is fifty-four and she has high blood pressure.", "Mother has hypertension",
       "mother"
     ],
     "history_family_2": [
-      "father and one sister have no known major illness",
+      "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of.", "father and one sister have no known major illness",
       "father",
       "sister"
     ],
     "history_family_3": [
-      "no known inherited clotting disorder."
+      "There's no inherited clotting disorder in the family that I know of.", "no known inherited clotting disorder."
     ],
     "patient_concern": [
       "I am afraid this is just a panic attack and I am wasting your time."
@@ -1604,9 +1604,9 @@
       "id": "history_family_1",
       "category": "family",
       "checklist": "h_history_family_1",
-      "value": "Mother has hypertension",
+      "value": "My mom is fifty-four and she has high blood pressure.",
       "sp_says": [
-        "Mother has hypertension"
+        "My mom is fifty-four and she has high blood pressure."
       ],
       "triggers": {
         "any": [
@@ -1622,7 +1622,7 @@
       "concepts": {
         "history_family_1": {
           "polarity": "positive",
-          "value": "Mother has hypertension"
+          "value": "My mom is fifty-four and she has high blood pressure."
         }
       },
       "example_questions": [
@@ -1631,11 +1631,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "Mother has hypertension",
+            "text": "My mom is fifty-four and she has high blood pressure.",
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has hypertension"
+                "value": "My mom is fifty-four and she has high blood pressure."
               }
             },
             "complete_fact": true
@@ -1648,9 +1648,9 @@
       "id": "history_family_2",
       "category": "family",
       "checklist": "h_history_family_2",
-      "value": "father and one sister have no known major illness",
+      "value": "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of.",
       "sp_says": [
-        "father and one sister have no known major illness"
+        "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of."
       ],
       "triggers": {
         "any": [
@@ -1666,7 +1666,7 @@
       "concepts": {
         "history_family_2": {
           "polarity": "positive",
-          "value": "father and one sister have no known major illness"
+          "value": "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of."
         }
       },
       "example_questions": [
@@ -1675,11 +1675,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "father and one sister have no known major illness",
+            "text": "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of.",
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father and one sister have no known major illness"
+                "value": "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of."
               }
             },
             "complete_fact": true
@@ -1692,9 +1692,9 @@
       "id": "history_family_3",
       "category": "family",
       "checklist": "h_history_family_3",
-      "value": "no known inherited clotting disorder.",
+      "value": "There's no inherited clotting disorder in the family that I know of.",
       "sp_says": [
-        "no known inherited clotting disorder."
+        "There's no inherited clotting disorder in the family that I know of."
       ],
       "triggers": {
         "any": [
@@ -1710,7 +1710,7 @@
       "concepts": {
         "history_family_3": {
           "polarity": "positive",
-          "value": "no known inherited clotting disorder."
+          "value": "There's no inherited clotting disorder in the family that I know of."
         }
       },
       "example_questions": [
@@ -1719,11 +1719,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "no known inherited clotting disorder.",
+            "text": "There's no inherited clotting disorder in the family that I know of.",
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "no known inherited clotting disorder."
+                "value": "There's no inherited clotting disorder in the family that I know of."
               }
             },
             "complete_fact": true
@@ -2264,15 +2264,15 @@
       },
       {
         "id": "h_history_family_1",
-        "text": "Mother has hypertension"
+        "text": "My mom is fifty-four and she has high blood pressure."
       },
       {
         "id": "h_history_family_2",
-        "text": "father and one sister have no known major illness"
+        "text": "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of."
       },
       {
         "id": "h_history_family_3",
-        "text": "no known inherited clotting disorder."
+        "text": "There's no inherited clotting disorder in the family that I know of."
       },
       {
         "id": "h_patient_concern",
@@ -2377,7 +2377,7 @@
     ]
   },
   "model_note": {
-    "S": "cc: Sudden breathlessness and pain with breathing\n\nHPI: 26 yo f. Patient reports: It started suddenly 3 hours ago. The pain is on the right side of my chest. It does not spread to my arm, jaw, or back. It is a sharp pain with breathing. The pain is 6/10. The breathlessness has stayed constant since it began. I returned from an 8-hour flight 3 days ago. Sitting still helps a little. Deep breaths and walking make it worse. I have not tried any treatment. I have never had an episode like this. I feel short of breath even sitting here. The pain catches with a deep breath. My left calf has been swollen and sore since yesterday. My heartbeat feels fast. Walking across the room wears me out.\n\nPatient perspective: I am afraid this is just a panic attack and I am wasting your time.\n\nPMH: No chronic illnesses or previous blood clots.\n\nPSH: Appendectomy at age 16; no recent surgery.\n\nMeds: Combined estrogen oral contraceptive, one tablet daily.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Architect; lives with my husband; no pregnancy suspected, last period 2 weeks ago.\n\nFH: Mother has hypertension; father and one sister have no known major illness; no known inherited clotting disorder.\n\nROS: Respiratory - Reports dyspnea. Reports pleuritic pain. Denies hemoptysis. Cardiovascular - Reports leg swelling. Reports palpitations. Denies syncope. General - Denies fever. Denies chills. Reports fatigue.",
+    "S": "cc: Sudden breathlessness and pain with breathing\n\nHPI: 26 yo f. Patient reports: It started suddenly 3 hours ago. The pain is on the right side of my chest. It does not spread to my arm, jaw, or back. It is a sharp pain with breathing. The pain is 6/10. The breathlessness has stayed constant since it began. I returned from an 8-hour flight 3 days ago. Sitting still helps a little. Deep breaths and walking make it worse. I have not tried any treatment. I have never had an episode like this. I feel short of breath even sitting here. The pain catches with a deep breath. My left calf has been swollen and sore since yesterday. My heartbeat feels fast. Walking across the room wears me out.\n\nPatient perspective: I am afraid this is just a panic attack and I am wasting your time.\n\nPMH: No chronic illnesses or previous blood clots.\n\nPSH: Appendectomy at age 16; no recent surgery.\n\nMeds: Combined estrogen oral contraceptive, one tablet daily.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Architect; lives with my husband; no pregnancy suspected, last period 2 weeks ago.\n\nFH: My mom is fifty-four and she has high blood pressure.; My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of.; There's no inherited clotting disorder in the family that I know of.\n\nROS: Respiratory - Reports dyspnea. Reports pleuritic pain. Denies hemoptysis. Cardiovascular - Reports leg swelling. Reports palpitations. Denies syncope. General - Denies fever. Denies chills. Reports fatigue.",
     "O": "Vitals: T 98.6 F oral, P 112 bpm, BP 118/74 mmHg, R 24 rpm, Pulse Ox 94% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Anxious, breathing rapidly at rest.\n\nHeart: Rapid regular rhythm; S1 and S2 heard without murmur.\n\nLungs: Breath sounds present bilaterally without wheeze or crackles.\n\nExt: Left calf is visibly more swollen than the right.\n\nChest wall: Chest wall palpation does not reproduce the pain.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
     "A": [
       "1. Pulmonary embolism",
@@ -2875,16 +2875,16 @@
             "I am an architect."
           ],
           "history_family_1": [
-            "Mother has hypertension",
+            "My mom is fifty-four and she has high blood pressure.", "Mother has hypertension",
             "mother"
           ],
           "history_family_2": [
-            "father and one sister have no known major illness",
+            "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of.", "father and one sister have no known major illness",
             "father",
             "sister"
           ],
           "history_family_3": [
-            "no known inherited clotting disorder."
+            "There's no inherited clotting disorder in the family that I know of.", "no known inherited clotting disorder."
           ],
           "patient_concern": [
             "I am afraid this is just a panic attack and I am wasting your time."
@@ -4198,9 +4198,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother has hypertension",
+            "value": "My mom is fifty-four and she has high blood pressure.",
             "sp_says": [
-              "Mother has hypertension"
+              "My mom is fifty-four and she has high blood pressure."
             ],
             "triggers": {
               "any": [
@@ -4216,7 +4216,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has hypertension"
+                "value": "My mom is fifty-four and she has high blood pressure."
               }
             },
             "example_questions": [
@@ -4225,11 +4225,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother has hypertension",
+                  "text": "My mom is fifty-four and she has high blood pressure.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother has hypertension"
+                      "value": "My mom is fifty-four and she has high blood pressure."
                     }
                   },
                   "complete_fact": true
@@ -4242,9 +4242,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "father and one sister have no known major illness",
+            "value": "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of.",
             "sp_says": [
-              "father and one sister have no known major illness"
+              "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of."
             ],
             "triggers": {
               "any": [
@@ -4260,7 +4260,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father and one sister have no known major illness"
+                "value": "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of."
               }
             },
             "example_questions": [
@@ -4269,11 +4269,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "father and one sister have no known major illness",
+                  "text": "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "father and one sister have no known major illness"
+                      "value": "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of."
                     }
                   },
                   "complete_fact": true
@@ -4286,9 +4286,9 @@
             "id": "history_family_3",
             "category": "family",
             "checklist": "h_history_family_3",
-            "value": "no known inherited clotting disorder.",
+            "value": "There's no inherited clotting disorder in the family that I know of.",
             "sp_says": [
-              "no known inherited clotting disorder."
+              "There's no inherited clotting disorder in the family that I know of."
             ],
             "triggers": {
               "any": [
@@ -4304,7 +4304,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "no known inherited clotting disorder."
+                "value": "There's no inherited clotting disorder in the family that I know of."
               }
             },
             "example_questions": [
@@ -4313,11 +4313,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "no known inherited clotting disorder.",
+                  "text": "There's no inherited clotting disorder in the family that I know of.",
                   "concepts": {
                     "history_family_3": {
                       "polarity": "positive",
-                      "value": "no known inherited clotting disorder."
+                      "value": "There's no inherited clotting disorder in the family that I know of."
                     }
                   },
                   "complete_fact": true
@@ -4627,15 +4627,15 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother has hypertension"
+              "text": "My mom is fifty-four and she has high blood pressure."
             },
             {
               "id": "h_history_family_2",
-              "text": "father and one sister have no known major illness"
+              "text": "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of."
             },
             {
               "id": "h_history_family_3",
-              "text": "no known inherited clotting disorder."
+              "text": "There's no inherited clotting disorder in the family that I know of."
             },
             {
               "id": "h_patient_concern",
@@ -4739,7 +4739,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Sudden breathlessness and pain with breathing\n\nHPI: 26 yo f. Patient reports: It started suddenly 6 hours ago. The pain is on the right side of my chest. It does not spread to my arm, jaw, or back. It is a sharp pain with breathing. The pain is 6/10. The breathlessness has stayed constant since it began. I returned from an 8-hour flight 3 days ago. Sitting still helps a little. Deep breaths and walking make it worse. I have not tried any treatment. I have never had an episode like this. I feel short of breath even sitting here. The pain catches with a deep breath. My left calf has been swollen and sore since yesterday. My heartbeat feels fast. Walking across the room wears me out.\n\nPatient perspective: I am afraid this is just a panic attack and I am wasting your time.\n\nPMH: No chronic illnesses or previous blood clots.\n\nPSH: Appendectomy at age 16; no recent surgery.\n\nMeds: Combined estrogen oral contraceptive, one tablet daily.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Architect; lives with my husband; no pregnancy suspected, last period 2 weeks ago.\n\nFH: Mother has hypertension; father and one sister have no known major illness; no known inherited clotting disorder.\n\nROS: Respiratory - Reports dyspnea. Reports pleuritic pain. Denies hemoptysis. Cardiovascular - Reports leg swelling. Reports palpitations. Denies syncope. General - Denies fever. Denies chills. Reports fatigue.",
+          "S": "cc: Sudden breathlessness and pain with breathing\n\nHPI: 26 yo f. Patient reports: It started suddenly 6 hours ago. The pain is on the right side of my chest. It does not spread to my arm, jaw, or back. It is a sharp pain with breathing. The pain is 6/10. The breathlessness has stayed constant since it began. I returned from an 8-hour flight 3 days ago. Sitting still helps a little. Deep breaths and walking make it worse. I have not tried any treatment. I have never had an episode like this. I feel short of breath even sitting here. The pain catches with a deep breath. My left calf has been swollen and sore since yesterday. My heartbeat feels fast. Walking across the room wears me out.\n\nPatient perspective: I am afraid this is just a panic attack and I am wasting your time.\n\nPMH: No chronic illnesses or previous blood clots.\n\nPSH: Appendectomy at age 16; no recent surgery.\n\nMeds: Combined estrogen oral contraceptive, one tablet daily.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Architect; lives with my husband; no pregnancy suspected, last period 2 weeks ago.\n\nFH: My mom is fifty-four and she has high blood pressure.; My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of.; There's no inherited clotting disorder in the family that I know of.\n\nROS: Respiratory - Reports dyspnea. Reports pleuritic pain. Denies hemoptysis. Cardiovascular - Reports leg swelling. Reports palpitations. Denies syncope. General - Denies fever. Denies chills. Reports fatigue.",
           "O": "Vitals: T 98.6 F oral, P 112 bpm, BP 118/74 mmHg, R 24 rpm, Pulse Ox 94% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Anxious, breathing rapidly at rest.\n\nHeart: Rapid regular rhythm; S1 and S2 heard without murmur.\n\nLungs: Breath sounds present bilaterally without wheeze or crackles.\n\nExt: Left calf is visibly more swollen than the right.\n\nChest wall: Chest wall palpation does not reproduce the pain.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Pulmonary embolism",
@@ -5016,16 +5016,16 @@
             "I am an architect."
           ],
           "history_family_1": [
-            "Mother has hypertension",
+            "My mom is fifty-four and she has high blood pressure.", "Mother has hypertension",
             "mother"
           ],
           "history_family_2": [
-            "father and one sister have no known major illness",
+            "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of.", "father and one sister have no known major illness",
             "father",
             "sister"
           ],
           "history_family_3": [
-            "no known inherited clotting disorder."
+            "There's no inherited clotting disorder in the family that I know of.", "no known inherited clotting disorder."
           ],
           "patient_concern": [
             "I am afraid this is just a panic attack and I am wasting your time."
@@ -6342,9 +6342,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother has hypertension",
+            "value": "My mom is fifty-four and she has high blood pressure.",
             "sp_says": [
-              "Mother has hypertension"
+              "My mom is fifty-four and she has high blood pressure."
             ],
             "triggers": {
               "any": [
@@ -6360,7 +6360,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has hypertension"
+                "value": "My mom is fifty-four and she has high blood pressure."
               }
             },
             "example_questions": [
@@ -6369,11 +6369,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother has hypertension",
+                  "text": "My mom is fifty-four and she has high blood pressure.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother has hypertension"
+                      "value": "My mom is fifty-four and she has high blood pressure."
                     }
                   },
                   "complete_fact": true
@@ -6386,9 +6386,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "father and one sister have no known major illness",
+            "value": "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of.",
             "sp_says": [
-              "father and one sister have no known major illness"
+              "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of."
             ],
             "triggers": {
               "any": [
@@ -6404,7 +6404,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father and one sister have no known major illness"
+                "value": "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of."
               }
             },
             "example_questions": [
@@ -6413,11 +6413,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "father and one sister have no known major illness",
+                  "text": "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "father and one sister have no known major illness"
+                      "value": "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of."
                     }
                   },
                   "complete_fact": true
@@ -6430,9 +6430,9 @@
             "id": "history_family_3",
             "category": "family",
             "checklist": "h_history_family_3",
-            "value": "no known inherited clotting disorder.",
+            "value": "There's no inherited clotting disorder in the family that I know of.",
             "sp_says": [
-              "no known inherited clotting disorder."
+              "There's no inherited clotting disorder in the family that I know of."
             ],
             "triggers": {
               "any": [
@@ -6448,7 +6448,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "no known inherited clotting disorder."
+                "value": "There's no inherited clotting disorder in the family that I know of."
               }
             },
             "example_questions": [
@@ -6457,11 +6457,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "no known inherited clotting disorder.",
+                  "text": "There's no inherited clotting disorder in the family that I know of.",
                   "concepts": {
                     "history_family_3": {
                       "polarity": "positive",
-                      "value": "no known inherited clotting disorder."
+                      "value": "There's no inherited clotting disorder in the family that I know of."
                     }
                   },
                   "complete_fact": true
@@ -6816,15 +6816,15 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother has hypertension"
+              "text": "My mom is fifty-four and she has high blood pressure."
             },
             {
               "id": "h_history_family_2",
-              "text": "father and one sister have no known major illness"
+              "text": "My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of."
             },
             {
               "id": "h_history_family_3",
-              "text": "no known inherited clotting disorder."
+              "text": "There's no inherited clotting disorder in the family that I know of."
             },
             {
               "id": "h_patient_concern",
@@ -6932,7 +6932,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Sudden breathlessness and pain with breathing\n\nHPI: 26 yo f. Patient reports: It started suddenly 3 hours ago. The pain is on the right side of my chest. It does not spread to my arm, jaw, or back. It is a sharp pain with breathing. The pain is 6/10. The breathlessness has stayed constant since it began. I returned from an 8-hour flight 3 days ago. Sitting still helps a little. Deep breaths and walking make it worse. I have not tried any treatment. I have never had an episode like this. I feel short of breath even sitting here. The pain catches with a deep breath. My left calf has been swollen and sore since yesterday. My heartbeat feels fast. Walking across the room wears me out.\n\nPatient perspective: I am afraid this is just a panic attack and I am wasting your time.\n\nPMH: No chronic illnesses or previous blood clots.\n\nPSH: Appendectomy at age 16; no recent surgery.\n\nMeds: Combined estrogen oral contraceptive, one tablet daily.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Architect; lives with my husband; no pregnancy suspected, last period 2 weeks ago.\n\nFH: Mother has hypertension; father and one sister have no known major illness; no known inherited clotting disorder.\n\nROS: Respiratory - Reports dyspnea. Reports pleuritic pain. Denies hemoptysis. Cardiovascular - Reports leg swelling. Reports palpitations. Denies syncope. General - Denies fever. Denies chills. Reports fatigue.\n\nPatient concern: I drove here alone and would rather drive myself to the hospital.",
+          "S": "cc: Sudden breathlessness and pain with breathing\n\nHPI: 26 yo f. Patient reports: It started suddenly 3 hours ago. The pain is on the right side of my chest. It does not spread to my arm, jaw, or back. It is a sharp pain with breathing. The pain is 6/10. The breathlessness has stayed constant since it began. I returned from an 8-hour flight 3 days ago. Sitting still helps a little. Deep breaths and walking make it worse. I have not tried any treatment. I have never had an episode like this. I feel short of breath even sitting here. The pain catches with a deep breath. My left calf has been swollen and sore since yesterday. My heartbeat feels fast. Walking across the room wears me out.\n\nPatient perspective: I am afraid this is just a panic attack and I am wasting your time.\n\nPMH: No chronic illnesses or previous blood clots.\n\nPSH: Appendectomy at age 16; no recent surgery.\n\nMeds: Combined estrogen oral contraceptive, one tablet daily.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Architect; lives with my husband; no pregnancy suspected, last period 2 weeks ago.\n\nFH: My mom is fifty-four and she has high blood pressure.; My dad's fifty-six and I have one sister who's twenty-nine, and neither of them has any major illness that I know of.; There's no inherited clotting disorder in the family that I know of.\n\nROS: Respiratory - Reports dyspnea. Reports pleuritic pain. Denies hemoptysis. Cardiovascular - Reports leg swelling. Reports palpitations. Denies syncope. General - Denies fever. Denies chills. Reports fatigue.\n\nPatient concern: I drove here alone and would rather drive myself to the hospital.",
           "O": "Vitals: T 98.6 F oral, P 112 bpm, BP 118/74 mmHg, R 24 rpm, Pulse Ox 94% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Anxious, breathing rapidly at rest.\n\nHeart: Rapid regular rhythm; S1 and S2 heard without murmur.\n\nLungs: Breath sounds present bilaterally without wheeze or crackles.\n\nExt: Left calf is visibly more swollen than the right.\n\nChest wall: Chest wall palpation does not reproduce the pain.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Pulmonary embolism",

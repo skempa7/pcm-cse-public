@@ -282,19 +282,19 @@
       "I am a warehouse supervisor."
     ],
     "history_family_1": [
-      "Mother hypertension",
+      "My mom is fifty-three and she has high blood pressure.", "Mother hypertension",
       "mother"
     ],
     "history_family_2": [
-      "father healthy",
+      "My dad is fifty-six and he's healthy.", "father healthy",
       "father"
     ],
     "history_family_3": [
-      "brother healthy",
+      "My brother is thirty and he's healthy.", "brother healthy",
       "brother"
     ],
     "history_family_4": [
-      "no known hereditary neurologic illness."
+      "No one in my family has an inherited neurologic illness that I know of.", "no known hereditary neurologic illness."
     ],
     "patient_concern": [
       "Can I just get my back adjusted?"
@@ -1656,9 +1656,9 @@
       "id": "history_family_1",
       "category": "family",
       "checklist": "h_history_family_1",
-      "value": "Mother hypertension",
+      "value": "My mom is fifty-three and she has high blood pressure.",
       "sp_says": [
-        "Mother hypertension"
+        "My mom is fifty-three and she has high blood pressure."
       ],
       "triggers": {
         "any": [
@@ -1674,7 +1674,7 @@
       "concepts": {
         "history_family_1": {
           "polarity": "positive",
-          "value": "Mother hypertension"
+          "value": "My mom is fifty-three and she has high blood pressure."
         }
       },
       "example_questions": [
@@ -1683,11 +1683,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "Mother hypertension",
+            "text": "My mom is fifty-three and she has high blood pressure.",
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother hypertension"
+                "value": "My mom is fifty-three and she has high blood pressure."
               }
             },
             "complete_fact": true
@@ -1700,9 +1700,9 @@
       "id": "history_family_2",
       "category": "family",
       "checklist": "h_history_family_2",
-      "value": "father healthy",
+      "value": "My dad is fifty-six and he's healthy.",
       "sp_says": [
-        "father healthy"
+        "My dad is fifty-six and he's healthy."
       ],
       "triggers": {
         "any": [
@@ -1718,7 +1718,7 @@
       "concepts": {
         "history_family_2": {
           "polarity": "positive",
-          "value": "father healthy"
+          "value": "My dad is fifty-six and he's healthy."
         }
       },
       "example_questions": [
@@ -1727,11 +1727,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "father healthy",
+            "text": "My dad is fifty-six and he's healthy.",
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father healthy"
+                "value": "My dad is fifty-six and he's healthy."
               }
             },
             "complete_fact": true
@@ -1744,9 +1744,9 @@
       "id": "history_family_3",
       "category": "family",
       "checklist": "h_history_family_3",
-      "value": "brother healthy",
+      "value": "My brother is thirty and he's healthy.",
       "sp_says": [
-        "brother healthy"
+        "My brother is thirty and he's healthy."
       ],
       "triggers": {
         "any": [
@@ -1762,7 +1762,7 @@
       "concepts": {
         "history_family_3": {
           "polarity": "positive",
-          "value": "brother healthy"
+          "value": "My brother is thirty and he's healthy."
         }
       },
       "example_questions": [
@@ -1771,11 +1771,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "brother healthy",
+            "text": "My brother is thirty and he's healthy.",
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "brother healthy"
+                "value": "My brother is thirty and he's healthy."
               }
             },
             "complete_fact": true
@@ -1788,9 +1788,9 @@
       "id": "history_family_4",
       "category": "family",
       "checklist": "h_history_family_4",
-      "value": "no known hereditary neurologic illness.",
+      "value": "No one in my family has an inherited neurologic illness that I know of.",
       "sp_says": [
-        "no known hereditary neurologic illness."
+        "No one in my family has an inherited neurologic illness that I know of."
       ],
       "triggers": {
         "any": [
@@ -1806,7 +1806,7 @@
       "concepts": {
         "history_family_4": {
           "polarity": "positive",
-          "value": "no known hereditary neurologic illness."
+          "value": "No one in my family has an inherited neurologic illness that I know of."
         }
       },
       "example_questions": [
@@ -1815,11 +1815,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "no known hereditary neurologic illness.",
+            "text": "No one in my family has an inherited neurologic illness that I know of.",
             "concepts": {
               "history_family_4": {
                 "polarity": "positive",
-                "value": "no known hereditary neurologic illness."
+                "value": "No one in my family has an inherited neurologic illness that I know of."
               }
             },
             "complete_fact": true
@@ -2450,19 +2450,19 @@
       },
       {
         "id": "h_history_family_1",
-        "text": "Mother hypertension"
+        "text": "My mom is fifty-three and she has high blood pressure."
       },
       {
         "id": "h_history_family_2",
-        "text": "father healthy"
+        "text": "My dad is fifty-six and he's healthy."
       },
       {
         "id": "h_history_family_3",
-        "text": "brother healthy"
+        "text": "My brother is thirty and he's healthy."
       },
       {
         "id": "h_history_family_4",
-        "text": "no known hereditary neurologic illness."
+        "text": "No one in my family has an inherited neurologic illness that I know of."
       },
       {
         "id": "h_patient_concern",
@@ -2591,7 +2591,7 @@
     ]
   },
   "model_note": {
-    "S": "cc: Back pain with new bladder difficulty and leg symptoms\n\nHPI: 27 yo f. Patient reports: The back pain began 3 days ago; the urinary difficulty began 6 hours ago. The pain is in the lower back. It runs down the backs of both legs. It is a severe deep pain with shooting leg pain. It is 8/10. The leg symptoms and bladder trouble are new today. It began after lifting a heavy box. Lying still helps only a little. Bending and coughing worsen the shooting pain. I took ibuprofen 400 mg twice without much relief. Previous back strains resolved without urinary difficulty; this episode is different. My low back hurts and shoots into both legs. The area between my legs feels numb when I wipe. Both feet feel weaker than usual. I have a full bladder feeling but can pass only drops.\n\nPatient perspective: Can I just get my back adjusted?\n\nPMH: Previous mechanical back pain; no cancer, diabetes or immune suppression.\n\nPSH: No spine surgery or recent procedures.\n\nMeds: Ibuprofen 400 mg twice today; no anticoagulants.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. Two alcoholic drinks weekly. No injection or other recreational drug use. Warehouse supervisor; lives with husband.\n\nFH: Mother hypertension; father healthy; brother healthy; no known hereditary neurologic illness.\n\nROS: Neurologic - Reports back pain. Reports saddle numbness. Reports leg weakness. Urinary - Reports retention. Denies dysuria. Denies hematuria. General - Denies fever. Denies chills. Denies weight loss.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+    "S": "cc: Back pain with new bladder difficulty and leg symptoms\n\nHPI: 27 yo f. Patient reports: The back pain began 3 days ago; the urinary difficulty began 6 hours ago. The pain is in the lower back. It runs down the backs of both legs. It is a severe deep pain with shooting leg pain. It is 8/10. The leg symptoms and bladder trouble are new today. It began after lifting a heavy box. Lying still helps only a little. Bending and coughing worsen the shooting pain. I took ibuprofen 400 mg twice without much relief. Previous back strains resolved without urinary difficulty; this episode is different. My low back hurts and shoots into both legs. The area between my legs feels numb when I wipe. Both feet feel weaker than usual. I have a full bladder feeling but can pass only drops.\n\nPatient perspective: Can I just get my back adjusted?\n\nPMH: Previous mechanical back pain; no cancer, diabetes or immune suppression.\n\nPSH: No spine surgery or recent procedures.\n\nMeds: Ibuprofen 400 mg twice today; no anticoagulants.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. Two alcoholic drinks weekly. No injection or other recreational drug use. Warehouse supervisor; lives with husband.\n\nFH: My mom is fifty-three and she has high blood pressure.; My dad is fifty-six and he's healthy.; My brother is thirty and he's healthy.; No one in my family has an inherited neurologic illness that I know of.\n\nROS: Neurologic - Reports back pain. Reports saddle numbness. Reports leg weakness. Urinary - Reports retention. Denies dysuria. Denies hematuria. General - Denies fever. Denies chills. Denies weight loss.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
     "O": "Vitals: T 98.6 F oral, P 92 bpm, BP 138/84 mmHg, R 18 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert and uncomfortable, moving cautiously.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nMSK: Lower lumbar paraspinal tenderness.\n\nNeuro: Bilateral ankle dorsiflexion 4/5; proximal leg strength 5/5. Reduced light touch along the lateral feet bilaterally. Achilles reflexes reduced bilaterally; patellar reflexes preserved.\n\nAbd: Suprapubic fullness and discomfort on gentle palpation.\n\nOsteopathic: C1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
     "A": [
       "1. Cauda equina compression from lumbar disc herniation",
@@ -3090,19 +3090,19 @@
             "I am a warehouse supervisor."
           ],
           "history_family_1": [
-            "Mother hypertension",
+            "My mom is fifty-three and she has high blood pressure.", "Mother hypertension",
             "mother"
           ],
           "history_family_2": [
-            "father healthy",
+            "My dad is fifty-six and he's healthy.", "father healthy",
             "father"
           ],
           "history_family_3": [
-            "brother healthy",
+            "My brother is thirty and he's healthy.", "brother healthy",
             "brother"
           ],
           "history_family_4": [
-            "no known hereditary neurologic illness."
+            "No one in my family has an inherited neurologic illness that I know of.", "no known hereditary neurologic illness."
           ],
           "patient_concern": [
             "Can I just get my back adjusted?"
@@ -4464,9 +4464,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother hypertension",
+            "value": "My mom is fifty-three and she has high blood pressure.",
             "sp_says": [
-              "Mother hypertension"
+              "My mom is fifty-three and she has high blood pressure."
             ],
             "triggers": {
               "any": [
@@ -4482,7 +4482,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother hypertension"
+                "value": "My mom is fifty-three and she has high blood pressure."
               }
             },
             "example_questions": [
@@ -4491,11 +4491,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother hypertension",
+                  "text": "My mom is fifty-three and she has high blood pressure.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother hypertension"
+                      "value": "My mom is fifty-three and she has high blood pressure."
                     }
                   },
                   "complete_fact": true
@@ -4508,9 +4508,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "father healthy",
+            "value": "My dad is fifty-six and he's healthy.",
             "sp_says": [
-              "father healthy"
+              "My dad is fifty-six and he's healthy."
             ],
             "triggers": {
               "any": [
@@ -4526,7 +4526,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father healthy"
+                "value": "My dad is fifty-six and he's healthy."
               }
             },
             "example_questions": [
@@ -4535,11 +4535,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "father healthy",
+                  "text": "My dad is fifty-six and he's healthy.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "father healthy"
+                      "value": "My dad is fifty-six and he's healthy."
                     }
                   },
                   "complete_fact": true
@@ -4552,9 +4552,9 @@
             "id": "history_family_3",
             "category": "family",
             "checklist": "h_history_family_3",
-            "value": "brother healthy",
+            "value": "My brother is thirty and he's healthy.",
             "sp_says": [
-              "brother healthy"
+              "My brother is thirty and he's healthy."
             ],
             "triggers": {
               "any": [
@@ -4570,7 +4570,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "brother healthy"
+                "value": "My brother is thirty and he's healthy."
               }
             },
             "example_questions": [
@@ -4579,11 +4579,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "brother healthy",
+                  "text": "My brother is thirty and he's healthy.",
                   "concepts": {
                     "history_family_3": {
                       "polarity": "positive",
-                      "value": "brother healthy"
+                      "value": "My brother is thirty and he's healthy."
                     }
                   },
                   "complete_fact": true
@@ -4596,9 +4596,9 @@
             "id": "history_family_4",
             "category": "family",
             "checklist": "h_history_family_4",
-            "value": "no known hereditary neurologic illness.",
+            "value": "No one in my family has an inherited neurologic illness that I know of.",
             "sp_says": [
-              "no known hereditary neurologic illness."
+              "No one in my family has an inherited neurologic illness that I know of."
             ],
             "triggers": {
               "any": [
@@ -4614,7 +4614,7 @@
             "concepts": {
               "history_family_4": {
                 "polarity": "positive",
-                "value": "no known hereditary neurologic illness."
+                "value": "No one in my family has an inherited neurologic illness that I know of."
               }
             },
             "example_questions": [
@@ -4623,11 +4623,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "no known hereditary neurologic illness.",
+                  "text": "No one in my family has an inherited neurologic illness that I know of.",
                   "concepts": {
                     "history_family_4": {
                       "polarity": "positive",
-                      "value": "no known hereditary neurologic illness."
+                      "value": "No one in my family has an inherited neurologic illness that I know of."
                     }
                   },
                   "complete_fact": true
@@ -4977,19 +4977,19 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother hypertension"
+              "text": "My mom is fifty-three and she has high blood pressure."
             },
             {
               "id": "h_history_family_2",
-              "text": "father healthy"
+              "text": "My dad is fifty-six and he's healthy."
             },
             {
               "id": "h_history_family_3",
-              "text": "brother healthy"
+              "text": "My brother is thirty and he's healthy."
             },
             {
               "id": "h_history_family_4",
-              "text": "no known hereditary neurologic illness."
+              "text": "No one in my family has an inherited neurologic illness that I know of."
             },
             {
               "id": "h_patient_concern",
@@ -5117,7 +5117,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Back pain with new bladder difficulty and leg symptoms\n\nHPI: 27 yo f. Patient reports: The back pain began 3 days ago; the urinary difficulty began 12 hours ago. The pain is in the lower back. It runs down the backs of both legs. It is a severe deep pain with shooting leg pain. It is 8/10. The leg symptoms and bladder trouble are new today. It began after lifting a heavy box. Lying still helps only a little. Bending and coughing worsen the shooting pain. I took ibuprofen 400 mg twice without much relief. Previous back strains resolved without urinary difficulty; this episode is different. My low back hurts and shoots into both legs. The area between my legs feels numb when I wipe. Both feet feel weaker than usual. I have a full bladder feeling but can pass only drops.\n\nPatient perspective: Can I just get my back adjusted?\n\nPMH: Previous mechanical back pain; no cancer, diabetes or immune suppression.\n\nPSH: No spine surgery or recent procedures.\n\nMeds: Ibuprofen 400 mg twice today; no anticoagulants.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. Two alcoholic drinks weekly. No injection or other recreational drug use. Warehouse supervisor; lives with husband.\n\nFH: Mother hypertension; father healthy; brother healthy; no known hereditary neurologic illness.\n\nROS: Neurologic - Reports back pain. Reports saddle numbness. Reports leg weakness. Urinary - Reports retention. Denies dysuria. Denies hematuria. General - Denies fever. Denies chills. Denies weight loss.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+          "S": "cc: Back pain with new bladder difficulty and leg symptoms\n\nHPI: 27 yo f. Patient reports: The back pain began 3 days ago; the urinary difficulty began 12 hours ago. The pain is in the lower back. It runs down the backs of both legs. It is a severe deep pain with shooting leg pain. It is 8/10. The leg symptoms and bladder trouble are new today. It began after lifting a heavy box. Lying still helps only a little. Bending and coughing worsen the shooting pain. I took ibuprofen 400 mg twice without much relief. Previous back strains resolved without urinary difficulty; this episode is different. My low back hurts and shoots into both legs. The area between my legs feels numb when I wipe. Both feet feel weaker than usual. I have a full bladder feeling but can pass only drops.\n\nPatient perspective: Can I just get my back adjusted?\n\nPMH: Previous mechanical back pain; no cancer, diabetes or immune suppression.\n\nPSH: No spine surgery or recent procedures.\n\nMeds: Ibuprofen 400 mg twice today; no anticoagulants.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. Two alcoholic drinks weekly. No injection or other recreational drug use. Warehouse supervisor; lives with husband.\n\nFH: My mom is fifty-three and she has high blood pressure.; My dad is fifty-six and he's healthy.; My brother is thirty and he's healthy.; No one in my family has an inherited neurologic illness that I know of.\n\nROS: Neurologic - Reports back pain. Reports saddle numbness. Reports leg weakness. Urinary - Reports retention. Denies dysuria. Denies hematuria. General - Denies fever. Denies chills. Denies weight loss.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
           "O": "Vitals: T 98.6 F oral, P 92 bpm, BP 138/84 mmHg, R 18 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert and uncomfortable, moving cautiously.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nMSK: Lower lumbar paraspinal tenderness.\n\nNeuro: Bilateral ankle dorsiflexion 4/5; proximal leg strength 5/5. Reduced light touch along the lateral feet bilaterally. Achilles reflexes reduced bilaterally; patellar reflexes preserved.\n\nAbd: Suprapubic fullness and discomfort on gentle palpation.\n\nOsteopathic: C1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Cauda equina compression from lumbar disc herniation",
@@ -5395,19 +5395,19 @@
             "I am a warehouse supervisor."
           ],
           "history_family_1": [
-            "Mother hypertension",
+            "My mom is fifty-three and she has high blood pressure.", "Mother hypertension",
             "mother"
           ],
           "history_family_2": [
-            "father healthy",
+            "My dad is fifty-six and he's healthy.", "father healthy",
             "father"
           ],
           "history_family_3": [
-            "brother healthy",
+            "My brother is thirty and he's healthy.", "brother healthy",
             "brother"
           ],
           "history_family_4": [
-            "no known hereditary neurologic illness."
+            "No one in my family has an inherited neurologic illness that I know of.", "no known hereditary neurologic illness."
           ],
           "patient_concern": [
             "Can I just get my back adjusted?"
@@ -6772,9 +6772,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother hypertension",
+            "value": "My mom is fifty-three and she has high blood pressure.",
             "sp_says": [
-              "Mother hypertension"
+              "My mom is fifty-three and she has high blood pressure."
             ],
             "triggers": {
               "any": [
@@ -6790,7 +6790,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother hypertension"
+                "value": "My mom is fifty-three and she has high blood pressure."
               }
             },
             "example_questions": [
@@ -6799,11 +6799,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother hypertension",
+                  "text": "My mom is fifty-three and she has high blood pressure.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother hypertension"
+                      "value": "My mom is fifty-three and she has high blood pressure."
                     }
                   },
                   "complete_fact": true
@@ -6816,9 +6816,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "father healthy",
+            "value": "My dad is fifty-six and he's healthy.",
             "sp_says": [
-              "father healthy"
+              "My dad is fifty-six and he's healthy."
             ],
             "triggers": {
               "any": [
@@ -6834,7 +6834,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father healthy"
+                "value": "My dad is fifty-six and he's healthy."
               }
             },
             "example_questions": [
@@ -6843,11 +6843,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "father healthy",
+                  "text": "My dad is fifty-six and he's healthy.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "father healthy"
+                      "value": "My dad is fifty-six and he's healthy."
                     }
                   },
                   "complete_fact": true
@@ -6860,9 +6860,9 @@
             "id": "history_family_3",
             "category": "family",
             "checklist": "h_history_family_3",
-            "value": "brother healthy",
+            "value": "My brother is thirty and he's healthy.",
             "sp_says": [
-              "brother healthy"
+              "My brother is thirty and he's healthy."
             ],
             "triggers": {
               "any": [
@@ -6878,7 +6878,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "brother healthy"
+                "value": "My brother is thirty and he's healthy."
               }
             },
             "example_questions": [
@@ -6887,11 +6887,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "brother healthy",
+                  "text": "My brother is thirty and he's healthy.",
                   "concepts": {
                     "history_family_3": {
                       "polarity": "positive",
-                      "value": "brother healthy"
+                      "value": "My brother is thirty and he's healthy."
                     }
                   },
                   "complete_fact": true
@@ -6904,9 +6904,9 @@
             "id": "history_family_4",
             "category": "family",
             "checklist": "h_history_family_4",
-            "value": "no known hereditary neurologic illness.",
+            "value": "No one in my family has an inherited neurologic illness that I know of.",
             "sp_says": [
-              "no known hereditary neurologic illness."
+              "No one in my family has an inherited neurologic illness that I know of."
             ],
             "triggers": {
               "any": [
@@ -6922,7 +6922,7 @@
             "concepts": {
               "history_family_4": {
                 "polarity": "positive",
-                "value": "no known hereditary neurologic illness."
+                "value": "No one in my family has an inherited neurologic illness that I know of."
               }
             },
             "example_questions": [
@@ -6931,11 +6931,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "no known hereditary neurologic illness.",
+                  "text": "No one in my family has an inherited neurologic illness that I know of.",
                   "concepts": {
                     "history_family_4": {
                       "polarity": "positive",
-                      "value": "no known hereditary neurologic illness."
+                      "value": "No one in my family has an inherited neurologic illness that I know of."
                     }
                   },
                   "complete_fact": true
@@ -7330,19 +7330,19 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother hypertension"
+              "text": "My mom is fifty-three and she has high blood pressure."
             },
             {
               "id": "h_history_family_2",
-              "text": "father healthy"
+              "text": "My dad is fifty-six and he's healthy."
             },
             {
               "id": "h_history_family_3",
-              "text": "brother healthy"
+              "text": "My brother is thirty and he's healthy."
             },
             {
               "id": "h_history_family_4",
-              "text": "no known hereditary neurologic illness."
+              "text": "No one in my family has an inherited neurologic illness that I know of."
             },
             {
               "id": "h_patient_concern",
@@ -7474,7 +7474,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Back pain with new bladder difficulty and leg symptoms\n\nHPI: 27 yo f. Patient reports: The back pain began 3 days ago; the urinary difficulty began 6 hours ago. The pain is in the lower back. It runs down the backs of both legs. It is a severe deep pain with shooting leg pain. It is 8/10. The leg symptoms and bladder trouble are new today. It began after lifting a heavy box. Lying still helps only a little. Bending and coughing worsen the shooting pain. I took ibuprofen 400 mg twice without much relief. Previous back strains resolved without urinary difficulty; this episode is different. My low back hurts and shoots into both legs. The area between my legs feels numb when I wipe. Both feet feel weaker than usual. I have a full bladder feeling but can pass only drops.\n\nPatient perspective: Can I just get my back adjusted?\n\nPMH: Previous mechanical back pain; no cancer, diabetes or immune suppression.\n\nPSH: No spine surgery or recent procedures.\n\nMeds: Ibuprofen 400 mg twice today; no anticoagulants.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. Two alcoholic drinks weekly. No injection or other recreational drug use. Warehouse supervisor; lives with husband.\n\nFH: Mother hypertension; father healthy; brother healthy; no known hereditary neurologic illness.\n\nROS: Neurologic - Reports back pain. Reports saddle numbness. Reports leg weakness. Urinary - Reports retention. Denies dysuria. Denies hematuria. General - Denies fever. Denies chills. Denies weight loss.\n\nPatient concern: I do not understand why bladder trouble could come from my back.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+          "S": "cc: Back pain with new bladder difficulty and leg symptoms\n\nHPI: 27 yo f. Patient reports: The back pain began 3 days ago; the urinary difficulty began 6 hours ago. The pain is in the lower back. It runs down the backs of both legs. It is a severe deep pain with shooting leg pain. It is 8/10. The leg symptoms and bladder trouble are new today. It began after lifting a heavy box. Lying still helps only a little. Bending and coughing worsen the shooting pain. I took ibuprofen 400 mg twice without much relief. Previous back strains resolved without urinary difficulty; this episode is different. My low back hurts and shoots into both legs. The area between my legs feels numb when I wipe. Both feet feel weaker than usual. I have a full bladder feeling but can pass only drops.\n\nPatient perspective: Can I just get my back adjusted?\n\nPMH: Previous mechanical back pain; no cancer, diabetes or immune suppression.\n\nPSH: No spine surgery or recent procedures.\n\nMeds: Ibuprofen 400 mg twice today; no anticoagulants.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. Two alcoholic drinks weekly. No injection or other recreational drug use. Warehouse supervisor; lives with husband.\n\nFH: My mom is fifty-three and she has high blood pressure.; My dad is fifty-six and he's healthy.; My brother is thirty and he's healthy.; No one in my family has an inherited neurologic illness that I know of.\n\nROS: Neurologic - Reports back pain. Reports saddle numbness. Reports leg weakness. Urinary - Reports retention. Denies dysuria. Denies hematuria. General - Denies fever. Denies chills. Denies weight loss.\n\nPatient concern: I do not understand why bladder trouble could come from my back.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
           "O": "Vitals: T 98.6 F oral, P 92 bpm, BP 138/84 mmHg, R 18 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert and uncomfortable, moving cautiously.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nMSK: Lower lumbar paraspinal tenderness.\n\nNeuro: Bilateral ankle dorsiflexion 4/5; proximal leg strength 5/5. Reduced light touch along the lateral feet bilaterally. Achilles reflexes reduced bilaterally; patellar reflexes preserved.\n\nAbd: Suprapubic fullness and discomfort on gentle palpation.\n\nOsteopathic: C1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Cauda equina compression from lumbar disc herniation",

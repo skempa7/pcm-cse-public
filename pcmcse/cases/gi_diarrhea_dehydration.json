@@ -276,16 +276,16 @@
       "I am a preschool teacher."
     ],
     "history_family_1": [
-      "Mother and father have no major disease",
+      "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.", "Mother and father have no major disease",
       "mother",
       "father"
     ],
     "history_family_2": [
-      "brother healthy",
+      "I have a brother who's twenty-three and he's healthy.", "brother healthy",
       "brother"
     ],
     "history_family_3": [
-      "no family inflammatory bowel disease."
+      "No one in my family has inflammatory bowel disease.", "no family inflammatory bowel disease."
     ],
     "patient_concern": [
       "Do I need antibiotics to get back to work?"
@@ -1627,9 +1627,9 @@
       "id": "history_family_1",
       "category": "family",
       "checklist": "h_history_family_1",
-      "value": "Mother and father have no major disease",
+      "value": "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.",
       "sp_says": [
-        "Mother and father have no major disease"
+        "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease."
       ],
       "triggers": {
         "any": [
@@ -1645,7 +1645,7 @@
       "concepts": {
         "history_family_1": {
           "polarity": "positive",
-          "value": "Mother and father have no major disease"
+          "value": "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease."
         }
       },
       "example_questions": [
@@ -1654,11 +1654,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "Mother and father have no major disease",
+            "text": "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.",
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother and father have no major disease"
+                "value": "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease."
               }
             },
             "complete_fact": true
@@ -1671,9 +1671,9 @@
       "id": "history_family_2",
       "category": "family",
       "checklist": "h_history_family_2",
-      "value": "brother healthy",
+      "value": "I have a brother who's twenty-three and he's healthy.",
       "sp_says": [
-        "brother healthy"
+        "I have a brother who's twenty-three and he's healthy."
       ],
       "triggers": {
         "any": [
@@ -1689,7 +1689,7 @@
       "concepts": {
         "history_family_2": {
           "polarity": "positive",
-          "value": "brother healthy"
+          "value": "I have a brother who's twenty-three and he's healthy."
         }
       },
       "example_questions": [
@@ -1698,11 +1698,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "brother healthy",
+            "text": "I have a brother who's twenty-three and he's healthy.",
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "brother healthy"
+                "value": "I have a brother who's twenty-three and he's healthy."
               }
             },
             "complete_fact": true
@@ -1715,9 +1715,9 @@
       "id": "history_family_3",
       "category": "family",
       "checklist": "h_history_family_3",
-      "value": "no family inflammatory bowel disease.",
+      "value": "No one in my family has inflammatory bowel disease.",
       "sp_says": [
-        "no family inflammatory bowel disease."
+        "No one in my family has inflammatory bowel disease."
       ],
       "triggers": {
         "any": [
@@ -1733,7 +1733,7 @@
       "concepts": {
         "history_family_3": {
           "polarity": "positive",
-          "value": "no family inflammatory bowel disease."
+          "value": "No one in my family has inflammatory bowel disease."
         }
       },
       "example_questions": [
@@ -1742,11 +1742,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "no family inflammatory bowel disease.",
+            "text": "No one in my family has inflammatory bowel disease.",
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "no family inflammatory bowel disease."
+                "value": "No one in my family has inflammatory bowel disease."
               }
             },
             "complete_fact": true
@@ -2494,15 +2494,15 @@
       },
       {
         "id": "h_history_family_1",
-        "text": "Mother and father have no major disease"
+        "text": "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease."
       },
       {
         "id": "h_history_family_2",
-        "text": "brother healthy"
+        "text": "I have a brother who's twenty-three and he's healthy."
       },
       {
         "id": "h_history_family_3",
-        "text": "no family inflammatory bowel disease."
+        "text": "No one in my family has inflammatory bowel disease."
       },
       {
         "id": "h_patient_concern",
@@ -2653,7 +2653,7 @@
     ]
   },
   "model_note": {
-    "S": "cc: Watery diarrhea and reduced fluid intake\n\nHPI: 25 yo f. Patient reports: It started 2 days ago. The cramps are across my lower abdomen. They do not spread elsewhere. The pain is crampy and the stool is watery. I have had 7 watery stools in the past day; cramps are 4/10. Cramps come before each bowel movement and then ease. A child in my household had similar symptoms. Small sips of oral rehydration drink help. A large meal worsens the cramps. I tried small sips of water but have eaten little. No similar illness recently. The stools are watery, without visible blood. I feel nauseated. I vomited twice yesterday but not today. I am very thirsty. I feel tired and lightheaded standing. I have urinated only twice today and it looks dark.\n\nPatient perspective: Do I need antibiotics to get back to work?\n\nPMH: No inflammatory bowel disease or immunosuppression.\n\nPSH: No surgeries or admissions.\n\nMeds: No daily medication; no antibiotics in the past 3 months.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly; none during this illness. No recreational drugs. Preschool teacher; lives with husband and child; no recent travel or untreated-water exposure; last period 1 week ago.\n\nFH: Mother and father have no major disease; brother healthy; no family inflammatory bowel disease.\n\nROS: Gastrointestinal - Reports diarrhea. Reports nausea. Reports vomiting. General - Reports thirst. Denies fever. Reports fatigue. Urinary - Reports urine output. Denies dysuria. Denies hematuria.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.",
+    "S": "cc: Watery diarrhea and reduced fluid intake\n\nHPI: 25 yo f. Patient reports: It started 2 days ago. The cramps are across my lower abdomen. They do not spread elsewhere. The pain is crampy and the stool is watery. I have had 7 watery stools in the past day; cramps are 4/10. Cramps come before each bowel movement and then ease. A child in my household had similar symptoms. Small sips of oral rehydration drink help. A large meal worsens the cramps. I tried small sips of water but have eaten little. No similar illness recently. The stools are watery, without visible blood. I feel nauseated. I vomited twice yesterday but not today. I am very thirsty. I feel tired and lightheaded standing. I have urinated only twice today and it looks dark.\n\nPatient perspective: Do I need antibiotics to get back to work?\n\nPMH: No inflammatory bowel disease or immunosuppression.\n\nPSH: No surgeries or admissions.\n\nMeds: No daily medication; no antibiotics in the past 3 months.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly; none during this illness. No recreational drugs. Preschool teacher; lives with husband and child; no recent travel or untreated-water exposure; last period 1 week ago.\n\nFH: My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.; I have a brother who's twenty-three and he's healthy.; No one in my family has inflammatory bowel disease.\n\nROS: Gastrointestinal - Reports diarrhea. Reports nausea. Reports vomiting. General - Reports thirst. Denies fever. Reports fatigue. Urinary - Reports urine output. Denies dysuria. Denies hematuria.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.",
     "O": "Vitals: T 98.8 F oral, P 100 bpm, BP 108/70 mmHg, R 18 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Tired appearing, able to drink small sips.\n\nHeart: Regular rhythm, mildly fast.\n\nLungs: Clear breath sounds bilaterally.\n\nHEENT: Oral mucosa is dry.\n\nAbd: Abdomen not distended. Active bowel sounds in all quadrants. Mild diffuse lower abdominal tenderness. No involuntary guarding. Tympanitic throughout.\n\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
     "A": [
       "1. Acute infectious gastroenteritis",
@@ -3154,16 +3154,16 @@
             "I am a preschool teacher."
           ],
           "history_family_1": [
-            "Mother and father have no major disease",
+            "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.", "Mother and father have no major disease",
             "mother",
             "father"
           ],
           "history_family_2": [
-            "brother healthy",
+            "I have a brother who's twenty-three and he's healthy.", "brother healthy",
             "brother"
           ],
           "history_family_3": [
-            "no family inflammatory bowel disease."
+            "No one in my family has inflammatory bowel disease.", "no family inflammatory bowel disease."
           ],
           "patient_concern": [
             "Do I need antibiotics to get back to work?"
@@ -4505,9 +4505,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother and father have no major disease",
+            "value": "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.",
             "sp_says": [
-              "Mother and father have no major disease"
+              "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease."
             ],
             "triggers": {
               "any": [
@@ -4523,7 +4523,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother and father have no major disease"
+                "value": "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease."
               }
             },
             "example_questions": [
@@ -4532,11 +4532,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother and father have no major disease",
+                  "text": "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother and father have no major disease"
+                      "value": "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease."
                     }
                   },
                   "complete_fact": true
@@ -4549,9 +4549,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "brother healthy",
+            "value": "I have a brother who's twenty-three and he's healthy.",
             "sp_says": [
-              "brother healthy"
+              "I have a brother who's twenty-three and he's healthy."
             ],
             "triggers": {
               "any": [
@@ -4567,7 +4567,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "brother healthy"
+                "value": "I have a brother who's twenty-three and he's healthy."
               }
             },
             "example_questions": [
@@ -4576,11 +4576,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "brother healthy",
+                  "text": "I have a brother who's twenty-three and he's healthy.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "brother healthy"
+                      "value": "I have a brother who's twenty-three and he's healthy."
                     }
                   },
                   "complete_fact": true
@@ -4593,9 +4593,9 @@
             "id": "history_family_3",
             "category": "family",
             "checklist": "h_history_family_3",
-            "value": "no family inflammatory bowel disease.",
+            "value": "No one in my family has inflammatory bowel disease.",
             "sp_says": [
-              "no family inflammatory bowel disease."
+              "No one in my family has inflammatory bowel disease."
             ],
             "triggers": {
               "any": [
@@ -4611,7 +4611,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "no family inflammatory bowel disease."
+                "value": "No one in my family has inflammatory bowel disease."
               }
             },
             "example_questions": [
@@ -4620,11 +4620,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "no family inflammatory bowel disease.",
+                  "text": "No one in my family has inflammatory bowel disease.",
                   "concepts": {
                     "history_family_3": {
                       "polarity": "positive",
-                      "value": "no family inflammatory bowel disease."
+                      "value": "No one in my family has inflammatory bowel disease."
                     }
                   },
                   "complete_fact": true
@@ -5056,15 +5056,15 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother and father have no major disease"
+              "text": "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease."
             },
             {
               "id": "h_history_family_2",
-              "text": "brother healthy"
+              "text": "I have a brother who's twenty-three and he's healthy."
             },
             {
               "id": "h_history_family_3",
-              "text": "no family inflammatory bowel disease."
+              "text": "No one in my family has inflammatory bowel disease."
             },
             {
               "id": "h_patient_concern",
@@ -5214,7 +5214,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Watery diarrhea and reduced fluid intake\n\nHPI: 25 yo f. Patient reports: It started 4 days ago. The cramps are across my lower abdomen. They do not spread elsewhere. The pain is crampy and the stool is watery. I have had 7 watery stools in the past day; cramps are 4/10. Cramps come before each bowel movement and then ease. A child in my household had similar symptoms. Small sips of oral rehydration drink help. A large meal worsens the cramps. I tried small sips of water but have eaten little. No similar illness recently. The stools are watery, without visible blood. I feel nauseated. I vomited twice yesterday but not today. I am very thirsty. I feel tired and lightheaded standing. I have urinated only twice today and it looks dark.\n\nPatient perspective: Do I need antibiotics to get back to work?\n\nPMH: No inflammatory bowel disease or immunosuppression.\n\nPSH: No surgeries or admissions.\n\nMeds: No daily medication; no antibiotics in the past 3 months.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly; none during this illness. No recreational drugs. Preschool teacher; lives with husband and child; no recent travel or untreated-water exposure; last period 1 week ago.\n\nFH: Mother and father have no major disease; brother healthy; no family inflammatory bowel disease.\n\nROS: Gastrointestinal - Reports diarrhea. Reports nausea. Reports vomiting. General - Reports thirst. Denies fever. Reports fatigue. Urinary - Reports urine output. Denies dysuria. Denies hematuria.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.",
+          "S": "cc: Watery diarrhea and reduced fluid intake\n\nHPI: 25 yo f. Patient reports: It started 4 days ago. The cramps are across my lower abdomen. They do not spread elsewhere. The pain is crampy and the stool is watery. I have had 7 watery stools in the past day; cramps are 4/10. Cramps come before each bowel movement and then ease. A child in my household had similar symptoms. Small sips of oral rehydration drink help. A large meal worsens the cramps. I tried small sips of water but have eaten little. No similar illness recently. The stools are watery, without visible blood. I feel nauseated. I vomited twice yesterday but not today. I am very thirsty. I feel tired and lightheaded standing. I have urinated only twice today and it looks dark.\n\nPatient perspective: Do I need antibiotics to get back to work?\n\nPMH: No inflammatory bowel disease or immunosuppression.\n\nPSH: No surgeries or admissions.\n\nMeds: No daily medication; no antibiotics in the past 3 months.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly; none during this illness. No recreational drugs. Preschool teacher; lives with husband and child; no recent travel or untreated-water exposure; last period 1 week ago.\n\nFH: My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.; I have a brother who's twenty-three and he's healthy.; No one in my family has inflammatory bowel disease.\n\nROS: Gastrointestinal - Reports diarrhea. Reports nausea. Reports vomiting. General - Reports thirst. Denies fever. Reports fatigue. Urinary - Reports urine output. Denies dysuria. Denies hematuria.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.",
           "O": "Vitals: T 98.8 F oral, P 100 bpm, BP 108/70 mmHg, R 18 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Tired appearing, able to drink small sips.\n\nHeart: Regular rhythm, mildly fast.\n\nLungs: Clear breath sounds bilaterally.\n\nHEENT: Oral mucosa is dry.\n\nAbd: Abdomen not distended. Active bowel sounds in all quadrants. Mild diffuse lower abdominal tenderness. No involuntary guarding. Tympanitic throughout.\n\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Acute infectious gastroenteritis",
@@ -5486,16 +5486,16 @@
             "I am a preschool teacher."
           ],
           "history_family_1": [
-            "Mother and father have no major disease",
+            "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.", "Mother and father have no major disease",
             "mother",
             "father"
           ],
           "history_family_2": [
-            "brother healthy",
+            "I have a brother who's twenty-three and he's healthy.", "brother healthy",
             "brother"
           ],
           "history_family_3": [
-            "no family inflammatory bowel disease."
+            "No one in my family has inflammatory bowel disease.", "no family inflammatory bowel disease."
           ],
           "patient_concern": [
             "Do I need antibiotics to get back to work?"
@@ -6840,9 +6840,9 @@
             "id": "history_family_1",
             "category": "family",
             "checklist": "h_history_family_1",
-            "value": "Mother and father have no major disease",
+            "value": "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.",
             "sp_says": [
-              "Mother and father have no major disease"
+              "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease."
             ],
             "triggers": {
               "any": [
@@ -6858,7 +6858,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother and father have no major disease"
+                "value": "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease."
               }
             },
             "example_questions": [
@@ -6867,11 +6867,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Mother and father have no major disease",
+                  "text": "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.",
                   "concepts": {
                     "history_family_1": {
                       "polarity": "positive",
-                      "value": "Mother and father have no major disease"
+                      "value": "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease."
                     }
                   },
                   "complete_fact": true
@@ -6884,9 +6884,9 @@
             "id": "history_family_2",
             "category": "family",
             "checklist": "h_history_family_2",
-            "value": "brother healthy",
+            "value": "I have a brother who's twenty-three and he's healthy.",
             "sp_says": [
-              "brother healthy"
+              "I have a brother who's twenty-three and he's healthy."
             ],
             "triggers": {
               "any": [
@@ -6902,7 +6902,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "brother healthy"
+                "value": "I have a brother who's twenty-three and he's healthy."
               }
             },
             "example_questions": [
@@ -6911,11 +6911,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "brother healthy",
+                  "text": "I have a brother who's twenty-three and he's healthy.",
                   "concepts": {
                     "history_family_2": {
                       "polarity": "positive",
-                      "value": "brother healthy"
+                      "value": "I have a brother who's twenty-three and he's healthy."
                     }
                   },
                   "complete_fact": true
@@ -6928,9 +6928,9 @@
             "id": "history_family_3",
             "category": "family",
             "checklist": "h_history_family_3",
-            "value": "no family inflammatory bowel disease.",
+            "value": "No one in my family has inflammatory bowel disease.",
             "sp_says": [
-              "no family inflammatory bowel disease."
+              "No one in my family has inflammatory bowel disease."
             ],
             "triggers": {
               "any": [
@@ -6946,7 +6946,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "no family inflammatory bowel disease."
+                "value": "No one in my family has inflammatory bowel disease."
               }
             },
             "example_questions": [
@@ -6955,11 +6955,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "no family inflammatory bowel disease.",
+                  "text": "No one in my family has inflammatory bowel disease.",
                   "concepts": {
                     "history_family_3": {
                       "polarity": "positive",
-                      "value": "no family inflammatory bowel disease."
+                      "value": "No one in my family has inflammatory bowel disease."
                     }
                   },
                   "complete_fact": true
@@ -7436,15 +7436,15 @@
             },
             {
               "id": "h_history_family_1",
-              "text": "Mother and father have no major disease"
+              "text": "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease."
             },
             {
               "id": "h_history_family_2",
-              "text": "brother healthy"
+              "text": "I have a brother who's twenty-three and he's healthy."
             },
             {
               "id": "h_history_family_3",
-              "text": "no family inflammatory bowel disease."
+              "text": "No one in my family has inflammatory bowel disease."
             },
             {
               "id": "h_patient_concern",
@@ -7598,7 +7598,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Watery diarrhea and reduced fluid intake\n\nHPI: 25 yo f. Patient reports: It started 2 days ago. The cramps are across my lower abdomen. They do not spread elsewhere. The pain is crampy and the stool is watery. I have had 7 watery stools in the past day; cramps are 4/10. Cramps come before each bowel movement and then ease. A child in my household had similar symptoms. Small sips of oral rehydration drink help. A large meal worsens the cramps. I tried small sips of water but have eaten little. No similar illness recently. The stools are watery, without visible blood. I feel nauseated. I vomited twice yesterday but not today. I am very thirsty. I feel tired and lightheaded standing. I have urinated only twice today and it looks dark.\n\nPatient perspective: Do I need antibiotics to get back to work?\n\nPMH: No inflammatory bowel disease or immunosuppression.\n\nPSH: No surgeries or admissions.\n\nMeds: No daily medication; no antibiotics in the past 3 months.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly; none during this illness. No recreational drugs. Preschool teacher; lives with husband and child; no recent travel or untreated-water exposure; last period 1 week ago.\n\nFH: Mother and father have no major disease; brother healthy; no family inflammatory bowel disease.\n\nROS: Gastrointestinal - Reports diarrhea. Reports nausea. Reports vomiting. General - Reports thirst. Denies fever. Reports fatigue. Urinary - Reports urine output. Denies dysuria. Denies hematuria.\n\nPatient concern: I thought sports drinks and oral rehydration solution were exactly the same.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.",
+          "S": "cc: Watery diarrhea and reduced fluid intake\n\nHPI: 25 yo f. Patient reports: It started 2 days ago. The cramps are across my lower abdomen. They do not spread elsewhere. The pain is crampy and the stool is watery. I have had 7 watery stools in the past day; cramps are 4/10. Cramps come before each bowel movement and then ease. A child in my household had similar symptoms. Small sips of oral rehydration drink help. A large meal worsens the cramps. I tried small sips of water but have eaten little. No similar illness recently. The stools are watery, without visible blood. I feel nauseated. I vomited twice yesterday but not today. I am very thirsty. I feel tired and lightheaded standing. I have urinated only twice today and it looks dark.\n\nPatient perspective: Do I need antibiotics to get back to work?\n\nPMH: No inflammatory bowel disease or immunosuppression.\n\nPSH: No surgeries or admissions.\n\nMeds: No daily medication; no antibiotics in the past 3 months.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly; none during this illness. No recreational drugs. Preschool teacher; lives with husband and child; no recent travel or untreated-water exposure; last period 1 week ago.\n\nFH: My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.; I have a brother who's twenty-three and he's healthy.; No one in my family has inflammatory bowel disease.\n\nROS: Gastrointestinal - Reports diarrhea. Reports nausea. Reports vomiting. General - Reports thirst. Denies fever. Reports fatigue. Urinary - Reports urine output. Denies dysuria. Denies hematuria.\n\nPatient concern: I thought sports drinks and oral rehydration solution were exactly the same.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.",
           "O": "Vitals: T 98.8 F oral, P 100 bpm, BP 108/70 mmHg, R 18 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Tired appearing, able to drink small sips.\n\nHeart: Regular rhythm, mildly fast.\n\nLungs: Clear breath sounds bilaterally.\n\nHEENT: Oral mucosa is dry.\n\nAbd: Abdomen not distended. Active bowel sounds in all quadrants. Mild diffuse lower abdominal tenderness. No involuntary guarding. Tympanitic throughout.\n\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Acute infectious gastroenteritis",
