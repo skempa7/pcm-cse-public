@@ -34,6 +34,6 @@ document.querySelectorAll('[data-region]').forEach(b=>b.onclick=()=>{openRegion(
 $('anatomySwitch').onclick=()=>{localAnatomy=!localAnatomy;apply();};
 fetch('catalog.json').then(r=>r.json()).then(c=>{if(!catalog.length)catalog=c});apply();
 window.pcmBabylonReady=adapter=>{instance=adapter;window.pcmUnitySceneReady=true;$('load').style.display='none';apply();window.pcmUnityReady()};
-</script><script src="technique.js?v=postures-4"></script><script type="module" src="dist/room.js?v=room-clearance-1"></script>
+</script><script src="technique.js?v=postures-4"></script><script type="module" src="dist/room.js?v=doorway-popout-1"></script>
 
 <aside style="position:fixed;right:8px;bottom:2px;z-index:9;font:9px system-ui;color:#29443c;background:#ffffffe8;padding:2px 5px;border-radius:3px">Room: supplied InteriorTest · wood textures from <a href="https://free3d.com/3d-model/living-room-3728.html" target="_blank" rel="noopener">ibra1991 / Free3D</a> · Personal Use License</aside></body></html>
