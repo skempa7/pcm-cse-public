@@ -1,0 +1,6 @@
+# Female contour refinement
+September 10, 2026. Broad bilateral contour redistribution, retaining the existing larger mesh volume. Upper projection softened; lower fullness and chest transition adjusted. No nipple-specific changes. Shirt follows the same smooth field; waist, hips, arms, hem/overlap, hair, artwork, face, rig and animations are retained. Male models are unchanged.
+
+Numerical check: local redistribution preserves signed mesh volume to floating-point tolerance; this is not a bra-cup measurement or a clinical validation. Maximum vertex movement is under 8 mm. All four female assets derive from the current installed models; three public counterparts have exact binary parity after allowed name changes. Blender before/after inspection and a running-browser standard-patient posture/wardrobe check were performed. Existing prone support limitations remain. No independent clinical review or repeat grading audit was performed for this visual-only patch.
+
+Editable files, immutable input GLBs, build script and reports are retained locally under assets3d/contour-refinement (private) and editable-public-assets/contour-refinement (public). Run python3 build.py in that folder to generate output copies; it does not modify installed app files. Source geometry and simulation data remain separate. No runtime API or paid service was added.

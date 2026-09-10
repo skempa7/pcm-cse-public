@@ -34,6 +34,6 @@ document.querySelectorAll('[data-region]').forEach(b=>b.onclick=()=>{openRegion(
 $('anatomySwitch').onclick=()=>{localAnatomy=!localAnatomy;apply();};
 fetch('catalog.json').then(r=>r.json()).then(c=>{if(!catalog.length)catalog=c});apply();
 window.pcmBabylonReady=adapter=>{instance=adapter;window.pcmUnitySceneReady=true;$('load').style.display='none';apply();window.pcmUnityReady()};
-</script><script src="technique.js?v=postures-4"></script><script type="module" src="dist/room.js?v=reference-style-1"></script>
+</script><script src="technique.js?v=postures-4"></script><script type="module" src="dist/room.js?v=contour-1"></script>
 
 </body></html>
