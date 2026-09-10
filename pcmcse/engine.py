@@ -1179,6 +1179,13 @@ def state_payload(s):
         "affect": presentation.affect(s.case, s.ledger),
         "demeanor": presentation.demeanor(s.case, s.ledger),
         "ai_patient_enabled": bool(s.settings.get("ai_patient_enabled")),
+        # UI activity only: never expose withheld fact IDs or create new evidence.
+        "examination_activity": [
+            {"seq": ev["seq"], "kind": ev["kind"], "text": "", "meta": {
+                key: ev.get("meta", {}).get(key) for key in
+                ("status", "maneuver_id", "label", "components", "duration_s")}}
+            for ev in s.ledger.events if ev["kind"] == evidence.EXAM_ACTION
+        ],
         "pending_exam": json.loads(row.get("pending_exam_json") or "null"),
         "exam_busy_until": row["exam_busy_until"],
         "assisted": bool(row["assisted"]),
