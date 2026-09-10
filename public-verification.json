@@ -512,18 +512,18 @@
   "assets": [
     {
       "file": "public-female-short-slender.glb",
-      "sha256": "5675818d5a28e3a447a6a27afa9148dff9ebfa027637bee0d74129870b09ff7c",
+      "sha256": "3bbd9b86e2b1bd9431d5083e319308398c4399bbb717b50982e94f2ea79d2d6d",
       "bytes": 18623100
     },
     {
       "file": "public-female-tall-full.glb",
-      "sha256": "a5ee77954cf50a721c91f6f49c681b48163d0b0950127697cf8450824e068cef",
+      "sha256": "0cfb0e1717c7da19bb3f4a0f9e949d786aa8f5eeb89cc6575d2d1ff1a9f6e0fc",
       "bytes": 18600220
     },
     {
       "file": "public-female-standard.glb",
-      "sha256": "904bd6dd0e87d4f74e4129136f6633351b5e5322862c05d7aaa9a8597d8b77d2",
-      "bytes": 18610572
+      "sha256": "a0c2cf94be454c628fff467d555b9660b845907d1ecf37c21e754e2fd4824323",
+      "bytes": 18610576
     },
     {
       "file": "public-male-standard.glb",
@@ -532,36 +532,11 @@
     }
   ],
   "limits": "Structural/route regression checks, not independent clinical validation. Existing grading defects remain.",
-  "previous_route_check_scope": "The 72 route checks above were run before female-shape-1; clinical logic is unchanged. They are not a new independent review of this asset update.",
-  "asset_update": {
-    "revision": "female-shape-1",
-    "independent_review": "Skipped at user request",
-    "basic_checks": "Imported poses, wardrobe and support checks; asset identity, parity, syntax and bundles."
-  },
-  "shirt_update": {
-    "revision": "patient-shirts-1",
-    "male": "Red short-sleeve TRUMP 2028 (Rewrite the Rules) shirt.",
-    "female": "Washed-red short-sleeve USA shirt with United States flag.",
-    "checks": "Rendered front previews; imported four-position, wardrobe and support checks."
-  },
-  "sidebar_and_sleeve_update": {
-    "revision": "sidebar-shirts-2",
-    "scope": "Quick sidebar workflow review and original long-sleeve restoration",
-    "clinical_recertification": false,
-    "saved_data_migration": false,
-    "paid_backend_added": false
-  },
-  "charcoal_shirt_update": {
-    "revision": "charcoal-shirt-1",
-    "file": "public-male-standard.glb",
-    "sha256": "18381c9cfb0068a3f1eac69a29775d08dc9a269bfd61b648c8a7169fcf134d32",
-    "bytes": 15168696,
-    "previous_sha256": "9d2e2775fdb5f5d4a8851fdf0c70520e72a586af6f9c879a774bbb65f0943924",
-    "only_shirt_image_changed": true,
-    "all_geometry_skinning_animation_and_other_images_byte_identical": true
-  },
-  "navy_shirt_update": {
-    "revision": "navy-shirts-1",
-    "scope": "Female shirt texture only; no anatomy or clinical logic changes"
+  "female_silhouette_update": {
+    "revision": "female-silhouette-2",
+    "scope": "Fuller bust, slimmer waist, wider hips, and slimmer arms across three public female body builds.",
+    "preserved": "Four posture clips, facial morphs, skinning, materials, wardrobe states, clinical logic, timers, grading, and saved progress.",
+    "visual_checks": "Equal-camera Blender previews of all three exported female builds; no obvious shirt tearing or gross pose distortion observed.",
+    "independent_review": false
   }
 }
