@@ -10,7 +10,7 @@
   if(!navigator.locks)throw Error('This browser cannot safely coordinate saved attempts. Use a current Chrome, Edge, Firefox or Safari.');
   await navigator.locks.request('pcm-public-engine-v1',{mode:'exclusive',ifAvailable:true},async lock=>{
    if(!lock)throw Error('This app is already open in another tab. Close that tab, then reload this one to resume the same saved work.');
-   worker=new Worker(new URL('engine-worker.mjs?v=living-clinic-2',base),{type:'module'});
+   worker=new Worker(new URL('engine-worker.mjs?v=conversation-actions-1',base),{type:'module'});
    worker.onmessage=event=>{
     const data=event.data;
     if(data.type==='progress')message(data.message);

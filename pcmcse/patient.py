@@ -750,6 +750,20 @@ def delivered_fact_metadata(fact, text):
     return {'facts_released':[],'concepts':{},'checklist_hits':[]}
 
 
+
+def conversation_route(utterance):
+    """High-confidence conversational acts take priority over keyword matching."""
+    text=nlp.normalize(utterance)
+    if re.search(r"\b(?:how do you know (?:it'?s|this is|that it|you have|that you have)|who (?:told you.*(?:diagnos|illness)|diagnosed)|why do you (?:think|say) (?:it'?s|this is)|how (?:can|could) you know (?:it'?s|this is))\b",text):
+        return 'diagnostic_uncertainty'
+    if re.search(r"\bwhat were you (?:doing|up to)|\bwhat (?:activity|were you doing).*?(?:start|began|onset)",text):
+        return 'onset_activity'
+    introduction=re.search(r"\b(?:hello|hi|good morning|good afternoon|good evening|i am (?:a |your )?(?:student|medical)|i'?m (?:a |your )?(?:student|medical))\b",text)
+    question=re.search(r"\b(?:what|when|where|how|why|have you|do you|did you|are you|could you|can you|tell me|brings you)\b",text)
+    if introduction and not question:return 'introduction'
+    return None
+
+
 class PatientEngine:
     def __init__(self, case: dict, rng=None):
         self.case = case
@@ -792,6 +806,18 @@ class PatientEngine:
         return reply, meta
 
     def _respond_inner(self, utterance, text, state, meta):
+        route=conversation_route(utterance)
+        if route=='introduction':
+            meta['kind']='introduction_response'
+            return 'Hello. Thank you for introducing yourself. I am ready to talk.'
+        if route=='diagnostic_uncertainty':
+            meta.update(kind='diagnostic_uncertainty',no_information=True)
+            return "I do not know what is causing these symptoms. I am here to find out."
+        if route=='onset_activity' and not _instruction_or_other_person(utterance):
+            facts=[f for f in self.facts.values() if f.get('onset_activity') is True]
+            if facts:return ' '.join(self._say(f,state,meta)for f in facts[:2])
+            meta.update(kind='non_answer',no_information=True,unscripted_topic=True)
+            return 'The case does not specify what I was doing at the moment it started.'
         if re.fullmatch(r'(?:may|can|could) i explain (?:the |this |a )?(?:physical )?(?:exam|examination)(?: i would like to do)?[ .?]*',text):
             meta['kind']='permission_to_explain'
             return 'Yes, please explain what you would like to do.'
@@ -1710,6 +1736,9 @@ class PatientEngine:
         repeat = fact['id'] in state['released']
         lines = fact.get('sp_says') or [fact.get('value','')]
         line = lines[0] if repeat else self.rng.choice(lines)
+        if fact.get('category')=='past_occurrence' and line=='I have not had pneumonia before.':
+            meta.update(kind='non_answer',no_information=True)
+            return 'My earlier wording named a diagnosis that has not been established for this encounter. I do not know what is causing these symptoms.'
         approved=delivered_fact_metadata(fact,line)
         if approved['facts_released']:
             if fact['id'] not in state['released']:state['released'].append(fact['id'])

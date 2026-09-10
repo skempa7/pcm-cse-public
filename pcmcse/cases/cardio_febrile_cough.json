@@ -164,7 +164,7 @@
       "did it help"
     ],
     "hpi_past_occurrence": [
-      "I have not had pneumonia before.",
+      "I have not had an episode like this before.",
       "I have not had pneumonia before",
       "previous episode",
       "happened before"
@@ -648,7 +648,7 @@
       ],
       "triggers": {
         "any": [
-          "What were you doing when this started?",
+          "Have you been around anyone who was ill?",
           "doing when",
           "trigger",
           "setting",
@@ -663,7 +663,7 @@
         }
       },
       "example_questions": [
-        "What were you doing when this started?"
+        "Have you been around anyone who was ill?"
       ],
       "delivery_contract": {
         "versions": [
@@ -679,7 +679,8 @@
           }
         ],
         "review_status": "author_statement_contract_checked_not_clinician_approved"
-      }
+      },
+      "onset_activity": false
     },
     {
       "id": "hpi_alleviating",
@@ -810,9 +811,9 @@
       "id": "hpi_past_occurrence",
       "category": "past_occurrence",
       "checklist": "h_hpi_past_occurrence",
-      "value": "I have not had pneumonia before.",
+      "value": "I have not had an episode like this before.",
       "sp_says": [
-        "I have not had pneumonia before."
+        "I have not had an episode like this before."
       ],
       "triggers": {
         "any": [
@@ -825,7 +826,7 @@
       "concepts": {
         "hpi_past_occurrence": {
           "polarity": "positive",
-          "value": "I have not had pneumonia before."
+          "value": "I have not had an episode like this before."
         }
       },
       "example_questions": [
@@ -834,11 +835,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "I have not had pneumonia before.",
+            "text": "I have not had an episode like this before.",
             "concepts": {
               "hpi_past_occurrence": {
                 "polarity": "positive",
-                "value": "I have not had pneumonia before."
+                "value": "I have not had an episode like this before."
               }
             },
             "complete_fact": true
@@ -2250,7 +2251,7 @@
       },
       {
         "id": "h_hpi_past_occurrence",
-        "text": "I have not had pneumonia before."
+        "text": "I have not had an episode like this before."
       },
       {
         "id": "h_symptom_cough",
@@ -2442,7 +2443,7 @@
     ]
   },
   "model_note": {
-    "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25 yo m. Patient reports: The cough began 4 days ago. The discomfort is in my right lower chest. The pain stays there. It is a sharp pain when I cough or breathe deeply. The pain is 5/10. The fever began the next day and the cough is getting worse. My coworker had a respiratory illness last week. Acetaminophen lowers the fever for a few hours. Coughing and deep breathing worsen the pain. I took acetaminophen 500 mg twice yesterday. I have not had pneumonia before. I cough up yellow sputum. I am short of breath on stairs. I measured 101.5 at home. I had shaking chills last night. I feel wiped out. The right chest pain is worse with a deep breath.\n\nPatient perspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: Mother has asthma; father hypertension; one healthy sister.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n",
+    "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25 yo m. Patient reports: The cough began 4 days ago. The discomfort is in my right lower chest. The pain stays there. It is a sharp pain when I cough or breathe deeply. The pain is 5/10. The fever began the next day and the cough is getting worse. My coworker had a respiratory illness last week. Acetaminophen lowers the fever for a few hours. Coughing and deep breathing worsen the pain. I took acetaminophen 500 mg twice yesterday. I have not had an episode like this before. I cough up yellow sputum. I am short of breath on stairs. I measured 101.5 at home. I had shaking chills last night. I feel wiped out. The right chest pain is worse with a deep breath.\n\nPatient perspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: Mother has asthma; father hypertension; one healthy sister.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n",
     "O": "Vitals: T 101.3 F oral, P 102 bpm, BP 122/76 mmHg, R 22 rpm, Pulse Ox 95% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Tired appearing, alert and oriented, speaking full sentences.\n\nHeart: Regular tachycardia without murmur.\n\nLungs: Focal inspiratory crackles and bronchial breath sounds at the right posterior base. Dullness over the right posterior base compared with the left. Tactile fremitus is increased at the right posterior base.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
     "A": [
       "1. Community-acquired pneumonia",
@@ -2833,7 +2834,7 @@
             "did it help"
           ],
           "hpi_past_occurrence": [
-            "I have not had pneumonia before.",
+            "I have not had an episode like this before.",
             "I have not had pneumonia before",
             "previous episode",
             "happened before"
@@ -3317,7 +3318,7 @@
             ],
             "triggers": {
               "any": [
-                "What were you doing when this started?",
+                "Have you been around anyone who was ill?",
                 "doing when",
                 "trigger",
                 "setting",
@@ -3332,7 +3333,7 @@
               }
             },
             "example_questions": [
-              "What were you doing when this started?"
+              "Have you been around anyone who was ill?"
             ],
             "delivery_contract": {
               "versions": [
@@ -3348,7 +3349,8 @@
                 }
               ],
               "review_status": "author_statement_contract_checked_not_clinician_approved"
-            }
+            },
+            "onset_activity": false
           },
           {
             "id": "hpi_alleviating",
@@ -3479,9 +3481,9 @@
             "id": "hpi_past_occurrence",
             "category": "past_occurrence",
             "checklist": "h_hpi_past_occurrence",
-            "value": "I have not had pneumonia before.",
+            "value": "I have not had an episode like this before.",
             "sp_says": [
-              "I have not had pneumonia before."
+              "I have not had an episode like this before."
             ],
             "triggers": {
               "any": [
@@ -3494,7 +3496,7 @@
             "concepts": {
               "hpi_past_occurrence": {
                 "polarity": "positive",
-                "value": "I have not had pneumonia before."
+                "value": "I have not had an episode like this before."
               }
             },
             "example_questions": [
@@ -3503,11 +3505,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I have not had pneumonia before.",
+                  "text": "I have not had an episode like this before.",
                   "concepts": {
                     "hpi_past_occurrence": {
                       "polarity": "positive",
-                      "value": "I have not had pneumonia before."
+                      "value": "I have not had an episode like this before."
                     }
                   },
                   "complete_fact": true
@@ -4702,7 +4704,7 @@
             },
             {
               "id": "h_hpi_past_occurrence",
-              "text": "I have not had pneumonia before."
+              "text": "I have not had an episode like this before."
             },
             {
               "id": "h_symptom_cough",
@@ -4893,7 +4895,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25 yo m. Patient reports: The cough began 7 days ago. The discomfort is in my right lower chest. The pain stays there. It is a sharp pain when I cough or breathe deeply. The pain is 5/10. The fever began the next day and the cough is getting worse. My coworker had a respiratory illness last week. Acetaminophen lowers the fever for a few hours. Coughing and deep breathing worsen the pain. I took acetaminophen 500 mg twice yesterday. I have not had pneumonia before. I cough up yellow sputum. I am short of breath on stairs. I measured 101.5 at home. I had shaking chills last night. I feel wiped out. The right chest pain is worse with a deep breath.\n\nPatient perspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: Mother has asthma; father hypertension; one healthy sister.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n",
+          "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25 yo m. Patient reports: The cough began 7 days ago. The discomfort is in my right lower chest. The pain stays there. It is a sharp pain when I cough or breathe deeply. The pain is 5/10. The fever began the next day and the cough is getting worse. My coworker had a respiratory illness last week. Acetaminophen lowers the fever for a few hours. Coughing and deep breathing worsen the pain. I took acetaminophen 500 mg twice yesterday. I have not had an episode like this before. I cough up yellow sputum. I am short of breath on stairs. I measured 101.5 at home. I had shaking chills last night. I feel wiped out. The right chest pain is worse with a deep breath.\n\nPatient perspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: Mother has asthma; father hypertension; one healthy sister.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n",
           "O": "Vitals: T 101.3 F oral, P 102 bpm, BP 122/76 mmHg, R 22 rpm, Pulse Ox 95% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Tired appearing, alert and oriented, speaking full sentences.\n\nHeart: Regular tachycardia without murmur.\n\nLungs: Focal inspiratory crackles and bronchial breath sounds at the right posterior base. Dullness over the right posterior base compared with the left. Tactile fremitus is increased at the right posterior base.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Community-acquired pneumonia",
@@ -5053,7 +5055,7 @@
             "did it help"
           ],
           "hpi_past_occurrence": [
-            "I have not had pneumonia before.",
+            "I have not had an episode like this before.",
             "I have not had pneumonia before",
             "previous episode",
             "happened before"
@@ -5540,7 +5542,7 @@
             ],
             "triggers": {
               "any": [
-                "What were you doing when this started?",
+                "Have you been around anyone who was ill?",
                 "doing when",
                 "trigger",
                 "setting",
@@ -5555,7 +5557,7 @@
               }
             },
             "example_questions": [
-              "What were you doing when this started?"
+              "Have you been around anyone who was ill?"
             ],
             "delivery_contract": {
               "versions": [
@@ -5571,7 +5573,8 @@
                 }
               ],
               "review_status": "author_statement_contract_checked_not_clinician_approved"
-            }
+            },
+            "onset_activity": false
           },
           {
             "id": "hpi_alleviating",
@@ -5702,9 +5705,9 @@
             "id": "hpi_past_occurrence",
             "category": "past_occurrence",
             "checklist": "h_hpi_past_occurrence",
-            "value": "I have not had pneumonia before.",
+            "value": "I have not had an episode like this before.",
             "sp_says": [
-              "I have not had pneumonia before."
+              "I have not had an episode like this before."
             ],
             "triggers": {
               "any": [
@@ -5717,7 +5720,7 @@
             "concepts": {
               "hpi_past_occurrence": {
                 "polarity": "positive",
-                "value": "I have not had pneumonia before."
+                "value": "I have not had an episode like this before."
               }
             },
             "example_questions": [
@@ -5726,11 +5729,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I have not had pneumonia before.",
+                  "text": "I have not had an episode like this before.",
                   "concepts": {
                     "hpi_past_occurrence": {
                       "polarity": "positive",
-                      "value": "I have not had pneumonia before."
+                      "value": "I have not had an episode like this before."
                     }
                   },
                   "complete_fact": true
@@ -6970,7 +6973,7 @@
             },
             {
               "id": "h_hpi_past_occurrence",
-              "text": "I have not had pneumonia before."
+              "text": "I have not had an episode like this before."
             },
             {
               "id": "h_symptom_cough",
@@ -7165,7 +7168,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25 yo m. Patient reports: The cough began 4 days ago. The discomfort is in my right lower chest. The pain stays there. It is a sharp pain when I cough or breathe deeply. The pain is 5/10. The fever began the next day and the cough is getting worse. My coworker had a respiratory illness last week. Acetaminophen lowers the fever for a few hours. Coughing and deep breathing worsen the pain. I took acetaminophen 500 mg twice yesterday. I have not had pneumonia before. I cough up yellow sputum. I am short of breath on stairs. I measured 101.5 at home. I had shaking chills last night. I feel wiped out. The right chest pain is worse with a deep breath.\n\nPatient perspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: Mother has asthma; father hypertension; one healthy sister.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n\nPatient concern: I cannot read small print on medicine bottles without my glasses.\n",
+          "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25 yo m. Patient reports: The cough began 4 days ago. The discomfort is in my right lower chest. The pain stays there. It is a sharp pain when I cough or breathe deeply. The pain is 5/10. The fever began the next day and the cough is getting worse. My coworker had a respiratory illness last week. Acetaminophen lowers the fever for a few hours. Coughing and deep breathing worsen the pain. I took acetaminophen 500 mg twice yesterday. I have not had an episode like this before. I cough up yellow sputum. I am short of breath on stairs. I measured 101.5 at home. I had shaking chills last night. I feel wiped out. The right chest pain is worse with a deep breath.\n\nPatient perspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: Mother has asthma; father hypertension; one healthy sister.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n\nPatient concern: I cannot read small print on medicine bottles without my glasses.\n",
           "O": "Vitals: T 101.3 F oral, P 102 bpm, BP 122/76 mmHg, R 22 rpm, Pulse Ox 95% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Tired appearing, alert and oriented, speaking full sentences.\n\nHeart: Regular tachycardia without murmur.\n\nLungs: Focal inspiratory crackles and bronchial breath sounds at the right posterior base. Dullness over the right posterior base compared with the left. Tactile fremitus is increased at the right posterior base.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Community-acquired pneumonia",

@@ -162,7 +162,7 @@
         {
           "kind": "dialogue",
           "section": "Build the symptom pattern",
-          "student": "What were you doing when this started?",
+          "student": "Have you been around anyone who was ill?",
           "patient": "My coworker had a respiratory illness last week.",
           "why": "",
           "event_ids": [
@@ -219,7 +219,7 @@
           "kind": "dialogue",
           "section": "Build the symptom pattern",
           "student": "Have you had anything like this before?",
-          "patient": "I have not had pneumonia before.",
+          "patient": "I have not had an episode like this before.",
           "why": "",
           "event_ids": [
             30,
@@ -746,7 +746,7 @@
         }
       ],
       "note": {
-        "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25-year-old man with worsening productive cough; onset 4 days ago. Fever began the following day, measured 101.5 F at home. Yellow sputum, chills, fatigue and dyspnea on stairs. Nonradiating sharp right lower chest pain, 5/10, provoked by coughing/deep inspiration. Coworker had respiratory illness last week. Acetaminophen 500 mg twice yesterday lowered fever briefly. No previous pneumonia.\n\nPerspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: Mother has asthma; father hypertension; one healthy sister.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n",
+        "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25-year-old man with worsening productive cough; onset 4 days ago. Fever began the following day, measured 101.5 F at home. Yellow sputum, chills, fatigue and dyspnea on stairs. Nonradiating sharp right lower chest pain, 5/10, provoked by coughing/deep inspiration. Coworker had respiratory illness last week. Acetaminophen 500 mg twice yesterday lowered fever briefly. No previous similar episode.\n\nPerspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: Mother has asthma; father hypertension; one healthy sister.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n",
         "O": "Vitals: T 101.3 F oral, P 102 bpm, BP 122/76 mmHg, R 22 rpm, Pulse Ox 95% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Tired appearing, alert and oriented, speaking full sentences.\nHeart: Regular tachycardia without murmur.\nLungs: Focal inspiratory crackles and bronchial breath sounds at the right posterior base.\nLungs: Dullness over the right posterior base compared with the left.\nLungs: Tactile fremitus is increased at the right posterior base.\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Community-acquired pneumonia",
@@ -867,7 +867,7 @@
         },
         {
           "section": "S",
-          "statement": "No previous pneumonia.",
+          "statement": "No previous similar episode.",
           "event_ids": [],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -1633,7 +1633,7 @@
           "t_ms": 16,
           "phase": "encounter",
           "kind": "student_utterance",
-          "text": "What were you doing when this started?",
+          "text": "Have you been around anyone who was ill?",
           "meta": {
             "open_question": true,
             "mode": "type",
@@ -1797,7 +1797,7 @@
           "t_ms": 24,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "I have not had pneumonia before.",
+          "text": "I have not had an episode like this before.",
           "meta": {
             "facts_released": [
               "hpi_past_occurrence"
@@ -1805,7 +1805,7 @@
             "concepts": {
               "hpi_past_occurrence": {
                 "polarity": "positive",
-                "value": "I have not had pneumonia before."
+                "value": "I have not had an episode like this before."
               }
             },
             "volunteered": false,
@@ -3551,7 +3551,7 @@
         {
           "kind": "dialogue",
           "section": "Build the symptom pattern",
-          "student": "What were you doing when this started?",
+          "student": "Have you been around anyone who was ill?",
           "patient": "My coworker had a respiratory illness last week.",
           "why": "",
           "event_ids": [
@@ -3608,7 +3608,7 @@
           "kind": "dialogue",
           "section": "Build the symptom pattern",
           "student": "Have you had anything like this before?",
-          "patient": "I have not had pneumonia before.",
+          "patient": "I have not had an episode like this before.",
           "why": "",
           "event_ids": [
             30,
@@ -4135,7 +4135,7 @@
         }
       ],
       "note": {
-        "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25-year-old man with worsening productive cough; onset 7 days ago. Fever began the following day, measured 101.5 F at home. Yellow sputum, chills, fatigue and dyspnea on stairs. Nonradiating sharp right lower chest pain, 5/10, provoked by coughing/deep inspiration. Coworker had respiratory illness last week. Acetaminophen 500 mg twice yesterday lowered fever briefly. No previous pneumonia.\n\nPerspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: Mother has asthma; father hypertension; one healthy sister.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n",
+        "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25-year-old man with worsening productive cough; onset 7 days ago. Fever began the following day, measured 101.5 F at home. Yellow sputum, chills, fatigue and dyspnea on stairs. Nonradiating sharp right lower chest pain, 5/10, provoked by coughing/deep inspiration. Coworker had respiratory illness last week. Acetaminophen 500 mg twice yesterday lowered fever briefly. No previous similar episode.\n\nPerspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: Mother has asthma; father hypertension; one healthy sister.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n",
         "O": "Vitals: T 101.3 F oral, P 102 bpm, BP 122/76 mmHg, R 22 rpm, Pulse Ox 95% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Tired appearing, alert and oriented, speaking full sentences.\nHeart: Regular tachycardia without murmur.\nLungs: Focal inspiratory crackles and bronchial breath sounds at the right posterior base.\nLungs: Dullness over the right posterior base compared with the left.\nLungs: Tactile fremitus is increased at the right posterior base.\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Community-acquired pneumonia",
@@ -4256,7 +4256,7 @@
         },
         {
           "section": "S",
-          "statement": "No previous pneumonia.",
+          "statement": "No previous similar episode.",
           "event_ids": [],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -5022,7 +5022,7 @@
           "t_ms": 23,
           "phase": "encounter",
           "kind": "student_utterance",
-          "text": "What were you doing when this started?",
+          "text": "Have you been around anyone who was ill?",
           "meta": {
             "open_question": true,
             "mode": "type",
@@ -5186,7 +5186,7 @@
           "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "I have not had pneumonia before.",
+          "text": "I have not had an episode like this before.",
           "meta": {
             "facts_released": [
               "hpi_past_occurrence"
@@ -5194,7 +5194,7 @@
             "concepts": {
               "hpi_past_occurrence": {
                 "polarity": "positive",
-                "value": "I have not had pneumonia before."
+                "value": "I have not had an episode like this before."
               }
             },
             "volunteered": false,
@@ -6940,7 +6940,7 @@
         {
           "kind": "dialogue",
           "section": "Build the symptom pattern",
-          "student": "What were you doing when this started?",
+          "student": "Have you been around anyone who was ill?",
           "patient": "My coworker had a respiratory illness last week.",
           "why": "",
           "event_ids": [
@@ -6997,7 +6997,7 @@
           "kind": "dialogue",
           "section": "Build the symptom pattern",
           "student": "Have you had anything like this before?",
-          "patient": "I have not had pneumonia before.",
+          "patient": "I have not had an episode like this before.",
           "why": "",
           "event_ids": [
             30,
@@ -7539,7 +7539,7 @@
         }
       ],
       "note": {
-        "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25-year-old man with worsening productive cough; onset 4 days ago. Fever began the following day, measured 101.5 F at home. Yellow sputum, chills, fatigue and dyspnea on stairs. Nonradiating sharp right lower chest pain, 5/10, provoked by coughing/deep inspiration. Coworker had respiratory illness last week. Acetaminophen 500 mg twice yesterday lowered fever briefly. No previous pneumonia.\n\nPerspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: Mother has asthma; father hypertension; one healthy sister.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n\nPatient concern: I cannot read small print on medicine bottles without my glasses.\n",
+        "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25-year-old man with worsening productive cough; onset 4 days ago. Fever began the following day, measured 101.5 F at home. Yellow sputum, chills, fatigue and dyspnea on stairs. Nonradiating sharp right lower chest pain, 5/10, provoked by coughing/deep inspiration. Coworker had respiratory illness last week. Acetaminophen 500 mg twice yesterday lowered fever briefly. No previous similar episode.\n\nPerspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: Mother has asthma; father hypertension; one healthy sister.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n\nPatient concern: I cannot read small print on medicine bottles without my glasses.\n",
         "O": "Vitals: T 101.3 F oral, P 102 bpm, BP 122/76 mmHg, R 22 rpm, Pulse Ox 95% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Tired appearing, alert and oriented, speaking full sentences.\nHeart: Regular tachycardia without murmur.\nLungs: Focal inspiratory crackles and bronchial breath sounds at the right posterior base.\nLungs: Dullness over the right posterior base compared with the left.\nLungs: Tactile fremitus is increased at the right posterior base.\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Community-acquired pneumonia",
@@ -7660,7 +7660,7 @@
         },
         {
           "section": "S",
-          "statement": "No previous pneumonia.",
+          "statement": "No previous similar episode.",
           "event_ids": [],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -8436,7 +8436,7 @@
           "t_ms": 15,
           "phase": "encounter",
           "kind": "student_utterance",
-          "text": "What were you doing when this started?",
+          "text": "Have you been around anyone who was ill?",
           "meta": {
             "open_question": true,
             "mode": "type",
@@ -8600,7 +8600,7 @@
           "t_ms": 23,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "I have not had pneumonia before.",
+          "text": "I have not had an episode like this before.",
           "meta": {
             "facts_released": [
               "hpi_past_occurrence"
@@ -8608,7 +8608,7 @@
             "concepts": {
               "hpi_past_occurrence": {
                 "polarity": "positive",
-                "value": "I have not had pneumonia before."
+                "value": "I have not had an episode like this before."
               }
             },
             "volunteered": false,

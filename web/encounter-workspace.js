@@ -38,7 +38,7 @@ function audioSettings(){
  dialog.addEventListener('close',()=>unsubscribe?.(),{once:true});select.onchange=()=>{const result=device?.choose(select.value);if(result?.error)status.textContent=result.error;else if(result&&!result.saved)status.textContent='Voice changed for this page. Browser storage could not save the preference.';};q('#ewRefreshVoices',host).onclick=()=>device?.refresh();device?.refresh();
 }
 function makeExam(panel){
- panel.innerHTML='<div class="ew-panel-title"><h2>Choose an examination</h2><span id="ewExamScope"></span></div><div class="ew-board-search"><input id="manSearch" type="search" aria-label="Find an examination" placeholder="Find an action…"><button class="btn sm ghost" id="ewExamAll" aria-pressed="false">All actions</button></div><select id="ewManeuver" hidden aria-hidden="true"><option value="">Choose an action</option></select><div id="regionList" hidden><button data-region="" type="button">All regions</button></div><div id="manCount" class="tiny muted" aria-live="polite"></div><section id="ewExamOutcome" class="ew-exam-outcome" role="status" aria-live="polite" hidden></section><div class="ew-exam-scroll"><div id="ewExamBoard"></div><div class="ew-exam-detail" hidden tabindex="-1" aria-label="Examination technique"><button class="btn sm ghost" id="ewExamBack">← Actions</button><div id="manList"></div></div></div><div class="ew-exam-footer" hidden><div id="examRunning" role="status" class="small"></div><button class="btn primary" id="ewPerform" disabled>Perform selected action</button></div>';
+ panel.innerHTML='<div class="ew-panel-title"><h2>Perform an examination</h2><span id="ewExamScope"></span></div><div class="ew-board-search"><input id="manSearch" type="search" aria-label="Find an examination" placeholder="Find an action…"><button class="btn sm ghost" id="ewExamAll" aria-pressed="false">All actions</button></div><select id="ewManeuver" hidden aria-hidden="true"><option value="">Choose an action</option></select><div id="regionList" hidden><button data-region="" type="button">All regions</button></div><div id="manCount" class="tiny muted" aria-live="polite"></div><section id="ewExamOutcome" class="ew-exam-outcome" role="status" aria-live="polite" hidden></section><div class="ew-exam-scroll"><div id="ewExamBoard"></div><div class="ew-exam-detail" hidden tabindex="-1" aria-label="Examination technique"><button class="btn sm ghost" id="ewExamBack">← Actions</button><div id="manList"></div></div></div><div class="ew-exam-footer" hidden><div id="examRunning" role="status" class="small"></div><button class="btn primary" id="ewPerform" disabled>Perform selected action</button></div>';
  q('#manSearch',panel).oninput=()=>refreshExam(true);q('#regionList button',panel).onclick=()=>{active.showAllExams=true;refreshExam(true);};q('#ewExamAll',panel).onclick=()=>{active.showAllExams=!active.showAllExams;refreshExam(true);};q('#ewManeuver',panel).onchange=drawManeuver;q('#ewPerform',panel).onclick=perform;q('#ewExamBack',panel).onclick=()=>{q('#ewManeuver',panel).value='';drawManeuver();};
 }
 // Complaint-based navigation uses only the doorway and information already delivered.
@@ -55,32 +55,49 @@ function relevantRegions(s){
  add(/sore throat|ear pain|sinus|fever|fatigue/,['HEENT','Neck','Heart','Lungs','Abdomen']);
  regions.add('Skin');return matched?regions:null;
 }
+
+// Each tile is an explicit, complete action. Never silently select mutually
+// exclusive positions or unrelated special tests just to release more findings.
+function quickActions(m){
+ if(m.id==='vitals_review')return [];
+ const bundle=(key,label,components)=>({...m,actionKey:m.id+':'+key,label,components});
+ const groups={
+  heent_eyes:[['inspect','Inspect pupils, conjunctivae, sclerae and corneas',['pupils','conjunctivae','sclerae','cornea']],['eye-movement','Check extraocular movements',['extraocular movements']],['fundus','Perform fundoscopic examination',['fundoscopic']]],
+  neck_rom:[['rom','Check neck flexion and rotation',['flexion','rotation']],['brudzinski','Perform Brudzinski test',['brudzinski']],['kernig','Perform Kernig test',['kernig']]],
+  abd_auscultate:[['sounds','Listen for bowel sounds in all four quadrants',['all four quadrants']],['bruits','Listen for abdominal bruits',['bruits']]],
+  abd_percuss:[['quadrants','Percuss all four abdominal quadrants',['four quadrants']],['liver','Percuss liver span',['liver span']],['ascites','Check shifting dullness',['shifting dullness']]],
+  abd_palpate:[['light','Lightly palpate all quadrants; assess guarding',['light','four quadrants','guarding']],['deep','Deeply palpate all four quadrants',['deep','four quadrants']],['rebound','Assess rebound tenderness',['rebound']]],
+  msk_slr:[['supine','Supine straight-leg raise — both legs',['supine','right','left']],['seated','Seated straight-leg raise — both legs',['seated','right','left']]],
+  neuro_reflexes:[['dtr','Check biceps, triceps, patellar and Achilles reflexes',['biceps','triceps','patellar','achilles']],['plantar','Check plantar response (Babinski)',['babinski']]],
+  heart_auscultate:[['all','Listen at all four heart valve areas, on skin',m.components]],
+  lungs_auscultate:[['all','Listen to lungs — compare both sides, front, back and sides',m.components]],
+ };
+ if(groups[m.id])return groups[m.id].map(g=>bundle(...g));
+ const separate=new Set(['abd_special','msk_palpate','msk_strength','neuro_cn','neuro_sensory','neuro_coordination','skin_inspect','osteo_screen']);
+ if(separate.has(m.id))return m.components.map((c,i)=>bundle(String(i),m.id==='abd_special'?({'cva tenderness':'Check costovertebral-angle tenderness',murphy:'Perform Murphy sign',mcburney:'Assess McBurney-point tenderness',rovsing:'Perform Rovsing sign',psoas:'Perform psoas test',obturator:'Perform obturator test'}[c]):m.label+' — '+c,[c]));
+ return [bundle('complete',m.label,m.components)];
+}
+
 function refreshExam(reset=false){if(!active)return;const panel=q('#ewPanelExam'),sel=q('#ewManeuver',panel);if(!panel||!sel)return;
  const search=q('#manSearch',panel).value.trim().toLowerCase(),regions=relevantRegions(latest),all=active.showAllExams||!regions||!!search;
- const list=catalog().flatMap(g=>g.maneuvers.map(m=>({...m,region:g.region}))).filter(m=>(all||regions.has(m.region))&&(!search||(m.label+' '+m.region+' '+(m.notes||'')+' '+m.components.join(' ')).toLowerCase().includes(search)));
+ const list=catalog().flatMap(g=>g.maneuvers.flatMap(m=>quickActions({...m,region:g.region}))).filter(m=>(all||regions.has(m.region))&&(!search||(m.label+' '+m.region+' '+(m.notes||'')+' '+m.components.join(' ')).toLowerCase().includes(search)));
  if(!all&&regions){const order=[...regions];list.sort((a,b)=>order.indexOf(a.region)-order.indexOf(b.region));}
- const old=sel.value,signature=list.map(m=>m.id).join('|');active.examList=list;
- if(reset||signature!==sel.dataset.signature){sel.innerHTML='<option value="">Choose an action</option>'+list.map(m=>'<option value="'+E(m.id)+'">'+E(m.label)+'</option>').join('');sel.dataset.signature=signature;if(!reset&&list.some(m=>m.id===old))sel.value=old;if(search&&list.length===1)sel.value=list[0].id;
- q('#ewExamBoard',panel).innerHTML=list.length?[...new Set(list.map(m=>m.region))].map(region=>'<section class="ew-action-group"><h3>'+E(region)+'</h3><div class="ew-action-grid">'+list.filter(m=>m.region===region).map(m=>'<button type="button" class="ew-action-tile" data-exam-action="'+E(m.id)+'"><span aria-hidden="true">'+({inspection:'◉',auscultation:'◖',palpation:'✋',percussion:'⋯'}[m.method]||'✚')+'</span><b>'+E(m.label)+'</b><small>'+E(m.method)+' · '+m.duration_s+'s</small></button>').join('')+'</div></section>').join(''):'<p class="ew-empty">No matching actions. Try a shorter search.</p>';
- qa('[data-exam-action]',panel).forEach(b=>b.onclick=()=>{sel.value=b.dataset.examAction;drawManeuver();q('.ew-exam-detail',panel).focus({preventScroll:true});});drawManeuver();}
+ const old=sel.value,signature=list.map(m=>m.actionKey).join('|');active.examList=list;
+ if(reset||signature!==sel.dataset.signature){sel.innerHTML='<option value="">Choose an action</option>'+list.map(m=>'<option value="'+E(m.actionKey)+'">'+E(m.label)+'</option>').join('');sel.dataset.signature=signature;if(!reset&&list.some(m=>m.actionKey===old))sel.value=old;if(search&&list.length===1)sel.value=list[0].actionKey;
+ q('#ewExamBoard',panel).innerHTML=list.length?[...new Set(list.map(m=>m.region))].map(region=>'<section class="ew-action-group"><h3>'+E(region)+'</h3><div class="ew-action-grid">'+list.filter(m=>m.region===region).map(m=>'<button type="button" class="ew-action-tile" data-exam-action="'+E(m.actionKey)+'"><span aria-hidden="true">'+({inspection:'◉',auscultation:'◖',palpation:'✋',percussion:'⋯'}[m.method]||'✚')+'</span><b>'+E(m.label)+'</b><small>'+E(m.method)+' · '+m.duration_s+'s</small></button>').join('')+'</div></section>').join(''):'<p class="ew-empty">No matching actions. Try a shorter search.</p>';
+ qa('[data-exam-action]',panel).forEach(b=>b.onclick=()=>{perform(b.dataset.examAction);});drawManeuver();}
  q('#ewExamScope',panel).textContent=latest?.learning_mode==='rehearsal'?'Full catalog · choose your own approach':all?'All actions · select only what is indicated':'Complaint & related systems · choose what fits';
- const toggle=q('#ewExamAll',panel);toggle.hidden=latest?.learning_mode==='rehearsal'||!regions;toggle.textContent=active.showAllExams?'Focused actions':'All actions';toggle.setAttribute('aria-pressed',String(!!active.showAllExams));q('#manCount',panel).textContent=list.length+' actions · select a tile for sites and technique';updateExamStatus();
+ const toggle=q('#ewExamAll',panel);toggle.hidden=latest?.learning_mode==='rehearsal'||!regions;toggle.textContent=active.showAllExams?'Focused actions':'All actions';toggle.setAttribute('aria-pressed',String(!!active.showAllExams));q('#manCount',panel).textContent=list.length+' actions · click once to perform';updateExamStatus();
 }
-function drawManeuver(){if(!active)return;const p=q('#ewPanelExam'),mid=q('#ewManeuver',p).value,m=active.examList?.find(x=>x.id===mid);active.maneuver=mid;
- q('#ewExamBoard',p).hidden=!!m;q('.ew-exam-detail',p).hidden=!m;q('.ew-exam-footer',p).hidden=!m;
- q('#manList',p).innerHTML=m?'<div class="maneuver" data-m="'+E(mid)+'"><div class="man-head"><b class="m-label">'+E(m.label)+'</b><span class="m-method">'+E(m.method)+'</span><span class="tiny muted">~'+m.duration_s+'s</span></div>'+(m.notes?'<p class="man-note">'+E(m.notes)+'</p>':'')+'<fieldset class="chips"><legend>Sites & technique</legend>'+m.components.map(c=>'<label class="chip"><input type="checkbox" value="'+E(c)+'"><span>'+E(c.replaceAll('_',' '))+'</span></label>').join('')+'</fieldset><p class="tiny muted">Only selected, completed actions release findings. Positioning alone does not establish a finding.</p></div>':'<p class="small muted">Choose a relevant action. The simulator will ask for specific sites and technique when needed.</p>';
- q('#manList',p).onchange=updateExamStatus;updateExamStatus();
-}
-function updateExamStatus(){if(!active)return;const p=q('#ewPanelExam'),b=q('#ewPerform',p);if(!b)return;const m=active.examList?.find(x=>x.id===q('#ewManeuver',p).value),busy=!!latest?.pending_exam||active.examSending;
- b.disabled=busy||!m||(m.components.length&&!qa('.chips input:checked',p).length);b.textContent=busy?'Examination in progress…':'Perform selected action';q('#examRunning',p).textContent=busy?'Findings appear when the action finishes.':m?.components.length&&!qa('.chips input:checked',p).length?'Select the sites or technique you intend to perform.':'';
-}
-async function perform(){if(!active||!latest||latest.phase!=='encounter')return;const ctx=active,p=q('#ewPanelExam'),m=ctx.examList.find(x=>x.id===q('#ewManeuver',p).value);if(!m||q('#ewPerform',p).disabled)return;const sid=latest.id,components=qa('.chips input:checked',p).map(x=>x.value);ctx.examSending=true;updateExamStatus();
- try{const r=await api('/api/session/'+sid+'/exam',{maneuver_id:m.id,components,source_text:'Perform: '+m.label+(components.length?' ('+components.join(', ')+')':'')+' — patient '+recordedPosition()});if(active!==ctx||S?.id!==sid)return;if(r.error){outcome('Examination could not complete',r.message||'Your selections are preserved. Please try again.');toast(r.message||'That examination could not be performed. Your selections are preserved.');return;}if(r.state)S=Object.assign({},S,r.state);(r.events||[]).forEach(deliverEvent);if(r.state?.transcript)paintStream(S.transcript||[]);paintExamProgress();notifyPublicState();}
- catch{if(active===ctx)outcome('Connection interrupted','Your selections are preserved. Reconnect and check the record before retrying.');if(active===ctx)toast('Connection interrupted. Your selections are preserved. Reconnect and check the record before retrying.');}
+function drawManeuver(){if(!active)return;const p=q('#ewPanelExam');q('#ewExamBoard',p).hidden=false;q('.ew-exam-detail',p).hidden=true;q('.ew-exam-footer',p).hidden=true;updateExamStatus();}
+function updateExamStatus(){if(!active)return;const busy=!!latest?.pending_exam||active.examSending;qa('[data-exam-action]',q('#ewPanelExam')).forEach(b=>b.disabled=busy||latest?.phase!=='encounter');}
+async function perform(key){if(!active||!latest||latest.phase!=='encounter'||latest.pending_exam||active.examSending)return;const ctx=active,m=ctx.examList.find(x=>x.actionKey===key);if(!m)return;const sid=latest.id,components=m.components;ctx.examSending=true;updateExamStatus();
+ try{const r=await api('/api/session/'+sid+'/exam',{maneuver_id:m.id,components,source_text:'Perform: '+m.label+(components.length?' ('+components.join(', ')+')':'')+' — patient '+recordedPosition()});if(active!==ctx||S?.id!==sid)return;if(r.error){outcome('Examination could not complete',r.message||'Please try again.');return;}if(r.state)S=Object.assign({},S,r.state);(r.events||[]).forEach(deliverEvent);if(r.state?.transcript)paintStream(S.transcript||[]);paintExamProgress();notifyPublicState();}
+ catch{if(active===ctx)outcome('Connection interrupted','Reconnect and check Record before retrying.');}
  finally{ctx.examSending=false;if(active===ctx)updateExamStatus();}
 }
 // Display feedback separately from the evidence ledger: explanations are not findings.
-function outcome(title,text){const host=q('#ewExamOutcome');if(!host)return;const signature=title+'|'+text;if(host.dataset.signature===signature)return;host.dataset.signature=signature;host.hidden=false;host.innerHTML='<strong>'+E(title)+'</strong><p>'+E(text)+'</p>';}
+function outcome(title,text){const host=q('#ewExamOutcome');if(!host)return;const signature=title+'|'+text;if(host.dataset.signature===signature)return;host.dataset.signature=signature;host.hidden=false;host.innerHTML='<strong>'+E(title)+'</strong><p>'+E(text)+'</p>';clearTimeout(active?.outcomeTimer);if(active&&!/progress|interrupted|could not/i.test(title))active.outcomeTimer=setTimeout(()=>{if(host.dataset.signature===signature)host.hidden=true;},9000);}
 function syncExamOutcome(s){
  if(!active)return;const events=[...(s.transcript||[]),...(s.examination_activity||[])].sort((a,b)=>a.seq-b.seq);
  const findings=events.filter(e=>e.kind==='exam_finding');const last= findings.at(-1);

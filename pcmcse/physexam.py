@@ -600,7 +600,7 @@ def catalog_for_ui():
             "id": m["id"], "label": m["label"], "method": m["method"],
             "components": m["components"], "duration_s": m["duration_s"],
             "notes": m["notes"],
-        } for m in CATALOG if m["region"] == region]
+        } for m in CATALOG if m["region"] == region and m["id"] != "vitals_review"]
         if items:
             groups.append({"region": region, "maneuvers": items})
     return groups

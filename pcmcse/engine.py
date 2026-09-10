@@ -407,6 +407,7 @@ class Session:
         # never a performed test, result, or proof of clinical appropriateness.
         if tags.get("plan_talk") and not topics and not _has_exam_verb(text):
             topics = ["plan discussion"]
+        if patient.conversation_route(text)=='introduction':topics=[]
         if topics:
             meta["counseling_turn"] = True
         student_ev = self.ledger.add(evidence.STUDENT, text, t_ms=t,
@@ -434,6 +435,15 @@ class Session:
             self.ledger.add(evidence.COUNSELING, text, t_ms=t,
                             meta={"topics": topics})
             out["events"].append({"kind": "counseling", "topics": topics})
+
+        # Social introductions and explicit clarification must not be routed as
+        # counseling or borrowed clinical history, including in AI delivery mode.
+        if patient.conversation_route(text):
+            reply,pmeta=patient.PatientEngine(self.case).respond(text,self.pstate)
+            ev=self.ledger.add(evidence.PATIENT,reply,t_ms=self.elapsed_ms(),meta=pmeta)
+            out['events'].append({'kind':'patient','text':reply,'seq':ev['seq']})
+            self.save()
+            return out
 
         # Exact authored education exchanges are communication, not a fresh
         # symptom question or an examination order. Preserve their specific
