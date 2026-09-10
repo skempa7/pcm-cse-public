@@ -9,3 +9,10 @@ node_modules/
 .DS_Store
 settings.json
 .env*
+
+# Private working material. These are also in .git/info/exclude, but that file
+# is local-only and never travels with the repository: a fresh clone, a moved
+# checkout or a rebuilt .git would leave these stageable. Keep both.
+/verification-private/
+/editable-public-assets/
+/LOCAL-DELIVERY.md
