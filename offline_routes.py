@@ -204,12 +204,20 @@ class Handler:
                 if not learning.allowed(s):
                     return self._json({'error': 'Coaching is unavailable in this mode.'}, 403)
                 payload = {k: body.get(k) for k in ('lessonId', 'step', 'choice', 'correct', 'event')}
-                if payload['event'] not in ('start', 'answer', 'complete') or len(json.dumps(payload)) > 2000:
+                # The guide emits start/step/skip/complete. Rejecting the two
+                # navigation events made every Next and Skip return 400, which
+                # the client surfaced as an error toast on a working control.
+                if payload['event'] not in ('start', 'step', 'skip', 'answer', 'complete') \
+                        or len(json.dumps(payload)) > 2000:
                     return self._json({'error': 'Invalid lesson action'}, 400)
                 payload['unscored_ui_action'] = True
                 learning.record(sid, 'room_lesson', payload)
-                s.set(assisted=1)
-                s.save()
+                # Reading the taught sequence IS instructional assistance, so it
+                # is recorded -- but only when the content is actually opened,
+                # not again on every Next inside something already open.
+                if payload['event'] == 'start' and not s.row['assisted']:
+                    s.set(assisted=1)
+                    s.save()
                 return self._json({'ok': True})
             if action == 'transfer':
                 try:

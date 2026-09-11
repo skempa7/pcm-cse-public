@@ -64,3 +64,88 @@ body[data-phase=encounter] #patientVoiceSettings[open]{max-height:45svh;overflow
 .patient-heading-actions{display:flex;gap:10px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
 .patient-heading-actions #patientFocus{font-size:11px;white-space:nowrap;min-height:32px}
 @media(max-width:600px){.experience-room .unity-heading{align-items:flex-start;gap:8px}.patient-heading-actions{gap:5px}.patient-heading-actions .state-pill{font-size:9px}.patient-heading-actions #patientFocus{font-size:10px;padding:5px 7px}.experience-room .unity-heading h2{font-size:18px}}
+
+/* Writing the note beside what you obtained. The rail stays with the editor as
+   it scrolls, and the summary gets its own scroll so the chart above it never
+   pushes it off the screen. */
+.note-reference{position:sticky;top:92px;display:flex;flex-direction:column;min-height:0;max-height:calc(100vh - 120px)}
+.note-ref-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex:0 0 auto;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.note-ref-head h3{font-size:13px;margin:0}
+.note-ref-body{min-height:0;overflow:auto;padding-top:4px}
+.note-ref-body .ew-rec-group{margin:0 0 12px}
+.note-ref-body .ew-rec-group h3{margin-top:10px}
+.note-ref-body .ew-rec-row{grid-template-columns:minmax(78px,34%) 1fr;gap:8px;padding:4px 0}
+.note-ref-body .ew-rec-row dd{font-size:12.5px}
+.note-ref-body .ew-rec-row dt{font-size:11px}
+@media(max-width:1100px){.note-reference{position:static;max-height:none}.note-ref-body{max-height:320px}}
+
+/* The reference rail is now carrying the obtained history, not just eight vital
+   signs, so it needs room to be read rather than skimmed one word per line. */
+@media(min-width:1200px){.note-layout{grid-template-columns:minmax(0,1fr) minmax(320px,390px)!important}}
+/* In a rail this narrow the label reads better above its value than beside it:
+   the value gets the full width instead of a 150px ribbon. */
+.note-ref-body .ew-rec-row{grid-template-columns:1fr;gap:1px;padding:5px 0}
+.note-ref-body .ew-rec-row dt{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-3)}
+.note-ref-body .ew-rec-row dt.ew-rec-cont{display:none}
+.note-ref-body .ew-rec-row dd{font-size:12.5px;line-height:1.5}
+
+/* The debrief opens on the result, not on an exercise. */
+.debrief-result{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:22px;align-items:center;padding:20px 24px;margin-bottom:14px}
+.debrief-result .dr-score{display:grid;gap:2px;justify-items:start;padding-right:22px;border-right:1px solid var(--line)}
+.debrief-result .dr-num{font-size:40px;font-weight:600;line-height:1;letter-spacing:-.03em}
+.debrief-result .dr-of{font-size:19px;font-weight:400;color:var(--ink-3)}
+.debrief-result .dr-lead{min-width:0}
+.debrief-result .dr-lead p{margin:0}
+.debrief-result .dr-first{font-size:14px;line-height:1.5;margin:4px 0 3px!important}
+.debrief-result .dr-actions{white-space:nowrap}
+@media(max-width:820px){.debrief-result{grid-template-columns:1fr;gap:12px}.debrief-result .dr-score{border-right:0;padding-right:0}}
+
+/* The record rail is a long list in a short box. Name its parts so the
+   examination findings the Objective row needs are one click away, and make
+   the fact that it scrolls visible rather than something to discover. */
+.note-ref-jump{display:flex;flex-wrap:wrap;gap:4px;flex:0 0 auto;padding:8px 0 6px;border-bottom:1px solid var(--line-soft)}
+.note-ref-jump button{font:inherit;font-size:10.5px;font-weight:600;line-height:1.2;cursor:pointer;padding:5px 8px;border-radius:8px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink-2)}
+.note-ref-jump button:hover{background:var(--surface-3,var(--surface-2));color:var(--ink)}
+.note-ref-jump button[aria-current="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.note-ref-body{position:relative;scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){.note-ref-body{scroll-behavior:auto}}
+.note-reference{position:sticky}
+.note-ref-body.has-more{-webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(to bottom,#000 calc(100% - 26px),transparent)}
+.note-ref-body.has-more.has-above{-webkit-mask-image:linear-gradient(to bottom,transparent,#000 18px,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(to bottom,transparent,#000 18px,#000 calc(100% - 26px),transparent)}
+.note-ref-jump button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* The start action follows the choice. Selecting a station happens near the top
+   of the page and "Read the doorway" sat below all 24 tiles, so the primary
+   action of the screen was two scrolls away from the thing it acts on. */
+.lobby-actions{position:sticky;bottom:12px;z-index:5;box-shadow:var(--el-2,0 10px 30px #14343612);flex-wrap:wrap}
+.lobby-chosen{flex:0 1 auto;min-width:0;font-weight:600;color:var(--ink-2)}
+.lobby-actions.is-ready .lobby-chosen{color:var(--accent)}
+@media(max-width:900px){.lobby-actions{position:static}}
+
+/* The doorway has to fit the screen it is read on. At 1440x900 the brief ran
+   to 1127px, so "Enter room" -- the only thing you came here to do -- sat on
+   the bottom edge of the window and the first action of every encounter was a
+   scroll. Nothing is removed and no body text is shrunk; the padding, the
+   heading and the four stacked entry rows are. */
+.arrival-layout .doorway-head{padding:18px 28px 10px}
+.arrival-layout .doorway-head h1{font-size:25px;margin:5px 0 7px}
+.arrival-layout .doorway-head>p{margin:0}
+.arrival-layout .doorway-vitals{margin:12px 0;padding:12px 16px}
+.arrival-layout .doorway-vitals h2{font-size:16px}
+.arrival-layout .doorway-vitals .card-head{margin-bottom:2px}
+.arrival-layout .doorway-vitals .chart-grid dt{padding-top:7px}
+.arrival-layout .doorway-vitals .chart-grid dd{padding-bottom:4px;font-size:14px}
+.arrival-layout .doorway-vitals>p:last-child{margin-top:6px}
+.arrival-layout .doorway-facts{margin:10px 0}
+.arrival-layout .doorway-facts .fact{padding:8px 12px}
+.arrival-layout .doorway-facts dd{font-size:17px}
+.arrival-layout .doorway-body>.tiny{margin:8px 0 6px}
+/* Enter room, its alternative, and the two lines about them: two rows, not four. */
+.arrival-layout .doorway-enter{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:8px}
+.arrival-layout .doorway-enter #go{flex:1 1 220px;width:auto;margin:0}
+.arrival-layout .doorway-enter #skipEntrance{display:inline-block;width:auto;flex:0 0 auto;margin:0}
+.arrival-layout .doorway-enter .entry-status{flex:1 1 auto;margin:0;text-align:left}
+.arrival-layout .doorway-enter #entryFallback{display:inline-block;flex:0 0 auto;margin:0}
+@media(min-width:1400px){
+ .arrival-layout .doorway-vitals .chart-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}

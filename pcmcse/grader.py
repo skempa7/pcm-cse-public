@@ -516,7 +516,12 @@ def _names_concept(text, surfaces):
     """
     words = {_stem(w) for w in nlp.expand_abbreviations(text).split()}
     for surface in surfaces or []:
-        parts = [_stem(w) for w in nlp.normalize(surface).split()
+        # Expand the surface too. The text side is already expanded, so a
+        # surface the case author wrote in abbreviated form ("right cva
+        # tenderness") could never match the note it was written for: "CVA" in
+        # the note became "costovertebral angle" while the surface still said
+        # "cva". 71 authored surfaces were unreachable by their own wording.
+        parts = [_stem(w) for w in nlp.expand_abbreviations(nlp.normalize(surface)).split()
                  if w not in _SURFACE_FILLER]
         if parts and all(p in words for p in parts):
             return True

@@ -95,7 +95,15 @@ def _m(mid, region, method, label, components, duration, claim, scope, notes="")
 COURTESY = [
     {"id": "introduce", "label": "Introduce yourself as a student doctor",
      "duration_s": 8, "triggers": ["my name is", "i am a student doctor",
-     "i'm a student doctor", "student doctor", "introduce myself", "i'll be seeing you"]},
+     "i'm a student doctor", "student doctor", "introduce myself", "introduced myself",
+     # Plain role phrases, because a name usually sits between the pronoun and
+     # the role: "I'm Sam, a medical student" never matched "i'm a medical
+     # student", and the coach then asked for an introduction all encounter.
+     # A question ("are you a medical student?") and a third-party sentence
+     # ("your medical student saw me") are refused by the courtesy guards.
+     "medical student", "year student", "year medical student",
+     "i'll be seeing you", "my name's", "i am a medical student", "i'm a medical student",
+     "medical student working with"]},
     {"id": "confirm_name", "label": "Confirm patient name / preferred address",
    "duration_s": 6,
    # This item has TWO components. The learner may do either independently and
@@ -112,6 +120,10 @@ COURTESY = [
               "tell me your name", "state your name", "your name for me",
               "confirm your name", "who am i speaking", "who am i talking"],
      "preferred_address": ["how would you like to be addressed",
+              # Declarative order and contracted forms: "what you'd like me to
+              # call you" reads naturally and matched none of the authored
+              # interrogative phrasings.
+              "like me to call you", "like to be called", "prefer to be addressed",
               "what would you like me to call you", "what should i call you",
               "how should i address you", "is it alright if i call you",
               "may i call you", "what do you prefer to be called",
@@ -127,8 +139,8 @@ COURTESY = [
                 "who am i speaking", "who am i talking", "preferred name"]},
     {"id": "hand_hygiene", "label": "Wash or sanitize hands",
      "duration_s": 12, "triggers": ["wash my hands", "washing my hands",
-     "sanitize my hands", "hand sanitizer", "hand hygiene", "clean my hands",
-     "foam in", "gel my hands"]},
+     "washed my hands", "sanitize my hands", "sanitized my hands", "hand sanitizer",
+     "hand hygiene", "clean my hands", "cleaned my hands", "foam in", "gel my hands"]},
     {"id": "gloves", "label": "Apply gloves before the physical exam",
      "duration_s": 8, "triggers": ["put on gloves", "apply gloves", "glove up",
      "donning gloves", "i'll glove"]},

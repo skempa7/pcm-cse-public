@@ -60,6 +60,8 @@ def _priority_errors(audit_result, rubric, chk, case):
         items.append({
             "rank_score": row["points_available"] * 10,
             "kind": "rubric",
+            "category": row["category"],
+            "label": row["label"],
             "title": "%s (%s) — %d point%s lost" % (
                 row["label"], row["category"], row["points_available"],
                 "" if row["points_available"] == 1 else "s"),
@@ -127,6 +129,36 @@ def _priority_errors(audit_result, rubric, chk, case):
                                "' in Objective. Do not claim it was performed or delay urgent care to complete a checklist."),
                 "passage": "", "evidence": [], "points": 0,
             })
+
+    # A rubric row is worth at most 5 points, so its rank_score topped out at
+    # 50 while every documentation verdict scores 60-105. The debrief's landing
+    # card shows the top three, so three "unsupported claim" notes pushed off a
+    # whole section scoring zero -- the student read three nitpicks and never
+    # saw that Objective earned nothing. Rank by the points actually at stake:
+    # where a section has lost several rows together, say so once, scored by
+    # what the section lost in total.
+    by_category = {}
+    for item in items:
+        if item.get("kind") == "rubric" and item.get("category"):
+            by_category.setdefault(item["category"], []).append(item)
+    for category, rows in by_category.items():
+        lost = sum(r.get("points") or 0 for r in rows)
+        if len(rows) < 2 or lost < 6:
+            continue
+        labels = [r["label"] for r in rows if r.get("label")]
+        items.append({
+            "rank_score": lost * 10,
+            "kind": "rubric_section",
+            "category": category,
+            "title": "%s — %d points lost across %d requirements"
+                     % (category, lost, len(rows)),
+            "what_happened": "Nothing was credited for: " + ", ".join(labels) + ".",
+            "why_it_matters": rows[0].get("why_it_matters") or "",
+            "what_to_do": ("This is the largest single loss in this attempt. "
+                           "Work through these together rather than one at a "
+                           "time: " + (rows[0].get("what_to_do") or "")),
+            "passage": "", "evidence": [], "points": lost,
+        })
 
     items.sort(key=lambda x: -x["rank_score"])
     return items[:18]

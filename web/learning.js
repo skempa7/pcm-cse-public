@@ -58,10 +58,15 @@
     if(s.learning_mode==='guided'&&data.case_guide){renderCaseGuide(s,data);return;}
     let panel=document.getElementById('encounterGuide');if(!panel){panel=document.createElement('section');panel.id='encounterGuide';panel.className='encounter-guide';const wrap=document.querySelector('#coachDock')||document.querySelector('#view .wrap-wide,#view .wrap-mid,#view .room-shell')||document.getElementById('view');wrap.prepend(panel);}
     panel.classList.toggle('coaching-open',s.learning_mode==='guided'&&s.phase==='encounter');
-    panel.innerHTML=`<div class="guide-top"><div><span class="eyebrow">Your encounter compass</span><h2>Find your next step.</h2></div><span class="small">${E(data.timing)}</span><button class="btn sm ghost guide-expand" id="toggleGuide" aria-expanded="${s.learning_mode==='guided'&&s.phase==='encounter'}">Show approach</button><button class="btn primary" id="unstuckButton">Help me get unstuck</button></div><nav class="encounter-steps" aria-label="Mental sequence">${data.steps.map((x,i)=>`<button class="step-button ${x.id===selected?'active':''}" data-step="${E(x.id)}" aria-pressed="${x.id===selected}"><span>${i+1}</span>${E(x.label)}</button>`).join('')}</nav><div class="guide-purpose" id="guidePurpose"></div><div id="recoveryBody" aria-live="polite"></div><div id="guideApplication" aria-live="polite"></div><details class="reasoning-expand"><summary>See how questions change the next decision</summary><div class="reasoning-map">${(data.reasoning_map||[]).map(x=>`<article><h3>${E(x.question||x.label||'A discriminating question')}</h3><p>${E(x.why||'')}</p><div class="decision-fork"><div><b>If present</b><p>${E(x.if_present||'Consider how this changes urgency.')}</p></div><div><b>If absent</b><p>${E(x.if_absent||'Reconsider likelihood; absence alone may not exclude disease.')}</p></div></div><p>${E(x.next_action||'')}</p><p class="small">Document: ${E(x.document||'Only the answer you actually obtained.')}</p></article>`).join('')||'<p>Complaint → working possibilities → a discriminating question → a relevant examination → interpretation → explanation → evidence-supported SOAP.</p>'}</div></details>`;
+    panel.classList.toggle('coach-aside',s.phase!=='encounter');
+    panel.innerHTML=`<div class="guide-top"><div><span class="eyebrow">${E(data.timing)}</span></div><button class="btn sm ghost guide-expand" id="toggleGuide" aria-expanded="${s.learning_mode==='guided'&&s.phase==='encounter'}">Show approach</button><button class="btn sm ghost" id="unstuckButton">I'm stuck</button></div><nav class="encounter-steps" aria-label="Mental sequence">${data.steps.map((x,i)=>`<button class="step-button ${x.id===selected?'active':''}" data-step="${E(x.id)}" aria-pressed="${x.id===selected}"><span>${i+1}</span>${E(x.label)}</button>`).join('')}</nav><div class="guide-purpose" id="guidePurpose"></div><div id="recoveryBody" aria-live="polite"></div><div id="guideApplication" aria-live="polite"></div><details class="reasoning-expand"><summary>See how questions change the next decision</summary><div class="reasoning-map">${(data.reasoning_map||[]).map(x=>`<article><h3>${E(x.question||x.label||'A discriminating question')}</h3><p>${E(x.why||'')}</p><div class="decision-fork"><div><b>If present</b><p>${E(x.if_present||'Consider how this changes urgency.')}</p></div><div><b>If absent</b><p>${E(x.if_absent||'Reconsider likelihood; absence alone may not exclude disease.')}</p></div></div><p>${E(x.next_action||'')}</p><p class="small">Document: ${E(x.document||'Only the answer you actually obtained.')}</p></article>`).join('')||'<p>Complaint → working possibilities → a discriminating question → a relevant examination → interpretation → explanation → evidence-supported SOAP.</p>'}</div></details>`;
     document.getElementById('toggleGuide').onclick=e=>{const opened=panel.classList.toggle('coaching-open');e.currentTarget.setAttribute('aria-expanded',String(opened));e.currentTarget.textContent=opened?'Hide approach':'Show approach';};
-    const purpose=()=>{const st=data.steps.find(x=>x.id===selected);document.getElementById('guidePurpose').textContent=st?.purpose||'';};purpose();
-    panel.querySelectorAll('[data-step]').forEach(b=>b.onclick=async()=>{selected=b.dataset.step;await request(`/api/session/${s.id}/stage`,{step:selected});panel.querySelectorAll('[data-step]').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b));});document.getElementById('recoveryBody').innerHTML='';purpose();const history=data.hint_history?.[selected];if(history?.unlocked)drawHint(s,{...history.cues[history.unlocked-1],unlocked:history.unlocked,wait_ms:history.wait_ms,replay:true});});
+    const purpose=()=>paintPurpose(data,s,selected);purpose();
+    panel.querySelectorAll('[data-step]').forEach(b=>b.onclick=async()=>{selected=b.dataset.step;await request(`/api/session/${s.id}/stage`,{step:selected});document.querySelectorAll('[data-step]').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b));});document.getElementById('recoveryBody').innerHTML='';purpose();
+      // The move is derived server-side from the stage the student is in, and
+      // the refresh is keyed on the transcript -- so without this the choice
+      // changed nothing until the patient next spoke.
+      lastEvidenceKey='';syncGuide(current||s);const history=data.hint_history?.[selected];if(history?.unlocked)drawHint(s,{...history.cues[history.unlocked-1],unlocked:history.unlocked,wait_ms:history.wait_ms,replay:true});});
     document.getElementById('unstuckButton').onclick=()=>showHint(s);
     if(s.learning_mode==='guided'&&s.phase==='encounter'){
       const exercise=document.createElement('details');exercise.className='guided-first';exercise.innerHTML='<summary>Practice the first move</summary><p>You have introduced yourself. Before narrowing to yes/no questions, which move helps you build a shared agenda?</p><div class="choice-row"><button class="btn" data-first="0">Start listing diagnoses.</button><button class="btn" data-first="1">Invite the patient’s story.</button><button class="btn" data-first="2">Skip to examination.</button></div><p class="first-result" role="status"></p>';
@@ -79,7 +84,135 @@
   function coverageHtml(coverage){
     return `<p class="small">${E(coverage.note)}</p><div class="guide-evidence-grid"><div><h4>Subjective foundations</h4>${coverage.history.map(x=>`<p><span class="guide-evidence-status ${x.obtained?'obtained':''}">${x.obtained?'Obtained':'Review'}</span> ${E(x.label)}</p>`).join('')}<h4>Relevant ROS topics obtained</h4>${coverage.ros.map(x=>`<p><b>${E(x.system)}</b> ${x.obtained}/${x.target} ${x.topics.length?'· '+E(x.topics.join(', ')):''}</p>`).join('')}</div><div><h4>Objective evidence</h4>${coverage.objective.map(x=>`<p><span class="guide-evidence-status ${x.obtained?'obtained':''}">${x.obtained?'Obtained':'Review'}</span> ${E(x.label)}</p>`).join('')}</div></div>`;
   }
+  // A focus dropdown and a line of general advice is not a next step. When the
+  // server supplies the single next move, lead with it: what to do, the words
+  // that do it, and why -- the reason last and small, because the action is
+  // the point. Both the full render and the lightweight refresh call this, or
+  // the refresh overwrites the move with the stage blurb again.
+  function paintPurpose(data,s,selected){
+    const host=document.getElementById('guidePurpose');if(!host)return;
+    const move=data.next_action;
+    if(move&&move.title){
+      // 41 of the 47 question tasks carry the same string as title AND
+      // question, so the panel printed the sentence twice -- "Next When did
+      // your symptoms first begin? / Ask "When did your symptoms first begin?"".
+      // The guided card already avoids this; do the same here.
+      // One move, said once. The panel used to print a heading, a NEXT line,
+      // an ASK line, a reason paragraph, a gaps line and a footer -- six
+      // blocks for one suggestion, with the reason as large as the question.
+      // Now: what to do, in the words to say it, then the actions. The reason
+      // is one line away for anyone who wants it.
+      // A label earns its line only when it says something the move line does
+      // not. With no question the title IS the move, so printing it as both a
+      // heading and the move said "Auscultate abdomen" twice.
+      const label=(move.question&&move.title&&move.title!==move.question)?move.title:'';
+      const lead=move.question?`\u201c${E(move.question)}\u201d`:E(move.title);
+      const showProgress=move.group_total>1&&Number.isFinite(move.group_done);
+      host.innerHTML=`<div class="coach-next">`
+        +(label?`<p class="coach-label">${E(label)}</p>`:'')
+        +`<p class="coach-move${move.question?' is-quote':''}">${lead}</p>`
+        +`<div class="coach-actions">`
+        +`${move.question&&s.phase==='encounter'?'<button class="btn sm" id="coachDraft">Draft question</button>':''}`
+        +`</div>`
+        +(((move.gaps&&move.gaps.length)||showProgress)?`<p class="coach-meta">`
+            +(showProgress?`<span class="coach-progress">${E(move.group_label||'This phase')} \u00b7 ${move.group_done} of ${move.group_total}</span>`:'')
+            +((move.gaps&&move.gaps.length)?`<span class="coach-gaps">${s.phase==='encounter'?'Still to establish':'Your record has nothing for'}: ${E(move.gaps.join(', '))}</span>`:'')
+          +`</p>`:'')
+        +((move.why||'').trim()?`<details class="coach-why"><summary>Why this</summary><p>${E(move.why)}</p></details>`:'')
+        +`</div>`;
+      const actions=host.querySelector('.coach-actions');
+      if(actions){
+        const add=(label,primary,fn)=>{const b=document.createElement('button');b.type='button';
+          b.className='btn sm'+(primary?'':' ghost');b.textContent=label;b.onclick=fn;actions.append(b);return b;};
+        // An examination move cannot be drafted into the composer; the useful
+        // action is to open the panel that performs it.
+        if(!move.question&&move.kind==='exam'&&s.phase==='encounter'){
+          add('Open Examine',true,()=>document.querySelector('[data-ew-tab=exam]')?.click());
+        }
+        // Choosing a different move opens the stage list in a sheet, where each
+        // one names itself -- and the move you were reading is still here when
+        // you come back, which the old dropdown could not promise.
+        const steps=document.querySelector('#encounterGuide .encounter-steps');
+        if(steps&&window.pcmSheet)add('Work on something else',false,()=>{
+          steps.hidden=false;
+          // The list is the seven parts of an encounter, not seven alternative
+          // questions. Labelling it "other moves" promised something it never
+          // contained, and picking one appeared to do nothing at all.
+          let note=document.getElementById('coachStageNote');
+          if(!note){note=document.createElement('p');note.id='coachStageNote';note.className='coach-stage-note';
+            note.textContent='Pick the part you are actually working on. Your coach suggests its next move from there. Nothing is said to the patient and nothing is recorded in your encounter.';}
+          window.pcmSheet('Which part of the encounter are you working on?',[note,steps]);
+        });
+        // The workspace hides #recoveryBody, so calling showHint() alone spent
+        // a recorded assistance count and displayed nothing at all. Show the
+        // cue where the student is looking.
+        add("I'm stuck",false,async()=>{
+          await showHint(s);
+          const body=document.getElementById('recoveryBody');
+          if(body&&window.pcmSheet&&!document.querySelector('dialog.ew-sheet'))
+            window.pcmSheet('Get unstuck \u00b7 pause, orient, choose',[body]);
+        });
+        // The shell keeps its own copies so their handlers stay wired, but two
+        // "I'm stuck" buttons on one card is one too many. Hide them wherever
+        // this row has rendered; the row is the single place to act.
+        ['unstuckButton','toggleGuide'].forEach(id=>document.getElementById(id)?.classList.add('coach-shell-ctl'));
+      }
+      const draft=document.getElementById('coachDraft');
+      if(draft)draft.onclick=()=>{
+        // Drafting fills the box and stops. It never sends, never scores, and
+        // never overwrites something the student has already typed.
+        const box=document.getElementById('say');if(!box)return;
+        const existing=box.value.trim();
+        if(existing&&existing!==move.question){
+          // Something is already typed. Silently focusing the box looked like a
+          // dead button; silently replacing would lose the student's words.
+          const row=document.querySelector('.coach-actions');if(!row)return;
+          if(document.getElementById('coachDraftReplace')){box.focus();return;}
+          const ask=document.createElement('span');ask.className='coach-conflict';
+          ask.innerHTML='You have an unsent message. <button type="button" class="btn sm ghost" id="coachDraftReplace">Replace it</button> <button type="button" class="btn sm ghost" id="coachDraftKeep">Keep mine</button>';
+          row.append(ask);
+          ask.querySelector('#coachDraftReplace').onclick=()=>{box.value=move.question;box.dispatchEvent(new Event('input',{bubbles:true}));ask.remove();box.focus();};
+          ask.querySelector('#coachDraftKeep').onclick=()=>{ask.remove();box.focus();};
+          return;
+        }
+        box.value=move.question;box.dispatchEvent(new Event('input',{bubbles:true}));box.focus();
+      };
+      return;
+    }
+    host.textContent=(data.steps||[]).find(x=>x.id===selected)?.purpose||'';
+  }
+
+  /* Guided mode rebuilds this whole card on every patient reply. That threw
+     away keyboard focus (Tab restarted at the top of the document) and closed
+     any disclosure the student had opened. Carry both across the rebuild. */
+  function keepPlace(panel,paint){
+    const before=document.activeElement;
+    const focusKey=panel&&panel.contains(before)?(before.id||before.textContent.trim()):null;
+    const open=panel?[...panel.querySelectorAll('details[open] > summary')].map(x=>x.textContent.trim()):[];
+    paint();
+    const after=document.getElementById('encounterGuide');if(!after)return;
+    open.forEach(label=>{const sum=[...after.querySelectorAll('details > summary')].find(x=>x.textContent.trim()===label);
+      if(sum)sum.parentElement.open=true;});
+    if(!focusKey)return;
+    // The workspace re-parents this card's children into its own scroll and
+    // footer AFTER the paint, and re-parenting blurs. Put the keyboard back
+    // once everything has finished moving, and only if nothing else took it.
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      const now=document.activeElement;
+      if(now&&now!==document.body&&!after.contains(now))return;   // user moved on
+      const host=document.getElementById('encounterGuide')||after;
+      const target=document.getElementById(focusKey)
+        ||[...host.querySelectorAll('button,a[href],summary,select')].find(x=>x.textContent.trim()===focusKey);
+      target?.focus({preventScroll:true});
+    }));
+  }
   function renderCaseGuide(s,data){
+    const panelBefore=document.getElementById('encounterGuide');
+    if(panelBefore&&panelBefore.classList.contains('case-guide'))
+      return keepPlace(panelBefore,()=>renderCaseGuideInner(s,data));
+    return renderCaseGuideInner(s,data);
+  }
+  function renderCaseGuideInner(s,data){
     const guide=data.case_guide;if(!guide)return;
     let panel=document.getElementById('encounterGuide');
     if(!panel){panel=document.createElement('section');panel.id='encounterGuide';} const guideHost=s.phase==='encounter'?document.querySelector('#view .convo'):null; if(guideHost){guideHost.prepend(panel);}else if(!panel.isConnected){(document.getElementById('coachDock')||document.getElementById('view')).prepend(panel);}
@@ -131,7 +264,13 @@
     body.querySelector('#cueBack').onclick=()=>showHint(s,result.level-1,result.step);
     body.querySelector('#cueNext').onclick=()=>showHint(s,result.level+1,result.step);
     const more=body.querySelector('#moreHint');if(more){const unlock=()=>{if(more.isConnected){more.disabled=false;more.textContent='Unlock cue '+(unlocked+1);}};if(result.wait_ms>0)setTimeout(unlock,result.wait_ms+50);else unlock();more.onclick=()=>showHint(s,unlocked+1,result.step);}
-    body.querySelector('#tryCue')?.addEventListener('click',()=>draftQuestion(result.question,document.getElementById('encounterGuide')));
+    body.querySelector('#tryCue')?.addEventListener('click',()=>{
+      draftQuestion(result.question,document.getElementById('encounterGuide'));
+      // The composer is behind this modal. Leaving the sheet open made a
+      // successful draft look like a dead button.
+      body.closest('dialog')?.close();
+      document.getElementById('say')?.focus({preventScroll:true});
+    });
   }
   async function showHint(s,level=null,step=null){
     const cueStep=step||selected;
@@ -150,7 +289,13 @@
     const item=await request(`/api/session/${s.id}/repair`); const support=await request(`/api/session/${s.id}/learning`);if(item.error||current?.id!==s.id||document.getElementById('repairPractice'))return;
     const panel=document.createElement('section');panel.id='repairPractice';panel.className='repair-practice card';
     panel.innerHTML=`<span class="eyebrow">${item.requires_current_review?'Historical feedback':'A short repair before your next case'}</span><p class="small">${E(s.learning_mode)} · ${support.summary?.hints_used||0} hints · ${support.summary?.assisted?'assisted performance':'unassisted performance'}${s.branch?.is_branch?' · separate retry branch':''}</p><h2>${E(item.title)}</h2><p>${E(item.stem)}</p><div class="repair-choices">${item.choices.map((c,i)=>`<button class="btn" data-choice="${i}">${E(c)}</button>`).join('')}</div><div class="repair-result" role="status"></div><p class="small">Your original note and score remain locked. Repair attempts are tracked separately.</p>`;
-    (document.querySelector('#view .wrap-wide,#view .wrap-mid')||document.getElementById('view')).prepend(panel);
+    // A repair exercise is a follow-up to the feedback, not the thing you land
+    // on and not something to read before it. It goes after the debrief tabs,
+    // just above "your next practice".
+    const host=document.querySelector('#view .wrap-wide,#view .wrap-mid')||document.getElementById('view');
+    const next=host.querySelector('.debrief-next');
+    const body=host.querySelector('#tabBody');
+    if(next)next.before(panel);else if(body)body.after(panel);else host.append(panel);
     panel.querySelectorAll('[data-choice]').forEach(b=>b.onclick=async()=>{const r=await request(`/api/session/${s.id}/repair`,{id:item.id,choice:Number(b.dataset.choice)});panel.querySelector('.repair-result').innerHTML=`<h3>${r.error?E(r.error):r.correct?'That is supported.':'Try the evidence rule again.'}</h3><p>${E(r.explanation||'')}</p>${r.correct?`<p>${E(r.retry_prompt)}</p><div class="choice-row">${(r.recommended_cases||[]).map(id=>`<button class="btn" data-transfer="${E(id)}">Apply in ${E((BOOT.cases||[]).find(c=>c.id===id)?.title||'another case')}</button>`).join('')}</div>`:''}`;panel.querySelectorAll('[data-transfer]').forEach(x=>x.onclick=()=>window.pcmStart(false,{case_id:x.dataset.transfer,learning_mode:'coached',variant_id:'random'}));});
   }
   function showApplication(data,s){
@@ -169,10 +314,13 @@
     if(current?.id!==s.id||data.error||!data.available)return;
     if(s.learning_mode==='guided'&&data.case_guide){learning=data;renderCaseGuide(s,data);return;}
     const previousStep=selected;learning=data;selected=data.selected;
-    if(previousStep!==selected){const old=document.getElementById('recoveryBody');if(old)old.innerHTML='';}
+    // Clearing the cue when the suggested stage moves on is right on the card.
+    // It is not right while the student is reading that cue in an open sheet:
+    // the assistance count is already spent and there is no way back to it.
+    if(previousStep!==selected){const old=document.getElementById('recoveryBody');if(old&&!old.closest('dialog'))old.innerHTML='';}
     const panel=document.getElementById('encounterGuide');if(!panel)return;
     panel.querySelectorAll('[data-step]').forEach(b=>{b.classList.toggle('active',b.dataset.step===selected);b.setAttribute('aria-pressed',String(b.dataset.step===selected));});
-    const purpose=document.getElementById('guidePurpose');if(purpose)purpose.textContent=data.steps.find(x=>x.id===selected)?.purpose||'';
+    paintPurpose(data,s,selected);
     showApplication(data,s);
   }
   window.pcmLearningRender=s=>{lastEvidenceKey='';render(s);};

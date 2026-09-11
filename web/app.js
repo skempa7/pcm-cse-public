@@ -270,7 +270,15 @@ function renderPhase(force){
     ({ briefing:renderDoorway, encounter:renderRoom, organize:renderOrganize,
        note:renderNote, submitted:renderDebrief }[S.phase] || renderLobby)();
     paintNetBar();window.scrollTo({top:0,behavior:'instant'});positionRoomFrame();
-    try { view.focus({ preventScroll:true }); } catch(e) { try { view.focus(); } catch(e2){} }
+    // Move focus to the view ONLY if the phase renderer did not place it
+    // somewhere better. renderNote focuses the Subjective box and renderOrganize
+    // the scratch pad; this line ran immediately afterwards and took it back, so
+    // the student arrived at the note -- with the clock already running in exam
+    // rehearsal -- and had to click before they could type.
+    const placed = document.activeElement
+      && document.activeElement !== document.body
+      && document.activeElement !== view;
+    if (!placed) { try { view.focus({ preventScroll:true }); } catch(e) { try { view.focus(); } catch(e2){} } }
   }
   startTick(); notifyPublicState();
   window.pcmLearningRender?.(S);
@@ -283,7 +291,7 @@ async function leaveForWorkspace(kind){
   if(active){
     const timed=!!S.phase_ends_at;
     const message='Leave this attempt for '+({home:'Home',practice:'the case library',progress:'your progress',scoring:'the scoring guide',voice:'voice settings',session:'another attempt'}[kind]||'this workspace')+'? Your work will be saved and you can resume from Home or Progress.'+(timed?' The current timer keeps running; leaving does not add time.':' This attempt remains untimed.');
-    if(!await confirmChoice(message)){history.replaceState(null,'','#/'+S.id);return false;}
+    if(!await confirmChoice(message,{title:'Leave this attempt?',confirm:'Leave attempt',cancel:'Stay here'})){history.replaceState(null,'','#/'+S.id);return false;}
   }
   if(!await window.pcmEnterWorkbench(kind))return false;
   clearContextFeedback();return true;
@@ -436,8 +444,9 @@ function renderLobby(){
       <p class="small muted" id="talkNote" style="margin-top:var(--sp-2)"></p>
     </section>
 
-    <div class="card row" style="gap:var(--sp-3)">
+    <div class="card row lobby-actions" style="gap:var(--sp-3)">
       <button class="btn primary big" id="btnStart" type="button">Read the doorway</button>
+      <span class="lobby-chosen tiny muted" id="lobbyChosen"></span>
       <div class="spacer" style="flex:1"></div>
       <button class="btn ghost" id="btnAssume" type="button" aria-expanded="false"
         aria-controls="extraPanel">Scoring assumptions</button>
@@ -462,8 +471,24 @@ function renderLobby(){
   $$('#drillPick .opt').forEach(l => { $('input', l).onchange = () => {
     $$('#drillPick .opt').forEach(x => x.classList.toggle('sel', $('input', x).checked));
     savePrefs(); }; });
+  // Choosing a station happens near the top of a 2000px page and the action
+  // that uses it sits under 24 tiles. Say what is chosen ON the action, and
+  // keep the action in view once there is something to act on.
+  const paintChosen = () => {
+    const picked = $('input[name=station]:checked');
+    const chosen = $('#lobbyChosen'), row = $('.lobby-actions');
+    const c = picked ? caseById(picked.value) : null;
+    const reveal = (MODES[currentUiMode()] || MODES.coached).reveal;
+    if (chosen) chosen.textContent = c
+      ? (reveal ? stationTitle(c.id) + ' — ' + c.title : stationTitle(c.id) + ' — contents sealed')
+      : 'Choose a presentation above.';
+    if (row) row.classList.toggle('is-ready', !!c);
+  };
   $$('#stationGrid .station-card').forEach(l => { $('input', l).onchange = () => {
-    $$('#stationGrid .station-card').forEach(x => x.classList.toggle('sel', $('input', x).checked)); }; });
+    $$('#stationGrid .station-card').forEach(x => x.classList.toggle('sel', $('input', x).checked));
+    paintChosen(); }; });
+  $$('input[name=drill]').forEach(r => r.addEventListener('change', paintChosen));
+  paintChosen();
   $$('.segbtn[data-talk]').forEach(b => { b.onclick = () => {
     $$('.segbtn[data-talk]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
     savePrefs(); paintTalkNote(); if (b.dataset.talk === 'voice') probeVoice(); }; });
@@ -837,8 +862,10 @@ function renderDoorway(){
       <div class="doorway-facts"><div class="fact"><dt>Encounter</dt><dd>${isUntimedAttempt()?'Untimed':phaseAllowance(pre.encounter_s)}</dd></div>${pre.organize_s?'<div class="fact"><dt>Organize</dt><dd>'+phaseAllowance(pre.organize_s)+'</dd></div>':''}<div class="fact"><dt>SOAP</dt><dd>${isUntimedAttempt()?'Untimed':phaseAllowance(pre.note_s)}</dd></div></div>
       <p class="tiny muted">${pre.modified?'Practice timing is modified; exam rehearsal uses the course’s 14-minute encounter and 9-minute SOAP period. ':''}The encounter starts after entry, when your controls are ready.</p>
       <label class="motion-preference"><input id="entryReduced" type="checkbox" ${LS.get('reducedMotion')||window.matchMedia('(prefers-reduced-motion: reduce)').matches?'checked':''}> Reduce motion and skip the entrance animation</label>
+      <div class="doorway-enter">
       <button class="btn primary big" id="go" type="button">Enter room <span aria-hidden="true">→</span></button><button class="btn ghost" id="skipEntrance" type="button">Skip animation &amp; enter</button>
       <p id="entryStatus" class="entry-status" role="status">Preparing the room. Review your station while it loads.</p><button class="btn sm ghost" id="entryFallback" type="button">Enter with accessible controls</button>
+      </div>
     </div></section></div>`;
   $('#go').onclick=()=>beginEntrance(false);$('#skipEntrance').onclick=()=>beginEntrance(true);$('#entryFallback').onclick=()=>{if(entryPending?.starting)return;entryPending={id:crypto.randomUUID(),sid:S.id,skip:true,at:performance.now(),starting:false};completeEntrance(entryPending.id);};
   $('#entryReduced').onchange=e=>{LS.set('reducedMotion',e.target.checked);notifyPublicState();};mountPatientFrame();if(roomFrameReady)setEntryStatus('Ready when you are. Entering starts your encounter after the short transition.');
@@ -951,7 +978,7 @@ function renderRoom(){
           <span class="mic-wrap ${S.interaction_mode==='voice'?'':'hidden'}"><button class="btn mic-btn" id="btnMic" type="button" aria-pressed="false" aria-label="Push to talk. Hold to speak, release to send.">Mic</button></span>
           <label class="sr-only" for="say">What you say to the patient, or the examination you perform</label>
           <textarea id="say" rows="2" autocomplete="off" spellcheck="true" placeholder="Talk to ${esc((S.patient_name||'your patient').split(' ')[0])}…"></textarea>
-          <button class="btn sm ghost" id="stopPatient" type="button" disabled aria-label="Stop patient speech">Stop speech</button><button class="btn primary" id="btnSay" type="button" aria-label="Send to patient">Send <span aria-hidden="true">↑</span></button>
+          <button class="btn sm ghost" id="stopPatient" type="button" disabled hidden aria-label="Stop patient speech">Stop speech</button><button class="btn primary" id="btnSay" type="button" aria-label="Send to patient">Send <span aria-hidden="true">↑</span></button>
         </div><p class="hint">Enter to send · Shift+Enter for a new line. Speak naturally, one question at a time.</p>
       </div>
     </section>
@@ -1018,7 +1045,9 @@ function setPatientState(state, detail){
   const map = { idle:['','Ready to listen'], listening:['listening','Listening'],
     thinking:['thinking','Thinking…'], preparing:['thinking','Preparing speech…'], speaking:['speaking','Speaking'],
     examining:['examining', detail || 'Being examined'] };
-  const stop=$('#stopPatient');if(stop)stop.disabled=!['speaking','preparing'].includes(state);
+  // "Stop speech" only exists while there is speech to stop. Parked beside
+  // Send as a permanently greyed button it read as a broken control.
+  const stop=$('#stopPatient');if(stop){const live=['speaking','preparing'].includes(state);stop.disabled=!live;stop.hidden=!live;}
   const pair = map[state] || map.idle;
   el.className = 'state-pill ' + pair[0];
   $('.txt', el).textContent = pair[1];
@@ -1193,8 +1222,66 @@ function pushEvent(ev){
       if (ev.text) pushTurn('sys', 'Simulator', ev.text);
   }
 }
+/* Auto-scrolling is for a log you are already at the end of. Pinning the
+   transcript to the bottom on every repaint threw away the place of anyone who
+   had scrolled back to re-read an earlier answer -- and there is no other copy
+   of the conversation to read. */
+const STREAM_PIN = 64;
+function streamAtBottom(s){ return s.scrollHeight - s.scrollTop - s.clientHeight <= STREAM_PIN; }
+/* Whether the student is following the newest turn. Held as the last DELIBERATE
+   scroll rather than measured at paint time: the log is re-parented between
+   panels, and a measurement taken mid-move reads as "scrolled to the top". */
+function streamPinned(s){ return !s || s.dataset.pinned !== '0'; }
+function streamToBottom(s){
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    s.scrollTop = s.scrollHeight; s.dataset.pinned = '1'; markStreamCaughtUp();
+  }));
+}
+function streamCatchUp(s, wasAtBottom){
+  if (wasAtBottom) { streamToBottom(s); return; }
+  markStreamBehind();
+}
+function markStreamBehind(){
+  const s = $('#stream'); if (!s) return;
+  let jump = document.getElementById('streamJump');
+  if (!jump) {
+    jump = document.createElement('button');
+    jump.id = 'streamJump'; jump.type = 'button'; jump.className = 'stream-jump';
+    jump.innerHTML = 'New below <span aria-hidden="true">\u2193</span>';
+    jump.onclick = () => { s.scrollTop = s.scrollHeight; markStreamCaughtUp(); };
+  }
+  // The log moves between panels, so re-home the marker beside it every time.
+  const host = s.parentElement || s;
+  if (jump.parentElement !== host) host.append(jump);
+  jump.hidden = false;
+}
+function markStreamCaughtUp(){ const jump = document.getElementById('streamJump'); if (jump) jump.hidden = true; }
+function watchStream(s){
+  if (!s || s.dataset.pinWatch) return;
+  s.dataset.pinWatch = '1'; if (!s.dataset.pinned) s.dataset.pinned = '1';
+  // The panel around the log settles AFTER the first paint -- the coach card
+  // resolves, the composer grows -- and a scroll applied before that left the
+  // student staring at the top of a finished conversation. Re-pin on resize
+  // while they are still following the newest turn.
+  if (window.ResizeObserver) new ResizeObserver(() => {
+    if (s.dataset.moving || !s.clientHeight || !streamPinned(s)) return;
+    s.scrollTop = s.scrollHeight;
+  }).observe(s);
+  s.addEventListener('scroll', () => {
+    // re-parenting resets scrollTop, and a hidden panel measures 0/0/0 -- which
+    // reads as "at the bottom" and silently re-pins a reader who had scrolled
+    // back. Neither is a reading position.
+    if (s.dataset.moving || !s.clientHeight) return;
+    const at = streamAtBottom(s); s.dataset.pinned = at ? '1' : '0';
+    if (at) markStreamCaughtUp();
+  }, {passive:true});
+}
+window.pcmStreamPinned = streamPinned;
+window.pcmStreamToBottom = streamToBottom;
 function pushTurn(cls, who, text, tag, sub){
   const s = $('#stream'); if (!s) return;
+  watchStream(s);
+  const wasAtBottom = streamPinned(s);
   // Read the encounter clock the same way every other face on the page does, so
   // a live label and the frozen transcript agree.
   const elapsed = S.phase_started_at ? Math.max(0,now()-S.phase_started_at) : (S.elapsed_ms||0);
@@ -1204,17 +1291,34 @@ function pushTurn(cls, who, text, tag, sub){
       <span class="t">${mmss(elapsed)}</span></div>
     <div class="bubble">${esc(text)}${sub ? `<div class="comps-line">${esc(sub)}</div>` : ''}</div>`;
   $('.conversation-empty',s)?.remove();s.appendChild(d);
-  requestAnimationFrame(() => { s.scrollTop = s.scrollHeight; });
+  watchStream(s); streamCatchUp(s, wasAtBottom);
 }
 function paintStream(rows){
   const s = $('#stream'); if (!s) return;
-  s.innerHTML = '';
+  watchStream(s);
+  const wasAtBottom = streamPinned(s);
+  // Rebuilding the whole log wiped any text the student had selected to copy
+  // into their note, and flashed the scroll position. When the new transcript
+  // simply CONTINUES the rendered one -- which is every ordinary turn -- keep
+  // what is on screen and append the difference.
+  const rendered = [...s.querySelectorAll('.turn')];
+  const signature = r => (r.kind||'') + '\u0000' + (r.text||'');
+  const drawn = s.dataset.signatures ? JSON.parse(s.dataset.signatures) : null;
+  const next = (rows||[]).map(signature);
+  let from = 0;
+  const continues = Array.isArray(drawn) && drawn.length <= next.length
+    && rendered.length === drawn.length
+    && drawn.every((v,i) => v === next[i]);
+  if (continues) { from = drawn.length; if (from === next.length) { s.dataset.signatures = JSON.stringify(next); return; } }
+  else { s.innerHTML = ''; }
+  s.dataset.signatures = JSON.stringify(next);
   const name = S.patient_name || 'Patient';
   const map = { student_utterance:['me','You'], patient_reply:['pt', name],
     exam_finding:['sim','Examination finding'], exam_refused:['sim','Patient refuses'],
     station_info:['station','Station information'], simulator:['sys','Simulator'] };
-  (rows || []).forEach(r => {
+  (rows || []).forEach((r, index) => {
     if(r.kind==='exam_finding'&&r.meta?.label)recordPerformed({kind:'finding',label:r.meta.label,components:r.meta.components||[]});
+    if (index < from) return;
     const m = map[r.kind] || ['sys', 'Simulator'];
     const d = document.createElement('div');
     d.className = 'turn ' + m[0];
@@ -1224,7 +1328,7 @@ function paintStream(rows){
     s.appendChild(d);
   });
   if(!(rows||[]).some(r=>['student_utterance','patient_reply','exam_finding'].includes(r.kind)))s.insertAdjacentHTML('beforeend',`<div class="conversation-empty"><span aria-hidden="true">◌</span><p>${mode().coach?'Your patient is ready to meet you. Start with an introduction and an open invitation.':'Your patient is ready. Type or speak when you are ready to begin.'}</p></div>`);
-  requestAnimationFrame(() => { s.scrollTop = s.scrollHeight; });
+  watchStream(s); streamCatchUp(s, wasAtBottom || !continues);
   paintTurnCount();
 }
 function paintTurnCount(){
@@ -1234,8 +1338,14 @@ function paintTurnCount(){
 }
 async function confirmEnd(){
   const sid=S?.id;
+  // A running examination is stopped by cancelRunningExam() below and releases
+  // nothing. Ending on top of one silently threw the wait away, so say it.
+  const running=S?.pending_exam?(' The examination you started ('+
+      (S.pending_exam.source_text||'').replace(/^Perform:\s*/,'').replace(/\s*\(.*$/,'').trim()+
+      ') is still running and will be stopped without a finding.'):'';
   if (!await confirmChoice('End the encounter now? The record freezes and no further information ' +
-               'can be obtained from the patient.')) return;
+               'can be obtained from the patient.'+running,
+               {title:'End the encounter?',confirm:'End encounter',cancel:'Keep interviewing'})) return;
   if(!S||S.id!==sid||S.phase!=='encounter')return;
   stopVoice(); cancelRunningExam();
   const next = await post(`/api/session/${S.id}/end_encounter`);
@@ -1296,6 +1406,7 @@ function openPromptsPanel(){
       closeOverlay(); if (el) el.focus(); }; });
   });
 }
+window.pcmOpenRefusePanel=()=>openRefusePanel();
 function openRefusePanel(){
   openOverlay('Propose a refusable examination', `
     <p class="small">The syllabus form is: &ldquo;At this point, I would do a (xxx)
@@ -1763,6 +1874,7 @@ function setupVoice(){
       if (!voice.listening) startListening(); } };
     btn.onkeyup = e => { if (!e.metaKey && !e.ctrlKey && !e.altKey && (e.key === ' ' || e.key === 'Enter')) { e.preventDefault(); stopListening(); } };
     btn.ondblclick = () => { voice.hands_free = !voice.hands_free;
+      voice.wanted = voice.hands_free;
       toast(voice.hands_free ? 'Hands-free listening on' : 'Hands-free listening off');
       // Toggling always returns to a known state: one recognition instance is
       // reused for the page, and each session starts with a clean watermark so
@@ -1794,7 +1906,11 @@ function resumeListeningAfterPatient(){
   setPatientState('idle');
   setTimeout(() => {
     voice.suppressed = false;
-    if (!voice.hands_free || !voice.rec) return;
+    // `hands_free` is the MODE; `wanted` is whether the learner still wants the
+    // microphone open. Resuming on the mode alone turned the microphone back on
+    // after they had switched it off -- and this microphone submits clinician
+    // turns, so ambient speech in the room would become recorded evidence.
+    if (!voice.wanted || !voice.hands_free || !voice.rec) return;
     if (S?.phase !== 'encounter' || window.pcmNaturalBusy) return;
     voice.listening = true;
     voice.lastFinal = -1;
@@ -1804,11 +1920,13 @@ function resumeListeningAfterPatient(){
 function startListening(){
   if (!voice.rec || voice.listening) return;
   interruptPatient();
+  voice.wanted = true;
   voice.listening = true;
   const btn = $('#btnMic'); if (btn) btn.setAttribute('aria-pressed', 'true');
   try { voice.rec.start(); } catch(e) {}
 }
 function stopListening(){
+  voice.wanted = false;
   if (!voice.rec || !voice.listening) return;
   voice.listening = false;
   const btn = $('#btnMic'); if (btn) btn.setAttribute('aria-pressed', 'false');
@@ -1855,7 +1973,7 @@ function silencePatientAudio(){
 }
 function stopVoice(){
   window.pcmNaturalVoice?.stop();voice.muteUntil=0;voice.patientSpeaking=false;
-  voice.listening = false; voice.hands_free = false; voice.suppressed = false;
+  voice.listening = false; voice.hands_free = false; voice.wanted = false; voice.suppressed = false;
   voice.lastFinal = -1; voice.lastSentText = ''; voice.lastSentAt = 0;
   // abort() discards anything buffered; stop() would finalize and deliver it
   // after the listener believes it has been switched off.
@@ -2041,10 +2159,39 @@ function renderNote(){
             <span>${esc(r.text)}</span></div>`).join('')}</div>
         <p class="tiny muted" style="margin-top:var(--sp-2)">This assistance is named on
         your results.</p></div>`
+      : S.record
+      // What you obtained, in the shape the note is scored in. The modes that
+      // permit it now supply this; the rail used to say nothing was available
+      // even then, so the summary sat in the payload unread.
+      ? `<div class="card tight note-reference"><div class="note-ref-head"><h3>What you obtained</h3>
+        <span class="tiny muted">Your own findings · nothing added</span></div>
+        <nav class="note-ref-jump" aria-label="Jump to a part of your record">${
+          (S.record.groups||[]).map((g,i)=>`<button type="button" data-ref-jump="${i}">${esc(g.label)}</button>`).join('')}</nav>
+        <div class="note-ref-body">${(window.pcmRecordHtml ? window.pcmRecordHtml(S.record) : '')}</div></div>`
       : `<div class="card tight"><p class="small muted">No reference material, no transcript
       and no omission warnings — the syllabus allows none of it while the note is being
       written (p. 5). Everything is revealed after you submit.</p></div>`}
     </div></div>`;
+
+  // The rail is a 1400px list inside a 720px box with nothing to say so. The
+  // examination findings a student needs for Objective sat at the bottom of a
+  // nested scroller they had no reason to think would scroll.
+  (() => {
+    const rail = document.querySelector('.note-reference'); if (!rail) return;
+    const body = rail.querySelector('.note-ref-body'); if (!body) return;
+    const groups = [...body.querySelectorAll('.ew-rec-group')];
+    const chips = [...rail.querySelectorAll('[data-ref-jump]')];
+    chips.forEach(b => b.onclick = () => {
+      const target = groups[Number(b.dataset.refJump)]; if (!target) return;
+      body.scrollTop = target.offsetTop - body.firstElementChild.offsetTop;
+      chips.forEach(x => x.setAttribute('aria-current', String(x === b)));
+    });
+    const shade = () => {
+      body.classList.toggle('has-more', body.scrollHeight - body.scrollTop - body.clientHeight > 6);
+      body.classList.toggle('has-above', body.scrollTop > 6);
+    };
+    body.addEventListener('scroll', shade, {passive:true}); shade();
+  })();
 
   ['noteS','noteO','noteA0','noteA1','noteA2','noteP0','noteP1','noteP2'].forEach(id => {
     const el = $('#' + id); if (!el) return;
@@ -2053,12 +2200,14 @@ function renderNote(){
   });
   $('#btnSubmit').onclick = async () => {
     const sid=S.id; const frozenDraft=collectNote();
-    if (!await confirmChoice('Submit the note? It locks, and the debrief is revealed.')) return;
+    if (!await confirmChoice('Your note locks when you submit it, and the debrief is revealed.',
+        {title:'Submit your note?',confirm:'Submit note',cancel:'Keep writing'})) return;
     if(!S||S.id!==sid||S.phase!=='note')return;
     const r = await persistNote();
     if (!r.saved) {
       setSaveState('error', r.reason);
-      if (!await confirmChoice('This draft was not stored — ' + r.reason + ' Submit anyway?')) return;
+      if (!await confirmChoice('This draft was not stored — ' + r.reason,
+          {title:'Submit without a stored draft?',confirm:'Submit anyway',cancel:'Keep writing'})) return;
     }
     if(!S||S.id!==sid||S.phase!=='note')return;
     clearTimeout(noteSaveTimer);
@@ -2122,8 +2271,12 @@ function setSaveState(state, reason){
 }
 function queueNoteSave(){
   clearTimeout(noteSaveTimer);
-  setSaveState('saving');
+  // "Saving…" belongs to a request that is actually running. Setting it here
+  // made the chip say "Saving…" for the whole debounce -- restarting on every
+  // keystroke -- so a student typing steadily never saw "Unsaved changes" and
+  // never saw a "Saved <time>" confirmation either.
   noteSaveTimer = setTimeout(async () => {
+    setSaveState('saving');
     const r = await persistNote();
     if (r.saved) {if(r.newer){queueNoteSave();return;}noteSave.at = r.at; setSaveState('saved');}
     else setSaveState('error', r.reason);
@@ -2169,13 +2322,43 @@ function paintDebrief(){
     ['audit','Documentation'],['checklist','Encounter checklist'],['comm','Communication'],
     ['notes','Note comparison'],['transcript','Transcript'],['practice','Deliberate practice'],
     ['about','About this case']];
+  // Only the panel changes when a tab changes. Rebuilding the whole view threw
+  // away an answered repair exercise, re-fetched /repair and /learning on every
+  // tab click, and replaced the result card for no reason.
+  const built = view.dataset.debriefFor === S.id && $('.tabs');
+  if (built) {
+    $$('.tabs button').forEach(b => { const on = b.dataset.t === activeTab;
+      b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1; });
+    $('#tabBody').setAttribute('aria-labelledby', 'tab-' + activeTab);
+    return paintDebriefBody(r);
+  }
+  view.dataset.debriefFor = S.id;
   view.innerHTML = `${historical?'<div class="callout small"><b>Preserved historical result.</b> This note was graded under an earlier or unrecorded engine. Its score and feedback remain unchanged; earlier interpretation errors may still appear below. Use <b>Deliberate practice → Grade the revision</b> for a separate evaluation with the current grader.</div>':''}<div class="tabs" role="tablist" aria-label="Debrief sections">${
     tabs.map(pair => `<button role="tab" id="tab-${pair[0]}" data-t="${pair[0]}"
       aria-selected="${pair[0] === activeTab}" aria-controls="tabBody"
       tabindex="${pair[0] === activeTab ? '0' : '-1'}">${esc(pair[1])}</button>`).join('')}</div>
     <div id="tabBody" role="tabpanel" aria-labelledby="tab-${activeTab}" tabindex="0"></div>`;
-  if(recovery)view.insertAdjacentHTML('afterbegin',`<details class="card"><summary>Recovered local draft — separate from your submitted note</summary><p class="small">These edits remained in this browser when the note period closed. They have not changed your original submission or score.</p><pre class="note-out">${esc(JSON.stringify(recovery,null,2))}</pre></details>`);
-  if(!historical&&S.case_id)view.insertAdjacentHTML('afterbegin',`<div class="debrief-next"><div><b>Your next practice</b><span class="small muted">Repair one missed step, then try a fresh case.</span></div><a class="btn sm" href="#learn/${esc(S.case_id)}?variant=${encodeURIComponent(S.variant_id||'base')}">Read this case walkthrough →</a></div>`);
+  if(recovery)view.insertAdjacentHTML('beforeend',`<details class="card"><summary>Recovered local draft — separate from your submitted note</summary><p class="small">These edits remained in this browser when the note period closed. They have not changed your original submission or score.</p><pre class="note-out">${esc(JSON.stringify(recovery,null,2))}</pre></details>`);
+  // The result, then the feedback, then what to do next. An exercise and a
+  // "next practice" card between the score and the tabs pushed the first of
+  // the three lessons 680px down the page.
+  if(!historical&&S.case_id)view.insertAdjacentHTML('beforeend',`<div class="debrief-next"><div><b>Your next practice</b><span class="small muted">Repair one missed step, then try a fresh case.</span></div><a class="btn sm" href="#learn/${esc(S.case_id)}?variant=${encodeURIComponent(S.variant_id||'base')}">Read this case walkthrough →</a></div>`);
+  // The result comes first. The page used to open on a repair exercise and a
+  // "next practice" card, so the one thing the student came back for -- how did
+  // I do -- was below the fold, under eleven tabs.
+  {
+    const rub = r.rubric || {}, earned = rub.total_earned, available = rub.total_available;
+    const top = (RESULTS.results.feedback?.priority_errors || [])[0];
+    const pct = (available ? Math.round(earned / available * 100) : null);
+    view.insertAdjacentHTML('afterbegin', `<section class="debrief-result card">
+      <div class="dr-score"><span class="dr-num">${esc(String(earned))}<span class="dr-of">/${esc(String(available))}</span></span>
+        <span class="tiny muted">${pct===null?'':esc(pct + '%')} \u00b7 ${esc(rub.grade_kind || 'PCM 2026 SOAP rubric')}</span></div>
+      <div class="dr-lead"><p class="eyebrow">${esc([S.learning_mode, RESULTS.results.assistance?.assisted ? 'assisted' : 'unassisted'].filter(Boolean).join(' \u00b7 '))}</p>
+        ${top ? `<p class="dr-first"><b>Start here:</b> ${esc(top.title || '')}</p>` : ''}
+        <p class="tiny muted">Every requirement, the evidence behind it and your note are in the tabs below.</p></div>
+      <div class="dr-actions"><a class="btn sm primary" href="#practice">Start another encounter</a></div>
+    </section>`);
+  }
   const btns = $$('.tabs button');
   btns.forEach((b, i) => {
     b.onclick = () => { activeTab = b.dataset.t; paintDebrief(); $('#tab-' + activeTab).focus(); };
@@ -2189,6 +2372,10 @@ function paintDebrief(){
       e.preventDefault(); activeTab = btns[j].dataset.t; paintDebrief(); $('#tab-' + activeTab).focus();
     };
   });
+  paintDebriefBody(r);
+  window.pcmLearningRender?.(S);
+}
+function paintDebriefBody(r){
   $('#tabBody').innerHTML = ({ lessons:tabLessons, score:tabScore, timeline:tabTimeline,
     audit:tabAudit, checklist:tabChecklist, comm:tabComm, notes:tabNotes,
     transcript:tabTranscript, practice:tabPractice, about:tabAbout }[activeTab] || tabLessons)(r);
@@ -2199,7 +2386,6 @@ function paintDebrief(){
     if (el) { el.classList.add('hilite'); el.scrollIntoView({ block:'center' }); }
     tlFocus = null;
   }
-  window.pcmLearningRender?.(S);
 }
 
 /* --- the three lessons ---------------------------------------------------- */
@@ -2791,7 +2977,7 @@ function notifyPublicState(){
     sessionId:S.id,caseId:S.case_id,phase:S.phase,mode:S.learning_mode||mode().key,
     respiratoryRate:Number.parseFloat((S.station_chart?.vitals||S.station?.vitals||{}).R)||null,visualDemo:S.visual_demo==='humgen-trial'?'humgen-trial':null,patientName:S.patient_name,patientReply:lastPatient?.text||'',posture:S.patient_posture||'seated',
     comparePrevious:false,appearance:S.appearance||{},affect:S.affect||{},gesture:S.gesture||{},demeanor:S.demeanor||{},listening:patientIsListening(),speaking:Boolean(window.pcmAISpeaking||voice.patientSpeaking),remainingMs:S.phase_ends_at?Math.max(0,S.phase_ends_at-now()):null,
-    busyMs,eventSeq:S.event_seq||Math.max(0,...transcript.map(e=>e.seq||0)),
+    busyMs,assisted:!!S.assisted,eventSeq:S.event_seq||Math.max(0,...transcript.map(e=>e.seq||0)),
     reducedMotion:!!LS.get('reducedMotion')||window.matchMedia('(prefers-reduced-motion: reduce)').matches,
     examCatalog:unityCatalog()
   }},location.origin);
@@ -2845,12 +3031,20 @@ window.addEventListener('message',async event=>{
   if(unityRequests.size>300)unityRequests.delete(unityRequests.keys().next().value);
   reply(await operation);
 });
-/* Native HTML dialog preserves keyboard focus without browser JavaScript alerts. */
-function confirmChoice(message){
+/* Native HTML dialog preserves keyboard focus without browser JavaScript alerts.
+
+   The heading and the two buttons NAME THE DECISION. One generic "Continue?"
+   stood in front of four materially different choices -- leaving an attempt,
+   ending the encounter, submitting the note, submitting an unstored draft --
+   so the most consequential, irreversible action in the app was confirmed by a
+   button that said nothing about what it would do. The confirmation itself is
+   preserved; only its wording changed. */
+function confirmChoice(message,options){
+  const {title='Continue?',confirm='Continue',cancel='Keep working'}=options||{};
   return new Promise(resolve=>{
     const prior=document.activeElement,dialog=document.createElement('dialog');
     dialog.className='confirm-dialog';dialog.setAttribute('aria-labelledby','confirmTitle');
-    dialog.innerHTML=`<form method="dialog"><h2 id="confirmTitle">Continue?</h2><p>${esc(message)}</p><div class="row"><button class="btn" value="cancel" autofocus>Keep working</button><button class="btn primary" value="confirm">Continue</button></div></form>`;
+    dialog.innerHTML=`<form method="dialog"><h2 id="confirmTitle">${esc(title)}</h2><p>${esc(message)}</p><div class="row"><button class="btn" value="cancel" autofocus>${esc(cancel)}</button><button class="btn primary" value="confirm">${esc(confirm)}</button></div></form>`;
     document.body.appendChild(dialog);
     dialog.addEventListener('close',()=>{const accepted=dialog.returnValue==='confirm';dialog.remove();if(prior?.isConnected)prior.focus();resolve(accepted);},{once:true});
     dialog.addEventListener('click',e=>{if(e.target===dialog){const rect=dialog.getBoundingClientRect();if(e.clientX<rect.left||e.clientX>rect.right||e.clientY<rect.top||e.clientY>rect.bottom)dialog.close('cancel');}});
@@ -2895,7 +3089,11 @@ window.addEventListener('beforeunload', e => {
    The focused microphone button owns its own Space/Enter hold behavior. */
 view.addEventListener('keydown',e=>{
   if(!S||S.phase!=='encounter'||overlay||e.metaKey||e.ctrlKey||e.isComposing)return;
-  if(e.altKey&&!e.shiftKey){const id={'1':'say','2':'toolExam','3':'toolChart'}[e.key];
+  // Alt+2 and Alt+3 type a character on macOS. Firing a navigation shortcut
+  // from inside the composer or the note put the glyph in the box AND moved
+  // the student somewhere else.
+  const typing=/^(INPUT|TEXTAREA)$/.test(e.target?.tagName||'')||e.target?.isContentEditable;
+  if(e.altKey&&!e.shiftKey&&!typing){const id={'1':'say','2':'toolExam','3':'toolChart'}[e.key];
     if(!id)return;e.preventDefault();if(id==='say')$('#say')?.focus();else $('#'+id)?.click();return;}
   if(e.key==='Escape'&&!e.altKey&&!e.shiftKey)interruptPatient();
 });

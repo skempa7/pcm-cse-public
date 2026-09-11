@@ -35,6 +35,7 @@ history that the case does not already carry.
 
 from __future__ import annotations
 
+import copy
 import random
 import re
 
@@ -168,6 +169,42 @@ _WORSE_WORDS = {
     "provokes", "worst",
 }
 
+# The course's own checklist keeps three things apart that a case files under
+# one `setting` row: SETTING ("I was getting undressed for bed when I first
+# noticed the rash"), PERTINENT POSITIVE ("my roommate has a similar rash") and
+# CONTACT ("I traveled to the Everglades"). So a generic "what were you doing"
+# must not hand over an exposure or a preceding illness -- those are earned by
+# asking for them.
+#
+# These are TYPED questions, not paraphrases: they resolve ahead of broad
+# trigger words, and a case that authors no such fact answers "I do not have
+# that information" rather than letting the bare word "before" reach the
+# past-occurrence row. Being told "this has never happened before" when you
+# asked about a preceding infection is a false negative a student would write
+# into the note.
+_SPECIFIC_SETTING_INTENTS = [
+    {"id": "preceding_illness",
+     # "cold" is deliberately absent: one case's setting fact is about starting
+     # a COLD MEDICINE, which is a medication change, not a preceding illness.
+     "keywords": {"sore", "throat", "flu", "influenza", "infection",
+                  "virus", "viral", "strep", "unwell", "sick"},
+     "cues": ["recently been ill", "been ill", "were you ill", "any infection",
+              "an infection", "been sick", "were you sick", "recent illness",
+              "unwell before", "infection before", "illness before",
+              "sick before", "ill before", "any cold", "sore throat",
+              "come down with", "under the weather"]},
+    {"id": "exposure_contact",
+     "keywords": {"coworker", "colleague", "household", "roommate", "anyone",
+                  "someone", "child", "children", "similar", "contact",
+                  "travel", "travelled", "traveled", "flight", "trip",
+                  "exposed", "exposure"},
+     "cues": ["been around anyone", "anyone around you", "anyone else sick",
+              "anyone at home", "anyone in the house", "similar symptoms",
+              "been in contact", "recent travel", "long trips", "any travel",
+              "been travelling", "been traveling", "anyone you know",
+              "close contact", "been exposed"]},
+]
+
 _REFERENTS = {
     "it", "that", "this", "them", "those", "they", "pain", "pains", "ache",
     "aches", "aching", "hurt", "hurts", "hurting", "burning", "symptom",
@@ -175,12 +212,51 @@ _REFERENTS = {
     "anything", "pressure", "tightness", "headache", "breathing", "dizziness",
 }
 
+# Words that describe WHEN or HOW something happened. They turn up inside the
+# same authored sentences as the symptoms, but naming one does not name a
+# symptom -- without this, "When did this start?" read "start" as the subject
+# of the question and the patient refused to give her own onset.
+# Words that point back at the presenting complaint rather than at whatever
+# background topic was last discussed.
+_SYMPTOM_REFERENTS = {
+    "it", "pain", "pains", "ache", "aches", "aching", "hurt", "hurts",
+    "headache", "headaches", "discomfort", "symptom", "symptoms", "pressure",
+    "tightness", "burning", "dizziness", "nausea", "cough", "swelling",
+}
+# Verbs that belong to a background topic. With one of these present the turn
+# is still about that topic, whichever pronoun it uses.
+_SUBJECT_VERBS = {
+    "take", "takes", "taking", "took", "smoke", "smokes", "smoking", "smoked",
+    "drink", "drinks", "drinking", "drank", "use", "uses", "using", "used",
+}
+
+
+_NOT_A_SYMPTOM_NAME = {
+    "start", "starts", "started", "starting", "begin", "begins", "began",
+    "begun", "going", "goes", "went", "happen", "happens", "happened",
+    "happening", "been", "come", "comes", "came", "last", "lasts", "lasted",
+    "long", "since", "ago", "first", "notice", "noticed", "feel", "feels",
+    "felt", "time", "times", "week", "weeks", "day", "days", "month", "months",
+    "year", "years", "hour", "hours", "minute", "minutes", "night", "nights",
+    "morning", "evening", "today", "yesterday", "recently", "usually",
+    "sometimes", "often", "always", "never", "worse", "better", "much", "many",
+    "about", "around", "really", "quite", "very", "just", "still", "also",
+    "have", "having", "with", "without", "when", "what", "where", "which",
+    "does", "doing", "make", "makes", "made", "take", "takes", "taking",
+    "tell", "told", "know", "think", "anything", "something", "thing", "things",
+}
+
+
 _ASPECTS = [
     {"id": "onset", "categories": ["onset"],
+     # "how far back" is a duration question. Without it the bare word "back"
+     # in a case's radiation trigger answered it with where the pain travels.
      "cues": ["when did", "when do", "how long have", "how long has",
               "how long ago", "since when", "first notice", "first started",
               "first began", "when it started", "when this started",
-              "how many days"]},
+              "how many days", "how far back", "how long back",
+              "how long has this been going on", "how long has this been",
+              "been going on for", "started how long"]},
     {"id": "chronology", "categories": ["chronology"],
      "cues": ["getting worse", "getting better", "changed since", "progress",
               "since it started", "how has it changed", "course of it",
@@ -193,15 +269,33 @@ _ASPECTS = [
      "cues": ["radiate", "spread", "travel", "move anywhere", "go anywhere",
               "shoot", "anywhere else"]},
     {"id": "quality", "categories": ["quality"],
+     # "sensation" and "character" are the words a student reaches for when
+     # they do not say "feel like". They need a referent because "what sort of
+     # work do you do" is not a question about the symptom.
+     "words": {"sensation", "sensations", "character", "characterise",
+               "characterize"},
+     "needs_referent": True,
      "cues": ["what does it feel like", "what is it like", "what's it like",
               "describe the pain", "describe it", "sharp or dull",
-              "kind of pain", "type of pain", "how would you describe", "what is the pain like", "how would you describe it"]},
+              "kind of pain", "type of pain", "how would you describe", "what is the pain like", "how would you describe it",
+              "sort of pain", "sort of sensation", "sort of feeling",
+              "kind of sensation", "kind of feeling", "type of sensation",
+              "how does it feel", "what does that feel like"]},
     {"id": "severity", "categories": ["severity"],
+     # "intense" must NOT reach pain severity when the turn is about exercise
+     # intensity, so it is a referent-gated word, never a bare cue:
+     # "How intense would you call IT?" fires, "How intense is your exercise
+     # routine?" does not.
+     "words": {"intense", "intensity", "painful", "unbearable"},
+     "needs_referent": True,
      "cues": ["how bad", "how severe", "scale of", "out of ten", "out of 10",
               "rate the pain", "rate it", "severity", "how much does it hurt",
-              "how strong"]},
+              "how strong", "at its worst", "worst it gets", "how much pain",
+              "when it is at its worst", "how bad does it get"]},
     {"id": "timing", "categories": ["timing"],
      "cues": ["constant", "come and go", "comes and goes", "all the time",
+              "let up", "lets up", "ever let up", "go away completely",
+              "goes away completely", "there all the time", "on and off",
               "how often", "intermittent", "does it stop", "at night",
               "time of day", "certain times", "how often does it happen", "how often does this happen", "how frequently", "how many times a day", "how many times a week", "does it happen often"]},
     {"id": "alleviating", "categories": ["alleviating"],
@@ -855,7 +949,13 @@ def conversation_route(utterance):
     if any(identity_fields(utterance)):return 'identity'
     if re.search(r"\b(?:how do you know (?:it'?s|this is|that it|you have|that you have)|who diagnosed (?:this|the current)|why do you (?:think|say) (?:it'?s|this is)|how (?:can|could) you know (?:it'?s|this is))\b",text):
         return 'diagnostic_uncertainty'
-    if re.search(r"\bwhat were you (?:doing|up to)|\bwhat (?:activity|were you doing).*?(?:start|began|onset)",text):
+    # The Setting question, in the ways a student actually asks it. Every
+    # alternative names an ACTIVITY explicitly -- "what were/was/had you been
+    # doing", "were you doing/in the middle of something". Nothing here matches
+    # a bare "what is going on", which is the opening question, not this row.
+    if re.search(r"\bwhat (?:were|was|had) you (?:been )?(?:doing|up to)\b"
+                 r"|\bwere you (?:doing|in the middle of) (?:anything|something)\b"
+                 r"|\bwhat (?:activity|were you doing).*?(?:start|began|onset)",text):
         return 'onset_activity'
     introduction=re.search(r"\b(?:hello|hi|good morning|good afternoon|good evening|i am (?:a |your )?(?:student|medical)|i'?m (?:a |your )?(?:student|medical))\b",text)
     question=re.search(r"\b(?:what|when|where|how|why|have you|do you|did you|are you|could you|can you|tell me|brings you)\b",text)
@@ -974,6 +1074,27 @@ class PatientEngine:
 
     # Whole-turn routes that must see the complete utterance. Splitting a
     # summary or an authored bundled question would change what it means.
+    def _social_only(self, segment):
+        """A segment that opens the conversation without asking anything.
+
+        A greeting, an introduction, a narrated action or an acknowledgement.
+        Used to decide whether a single answered ask should stand as the turn.
+        """
+        if not segment or not segment.strip():
+            return True
+        # A conversational ACT -- reassurance, a yes/no, an honest "I don't
+        # know" -- answers the patient; it does not ask anything. Without this,
+        # "No, nothing you've told me changes how I'll treat you. How often
+        # does it happen?" lost its question: the reassurance claimed the turn
+        # and the frequency was never asked.
+        return bool(dialogue.is_greeting_only(segment)
+                    or dialogue.is_lead_in(segment)
+                    or dialogue.is_clarification_opener(segment)
+                    or dialogue.is_backchannel(segment)
+                    or dialogue.is_self_narration(segment)
+                    or dialogue.read_act(segment)
+                    or courtesy_statement(segment))
+
     def _claims_whole_turn(self, utterance, text):
         # Same gates the routes themselves use. `_summary_clauses` is only a
         # splitter and fires on any input, so it must not be used as a test.
@@ -1039,7 +1160,16 @@ class PatientEngine:
 
         # Resolve each ask against a private meta so one segment's outcome
         # cannot mislabel another's.
-        spoken_ids, parts, subs, unanswered = set(), [], [], []
+        spoken_ids, parts, subs, unanswered, declined = set(), [], [], [], []
+        # Resolving a segment MARKS things in `state`: the fact is released,
+        # the patient's pending question is resolved. When composition is then
+        # abandoned (fewer than two segments answered) the whole turn is
+        # re-resolved -- and against a state that already believes the answer
+        # was given, so a first-time answer came back "As I mentioned" and a
+        # concern the patient had never voiced was treated as already asked.
+        # The segment pass therefore runs on a private copy, and that copy is
+        # committed only if composition actually earns the turn.
+        probe = copy.deepcopy(state)
         for segment in segments:
             sub = {"facts_released": [], "concepts": {}, "volunteered": False,
                    "kind": "answer"}
@@ -1047,7 +1177,7 @@ class PatientEngine:
             if not seg_text:
                 continue
             try:
-                part = self._resolve_single(segment, seg_text, state, sub)
+                part = self._resolve_single(segment, seg_text, probe, sub)
             except Exception:
                 # A segment is a fragment of real input; a grammar that expects
                 # a whole turn may not fit it. Losing one segment must never
@@ -1062,11 +1192,50 @@ class PatientEngine:
                 subs.append(sub)
             else:
                 unanswered.append(segment)
+                if part and part.strip():
+                    declined.append(part.strip())
 
-        # Composition earns the turn only by answering more than one thing.
-        if len(parts) < 2:
+        # Composition earns the turn only by answering more than one thing --
+        # EXCEPT when the rest of the turn was never an ask. "Hello, I'm a
+        # student doctor. What brought you in today?" is one question wrapped
+        # in a greeting, and re-resolving the whole turn let the greeting claim
+        # it: the patient answered with her name and the opening history was
+        # never released. If exactly one segment carried information and every
+        # other segment was pure social opening, that segment IS the turn.
+        real_asks = [segment for segment in unanswered if not self._social_only(segment)]
+        # One answered ask plus a genuine ask this case cannot answer is still a
+        # composed turn: "No, nothing you said changes my treatment. How often
+        # does it happen?" must acknowledge AND address the question, even when
+        # the case authors no frequency. Falling back to the whole turn here
+        # lost the acknowledgement as well, leaving the patient's own question
+        # open after it had been answered.
+        if len(parts) == 1 and real_asks:
+            pass  # fall through to the composed path below
+        elif len(parts) == 1 and len(segments) > 1 and all(
+                self._social_only(segment) for segment in unanswered):
+            state.clear()
+            state.update(probe)
+            sub = subs[0]
+            for fid in sub.get('facts_released', []):
+                if fid not in meta['facts_released']:
+                    meta['facts_released'].append(fid)
+            meta['concepts'].update(sub.get('concepts', {}))
+            for key in ('checklist_hits', 'delivery_limits'):
+                if sub.get(key):
+                    meta.setdefault(key, []).extend(sub[key])
+            if sub.get('volunteered'):
+                meta['volunteered'] = True
+            if sub.get('emotion') and 'emotion' not in meta:
+                meta['emotion'] = sub['emotion']
+            meta['kind'] = sub.get('kind', 'answer')
+            meta.pop('no_information', None)
+            return parts[0]
+        # `state` is still pristine here, so the re-run sees the turn as new.
+        if len(parts) < 2 and not (len(parts) == 1 and real_asks):
             return self._resolve_single(utterance, text, state, meta)
 
+        state.clear()
+        state.update(probe)
         for sub in subs:
             for fid in sub.get('facts_released', []):
                 if fid not in meta['facts_released']:
@@ -1093,9 +1262,24 @@ class PatientEngine:
         meta.pop('no_information', None)
 
         reply = dialogue.join(parts)
+        # Only segments that actually ASKED something can go unanswered. The
+        # composer already separated these out (`real_asks` above); using the
+        # raw list meant a lead-in counted as an unmet ask, so "Thanks for
+        # telling me all that. What makes it worse?" answered correctly and
+        # then added "I'm not sure. What do you mean exactly?" -- and in the
+        # worst form asserted that an authored fact was unavailable.
+        unanswered = [segment for segment in unanswered
+                      if not self._social_only(segment)]
         if unanswered:
             meta['unanswered_asks'] = unanswered
-            reply = dialogue.join([reply, self._unavailable_tail(len(unanswered))])
+            # ONE unanswered ask keeps its own reply, which is routed and names
+            # the dimension ("whether the symptom is present right now"). The
+            # collapsed note exists to avoid repeating a decline once per ask,
+            # so it is only better when there are several.
+            if len(unanswered) == 1 and len(declined) == 1:
+                reply = dialogue.join([reply, declined[0]])
+            else:
+                reply = dialogue.join([reply, self._unavailable_tail(len(unanswered))])
         return reply
 
     # ------------------------------------------------------------------
@@ -1142,6 +1326,30 @@ class PatientEngine:
                       and regional_fact_allowed(f, utterance)]
         if not candidates:
             return None
+        # Every anchorable subject is a BACKGROUND topic -- medications,
+        # smoking, family. So a follow-up that points at the symptom with a
+        # referent AND asks for an attribute none of those facts carries is not
+        # continuing the detour: "are you on any medicines?" then "how bad is
+        # it?" is asking how bad the pain is, and confining it answered with
+        # the acetaminophen dose instead, again and again, for the rest of the
+        # encounter. A bare fragment with no referent ("how long?") still
+        # continues the topic, which is what the anchor is for.
+        text = nlp.normalize(utterance)
+        # Narrow on purpose. "that" and "them" continue whatever is on the
+        # table -- "how often do you take THAT?" is about the medicine -- while
+        # a symptom word, or a bare "it" with no domain verb beside it, points
+        # back at the complaint. A domain verb ("take", "smoke", "drink") keeps
+        # the turn on the background topic whatever pronoun it uses.
+        words = set(text.split())
+        points_at_symptom = bool(words & _SYMPTOM_REFERENTS) and not (
+            words & _SUBJECT_VERBS)
+        if points_at_symptom:
+            wanted = set()
+            for aspect in _ASPECTS:
+                if self._aspect_fires(aspect, text, words):
+                    wanted |= set(aspect['categories'])
+            if wanted and not any(f.get('category') in wanted for f in candidates):
+                return None
         # Prefer a fact the anchoring turn did not already spend, so "how
         # much?" can add detail rather than only repeat.
         spoken = set(state.get('last_facts') or [])
@@ -1167,13 +1375,23 @@ class PatientEngine:
     PENDING_TURNS = 3
 
     def _note_patient_question(self, line, fact, state):
-        """Record a patient line that genuinely asks the clinician something."""
-        if not dialogue.is_question_to_clinician(line):
+        """Record a patient line that genuinely asks the clinician something.
+
+        Authored concerns are often a question plus its reason -- "Is this my
+        heart? My father died of a heart attack." The line as a whole does not
+        read as a question, so testing the whole string registered nothing and
+        the clinician's answer was then matched as a fresh clinical query. The
+        question SENTENCE is what is pending, so that is what is stored.
+        """
+        asked = line if dialogue.is_question_to_clinician(line) else next(
+            (part.strip() for part in re.findall(r"[^.!?]+[.!?]?", line or "")
+             if dialogue.is_question_to_clinician(part.strip())), None)
+        if not asked:
             return
         state['pending_question'] = {
-            'text': line,
+            'text': asked,
             'fact_id': (fact or {}).get('id'),
-            'frame': dialogue.question_frame(line),
+            'frame': dialogue.question_frame(asked),
             'asked_turn': state.get('turn', 0),
             'open': True,
         }
@@ -1205,7 +1423,12 @@ class PatientEngine:
         pending['resolved_turn'] = state.get('turn', 0)
         pending['reassuring'] = reassuring
         meta['kind'] = 'concern_acknowledged'
-        meta['ips_signal'] = 'concern_addressed' if reassuring else 'concern_unmet'
+        # `reassuring` is deliberately tri-state: None means the framing does
+        # not let us say which way the answer landed, which is not the same as
+        # the concern going unmet.
+        meta['ips_signal'] = ('concern_addressed' if reassuring
+                              else 'concern_unmet' if reassuring is False
+                              else 'concern_noted')
         # Conversational reply only -- authored where the case provides one.
         pat = self.case.get('patient', {})
         if reassuring:
@@ -1349,6 +1572,13 @@ class PatientEngine:
             meta.update(kind='diagnostic_uncertainty',no_information=True)
             return "I do not know what is causing these symptoms. I am here to find out."
         if route=='onset_activity' and not _instruction_or_other_person(utterance):
+            # Only a fact the case FLAGGED as the activity answer. Deliberately
+            # not every `setting` fact: a case's setting row answers whichever
+            # question its leading authored trigger asks, and for several cases
+            # that is exposure ("Have you been around anyone who was ill?"), a
+            # medicine change, or a preceding illness -- each the diagnostic
+            # link the student is supposed to earn with the matching question.
+            # Answering those here would hand over the case.
             facts=[f for f in self.facts.values() if f.get('onset_activity') is True]
             if facts:return dialogue.join_spoken([self._say(f,state,meta) for f in facts[:2]])
             meta.update(kind='non_answer',no_information=True,unscripted_topic=True)
@@ -1463,6 +1693,29 @@ class PatientEngine:
         answered = self._resolve_pending_question(utterance, state, meta)
         if answered is not None:
             return self._join(ack, answered)
+
+        # 3c. The interview is being closed. This is the student DECLARING the
+        #     end, not inviting questions; a real patient answers it, and often
+        #     uses it to raise the thing they have been holding back.
+        if dialogue.is_closing_statement(utterance):
+            meta.update(kind='closure_response', ips_signal='closure_invited',
+                        no_information=True)
+            concerns = self.case['patient'].get('closing_questions') or []
+            voiced = state.setdefault('concerns_voiced', [])
+            unasked = [c for c in concerns if c not in voiced]
+            if unasked:
+                voiced.append(unasked[0])
+                self._note_patient_question(unasked[0], None, state)
+                return self._join(ack, 'Thank you, doctor. ' + unasked[0])
+            return self._join(ack, self.rng.choice(
+                ['Thank you, doctor.', 'Okay. Thank you for listening.',
+                 'Thank you — I appreciate you explaining it.']))
+
+        # 3d. An acknowledgement asks for nothing. Re-reading the last answer
+        #     here makes the patient sound as though the student had missed it.
+        if dialogue.is_backchannel(utterance):
+            meta.update(kind='acknowledged', no_information=True)
+            return self.rng.choice(['Okay.', 'Mm-hmm.', 'Sure.', 'Of course.'])
 
         # 4a. "Tell me more" elaborates on the topic just discussed.
         more = self._elaborate(utterance, state, meta)
@@ -1644,6 +1897,7 @@ class PatientEngine:
             subjects = set(dialogue.subjects_in(text))
         if subjects:
             state['last_subjects'] = sorted(subjects)
+
 
     @staticmethod
     def _join(ack, body):
@@ -2113,6 +2367,54 @@ class PatientEngine:
         if precise is not None:return precise
         return self._trigger_hits(utterance,state) or self._aspect_hits(utterance)
 
+    _TEMPORAL_CATEGORIES = frozenset(
+        {"onset", "chronology", "timing", "episode_duration", "past_occurrence"})
+
+    def _spoken_words(self, fact):
+        spoken = " ".join([fact.get("value") or ""] + list(fact.get("sp_says") or []))
+        return set(_tokens(spoken))
+
+    def _named_symptom_filter(self, utterance, hits):
+        """Keep the answer on the symptom the question actually named.
+
+        A case's onset row carries bare triggers ("how long", "when did"), so
+        "when did the BLACK STOOL start" reached the chief complaint's onset and
+        answered "about six weeks" -- the pain's timeline, for a symptom that
+        began two days ago -- and, because that fact had already been given,
+        said it as "Right, about six weeks now". A student writes that acuity
+        into the note and it is confidently wrong.
+
+        So: if the turn names a symptom this case authors somewhere, prefer the
+        facts that are about it. If none of the candidates are, refuse the
+        TEMPORAL ones rather than answer with another symptom's timeline --
+        every other kind of answer is left alone.
+        """
+        if not hits:
+            return hits
+        text_words = set(_tokens(nlp.normalize(utterance)))
+        if not text_words:
+            return hits
+        # The symptom vocabulary is the case's own: words it uses to name a
+        # complaint, not a list invented here.
+        named = set()
+        for fact in self.case.get("facts", []):
+            if fact.get("category") not in ("associated", "pertinent_negative",
+                                            "chief_complaint", "location",
+                                            "quality"):
+                continue
+            named |= self._spoken_words(fact) & text_words
+        named -= _REFERENTS
+        named -= _NOT_A_SYMPTOM_NAME
+        named = {w for w in named if len(w) > 3}
+        if not named:
+            return hits
+        on_topic = [(f, s) for f, s in hits if self._spoken_words(f) & named]
+        if on_topic:
+            return on_topic
+        kept = [(f, s) for f, s in hits
+                if f.get("category") not in self._TEMPORAL_CATEGORIES]
+        return kept
+
     def _match_facts(self, utterance, state):
         """Which scripted facts this turn reaches, best first.
 
@@ -2121,10 +2423,27 @@ class PatientEngine:
         -- for a turn that carries no topic of its own -- the same two again
         with the previous question restored as context.
         """
+        return self._named_symptom_filter(utterance,
+                                          self._match_facts_inner(utterance, state))
+
+    def _match_facts_inner(self, utterance, state):
         precise = self._typed_question_hits(utterance)
         if precise is not None:
             return precise
         hits = self._trigger_hits(utterance, state)
+        # A phrase that NAMES the question outranks a single keyword that merely
+        # appears in it. "How far back does this go?" is a duration question,
+        # but a case whose radiation trigger lists the bare word "back" (for
+        # "it goes into my back") matched it and answered where the pain
+        # travels. A multiword aspect cue is self-naming by construction, so it
+        # wins -- but only over a one-word trigger. An authored trigger phrase
+        # of two words or more is at least as specific as the cue and keeps
+        # precedence, which is what stops this from overriding the case's own
+        # deliberate wording.
+        if hits:
+            named = self._named_aspect_over_keyword(utterance, hits)
+            if named:
+                return named
         if hits:
             return hits
         aspect = self._aspect_hits(utterance)
@@ -2138,6 +2457,37 @@ class PatientEngine:
             return self._aspect_hits(context)
         return []
 
+    def _specific_setting_hits(self, utterance):
+        """A preceding-illness or exposure question, answered only by a fact
+        that actually carries that content.
+
+        Returns None when the turn asks neither. Returns a possibly EMPTY list
+        when it asks one and this case authors nothing for it -- which is the
+        honest "I do not have that information", not a different row.
+        """
+        text = nlp.normalize(utterance)
+        for intent in _SPECIFIC_SETTING_INTENTS:
+            if not any(cue in text for cue in intent["cues"]):
+                continue
+            found = []
+            for fact in self.case.get("facts", []):
+                if fact.get("category") != "setting":
+                    continue
+                if not regional_fact_allowed(fact, utterance):
+                    continue
+                # Only what the patient actually SAYS. _fact_text also folds
+                # in the concept-lexicon surfaces, which exist to grade the
+                # student's note -- and one case lists "a flight of stairs"
+                # there, which made an exertion fact answer a travel question.
+                spoken = " ".join([fact.get("value") or ""] +
+                                  list(fact.get("sp_says") or []))
+                words = set(_tokens(spoken))
+                if any(any(_same_word(k, w) for w in words)
+                       for k in intent["keywords"]):
+                    found.append(fact)
+            return [(f, 3.0) for f in found]
+        return None
+
     def _typed_question_hits(self, utterance):
         """Resolve an explicit question dimension before broad trigger words.
 
@@ -2150,6 +2500,8 @@ class PatientEngine:
         if posture is not None:return [(f,3.0) for f in self.facts.values() if set(posture)&set(position_history_fact_topics(f))]
         focused=focused_fact_ids(utterance)
         if focused is not None:return [(f,3.0) for f in self.facts.values() if f['id'] in focused and regional_fact_allowed(f,utterance)]
+        specific=self._specific_setting_hits(utterance)
+        if specific is not None:return specific
         text = nlp.normalize(utterance)
         # A bare "family" carries no authored trigger of its own -- those name
         # the members ("mother", "father") or the phrase "family history" -- so
@@ -2195,7 +2547,21 @@ class PatientEngine:
                     fact = self.facts.get(fid)
                     return [(fact, 3.0)] if fact else []
         rules = [
-            ('temporal_role', 'episode_duration', r'(?:each|an|one|individual) (?:episode|spell|attack)|how long (?:does|do|did).*last|how many (?:seconds|minutes).*last'),
+            # "each EPISODE" was the only noun accepted, and an auxiliary was
+            # required, so "how long does each episode last" worked while
+            # "how long each headache lasts" fell through to ONSET -- the
+            # student asked how long an attack runs and was told when today's
+            # one began. The quantifier ("each", "every", "a typical") is what
+            # makes it an episode question; the noun is whatever the patient
+            # calls the symptom. "how long has THIS episode lasted" is excluded
+            # so it still reads as the current episode, below.
+            ('temporal_role', 'episode_duration',
+             r'(?:each|every|an|one|individual|a single|a typical|typical)\s+(?:\w+\s+){0,2}?(?:episode|spell|attack|bout|flare|headache|migraine|cramp|pain|one)\b'
+             r'|how long (?:does|do|did)\b.*\blast'
+             r'|how long (?:each|every|a|an|one|typical)\b.{0,40}?\blasts?\b'
+             r'|how long (?:do|does) (?:the |your |these |those )?'
+             r'(?:attacks?|episodes?|spells?|bouts?|flares?|headaches?|migraines?)\b'
+             r'|how many (?:seconds|minutes).*last'),
             ('temporal_role', 'current_episode_onset', r'(?:this|current|latest) episode.*(?:start|begin)|when.*(?:this|current|latest) episode|how long (?:has|have).*(?:this|current) episode|how long.*(?:this|current) episode.*(?:last|going)'),
             ('history_topic', 'pregnancy', r'pregnan|chance.*(?:expecting|conceiv)'),
             ('history_topic', 'cycle_regularity', r'periods? regular|regular.*period|menstrual.*regular'),
@@ -2216,6 +2582,13 @@ class PatientEngine:
             if value=='menstrual' and re.search(r'regular',text):continue
             if re.search(pattern,text):
                 facts=[f for f in self.facts.values() if f.get(key)==value]
+                if key=='temporal_role' and value=='current_episode_onset' and not facts:
+                    # This case does not label a fact with that role, but its
+                    # onset row is exactly when the current episode began.
+                    # Saying "I do not have that" while holding the answer
+                    # makes the student rephrase a perfectly ordinary question.
+                    facts=[f for f in self.facts.values()
+                           if f.get('category')=='onset']
                 if key=='temporal_role' and value=='episode_duration' and not facts:
                     prior=[f for f in self.facts.values() if f.get(key)=='prior_episode_duration']
                     if prior:
@@ -2272,12 +2645,50 @@ class PatientEngine:
         floor = max(top * 0.7, min(0.8, top))
         return [(f, s) for f, s in scored if s >= floor]
 
-    def _aspect_hits(self, utterance):
+    def _named_aspect_over_keyword(self, utterance, hits):
+        """A cue that SUBSUMES the matched keyword outranks it; nothing else does.
+
+        "How far back does this go?" is a duration question. A case whose
+        radiation trigger lists the bare word "back" (for "it goes into my
+        back") matched it, and answered where the pain travels. But the onset
+        cue that reads the question correctly -- "how far back" -- CONTAINS
+        that word: the keyword only matched because the cue's own phrase was
+        present, so it is not independent evidence and the cue wins.
+
+        A question about previous operations that happens to end in the same
+        three words must NOT behave the same way. The past-occurrence cue is
+        present there too, but the surgical trigger matched on the word for the
+        operations themselves, which that cue does not contain. That is
+        independent evidence about the topic, so the case's own trigger keeps
+        precedence. Subsumption is what separates the two.
+        """
+        text = nlp.normalize(utterance)
+        matched = set()
+        for fact, _score in hits:
+            for phrase in (fact.get("triggers") or {}).get("any") or []:
+                normalized = nlp.normalize(phrase)
+                if normalized and normalized in text:
+                    matched.add(normalized)
+        if not matched:
+            return None
+        for aspect in _ASPECTS:
+            for cue in aspect.get("cues", ()):
+                if " " not in cue or cue not in text:
+                    continue
+                if all(phrase in cue for phrase in matched):
+                    found = self._aspect_hits(utterance, only_aspect=aspect["id"])
+                    if found:
+                        return found
+        return None
+
+    def _aspect_hits(self, utterance, only_aspect=None):
         """The paraphrase layer: an ordinary question, read by its aspect."""
         text = nlp.normalize(utterance)
         words = set(text.split())
         best = None
         for aspect in _ASPECTS:
+            if only_aspect is not None and aspect["id"] != only_aspect:
+                continue
             if not self._aspect_fires(aspect, text, words):
                 continue
             candidates = self._aspect_facts(aspect, text)

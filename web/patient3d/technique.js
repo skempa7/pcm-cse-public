@@ -128,10 +128,21 @@
         '<span class="ex-blurb">' + esc(e.blurb) + '</span>' +
         '<span class="ex-time">' + esc(e.duration) + ' · ' + e.steps.length + ' steps</span>' +
         '</button>').join('') +
-      '<p class="tech-limit">Rehearsal only — no findings or examination credit are recorded.</p>';
+      '<p class="tech-limit">Rehearsal only — no findings or examination credit are recorded. Opening a sequence records this attempt as assisted practice.</p>';
     wire();
     panel.querySelectorAll('[data-exam]').forEach(b => {
-      b.onclick = () => { examId = b.dataset.exam; step = 0; done = []; mode = 'learn'; report('start'); render(); };
+      b.onclick = () => {
+        // Reading the taught sequence is instructional assistance and is
+        // recorded as such. Say so BEFORE showing any of it, and leave the
+        // encounter exactly as it was if the student would rather not.
+        if (!state.assisted && !window.confirm(
+            'This guide teaches the examination sequence step by step.\n\n'
+            + 'Opening it records this attempt as assisted practice. Your findings, '
+            + 'notes and timing are not affected, and no examination credit is given '
+            + 'for reading it.\n\nOpen the guide?')) return;
+        examId = b.dataset.exam; step = 0; done = []; mode = 'learn';
+        report('start'); render();
+      };
     });
     focusHeading();
   }
@@ -257,11 +268,18 @@
   panel.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagation(); close(); } });
   launch.onclick = () => (panel.hidden ? menu() : close());
 
-  /* The guide is available whenever the student is with the patient. It no
-     longer disables the encounter controls: it reads nothing from the case and
-     changes nothing, so there is no reason to take the encounter away. */
+  /* The guide is available whenever the student is with the patient IN A MODE
+     THAT TEACHES. It reads nothing from the case and changes nothing, so there
+     is no reason to take the encounter away -- but the server only records a
+     lesson in guided and coached practice (learning.allowed), so outside those
+     it used to open anyway: it taught the whole sequence, and a documentation
+     line with it, during Independent practice and Exam rehearsal, told the
+     student "opening it records this attempt as assisted practice" when the
+     server had in fact refused, and returned an error on every Next and Skip.
+     The gate now matches the one the server enforces. */
   window.pcmTechniqueState = () => {
-    const allowed = state.phase === 'encounter';
+    const allowed = state.phase === 'encounter'
+      && ['guided', 'coached'].includes(state.mode);
     launch.hidden = !allowed;
     if (!allowed && !panel.hidden) close();
   };

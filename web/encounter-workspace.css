@@ -4,7 +4,7 @@ body.encounter-workspace-active #view{padding:8px 12px!important;max-width:none;
 body.encounter-workspace-active .topbar{min-height:50px;padding:6px 14px;gap:10px}
 body.encounter-workspace-active .topbar .brand .sub{display:none}
 body.encounter-workspace-active .workspace-nav{display:none}
-body.encounter-workspace-active .room.ew-room{height:var(--ew-available,calc(100dvh - 90px));max-height:var(--ew-available);min-height:0;max-width:none;display:grid!important;grid-template-columns:minmax(0,1.62fr) minmax(350px,1fr);grid-template-rows:minmax(0,1fr) 48px;gap:8px 12px;align-items:stretch;margin:0}
+body.encounter-workspace-active .room.ew-room{height:var(--ew-available,calc(100dvh - 90px));max-height:var(--ew-available);min-height:0;max-width:none;display:grid!important;grid-template-columns:minmax(0,1fr) minmax(420px,1.18fr);grid-template-rows:minmax(0,1fr) 48px;gap:8px 12px;align-items:stretch;margin:0}
 .ew-room>.unity-room{grid-column:1;grid-row:1;display:flex;flex-direction:column;min-height:0;min-width:0;overflow:hidden;margin:0;padding:0;border-radius:16px}
 .ew-room .unity-heading{flex:0 0 auto;min-height:43px;padding:7px 12px;gap:8px}
 .ew-room .unity-heading h2{font-size:19px}
@@ -71,14 +71,23 @@ body.encounter-workspace-active .room.ew-room.patient-focus{grid-template-column
 
 .ew-latest-reply{display:none;align-items:flex-start;gap:6px;border-top:1px solid var(--line);background:var(--surface-2);padding:6px 9px;flex:0 0 auto;min-height:0}.ew-latest-reply p{font-size:11px;line-height:1.4;max-height:46px;overflow:auto;margin:0;flex:1;min-width:0}.ew-latest-reply .btn{font-size:10px;padding:3px 5px;min-height:24px;white-space:nowrap}.ew-room:not([data-workspace-tab=talk]):not([data-workspace-tab=record]) .ew-latest-reply{display:flex}#ewPanelGuide .guide-route,#ewPanelGuide .guide-coverage{display:none!important}
 
-.ew-right:not(.full-record) .turn.sys,.ew-right:not(.full-record) .turn.station{display:none}
+/* The workspace took over #toggleRecord ("Full record") for the Record tab,
+   so nothing could add .full-record any more and these turns became
+   permanently invisible: the station brief, the supplied vitals line, and
+   every simulator message -- "Examination in progress", "An examination is
+   already running", "interrupted before it finished", refusals and the
+   offline notice. Failures in particular must not be silent. */
+.ew-right .turn.sys,.ew-right .turn.station{display:block}
+.ew-right .turn.station .bubble{background:var(--surface-2);border-style:dashed;color:var(--ink-2);font-size:13px}
 
 body.encounter-workspace-active #app{min-height:0}body.encounter-workspace-active #view{flex:0 0 auto}.ew-room .ew-guide-footer #ewGuideMore{margin:0}.ew-room .ew-guide-footer .guide-navigation{justify-content:space-between;flex-wrap:nowrap}.ew-room .ew-guide-footer .guide-actions{display:flex;flex-wrap:nowrap}.ew-room .ew-guide-footer .guide-actions .primary{flex:1}.ew-room .case-guide-top .eyebrow{display:none}.ew-room .ew-guide-footer{padding:6px 9px}
 
 .ew-small-screen{display:none}@media(max-width:619px),(max-height:420px){.ew-small-screen{display:block;font-size:11px;line-height:1.4;margin:3px 4px 6px;color:var(--ink-2)}}
 
 /* Focused bedside tools: one next action, a real conversation, and obtained evidence. */
-@media(min-width:850px){body.encounter-workspace-active .room.ew-room:not(.patient-focus){grid-template-columns:minmax(0,1.3fr) minmax(410px,1fr)!important}}
+/* Wide screens: the work panel is the bigger half. At 1440 this reads as a   ~660px patient beside a ~750px workspace, instead of 792 vs 608 with the   conversation as the loser. */
+@media(min-width:850px){body.encounter-workspace-active .room.ew-room:not(.patient-focus){grid-template-columns:minmax(0,1fr) minmax(460px,1.2fr)!important}}
+@media(min-width:1600px){body.encounter-workspace-active .room.ew-room:not(.patient-focus){grid-template-columns:minmax(0,1fr) minmax(520px,1.1fr)!important}}
 .ew-tabs{padding:5px;gap:4px}.ew-tabs button{padding:10px 6px;font-size:13px}.ew-tabs button span{margin-right:5px}
 #ewGuideCard{flex:0 1 auto;max-height:55%;min-height:140px;overflow:auto;border-bottom:1px solid var(--line);padding:12px 14px}
 body.encounter-workspace-active #ewGuideCard>#encounterGuide{display:block!important;margin:0!important;padding:0!important;border:0!important;box-shadow:none;background:transparent!important}
@@ -132,8 +141,16 @@ body.encounter-workspace-active #ewGuideCard>#encounterGuide{display:block!impor
 /* Talk owns coaching; the primary navigation stays Talk, Examine, Record. */
 .ew-action-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.ew-action-tile{grid-template-columns:1fr;padding:9px 7px;gap:4px;min-width:0}.ew-action-tile>span{display:none}.ew-action-tile b{font-size:11px;overflow-wrap:anywhere}.ew-action-tile small{grid-column:1!important;font-size:10px}
 #ewPanelTalk{display:flex;flex-direction:column;min-height:0;overflow:hidden}#ewPanelTalk[hidden]{display:none}#ewTalkLog{flex:1;min-height:70px;overflow:auto}
-.ew-talk-guide{margin:8px;flex:0 1 auto;max-height:55%;overflow:auto;border:2px solid var(--accent);border-radius:12px;background:var(--surface-2);box-shadow:0 3px 12px #0002}
-.ew-talk-guide>summary{position:sticky;top:0;z-index:2;cursor:pointer;padding:9px 12px;background:var(--accent);color:var(--on-accent);font-size:13px;font-weight:700}.ew-talk-guide>summary span{float:right;font-size:11px;font-weight:500}
+/* The coach is a quiet card at the top of Talk, not a heavy green banner the
+   conversation has to fight. It reads as guidance beside the work, and its
+   header is a thin collapse control rather than a title bar. */
+.ew-talk-guide{margin:8px 8px 0;flex:0 0 auto;max-height:46%;overflow:auto;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;background:var(--surface-2)}
+.ew-talk-guide>summary{position:sticky;top:0;z-index:2;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 10px;background:var(--surface-2);color:var(--muted);font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;list-style:none;border-bottom:1px solid var(--line)}
+.ew-talk-guide>summary::-webkit-details-marker{display:none}
+.ew-talk-guide>summary:hover{color:var(--ink)}
+.ew-guide-toggle::after{content:'Hide';font-size:10px;letter-spacing:.04em;text-transform:none;font-weight:600}
+.ew-talk-guide:not([open])>summary{border-bottom:0}
+.ew-talk-guide:not([open]) .ew-guide-toggle::after{content:'Show'}
 #ewPanelTalk #ewGuideCard{max-height:none;min-height:0;padding:12px;border:0}.ew-talk-guide:not([open]) #ewGuideCard{display:none}
 @media(max-width:500px){.ew-action-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
@@ -155,3 +172,113 @@ body.encounter-workspace-active #ewGuideCard>#encounterGuide{display:block!impor
 .ew-bs-done{margin-left:auto;font-size:9.5px;color:var(--ink-3);letter-spacing:.05em;text-transform:uppercase}
 .ew-bs-status{margin:2px 0 0;font-size:11px;color:var(--accent);min-height:0}
 .ew-bs-status:empty{display:none}
+
+/* Record: a fact summary, not a transcript. Definition rows keep the label and
+   the finding on one line so a whole history reads in one pass; nothing here
+   repeats a speaker, a timestamp or a chat bubble. */
+#ewRecordLog{display:block;overflow:auto;padding:3px 14px 16px}
+.ew-rec-empty{font-size:12px;line-height:1.55;color:var(--ink-2);padding:10px 2px}
+.ew-rec-group{margin:6px 0 16px}
+.ew-rec-group h3{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-2);margin:14px 0 5px;padding-bottom:4px;border-bottom:1px solid var(--line);font-weight:700}
+/* A continuation row keeps the value column aligned and drops the echoed label.
+   The row still reads as its own fact because the rule above it stays. */
+.ew-rec-row dt.ew-rec-cont{min-height:1px}
+.ew-rec{margin:0}
+.ew-rec-row{display:grid;grid-template-columns:minmax(92px,25%) 1fr;gap:12px;padding:5px 0;border-bottom:1px solid var(--line)}
+.ew-rec-row:last-child{border-bottom:0}
+.ew-rec-row dt{font-size:11.5px;color:var(--ink-2);line-height:1.55;font-weight:600}
+.ew-rec-row dd{margin:0;font-size:13px;line-height:1.5;color:var(--ink)}
+.ew-rec-note{font-size:10.5px;color:var(--ink-2);white-space:nowrap}
+.ew-rec-doc{display:block;font-size:11px;color:var(--ink-2);margin-top:2px}
+.ew-rec-gaps .ew-rec-row dd{color:var(--ink-2)}
+@media(max-width:520px){.ew-rec-row{grid-template-columns:1fr;gap:0}.ew-rec-row dt{font-weight:600}}
+
+/* What a single click puts on the record. Components are stated technique and
+   they gate which findings are released, so the claim belongs on the tile. */
+.ew-action-tile .ew-states{display:block;margin-top:2px;font-size:10px;line-height:1.35;color:var(--ink-2);opacity:.9}
+
+/* Secondary examination systems: present, but not competing with the core route. */
+.ew-more-systems{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+.ew-more-systems>summary{cursor:pointer;font-size:11.5px;font-weight:650;color:var(--ink-2);padding:4px 0;list-style:none}
+.ew-more-systems>summary::-webkit-details-marker{display:none}
+.ew-more-systems>summary::before{content:'\25b8 ';display:inline-block;transition:transform .12s}
+.ew-more-systems[open]>summary::before{transform:rotate(90deg)}
+@media(prefers-reduced-motion:reduce){.ew-more-systems>summary::before{transition:none}}
+
+/* Inside the workspace the coach is a next-step card. The reasoning map and the
+   stage strip are still reachable from "Show approach" and "Other moves"; they
+   do not belong stacked under a one-line suggestion. */
+#ewPanelGuide .reasoning-expand,#ewPanelGuide .guide-application:empty,#ewPanelGuide #recoveryBody:empty{display:none}
+#ewPanelGuide .guide-top{display:flex;align-items:center;gap:8px;justify-content:flex-start;margin:0 0 6px}
+#ewPanelGuide .guide-top .eyebrow{font-size:10.5px;color:var(--ink-2)}
+#ewPanelGuide .guide-top>div{flex:1 1 auto;min-width:0}
+
+/* The shell keeps its own stuck/approach buttons so their handlers stay wired;
+   inside the workspace the coach card offers them in its action row instead. */
+/* Clipping these to 1px left them in the tab order. A keyboard user reached an
+   invisible "I'm stuck", spent a recorded assistance count on it, and saw
+   nothing -- the shell copy writes into #recoveryBody, which is display:none in
+   this card. The card's own row calls the same functions, so remove them. */
+#ewPanelGuide .guide-top #unstuckButton,#ewPanelGuide .guide-top #toggleGuide,#ewPanelGuide #ewCoachMoves{display:none!important}
+#ewPanelGuide .guide-top:not(:has(.eyebrow:not(:empty))){display:none}
+
+/* Bedside: the effect reads off the group heading, the short courtesy actions
+   sit two-up so the whole set is visible without scrolling, and the dialogue
+   suggestions stay full width because they are sentences. */
+.ew-bs-group h3{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-2);margin:14px 0 7px}
+.ew-bs-kind{font-size:10.5px;letter-spacing:0;text-transform:none;font-weight:500;color:var(--ink-3)}
+.ew-bs-group.ew-bs-action .ew-bs-items{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.ew-bs-group.ew-bs-action .ew-bs{padding:8px 10px}
+.ew-bs-partial{text-transform:none;letter-spacing:0}
+@media(max-width:640px){.ew-bs-group.ew-bs-action .ew-bs-items{grid-template-columns:1fr}}
+
+/* An examination you have already performed reads as one you have not. The
+   ledger knows; the tile now says so, so the student does not have to open
+   Record to find out what is left. */
+.ew-action-tile .ew-done-flag{display:block;margin-top:3px;font-size:10px;font-weight:700;letter-spacing:.02em;color:var(--accent)}
+.ew-action-tile.is-done{background:var(--accent-soft);border-color:var(--accent-line,var(--line))}
+.ew-action-tile.is-done>b{color:var(--ink-2)}
+
+/* The coach card pays for itself in the conversation's height; keep it tight. */
+#ewPanelTalk #ewGuideCard{padding:9px 12px 10px}
+
+/* Reading an earlier answer should survive a new turn arriving. When it does
+   not follow the student to the bottom, this says the log moved on. */
+.ew-talk-log-wrap,#ewTalkLog{position:relative}
+.stream-jump{position:absolute;left:50%;transform:translateX(-50%);bottom:10px;z-index:4;
+ border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);
+ border-radius:999px;padding:5px 13px;font-size:11.5px;font-weight:650;cursor:pointer;
+ box-shadow:0 6px 18px #0f2c2a2e}
+.stream-jump[hidden]{display:none}
+.stream-jump:hover{background:var(--accent-hover,var(--accent))}
+.coach-stage-note{margin:0 0 12px;font-size:12.5px;line-height:1.5;color:var(--ink-2)}
+
+/* Short windows: the card has to fit the move and the three ways to act on it.
+   The gaps/progress line is the one part that is genuinely optional, and
+   clipping "Why this" in half reads as a broken card rather than a scroller. */
+@media(max-height:780px){
+ #ewPanelTalk .coach-meta{display:none}
+ .ew-talk-guide{max-height:52%}
+}
+
+/* Jump to a body system. Only appears when the list is long enough that
+   scrolling to find one is the slow part (exam rehearsal's full catalog). */
+.ew-exam-regions{display:flex;flex-wrap:wrap;gap:4px;margin:4px 0 2px}
+.ew-exam-regions[hidden]{display:none}
+.ew-exam-regions button{font:inherit;font-size:10.5px;font-weight:600;line-height:1.2;cursor:pointer;padding:5px 9px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink-2)}
+.ew-exam-regions button:hover{color:var(--ink)}
+.ew-exam-regions button[aria-current="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.ew-exam-regions button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* Guided and coached offer the same two actions; they should not look like
+   different features. The draft button was stretching to 624px beside a 91px
+   ghost, so one card had a banner and the other had a button row. */
+#ewGuideCard .guide-actions{gap:6px}
+#ewGuideCard .guide-actions .btn{flex:0 0 auto;width:auto}
+.ew-panel-title #ewRefuse{margin-left:auto;flex:0 0 auto}
+
+/* Why the whole board just went dead, beside the board. */
+.ew-exam-running:empty{display:none}
+.ew-exam-running{margin:6px 0 0;color:var(--ink-2)}
+.ew-view-status:empty{display:none}
+.ew-view-status{margin:10px 0 0;font-size:12.5px;color:var(--ink-2)}

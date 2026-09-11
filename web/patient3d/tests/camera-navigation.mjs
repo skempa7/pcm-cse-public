@@ -11,7 +11,18 @@ const canvas={classList:{toggle(n,v){v?classes.add(n):classes.delete(n)}},addEve
 let limits={};const nav=createCameraNavigation({canvas,camera,allowed:()=>phaseAllowed,constraints:()=>limits,onInteraction:()=>interactions++});nav.remember();
 assert.deepEqual([...handlers.keys()].sort(),['lostpointercapture','pointercancel','pointerdown','pointermove','pointerup'].sort());
 const event=(x={})=>({pointerType:'mouse',button:0,pointerId:1,clientX:100,clientY:100,preventDefault(){throw Error('Native browser defaults must remain available')},...x});
-handlers.get('pointerdown')(event());handlers.get('pointermove')(event({clientX:140}));assert.equal(interactions,0);assert.equal(nav.move(.1,0,0),false);
+// Orbiting is always available inside the encounter: the separate "Adjust
+// view" mode was removed, so a plain drag moves the camera with no mode to
+// enter first. What must still be refused is a drag while the phase disallows
+// it -- that is the real boundary.
+phaseAllowed=false;
+handlers.get('pointerdown')(event());handlers.get('pointermove')(event({clientX:140}));
+assert.equal(interactions,0,'the camera moved while the phase disallowed it');
+assert.equal(nav.move(.1,0,0),false,'move() succeeded while the phase disallowed it');
+phaseAllowed=true;
+handlers.get('pointerdown')(event());handlers.get('pointermove')(event({clientX:140}));
+assert.equal(interactions,1,'a plain drag no longer orbits the camera');
+handlers.get('pointerup')(event());interactions=0;
 nav.setAdjusting(true);const baseline=interactions;
 for(const modifier of ['ctrlKey','metaKey','altKey']){handlers.get('pointerdown')(event({[modifier]:true}));handlers.get('pointermove')(event({clientX:130}));assert.equal(interactions,baseline)}
 handlers.get('pointerdown')(event({pointerType:'touch'}));handlers.get('pointermove')(event({pointerType:'touch',clientX:120}));assert.equal(interactions,baseline);

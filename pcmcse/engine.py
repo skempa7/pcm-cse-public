@@ -14,6 +14,7 @@ import json
 import re
 
 from . import audit as audit_mod
+from . import record
 from . import cases, checklist, config, db, evidence, feedback, grader, ips
 from . import note as note_mod
 from . import intent as intent_mod
@@ -159,24 +160,73 @@ def _has_exam_verb(text):
                for v in _EXAM_VERBS)
 
 
+# Courtesies the learner performs by DOING something. The rest -- confirming a
+# name, asking permission to examine -- are performed by asking, so a question
+# is the act itself and must still count.
+_PERFORMED_COURTESIES = frozenset({"introduce", "hand_hygiene", "gloves", "drape"})
+_THIRD_PARTY = re.compile(
+    r"(?<![a-z])(your|their|his|her|they|the nurse|the doctor|the resident|"
+    r"anyone|someone|somebody|anybody)(?![a-z])")
+_FIRST_PERSON = re.compile(r"(?<![a-z])(i|i'?m|im|i'?ll|ill|i'?ve|ive|me|my|we|let me)(?![a-z])")
+
+
+def _performed_by_the_learner(t, pos):
+    """Did the learner say they DID this, here, rather than ask about it?
+
+    "Did your student doctor introduce himself?" and "Should I wash my hands
+    first?" both contain the trigger and neither is the act: one is about
+    somebody else, the other is a question the learner has not yet acted on.
+    Credit for a courtesy is credit for performing it.
+    """
+    clause = t[:pos]
+    boundary = max(clause.rfind("."), clause.rfind(";"), clause.rfind(","))
+    clause = clause[boundary + 1:]
+    third = [m.start() for m in _THIRD_PARTY.finditer(clause)]
+    first = [m.start() for m in _FIRST_PERSON.finditer(clause)]
+    if third and (not first or max(third) > max(first)):
+        return False
+    return True
+
+
 def _courtesy_hits(text):
     """Courtesy actions the learner actually performed.
 
     A trigger word is not the action. "I have no hand sanitizer available"
     contains the hand-hygiene trigger and is the opposite of doing it, so an
-    absence or a negation scoped to the trigger earns nothing.
+    absence or a negation scoped to the trigger earns nothing. Neither is a
+    question about it, nor a sentence about somebody else doing it.
     """
-    t = nlp.normalize(text)
     if intent_mod.describes_absence(text):
         return []
+    whole = nlp.normalize(nlp.expand_contractions(text))
+    # Judge each sentence on its own. "I wash my hands. Is it okay if I examine
+    # you?" performs hand hygiene AND asks consent; testing the whole turn for
+    # question-ness would throw away the act stated in the first half.
+    sentences = [part for part in re.split(r"(?<=[.;!?])\s+", (text or "").strip()) if part.strip()]
     out = []
     for c in physexam.COURTESY:
-        for trig in c["triggers"]:
-            if nlp.normalize(trig) in t:
-                if intent_mod.courtesy_is_negated(text, trig):
+        credited = False
+        for sentence in (sentences or [text or ""]):
+            normalized_sentence = nlp.normalize(nlp.expand_contractions(sentence))
+            for trig in c["triggers"]:
+                normalized = nlp.normalize(nlp.expand_contractions(trig))
+                pos = normalized_sentence.find(normalized)
+                if pos < 0:
+                    continue
+                if intent_mod.courtesy_is_negated(sentence, trig):
                     break
-                out.append(dict(c, matched_components=_courtesy_components(c, t)))
+                if c["id"] in _PERFORMED_COURTESIES and (
+                        intent_mod.is_question(sentence)
+                        or not _performed_by_the_learner(normalized_sentence, pos)):
+                    break
+                credited = True
                 break
+            if credited:
+                break
+        if credited:
+            # Components may be spread across the turn, so they are read from
+            # the whole of it rather than from the sentence that matched.
+            out.append(dict(c, matched_components=_courtesy_components(c, whole)))
     return out
 
 
@@ -194,7 +244,7 @@ def _courtesy_components(entry, normalized):
     hit = []
     for name, triggers in components.items():
         for trigger in triggers:
-            if nlp.normalize(trigger) in normalized:
+            if nlp.normalize(nlp.expand_contractions(trigger)) in normalized:
                 if not intent_mod.courtesy_is_negated(normalized, trigger):
                     hit.append(name)
                 break
@@ -691,6 +741,12 @@ class Session:
                                      request_id=pending.get("request_id", ""))
             self.settings["scoring"] = previous
             del self._completion_elapsed
+            # Hold the outcome for ONE state read. Every caller of
+            # finish_pending threw this away, so the "which parts of the
+            # examination released nothing" diagnosis was computed on every
+            # deferred examination and never reached the learner: they saw the
+            # action recorded and no explanation of why it produced no finding.
+            self._exam_outcome = result
             self.save()
             return result
         self.ledger.add(evidence.EXAM_ACTION, "Examination interrupted; no findings released.",
@@ -1263,6 +1319,21 @@ def state_payload(s):
         }
     if row["phase"] == "encounter":
         payload["exam_catalog"] = physexam.catalog_for_ui()
+        # Record is a projection of the ledger onto the note's own rows, built
+        # here rather than in the browser: the authorisation that decides
+        # whether a fact was really delivered lives on this side, and the
+        # transcript the browser receives deliberately does not carry fact ids.
+        payload["record"] = record.summarize(s.case, s.ledger.events)
+        outcome = getattr(s, "_exam_outcome", None)
+        if outcome:
+            # One-shot: the next state read no longer carries it, so a poll
+            # cannot replay the same message.
+            s._exam_outcome = None
+            payload["exam_outcome"] = {
+                k: outcome.get(k) for k in
+                ("kind", "label", "text", "missing_components", "released",
+                 "duration_s", "components")
+                if k in outcome}
         payload["transcript"] = [
             {"seq": e["seq"], "kind": e["kind"], "text": e["text"], "t_ms": e["t_ms"],
              "time": "%d:%02d" % (e["t_ms"] // 60000, (e["t_ms"] // 1000) % 60),
@@ -1276,6 +1347,19 @@ def state_payload(s):
                              evidence.EXAM_FINDING, evidence.EXAM_REFUSED,
                              evidence.SIM, evidence.STATION_INFO)
         ]
-    if row["phase"] in ("note", "submitted") and bool(row["assisted"]):
+    # Writing the note with nothing to consult. Record and transcript were
+    # attached only during the encounter, and the transcript again afterwards
+    # only for an attempt already flagged assisted -- which server-side is set
+    # for guided and never for coached. So coached practice, where teaching is
+    # explicitly permitted, wrote its SOAP note blind.
+    #
+    # Independent practice and exam rehearsal are deliberately unchanged: there
+    # the organize period is when you make your own notes, and handing back a
+    # structured summary of the encounter would remove the thing being
+    # practised. Record contains only what the student actually obtained, so
+    # this is their own material, not an answer key.
+    teaching_mode = s.settings.get("learning_mode") in ("guided", "coached")
+    if row["phase"] in ("note", "submitted") and (bool(row["assisted"]) or teaching_mode):
         payload["assisted_transcript"] = s.ledger.transcript()
+        payload["record"] = record.summarize(s.case, s.ledger.events)
     return payload

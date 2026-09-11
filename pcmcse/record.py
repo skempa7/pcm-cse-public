@@ -1,0 +1,386 @@
+"""The encounter record: the useful patient information actually obtained.
+
+This is deliberately NOT a second transcript. Talk already holds the
+conversation; Record answers a different question -- "what have I learned, and
+where does it go in my note?" -- so it is organised by the rows the PCM 2026
+SOAP rubric actually scores (Student Manual, Table 4: Onset/Location,
+Duration/Chronological, Character/Quality, Severity/Quantity,
+Alleviating/Aggravating, Associated/Past/Treatments, PMH and PSH, Medications,
+Social, Family, Allergies), not by an invented taxonomy.
+
+Two rules decide what may appear, and both are about evidence rather than
+presentation:
+
+  * A fact is listed only when its APPROVED text was actually delivered.
+    `patient.delivered_fact_metadata` is the same gate the ledger uses, so a
+    hidden case fact, a merely-triggered fact, or a fact the simulator knows
+    but never said can never reach the page.
+  * A fact is listed once. The patient answering "it started three days ago"
+    and later "I think it was Tuesday" refine ONE onset entry rather than
+    accumulating two rows, because a note has one onset.
+
+What the patient reported and what the clinician measured are kept apart:
+"denies fever" is a reported negative and never becomes an observed vital.
+"""
+from __future__ import annotations
+
+import re
+
+from . import evidence, patient as _patient
+
+# Rubric row -> the authored fact categories that belong in it. Categories come
+# from the case library's own `category` vocabulary, so nothing here invents a
+# clinical grouping the cases do not already make.
+SECTIONS = (
+    ("concern",     "subjective", "Chief concern",                  ("chief_complaint",)),
+    ("onset",       "hpi",        "Onset / location",               ("onset", "location", "radiation", "setting")),
+    ("duration",    "hpi",        "Duration / chronology",          ("timing", "chronology")),
+    ("quality",     "hpi",        "Character / quality",            ("quality",)),
+    ("severity",    "hpi",        "Severity / quantity",            ("severity",)),
+    ("modifiers",   "hpi",        "Alleviating / aggravating",      ("alleviating", "aggravating")),
+    ("associated",  "hpi",        "Associated / past / treatments", ("associated", "past_occurrence", "treatment", "pertinent_negative")),
+    ("pmh",         "other",      "Past medical & surgical",        ("pmh", "psh")),
+    ("medications", "other",      "Medications",                    ("medications",)),
+    ("allergies",   "other",      "Allergies",                      ("allergies",)),
+    ("social",      "other",      "Social history",                 ("social",)),
+    ("family",      "other",      "Family history",                 ("family",)),
+    ("obgyn",       "other",      "OB/GYN history",                 ("obgyn",)),
+    ("perspective", "other",      "Patient perspective",            ("fife",)),
+)
+GROUPS = (
+    ("subjective", "Patient & chief concern"),
+    ("hpi",        "History of present illness"),
+    ("other",      "Other history"),
+    ("objective",  "Vitals & examination findings"),
+)
+_CATEGORY_SECTION = {cat: sid for sid, _g, _l, cats in SECTIONS for cat in cats}
+_SECTION_GROUP = {sid: g for sid, g, _l, _c in SECTIONS}
+_SECTION_LABEL = {sid: l for sid, _g, l, _c in SECTIONS}
+
+
+# The short row label a fact carries inside its section. The case library's own
+# category (and, for the many social facts sharing one category, its
+# history_topic) already names the thing; nothing here re-interprets the fact.
+_ITEM_LABEL = {
+    "chief_complaint": "Reason for visit", "onset": "Onset", "location": "Location",
+    "radiation": "Radiation", "setting": "Circumstances", "timing": "Timing",
+    "chronology": "Course", "quality": "Quality", "severity": "Severity",
+    "alleviating": "Relieved by", "aggravating": "Worsened by",
+    "associated": "Associated", "pertinent_negative": "Denies",
+    "past_occurrence": "Prior episodes", "treatment": "Tried",
+    "pmh": "Medical", "psh": "Surgical", "medications": "Medications",
+    "allergies": "Allergies", "social": "Social", "family": "Family",
+    "obgyn": "OB/GYN", "fife": "Concern",
+}
+
+
+def _item_label(fact):
+    topic = fact.get("history_topic")
+    if topic:
+        return str(topic).replace("_", " ").capitalize()
+    return _ITEM_LABEL.get(fact.get("category"), "Reported")
+
+
+# --- concise display -------------------------------------------------------
+#
+# Record is read while writing a note, so "It started about three weeks ago."
+# should read "About 3 weeks ago." The shortening is mechanical and reversible,
+# never generative: it removes scaffolding that carries no clinical meaning and
+# leaves everything else exactly as authored.
+#
+# Only a PRONOUN subject is removed. "The cough began 4 days ago" keeps its
+# subject, because when a case carries more than one complaint the subject is
+# the thing that says which timeline this is.
+_PRONOUN_OPENER = re.compile(
+    r"^(?:it|this|that)(?:'s|\u2019s| is| was| has been| have been| started| began|"
+    r" feels like| feels| seems| seemed)\s+", re.I)
+# Pure deixis: pointing words that add nothing on a written line.
+_DEIXIS_OPENER = re.compile(r"^(?:right here|here)\s*,\s*", re.I)
+# Spelled numbers, so "three weeks" scans as "3 weeks". Same value, and any
+# hedge in front of it ("about", "maybe") is untouched.
+_NUMBER_WORDS = {
+    "one": "1", "two": "2", "three": "3", "four": "4", "five": "5", "six": "6",
+    "seven": "7", "eight": "8", "nine": "9", "ten": "10", "eleven": "11",
+    "twelve": "12", "thirteen": "13", "fourteen": "14", "fifteen": "15",
+    "sixteen": "16", "seventeen": "17", "eighteen": "18", "nineteen": "19",
+    "twenty": "20", "thirty": "30", "forty": "40", "fifty": "50",
+    "sixty": "60", "seventy": "70", "eighty": "80", "ninety": "90",
+}
+_NUMBER_UNITS = ("second|minute|hour|day|week|month|year|time|episode|block|"
+                 "flight|step|pack|drink|beer|pound|milligram|mg|cigarette|"
+                 "tablet|pill|glass|ounce|mile|stool|puff|unit")
+# One modifier may sit between the number and its unit ("two SHORTER episodes"),
+# and a rating reads as a number on both sides of "out of".
+#
+# _signal() normalises through THIS SAME object, so the guard widens with the
+# substitution. A separate, wider regex here would make every new conversion
+# look like a lost number to the guard, and each one would be rejected.
+_NUMBER_RE = re.compile(
+    r"\b(%s)\b(?=\s+(?:\w+\s+)?(?:%s)s?\b|\s+out of\b)"
+    r"|(?<=\bout of\s)(%s)\b"
+    % ("|".join(_NUMBER_WORDS), _NUMBER_UNITS, "|".join(_NUMBER_WORDS)), re.I)
+
+
+def _digits(match):
+    """The matched number word, whichever side of 'out of' it sat on."""
+    return _NUMBER_WORDS[(match.group(1) or match.group(2)).lower()]
+# A sentence that OPENS with a denial must never lose its opening.
+_LEADING_NEGATION = re.compile(r"^(?:no|not|never|none|nothing|neither|nobody)\b", re.I)
+
+# The patient narrates in the first person; a note does not. Removing the
+# subject and its auxiliary leaves the clinical content untouched -- every
+# surviving word is still one she said. Longest alternative first, so
+# "I have had a fever" reads "A fever" rather than "Had a fever". A denial
+# keeps its opening, so "I have never had this" is left exactly as it is.
+_SUBJECT_OPENER = re.compile(
+    r"^(?:there\s+(?:is|are|was|were)"
+    r"|i\s+have\s+been|i\s*['\u2019]ve\s+been|i\s+have\s+had|i\s+have"
+    r"|i\s*['\u2019]ve|i\s+had|i\s+am|i\s*['\u2019]m|i\s+was"
+    r"|i\s+feel|i\s+felt|i\s+get|i\s+keep|i\s+started|i\s+began)"
+    r"\s+(?!not\b|no\b|never\b|nothing\b)", re.I)
+
+
+# Discourse markers and conversational tails. These carry no clinical content
+# at all, which is exactly why the Record should not print them: the student is
+# scanning for what they obtained, not for how it was said. "yes" and "no" are
+# deliberately absent -- to a yes/no question those ARE the answer.
+_LEADING_FILLER = re.compile(
+    r"^(?:yeah|yep|well|oh|um|uh|honestly|i mean|you know|hmm|sure|okay|ok|"
+    r"look|see|right)\s*,\s*"
+    # "Now that you mention it -" marks that the detail was volunteered on
+    # prompting. The Record already carries that as a flag on the row, so the
+    # phrase is discourse, not content.
+    r"|^now that you mention it\s*[,\u2014-]\s*", re.I)
+# \b matters here: without it this matched INSIDE words -- "sitting upright."
+# lost its tail and became "sitting up", and "the pain is low on the right."
+# lost the side it was on. "right" is gone from the list for good: as a tag
+# question it is filler, but as anatomy it is the finding.
+_TRAILING_FILLER = re.compile(
+    r"(?:\s*\b(?:i know(?:,? i know)?|sorry|you know|"
+    r"that'?s (?:it|about it)|i guess|anyway|that'?s all)\s*[.!?]\s*)+$", re.I)
+
+
+def condense(value):
+    """A shorter rendering of an authored fact, or the value unchanged.
+
+    Everything clinically load-bearing survives verbatim -- negation, hedges,
+    numbers, units, anatomy, timing and qualifiers -- because nothing is
+    rewritten: the only edits are removing a leading pronoun-and-copula, a
+    leading "right here," and spelling numerals as digits.
+    """
+    text = (value or "").strip()
+    if not text or _LEADING_NEGATION.match(text):
+        return text
+    shortened = _LEADING_FILLER.sub("", text)
+    shortened = _TRAILING_FILLER.sub("", shortened).strip()
+    if not shortened:
+        return text
+    shortened = _DEIXIS_OPENER.sub("", shortened)
+    shortened = _PRONOUN_OPENER.sub("", shortened)
+    shortened = _SUBJECT_OPENER.sub("", shortened)
+    shortened = _NUMBER_RE.sub(_digits, shortened)
+    shortened = shortened.strip()
+    if not shortened:
+        return text
+    # Never hand back something that lost a negation, a digit or a unit.
+    if _signal(shortened) != _signal(text):
+        return text
+    if shortened is not text:
+        shortened = shortened[0].upper() + shortened[1:]
+    return shortened
+
+
+_SIGNAL_RE = re.compile(
+    r"\b(?:no|not|never|none|nothing|neither|nobody|n't|denies|without|"
+    r"about|approximately|maybe|around|roughly|sometimes|occasionally|"
+    r"mild|moderate|severe|worse|better)\b|\d+(?:[./]\d+)?", re.I)
+
+
+def _signal(text):
+    """The parts of a sentence that may not change when it is shortened.
+
+    Spelled numbers count as their digits, so turning "three" into "3" is not
+    read as losing a word.
+    """
+    expanded = _NUMBER_RE.sub(_digits, text)
+    return sorted(m.group(0).lower() for m in _SIGNAL_RE.finditer(expanded))
+
+
+def _negative(fact):
+    """Whether this fact is a denial rather than a positive report."""
+    if fact.get("category") == "pertinent_negative":
+        return True
+    concepts = fact.get("concepts") or {}
+    polarities = {(c or {}).get("polarity") for c in concepts.values()}
+    return bool(polarities) and polarities == {"negative"}
+
+
+_IDENTITY = re.compile(r"^\s*([^.]*?\b\d{1,3}[- ]year[- ]old\b[^.]*)\.", re.I)
+
+
+def _identity_line(text):
+    """The "Amara Wilson, 28-year-old female" line out of a doorway brief."""
+    found = _IDENTITY.search(text or "")
+    return (found.group(1).strip() + ".") if found else ""
+
+
+def hpi_gaps(summary):
+    """Which HPI rows of the note are still empty.
+
+    This is the useful half of a symptom-analysis mnemonic without asserting an
+    expansion the course files do not settle: the rows are the PCM 2026 SOAP
+    rubric's own (Onset/Location, Duration/Chronological, Character/Quality,
+    Severity/Quantity, Alleviating/Aggravating, Associated/Past/Treatments), so
+    naming an empty one is grounded in the approved scoring, not in a letter
+    taken from a mnemonic whose wording is unverified here.
+    """
+    filled = {section["id"]
+              for group in summary.get("groups", [])
+              for section in group.get("sections", [])
+              if section.get("items")}
+    return [{"id": sid, "label": label}
+            for sid, group, label, _cats in SECTIONS
+            if group == "hpi" and sid not in filled]
+
+
+def _as_spoken(fact, said, value):
+    """The wording the patient actually used for this fact, if recoverable.
+
+    A fact may author several `sp_says` variants; the Record used to keep the
+    canonical `value` and the tile labelled it "Said:", so a row could quote a
+    sentence the patient never uttered. Whichever variant appears in the
+    delivered line IS what was said, and the authorisation gate has already
+    established that one of them does.
+    """
+    spoken = (said or "")
+    for variant in list(fact.get("sp_says") or []) + [value]:
+        if variant and variant.strip() and variant.strip() in spoken:
+            return variant.strip()
+    return value
+
+
+def summarize(case, events):
+    """Project the ledger onto the note's rows. Read-only; never mutates."""
+    definitions = {f["id"]: f for f in (case.get("facts") or [])}
+    items, order = {}, []
+    findings, chart, unanswered = [], [], []
+
+    for event in events or []:
+        meta = event.get("meta") or {}
+        kind = event.get("kind")
+        seq = event.get("seq")
+
+        if kind == evidence.PATIENT:
+            claimed = meta.get("facts_released") or []
+            authorised = []
+            for fid in claimed:
+                fact = definitions.get(fid)
+                if not fact:
+                    continue
+                # The same authorisation the evidence ledger applies: only text
+                # the patient actually spoke may carry the fact's identity.
+                approved = _patient.delivered_fact_metadata(fact, event.get("text", "")) or {}
+                if fid in (approved.get("facts_released") or []):
+                    authorised.append(fid)
+            if not authorised:
+                # An unanswered question is a gap, not a fact. Naming it keeps
+                # "asked and refused" distinct from "never asked" without
+                # inventing an "Unknown" row for every field.
+                if meta.get("no_information"):
+                    unanswered.append({"seq": seq, "text": event.get("text", "")})
+                continue
+            for fid in authorised:
+                fact = definitions[fid]
+                section = _CATEGORY_SECTION.get(fact.get("category"))
+                if not section:
+                    continue
+                # Condense WHAT SHE SAID, not the fact's canonical wording.
+                # A fact may author several variants; showing a row derived
+                # from one while the patient spoke another puts words in her
+                # mouth, and makes the row and its "Said:" tooltip disagree.
+                said = _as_spoken(fact, event.get("text", ""),
+                                  fact.get("value") or "")
+                if fid in items:
+                    entry = items[fid]
+                    entry["seqs"].append(seq)
+                    if said:
+                        entry["text"] = condense(said)
+                        entry["text_full"] = said if entry["text"] != said else ""
+                    continue
+                value = said
+                shortened = condense(value)
+                items[fid] = {
+                    "fact_id": fid, "section": section,
+                    "label": _item_label(fact),
+                    "text": shortened,
+                    # Kept so the exact disclosed wording is always recoverable;
+                    # only present when shortening actually changed something.
+                    "text_full": (lambda said: said if shortened != said else "")(
+                        _as_spoken(fact, event.get("text", ""), value)),
+                    "reported_negative": _negative(fact),
+                    "volunteered": bool(meta.get("volunteered")),
+                    "uncertain": bool(meta.get("uncertain")),
+                    "seqs": [seq],
+                }
+                order.append(fid)
+
+        elif kind == evidence.EXAM_FINDING:
+            findings.append({
+                "label": meta.get("label") or meta.get("maneuver_id") or "Examination",
+                "text": event.get("text", ""),
+                "documented_as": meta.get("documented_as") or "",
+                "components": meta.get("components") or [],
+                "seqs": [seq],
+            })
+
+        elif kind == evidence.EXAM_REFUSED:
+            findings.append({
+                "label": (meta.get("label") or "Examination") + " — declined",
+                "text": event.get("text", ""), "documented_as": meta.get("documented_as") or "",
+                "components": [], "declined": True, "seqs": [seq],
+            })
+
+        elif kind == evidence.STATION_INFO:
+            text = event.get("text", "")
+            if meta.get("vitals") or meta.get("result"):
+                chart.append({
+                    "label": meta.get("label") or ("Doorway vitals" if meta.get("vitals")
+                                                   else "Supplied result"),
+                    "text": text, "seqs": [seq],
+                })
+                continue
+            # The doorway brief is mostly instructions to the student -- what to
+            # perform, how long they have. Only its first line is patient
+            # information, and age and sex are a scored row of the note, so that
+            # line is kept and the procedural remainder is dropped rather than
+            # pasted into the summary the student writes from.
+            identity = _identity_line(text)
+            if identity:
+                chart.append({"label": "Age / sex", "text": identity, "seqs": [seq]})
+
+    sections = {}
+    for fid in order:
+        sections.setdefault(items[fid]["section"], []).append(items[fid])
+
+    groups = []
+    for gid, glabel in GROUPS:
+        rows = []
+        if gid == "objective":
+            if chart:
+                rows.append({"id": "chart", "label": "Supplied chart information", "items": chart})
+            if findings:
+                rows.append({"id": "exam", "label": "Examination findings", "items": findings})
+        else:
+            for sid, sgroup, slabel, _cats in SECTIONS:
+                if sgroup != gid or not sections.get(sid):
+                    continue
+                rows.append({"id": sid, "label": slabel, "items": sections[sid]})
+        if rows:
+            groups.append({"id": gid, "label": glabel, "sections": rows})
+
+    return {
+        "groups": groups,
+        "facts": len(order),
+        "findings": len(findings),
+        "unanswered": unanswered[-6:],
+    }

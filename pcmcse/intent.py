@@ -140,6 +140,14 @@ _NEGATION_CUES = [
     "refuse to", "decline to", "skip", "omit", "avoid", "never",
     "am not", "i'm not", "im not", "not able to", "unable to",
     "no longer", "hold off on", "defer", "postpone", "wait on",
+    # The past and perfect families. Without these, "I didn't introduce
+    # myself" matched the introduction trigger and was credited AS an
+    # introduction -- the learner saying they had NOT done it earned the
+    # point for doing it.
+    "did not", "didn't", "didnt", "have not", "haven't", "havent",
+    "has not", "hasn't", "hasnt", "had not", "hadn't", "hadnt",
+    "was not", "wasn't", "wasnt", "were not", "weren't", "werent",
+    "forgot to", "failed to", "neglected to", "meant to", "should have",
     # Bare "not" carries the hortative: "Let's not palpate your abdomen yet."
     # It is safe because _negation_reaches is clause-bounded and stops at a
     # contrast word, so "I am not sure, but let me palpate" still examines.
@@ -150,7 +158,7 @@ _ABSENCE_FRAMES = [
     "i have no", "i don't have", "i dont have", "there is no", "there's no",
     "theres no", "we have no", "no access to", "is not available",
     "isn't available", "isnt available", "are not available", "none available",
-    "ran out of", "out of", "cannot find", "can't find", "cant find",
+    "ran out of", "cannot find", "can't find", "cant find",
     "unavailable",
 ]
 
@@ -254,7 +262,12 @@ def interpret(text: str, *, courtesy_ids=None, tags=None) -> dict:
     result["exam_verb"] = verbs[0][1] if verbs else None
 
     # --- 1. An absence is never an action, and never a courtesy ------------
-    if _has(t, _ABSENCE_FRAMES):
+    # These frames describe missing EQUIPMENT ("there is no otoscope"). A
+    # question put to the patient is never that, and reading one as an absence
+    # silences it: the bare bigram "out of" made "how bad is it out of ten?"
+    # -- the commonest severity phrasing there is -- answer "you described
+    # something you do not have" instead of releasing the severity fact.
+    if not question and _has(t, _ABSENCE_FRAMES):
         result["intent"] = NEGATED
         result["negated"] = True
         result["reason"] = ("You described something you do not have. Nothing "

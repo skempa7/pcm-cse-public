@@ -34,6 +34,12 @@ for path in ['/api/voice','/api/ai/status','/api/session/'+sid+'/ai-turn','/api/
 # Both wardrobe states share the original clinical skin material.
 # Public artifacts are a closed, explicit runtime package, no provider modules.
 for name in ['ai_patient.py','natural_voice.py','conversation.py']:assert not (ROOT/'pcmcse'/name).exists()
+# A filename list is not the boundary: a billable call added to offline_routes.py,
+# a key pasted into the web bundle, or a provider module tucked inside engine.zip
+# all passed the check above untouched. Scan what actually ships.
+import subprocess as _sp
+_scan=_sp.run([sys.executable,str(ROOT/'tools/check_provider_free.py')],capture_output=True,text=True)
+assert _scan.returncode==0,'published edition can reach a paid service:\n'+_scan.stdout+_scan.stderr
 assets=[]
 for p in (ROOT/'web/patient3d/assets').glob('public-*.glb'):
  data=p.read_bytes();n=struct.unpack_from('<I',data,12)[0];g=json.loads(data[20:20+n]);names={n.get('name') for n in g['nodes']};assert 'PCM_PublicBody' in names and 'PCM_AnatomicalBody' in names;assert not {'PCM_FemaleBody','PCM_FemaleBody_Source','PCM_FemaleBody_Covered'} & names;assert {'PCM_Seated','PCM_Supine','PCM_Standing','PCM_Prone'}<={a['name'] for a in g['animations']};assert {'PCM_PublicKnit','PCM_PublicTrousers','PCM_PublicShoes'}<=names

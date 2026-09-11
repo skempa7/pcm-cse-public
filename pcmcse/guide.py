@@ -85,11 +85,17 @@ def plan(s):
         item = _task(ident, group, row.get('student','').strip(), row.get('student','').strip(),
                      row.get('why') or WHY.get(group,''), facts=fids)
         if section == 'Recognize urgency':
-            item.update(kind='decision', title='Check whether urgent help is needed', question='',
+            # `match` has to be set HERE. It used to live in the elif below,
+            # which this branch has already claimed, so the urgency task
+            # carried no completion rule at all: it could never be finished,
+            # and because it is early in the plan the coach's "next needed
+            # step" stayed pinned to it for the whole encounter.
+            item.update(kind='decision', match='urgent',
+                        title='Check whether urgent help is needed', question='',
                         why=lesson.get('plan',{}).get('notice','Review the current complaint and supplied vital signs.'),
                         decision_note='Review the current symptoms and supplied vital signs. If they suggest a time-sensitive emergency, explain your concern and escalate promptly. A flagged teaching case does not by itself mean every patient needs emergency transfer. Do not delay needed care for this learning path.')
         elif not fids:
-            item['match'] = 'urgent' if section=='Recognize urgency' else 'education' if section=='Address the patient’s question' else 'counsel' if section=='Explain next steps' else 'closure'
+            item['match'] = 'education' if section=='Address the patient’s question' else 'counsel' if section=='Explain next steps' else 'closure'
         if group == 'close':
             closings.append(item)
         else:
@@ -222,9 +228,219 @@ def coverage(s, verified, tasks):
             'note':'Coverage of obtained information, not a SOAP score. ROS topic matching is conservative; inspect the actual replies. Specificity, placement and unsupported claims are assessed after writing.'}
 
 
+# Which plan section each inferred encounter step belongs to. 'interpret'
+# follows the examination, so it stays with it.
+_STEP_GROUP = {'orient': 'connect', 'pattern': 'pattern',
+               'discriminate': 'discriminate', 'examine': 'examine',
+               'interpret': 'examine', 'close': 'close', 'document': 'document'}
+
+
+# What to ask when only part of a two-part courtesy is still outstanding.
+_REMAINING_PART = {
+    ('confirm_name', 'name'): ('Confirm the patient\u2019s name',
+                               'Can you confirm your full name for me?'),
+    ('confirm_name', 'preferred_address'): ('Ask how they prefer to be addressed',
+                                            'And what would you like me to call you?'),
+}
+
+
+def next_action(s):
+    """The single next move, for a coached encounter.
+
+    The step-by-step PLAN stays guided-only -- `allowed()` is the policy and
+    this does not widen it. What a coached student gets is one move: what to do
+    next, the question that does it, and why it matters. That is the difference
+    between a coach and a focus dropdown, and it is the same evidence the
+    guided plan uses, so a task already completed in the student's own words is
+    never offered back to them.
+    """
+    if s.settings.get('learning_mode') not in ('guided', 'coached'):
+        return None
+    if s.row['phase'] not in ('encounter', 'organize', 'note'):
+        return None
+    try:
+        full = _state(s)
+    except Exception:
+        return None
+    tasks = full.get('tasks') or []
+    pending = next((t for t in tasks if t['id'] == full.get('recommended')), None)
+    # A 'decision' is a judgement the student carries through the encounter --
+    # "is this urgent?" -- not a gate in front of the history. Left as the
+    # recommendation it pinned the coach for every later turn, so the student
+    # was told to re-decide urgency while asking about medications. It stays in
+    # the plan and can still be completed; it just does not hold the queue.
+    if pending is not None and pending.get('kind') == 'decision':
+        actionable = next((t for t in tasks
+                           if t.get('status') == 'next'
+                           and t.get('kind') != 'decision'
+                           and (t.get('question') or t.get('kind') == 'exam')), None)
+        if actionable is not None:
+            pending = actionable
+    # What the note still has nothing for, computed BEFORE the move is chosen
+    # so it can steer the choice instead of only decorating it.
+    try:
+        from . import record as record_mod
+        summary = record_mod.summarize(s.case, s.ledger.events)
+        gaps = record_mod.hpi_gaps(summary)
+    except Exception:
+        summary, gaps = None, []
+    gap_ids = {g['id'] for g in gaps}
+
+    coverage = full.get('coverage') or {}
+    outstanding = [x for x in tasks if x.get('status') == 'next'
+                   and x.get('kind') != 'decision'
+                   and (x.get('question') or x.get('kind') == 'exam')]
+    # The patient is gone once the encounter closes. Ranking by "nearest group"
+    # then handed the note screen a line to SAY -- "I recommend urgent hospital
+    # evaluation ..." -- as the student's next move, which they cannot make and
+    # which is not what they are doing. Keep the coach inside the work in front
+    # of them.
+    writing = s.row['phase'] in ('organize', 'note')
+    if writing:
+        outstanding = [x for x in outstanding if x.get('group') == 'document']
+
+    # Taking the HEAD of the plan meant one unmatched authored question pinned
+    # the coach for the whole encounter: it went on naming the same move after
+    # the student had covered the history and performed every examination, and
+    # it had no way to say "that is enough, go and write". Rank instead.
+    if outstanding:
+        definitions = {f['id']: f for f in (s.case.get('facts') or [])}
+
+        def fills_a_gap(task):
+            for fid in task.get('facts') or []:
+                fact = definitions.get(fid)
+                if not fact:
+                    continue
+                section = record_mod._CATEGORY_SECTION.get(fact.get('category'))
+                if section in gap_ids:
+                    return True
+            return False
+
+        order = {x['id']: i for i, x in enumerate(tasks)}
+        # Follow the section the encounter has actually REACHED, not the first
+        # one with anything left in it. Two failures sit either side of this:
+        # ranking purely by an empty note row sends the student into the HPI
+        # before they have said hello (the course's own "Common Mistakes" list
+        # names jumping between sections), while holding the earliest unfinished
+        # section pins the coach on "ask how they prefer to be addressed" for
+        # the rest of the encounter. So: this section first, then FORWARD, and
+        # only then back -- and within a section, a question that fills an empty
+        # note row comes first.
+        group_order = [g['id'] for g in (full.get('groups') or [])]
+        try:
+            from . import learning as learning_mod
+            here = group_order.index(_STEP_GROUP.get(learning_mod.inferred_step(s), ''))
+        except (ImportError, ValueError, Exception):
+            here = 0
+
+        def _rank(task):
+            group = task.get('group')
+            index = group_order.index(group) if group in group_order else len(group_order)
+            place = 0 if index == here else (1 if index > here else 2)
+            return (place, abs(index - here),
+                    0 if fills_a_gap(task) else 1, order[task['id']])
+        # A courtesy the student has HALF done is the one move that must keep
+        # the queue: the coach's job there is to name the missing half, and
+        # ranking a history question ahead of it loses that entirely.
+        part_done = bool(pending) and bool(
+            set(pending.get('courtesies') or
+                ([pending['courtesy']] if pending.get('courtesy') else []))
+            & set(s.ledger.courtesy_components() or {}))
+        ranked = sorted(outstanding, key=_rank)
+        # The ranking supersedes plan order outright. Guarding it on "only if
+        # the top task fills a note gap" put the plan head back whenever the
+        # best move was an examination, which has no note row of its own -- so
+        # after a full history the coach went back to the greeting.
+        # A half-done courtesy keeps the queue only while the encounter is
+        # still in its section. Otherwise one partially-credited greeting pins
+        # the coach on "ask how they prefer to be addressed" straight through
+        # the history and the examination -- the same freeze, wearing a
+        # different hat.
+        still_here = part_done and (
+            pending.get('group') in group_order
+            and group_order.index(pending['group']) >= here)
+        if not still_here:
+            pending = ranked[0]
+
+    # Enough history, and something examined: the useful move is now to finish,
+    # not another marginal question. Phrased from the encounter's own coverage,
+    # never as a claim that the patient has been adequately evaluated.
+    if coverage.get('history_ready') and not writing:
+        closing = [x for x in tasks if x.get('status') == 'next'
+                   and x.get('group') == 'close' and x.get('question')]
+        transition = next((x for x in tasks if x['id'] == 'document.transition'), None)
+        if closing:
+            pending = closing[0]
+        elif coverage.get('objective_ready') and transition is not None:
+            pending = dict(transition,
+                           title='You have the history and the examination you planned',
+                           why='Every history area and examination on this plan has '
+                               'evidence behind it. Explain your thinking to the '
+                               'patient, then move to the note.')
+
+    # Nothing authored is left for the documentation phase, but there is still
+    # exactly one useful thing to say about it, and it is not an encounter line.
+    if writing and (pending is None or pending.get('group') != 'document'):
+        pending = {'id': 'document.write', 'group': 'document', 'kind': 'document',
+                   'title': 'Write each row from what you actually obtained',
+                   'why': 'Every row is scored against the evidence in your record. '
+                          'What you did not obtain is not a normal finding, and it is '
+                          'not documented \u2014 the panel beside the editor lists '
+                          'exactly what you have.'}
+    if not pending:
+        return None
+    title = pending.get('title') or ''
+    question = pending.get('question') or ''
+    # Half-done courtesies ask for the half that is missing. Repeating "confirm
+    # the name and how to address them" to a student who has just asked the
+    # name reads as though the question had not registered.
+    needed = set(pending.get('courtesies') or ([pending['courtesy']] if pending.get('courtesy') else []))
+    if needed:
+        satisfied = s.ledger.courtesy_components()
+        for cid in sorted(needed):
+            declared = (physexam.COURTESY_BY_ID.get(cid, {}).get('components') or {})
+            missing = [part for part in declared if part not in set(satisfied.get(cid, []))]
+            if declared and missing and len(missing) < len(declared):
+                phrasing = _REMAINING_PART.get((cid, missing[0]))
+                if phrasing:
+                    title, question = phrasing
+                break
+    # A raw "7 of 62" reads as though finishing 62 authored steps were the
+    # objective. It is not: the plan is ONE defensible path through this case,
+    # and the source note says so. Progress is reported for the phase the
+    # student is actually in, which is a real and bounded unit of work.
+    group = pending.get('group') or ''
+    peers = [t for t in tasks if t.get('group') == group]
+    labels = {g['id']: g['label'] for g in full.get('groups', [])}
+    done_here = sum(1 for t in peers if t.get('status') == 'obtained')
+    # What the note still has nothing for. The coach can then point at a real
+    # gap instead of walking a fixed list.
+    try:
+        from . import record as record_mod
+        gaps = record_mod.hpi_gaps(record_mod.summarize(s.case, s.ledger.events))
+    except Exception:
+        gaps = []
+    return {'gaps': [g['label'] for g in gaps][:3],
+            'title': title,
+            'question': question,
+            'why': pending.get('why') or '',
+            'kind': pending.get('kind') or 'question',
+            'group': group,
+            'group_label': labels.get(group, ''),
+            'group_done': done_here,
+            'group_total': len(peers),
+            'completed': full.get('completed', 0),
+            'total': full.get('total', len(tasks))}
+
+
 def state(s):
+    """The full step-by-step plan. Guided practice only, by policy."""
     if not allowed(s):
         raise PermissionError('The step-by-step case coach is available only in guided practice.')
+    return _state(s)
+
+
+def _state(s):
     from . import learning
     tasks, lesson = plan(s)
     verified = audit._delivered_ledger(s.ledger,s.case)
@@ -245,7 +461,16 @@ def state(s):
             sources = sorted({released[fid]['seq'] for fid in item['facts'] if fid in released})
         elif item.get('courtesy') or item.get('courtesies'):
             needed = set(item.get('courtesies') or [item['courtesy']])
-            done = needed <= courtesies
+            # A courtesy that declares parts is only done when every part is.
+            # "Confirm the name and how to address them" used to be marked
+            # complete by the name alone, so the coach stopped asking for the
+            # preferred name while the Bedside sheet still showed it
+            # outstanding -- two surfaces disagreeing about the same evidence.
+            satisfied = s.ledger.courtesy_components()
+            declared = {c['id']: set(c.get('components') or {}) for c in physexam.COURTESY}
+            done = needed <= courtesies and all(
+                declared.get(cid, set()) <= set(satisfied.get(cid, []))
+                for cid in needed)
             sources = [e['seq'] for e in s.ledger.by_kind(evidence.COURTESY) if e['meta'].get('courtesy_id') in needed]
         elif item['kind']=='exam':
             rec = performed.get(item['maneuver_id'],{})
@@ -275,13 +500,35 @@ def state(s):
         elif item['kind']=='document':
             done = s.row['phase'] in ('organize','note')
         item.update(status='obtained' if done else 'deferred' if item['id'] in deferred else 'review' if item.get('checkpoint') else 'next', evidence_ids=sources)
-    next_task = next((x for x in tasks if x['status']=='next'),tasks[-1])
+    # The same rule next_action() applies: a 'decision' is a judgement carried
+    # through the encounter, not a gate in front of the history. Left at the
+    # head of the queue it pinned the GUIDED card on "is this urgent?" for the
+    # whole encounter, because only _state() feeds that card.
+    next_task = next((x for x in tasks
+                      if x['status']=='next' and x.get('kind')!='decision'
+                      and (x.get('question') or x.get('kind')=='exam')),
+                     next((x for x in tasks if x['status']=='next'), tasks[-1]))
     if s.row['phase'] in ('organize','note'):
         next_task = next(x for x in tasks if x['id']=='checkpoint.objective')
     selected = next_task['id']
     manual = changes[-1] if changes and changes[-1]['payload']['action']=='select' else None
-    if manual and manual['payload'].get('after_seq')==len(s.ledger.events) and any(t['id']==manual['payload']['step'] for t in tasks):
-        selected = manual['payload']['step']
+    if manual:
+        step = manual['payload']['step']
+        chosen = next((t for t in tasks if t['id'] == step), None)
+        # A selection used to survive only while the ledger was untouched, so
+        # the student was thrown back to the recommended step by the very act
+        # the step asked for -- asking its question, or positioning the patient
+        # for the examination they had just selected. Keep them where they
+        # navigated to, and move on only once THIS step is finished: evidence
+        # recorded after the selection was made is that step being completed,
+        # while an already-satisfied step the student deliberately opened again
+        # stays open so it can be re-read.
+        if chosen:
+            after = manual['payload'].get('after_seq')
+            completed_since = (chosen['status'] == 'obtained' and after is not None
+                               and any(seq > after for seq in (chosen.get('evidence_ids') or [])))
+            if not completed_since:
+                selected = step
     return {'available':True,'selected':selected,'recommended':next_task['id'],'tasks':tasks,
             'groups':[{'id':k,'label':v} for k,v in GROUPS if any(t['group']==k for t in tasks)],
             'coverage':cover,'completed':sum(t['status']=='obtained' for t in tasks),

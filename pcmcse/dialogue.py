@@ -81,8 +81,14 @@ TOPIC_CUES = {
     "sex":         [r"\bsex\b", r"\bgender\b"],
     "occupation":  [r"\bjob\b", r"\bwork\b", r"occupation", r"employ", r"for a living"],
     "household":   [r"\blive\b", r"living situation", r"household", r"who.*with you", r"\bhome\b"],
-    "chief_complaint": [r"brings you", r"bring you", r"why (?:are|r) you here", r"what happened",
-                        r"what'?s going on", r"seems to be the problem", r"here for",
+    # "brought you in" is the commonest opening there is, and the past tense
+    # was missing: with no topic detected in the remainder, a turn that also
+    # introduced the clinician was read as pure courtesy and answered with the
+    # patient's name instead of the presenting complaint.
+    "chief_complaint": [r"brings you", r"bring you", r"brought you", r"why (?:are|r) you here", r"what happened",
+                        r"what'?s (?:been )?going on", r"what has been going on",
+                        r"why you are here", r"why you'?re here",
+                        r"seems to be the problem", r"here for",
                         r"what can i (?:help|do)", r"reason for (?:your )?visit", r"came in",
                         r"come in today", r"made you (?:come|decide)", r"chief complaint"],
     "onset":       [r"\bonset\b", r"when did", r"how long (?:have|has|hav)", r"since when",
@@ -192,6 +198,12 @@ _CASUAL = [
     (r"\bdont\b", "do not"), (r"\bcant\b", "can not"), (r"\bive\b", "i have"),
     (r"\byoure\b", "you are"), (r"\byou'?re\b", "you are"),
     (r"\bany1\b", "anyone"), (r"\b2\b", "to"), (r"\b4\b", "for"),
+    # The same FIFE "ideas" question, asked the way people actually ask it.
+    # Twenty of the twenty-four cases author the trigger as "think is
+    # happening" and only four as "going on", so without this the commonest
+    # phrasing of a standard CSE question reached no fact at all.
+    (r"\bthink (?:is |may be |might be |could be )?going on\b", "think is happening"),
+    (r"\bthink (?:is |may be |might be |could be )?causing (?:this|it|that)\b", "think is happening"),
 ]
 _CASUAL_RES = [(re.compile(p, re.I), r) for p, r in _CASUAL]
 
@@ -229,6 +241,78 @@ def _edits1(word):
     return out
 
 
+# Ordinary English. A word on this list is never "repaired", however close it
+# sits to a clinical term in some case's trigger list.
+#
+# Without it the repair read any word the CURRENT case did not happen to use as
+# a typo and rewrote it: "tell me more" became "tell me move" in 16 of 24 cases,
+# "does it wake you at night" became "take you at right", "how far back" became
+# "how far black", and "how intense would you CALL it" became "...CALF it",
+# which matched a DVT pertinent-negative trigger and took checklist credit for
+# a question the student never asked. Twenty-eight ordinary words were being
+# rewritten into clinical terms this way.
+#
+# Being a real word is the test, not being in this case's triggers -- a case
+# that happens to mention "calf" must not change what "call" means.
+COMMON_ENGLISH = frozenset("""
+a able about above across act actual actually add admit afraid after afternoon again against age ago
+agree ahead all allow almost alone along already also although always among amount and another answer
+any anybody anymore anyone anything anyway appear are area arm around arrive as ask asleep at ate
+attack away baby back bad bag band bar bath be bear beat became because become bed been before began
+begin behind being believe below bend beside best better between big bit bite black bleed blood blow
+blue board boat body book both bother bottle bottom box boy break breath bring broad broke brother
+brought brown build burn bus business busy but buy by call came can cannot car care carry case catch
+caught cause certain chair chance change check chest child choose city class clean clear climb close
+clothes cold come comfort common company complete concern condition control cook cool copy corner could
+count couple course cover crack cross cry cup current cut dad daily damage dark date daughter day dead
+deal dear decide deep degree describe desk detail did die difference different difficult dinner direct
+dirty discuss do doctor does dog done door doubt down draw dream dress drink drive drop dry due during
+each ear earlier early easier easy eat edge effect effort eight either else empty end enjoy enough enter
+entire equal even evening event ever every everybody everyone everything exact except exercise expect
+explain extra eye face fact fail fair fall family far farther fast father fear feel feet fell felt few
+field fight fill final find fine finger finish fire first fit five fix flat floor flow fly follow food
+foot for force forget form forward found four free fresh friend from front full fun further future gain
+game gas gave general get girl give glad glass go god goes going gone good got great green grew ground
+group grow guess had hair half hand hang happen happy hard has hat hate have he head hear heard heart
+heat heavy held help her here herself hey high him himself his hit hold hole home hope horse hospital
+hot hour house how however hurt husband ice idea if ill imagine important improve in inch include
+increase indeed inside instead interest into is issue it its itself job join jump just keep kept key
+kick kid kill kind knee knew know known lack lady land large last late later laugh lay lead learn least
+leave led left leg length less let letter level lie life lift light like likely line list listen little
+live local long look lose loss lost lot loud love low lunch machine made main major make man many mark
+marry match matter may maybe me mean meant meet member memory men mention met middle might mile milk
+mind mine minute miss mom moment money month moon more morning most mother mouth move movie much must
+my myself name near nearly neck need neighbor neither never new news next nice night nine no nobody
+none noon nor normal north nose not note nothing notice now number nurse of off offer office often oil
+okay old on once one only open or order other otherwise ought our ours ourselves out outside over own
+page pain pair paper parent part party pass past pay people perfect perhaps period person phone pick
+picture piece place plain plan plant play please point poor position possible pour power practice
+prefer prepare present press pretty prevent probably problem produce program promise protect prove
+provide public pull push put question quick quiet quite race radio raise ran rate rather reach read
+ready real realize really reason receive recent record red reduce refuse regular remain remember remove
+repeat reply report require rest result return rich ride right ring rise risk road rock role roll room
+round row rub rule run safe said sale salt same sat save saw say scale school science sea search season
+seat second see seem seen self sell send sense sent serious serve service set settle seven several
+shall shape share sharp she sheet ship shoe shop short should shoulder shout show shut sick side sign
+silence similar simple since sing single sir sister sit site situation six size skin sky sleep slight
+slow small smell smile smoke snow so social soft some somebody someone something sometime somewhat
+somewhere son song soon sore sorry sort sound south space speak special speed spend spent spoke sport
+spot spread spring stage stair stand standard star start state stay step stick still stomach stone stop
+store story straight strange street stress stretch strike strong struck student study stuff subject
+succeed such sudden suffer sugar suggest summer sun supply suppose sure surface surprise sweet swim
+system table take taken talk tall taste teach team tear tell ten term test than thank that the their
+them themselves then there these they thick thin thing think third this those though thought three
+through throw thus tie tight time tiny tire to today together told tomorrow tone tonight too took top
+total touch toward town track trade train travel treat tree trip trouble true trust truth try turn
+twelve twenty twice two type unable under understand union unit unless until up upon upper us use
+useful usual value various very view visit voice wait wake walk wall want war warm was wash watch water
+way we wear week weight welcome well went were west what whatever when whenever where whether which
+while white who whole whom whose why wide wife will win wind window wine wing winter wire wise wish
+with within without woman women wonder wood word wore work world worry worse worst would write written
+wrong wrote yard year yes yesterday yet you young your yours yourself
+""".split())
+
+
 def repair_typos(text, vocabulary):
     """Correct obvious single-character slips against a known vocabulary.
 
@@ -245,7 +329,7 @@ def repair_typos(text, vocabulary):
     out, changed = [], False
     for token in text.split():
         core = re.sub(r"[^a-z]", "", token.lower())
-        if len(core) < 3 or core in vocabulary:
+        if len(core) < 3 or core in vocabulary or core in COMMON_ENGLISH:
             out.append(token)
             continue
         candidates = _edits1(core) & vocabulary
@@ -508,6 +592,15 @@ _ACTS = [
                 r"definitely not|never|no way|not really)\b"),
     ("affirm",  r"^(?:yes|yeah|yep|yup|sure|of course|absolutely|certainly|definitely|"
                 r"please do|go ahead|please|that'?s right|correct|okay|ok|alright)\b"),
+    # An honest "I don't know yet" is a real answer to a patient's question and
+    # one a student should be able to give. Without it the turn fell through to
+    # the clinical matcher and the patient answered a question about her own
+    # symptoms instead -- the worst possible response to a voiced fear.
+    ("defer",   r"^(?:i (?:don'?t|do not) know(?: yet)?|i'?m not (?:sure|certain)(?: yet)?|"
+                r"i am not sure(?: yet)?|that'?s what (?:we|i)'?(?:re| am) (?:going to )?(?:find out|figure out)|"
+                r"we'?(?:ll| will) (?:find out|figure (?:it|that) out)|let'?s find out|"
+                r"i can'?t say (?:yet|for sure)|too early to say|"
+                r"that'?s what (?:the|these) tests? (?:are|is) for)\b"),
 ]
 _ACT_RES = [(name, re.compile(p, re.I)) for name, p in _ACTS]
 
@@ -556,6 +649,94 @@ def is_self_narration(text):
                  r"are you|can you|could you|is there|any\b)", stripped, re.I):
         return False
     return bool(_SELF_NARRATION.match(stripped) and _ACTION_VERB.search(stripped))
+
+
+# Signalling understanding between questions ("got it", "that makes sense") is
+# a graded rapport behaviour, so students type it constantly. It asks for
+# nothing: answering it by re-reading the last fact makes the patient sound as
+# though the student had missed the answer.
+_BACKCHANNEL = re.compile(
+    r"^(?:i see|got it|gotcha|understood|noted|makes sense|that makes sense|"
+    r"that'?s (?:helpful|good to know|useful)|that is helpful|good to know|"
+    r"i appreciate (?:that|it|you (?:sharing|telling me))|"
+    r"thank you(?: for (?:sharing|telling me|explaining))?|thanks(?: for that)?|"
+    r"mm-?hmm|uh-?huh|fair enough|of course|sure)"
+    r"[\s.,!]*$", re.I)
+
+# The student DECLARING the interview over, as opposed to inviting questions
+# ("do you have any questions for me?"), which _CLOSURE_CUES already reads.
+_CLOSING_STATEMENT = re.compile(
+    r"\b(?:that'?s all (?:of )?(?:my |the )?questions|that is all (?:my |the )?questions|"
+    r"i think that'?s (?:all|everything|it)|that covers (?:it|everything)|"
+    r"no (?:more|further|other) questions|nothing else (?:for now|from me)|"
+    r"thank you for your time|thanks for your time|i'?m (?:all )?done(?: asking)?|"
+    r"we'?re (?:all )?done|that'?s everything i needed|i have everything i need)\b", re.I)
+
+
+_GREETING_ONLY = re.compile(
+    r"^(?:good\s+)?(?:hello|hi|hey|morning|afternoon|evening|good morning|"
+    r"good afternoon|good evening|greetings)\b[\s,.!\u2014-]*"
+    r"(?:(?:mr|mrs|ms|dr|miss)\.?\s+[a-z'\-]+)?[\s,.!]*$", re.I)
+
+
+def is_greeting_only(text):
+    """A turn fragment that only says hello."""
+    return bool(text) and bool(_GREETING_ONLY.match(text.strip()))
+
+
+_CLARIFICATION_OPENER = re.compile(
+    r"^\s*(?:no|nope|sorry|actually|well|um|uh|hang on|hold on|wait)?[,\s]*"
+    r"(?:i\s+(?:mean|meant)|i\s*'?m\s+asking|i\s+was\s+asking|"
+    r"what\s+i\s+mean(?:t)?\s+(?:is|was)|to\s+be\s+clear|let\s+me\s+rephrase)"
+    r"[,:\s]*$", re.I)
+
+
+_LEAD_IN = re.compile(
+    r"^\s*(?:"
+    r"(?:thanks|thank you)(?:\s+(?:for|so much|very much)\b.*)?"
+    r"|that (?:must|has to|sounds like it must) be\b.*"
+    r"|i (?:hear|understand|appreciate|can imagine|get)\s+(?:you|that|what)\b.*"
+    r"|i(?:'|\u2019)?m? ?(?:am )?going to help\b.*"
+    r"|i(?:'|\u2019)?ll help\b.*"
+    r"|we(?:'|\u2019)?ll (?:sort|work) (?:this|it) out\b.*"
+    r"|before (?:you go|we (?:finish|go|move on|wrap up))\b.*"
+    r"|one (?:more|last) thing\b.*"
+    r"|(?:so )?remind me\b.*"
+    r"|just so i (?:have|get) (?:it|this) right\b.*"
+    r"|(?:okay|ok|alright|right)(?:,)? (?:let(?:'|\u2019)?s|moving on|next)\b.*"
+    r")[\s.,!?\u2014-]*$", re.I)
+
+
+def is_lead_in(segment):
+    """A courtesy, an empathic line or a transition -- it asks nothing.
+
+    "Thanks for telling me all that. What makes it worse?" splits in two, and
+    the first half was counted as an ask nobody answered, so a correct reply
+    picked up "I'm not sure. What do you mean exactly?" -- and, in the worst
+    case, a claim that an authored fact was unavailable.
+    """
+    return bool(_LEAD_IN.match((segment or "").strip()))
+
+
+def is_clarification_opener(segment):
+    """A fragment that only announces a correction and asks nothing itself.
+
+    "I mean, how long each headache lasts?" splits into "I mean" and the real
+    question. Treated as its own ask, the first half reaches nothing and the
+    patient tacks a confusion line onto a perfectly good answer. The correction
+    that follows is the question; this half is punctuation.
+    """
+    return bool(_CLARIFICATION_OPENER.match((segment or "").strip()))
+
+
+def is_backchannel(text):
+    """A turn that only signals understanding and asks for nothing."""
+    return bool(text) and bool(_BACKCHANNEL.match(text.strip()))
+
+
+def is_closing_statement(text):
+    """The clinician saying the interview is finished."""
+    return bool(text) and bool(_CLOSING_STATEMENT.search(text))
 
 
 def read_act(text):
@@ -629,6 +810,10 @@ def answers_question(act, frame):
     """
     if act is None:
         return (False, None)
+    # Honest uncertainty resolves the question -- the patient has been answered
+    # -- but it is not reassurance and must not be scored as if it were.
+    if act == "defer":
+        return (True, None)
     positive = act == "affirm"
     negative = act in ("deny", "reassure")
     if frame == "worry":
@@ -715,6 +900,11 @@ def _topic_conjunction(ask):
     return [left, right]
 
 
+# Titles and common abbreviations whose full stop is not a sentence boundary.
+_ABBREVIATION = re.compile(
+    r"\b(?:dr|mr|mrs|ms|prof|st|sr|jr|approx|vs|etc|e\.g|i\.e)\.", re.I)
+
+
 def segment(utterance):
     """Split a turn into the separate things it asks, in the order asked.
 
@@ -724,10 +914,14 @@ def segment(utterance):
     if not utterance or not utterance.strip():
         return [utterance]
     utterance = casual_expand(utterance)
+    # A title's full stop is not a sentence boundary. "I'm working with Dr.
+    # Lee. What brought you in?" used to split into "...with Dr", "Lee" and the
+    # question, and the stray fragment cost the turn its opening.
+    utterance = _ABBREVIATION.sub(lambda m: m.group(0)[:-1] + "\u2024", utterance)
     group = _shorthand_group(utterance)
     if group:
         return group
-    raw = [_clean(p) for p in _NEW_ASK.split(utterance)]
+    raw = [_clean(p).replace("\u2024", ".") for p in _NEW_ASK.split(utterance)]
     parts = [p for p in raw if p]
     if not parts:
         return [utterance]

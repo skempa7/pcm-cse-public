@@ -29,12 +29,26 @@ class CameraNavigation(unittest.TestCase):
         self.assertIn('scene.preventDefaultOnPointerUp=false',room)
         self.assertNotIn('touch-action:none',css)
         self.assertIn('touch-action:auto',css)
-        for label in ['Face','Upper body','Full patient','Reset view','Adjust view','Done adjusting','Zoom in','Zoom out']:
-            self.assertIn('>'+label+'<',html)
-        self.assertIn("navigation?.adjusting||lesson",room)
+        # The camera controls are icon buttons now, so their name lives in
+        # aria-label rather than in text content. Checking '>Face<' was really
+        # checking the old markup; checking the accessible name is what the
+        # requirement actually is. 'Adjust view' / 'Done adjusting' are gone
+        # with the control they named -- drag replaced the adjust mode.
+        for label in ['Face','Upper body','Full patient','Reset view','Zoom in','Zoom out']:
+            self.assertIn('aria-label="'+label+'"',html,
+                          label+' camera control has no accessible name')
+        # 'Adjust view' / 'Done adjusting' proxied the room's own camera nav in
+        # a second toolbar and were removed. Assert they stay gone.
+        for removed in ['Adjust view','Done adjusting']:
+            self.assertNotIn(removed,html,removed+' reappeared as a duplicate control')
+        # The separate adjust-view mode is gone; orbiting is gated by the
+        # encounter phase and suspended during a technique lesson instead.
+        self.assertIn("lesson", room)
+        self.assertIn("allowed:", room)
         for direction in ('left','right','up','down'):
             self.assertNotIn('data-camera="'+direction+'"',html)
-        self.assertIn('Drag to orbit · Zoom with buttons',html)
+        # The same guidance now lives on the canvas's accessible label.
+        self.assertIn('Drag to rotate around the patient',html)
         self.assertIn('constraints:orbitClearances',room)
         self.assertIn('mesh.refreshBoundingInfo(true,true)',room)
 

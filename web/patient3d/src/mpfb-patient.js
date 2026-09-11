@@ -42,11 +42,93 @@ export function prepareMPFBEyeGeometry(container,scene) {
   mesh.morphTargetManager=manager;if(!container.morphTargetManagers.includes(manager))container.morphTargetManagers.push(manager);
   return{generatedMorphTargets:names,centers:centers.map(c=>c.asArray()),maximumDegrees:3,gazeMechanism:'Runtime geometric eye targets rotate both verified eye halves by at most 3 degrees. Sparse attention glances; not FACS, nystagmus, or examination evidence.'};
 }
+/* The clothed body is a reduced mesh whose under-garment vertices were deleted,
+   and it is capped at the hip crease -- it has no pelvis or thigh geometry at
+   all. Standing, the trouser legs meet and nothing shows. SEATED, the thighs
+   rotate up and the inner trouser surfaces separate just enough to see between
+   them, and with no body behind the gap the room reads straight through as a
+   white spike at the crotch.
+
+   Re-enabling the whole anatomy mesh closes the gap but tears skin through the
+   clothes everywhere the garments were fitted against deleted vertices. So we
+   keep exactly the triangles that sit in the gap: a small filler deep between
+   the legs, skinned by the same skeleton, hidden by the trousers from every
+   angle that does not already see through them.
+
+   The window is expressed as fractions of the mesh's own bind-pose bounds so
+   each authored body size derives its own, rather than sharing one set of
+   hard-coded metres. */
+const CROTCH_FILLER = Object.freeze({
+  yLow: 0.419, yHigh: 0.519, xHalf: 0.057, zLow: 0.08, zHigh: 0.78,
+});
+
+function crotchFillerIndices(mesh) {
+  const positions = mesh.getVerticesData('position');
+  const indices = mesh.getIndices();
+  if (!positions || !indices) return null;
+  let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity, minZ = Infinity, maxZ = -Infinity;
+  for (let i = 0; i < positions.length; i += 3) {
+    const x = positions[i], y = positions[i + 1], z = positions[i + 2];
+    if (x < minX) minX = x; if (x > maxX) maxX = x;
+    if (y < minY) minY = y; if (y > maxY) maxY = y;
+    if (z < minZ) minZ = z; if (z > maxZ) maxZ = z;
+  }
+  const height = maxY - minY, width = maxX - minX, depth = maxZ - minZ;
+  if (!(height > 0 && width > 0 && depth > 0)) return null;
+  const centreX = (minX + maxX) / 2;
+  const yLow = minY + CROTCH_FILLER.yLow * height, yHigh = minY + CROTCH_FILLER.yHigh * height;
+  const xHalf = CROTCH_FILLER.xHalf * width;
+  const zLow = minZ + CROTCH_FILLER.zLow * depth, zHigh = minZ + CROTCH_FILLER.zHigh * depth;
+  const kept = [];
+  for (let t = 0; t < indices.length; t += 3) {
+    let inside = true;
+    for (let k = 0; k < 3 && inside; k++) {
+      const v = indices[t + k] * 3;
+      const x = positions[v], y = positions[v + 1], z = positions[v + 2];
+      inside = Math.abs(x - centreX) <= xHalf && y >= yLow && y <= yHigh && z >= zLow && z <= zHigh;
+    }
+    if (inside) kept.push(indices[t], indices[t + 1], indices[t + 2]);
+  }
+  return kept.length ? kept : null;
+}
+
 export function applyMPFBWardrobe(container, appearance = {}) {
   const anatomy=appearance.outfit==='clinical-anatomy';
   for(const mesh of container.meshes){
     if(mesh.name.startsWith('PCM_Public'))mesh.setEnabled(!anatomy);
-    if(mesh.name==='PCM_AnatomicalBody')mesh.setEnabled(anatomy);
+    if(mesh.name!=='PCM_AnatomicalBody')continue;
+    if(anatomy){
+      // The anatomy view needs the whole body back, exactly as authored.
+      if(mesh.metadata?.pcmFullIndices)mesh.setIndices(mesh.metadata.pcmFullIndices);
+      if(mesh.metadata?.pcmSkinMaterial)mesh.material=mesh.metadata.pcmSkinMaterial;
+      mesh.setEnabled(true);
+      continue;
+    }
+    if(!mesh.metadata)mesh.metadata={};
+    if(mesh.metadata.pcmFullIndices===undefined){
+      mesh.metadata.pcmFullIndices=Array.from(mesh.getIndices()||[]);
+      mesh.metadata.pcmCrotchFiller=crotchFillerIndices(mesh);
+    }
+    if(mesh.metadata.pcmCrotchFiller){
+      mesh.setIndices(mesh.metadata.pcmCrotchFiller);
+      // Skin tone is wrong for a filler: supine, its pubis edge sits a fraction
+      // outside the trousers and reads as bare skin through the denim. Its whole
+      // job is to stop the room showing through, so it wears a flat dark tone
+      // that reads as the shadow inside the garment.
+      if(!mesh.metadata.pcmFillerMaterial&&mesh.material){
+        const filler=mesh.material.clone('PCM_Mat_CrotchFiller');
+        filler.albedoTexture=null;filler.bumpTexture=null;
+        filler.metallicTexture=null;filler.reflectivityTexture=null;
+        filler.albedoColor=new Color3(0.055,0.06,0.085);
+        filler.roughness=0.95;filler.metallic=0;filler.environmentIntensity=0.35;
+        mesh.metadata.pcmSkinMaterial=mesh.material;
+        mesh.metadata.pcmFillerMaterial=filler;
+      }
+      if(mesh.metadata.pcmFillerMaterial)mesh.material=mesh.metadata.pcmFillerMaterial;
+      mesh.setEnabled(true);
+    }else{
+      mesh.setEnabled(false);
+    }
   }
 }
 export function mpfbAppearanceChoices(appearance = {}) {

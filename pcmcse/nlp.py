@@ -434,6 +434,33 @@ def match_regex_any(text: str, patterns) -> str:
 # Trigger matching for patient question intents
 # --------------------------------------------------------------------------
 
+# Contractions break literal triggers. "What you'd like me to call you" never
+# matched the authored "what would you like me to call you", so the coach kept
+# asking for a preferred name the student had already asked for. Expanded only
+# where triggers are MATCHED; the negation cues elsewhere still see the
+# original contracted forms.
+_CONTRACTIONS = [
+    (re.compile(r"\b(what|who|where|when|why|how|that|there|here|it|he|she)'s\b", re.I), r"\1 is"),
+    (re.compile(r"\b(i|you|we|they|he|she|it|that|who)'d\b", re.I), r"\1 would"),
+    (re.compile(r"\b(i|you|we|they|he|she|it|who)'ll\b", re.I), r"\1 will"),
+    (re.compile(r"\b(i|you|we|they)'ve\b", re.I), r"\1 have"),
+    (re.compile(r"\b(you|we|they)'re\b", re.I), r"\1 are"),
+    (re.compile(r"\bi'm\b", re.I), "i am"),
+    (re.compile(r"\blet's\b", re.I), "let us"),
+    (re.compile(r"\bcan't\b", re.I), "cannot"),
+    (re.compile(r"\bwon't\b", re.I), "will not"),
+    (re.compile(r"\b(\w+)n't\b", re.I), r"\1 not"),
+]
+
+
+def expand_contractions(text: str) -> str:
+    """Write contractions out, for literal trigger comparison only."""
+    out = text or ""
+    for pattern, replacement in _CONTRACTIONS:
+        out = pattern.sub(replacement, out)
+    return out
+
+
 def trigger_score(utterance: str, trigger: dict) -> float:
     """Score how well an utterance matches a fact's trigger spec.
 
@@ -442,8 +469,8 @@ def trigger_score(utterance: str, trigger: dict) -> float:
     """
     if not trigger:
         return 0.0
-    hay = normalize(utterance)
-    exp = expand_abbreviations(utterance)
+    hay = normalize(expand_contractions(utterance))
+    exp = expand_abbreviations(expand_contractions(utterance))
 
     def present(phrase: str) -> bool:
         p = normalize(phrase)

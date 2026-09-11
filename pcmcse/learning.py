@@ -124,9 +124,16 @@ def state(s):
                    if s.preset[key]) + '.',
                reasoning_map=s.case.get('teaching',{}).get('reasoning_map',[]))
     out['hint_history'] = hint_history(s)
+    from . import guide
     if mode == 'guided':
-        from . import guide
         out['case_guide'] = guide.state(s)
+    elif mode == 'coached':
+        # The step-by-step PLAN stays guided-only, by policy. But a coach whose
+        # entire output is a focus dropdown and one line of general advice is
+        # the stranding students report, so coached mode gets the single next
+        # action -- one move, with its question and its reason -- and not the
+        # rest of the plan.
+        out['next_action'] = guide.next_action(s)
     return out
 
 def hint(s, step_id=None, level=None):
