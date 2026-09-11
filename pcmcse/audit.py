@@ -815,6 +815,28 @@ def _opening_complaint_summary(text):
     return {'location': locations[0], 'relative': relative, 'ongoing': ongoing}
 
 
+def _opening_spoken(claim,ledger):
+    """The patient volunteered this in her opening sentence.
+
+    Owner decision, 2026-09-11: a symptom she states in the opening line counts
+    as supported evidence. `opening_evidence.says` is containment, not
+    inference -- every content word must have been spoken, with her polarity --
+    so this cannot support anything she did not say. Subjective only: an
+    opening is history, never an examination finding, so it can never support
+    an Objective claim.
+    """
+    if claim['section']!='S':return None
+    if claim.get('header') not in ('cc','hpi',None):return None
+    for ev in ledger.by_kind(evidence.PATIENT):
+        if ev['meta'].get('kind')!='opening':continue
+        said,quote=opening_evidence.says(claim['text'],ev['text'])
+        if not said:continue
+        return {'verdict':'supported',
+                'concepts':[cid for cid in ev['meta'].get('concepts',{})] or ['opening_delivered_text'],
+                'evidence':[_ev(ev)],
+                'explanation':'The patient volunteered this in her opening statement: \u201c'+quote+'\u201d'}
+    return None
+
 def _opening_summary_target(claim,ledger):
     """Strip only a demographic introduction verified by the actual doorway."""
     text=claim.get('eval_text') or claim['text']
@@ -830,6 +852,13 @@ def _opening_summary_target(claim,ledger):
 
 def _opening_paraphrase(claim,ledger,concept_map):
     if claim['section']!='S':return None
+    # The opening is the chief complaint and the history it opens. It is not a
+    # family history, a medication list or a social history, and its concept
+    # aliases must not launder one into another: "FHx: Chest pressure." graded
+    # SUPPORTED off the opening (so did PMH, ROS, Meds and Social). The
+    # PARAPHRASES branch below already carries this guard; the alias branch did
+    # not. Pre-existing, and worth far more now that the opening carries credit.
+    if claim.get('header') not in ('cc','hpi',None):return None
     norm=lambda text:re.sub(r'[^a-z0-9 ]','',nlp.normalize(text).replace('-',' ')).strip()
     target=norm(claim.get('eval_text') or claim['text'])
     for ev in ledger.by_kind(evidence.PATIENT):
@@ -1108,6 +1137,11 @@ def audit_note(parsed, ledger, case):
         opening = _opening_paraphrase(claim,ledger,concept_map)
         if opening:
             rec.update(opening);documented_concepts.update(rec['concepts'])
+            findings.append(rec);continue
+
+        spoken_opening = _opening_spoken(claim,ledger)
+        if spoken_opening:
+            rec.update(spoken_opening);documented_concepts.update(rec['concepts'])
             findings.append(rec);continue
 
         if claim['section'] == 'O':

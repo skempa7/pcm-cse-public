@@ -413,13 +413,16 @@ function renderLobby(){
     </section>
 
     <section class="card" aria-labelledby="stationH">
-      <div class="card-head"><h2 id="stationH">Explore the patient presentations</h2><div class="spacer"></div>
-        <label class="sr-only" for="sysPick">Limit a random draw to one system</label>
-        <select id="sysPick" style="width:auto;max-width:220px">
+      <div class="card-head station-head"><h2 id="stationH">Explore the patient presentations</h2>
+        <span class="lobby-chosen tiny muted" id="lobbyChosen"></span>
+        <div class="spacer"></div>
+        <label class="sr-only" for="sysPick">System</label>
+        <select id="sysPick" class="chip-model" aria-hidden="true" tabindex="-1">
           <option value="">Any system</option>
           ${(BOOT.systems || []).map(s => `<option>${esc(s)}</option>`).join('')}
         </select>
-        <button class="btn sm" id="btnRandom" type="button">Draw a mixed case</button>
+        <button class="btn sm ghost" id="btnRandom" type="button">Draw a case at random</button>
+        <button class="btn primary" id="btnStart" type="button">Read the doorway</button>
       </div>
       <p class="small muted" id="revealNote"></p>
       <div class="station-grid" role="radiogroup" aria-labelledby="stationH" id="stationGrid">
@@ -444,9 +447,8 @@ function renderLobby(){
       <p class="small muted" id="talkNote" style="margin-top:var(--sp-2)"></p>
     </section>
 
-    <div class="card row lobby-actions" style="gap:var(--sp-3)">
-      <button class="btn primary big" id="btnStart" type="button">Read the doorway</button>
-      <span class="lobby-chosen tiny muted" id="lobbyChosen"></span>
+    <div class="card row lobby-reference" style="gap:var(--sp-3)">
+      <button class="btn" id="btnResume" type="button" ${open ? '' : 'hidden'}>Resume in-progress station</button>
       <div class="spacer" style="flex:1"></div>
       <button class="btn ghost" id="btnAssume" type="button" aria-expanded="false"
         aria-controls="extraPanel">Scoring assumptions</button>
@@ -454,7 +456,6 @@ function renderLobby(){
         aria-controls="extraPanel">Case review status</button>
       <button class="btn ghost" id="btnPast" type="button" aria-expanded="false"
         aria-controls="extraPanel">Past attempts (${(BOOT.sessions || []).length})</button>
-      <button class="btn" id="btnResume" type="button" ${open ? '' : 'hidden'}>Resume in-progress station</button>
     </div>
     <div id="extraPanel" class="disclosure"></div>
     <p class="tiny muted" id="capNote">Attempts, notes and scores stay in this browser. No paid AI services are included. Computer voice uses browser speech; optional microphone recognition may use your browser provider. Nothing is sent to the app creator. Clearing site data deletes local progress.</p>
@@ -476,12 +477,12 @@ function renderLobby(){
   // keep the action in view once there is something to act on.
   const paintChosen = () => {
     const picked = $('input[name=station]:checked');
-    const chosen = $('#lobbyChosen'), row = $('.lobby-actions');
+    const chosen = $('#lobbyChosen'), row = $('.station-head');
     const c = picked ? caseById(picked.value) : null;
     const reveal = (MODES[currentUiMode()] || MODES.coached).reveal;
     if (chosen) chosen.textContent = c
       ? (reveal ? stationTitle(c.id) + ' — ' + c.title : stationTitle(c.id) + ' — contents sealed')
-      : 'Choose a presentation above.';
+      : 'Choose a presentation to begin.';
     if (row) row.classList.toggle('is-ready', !!c);
   };
   $$('#stationGrid .station-card').forEach(l => { $('input', l).onchange = () => {

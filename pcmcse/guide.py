@@ -244,7 +244,7 @@ _REMAINING_PART = {
 }
 
 
-def next_action(s):
+def next_action(s, gap=None):
     """The single next move, for a coached encounter.
 
     The step-by-step PLAN stays guided-only -- `allowed()` is the policy and
@@ -285,6 +285,13 @@ def next_action(s):
     except Exception:
         summary, gaps = None, []
     gap_ids = {g['id'] for g in gaps}
+    # The card already NAMES the empty note rows. Until now they were plain
+    # text: a student who could see "Duration / chronology" was missing had no
+    # way to ask for help with it and had to hope the coach reached it. A named
+    # gap narrows the same ranking to the moves that would fill that row -- it
+    # widens nothing, since these are the tasks the coach was already choosing
+    # between.
+    wanted_gap = gap if gap in gap_ids else None
 
     coverage = full.get('coverage') or {}
     outstanding = [x for x in tasks if x.get('status') == 'next'
@@ -305,6 +312,20 @@ def next_action(s):
     # it had no way to say "that is enough, go and write". Rank instead.
     if outstanding:
         definitions = {f['id']: f for f in (s.case.get('facts') or [])}
+
+        def fills(task, section_id):
+            for fid in task.get('facts') or []:
+                fact = definitions.get(fid)
+                if not fact:
+                    continue
+                if record_mod._CATEGORY_SECTION.get(fact.get('category')) == section_id:
+                    return True
+            return False
+
+        if wanted_gap:
+            asked = [x for x in outstanding if fills(x, wanted_gap)]
+            if asked:
+                outstanding = asked
 
         def fills_a_gap(task):
             for fid in task.get('facts') or []:
@@ -365,7 +386,7 @@ def next_action(s):
     # Enough history, and something examined: the useful move is now to finish,
     # not another marginal question. Phrased from the encounter's own coverage,
     # never as a claim that the patient has been adequately evaluated.
-    if coverage.get('history_ready') and not writing:
+    if coverage.get('history_ready') and not writing and not wanted_gap:
         closing = [x for x in tasks if x.get('status') == 'next'
                    and x.get('group') == 'close' and x.get('question')]
         transition = next((x for x in tasks if x['id'] == 'document.transition'), None)
@@ -420,7 +441,8 @@ def next_action(s):
         gaps = record_mod.hpi_gaps(record_mod.summarize(s.case, s.ledger.events))
     except Exception:
         gaps = []
-    return {'gaps': [g['label'] for g in gaps][:3],
+    return {'gaps': [{'id': g['id'], 'label': g['label']} for g in gaps][:3],
+            'gap': wanted_gap,
             'title': title,
             'question': question,
             'why': pending.get('why') or '',

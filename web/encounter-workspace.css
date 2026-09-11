@@ -144,7 +144,21 @@ body.encounter-workspace-active #ewGuideCard>#encounterGuide{display:block!impor
 /* The coach is a quiet card at the top of Talk, not a heavy green banner the
    conversation has to fight. It reads as guidance beside the work, and its
    header is a thin collapse control rather than a title bar. */
-.ew-talk-guide{margin:8px 8px 0;flex:0 0 auto;max-height:46%;overflow:auto;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;background:var(--surface-2)}
+/* The next step sits between the conversation and the composer, because that
+   is the order the student works in: read the answer, read the suggestion,
+   type. Above the log it was 518px from the box you type into and pushed the
+   newest reply down; here it is 139px away and the conversation gains an
+   exchange. Measured on the same 12-turn encounter at 1440x900. */
+#ewPanelTalk{display:flex;flex-direction:column;min-height:0}
+#ewPanelTalk #ewTalkLog{flex:1 1 auto;min-height:0}
+.ew-talk-guide{margin:0 8px 8px;flex:0 0 auto;max-height:46%;overflow:auto;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;background:var(--surface-2)}
+/* One row: the move, then the ways to act on it. */
+.ew-talk-guide .coach-next{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 12px;align-items:center}
+.ew-talk-guide .coach-move{grid-column:1;font-size:14px}
+.ew-talk-guide .coach-actions{grid-column:2;grid-row:1;justify-content:flex-end}
+.ew-talk-guide .coach-label{grid-column:1/-1;font-size:10px}
+.ew-talk-guide .coach-meta,.ew-talk-guide .coach-why,.ew-talk-guide .coach-conflict{grid-column:1/-1}
+@media(max-width:1180px){.ew-talk-guide .coach-next{grid-template-columns:1fr}.ew-talk-guide .coach-actions{grid-column:1;grid-row:auto;justify-content:flex-start}}
 .ew-talk-guide>summary{position:sticky;top:0;z-index:2;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 10px;background:var(--surface-2);color:var(--muted);font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;list-style:none;border-bottom:1px solid var(--line)}
 .ew-talk-guide>summary::-webkit-details-marker{display:none}
 .ew-talk-guide>summary:hover{color:var(--ink)}

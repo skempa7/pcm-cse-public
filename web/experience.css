@@ -114,13 +114,18 @@ body[data-phase=encounter] #patientVoiceSettings[open]{max-height:45svh;overflow
 .note-ref-body.has-more.has-above{-webkit-mask-image:linear-gradient(to bottom,transparent,#000 18px,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(to bottom,transparent,#000 18px,#000 calc(100% - 26px),transparent)}
 .note-ref-jump button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 
-/* The start action follows the choice. Selecting a station happens near the top
-   of the page and "Read the doorway" sat below all 24 tiles, so the primary
-   action of the screen was two scrolls away from the thing it acts on. */
-.lobby-actions{position:sticky;bottom:12px;z-index:5;box-shadow:var(--el-2,0 10px 30px #14343612);flex-wrap:wrap}
+/* "Read the doorway" lives in the header of the card that holds the
+   presentations, so the action sits beside the thing it acts on and stays in
+   view while you browse the tiles. It replaced a bar that floated over the
+   page and covered ~100px of whatever scrolled beneath it, including the
+   filter row on first load. */
+.station-head{position:sticky;top:64px;z-index:4;background:var(--surface);
+ padding-top:10px;padding-bottom:10px;margin-bottom:2px;border-bottom:1px solid var(--line-soft);
+ display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .lobby-chosen{flex:0 1 auto;min-width:0;font-weight:600;color:var(--ink-2)}
-.lobby-actions.is-ready .lobby-chosen{color:var(--accent)}
-@media(max-width:900px){.lobby-actions{position:static}}
+.station-head.is-ready .lobby-chosen{color:var(--accent)}
+.lobby-reference{margin-top:12px;flex-wrap:wrap;align-items:center}
+@media(max-width:900px){.station-head{position:static}}
 
 /* The doorway has to fit the screen it is read on. At 1440x900 the brief ran
    to 1127px, so "Enter room" -- the only thing you came here to do -- sat on
@@ -149,3 +154,27 @@ body[data-phase=encounter] #patientVoiceSettings[open]{max-height:45svh;overflow
 @media(min-width:1400px){
  .arrival-layout .doorway-vitals .chart-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
+
+/* The illustrated system chips ARE the system control. The select beside them
+   showed the same six choices a second time; it stays as the chips' state
+   store (portal.js drives it, learning.js listens to it) but stops being a
+   second visible control for one decision. */
+.chip-model{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+/* Secondary ways to narrow 24 presentations, folded until wanted. */
+.learning-more{margin-top:2px}
+.learning-more>summary{cursor:pointer;font-size:12px;font-weight:600;color:var(--ink-2);padding:4px 0;list-style:none}
+.learning-more>summary::-webkit-details-marker{display:none}
+.learning-more>summary::before{content:'\25b8 ';display:inline-block}
+.learning-more[open]>summary::before{transform:rotate(90deg)}
+.learning-more-row{display:flex;flex-wrap:wrap;gap:14px;padding-top:8px}
+
+/* "Patient conversation & voice" sat above the composer competing with the
+   bottom bar's "Voice on", which is a different thing. Name its contents and
+   show its state so nobody opens it to find out. */
+.ai-conversation .ai-state{font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:9.5px;
+ padding:1px 6px;margin-left:6px;border-radius:999px;background:var(--surface-3,var(--surface));color:var(--ink-3);border:1px solid var(--line)}
+
+/* One scroller, not two. The grid had `overflow:auto` inside a page that also
+   scrolled, so the wheel did different things a few pixels apart and the page
+   never got shorter. The header is what stays in view now. */
+#stationGrid{max-height:none;overflow:visible}

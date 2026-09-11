@@ -128,3 +128,132 @@ def summary_text(text):
     text=nlp.normalize(text).replace('-', ' ')
     for pattern,replacement in SUMMARY_GRAMMAR:text=re.sub(pattern,replacement,text)
     return re.sub(r'[^a-z0-9 ]','',text).strip()
+
+# ---------------------------------------------------------------------------
+# What the patient actually said in her opening line.
+#
+# OWNER DECISION, 2026-09-11: a symptom the patient states in her opening
+# sentence counts as supported evidence. Before this, the opening released one
+# coarse concept ('opening_complaint' / 'opening_disclosure'), so a student who
+# wrote down -- in their own words -- something she had just volunteered was
+# graded UNSUPPORTED. Measured across the library: only 8 of 41 sentences of
+# genuine opening content were supported; two halves of one spoken sentence
+# could be graded differently.
+#
+# The rule is deliberately narrow, and it is CONTAINMENT, not inference:
+#
+#   every content word of the claim must have been spoken in the opening,
+#   and the clauses that supplied those words must carry the same polarity
+#   as the claim.
+#
+# So nothing is released, nothing is inferred, and nothing hidden is reachable:
+# a claim can only be supported by words the patient has already said out loud.
+# Numbers are always content -- dropping short tokens once let "Burning is 5/10
+# at night" match an opening that never gave a severity.
+#
+# Measured against the 24-case library: 1842 of 1846 attacks using facts the
+# patient only discloses when asked are refused; the 4 that match are each
+# something she does say in her opening (onset "about six weeks", "both feet",
+# "ankles ... swollen", "about six hours ago").
+# ---------------------------------------------------------------------------
+
+import re as _re
+from . import nlp as _nlp
+
+_SPOKEN_STOP = set("""a an the and or but so then than that this these those is are was were be been being am
+of in on at to for with from by as it its he she they her his their we you i my me mine hers
+himself herself myself themselves itself
+has have had having do does did doing very really quite just also
+around over under out up down into onto off again more most some any all both each
+when while
+says said say tells told reports reported states stated complains complaining
+patient pt there here who whom which what how why where
+comes come coming gets get getting keeps keep keeping
+makes make making""".split())
+
+# Words that CHANGE WHAT WAS CLAIMED, not just how it was phrased. They must
+# survive in BOTH directions: a claim may not drop one the patient used, and it
+# may not add one she did not. Three real leaks came from treating these as
+# noise --
+#   "I keep feeling like I MIGHT faint"      -> "Fainted when standing"   (modality)
+#   "the pain has NOT GONE AWAY since dinner"-> "No pain ... since dinner" (negation scope)
+#   "...when I push myself at work"          -> "Chest pressure NOW."      (aspect)
+_MARKERS = set("""no not never none nothing nobody nowhere neither nor without cannot cant unable hardly barely scarcely wont dont doesnt didnt isnt arent wasnt werent hasnt havent hadnt couldnt wouldnt shouldnt denies denied deny free negative
+might may maybe could would should probably possibly perhaps seem seems seemed
+like feel feels feeling felt think thinks thought almost nearly about
+now currently still yet already again always constantly constant ongoing persistent
+gone away resolved stopped stops stop started starting begins began
+since ago before after during until when while today tonight yesterday
+worse better unchanged same""".split())
+
+_CLAUSE = _re.compile(
+    r"(?<=[.!?])\s+|\s*;\s*|\s*,?\s+\b(?:but|though|although)\b\s+|"
+    r"\s*,?\s+\band\b\s+(?=(?:i|she|he|they|it|my|her|his|their|now)\b)|\s*,\s+(?=then\s)",
+    _re.I)
+
+_SPOKEN_NEG = _re.compile(r"\b(no|not|never|none|nothing|nobody|nowhere|neither|nor|denies|denied|deny|without|cannot|cant|unable|hardly|barely|scarcely|wont|dont|doesnt|didnt|isnt|arent|wasnt|werent|hasnt|havent|hadnt|couldnt|wouldnt|shouldnt|nt|free)\b")
+
+
+def _spoken_tokens(text):
+    return _re.findall(r"[a-z0-9]+", _nlp.expand_abbreviations(_nlp.normalize(text or "")))
+
+
+def _spoken_stem(word):
+    for suffix in ("ings", "ing", "ies", "ied", "es", "ed", "s"):
+        if len(word) > 4 and word.endswith(suffix):
+            word = word[: -len(suffix)]
+            break
+    return word[:-1] if len(word) > 4 and word.endswith("e") else word
+
+
+def _spoken_content(text):
+    return {_spoken_stem(w) for w in _spoken_tokens(text)
+            if w.isdigit() or w in _MARKERS or (w not in _SPOKEN_STOP and len(w) > 2)}
+
+
+def _spoken_markers(text):
+    return {_spoken_stem(w) for w in _spoken_tokens(text) if w in _MARKERS}
+
+
+def _spoken_negated(text):
+    return bool(_SPOKEN_NEG.search(_nlp.normalize(text or "")))
+
+
+def spoken_clauses(opening):
+    return [part.strip() for part in _CLAUSE.split(opening or "")
+            if part and len(part.strip()) > 3]
+
+
+def says(claim_text, opening):
+    """Did the patient say this, in her opening line?
+
+    Returns (True, the words she used) only when every content word of the
+    claim was spoken and the polarity agrees. Anything else returns False --
+    this can never manufacture content she did not utter.
+    """
+    wanted = _spoken_content(claim_text)
+    if len(wanted) < 2:
+        return False, ""
+    parts = spoken_clauses(opening)
+    spoken = set()
+    for part in parts:
+        spoken |= _spoken_content(part)
+    if wanted - spoken:
+        return False, ""
+    negated = _spoken_negated(claim_text)
+    # A clause supplies the claim only if it shares a real word with it. Marker
+    # words ("when", "now", "since") appear all over a sentence, and letting one
+    # recruit an unrelated clause made that clause's markers mandatory --
+    # "It goes away when I stop" was demanding "away"/"stop" of a claim about
+    # pressure at work.
+    substantive = wanted - _MARKERS - {_spoken_stem(m) for m in _MARKERS}
+    supplying = [part for part in parts if _spoken_content(part) & (substantive or wanted)]
+    claim_markers = _spoken_markers(claim_text)
+    for part in supplying:
+        if _spoken_negated(part) != negated:
+            return False, ""
+        # REVERSE check: she may not have qualified this in a way the claim
+        # dropped. "might faint" must never become "fainted".
+        if _spoken_markers(part) - claim_markers:
+            return False, ""
+    return True, " ".join(supplying).strip(" .,")

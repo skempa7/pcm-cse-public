@@ -1,7 +1,7 @@
 /* Evidence-bound learning UI. The server owns assistance, timing and repairs. */
 (()=>{
   const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  let current=null, learning=null, loading=false, selected='orient',lastEvidenceKey='',lobbyRequest=0;
+  let current=null, learning=null, loading=false, selected='orient',lastEvidenceKey='',lobbyRequest=0,askedGap=null;
   if(!document.getElementById('caseGuideStyles')){const style=document.createElement('link');style.id='caseGuideStyles';style.rel='stylesheet';style.href=new URL('./guided.css?v=portal-1',location.href).href;document.head.append(style);}
   const request=async(path,body)=>{try{const r=await fetch(path,{method:body?'POST':'GET',headers:{'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});const d=await r.json();if(!r.ok)throw Error(d.error||'Request failed');return d;}catch(e){return {error:e.message};}};
   function lobby(){
@@ -12,10 +12,11 @@
     const section=document.createElement('div');section.id='learningLibrary';section.className='learning-library';
     section.innerHTML=`<div class="coverage-strip"><strong>${cases.length} presentations</strong><span>${progress.variant_count||0} additional variations</span><span>${(progress.completed_cases||[]).length} presentations completed</span></div>
       <p class="small muted">Build a routine, then take it into an unfamiliar case. These authored teaching cases cover the four scheduled system blocks; supplementary presentations are labeled in the coverage inventory.</p>
-      <div class="learning-filters"><label>Practice a skill<select id="skillFilter"><option value="">All skills</option>${skills.map(x=>`<option value="${E(x)}">${E(x.replaceAll('-',' '))}</option>`).join('')}</select></label>
+      <div class="learning-filters"><label>Show<select id="experienceFilter"><option value="all">All presentations</option><option value="new">Not attempted yet</option><option value="weak">Related to previous weaknesses</option></select></label>
+      <details class="learning-more"><summary>More ways to narrow</summary><div class="learning-more-row">
+      <label>Practice a skill<select id="skillFilter"><option value="">All skills</option>${skills.map(x=>`<option value="${E(x)}">${E(x.replaceAll('-',' '))}</option>`).join('')}</select></label>
       <label>Difficulty<select id="difficultyFilter"><option value="">All levels</option>${[...new Set(cases.map(c=>c.difficulty))].map(x=>`<option>${E(x)}</option>`).join('')}</select></label>
-      <label>Experience<select id="experienceFilter"><option value="all">All presentations</option><option value="new">Not attempted yet</option><option value="weak">Related to previous weaknesses</option></select></label>
-      <label>Case variation<select id="variantChoice"><option value="random">Mix coherent variations</option><option value="base">Base presentation</option></select><span id="variantNotice" class="tiny muted" role="status"></span></label></div>
+      <label>Case variation<select id="variantChoice"><option value="random">Mix coherent variations</option><option value="base">Base presentation</option></select><span id="variantNotice" class="tiny muted" role="status"></span></label></div></details></div>
       <p id="filterCount" class="small" role="status"></p>
       <details><summary>Learning progress and review status</summary><p>Completion, assistance and content review are separate measures.</p><div class="learning-metrics">${Object.entries(progress.completed_by_mode||{}).map(([k,v])=>`<span>${E(k)}: <b>${v}</b> completed</span>`).join('')||'<span>No completed attempts yet.</span>'}</div><p class="small">Suggested next level: <b>${E(progress.next_mode||'coached')}</b>. ${E(progress.fading_note||'Progress from guided to independent as your recall becomes reliable.')}</p><p class="small">Independent completions: ${progress.conditions?.independent||0}; assisted: ${progress.conditions?.assisted||0}; retries: ${progress.conditions?.branches||0}.</p><p class="small">Recurring needs: ${(progress.weaknesses||[]).map(x=>E(x.skill.replaceAll('-',' '))+' ('+x.attempts+' attempts)').join(', ')||'Complete and review several cases to establish a pattern.'}</p><p class="small">The library is source checked and structurally tested; no licensed-clinician approval is claimed. See Case review status and the delivered case inventory for review scope.</p></details>`;
     grid.before(section);
@@ -53,7 +54,7 @@
     }
     if(s.phase==='submitted'){await repairPanel(s);return;}
     if(!['guided','coached'].includes(s.learning_mode)||!['encounter','organize','note'].includes(s.phase))return;
-    const data=await request(`/api/session/${s.id}/learning`);if(current?.id!==s.id||data.error||!data.available)return;
+    const data=await request(`/api/session/${s.id}/learning`+(askedGap?`?gap=${encodeURIComponent(askedGap)}`:''));if(current?.id!==s.id||data.error||!data.available)return;
     learning=data;selected=data.selected;
     if(s.learning_mode==='guided'&&data.case_guide){renderCaseGuide(s,data);return;}
     let panel=document.getElementById('encounterGuide');if(!panel){panel=document.createElement('section');panel.id='encounterGuide';panel.className='encounter-guide';const wrap=document.querySelector('#coachDock')||document.querySelector('#view .wrap-wide,#view .wrap-mid,#view .room-shell')||document.getElementById('view');wrap.prepend(panel);}
@@ -108,6 +109,9 @@
       const label=(move.question&&move.title&&move.title!==move.question)?move.title:'';
       const lead=move.question?`\u201c${E(move.question)}\u201d`:E(move.title);
       const showProgress=move.group_total>1&&Number.isFinite(move.group_done);
+      // Tolerate either shape: the engine used to send gap LABELS and now sends
+      // {id,label}. A browser holding a cached engine must not render blanks.
+      const gapList=(move.gaps||[]).map(g=>typeof g==='string'?{id:'',label:g}:g).filter(g=>g&&g.label);
       host.innerHTML=`<div class="coach-next">`
         +(label?`<p class="coach-label">${E(label)}</p>`:'')
         +`<p class="coach-move${move.question?' is-quote':''}">${lead}</p>`
@@ -116,7 +120,10 @@
         +`</div>`
         +(((move.gaps&&move.gaps.length)||showProgress)?`<p class="coach-meta">`
             +(showProgress?`<span class="coach-progress">${E(move.group_label||'This phase')} \u00b7 ${move.group_done} of ${move.group_total}</span>`:'')
-            +((move.gaps&&move.gaps.length)?`<span class="coach-gaps">${s.phase==='encounter'?'Still to establish':'Your record has nothing for'}: ${E(move.gaps.join(', '))}</span>`:'')
+            +(gapList.length?`<span class="coach-gaps">${s.phase==='encounter'?'Still to establish':'Your record has nothing for'}: ${
+                gapList.map(g=>(s.phase==='encounter'&&g.id)
+                  ? `<button type="button" class="coach-gap" data-gap="${E(g.id)}" aria-pressed="${String(g.id===move.gap)}">${E(g.label)}</button>`
+                  : E(g.label)).join(' ')}</span>`:'')
           +`</p>`:'')
         +((move.why||'').trim()?`<details class="coach-why"><summary>Why this</summary><p>${E(move.why)}</p></details>`:'')
         +`</div>`;
@@ -157,6 +164,17 @@
         // this row has rendered; the row is the single place to act.
         ['unstuckButton','toggleGuide'].forEach(id=>document.getElementById(id)?.classList.add('coach-shell-ctl'));
       }
+      // The empty note rows were already named here, as dead text. Asking for
+      // help with one is the shortest path from "I know what I am missing" to
+      // "here is a question I can send", and it uses the same ranking the coach
+      // was already applying -- nothing new is revealed.
+      host.querySelectorAll('[data-gap]').forEach(b=>b.onclick=async()=>{
+        const want=b.getAttribute('aria-pressed')==='true'?null:b.dataset.gap;
+        askedGap=want;
+        const fresh=await request(`/api/session/${s.id}/learning`+(want?`?gap=${encodeURIComponent(want)}`:''));
+        if(fresh.error||current?.id!==s.id)return;
+        learning=fresh;paintPurpose(fresh,s,selected);
+      });
       const draft=document.getElementById('coachDraft');
       if(draft)draft.onclick=()=>{
         // Drafting fills the box and stops. It never sends, never scores, and
@@ -307,10 +325,12 @@
     host.querySelectorAll('[data-apply]').forEach(b=>b.onclick=async()=>{const r=await request(`/api/session/${s.id}/transfer`,{id:item.id,choice:Number(b.dataset.apply)});host.querySelector('.transfer-result').textContent=r.error||(r.correct?'Yes. ':'Reconsider. ')+(r.explanation||'')+' '+(r.next||'');if(r.correct)host.querySelectorAll('[data-apply]').forEach(x=>x.disabled=true);});
   }
   async function syncGuide(s){
+    // A gap the student asked about belongs to THAT encounter.
+    if(current&&s&&current.id!==s.id)askedGap=null;
     current=s;if(!s||!['guided','coached'].includes(s.learning_mode)||s.phase==='submitted')return;
     const key=s.id+':'+s.phase+':'+(s.transcript||[]).map(x=>x.seq).join(',');
     if(key===lastEvidenceKey||loading)return;lastEvidenceKey=key;loading=true;
-    const data=await request(`/api/session/${s.id}/learning`);loading=false;
+    const data=await request(`/api/session/${s.id}/learning`+(askedGap?`?gap=${encodeURIComponent(askedGap)}`:''));loading=false;
     if(current?.id!==s.id||data.error||!data.available)return;
     if(s.learning_mode==='guided'&&data.case_guide){learning=data;renderCaseGuide(s,data);return;}
     const previousStep=selected;learning=data;selected=data.selected;

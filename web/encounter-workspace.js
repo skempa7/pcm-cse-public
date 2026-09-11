@@ -61,8 +61,7 @@ function selectTab(name,focus=false){
   }));
  }
  if(name==='exam'){refreshExam();const tab=q('[data-ew-tab=exam]');tab?.classList.remove('ew-record-new');tab?.querySelector('.ew-new-badge')?.remove();
-  // Arriving at the panel is when the result counts as seen; start its life then.
-  const host=q('#ewExamOutcome');if(host&&!host.hidden&&active&&!active.outcomeTimer)active.outcomeTimer=setTimeout(()=>{host.hidden=true;},9000);}if(name==='record'){renderRecord();active.unreadFinding=false;const tab=q('[data-ew-tab=record]');tab?.classList.remove('ew-record-new');tab?.querySelector('.ew-new-badge')?.remove();}
+ }if(name==='record'){renderRecord();active.unreadFinding=false;const tab=q('[data-ew-tab=record]');tab?.classList.remove('ew-record-new');tab?.querySelector('.ew-new-badge')?.remove();}
  if(focus)q('[data-ew-tab="'+name+'"]',active.root)?.focus({preventScroll:true});
  active.root.dataset.workspaceTab=name;fit();
 }
@@ -419,14 +418,12 @@ async function perform(key){if(!active||!latest||latest.phase!=='encounter'||lat
 function outcome(title,text){const host=q('#ewExamOutcome');if(!host)return;const signature=title+'|'+text;if(host.dataset.signature===signature)return;host.dataset.signature=signature;host.hidden=false;host.innerHTML='<strong>'+E(title)+'</strong><p>'+E(text)+'</p>';
  clearTimeout(active?.outcomeTimer);
  if(!active)return;
- // An outcome is only "seen" while the Examine panel is on screen. Starting the
- // dismissal timer for a result written into a hidden tab meant a result with
- // no finding -- "this case has no authored result", "interrupted", "nothing
- // was released because these parts were not performed" -- could expire
- // unread, and none of those produce a Record row to fall back on.
- if(active.tab!=='exam'){markExamUnread();return;}
- if(!/progress|interrupted|could not/i.test(title))
-  active.outcomeTimer=setTimeout(()=>{if(host.dataset.signature===signature)host.hidden=true;},9000);}
+ // The result of the examination you just performed used to disappear after
+ // nine seconds, so re-reading a three-sentence finding meant leaving the
+ // panel for Record. It is the panel's own status line: it stays until the
+ // next examination replaces it, which costs no extra space and removes a
+ // panel switch from every examination.
+ if(active.tab!=='exam')markExamUnread();}
 function markExamUnread(){
  const tab=q('[data-ew-tab=exam]');if(!tab||tab.querySelector('.ew-new-badge'))return;
  tab.insertAdjacentHTML('beforeend','<small class="ew-new-badge">Result</small>');tab.classList.add('ew-record-new');}
@@ -549,7 +546,7 @@ function mount(s){
  const brand=q('#btnBrand');
  if(brand&&!brand.dataset.ewStoodDown){brand.dataset.ewStoodDown='1';brand.dataset.ewLabel=brand.getAttribute('aria-label')||'';
   brand.setAttribute('aria-label','Chat CSE');brand.setAttribute('tabindex','-1');brand.style.pointerEvents='none';}
- const work=document.createElement('div');work.className='ew-right';const hasGuide=['guided','coached'].includes(s.learning_mode);work.innerHTML='<nav class="ew-tabs" role="tablist" aria-label="Encounter workspace">'+[['talk','Talk'],['exam','Examine'],['record','Record']].map(([id,label])=>'<button type="button" role="tab" id="ewTab'+id+'" data-ew-tab="'+id+'" aria-controls="ewPanel'+id[0].toUpperCase()+id.slice(1)+'"><span aria-hidden="true">'+icons[id]+'</span> '+label+'</button>').join('')+'</nav><div class="ew-panels"><section role="tabpanel" id="ewPanelTalk" data-ew-panel="talk" aria-labelledby="ewTabtalk">'+(hasGuide?'<details id="ewPanelGuide" class="ew-talk-guide" open><summary><span class="ew-guide-eyebrow">Next step</span><span class="ew-guide-toggle" aria-hidden="true"></span></summary><div id="ewGuideCard"><p class="small ew-guide-loading">Preparing your next step…</p></div></details>':'')+'<div id="ewTalkLog"></div></section><section role="tabpanel" id="ewPanelExam" data-ew-panel="exam" aria-labelledby="ewTabexam" hidden></section>'+'<section role="tabpanel" id="ewPanelRecord" data-ew-panel="record" aria-labelledby="ewTabrecord" hidden><p class="small ew-record-note">What you have learned so far, arranged the way your note is scored. The conversation itself stays in Talk.</p><div id="ewRecordLog"></div></section></div>';
+ const work=document.createElement('div');work.className='ew-right';const hasGuide=['guided','coached'].includes(s.learning_mode);work.innerHTML='<nav class="ew-tabs" role="tablist" aria-label="Encounter workspace">'+[['talk','Talk'],['exam','Examine'],['record','Record']].map(([id,label])=>'<button type="button" role="tab" id="ewTab'+id+'" data-ew-tab="'+id+'" aria-controls="ewPanel'+id[0].toUpperCase()+id.slice(1)+'"><span aria-hidden="true">'+icons[id]+'</span> '+label+'</button>').join('')+'</nav><div class="ew-panels"><section role="tabpanel" id="ewPanelTalk" data-ew-panel="talk" aria-labelledby="ewTabtalk">'+'<div id="ewTalkLog"></div>'+(hasGuide?'<details id="ewPanelGuide" class="ew-talk-guide" open><summary><span class="ew-guide-eyebrow">Next step</span><span class="ew-guide-toggle" aria-hidden="true"></span></summary><div id="ewGuideCard"><p class="small ew-guide-loading">Preparing your next step…</p></div></details>':'')+'</section><section role="tabpanel" id="ewPanelExam" data-ew-panel="exam" aria-labelledby="ewTabexam" hidden></section>'+'<section role="tabpanel" id="ewPanelRecord" data-ew-panel="record" aria-labelledby="ewTabrecord" hidden><p class="small ew-record-note">What you have learned so far, arranged the way your note is scored. The conversation itself stays in Talk.</p><div id="ewRecordLog"></div></section></div>';
  convo.before(work);work.append(convo);convo.classList.add('ew-conversation');q('#ewTalkLog',work).append(q('#stream',convo));const composer=q('.composer',convo);const reply=document.createElement('div');reply.className='ew-latest-reply';reply.innerHTML='<button class="btn sm ghost" type="button" aria-label="Read full conversation">Patient ↗</button><p></p>';reply.querySelector('button').onclick=()=>selectTab('talk');work.append(reply,composer);q('#voiceBar',convo)&&q('#ewPanelTalk',work).prepend(q('#voiceBar',convo));q('.branch-reminder',convo)&&q('#ewPanelTalk',work).prepend(q('.branch-reminder',convo));
  const bar=document.createElement('div');bar.className='ew-bottom';bar.setAttribute('aria-label','Essential encounter actions');root.append(bar);const tools=document.createElement('div');tools.className='ew-bottom-tools';bar.append(tools);
  const bedside=button('♡ Bedside','ewBedside');tools.append(bedside);bedside.onclick=openBedside;

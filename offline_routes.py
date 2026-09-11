@@ -43,7 +43,10 @@ class Handler:
                 return self._json({'error': 'no such session'}, 404)
             tail = parts[4] if len(parts) > 4 else ''
             if tail == 'learning':
-                return self._json(learning.state(s))
+                # ?gap=<note row id> asks the coach for a move that fills that
+                # row. It narrows the moves it was already choosing between; it
+                # never widens what a coached student may see.
+                return self._json(learning.state(s, gap=(parse_qs(url.query).get('gap') or [None])[0]))
             if tail == 'repair':
                 try:
                     return self._json(learning.public_repair(s))

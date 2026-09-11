@@ -98,7 +98,7 @@ def _cue_applied(s, hint_event):
     if step=='pattern':return bool(categories & {'onset','location','chronology','quality','severity','timing'})
     return any(e['kind']==evidence.PATIENT and e['meta'].get('facts_released') for e in later)
 
-def state(s):
+def state(s, gap=None):
     mode=s.settings.get('learning_mode','legacy')
     out={'mode':mode,'available':allowed(s),'summary':summary(s)}
     if not allowed(s):return out
@@ -133,7 +133,7 @@ def state(s):
         # the stranding students report, so coached mode gets the single next
         # action -- one move, with its question and its reason -- and not the
         # rest of the plan.
-        out['next_action'] = guide.next_action(s)
+        out['next_action'] = guide.next_action(s, gap=gap)
     return out
 
 def hint(s, step_id=None, level=None):
