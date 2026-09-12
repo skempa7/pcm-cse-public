@@ -20,17 +20,17 @@ function harness(edition) {
     .replace(/^\s*if \(!voice\.rec\) \{/, '')
     .replace(/const rec = new SR\(\);/, 'rec = new SR();');
 
-  const helpersStart = source.indexOf('function suppressListeningForPatient(){');
+  const helpersStart = source.indexOf('function scheduleListening(){');
   const helpersEnd = source.indexOf('function startListening(){');
   assert.ok(helpersStart > 0 && helpersEnd > helpersStart, 'suppression helpers not found');
   const helpers = source.slice(helpersStart, helpersEnd);
 
-  const sent = [];
+  const sent = [], timers=[];
   const context = {
-    console, Date, Math, Error, Promise, setTimeout, String, Number,
+    console, Date, Math, Error, Promise, setTimeout: fn=>{timers.push(fn);return timers.length;}, clearTimeout(){}, String, Number,
     S: { id: 's1', phase: 'encounter' },
     voice: {
-      rec: null, listening: true, hands_free: true, speak: true, supported: true,
+      rec: null, recSession:'s1', wanted:true, listening: true, hands_free: true, speak: true, supported: true,
       muteUntil: 0, failed: false, pending: null, lastFinal: -1, suppressed: false,
       lastSentText: '', lastSentAt: 0, patientSpeaking: false,
     },
@@ -76,7 +76,7 @@ function harness(edition) {
   function reemitAll() {
     recognizer.onresult({ resultIndex: 0, results: recognizer.results });
   }
-  return { context, recognizer, sent, emit, reemitAll, helpers };
+  return { context, recognizer, sent, emit, reemitAll, helpers, tick:()=>{const batch=timers.splice(0);batch.forEach(fn=>fn());} };
 }
 
 function run(edition, label) {
@@ -184,7 +184,8 @@ function run(edition, label) {
     h.recognizer.start();
     h.emit([{ text: 'hello' }]);
     const startsBefore = h.recognizer.starts;
-    h.recognizer.stop();   // onend auto-restarts while hands-free is on
+    h.recognizer.stop();   // onend schedules a fresh session while hands-free is on
+    h.tick();
     ok('hands-free resumes automatically after a natural end',
        () => assert.equal(h.recognizer.starts, startsBefore + 1));
     ok('the resumed session starts with a clean watermark',
@@ -229,7 +230,7 @@ function run(edition, label) {
 }
 
 const editions = [];
-for (const dir of [path.resolve(__dirname, '..'), path.resolve(__dirname, '../../pcm-cse-public')]) {
+for (const dir of [path.resolve(__dirname, '..')]) {
   if (fs.existsSync(path.join(dir, 'web/app.js'))) editions.push(dir);
 }
 for (const edition of editions) run(edition, path.basename(edition));

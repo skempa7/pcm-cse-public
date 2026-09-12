@@ -194,7 +194,10 @@ def repair(s):
     if s.row['phase']!='submitted':
         raise PermissionError('Finish the encounter before its repair exercise.')
     performed=s.ledger.performed_maneuvers()
-    obtained=[e for e in s.ledger.events if e['kind'] in (evidence.PATIENT,evidence.EXAM_FINDING)]
+    obtained=[e for e in audit._delivered_ledger(s.ledger, s.case).events
+              if e['kind'] == evidence.EXAM_FINDING or
+              (e['kind'] == evidence.PATIENT and not e['meta'].get('no_information')
+               and (e['meta'].get('facts_released') or e['meta'].get('concepts')))]
     if not performed:
         return {'id':'unsupported_exam','title':'Repair: evidence before documentation','stem':'You did not complete a physical examination in this attempt. Which Objective statement is defensible?',
                 'choices':['Physical examination normal.','No physical examination findings were obtained.','Heart and lungs normal because the hidden case says so.'],

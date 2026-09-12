@@ -188,7 +188,7 @@ worse better unchanged same""".split())
 
 _CLAUSE = _re.compile(
     r"(?<=[.!?])\s+|\s*;\s*|\s*,?\s+\b(?:but|though|although)\b\s+|"
-    r"\s*,?\s+\band\b\s+(?=(?:i|she|he|they|it|my|her|his|their|now)\b)|\s*,\s+(?=then\s)",
+    r"\s*,?\s+\band\b\s+(?=(?:i|she|he|they|it|my|her|his|their|now|is now|was now)\b)|\s*,\s+(?=then\s)",
     _re.I)
 
 _SPOKEN_NEG = _re.compile(r"\b(no|not|never|none|nothing|nobody|nowhere|neither|nor|denies|denied|deny|without|cannot|cant|unable|hardly|barely|scarcely|wont|dont|doesnt|didnt|isnt|arent|wasnt|werent|hasnt|havent|hadnt|couldnt|wouldnt|shouldnt|nt|free)\b")
@@ -234,26 +234,33 @@ def says(claim_text, opening):
     wanted = _spoken_content(claim_text)
     if len(wanted) < 2:
         return False, ""
-    parts = spoken_clauses(opening)
-    spoken = set()
-    for part in parts:
-        spoken |= _spoken_content(part)
-    if wanted - spoken:
-        return False, ""
-    negated = _spoken_negated(claim_text)
-    # A clause supplies the claim only if it shares a real word with it. Marker
-    # words ("when", "now", "since") appear all over a sentence, and letting one
-    # recruit an unrelated clause made that clause's markers mandatory --
-    # "It goes away when I stop" was demanding "away"/"stop" of a claim about
-    # pressure at work.
-    substantive = wanted - _MARKERS - {_spoken_stem(m) for m in _MARKERS}
-    supplying = [part for part in parts if _spoken_content(part) & (substantive or wanted)]
-    claim_markers = _spoken_markers(claim_text)
-    for part in supplying:
-        if _spoken_negated(part) != negated:
+    original_parts = spoken_clauses(opening)
+    parts = list(original_parts)
+    # An explicit "It ..." may refer to the single symptom named in the
+    # immediately preceding clause. Resolve that grammatical subject only;
+    # none of its location, timing, triggers or modifiers travel with it.
+    subjects = {'pain', 'pressure', 'cough', 'headache', 'spinning', 'numbness', 'burning', 'fluttering'}
+    for index in range(1, len(parts)):
+        if _re.match(r'^it\b', parts[index], _re.I):
+            previous = subjects.intersection(_spoken_tokens(parts[index - 1]))
+            if len(previous) == 1:
+                parts[index] = _re.sub(r'^it\b', next(iter(previous)), parts[index], flags=_re.I)
+    # 2026-09-12: matching a pooled vocabulary can reverse migration or move
+    # the patient's symptom to a relative mentioned in another sentence. Each
+    # asserted clause must keep its content and qualifiers within one delivered
+    # clause. A combined summary may still use several independently matched
+    # clauses, but they cannot lend one another their subjects or chronology.
+    sources = []
+    for assertion in spoken_clauses(claim_text):
+        wanted = _spoken_content(assertion)
+        if not wanted:
+            continue
+        claim_markers = _spoken_markers(assertion)
+        candidates = [part for part in parts
+                      if wanted.issubset(_spoken_content(part))
+                      and _spoken_negated(part) == _spoken_negated(assertion)
+                      and not (_spoken_markers(part) - claim_markers)]
+        if not candidates:
             return False, ""
-        # REVERSE check: she may not have qualified this in a way the claim
-        # dropped. "might faint" must never become "fainted".
-        if _spoken_markers(part) - claim_markers:
-            return False, ""
-    return True, " ".join(supplying).strip(" .,")
+        sources.append(original_parts[parts.index(candidates[0])])
+    return bool(sources), " ".join(dict.fromkeys(sources)).strip(" .,")

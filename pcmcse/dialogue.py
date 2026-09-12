@@ -148,6 +148,7 @@ _SHORTHAND = {
     "smoking": "tobacco", "smoke": "tobacco", "tobacco": "tobacco",
     "drinking": "alcohol", "drink": "alcohol", "alcohol": "alcohol",
     "drugs": "drugs", "name": "name", "age": "age",
+    "occupation": "occupation", "job": "occupation",
 }
 # The ordinary question each shorthand topic stands for. Re-expanding shorthand
 # into a real question lets the existing reviewed routes answer it, instead of
@@ -197,7 +198,9 @@ _CASUAL = [
     (r"\bwhens\b", "when is"), (r"\bdoesnt\b", "does not"),
     (r"\bdont\b", "do not"), (r"\bcant\b", "can not"), (r"\bive\b", "i have"),
     (r"\byoure\b", "you are"), (r"\byou'?re\b", "you are"),
-    (r"\bany1\b", "anyone"), (r"\b2\b", "to"), (r"\b4\b", "for"),
+    (r"\bany1\b", "anyone"),
+    # Numerals are clinical information (age, dose, severity, duration), never
+    # SMS shorthand: rewriting 2/4 made incorrect timelines look confirmed.
     # The same FIFE "ideas" question, asked the way people actually ask it.
     # Twenty of the twenty-four cases author the trigger as "think is
     # happening" and only four as "going on", so without this the commonest
@@ -381,7 +384,8 @@ def expand_bare_topic(segment):
     Only a fragment with no question structure of its own is expanded, so an
     actual question is never rewritten into a different one.
     """
-    stripped = segment.strip(" ?.!,")
+    stripped = re.sub(r"^(?:please\s+)|(?:\s+please)$", "",
+                      segment.strip(" ?.!,"), flags=re.I)
     words = re.findall(r"[a-z]+", stripped.lower())
     if not words or len(words) > 3:
         return segment
@@ -523,7 +527,7 @@ def _shorthand_group(ask):
 def _shorthand_list(ask):
     """Read "meds allergies surgeries?" -- bare topic words, no verb."""
     words = re.findall(r"[a-z]+", ask.lower())
-    words = [w for w in words if w not in ("any", "and", "or", "your", "you", "the")]
+    words = [w for w in words if w not in ("any", "and", "or", "your", "you", "the", "please")]
     if not 2 <= len(words) <= 5:
         return None
     topics = []

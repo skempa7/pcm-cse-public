@@ -1,16 +1,8 @@
-"""Derive every ?v= cache tag from the bytes of the file it points at.
+"""Derive release cache tags from actual bytes, including nested JS URLs.
 
-A hand-written tag drifts, and the failure is always the same shape: the file
-is fixed, the tag is not, the browser keeps the copy it already has, and the
-fix looks like it never shipped. It has now happened three times in this
-project -- web/engine.zip, web/patient3d/dist/room.js, and web/learning.js --
-so the tags are derived rather than remembered.
-
-Content-derived means unchanged files keep their tag and are not re-downloaded
-for nothing, while any real change always produces a new URL.
-
-    python3 tools/stamp_cache_tags.py           # rewrite the tags
-    python3 tools/stamp_cache_tags.py --check   # non-zero if any tag is stale
+Run after packaging Python and rebuilding the 3D bundle. Dependencies are
+stamped before their parents, so one run updates the full browser load chain.
+Use --check to reject stale or missing references without writing anything.
 """
 import hashlib
 import re
@@ -18,48 +10,60 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = (ROOT / "web/index.html", ROOT / "web/patient3d/index.html")
-REFERENCE = re.compile(r'((?:src|href)=")([A-Za-z0-9._/-]+)(\?v=)([A-Za-z0-9._-]+)(")')
+ENTRY_FILES = (
+    'web/index.html', 'web/patient3d/index.html', 'web/app.js',
+    'web/public-runtime.js', 'web/engine-worker.mjs', 'web/study.js',
+)
+REFERENCE = re.compile(r'''(["'])([A-Za-z0-9._/-]+)(\?v=)([A-Za-z0-9._-]+)(["'])''')
 
 
-def main():
-    check = "--check" in sys.argv
-    stale, missing, scanned = [], [], 0
-    for page in PAGES:
-        if not page.exists():
-            continue
-        text = page.read_text()
-        updated = text
+def stamp_tree(root=ROOT, check=False):
+    entries = {(root / name).resolve() for name in ENTRY_FILES}
+    stale, missing, rendered, visiting = [], [], {}, set()
+    scanned = 0
+
+    def render(page):
+        nonlocal scanned
+        if page in rendered:
+            return rendered[page]
+        if page in visiting:
+            raise ValueError('Circular cache dependency: ' + str(page))
+        visiting.add(page)
 
         def stamp(match):
             nonlocal scanned
             prefix, name, marker, current, suffix = match.groups()
             target = (page.parent / name).resolve()
-            if not target.exists():
-                missing.append("%s -> %s" % (page.name, name))
+            if not target.is_file():
+                missing.append('%s -> %s' % (page.name, name))
                 return match.group(0)
             scanned += 1
-            digest = hashlib.sha256(target.read_bytes()).hexdigest()[:10]
+            data = render(target) if target in entries else target.read_bytes()
+            digest = hashlib.sha256(data).hexdigest()[:10]
             if digest != current:
-                stale.append("%s: %s %s -> %s" % (page.name, name, current, digest))
+                stale.append('%s: %s %s -> %s' % (page.name, name, current, digest))
             return prefix + name + marker + digest + suffix
 
-        updated = REFERENCE.sub(stamp, updated)
-        if updated != text and not check:
-            page.write_text(updated)
+        rendered[page] = REFERENCE.sub(stamp, page.read_text()).encode()
+        visiting.remove(page)
+        return rendered[page]
 
+    for page in sorted(entries):
+        if not page.is_file():
+            missing.append(str(page.relative_to(root)))
+        else:
+            render(page)
+    if not check and not missing:
+        for page, data in rendered.items():
+            if data != page.read_bytes():
+                page.write_bytes(data)
     for item in missing:
-        print("  missing file for cache tag: %s" % item)
-    if check:
-        for item in stale:
-            print("  STALE %s" % item)
-        print("%d references checked, %d stale" % (scanned, len(stale)))
-        return 1 if stale or missing else 0
+        print('  missing file for cache tag: ' + item)
     for item in stale:
-        print("  stamped %s" % item)
-    print("%d references checked, %d restamped" % (scanned, len(stale)))
-    return 1 if missing else 0
+        print('  %s %s' % ('STALE' if check else 'stamped', item))
+    print('%d references checked, %d %s' % (scanned, len(stale), 'stale' if check else 'restamped'))
+    return int(bool(missing or (check and stale)))
 
 
-if __name__ == "__main__":
-    raise SystemExit(main())
+if __name__ == '__main__':
+    raise SystemExit(stamp_tree(check='--check' in sys.argv))

@@ -167,7 +167,7 @@ def _priority_errors(audit_result, rubric, chk, case):
 def _why_matters(row):
     cat = row["category"]
     if cat == "Objective":
-        return ("Objective rows are worth 5 points each — a sixth of the note. "
+        return ("Objective rows are worth 5 points each — a sixth of Objective and 5% of the note. "
                 "The course's stated deductions for this section are almost all "
                 "about specificity and headers, not about knowing more medicine.")
     if cat == "Assessment":
@@ -195,14 +195,14 @@ def _what_to_do(row, case):
                           "three in one transition and write all three.",
         "family_history": "Name the biological parents and the siblings, with "
                           "ages and conditions where you have them.",
-        "ros": "Pick three systems the case actually implicates and write three "
-               "symptoms in each, positives and negatives.",
-        "specific_follow_up": "Put the interval in Plan 1: 'follow up in 48-72 "
-                              "hours'. A disposition such as 'admit' is also "
-                              "accepted.",
-        "specific_education": "Name what you taught: 'educate on completing the "
-                              "full antibiotic course and return precautions for "
-                              "persistent fever'.",
+        "ros": "Ask about three symptoms in each of three pertinent systems. "
+               "Document only the positive and negative answers actually obtained.",
+        "specific_follow_up": "State a specific follow-up interval or disposition in Plan 1 "
+                              "that matches this patient's urgency. A needed emergency "
+                              "transfer must not become a routine follow-up visit.",
+        "specific_education": "Name the education topic, practical instructions and "
+                              "return precautions relevant to your plan. Describe it "
+                              "as proposed education unless you actually discussed it.",
         "most_relevant": "For the area of concern, document inspection, "
                          "auscultation, percussion and palpation, plus the "
                          "special test that discriminates the differential.",

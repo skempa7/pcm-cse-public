@@ -26,7 +26,7 @@ from __future__ import annotations
 
 import re
 
-from . import evidence, patient as _patient
+from . import evidence, lexicon, nlp, patient as _patient
 
 # Rubric row -> the authored fact categories that belong in it. Categories come
 # from the case library's own `category` vocabulary, so nothing here invents a
@@ -46,6 +46,7 @@ SECTIONS = (
     ("family",      "other",      "Family history",                 ("family",)),
     ("obgyn",       "other",      "OB/GYN history",                 ("obgyn",)),
     ("perspective", "other",      "Patient perspective",            ("fife",)),
+    ("ros",         "other",      "Review of systems",              ("ros",)),
 )
 GROUPS = (
     ("subjective", "Patient & chief concern"),
@@ -259,18 +260,58 @@ def _as_spoken(fact, said, value):
     return value
 
 
+def _direct_denials(case, question, event):
+    """Project existing direct-question denials, never infer one from silence.
+
+    Some legacy cases explicitly allow the engine's bounded ROS denial route.
+    It records concepts rather than authored fact IDs. Keep its actual question
+    and answer associated; an unrelated answer or forged concept is not enough.
+    This changes display only, not what the case can deny or what earns credit.
+    """
+    meta = event.get("meta") or {}
+    if (meta.get("kind") != "denial" or meta.get("no_information")
+            or not _patient._looks_like_a_symptom_question(nlp.normalize(question))):
+        return []
+    spoken = nlp.normalize(event.get("text", "")).strip(" .,!?")
+    if spoken not in ("no nothing like that", "no i haven't had that", "no i havent had that", "no"):
+        return []
+    excluded = set(case.get("supersedes_core", [])) | set(case.get("concept_lexicon") or {})
+    excluded.update(cid for fact in case.get("facts", []) for cid in fact.get("concepts", {}))
+    asked = nlp.find_concepts(question, {cid: lexicon.CORE_CONCEPTS[cid]
+        for cid in lexicon.DENIABLE_SYMPTOMS if cid in lexicon.CORE_CONCEPTS and cid not in excluded})
+    return [cid for cid, spec in (meta.get("concepts") or {}).items()
+            if cid in asked and isinstance(spec, dict) and spec.get("polarity") == "negative"
+            and spec.get("value") == "denied on direct questioning"]
+
+
 def summarize(case, events):
     """Project the ledger onto the note's rows. Read-only; never mutates."""
     definitions = {f["id"]: f for f in (case.get("facts") or [])}
     items, order = {}, []
     findings, chart, unanswered = [], [], []
+    last_question = ""
 
     for event in events or []:
         meta = event.get("meta") or {}
         kind = event.get("kind")
         seq = event.get("seq")
 
-        if kind == evidence.PATIENT:
+        if kind == evidence.STUDENT:
+            last_question = event.get("text", "")
+        elif kind == evidence.PATIENT:
+            for cid in _direct_denials(case, last_question, event):
+                fid = "ros:" + cid
+                if fid not in items:
+                    order.append(fid)
+                    items[fid] = {
+                        "fact_id": fid, "section": "ros", "category": "ros",
+                        "label": cid.replace("_", " ").capitalize(),
+                        "text": event.get("text", ""), "text_full": "",
+                        "reported_negative": True, "volunteered": False,
+                        "uncertain": False, "seqs": [],
+                    }
+                items[fid]["seqs"].append(seq)
+                items[fid]["text"] = event.get("text", "")
             claimed = meta.get("facts_released") or []
             authorised = []
             for fid in claimed:

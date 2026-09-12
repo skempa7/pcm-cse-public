@@ -94,7 +94,7 @@ function harness(edition) {
   const requested = [];
   const tools = dom.el('div');
   const ctx = {
-    console, POSITIONS, Set, Array, String, Boolean, JSON,
+    console, POSITIONS, Set, Array, String, Boolean, JSON, active:{},
     document: { createElement: t => dom.el(t) },
     E: s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])),
     q: (sel, root) => (root ? dom.descendants(root) : dom.all).find(n => dom.matches(n, sel)) || null,
@@ -228,7 +228,7 @@ function bedside(edition, label) {
 }
 
 const editions = [];
-for (const dir of [path.resolve(__dirname, '..'), path.resolve(__dirname, '../../pcm-cse-public')]) {
+for (const dir of [path.resolve(__dirname, '..')]) {
   if (fs.existsSync(path.join(dir, 'web/encounter-workspace.js'))) editions.push(dir);
 }
 for (const e of editions) { run(e, path.basename(e)); voiceToggle(e, path.basename(e) + ' voice'); bedside(e, path.basename(e) + ' bedside'); }

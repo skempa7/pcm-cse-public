@@ -17,7 +17,9 @@ export function proneCushionHeight(z,bodyBuild,presentation='female',outfit='unc
  // the authored rest shape. Clinical findings and all patient pose clips stay unchanged.
  const chestCenters={base:-.481,'short-slender':-.492,standard:-.502,'tall-full':-.510};
  const chestWidths={base:.094,'short-slender':.096,standard:.098,'tall-full':.101};
- const chestDepths={base:.018,'short-slender':.0185,standard:.019,'tall-full':.0195};
+ // 2026-09-12: current public bodies need 10 mm more local compression.
+ // Checked against actual skinned vertices and rendered cushion ray hits in all builds.
+ const chestDepths={base:.018,'short-slender':.0285,standard:.029,'tall-full':.0295};
  const key=Object.hasOwn(chestCenters,bodyBuild)?bodyBuild:'base',t=(z-chestCenters[key])/chestWidths[key];
  const chestRelief=presentation==='female'&&Math.abs(t)<1?chestDepths[key]*(1+Math.cos(Math.PI*t))/2:0;
  return rawProneCushionHeight(z,bodyBuild,presentation)-allowance-chestRelief;

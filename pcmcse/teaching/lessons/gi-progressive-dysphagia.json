@@ -51,7 +51,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             4,
@@ -387,7 +387,7 @@
           "kind": "dialogue",
           "section": "Relevant background",
           "student": "What medical conditions have you been diagnosed with?",
-          "patient": "Longstanding reflux no prior endoscopy.",
+          "patient": "Longstanding reflux, no prior endoscopy.",
           "why": "",
           "event_ids": [
             54,
@@ -528,7 +528,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your mother had?",
-          "patient": "Mother had stroke at 78",
+          "patient": "My mother is still alive, and she had a stroke when she was seventy-eight.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             74,
@@ -542,7 +542,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your father had?",
-          "patient": "father died of lung cancer at 70",
+          "patient": "My father died of lung cancer when he was seventy.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             76,
@@ -556,7 +556,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems have your siblings had?",
-          "patient": "one healthy sister.",
+          "patient": "I have one sister and she is healthy.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             78,
@@ -598,7 +598,7 @@
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             84,
@@ -780,18 +780,15 @@
         {
           "kind": "dialogue",
           "section": "Explain next steps",
-          "student": "I recommend investigating the swallowing difficulty and weight change. Inflammation, narrowing and other conditions can make food stick; we should not assume the cause from age alone. A specialist may need to examine the esophagus with a camera and take appropriate samples.",
-          "patient": "Longstanding reflux Like I said, no prior endoscopy.",
+          "student": "I recommend investigating the swallowing difficulty and weight change. Inflammation, narrowing and other conditions can make food stick; we should not assume the cause from age alone. I recommend specialist assessment of the esophagus with a camera and appropriate tissue samples.",
+          "patient": "Okay, that makes sense.",
           "why": "Proposed care, not a record of tests or treatment already completed.",
           "event_ids": [
             111,
             112,
             113
           ],
-          "fact_ids": [
-            "history_pmh_1",
-            "history_pmh_2"
-          ]
+          "fact_ids": []
         },
         {
           "kind": "dialogue",
@@ -809,7 +806,7 @@
           "kind": "dialogue",
           "section": "Address the patient\u2019s question",
           "student": "I understand why your father's history worries you. Cancer is one possibility, but narrowing and inflammation can also cause swallowing trouble. I recommend prompt specialist evaluation and endoscopy to find the cause rather than promising a diagnosis before the tests.",
-          "patient": "Okay, that makes sense.",
+          "patient": "Alright. Thank you for explaining that.",
           "why": "Answer the concern that was just expressed. Give a defensible recommendation and explain uncertainty; do not promise a diagnosis or recovery before the evidence supports it.",
           "event_ids": [
             116,
@@ -820,7 +817,7 @@
         }
       ],
       "note": {
-        "S": "cc: Food sticking and unintentional weight loss\n\nHPI: 26-year-old man with progressive food sticking behind the breastbone after swallowing; onset 8 weeks ago. Initially solids, now soft foods; meat and bread most difficult. Small bites and water sometimes help. Regurgitation, fatigue and unintentional loss of 10 lb over 2 months. Years of heartburn; antacid helps heartburn but not sticking. No arm/back radiation. This progressive swallowing difficulty is new.\n\nPerspective: My father had cancer. Is that what this is?\n\nPMH: Longstanding reflux; no prior endoscopy.\n\nPSH: No surgeries or admissions.\n\nMeds: Calcium carbonate antacid; frequency not established.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Bicycle mechanic; lives with wife; still able to swallow liquids and manage saliva.\n\nFH: Mother had stroke at 78; father died of lung cancer at 70; one healthy sister.\n\nROS: Gastrointestinal - Reports dysphagia. Denies odynophagia. Reports regurgitation. General - Reports weight loss. Reports fatigue. Denies fever. Respiratory - Denies cough. Denies dyspnea. Denies hemoptysis.\nAdditional PMH: I have had eczema since childhood.\n",
+        "S": "cc: Food sticking and unintentional weight loss\n\nHPI: 26-year-old man with progressive food sticking behind the breastbone after swallowing; onset 8 weeks ago. Initially solids, now soft foods; meat and bread most difficult. Small bites and water sometimes help. Regurgitation, fatigue and unintentional loss of 10 lb over 2 months. Years of heartburn; antacid helps heartburn but not sticking. No arm/back radiation. This progressive swallowing difficulty is new.\n\nPerspective: My father had cancer. Is that what this is?\n\nPMH: Longstanding reflux; no prior endoscopy.\n\nPSH: No surgeries or admissions.\n\nMeds: Calcium carbonate antacid; frequency not established.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Bicycle mechanic; lives with wife; still able to swallow liquids and manage saliva.\n\nFH: My mother is still alive, and she had a stroke when she was seventy-eight.; My father died of lung cancer when he was seventy.; I have one sister and she is healthy.\n\nROS: Gastrointestinal - Reports dysphagia. Denies odynophagia. Reports regurgitation. General - Reports weight loss. Reports fatigue. Denies fever. Respiratory - Denies cough. Denies dyspnea. Denies hemoptysis.\nAdditional PMH: I have had eczema since childhood.\n",
         "O": "Vitals: T 98.1 F oral, P 82 bpm, BP 124/76 mmHg, R 16 rpm, Pulse Ox 98% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Thin appearing; handles secretions without distress.\nHeart: Regular rhythm without murmur.\nLungs: In the examined posterior fields, clear breath sounds bilaterally.\nAbdomen: Abdomen not distended.\nAbdomen: Bowel sounds present.\nAbdomen: Tympanic in examined quadrants.\nAbdomen: No focal tenderness with gentle palpation.\nHEENT: Oropharynx without visible lesions.\nHEENT: No palpable cervical or supraclavicular nodes.\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Eosinophilic esophagitis",
@@ -1000,7 +997,7 @@
           "section": "S",
           "statement": "no prior endoscopy.",
           "event_ids": [
-            113
+            55
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1081,16 +1078,18 @@
             71
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
           "statement": "lives with wife;",
-          "event_ids": [],
+          "event_ids": [
+            73
+          ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -1105,7 +1104,7 @@
         },
         {
           "section": "S",
-          "statement": "Mother had stroke at 78;",
+          "statement": "My mother is still alive",
           "event_ids": [
             75
           ],
@@ -1115,7 +1114,17 @@
         },
         {
           "section": "S",
-          "statement": "father died of lung cancer at 70;",
+          "statement": "and she had a stroke when she was seventy-eight.;",
+          "event_ids": [
+            75
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "My father died of lung cancer when he was seventy.;",
           "event_ids": [
             77
           ],
@@ -1125,7 +1134,7 @@
         },
         {
           "section": "S",
-          "statement": "one healthy sister.",
+          "statement": "I have one sister and she is healthy.",
           "event_ids": [
             79
           ],
@@ -1483,47 +1492,50 @@
         },
         {
           "seq": 4,
-          "t_ms": 1,
+          "t_ms": 0,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
           "seq": 5,
-          "t_ms": 1,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
+          }
+        },
+        {
+          "seq": 6,
+          "t_ms": 0,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
-          }
-        },
-        {
-          "seq": 6,
-          "t_ms": 3,
-          "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
-          "meta": {
-            "kind": "consent"
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 7,
-          "t_ms": 1,
+          "t_ms": 3,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
@@ -1678,7 +1690,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 12,
+          "t_ms": 11,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -1716,7 +1728,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 14,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -1728,7 +1740,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 14,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It feels like food sticks after I swallow.",
@@ -1766,7 +1778,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 16,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have lost 10 pounds without trying.",
@@ -1797,14 +1809,14 @@
           "kind": "student_utterance",
           "text": "Have you had heartburn or reflux before?",
           "meta": {
-            "open_question": true,
+            "closed_question": true,
             "mode": "type",
             "intent": "question"
           }
         },
         {
           "seq": 23,
-          "t_ms": 18,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have had years of heartburn.",
@@ -1830,7 +1842,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 18,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -1842,7 +1854,7 @@
         },
         {
           "seq": 25,
-          "t_ms": 19,
+          "t_ms": 21,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Small bites and water sometimes help food pass.",
@@ -1868,7 +1880,7 @@
         },
         {
           "seq": 26,
-          "t_ms": 20,
+          "t_ms": 21,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -1880,7 +1892,7 @@
         },
         {
           "seq": 27,
-          "t_ms": 21,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Meat and bread are hardest to swallow.",
@@ -1906,7 +1918,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 22,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -1918,7 +1930,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 23,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Over-the-counter antacid helps heartburn but not the sticking.",
@@ -1944,7 +1956,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 24,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -1956,7 +1968,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 25,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "This progressive sticking is new.",
@@ -1982,7 +1994,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 25,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does food stick when you swallow?",
@@ -1994,7 +2006,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 26,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Solid food sticks after swallowing.",
@@ -2020,7 +2032,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 27,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does food ever come back up after swallowing?",
@@ -2032,7 +2044,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 28,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Sometimes food comes back up.",
@@ -2058,7 +2070,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 29,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you lost weight without trying?",
@@ -2070,7 +2082,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 30,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I lost 10 pounds in 2 months.",
@@ -2096,7 +2108,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 31,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt unusually tired or low in energy?",
@@ -2108,7 +2120,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 31,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have less energy.",
@@ -2134,7 +2146,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 32,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are you able to swallow liquids?",
@@ -2146,7 +2158,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 33,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I can still swallow liquids.",
@@ -2172,7 +2184,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 34,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are you able to swallow your saliva?",
@@ -2184,7 +2196,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 35,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I can still swallow my saliva.",
@@ -2210,7 +2222,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 36,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is it painful to swallow?",
@@ -2222,7 +2234,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 37,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Swallowing itself is not painful.",
@@ -2248,7 +2260,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 37,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -2260,7 +2272,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 38,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No fever.",
@@ -2286,7 +2298,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 39,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a cough?",
@@ -2298,7 +2310,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 40,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not cough or choke when starting a swallow.",
@@ -2324,7 +2336,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 41,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt short of breath?",
@@ -2336,7 +2348,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 42,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No shortness of breath.",
@@ -2362,7 +2374,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 42,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you coughed up any blood?",
@@ -2374,7 +2386,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 43,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No coughing blood.",
@@ -2400,7 +2412,7 @@
         },
         {
           "seq": 54,
-          "t_ms": 44,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -2412,10 +2424,10 @@
         },
         {
           "seq": 55,
-          "t_ms": 50,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Longstanding reflux no prior endoscopy.",
+          "text": "Longstanding reflux, no prior endoscopy.",
           "meta": {
             "facts_released": [
               "history_pmh_1",
@@ -2445,7 +2457,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 51,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had eczema?",
@@ -2457,7 +2469,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 51,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have had eczema since childhood.",
@@ -2483,7 +2495,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 53,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -2495,7 +2507,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 53,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No surgeries or admissions.",
@@ -2521,7 +2533,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 54,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -2533,7 +2545,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 55,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I take calcium carbonate antacid as needed.",
@@ -2559,7 +2571,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 56,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -2571,7 +2583,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 57,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No known drug allergies.",
@@ -2597,7 +2609,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 58,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -2609,7 +2621,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 59,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Never smoked tobacco.",
@@ -2635,7 +2647,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 60,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -2647,7 +2659,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 61,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "One alcoholic drink weekly.",
@@ -2673,7 +2685,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 62,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -2685,7 +2697,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 62,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -2711,7 +2723,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 63,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -2723,7 +2735,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 64,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a bicycle mechanic.",
@@ -2749,7 +2761,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 65,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -2760,7 +2772,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 66,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my wife.",
@@ -2786,7 +2798,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 67,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -2798,10 +2810,10 @@
         },
         {
           "seq": 75,
-          "t_ms": 68,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Mother had stroke at 78",
+          "text": "My mother is still alive, and she had a stroke when she was seventy-eight.",
           "meta": {
             "facts_released": [
               "history_family_1"
@@ -2809,7 +2821,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother had stroke at 78"
+                "value": "My mother is still alive, and she had a stroke when she was seventy-eight."
               }
             },
             "volunteered": false,
@@ -2824,7 +2836,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 69,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your father had?",
@@ -2836,10 +2848,10 @@
         },
         {
           "seq": 77,
-          "t_ms": 70,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "father died of lung cancer at 70",
+          "text": "My father died of lung cancer when he was seventy.",
           "meta": {
             "facts_released": [
               "history_family_2"
@@ -2847,7 +2859,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father died of lung cancer at 70"
+                "value": "My father died of lung cancer when he was seventy."
               }
             },
             "volunteered": false,
@@ -2862,7 +2874,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 71,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -2874,10 +2886,10 @@
         },
         {
           "seq": 79,
-          "t_ms": 72,
+          "t_ms": 89,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "one healthy sister.",
+          "text": "I have one sister and she is healthy.",
           "meta": {
             "facts_released": [
               "history_family_3"
@@ -2885,7 +2897,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "one healthy sister."
+                "value": "I have one sister and she is healthy."
               }
             },
             "volunteered": false,
@@ -2900,7 +2912,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 73,
+          "t_ms": 90,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -2912,7 +2924,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 73,
+          "t_ms": 91,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My father had cancer. Is that what this is?",
@@ -2938,7 +2950,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 74,
+          "t_ms": 92,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -2949,7 +2961,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 78,
+          "t_ms": 102,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My father had cancer. Is that what this is?",
@@ -2975,7 +2987,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 79,
+          "t_ms": 103,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -2986,17 +2998,17 @@
         },
         {
           "seq": 85,
-          "t_ms": 79,
+          "t_ms": 105,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 86,
-          "t_ms": 79,
+          "t_ms": 103,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -3008,7 +3020,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 10081,
+          "t_ms": 10106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -3029,7 +3041,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 10081,
+          "t_ms": 10106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert. Thin appearing; handles secretions without distress.",
@@ -3057,7 +3069,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 50081,
+          "t_ms": 50106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -3083,7 +3095,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 50081,
+          "t_ms": 50106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rhythm without murmur.",
@@ -3105,7 +3117,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 91081,
+          "t_ms": 91106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -3130,7 +3142,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 91081,
+          "t_ms": 91106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, clear breath sounds bilaterally.",
@@ -3152,20 +3164,22 @@
         },
         {
           "seq": 93,
-          "t_ms": 91081,
+          "t_ms": 91106,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "supine",
+            "previous_position": "seated",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 94,
-          "t_ms": 98081,
+          "t_ms": 98106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect abdomen",
@@ -3187,7 +3201,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 98081,
+          "t_ms": 98106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Abdomen not distended.",
@@ -3209,7 +3223,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 114081,
+          "t_ms": 114106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -3231,7 +3245,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 114081,
+          "t_ms": 114106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Bowel sounds present.",
@@ -3253,7 +3267,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 133081,
+          "t_ms": 133106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -3275,7 +3289,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 133081,
+          "t_ms": 133106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tympanic in examined quadrants.",
@@ -3297,7 +3311,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 160081,
+          "t_ms": 160106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -3320,7 +3334,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 160081,
+          "t_ms": 160106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No focal tenderness with gentle palpation.",
@@ -3342,7 +3356,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 176081,
+          "t_ms": 176106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect mouth and throat with light",
@@ -3364,7 +3378,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 176081,
+          "t_ms": 176106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Oropharynx without visible lesions.",
@@ -3386,7 +3400,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 198081,
+          "t_ms": 198106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate lymph nodes",
@@ -3409,7 +3423,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 198081,
+          "t_ms": 198106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No palpable cervical or supraclavicular nodes.",
@@ -3431,20 +3445,22 @@
         },
         {
           "seq": 106,
-          "t_ms": 198081,
+          "t_ms": 198106,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "seated",
+            "previous_position": "supine",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 107,
-          "t_ms": 223081,
+          "t_ms": 223106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -3466,7 +3482,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 223081,
+          "t_ms": 223106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T5 paraspinal tissue texture change with mild tenderness on the right.",
@@ -3488,7 +3504,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 242081,
+          "t_ms": 242106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -3510,7 +3526,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 242081,
+          "t_ms": 242106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -3532,23 +3548,22 @@
         },
         {
           "seq": 111,
-          "t_ms": 242081,
+          "t_ms": 242106,
           "phase": "encounter",
           "kind": "student_utterance",
-          "text": "I recommend investigating the swallowing difficulty and weight change. Inflammation, narrowing and other conditions can make food stick; we should not assume the cause from age alone. A specialist may need to examine the esophagus with a camera and take appropriate samples.",
+          "text": "I recommend investigating the swallowing difficulty and weight change. Inflammation, narrowing and other conditions can make food stick; we should not assume the cause from age alone. I recommend specialist assessment of the esophagus with a camera and appropriate tissue samples.",
           "meta": {
             "plan_talk": true,
             "mode": "type",
-            "counseling_turn": true,
-            "intent": "counseling"
+            "counseling_turn": true
           }
         },
         {
           "seq": 112,
-          "t_ms": 242081,
+          "t_ms": 242106,
           "phase": "encounter",
           "kind": "counseling",
-          "text": "I recommend investigating the swallowing difficulty and weight change. Inflammation, narrowing and other conditions can make food stick; we should not assume the cause from age alone. A specialist may need to examine the esophagus with a camera and take appropriate samples.",
+          "text": "I recommend investigating the swallowing difficulty and weight change. Inflammation, narrowing and other conditions can make food stick; we should not assume the cause from age alone. I recommend specialist assessment of the esophagus with a camera and appropriate tissue samples.",
           "meta": {
             "topics": [
               "diet"
@@ -3557,40 +3572,17 @@
         },
         {
           "seq": 113,
-          "t_ms": 242081,
+          "t_ms": 242106,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Longstanding reflux Like I said, no prior endoscopy.",
+          "text": "Okay, that makes sense.",
           "meta": {
-            "facts_released": [
-              "history_pmh_1",
-              "history_pmh_2"
-            ],
-            "concepts": {
-              "history_pmh_1": {
-                "polarity": "positive",
-                "value": "Longstanding reflux"
-              },
-              "history_pmh_2": {
-                "polarity": "positive",
-                "value": "no prior endoscopy."
-              }
-            },
-            "volunteered": false,
-            "kind": "answer",
-            "checklist_hits": [
-              "h_history_pmh_1",
-              "h_history_pmh_2"
-            ],
-            "categories": [
-              "pmh",
-              "pmh"
-            ]
+            "kind": "plan_ack"
           }
         },
         {
           "seq": 114,
-          "t_ms": 242081,
+          "t_ms": 242106,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -3603,7 +3595,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 242081,
+          "t_ms": 242106,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My father had cancer. Is that what this is?",
@@ -3618,7 +3610,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 242081,
+          "t_ms": 242106,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I understand why your father's history worries you. Cancer is one possibility, but narrowing and inflammation can also cause swallowing trouble. I recommend prompt specialist evaluation and endoscopy to find the cause rather than promising a diagnosis before the tests.",
@@ -3631,7 +3623,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 242081,
+          "t_ms": 242106,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I understand why your father's history worries you. Cancer is one possibility, but narrowing and inflammation can also cause swallowing trouble. I recommend prompt specialist evaluation and endoscopy to find the cause rather than promising a diagnosis before the tests.",
@@ -3643,22 +3635,22 @@
         },
         {
           "seq": 118,
-          "t_ms": 242081,
+          "t_ms": 242106,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Okay, that makes sense.",
+          "text": "Alright. Thank you for explaining that.",
           "meta": {
             "kind": "plan_ack"
           }
         }
       ],
-      "note_words": 413,
-      "estimated_encounter_s": 555,
+      "note_words": 430,
+      "estimated_encounter_s": 563,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 9
+        "unresolved_count": 7
       },
       "reasoning": [
         {
@@ -3782,7 +3774,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "451fd3c561c007a42f9c606a751e7625ad02b2eab0cc08ccfe4e3501d2f7ea7a"
+      "case_hash": "1209294e4b0a15679fb28672da130e2251c08e9b5e8d9b036f2b6fec6df517db",
+      "engine_version": "4.0.4"
     },
     {
       "case_id": "gi-progressive-dysphagia",
@@ -3839,7 +3832,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             4,
@@ -4175,7 +4168,7 @@
           "kind": "dialogue",
           "section": "Relevant background",
           "student": "What medical conditions have you been diagnosed with?",
-          "patient": "Longstanding reflux no prior endoscopy.",
+          "patient": "Longstanding reflux, no prior endoscopy.",
           "why": "",
           "event_ids": [
             54,
@@ -4316,7 +4309,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your mother had?",
-          "patient": "Mother had stroke at 78",
+          "patient": "My mother is still alive, and she had a stroke when she was seventy-eight.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             74,
@@ -4330,7 +4323,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your father had?",
-          "patient": "father died of lung cancer at 70",
+          "patient": "My father died of lung cancer when he was seventy.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             76,
@@ -4344,7 +4337,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems have your siblings had?",
-          "patient": "one healthy sister.",
+          "patient": "I have one sister and she is healthy.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             78,
@@ -4386,7 +4379,7 @@
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             84,
@@ -4568,18 +4561,15 @@
         {
           "kind": "dialogue",
           "section": "Explain next steps",
-          "student": "I recommend investigating the swallowing difficulty and weight change. Inflammation, narrowing and other conditions can make food stick; we should not assume the cause from age alone. A specialist may need to examine the esophagus with a camera and take appropriate samples.",
-          "patient": "Longstanding reflux Like I said, no prior endoscopy.",
+          "student": "I recommend investigating the swallowing difficulty and weight change. Inflammation, narrowing and other conditions can make food stick; we should not assume the cause from age alone. I recommend specialist assessment of the esophagus with a camera and appropriate tissue samples.",
+          "patient": "Okay, that makes sense.",
           "why": "Proposed care, not a record of tests or treatment already completed.",
           "event_ids": [
             111,
             112,
             113
           ],
-          "fact_ids": [
-            "history_pmh_1",
-            "history_pmh_2"
-          ]
+          "fact_ids": []
         },
         {
           "kind": "dialogue",
@@ -4597,7 +4587,7 @@
           "kind": "dialogue",
           "section": "Address the patient\u2019s question",
           "student": "I understand why your father's history worries you. Cancer is one possibility, but narrowing and inflammation can also cause swallowing trouble. I recommend prompt specialist evaluation and endoscopy to find the cause rather than promising a diagnosis before the tests.",
-          "patient": "Okay, that makes sense.",
+          "patient": "Alright. Thank you for explaining that.",
           "why": "Answer the concern that was just expressed. Give a defensible recommendation and explain uncertainty; do not promise a diagnosis or recovery before the evidence supports it.",
           "event_ids": [
             116,
@@ -4608,7 +4598,7 @@
         }
       ],
       "note": {
-        "S": "cc: Food sticking and unintentional weight loss\n\nHPI: 26-year-old man with progressive food sticking behind the breastbone after swallowing; onset 5 weeks ago. Initially solids, now soft foods; meat and bread most difficult. Small bites and water sometimes help. Regurgitation, fatigue and unintentional loss of 10 lb over 2 months. Years of heartburn; antacid helps heartburn but not sticking. No arm/back radiation. This progressive swallowing difficulty is new.\n\nPerspective: My father had cancer. Is that what this is?\n\nPMH: Longstanding reflux; no prior endoscopy.\n\nPSH: No surgeries or admissions.\n\nMeds: Calcium carbonate antacid; frequency not established.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Bicycle mechanic; lives with wife; still able to swallow liquids and manage saliva.\n\nFH: Mother had stroke at 78; father died of lung cancer at 70; one healthy sister.\n\nROS: Gastrointestinal - Reports dysphagia. Denies odynophagia. Reports regurgitation. General - Reports weight loss. Reports fatigue. Denies fever. Respiratory - Denies cough. Denies dyspnea. Denies hemoptysis.\nAdditional PMH: I have had eczema since childhood.\n",
+        "S": "cc: Food sticking and unintentional weight loss\n\nHPI: 26-year-old man with progressive food sticking behind the breastbone after swallowing; onset 5 weeks ago. Initially solids, now soft foods; meat and bread most difficult. Small bites and water sometimes help. Regurgitation, fatigue and unintentional loss of 10 lb over 2 months. Years of heartburn; antacid helps heartburn but not sticking. No arm/back radiation. This progressive swallowing difficulty is new.\n\nPerspective: My father had cancer. Is that what this is?\n\nPMH: Longstanding reflux; no prior endoscopy.\n\nPSH: No surgeries or admissions.\n\nMeds: Calcium carbonate antacid; frequency not established.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Bicycle mechanic; lives with wife; still able to swallow liquids and manage saliva.\n\nFH: My mother is still alive, and she had a stroke when she was seventy-eight.; My father died of lung cancer when he was seventy.; I have one sister and she is healthy.\n\nROS: Gastrointestinal - Reports dysphagia. Denies odynophagia. Reports regurgitation. General - Reports weight loss. Reports fatigue. Denies fever. Respiratory - Denies cough. Denies dyspnea. Denies hemoptysis.\nAdditional PMH: I have had eczema since childhood.\n",
         "O": "Vitals: T 98.1 F oral, P 82 bpm, BP 124/76 mmHg, R 16 rpm, Pulse Ox 98% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Thin appearing; handles secretions without distress.\nHeart: Regular rhythm without murmur.\nLungs: In the examined posterior fields, clear breath sounds bilaterally.\nAbdomen: Abdomen not distended.\nAbdomen: Bowel sounds present.\nAbdomen: Tympanic in examined quadrants.\nAbdomen: No focal tenderness with gentle palpation.\nHEENT: Oropharynx without visible lesions.\nHEENT: No palpable cervical or supraclavicular nodes.\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Eosinophilic esophagitis",
@@ -4788,7 +4778,7 @@
           "section": "S",
           "statement": "no prior endoscopy.",
           "event_ids": [
-            113
+            55
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -4869,16 +4859,18 @@
             71
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
           "statement": "lives with wife;",
-          "event_ids": [],
+          "event_ids": [
+            73
+          ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -4893,7 +4885,7 @@
         },
         {
           "section": "S",
-          "statement": "Mother had stroke at 78;",
+          "statement": "My mother is still alive",
           "event_ids": [
             75
           ],
@@ -4903,7 +4895,17 @@
         },
         {
           "section": "S",
-          "statement": "father died of lung cancer at 70;",
+          "statement": "and she had a stroke when she was seventy-eight.;",
+          "event_ids": [
+            75
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "My father died of lung cancer when he was seventy.;",
           "event_ids": [
             77
           ],
@@ -4913,7 +4915,7 @@
         },
         {
           "section": "S",
-          "statement": "one healthy sister.",
+          "statement": "I have one sister and she is healthy.",
           "event_ids": [
             79
           ],
@@ -5271,47 +5273,50 @@
         },
         {
           "seq": 4,
-          "t_ms": 1,
+          "t_ms": 0,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
           "seq": 5,
-          "t_ms": 1,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
+          }
+        },
+        {
+          "seq": 6,
+          "t_ms": 0,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
-          }
-        },
-        {
-          "seq": 6,
-          "t_ms": 6,
-          "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
-          "meta": {
-            "kind": "consent"
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 7,
-          "t_ms": 1,
+          "t_ms": 6,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
@@ -5328,7 +5333,7 @@
         },
         {
           "seq": 9,
-          "t_ms": 11,
+          "t_ms": 10,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Food is getting stuck when I swallow, and I am losing weight.",
@@ -5354,7 +5359,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 12,
+          "t_ms": 10,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your symptoms first begin?",
@@ -5365,7 +5370,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 13,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It began 5 weeks ago.",
@@ -5391,7 +5396,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 14,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How has the swallowing difficulty changed over time?",
@@ -5429,7 +5434,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 15,
+          "t_ms": 14,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -5466,7 +5471,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 17,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -5478,7 +5483,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 18,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "There is no pain spreading to the arms or back.",
@@ -5554,7 +5559,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 21,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have lost 10 pounds without trying.",
@@ -5580,19 +5585,19 @@
         },
         {
           "seq": 22,
-          "t_ms": 21,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had heartburn or reflux before?",
           "meta": {
-            "open_question": true,
+            "closed_question": true,
             "mode": "type",
             "intent": "question"
           }
         },
         {
           "seq": 23,
-          "t_ms": 22,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have had years of heartburn.",
@@ -5618,7 +5623,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 23,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -5630,7 +5635,7 @@
         },
         {
           "seq": 25,
-          "t_ms": 24,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Small bites and water sometimes help food pass.",
@@ -5656,7 +5661,7 @@
         },
         {
           "seq": 26,
-          "t_ms": 25,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -5668,7 +5673,7 @@
         },
         {
           "seq": 27,
-          "t_ms": 25,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Meat and bread are hardest to swallow.",
@@ -5694,7 +5699,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 26,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -5706,7 +5711,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 27,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Over-the-counter antacid helps heartburn but not the sticking.",
@@ -5732,7 +5737,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 28,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -5744,7 +5749,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 29,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "This progressive sticking is new.",
@@ -5770,7 +5775,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 30,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does food stick when you swallow?",
@@ -5782,7 +5787,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 31,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Solid food sticks after swallowing.",
@@ -5808,7 +5813,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 31,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does food ever come back up after swallowing?",
@@ -5820,7 +5825,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 32,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Sometimes food comes back up.",
@@ -5846,7 +5851,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 33,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you lost weight without trying?",
@@ -5858,7 +5863,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 34,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I lost 10 pounds in 2 months.",
@@ -5884,7 +5889,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 35,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt unusually tired or low in energy?",
@@ -5896,7 +5901,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 35,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have less energy.",
@@ -5922,7 +5927,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 36,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are you able to swallow liquids?",
@@ -5934,7 +5939,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 37,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I can still swallow liquids.",
@@ -5960,7 +5965,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 38,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are you able to swallow your saliva?",
@@ -5972,7 +5977,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 39,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I can still swallow my saliva.",
@@ -5998,7 +6003,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 40,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is it painful to swallow?",
@@ -6010,7 +6015,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 40,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Swallowing itself is not painful.",
@@ -6036,7 +6041,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 41,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -6048,7 +6053,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 42,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No fever.",
@@ -6074,7 +6079,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 43,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a cough?",
@@ -6086,7 +6091,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 44,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not cough or choke when starting a swallow.",
@@ -6112,7 +6117,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 45,
+          "t_ms": 50,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt short of breath?",
@@ -6124,7 +6129,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 45,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No shortness of breath.",
@@ -6150,7 +6155,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 46,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you coughed up any blood?",
@@ -6162,7 +6167,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 47,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No coughing blood.",
@@ -6188,7 +6193,7 @@
         },
         {
           "seq": 54,
-          "t_ms": 48,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -6200,10 +6205,10 @@
         },
         {
           "seq": 55,
-          "t_ms": 55,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Longstanding reflux no prior endoscopy.",
+          "text": "Longstanding reflux, no prior endoscopy.",
           "meta": {
             "facts_released": [
               "history_pmh_1",
@@ -6233,7 +6238,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 56,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had eczema?",
@@ -6245,7 +6250,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 57,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have had eczema since childhood.",
@@ -6271,7 +6276,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 58,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -6283,7 +6288,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 59,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No surgeries or admissions.",
@@ -6309,7 +6314,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 60,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -6321,7 +6326,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 60,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I take calcium carbonate antacid as needed.",
@@ -6347,7 +6352,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 61,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -6359,7 +6364,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 62,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No known drug allergies.",
@@ -6385,7 +6390,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 63,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -6397,7 +6402,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 64,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Never smoked tobacco.",
@@ -6423,7 +6428,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 65,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -6435,7 +6440,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 66,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "One alcoholic drink weekly.",
@@ -6461,7 +6466,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 67,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -6473,7 +6478,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 67,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -6499,7 +6504,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 68,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -6511,7 +6516,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 69,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a bicycle mechanic.",
@@ -6537,7 +6542,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 70,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -6548,7 +6553,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 71,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my wife.",
@@ -6574,7 +6579,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 72,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -6586,10 +6591,10 @@
         },
         {
           "seq": 75,
-          "t_ms": 72,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Mother had stroke at 78",
+          "text": "My mother is still alive, and she had a stroke when she was seventy-eight.",
           "meta": {
             "facts_released": [
               "history_family_1"
@@ -6597,7 +6602,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother had stroke at 78"
+                "value": "My mother is still alive, and she had a stroke when she was seventy-eight."
               }
             },
             "volunteered": false,
@@ -6612,7 +6617,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 74,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your father had?",
@@ -6624,10 +6629,10 @@
         },
         {
           "seq": 77,
-          "t_ms": 74,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "father died of lung cancer at 70",
+          "text": "My father died of lung cancer when he was seventy.",
           "meta": {
             "facts_released": [
               "history_family_2"
@@ -6635,7 +6640,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father died of lung cancer at 70"
+                "value": "My father died of lung cancer when he was seventy."
               }
             },
             "volunteered": false,
@@ -6650,7 +6655,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 76,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -6662,10 +6667,10 @@
         },
         {
           "seq": 79,
-          "t_ms": 77,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "one healthy sister.",
+          "text": "I have one sister and she is healthy.",
           "meta": {
             "facts_released": [
               "history_family_3"
@@ -6673,7 +6678,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "one healthy sister."
+                "value": "I have one sister and she is healthy."
               }
             },
             "volunteered": false,
@@ -6688,7 +6693,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 78,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -6700,7 +6705,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 79,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My father had cancer. Is that what this is?",
@@ -6726,7 +6731,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 80,
+          "t_ms": 89,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -6737,7 +6742,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 83,
+          "t_ms": 98,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My father had cancer. Is that what this is?",
@@ -6763,7 +6768,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 84,
+          "t_ms": 99,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -6774,17 +6779,17 @@
         },
         {
           "seq": 85,
-          "t_ms": 85,
+          "t_ms": 100,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 86,
-          "t_ms": 84,
+          "t_ms": 99,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -6796,7 +6801,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 10086,
+          "t_ms": 10101,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -6817,7 +6822,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 10086,
+          "t_ms": 10101,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert. Thin appearing; handles secretions without distress.",
@@ -6845,7 +6850,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 50086,
+          "t_ms": 50101,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -6871,7 +6876,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 50086,
+          "t_ms": 50101,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rhythm without murmur.",
@@ -6893,7 +6898,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 91086,
+          "t_ms": 91101,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -6918,7 +6923,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 91086,
+          "t_ms": 91101,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, clear breath sounds bilaterally.",
@@ -6940,20 +6945,22 @@
         },
         {
           "seq": 93,
-          "t_ms": 91086,
+          "t_ms": 91101,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "supine",
+            "previous_position": "seated",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 94,
-          "t_ms": 98086,
+          "t_ms": 98101,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect abdomen",
@@ -6975,7 +6982,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 98086,
+          "t_ms": 98101,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Abdomen not distended.",
@@ -6997,7 +7004,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 114086,
+          "t_ms": 114101,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -7019,7 +7026,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 114086,
+          "t_ms": 114101,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Bowel sounds present.",
@@ -7041,7 +7048,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 133086,
+          "t_ms": 133101,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -7063,7 +7070,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 133086,
+          "t_ms": 133101,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tympanic in examined quadrants.",
@@ -7085,7 +7092,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 160086,
+          "t_ms": 160101,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -7108,7 +7115,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 160086,
+          "t_ms": 160101,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No focal tenderness with gentle palpation.",
@@ -7130,7 +7137,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 176086,
+          "t_ms": 176101,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect mouth and throat with light",
@@ -7152,7 +7159,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 176086,
+          "t_ms": 176101,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Oropharynx without visible lesions.",
@@ -7174,7 +7181,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 198086,
+          "t_ms": 198101,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate lymph nodes",
@@ -7197,7 +7204,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 198086,
+          "t_ms": 198101,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No palpable cervical or supraclavicular nodes.",
@@ -7219,20 +7226,22 @@
         },
         {
           "seq": 106,
-          "t_ms": 198086,
+          "t_ms": 198101,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "seated",
+            "previous_position": "supine",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 107,
-          "t_ms": 223086,
+          "t_ms": 223101,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -7254,7 +7263,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 223086,
+          "t_ms": 223101,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T5 paraspinal tissue texture change with mild tenderness on the right.",
@@ -7276,7 +7285,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 242086,
+          "t_ms": 242101,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -7298,7 +7307,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 242086,
+          "t_ms": 242101,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -7320,23 +7329,22 @@
         },
         {
           "seq": 111,
-          "t_ms": 242086,
+          "t_ms": 242101,
           "phase": "encounter",
           "kind": "student_utterance",
-          "text": "I recommend investigating the swallowing difficulty and weight change. Inflammation, narrowing and other conditions can make food stick; we should not assume the cause from age alone. A specialist may need to examine the esophagus with a camera and take appropriate samples.",
+          "text": "I recommend investigating the swallowing difficulty and weight change. Inflammation, narrowing and other conditions can make food stick; we should not assume the cause from age alone. I recommend specialist assessment of the esophagus with a camera and appropriate tissue samples.",
           "meta": {
             "plan_talk": true,
             "mode": "type",
-            "counseling_turn": true,
-            "intent": "counseling"
+            "counseling_turn": true
           }
         },
         {
           "seq": 112,
-          "t_ms": 242086,
+          "t_ms": 242101,
           "phase": "encounter",
           "kind": "counseling",
-          "text": "I recommend investigating the swallowing difficulty and weight change. Inflammation, narrowing and other conditions can make food stick; we should not assume the cause from age alone. A specialist may need to examine the esophagus with a camera and take appropriate samples.",
+          "text": "I recommend investigating the swallowing difficulty and weight change. Inflammation, narrowing and other conditions can make food stick; we should not assume the cause from age alone. I recommend specialist assessment of the esophagus with a camera and appropriate tissue samples.",
           "meta": {
             "topics": [
               "diet"
@@ -7345,40 +7353,17 @@
         },
         {
           "seq": 113,
-          "t_ms": 242086,
+          "t_ms": 242101,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Longstanding reflux Like I said, no prior endoscopy.",
+          "text": "Okay, that makes sense.",
           "meta": {
-            "facts_released": [
-              "history_pmh_1",
-              "history_pmh_2"
-            ],
-            "concepts": {
-              "history_pmh_1": {
-                "polarity": "positive",
-                "value": "Longstanding reflux"
-              },
-              "history_pmh_2": {
-                "polarity": "positive",
-                "value": "no prior endoscopy."
-              }
-            },
-            "volunteered": false,
-            "kind": "answer",
-            "checklist_hits": [
-              "h_history_pmh_1",
-              "h_history_pmh_2"
-            ],
-            "categories": [
-              "pmh",
-              "pmh"
-            ]
+            "kind": "plan_ack"
           }
         },
         {
           "seq": 114,
-          "t_ms": 242086,
+          "t_ms": 242101,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -7391,7 +7376,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 242086,
+          "t_ms": 242101,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My father had cancer. Is that what this is?",
@@ -7406,7 +7391,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 242086,
+          "t_ms": 242101,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I understand why your father's history worries you. Cancer is one possibility, but narrowing and inflammation can also cause swallowing trouble. I recommend prompt specialist evaluation and endoscopy to find the cause rather than promising a diagnosis before the tests.",
@@ -7419,7 +7404,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 242086,
+          "t_ms": 242101,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I understand why your father's history worries you. Cancer is one possibility, but narrowing and inflammation can also cause swallowing trouble. I recommend prompt specialist evaluation and endoscopy to find the cause rather than promising a diagnosis before the tests.",
@@ -7431,22 +7416,22 @@
         },
         {
           "seq": 118,
-          "t_ms": 242086,
+          "t_ms": 242101,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Okay, that makes sense.",
+          "text": "Alright. Thank you for explaining that.",
           "meta": {
             "kind": "plan_ack"
           }
         }
       ],
-      "note_words": 413,
-      "estimated_encounter_s": 555,
+      "note_words": 430,
+      "estimated_encounter_s": 563,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 9
+        "unresolved_count": 7
       },
       "reasoning": [
         {
@@ -7570,7 +7555,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "f14f10432d3c1635f92ee2901c07f0feb0e34d8f089bc948e272592250071c81"
+      "case_hash": "cd92461a27a724460200280c1ad2bc22d100855924d05422f6f95a03d78275a0",
+      "engine_version": "4.0.4"
     },
     {
       "case_id": "gi-progressive-dysphagia",
@@ -7627,7 +7613,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             4,
@@ -7963,7 +7949,7 @@
           "kind": "dialogue",
           "section": "Relevant background",
           "student": "What medical conditions have you been diagnosed with?",
-          "patient": "Longstanding reflux no prior endoscopy.",
+          "patient": "Longstanding reflux, no prior endoscopy.",
           "why": "",
           "event_ids": [
             54,
@@ -8104,7 +8090,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your mother had?",
-          "patient": "Mother had stroke at 78",
+          "patient": "My mother is still alive, and she had a stroke when she was seventy-eight.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             74,
@@ -8118,7 +8104,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your father had?",
-          "patient": "father died of lung cancer at 70",
+          "patient": "My father died of lung cancer when he was seventy.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             76,
@@ -8132,7 +8118,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems have your siblings had?",
-          "patient": "one healthy sister.",
+          "patient": "I have one sister and she is healthy.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             78,
@@ -8174,22 +8160,22 @@
           "kind": "dialogue",
           "section": "Acknowledge",
           "student": "Thank you for explaining that. I can understand why this is concerning.",
-          "patient": "My father had cancer. Is that what this is? Like I said, I am afraid an endoscopy will be very painful, so I may skip it.",
+          "patient": "I am afraid an endoscopy will be very painful, so I may skip it. Like I said, my father had cancer. Is that what this is? Like I said, I am afraid an endoscopy will be very painful, so I may skip it.",
           "why": "",
           "event_ids": [
             84,
             85
           ],
           "fact_ids": [
-            "patient_concern",
-            "care_barrier"
+            "care_barrier",
+            "patient_concern"
           ]
         },
         {
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             86,
@@ -8371,18 +8357,15 @@
         {
           "kind": "dialogue",
           "section": "Explain next steps",
-          "student": "I recommend investigating the swallowing difficulty and weight change. Inflammation, narrowing and other conditions can make food stick; we should not assume the cause from age alone. A specialist may need to examine the esophagus with a camera and take appropriate samples.",
-          "patient": "Longstanding reflux Like I said, no prior endoscopy.",
+          "student": "I recommend investigating the swallowing difficulty and weight change. Inflammation, narrowing and other conditions can make food stick; we should not assume the cause from age alone. I recommend specialist assessment of the esophagus with a camera and appropriate tissue samples.",
+          "patient": "Okay, that makes sense.",
           "why": "Proposed care, not a record of tests or treatment already completed.",
           "event_ids": [
             113,
             114,
             115
           ],
-          "fact_ids": [
-            "history_pmh_1",
-            "history_pmh_2"
-          ]
+          "fact_ids": []
         },
         {
           "kind": "dialogue",
@@ -8410,7 +8393,7 @@
         }
       ],
       "note": {
-        "S": "cc: Food sticking and unintentional weight loss\n\nHPI: 26-year-old man with progressive food sticking behind the breastbone after swallowing; onset 8 weeks ago. Initially solids, now soft foods; meat and bread most difficult. Small bites and water sometimes help. Regurgitation, fatigue and unintentional loss of 10 lb over 2 months. Years of heartburn; antacid helps heartburn but not sticking. No arm/back radiation. This progressive swallowing difficulty is new.\n\nPerspective: My father had cancer. Is that what this is?\n\nPMH: Longstanding reflux; no prior endoscopy.\n\nPSH: No surgeries or admissions.\n\nMeds: Calcium carbonate antacid; frequency not established.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Bicycle mechanic; lives with wife; still able to swallow liquids and manage saliva.\n\nFH: Mother had stroke at 78; father died of lung cancer at 70; one healthy sister.\n\nROS: Gastrointestinal - Reports dysphagia. Denies odynophagia. Reports regurgitation. General - Reports weight loss. Reports fatigue. Denies fever. Respiratory - Denies cough. Denies dyspnea. Denies hemoptysis.\n\nPatient concern: I am afraid an endoscopy will be very painful, so I may skip it.\nAdditional PMH: I have had eczema since childhood.\n",
+        "S": "cc: Food sticking and unintentional weight loss\n\nHPI: 26-year-old man with progressive food sticking behind the breastbone after swallowing; onset 8 weeks ago. Initially solids, now soft foods; meat and bread most difficult. Small bites and water sometimes help. Regurgitation, fatigue and unintentional loss of 10 lb over 2 months. Years of heartburn; antacid helps heartburn but not sticking. No arm/back radiation. This progressive swallowing difficulty is new.\n\nPerspective: My father had cancer. Is that what this is?\n\nPMH: Longstanding reflux; no prior endoscopy.\n\nPSH: No surgeries or admissions.\n\nMeds: Calcium carbonate antacid; frequency not established.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Bicycle mechanic; lives with wife; still able to swallow liquids and manage saliva.\n\nFH: My mother is still alive, and she had a stroke when she was seventy-eight.; My father died of lung cancer when he was seventy.; I have one sister and she is healthy.\n\nROS: Gastrointestinal - Reports dysphagia. Denies odynophagia. Reports regurgitation. General - Reports weight loss. Reports fatigue. Denies fever. Respiratory - Denies cough. Denies dyspnea. Denies hemoptysis.\n\nPatient concern: I am afraid an endoscopy will be very painful, so I may skip it.\nAdditional PMH: I have had eczema since childhood.\n",
         "O": "Vitals: T 98.1 F oral, P 82 bpm, BP 124/76 mmHg, R 16 rpm, Pulse Ox 98% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Thin appearing; handles secretions without distress.\nHeart: Regular rhythm without murmur.\nLungs: In the examined posterior fields, clear breath sounds bilaterally.\nAbdomen: Abdomen not distended.\nAbdomen: Bowel sounds present.\nAbdomen: Tympanic in examined quadrants.\nAbdomen: No focal tenderness with gentle palpation.\nHEENT: Oropharynx without visible lesions.\nHEENT: No palpable cervical or supraclavicular nodes.\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Eosinophilic esophagitis",
@@ -8590,7 +8573,7 @@
           "section": "S",
           "statement": "no prior endoscopy.",
           "event_ids": [
-            115
+            55
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -8671,16 +8654,18 @@
             71
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
           "statement": "lives with wife;",
-          "event_ids": [],
+          "event_ids": [
+            73
+          ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -8695,7 +8680,7 @@
         },
         {
           "section": "S",
-          "statement": "Mother had stroke at 78;",
+          "statement": "My mother is still alive",
           "event_ids": [
             75
           ],
@@ -8705,7 +8690,17 @@
         },
         {
           "section": "S",
-          "statement": "father died of lung cancer at 70;",
+          "statement": "and she had a stroke when she was seventy-eight.;",
+          "event_ids": [
+            75
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "My father died of lung cancer when he was seventy.;",
           "event_ids": [
             77
           ],
@@ -8715,7 +8710,7 @@
         },
         {
           "section": "S",
-          "statement": "one healthy sister.",
+          "statement": "I have one sister and she is healthy.",
           "event_ids": [
             79
           ],
@@ -9099,8 +9094,7 @@
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
@@ -9110,35 +9104,39 @@
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
           }
         },
         {
           "seq": 6,
-          "t_ms": 3,
+          "t_ms": 1,
           "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "kind": "consent"
+            "courtesy_id": "consent_exam",
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 7,
-          "t_ms": 1,
+          "t_ms": 5,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
           "seq": 8,
-          "t_ms": 4,
+          "t_ms": 6,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -9150,7 +9148,7 @@
         },
         {
           "seq": 9,
-          "t_ms": 6,
+          "t_ms": 7,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Food is getting stuck when I swallow, and I am losing weight.",
@@ -9176,7 +9174,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 7,
+          "t_ms": 8,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your symptoms first begin?",
@@ -9187,7 +9185,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 8,
+          "t_ms": 9,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It began 8 weeks ago.",
@@ -9213,7 +9211,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 9,
+          "t_ms": 10,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How has the swallowing difficulty changed over time?",
@@ -9225,7 +9223,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 10,
+          "t_ms": 11,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Solid food was the problem first; now soft foods are becoming difficult.",
@@ -9251,7 +9249,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 11,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -9262,7 +9260,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 11,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Food seems to stop behind my breastbone.",
@@ -9288,7 +9286,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 12,
+          "t_ms": 14,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -9300,7 +9298,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 13,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "There is no pain spreading to the arms or back.",
@@ -9326,7 +9324,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 14,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -9338,7 +9336,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 15,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It feels like food sticks after I swallow.",
@@ -9364,7 +9362,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 16,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -9376,7 +9374,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 17,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have lost 10 pounds without trying.",
@@ -9402,19 +9400,19 @@
         },
         {
           "seq": 22,
-          "t_ms": 18,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had heartburn or reflux before?",
           "meta": {
-            "open_question": true,
+            "closed_question": true,
             "mode": "type",
             "intent": "question"
           }
         },
         {
           "seq": 23,
-          "t_ms": 19,
+          "t_ms": 21,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have had years of heartburn.",
@@ -9440,7 +9438,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 20,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -9452,7 +9450,7 @@
         },
         {
           "seq": 25,
-          "t_ms": 20,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Small bites and water sometimes help food pass.",
@@ -9478,7 +9476,7 @@
         },
         {
           "seq": 26,
-          "t_ms": 21,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -9490,7 +9488,7 @@
         },
         {
           "seq": 27,
-          "t_ms": 22,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Meat and bread are hardest to swallow.",
@@ -9516,7 +9514,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 23,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -9528,7 +9526,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 24,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Over-the-counter antacid helps heartburn but not the sticking.",
@@ -9554,7 +9552,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 25,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -9566,7 +9564,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 26,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "This progressive sticking is new.",
@@ -9592,7 +9590,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 27,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does food stick when you swallow?",
@@ -9604,7 +9602,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 28,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Solid food sticks after swallowing.",
@@ -9630,7 +9628,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 29,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does food ever come back up after swallowing?",
@@ -9642,7 +9640,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 29,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Sometimes food comes back up.",
@@ -9668,7 +9666,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 30,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you lost weight without trying?",
@@ -9680,7 +9678,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 31,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I lost 10 pounds in 2 months.",
@@ -9706,7 +9704,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 32,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt unusually tired or low in energy?",
@@ -9718,7 +9716,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 33,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have less energy.",
@@ -9744,7 +9742,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 34,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are you able to swallow liquids?",
@@ -9756,7 +9754,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 35,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I can still swallow liquids.",
@@ -9782,7 +9780,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 35,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are you able to swallow your saliva?",
@@ -9794,7 +9792,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 36,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I can still swallow my saliva.",
@@ -9820,7 +9818,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 37,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is it painful to swallow?",
@@ -9832,7 +9830,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 38,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Swallowing itself is not painful.",
@@ -9858,7 +9856,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 39,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -9870,7 +9868,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 40,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No fever.",
@@ -9896,7 +9894,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 41,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a cough?",
@@ -9908,7 +9906,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 42,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not cough or choke when starting a swallow.",
@@ -9934,7 +9932,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 43,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt short of breath?",
@@ -9946,7 +9944,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 44,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No shortness of breath.",
@@ -9972,7 +9970,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 45,
+          "t_ms": 50,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you coughed up any blood?",
@@ -9984,7 +9982,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 45,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No coughing blood.",
@@ -10010,7 +10008,7 @@
         },
         {
           "seq": 54,
-          "t_ms": 46,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -10022,10 +10020,10 @@
         },
         {
           "seq": 55,
-          "t_ms": 50,
+          "t_ms": 56,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Longstanding reflux no prior endoscopy.",
+          "text": "Longstanding reflux, no prior endoscopy.",
           "meta": {
             "facts_released": [
               "history_pmh_1",
@@ -10055,7 +10053,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 51,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had eczema?",
@@ -10067,7 +10065,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 52,
+          "t_ms": 58,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have had eczema since childhood.",
@@ -10093,7 +10091,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 53,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -10105,7 +10103,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 54,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No surgeries or admissions.",
@@ -10131,7 +10129,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 55,
+          "t_ms": 61,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -10143,7 +10141,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 56,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I take calcium carbonate antacid as needed.",
@@ -10169,7 +10167,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 57,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -10181,7 +10179,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 57,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No known drug allergies.",
@@ -10207,7 +10205,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 59,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -10219,7 +10217,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 59,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Never smoked tobacco.",
@@ -10245,7 +10243,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 60,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -10257,7 +10255,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 61,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "One alcoholic drink weekly.",
@@ -10283,7 +10281,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 62,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -10295,7 +10293,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 63,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -10321,7 +10319,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 64,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -10333,7 +10331,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 64,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a bicycle mechanic.",
@@ -10359,7 +10357,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 65,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -10370,7 +10368,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 66,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my wife.",
@@ -10396,7 +10394,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 67,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -10408,10 +10406,10 @@
         },
         {
           "seq": 75,
-          "t_ms": 68,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Mother had stroke at 78",
+          "text": "My mother is still alive, and she had a stroke when she was seventy-eight.",
           "meta": {
             "facts_released": [
               "history_family_1"
@@ -10419,7 +10417,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother had stroke at 78"
+                "value": "My mother is still alive, and she had a stroke when she was seventy-eight."
               }
             },
             "volunteered": false,
@@ -10434,7 +10432,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 69,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your father had?",
@@ -10446,10 +10444,10 @@
         },
         {
           "seq": 77,
-          "t_ms": 70,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "father died of lung cancer at 70",
+          "text": "My father died of lung cancer when he was seventy.",
           "meta": {
             "facts_released": [
               "history_family_2"
@@ -10457,7 +10455,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father died of lung cancer at 70"
+                "value": "My father died of lung cancer when he was seventy."
               }
             },
             "volunteered": false,
@@ -10472,7 +10470,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 71,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -10484,10 +10482,10 @@
         },
         {
           "seq": 79,
-          "t_ms": 72,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "one healthy sister.",
+          "text": "I have one sister and she is healthy.",
           "meta": {
             "facts_released": [
               "history_family_3"
@@ -10495,7 +10493,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "one healthy sister."
+                "value": "I have one sister and she is healthy."
               }
             },
             "volunteered": false,
@@ -10510,7 +10508,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 73,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -10522,7 +10520,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 73,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My father had cancer. Is that what this is?",
@@ -10548,7 +10546,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 74,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What might make the care plan difficult for you to follow?",
@@ -10560,7 +10558,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 75,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am afraid an endoscopy will be very painful, so I may skip it.",
@@ -10586,7 +10584,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 77,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -10597,31 +10595,33 @@
         },
         {
           "seq": 85,
-          "t_ms": 80,
+          "t_ms": 95,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "My father had cancer. Is that what this is? Like I said, I am afraid an endoscopy will be very painful, so I may skip it.",
+          "text": "I am afraid an endoscopy will be very painful, so I may skip it. Like I said, my father had cancer. Is that what this is? Like I said, I am afraid an endoscopy will be very painful, so I may skip it.",
           "meta": {
             "facts_released": [
-              "patient_concern",
-              "care_barrier"
+              "care_barrier",
+              "patient_concern"
             ],
             "concepts": {
-              "patient_concern": {
-                "polarity": "positive",
-                "value": "My father had cancer. Is that what this is?"
-              },
               "care_barrier": {
                 "polarity": "positive",
                 "value": "I am afraid an endoscopy will be very painful, so I may skip it."
+              },
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "My father had cancer. Is that what this is?"
               }
             },
             "volunteered": false,
             "kind": "answer",
             "checklist_hits": [
+              "h_care_barrier",
               "h_patient_concern",
               "h_care_barrier"
             ],
+            "composed_asks": 2,
             "categories": [
               "fife",
               "fife"
@@ -10630,7 +10630,7 @@
         },
         {
           "seq": 86,
-          "t_ms": 81,
+          "t_ms": 95,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -10641,17 +10641,17 @@
         },
         {
           "seq": 87,
-          "t_ms": 82,
+          "t_ms": 96,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 88,
-          "t_ms": 81,
+          "t_ms": 95,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -10663,7 +10663,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 10083,
+          "t_ms": 10097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -10684,7 +10684,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 10083,
+          "t_ms": 10097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert. Thin appearing; handles secretions without distress.",
@@ -10712,7 +10712,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 50083,
+          "t_ms": 50097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -10738,7 +10738,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 50083,
+          "t_ms": 50097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rhythm without murmur.",
@@ -10760,7 +10760,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 91083,
+          "t_ms": 91097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -10785,7 +10785,7 @@
         },
         {
           "seq": 94,
-          "t_ms": 91083,
+          "t_ms": 91097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, clear breath sounds bilaterally.",
@@ -10807,20 +10807,22 @@
         },
         {
           "seq": 95,
-          "t_ms": 91083,
+          "t_ms": 91097,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "supine",
+            "previous_position": "seated",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 96,
-          "t_ms": 98083,
+          "t_ms": 98097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect abdomen",
@@ -10842,7 +10844,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 98083,
+          "t_ms": 98097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Abdomen not distended.",
@@ -10864,7 +10866,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 114083,
+          "t_ms": 114097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -10886,7 +10888,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 114083,
+          "t_ms": 114097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Bowel sounds present.",
@@ -10908,7 +10910,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 133083,
+          "t_ms": 133097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -10930,7 +10932,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 133083,
+          "t_ms": 133097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tympanic in examined quadrants.",
@@ -10952,7 +10954,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 160083,
+          "t_ms": 160097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -10975,7 +10977,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 160083,
+          "t_ms": 160097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No focal tenderness with gentle palpation.",
@@ -10997,7 +10999,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 176083,
+          "t_ms": 176097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect mouth and throat with light",
@@ -11019,7 +11021,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 176083,
+          "t_ms": 176097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Oropharynx without visible lesions.",
@@ -11041,7 +11043,7 @@
         },
         {
           "seq": 106,
-          "t_ms": 198083,
+          "t_ms": 198097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate lymph nodes",
@@ -11064,7 +11066,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 198083,
+          "t_ms": 198097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No palpable cervical or supraclavicular nodes.",
@@ -11086,20 +11088,22 @@
         },
         {
           "seq": 108,
-          "t_ms": 198083,
+          "t_ms": 198097,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "seated",
+            "previous_position": "supine",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 109,
-          "t_ms": 223083,
+          "t_ms": 223097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -11121,7 +11125,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 223083,
+          "t_ms": 223097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T5 paraspinal tissue texture change with mild tenderness on the right.",
@@ -11143,7 +11147,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 242083,
+          "t_ms": 242097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -11165,7 +11169,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 242083,
+          "t_ms": 242097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -11187,23 +11191,22 @@
         },
         {
           "seq": 113,
-          "t_ms": 242083,
+          "t_ms": 242097,
           "phase": "encounter",
           "kind": "student_utterance",
-          "text": "I recommend investigating the swallowing difficulty and weight change. Inflammation, narrowing and other conditions can make food stick; we should not assume the cause from age alone. A specialist may need to examine the esophagus with a camera and take appropriate samples.",
+          "text": "I recommend investigating the swallowing difficulty and weight change. Inflammation, narrowing and other conditions can make food stick; we should not assume the cause from age alone. I recommend specialist assessment of the esophagus with a camera and appropriate tissue samples.",
           "meta": {
             "plan_talk": true,
             "mode": "type",
-            "counseling_turn": true,
-            "intent": "counseling"
+            "counseling_turn": true
           }
         },
         {
           "seq": 114,
-          "t_ms": 242083,
+          "t_ms": 242097,
           "phase": "encounter",
           "kind": "counseling",
-          "text": "I recommend investigating the swallowing difficulty and weight change. Inflammation, narrowing and other conditions can make food stick; we should not assume the cause from age alone. A specialist may need to examine the esophagus with a camera and take appropriate samples.",
+          "text": "I recommend investigating the swallowing difficulty and weight change. Inflammation, narrowing and other conditions can make food stick; we should not assume the cause from age alone. I recommend specialist assessment of the esophagus with a camera and appropriate tissue samples.",
           "meta": {
             "topics": [
               "diet"
@@ -11212,40 +11215,17 @@
         },
         {
           "seq": 115,
-          "t_ms": 242083,
+          "t_ms": 242097,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Longstanding reflux Like I said, no prior endoscopy.",
+          "text": "Okay, that makes sense.",
           "meta": {
-            "facts_released": [
-              "history_pmh_1",
-              "history_pmh_2"
-            ],
-            "concepts": {
-              "history_pmh_1": {
-                "polarity": "positive",
-                "value": "Longstanding reflux"
-              },
-              "history_pmh_2": {
-                "polarity": "positive",
-                "value": "no prior endoscopy."
-              }
-            },
-            "volunteered": false,
-            "kind": "answer",
-            "checklist_hits": [
-              "h_history_pmh_1",
-              "h_history_pmh_2"
-            ],
-            "categories": [
-              "pmh",
-              "pmh"
-            ]
+            "kind": "plan_ack"
           }
         },
         {
           "seq": 116,
-          "t_ms": 242083,
+          "t_ms": 242097,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -11258,7 +11238,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 242083,
+          "t_ms": 242097,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am afraid an endoscopy will be very painful, so I may skip it.",
@@ -11273,7 +11253,7 @@
         },
         {
           "seq": 118,
-          "t_ms": 242083,
+          "t_ms": 242097,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Please tell the specialist about your fear of pain. They can explain comfort measures, the procedure and your choices before you consent. Let us address the concern so the swallowing and weight loss evaluation is not simply missed.",
@@ -11283,7 +11263,7 @@
         },
         {
           "seq": 119,
-          "t_ms": 242083,
+          "t_ms": 242097,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Hearing about the comfort measures and my choices before I decide would help. I understand why we need a plan for the swallowing problem.",
@@ -11295,13 +11275,13 @@
           }
         }
       ],
-      "note_words": 452,
-      "estimated_encounter_s": 581,
+      "note_words": 469,
+      "estimated_encounter_s": 595,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 9
+        "unresolved_count": 7
       },
       "reasoning": [
         {
@@ -11425,7 +11405,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "c3323520a8035538362693141d45af2c91ba59a4e7aaee5ee058a68fa6292855"
+      "case_hash": "ce30129afb2e3e57d7ac71b5d4214863865411e802baf10165d03ac242d860f4",
+      "engine_version": "4.0.4"
     }
   ]
 }

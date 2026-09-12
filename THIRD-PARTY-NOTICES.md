@@ -6,9 +6,9 @@
 - **MakeHuman/MPFB core body, eyes, brows, teeth, tongue, skin and core casual clothes/shoes** — MakeHuman Community/MakeHuman Team, CC0 asset license. `licenses/MAKEHUMAN-ASSETS.md`; https://static.makehumancommunity.org/about/license.html. Modified fitting, skeleton export, facial morphs and clinical wardrobe switching. The current male is generated directly from the adult male macro base with CC0 young-adult male skin and male casual trousers. No MakeHuman or MPFB add-on application code is redistributed.
 - **Elvs Hazel Hair**, Elvaerwyn — CC-BY, as declared in the original asset header (version unspecified). Source: http://www.makehumancommunity.org/node/2816. Changes: fitting, subdivision, skin weights, material conversion and color variants. Author credit remains required. Original header: `licenses/HAIR-ATTRIBUTION.txt`.
 - **Toigo fisherman sweater**, MRT — CC0 as declared in source asset; http://www.makehuman.org/. Modified fitting/material conversion.
-- **Poly Haven** lighting and plaster/wood/fabric maps — CC0. Asset URLs, authors and derived-map descriptions: `web/patient3d/assets/polyhaven/SOURCES.txt` and `manifest.json`; https://polyhaven.com/license. Clinical table and room geometry are project-created assets.
+- **Poly Haven** lighting and plaster/wood/fabric maps — CC0. Asset URLs, authors and derived-map descriptions: `web/patient3d/assets/polyhaven/SOURCES.txt` and `manifest.json`; https://polyhaven.com/license. The clinical table and added decorations are project-created. The imported room geometry and supplied wood textures have separate provenance and license limitations in `licenses/SUPPLIED-ROOM.md`.
 
-No proprietary Human Generator trial content is included. No purchased assets or paid browser-asset services are required. Local editable files preserve the converted assets under these same asset licenses.
+No proprietary Human Generator trial content is included. No purchased assets or paid browser-asset services are required. Local editable files preserve original asset provenance. The supplied room is not covered by the CC0 licenses listed above.
 
 ## External anatomical surfaces
 

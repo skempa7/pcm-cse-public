@@ -11,8 +11,8 @@
  * DOCUMENTATION DISCIPLINE
  * The closing screen assembles a SOAP line from the steps the student actually
  * completed. A step that was skipped contributes nothing. This is deliberate:
- * a rehearsal tool that hands over a full normal template would be teaching
- * students to document examinations they did not perform.
+ * a rehearsal tool should distinguish examples from findings obtained in the
+ * encounter. Reading a step never establishes a normal finding.
  *
  * ENCOUNTER SAFETY
  * This overlay reads nothing from the case and writes nothing back. It does not
@@ -115,7 +115,7 @@
   }
 
   function menu() {
-    priorFocus = document.activeElement;
+    if(panel.hidden)priorFocus = document.activeElement;
     examId = null; step = 0; done = [];
     panel.hidden = false;
     panel.className = 'tech-menu';
@@ -205,15 +205,16 @@
     panel.hidden = false;
     panel.className = 'tech-done';
     panel.innerHTML = head(exam.title.toUpperCase() + ' · COMPLETE') +
-      '<h2>What you can document</h2>' +
+      '<h2>Rehearsal complete</h2>' +
+      '<p class="tech-warn">These are practice examples, not this patient’s findings. Perform actions in Physical Exam and use the findings saved in Notes.</p>' +
       '<ul class="tech-checks">' +
       performed.map(s => '<li class="yes">' + esc(s.title) + '</li>').join('') +
-      skipped.map(s => '<li class="no">' + esc(s.title) + ' — not performed</li>').join('') +
+      skipped.map(s => '<li class="no">' + esc(s.title) + ' — not rehearsed</li>').join('') +
       '</ul>' +
-      (line ? '<pre class="tech-note-out">' + esc(line) + '</pre>'
-            : '<p class="tech-sub">You skipped every step, so there is nothing to document.</p>') +
+      (line ? '<p class="tech-soap-label">Example wording if these findings were obtained:</p><pre class="tech-note-out">' + esc(line) + '</pre>'
+            : '<p class="tech-sub">You skipped every step, so no example note is shown.</p>') +
       (skipped.length
-        ? '<p class="tech-warn">Only the components you performed appear above. Do not document a step you skipped.</p>'
+        ? '<p class="tech-warn">Only the steps you rehearsed contribute to this example. Reading the guide does not perform an examination.</p>'
         : '') +
       (exam.optional && exam.optional.length
         ? '<h3>Optional, if relevant</h3><ul class="tech-opt">' +
@@ -245,7 +246,7 @@
       '</ol>' +
       '<p class="tech-soap-label">If entirely normal:</p>' +
       '<pre class="tech-note-out">' + esc(line) + '</pre>' +
-      '<p class="tech-warn">Document only what you actually performed.</p>' +
+      '<p class="tech-warn">Example only. Document the findings you actually obtained through Physical Exam and saved in Notes.</p>' +
       '<div class="tech-nav">' +
       '<button type="button" id="techLearn">Step-by-step</button>' +
       '<button type="button" id="techMenu2" class="primary">← All examinations</button>' +

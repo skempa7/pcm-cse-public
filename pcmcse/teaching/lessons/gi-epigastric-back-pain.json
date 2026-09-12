@@ -52,7 +52,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             4,
@@ -373,7 +373,7 @@
           "kind": "dialogue",
           "section": "Relevant background",
           "student": "What medical conditions have you been diagnosed with?",
-          "patient": "High triglycerides diagnosed 2 years ago no known gallstones.",
+          "patient": "High triglycerides diagnosed 2 years ago, no known gallstones.",
           "why": "",
           "event_ids": [
             53,
@@ -500,7 +500,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your mother had?",
-          "patient": "Mother has diabetes",
+          "patient": "My mom is fifty-six and she has diabetes.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             71,
@@ -514,7 +514,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your father had?",
-          "patient": "father has hyperlipidemia",
+          "patient": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             73,
@@ -528,7 +528,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems have your siblings had?",
-          "patient": "sister healthy.",
+          "patient": "I have a sister who's twenty-five and she's healthy.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             75,
@@ -598,7 +598,7 @@
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             85,
@@ -791,7 +791,7 @@
         }
       ],
       "note": {
-        "S": "cc: Severe upper abdominal pain radiating to the back\n\nHPI: 28-year-old woman with worsening constant deep epigastric pain radiating to the mid-back; onset 12 hours ago. Pain is 9/10 and began after dinner; several alcoholic drinks over the weekend. Eating and lying flat worsen it; leaning forward helps slightly. Antacid ineffective. Nausea, four vomiting episodes and inability to keep water down; weakness and racing heartbeat with pain. No previous episode this severe.\n\nPerspective: Are you going to judge me because I drink?\n\nPMH: High triglycerides diagnosed 2 years ago; no known gallstones.\n\nPSH: No abdominal surgeries.\n\nMeds: Fenofibrate 145 mg daily, often missed.\n\nAllergies: No known drug allergies.\n\nSH: Quit tobacco 2 years ago after 3 pack-years. Usually 3 beers nightly; 6 drinks at a gathering 2 days ago. No recreational drugs. Restaurant manager; lives with husband.\n\nFH: Mother has diabetes; father has hyperlipidemia; sister healthy.\n\nROS: Gastrointestinal - Reports nausea. Reports vomiting. Denies melena. General - Denies fever. Reports fatigue. Denies weight loss. Cardiovascular - Denies chest pain. Reports palpitations. Denies syncope.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+        "S": "cc: Severe upper abdominal pain radiating to the back\n\nHPI: 28-year-old woman with worsening constant deep epigastric pain radiating to the mid-back; onset 12 hours ago. Pain is 9/10 and began after dinner; several alcoholic drinks over the weekend. Eating and lying flat worsen it; leaning forward helps slightly. Antacid ineffective. Nausea, four vomiting episodes and inability to keep water down; weakness and racing heartbeat with pain. No previous episode this severe.\n\nPerspective: Are you going to judge me because I drink?\n\nPMH: High triglycerides diagnosed 2 years ago; no known gallstones.\n\nPSH: No abdominal surgeries.\n\nMeds: Fenofibrate 145 mg daily, often missed.\n\nAllergies: No known drug allergies.\n\nSH: Quit tobacco 2 years ago after 3 pack-years. Usually 3 beers nightly; 6 drinks at a gathering 2 days ago. No recreational drugs. Restaurant manager; lives with husband.\n\nFH: My mom is fifty-six and she has diabetes.; My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.; I have a sister who's twenty-five and she's healthy.\n\nROS: Gastrointestinal - Reports nausea. Reports vomiting. Denies melena. General - Denies fever. Reports fatigue. Denies weight loss. Cardiovascular - Denies chest pain. Reports palpitations. Denies syncope.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
         "O": "Vitals: T 99.4 F oral, P 112 bpm, BP 110/72 mmHg, R 22 rpm, Pulse Ox 97% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Leaning forward, visibly distressed by pain.\nHeart: Regular tachycardia without murmur.\nLungs: In the examined posterior fields, breath sounds present bilaterally without focal crackles.\nAbdomen: On inspection, mild upper abdominal distention.\nAbdomen: Bowel sounds reduced in the examined quadrants.\nAbdomen: Tympany over the abdomen.\nAbdomen: Marked epigastric tenderness. No involuntary guarding during gentle assessment.\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Acute pancreatitis",
@@ -1034,8 +1034,8 @@
             68
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -1049,7 +1049,7 @@
         },
         {
           "section": "S",
-          "statement": "Mother has diabetes;",
+          "statement": "My mom is fifty-six and she has diabetes.;",
           "event_ids": [
             72
           ],
@@ -1059,7 +1059,7 @@
         },
         {
           "section": "S",
-          "statement": "father has hyperlipidemia;",
+          "statement": "My dad is fifty-eight and he has hyperlipidemia",
           "event_ids": [
             74
           ],
@@ -1069,7 +1069,17 @@
         },
         {
           "section": "S",
-          "statement": "sister healthy.",
+          "statement": "the high fats in his blood.;",
+          "event_ids": [
+            74
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "I have a sister who's twenty-five and she's healthy.",
           "event_ids": [
             76
           ],
@@ -1433,8 +1443,7 @@
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
@@ -1444,35 +1453,39 @@
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
           }
         },
         {
           "seq": 6,
-          "t_ms": 3,
+          "t_ms": 1,
           "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "kind": "consent"
+            "courtesy_id": "consent_exam",
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 7,
-          "t_ms": 1,
+          "t_ms": 6,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
           "seq": 8,
-          "t_ms": 4,
+          "t_ms": 7,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -1484,7 +1497,7 @@
         },
         {
           "seq": 9,
-          "t_ms": 5,
+          "t_ms": 11,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have awful pain high in my stomach that goes straight through to my back.",
@@ -1510,7 +1523,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 6,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I will arrange urgent help from my supervising clinician now. We will not delay emergency care to finish routine questions.",
@@ -1522,7 +1535,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 6,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I will arrange urgent help from my supervising clinician now. We will not delay emergency care to finish routine questions.",
@@ -1534,7 +1547,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 7,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -1544,7 +1557,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 8,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Has the pain let up, and how has it changed?",
@@ -1556,7 +1569,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 8,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It has worsened and has not let up.",
@@ -1582,7 +1595,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 9,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your symptoms first begin?",
@@ -1593,7 +1606,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 10,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It started 12 hours ago.",
@@ -1619,7 +1632,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 11,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -1630,7 +1643,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 12,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is in the upper middle abdomen.",
@@ -1656,7 +1669,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 13,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -1668,7 +1681,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 14,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It goes through to the mid-back.",
@@ -1694,7 +1707,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 15,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -1706,7 +1719,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 16,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is a deep, severe constant pain.",
@@ -1732,7 +1745,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 16,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -1744,7 +1757,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 17,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is 9/10.",
@@ -1770,19 +1783,18 @@
         },
         {
           "seq": 25,
-          "t_ms": 18,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What were you doing when this started?",
           "meta": {
             "open_question": true,
-            "mode": "type",
-            "intent": "question"
+            "mode": "type"
           }
         },
         {
           "seq": 26,
-          "t_ms": 19,
+          "t_ms": 50,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It started after dinner; I had several alcoholic drinks over the weekend.",
@@ -1800,15 +1812,12 @@
             "kind": "answer",
             "checklist_hits": [
               "h_hpi_setting"
-            ],
-            "categories": [
-              "setting"
             ]
           }
         },
         {
           "seq": 27,
-          "t_ms": 20,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -1820,7 +1829,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 21,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Leaning forward helps slightly.",
@@ -1846,7 +1855,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 21,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -1858,7 +1867,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 22,
+          "t_ms": 58,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Eating and lying flat worsen it.",
@@ -1884,7 +1893,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 23,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -1896,7 +1905,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 24,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "An antacid did not help.",
@@ -1922,7 +1931,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 25,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -1934,7 +1943,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 26,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I had no previous episode this severe.",
@@ -1960,7 +1969,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 27,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt nauseated?",
@@ -1972,7 +1981,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 28,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I feel very nauseated.",
@@ -1998,7 +2007,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 29,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you been vomiting?",
@@ -2010,7 +2019,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 29,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have vomited 4 times and cannot keep water down.",
@@ -2036,7 +2045,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 30,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt unusually tired or low in energy?",
@@ -2048,7 +2057,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 31,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I feel weak.",
@@ -2074,7 +2083,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 32,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed your heart racing or beating irregularly?",
@@ -2086,7 +2095,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 33,
+          "t_ms": 90,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My heart feels fast with the pain.",
@@ -2112,7 +2121,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 34,
+          "t_ms": 95,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have your stools been black, tarry, or bloody?",
@@ -2124,7 +2133,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 35,
+          "t_ms": 97,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not had black stools or vomited blood.",
@@ -2150,7 +2159,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 36,
+          "t_ms": 101,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -2162,7 +2171,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 36,
+          "t_ms": 104,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not measured a fever.",
@@ -2188,7 +2197,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 37,
+          "t_ms": 106,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you lost weight without trying?",
@@ -2200,7 +2209,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 38,
+          "t_ms": 108,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recent weight loss.",
@@ -2226,7 +2235,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 39,
+          "t_ms": 109,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any chest pain?",
@@ -2238,7 +2247,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 40,
+          "t_ms": 111,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have no pressure in my chest.",
@@ -2264,7 +2273,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 41,
+          "t_ms": 112,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you actually passed out or lost consciousness?",
@@ -2276,7 +2285,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 41,
+          "t_ms": 115,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not fainted.",
@@ -2302,7 +2311,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 42,
+          "t_ms": 116,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -2314,10 +2323,10 @@
         },
         {
           "seq": 54,
-          "t_ms": 47,
+          "t_ms": 125,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "High triglycerides diagnosed 2 years ago no known gallstones.",
+          "text": "High triglycerides diagnosed 2 years ago, no known gallstones.",
           "meta": {
             "facts_released": [
               "history_pmh_1",
@@ -2347,7 +2356,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 48,
+          "t_ms": 129,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -2359,7 +2368,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 49,
+          "t_ms": 133,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No abdominal surgeries.",
@@ -2385,7 +2394,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 50,
+          "t_ms": 134,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -2397,7 +2406,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 51,
+          "t_ms": 139,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am prescribed fenofibrate 145 mg daily, but I often miss it.",
@@ -2423,7 +2432,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 52,
+          "t_ms": 146,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -2435,7 +2444,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 53,
+          "t_ms": 150,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No known drug allergies.",
@@ -2461,7 +2470,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 54,
+          "t_ms": 152,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -2473,7 +2482,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 55,
+          "t_ms": 154,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Quit tobacco 2 years ago after 3 pack-years.",
@@ -2499,7 +2508,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 56,
+          "t_ms": 162,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -2511,7 +2520,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 57,
+          "t_ms": 165,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Usually 3 beers nightly; 6 drinks at a gathering 2 days ago.",
@@ -2537,7 +2546,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 58,
+          "t_ms": 169,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -2549,7 +2558,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 58,
+          "t_ms": 172,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -2575,7 +2584,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 60,
+          "t_ms": 173,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -2587,7 +2596,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 60,
+          "t_ms": 177,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a restaurant manager.",
@@ -2613,7 +2622,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 61,
+          "t_ms": 180,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -2624,7 +2633,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 62,
+          "t_ms": 185,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband.",
@@ -2650,7 +2659,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 63,
+          "t_ms": 188,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -2662,10 +2671,10 @@
         },
         {
           "seq": 72,
-          "t_ms": 64,
+          "t_ms": 190,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Mother has diabetes",
+          "text": "My mom is fifty-six and she has diabetes.",
           "meta": {
             "facts_released": [
               "history_family_1"
@@ -2673,7 +2682,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has diabetes"
+                "value": "My mom is fifty-six and she has diabetes."
               }
             },
             "volunteered": false,
@@ -2688,7 +2697,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 65,
+          "t_ms": 193,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your father had?",
@@ -2700,10 +2709,10 @@
         },
         {
           "seq": 74,
-          "t_ms": 66,
+          "t_ms": 196,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "father has hyperlipidemia",
+          "text": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.",
           "meta": {
             "facts_released": [
               "history_family_2"
@@ -2711,7 +2720,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father has hyperlipidemia"
+                "value": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood."
               }
             },
             "volunteered": false,
@@ -2726,7 +2735,7 @@
         },
         {
           "seq": 75,
-          "t_ms": 67,
+          "t_ms": 198,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -2738,10 +2747,10 @@
         },
         {
           "seq": 76,
-          "t_ms": 68,
+          "t_ms": 203,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "sister healthy.",
+          "text": "I have a sister who's twenty-five and she's healthy.",
           "meta": {
             "facts_released": [
               "history_family_3"
@@ -2749,7 +2758,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "sister healthy."
+                "value": "I have a sister who's twenty-five and she's healthy."
               }
             },
             "volunteered": false,
@@ -2764,7 +2773,7 @@
         },
         {
           "seq": 77,
-          "t_ms": 69,
+          "t_ms": 207,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -2776,7 +2785,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 70,
+          "t_ms": 210,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant, but I have not taken a pregnancy test.",
@@ -2802,7 +2811,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 71,
+          "t_ms": 218,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -2813,7 +2822,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 72,
+          "t_ms": 221,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 2 weeks ago.",
@@ -2839,7 +2848,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 73,
+          "t_ms": 222,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -2851,7 +2860,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 73,
+          "t_ms": 226,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Are you going to judge me because I drink?",
@@ -2877,7 +2886,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 74,
+          "t_ms": 228,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -2888,7 +2897,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 77,
+          "t_ms": 248,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Right, are you going to judge me because I drink?",
@@ -2914,7 +2923,7 @@
         },
         {
           "seq": 85,
-          "t_ms": 79,
+          "t_ms": 250,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -2925,17 +2934,17 @@
         },
         {
           "seq": 86,
-          "t_ms": 79,
+          "t_ms": 255,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 87,
-          "t_ms": 79,
+          "t_ms": 250,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -2947,7 +2956,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 10080,
+          "t_ms": 10257,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -2968,7 +2977,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 10080,
+          "t_ms": 10257,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert. Leaning forward, visibly distressed by pain.",
@@ -2996,7 +3005,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 50080,
+          "t_ms": 50257,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -3022,7 +3031,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 50080,
+          "t_ms": 50257,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular tachycardia without murmur.",
@@ -3044,7 +3053,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 91080,
+          "t_ms": 91257,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -3069,7 +3078,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 91080,
+          "t_ms": 91257,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, breath sounds present bilaterally without focal crackles.",
@@ -3091,20 +3100,22 @@
         },
         {
           "seq": 94,
-          "t_ms": 91080,
+          "t_ms": 91257,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "supine",
+            "previous_position": "seated",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 95,
-          "t_ms": 100080,
+          "t_ms": 100257,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect abdomen",
@@ -3127,7 +3138,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 100080,
+          "t_ms": 100257,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "On inspection, mild upper abdominal distention.",
@@ -3149,7 +3160,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 116080,
+          "t_ms": 116257,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -3171,7 +3182,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 116080,
+          "t_ms": 116257,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Bowel sounds reduced in the examined quadrants.",
@@ -3193,7 +3204,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 135080,
+          "t_ms": 135257,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -3215,7 +3226,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 135080,
+          "t_ms": 135257,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tympany over the abdomen.",
@@ -3237,7 +3248,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 166080,
+          "t_ms": 166257,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -3262,7 +3273,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 166080,
+          "t_ms": 166257,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Marked epigastric tenderness. No involuntary guarding during gentle assessment.",
@@ -3290,20 +3301,22 @@
         },
         {
           "seq": 103,
-          "t_ms": 166080,
+          "t_ms": 166257,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "seated",
+            "previous_position": "supine",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 104,
-          "t_ms": 191080,
+          "t_ms": 191257,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -3325,7 +3338,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 191080,
+          "t_ms": 191257,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T5 paraspinal tissue texture change with mild tenderness on the right.",
@@ -3347,7 +3360,7 @@
         },
         {
           "seq": 106,
-          "t_ms": 210080,
+          "t_ms": 210257,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -3369,7 +3382,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 210080,
+          "t_ms": 210257,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -3391,7 +3404,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 210080,
+          "t_ms": 210257,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend urgent assessment of this severe upper abdominal pain. Inflammation around the pancreas is a concern, but heart and other abdominal problems can overlap. Blood tests and selected imaging can help clarify the cause.",
@@ -3403,7 +3416,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 210080,
+          "t_ms": 210257,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend urgent assessment of this severe upper abdominal pain. Inflammation around the pancreas is a concern, but heart and other abdominal problems can overlap. Blood tests and selected imaging can help clarify the cause.",
@@ -3415,7 +3428,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 210080,
+          "t_ms": 210257,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. Thank you for explaining that.",
@@ -3425,7 +3438,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 210080,
+          "t_ms": 210257,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -3438,7 +3451,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 210080,
+          "t_ms": 210257,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Are you going to judge me because I drink?",
@@ -3453,7 +3466,7 @@
         },
         {
           "seq": 113,
-          "t_ms": 210080,
+          "t_ms": 210257,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I will discuss alcohol without judgment. Accurate information helps the team choose safe care; it does not determine how you deserve to be treated. I recommend urgent assessment because of the severe pain and difficulty keeping fluids down.",
@@ -3465,7 +3478,7 @@
         },
         {
           "seq": 114,
-          "t_ms": 210080,
+          "t_ms": 210257,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I will discuss alcohol without judgment. Accurate information helps the team choose safe care; it does not determine how you deserve to be treated. I recommend urgent assessment because of the severe pain and difficulty keeping fluids down.",
@@ -3478,7 +3491,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 210080,
+          "t_ms": 210257,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay. I can do that.",
@@ -3487,13 +3500,13 @@
           }
         }
       ],
-      "note_words": 436,
-      "estimated_encounter_s": 537,
+      "note_words": 459,
+      "estimated_encounter_s": 549,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 4
+        "unresolved_count": 3
       },
       "reasoning": [
         {
@@ -3607,7 +3620,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "466c9dea3add8cbda53f2a84a7647b29fa58d48b0a0a960e01ad87c6145a10f4"
+      "case_hash": "25b6d1353595d7136ef688ed5465b1ccf948e70497901850fd3433eaa500e5ff",
+      "engine_version": "4.0.4"
     },
     {
       "case_id": "gi-epigastric-back-pain",
@@ -3665,7 +3679,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             4,
@@ -3986,7 +4000,7 @@
           "kind": "dialogue",
           "section": "Relevant background",
           "student": "What medical conditions have you been diagnosed with?",
-          "patient": "High triglycerides diagnosed 2 years ago no known gallstones.",
+          "patient": "High triglycerides diagnosed 2 years ago, no known gallstones.",
           "why": "",
           "event_ids": [
             53,
@@ -4113,7 +4127,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your mother had?",
-          "patient": "Mother has diabetes",
+          "patient": "My mom is fifty-six and she has diabetes.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             71,
@@ -4127,7 +4141,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your father had?",
-          "patient": "father has hyperlipidemia",
+          "patient": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             73,
@@ -4141,7 +4155,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems have your siblings had?",
-          "patient": "sister healthy.",
+          "patient": "I have a sister who's twenty-five and she's healthy.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             75,
@@ -4211,7 +4225,7 @@
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             85,
@@ -4404,7 +4418,7 @@
         }
       ],
       "note": {
-        "S": "cc: Severe upper abdominal pain radiating to the back\n\nHPI: 28-year-old woman with worsening constant deep epigastric pain radiating to the mid-back; onset 6 hours ago. Pain is 9/10 and began after dinner; several alcoholic drinks over the weekend. Eating and lying flat worsen it; leaning forward helps slightly. Antacid ineffective. Nausea, four vomiting episodes and inability to keep water down; weakness and racing heartbeat with pain. No previous episode this severe.\n\nPerspective: Are you going to judge me because I drink?\n\nPMH: High triglycerides diagnosed 2 years ago; no known gallstones.\n\nPSH: No abdominal surgeries.\n\nMeds: Fenofibrate 145 mg daily, often missed.\n\nAllergies: No known drug allergies.\n\nSH: Quit tobacco 2 years ago after 3 pack-years. Usually 3 beers nightly; 6 drinks at a gathering 2 days ago. No recreational drugs. Restaurant manager; lives with husband.\n\nFH: Mother has diabetes; father has hyperlipidemia; sister healthy.\n\nROS: Gastrointestinal - Reports nausea. Reports vomiting. Denies melena. General - Denies fever. Reports fatigue. Denies weight loss. Cardiovascular - Denies chest pain. Reports palpitations. Denies syncope.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+        "S": "cc: Severe upper abdominal pain radiating to the back\n\nHPI: 28-year-old woman with worsening constant deep epigastric pain radiating to the mid-back; onset 6 hours ago. Pain is 9/10 and began after dinner; several alcoholic drinks over the weekend. Eating and lying flat worsen it; leaning forward helps slightly. Antacid ineffective. Nausea, four vomiting episodes and inability to keep water down; weakness and racing heartbeat with pain. No previous episode this severe.\n\nPerspective: Are you going to judge me because I drink?\n\nPMH: High triglycerides diagnosed 2 years ago; no known gallstones.\n\nPSH: No abdominal surgeries.\n\nMeds: Fenofibrate 145 mg daily, often missed.\n\nAllergies: No known drug allergies.\n\nSH: Quit tobacco 2 years ago after 3 pack-years. Usually 3 beers nightly; 6 drinks at a gathering 2 days ago. No recreational drugs. Restaurant manager; lives with husband.\n\nFH: My mom is fifty-six and she has diabetes.; My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.; I have a sister who's twenty-five and she's healthy.\n\nROS: Gastrointestinal - Reports nausea. Reports vomiting. Denies melena. General - Denies fever. Reports fatigue. Denies weight loss. Cardiovascular - Denies chest pain. Reports palpitations. Denies syncope.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
         "O": "Vitals: T 99.4 F oral, P 112 bpm, BP 110/72 mmHg, R 22 rpm, Pulse Ox 97% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Leaning forward, visibly distressed by pain.\nHeart: Regular tachycardia without murmur.\nLungs: In the examined posterior fields, breath sounds present bilaterally without focal crackles.\nAbdomen: On inspection, mild upper abdominal distention.\nAbdomen: Bowel sounds reduced in the examined quadrants.\nAbdomen: Tympany over the abdomen.\nAbdomen: Marked epigastric tenderness. No involuntary guarding during gentle assessment.\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Acute pancreatitis",
@@ -4647,8 +4661,8 @@
             68
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -4662,7 +4676,7 @@
         },
         {
           "section": "S",
-          "statement": "Mother has diabetes;",
+          "statement": "My mom is fifty-six and she has diabetes.;",
           "event_ids": [
             72
           ],
@@ -4672,7 +4686,7 @@
         },
         {
           "section": "S",
-          "statement": "father has hyperlipidemia;",
+          "statement": "My dad is fifty-eight and he has hyperlipidemia",
           "event_ids": [
             74
           ],
@@ -4682,7 +4696,17 @@
         },
         {
           "section": "S",
-          "statement": "sister healthy.",
+          "statement": "the high fats in his blood.;",
+          "event_ids": [
+            74
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "I have a sister who's twenty-five and she's healthy.",
           "event_ids": [
             76
           ],
@@ -5046,8 +5070,7 @@
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
@@ -5057,35 +5080,39 @@
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
           }
         },
         {
           "seq": 6,
-          "t_ms": 5,
+          "t_ms": 1,
           "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "kind": "consent"
+            "courtesy_id": "consent_exam",
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 7,
-          "t_ms": 1,
+          "t_ms": 7,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
           "seq": 8,
-          "t_ms": 6,
+          "t_ms": 8,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -5123,7 +5150,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 11,
+          "t_ms": 10,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I will arrange urgent help from my supervising clinician now. We will not delay emergency care to finish routine questions.",
@@ -5135,7 +5162,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 11,
+          "t_ms": 10,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I will arrange urgent help from my supervising clinician now. We will not delay emergency care to finish routine questions.",
@@ -5147,7 +5174,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 12,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -5157,7 +5184,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 13,
+          "t_ms": 14,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Has the pain let up, and how has it changed?",
@@ -5169,7 +5196,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 14,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It has worsened and has not let up.",
@@ -5195,7 +5222,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 15,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your symptoms first begin?",
@@ -5206,7 +5233,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 16,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It started 6 hours ago.",
@@ -5232,7 +5259,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 17,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -5243,7 +5270,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 18,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is in the upper middle abdomen.",
@@ -5269,7 +5296,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 19,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -5281,7 +5308,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 19,
+          "t_ms": 21,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It goes through to the mid-back.",
@@ -5307,7 +5334,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 20,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -5319,7 +5346,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 21,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is a deep, severe constant pain.",
@@ -5345,7 +5372,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 22,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -5357,7 +5384,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 23,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is 9/10.",
@@ -5383,19 +5410,18 @@
         },
         {
           "seq": 25,
-          "t_ms": 24,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What were you doing when this started?",
           "meta": {
             "open_question": true,
-            "mode": "type",
-            "intent": "question"
+            "mode": "type"
           }
         },
         {
           "seq": 26,
-          "t_ms": 25,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It started after dinner; I had several alcoholic drinks over the weekend.",
@@ -5413,15 +5439,12 @@
             "kind": "answer",
             "checklist_hits": [
               "h_hpi_setting"
-            ],
-            "categories": [
-              "setting"
             ]
           }
         },
         {
           "seq": 27,
-          "t_ms": 25,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -5433,7 +5456,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 26,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Leaning forward helps slightly.",
@@ -5459,7 +5482,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 27,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -5471,7 +5494,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 28,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Eating and lying flat worsen it.",
@@ -5497,7 +5520,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 28,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -5509,7 +5532,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 29,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "An antacid did not help.",
@@ -5535,7 +5558,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 30,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -5547,7 +5570,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 31,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I had no previous episode this severe.",
@@ -5573,7 +5596,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 32,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt nauseated?",
@@ -5585,7 +5608,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 32,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I feel very nauseated.",
@@ -5611,7 +5634,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 33,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you been vomiting?",
@@ -5623,7 +5646,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 34,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have vomited 4 times and cannot keep water down.",
@@ -5649,7 +5672,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 35,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt unusually tired or low in energy?",
@@ -5661,7 +5684,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 35,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I feel weak.",
@@ -5687,7 +5710,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 36,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed your heart racing or beating irregularly?",
@@ -5699,7 +5722,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 37,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My heart feels fast with the pain.",
@@ -5725,7 +5748,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 38,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have your stools been black, tarry, or bloody?",
@@ -5737,7 +5760,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 39,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not had black stools or vomited blood.",
@@ -5763,7 +5786,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 40,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -5775,7 +5798,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 40,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not measured a fever.",
@@ -5801,7 +5824,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 41,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you lost weight without trying?",
@@ -5813,7 +5836,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 42,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recent weight loss.",
@@ -5839,7 +5862,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 43,
+          "t_ms": 50,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any chest pain?",
@@ -5851,7 +5874,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 44,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have no pressure in my chest.",
@@ -5877,7 +5900,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 45,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you actually passed out or lost consciousness?",
@@ -5889,7 +5912,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 46,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not fainted.",
@@ -5915,7 +5938,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 47,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -5927,10 +5950,10 @@
         },
         {
           "seq": 54,
-          "t_ms": 54,
+          "t_ms": 61,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "High triglycerides diagnosed 2 years ago no known gallstones.",
+          "text": "High triglycerides diagnosed 2 years ago, no known gallstones.",
           "meta": {
             "facts_released": [
               "history_pmh_1",
@@ -5960,7 +5983,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 56,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -5972,7 +5995,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 56,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No abdominal surgeries.",
@@ -5998,7 +6021,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 57,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -6010,7 +6033,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 58,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am prescribed fenofibrate 145 mg daily, but I often miss it.",
@@ -6036,7 +6059,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 59,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -6048,7 +6071,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 60,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No known drug allergies.",
@@ -6074,7 +6097,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 61,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -6086,7 +6109,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 62,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Quit tobacco 2 years ago after 3 pack-years.",
@@ -6112,7 +6135,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 63,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -6124,7 +6147,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 63,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Usually 3 beers nightly; 6 drinks at a gathering 2 days ago.",
@@ -6150,7 +6173,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 65,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -6162,7 +6185,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 66,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -6188,7 +6211,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 67,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -6200,7 +6223,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 67,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a restaurant manager.",
@@ -6226,7 +6249,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 68,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -6237,7 +6260,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 69,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband.",
@@ -6263,7 +6286,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 70,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -6275,10 +6298,10 @@
         },
         {
           "seq": 72,
-          "t_ms": 71,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Mother has diabetes",
+          "text": "My mom is fifty-six and she has diabetes.",
           "meta": {
             "facts_released": [
               "history_family_1"
@@ -6286,7 +6309,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has diabetes"
+                "value": "My mom is fifty-six and she has diabetes."
               }
             },
             "volunteered": false,
@@ -6301,7 +6324,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 72,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your father had?",
@@ -6313,10 +6336,10 @@
         },
         {
           "seq": 74,
-          "t_ms": 73,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "father has hyperlipidemia",
+          "text": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.",
           "meta": {
             "facts_released": [
               "history_family_2"
@@ -6324,7 +6347,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father has hyperlipidemia"
+                "value": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood."
               }
             },
             "volunteered": false,
@@ -6339,7 +6362,7 @@
         },
         {
           "seq": 75,
-          "t_ms": 74,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -6351,10 +6374,10 @@
         },
         {
           "seq": 76,
-          "t_ms": 75,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "sister healthy.",
+          "text": "I have a sister who's twenty-five and she's healthy.",
           "meta": {
             "facts_released": [
               "history_family_3"
@@ -6362,7 +6385,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "sister healthy."
+                "value": "I have a sister who's twenty-five and she's healthy."
               }
             },
             "volunteered": false,
@@ -6377,7 +6400,7 @@
         },
         {
           "seq": 77,
-          "t_ms": 76,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -6389,7 +6412,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 77,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant, but I have not taken a pregnancy test.",
@@ -6415,7 +6438,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 78,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -6426,7 +6449,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 78,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 2 weeks ago.",
@@ -6452,7 +6475,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 79,
+          "t_ms": 89,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -6464,7 +6487,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 80,
+          "t_ms": 91,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Are you going to judge me because I drink?",
@@ -6490,7 +6513,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 81,
+          "t_ms": 91,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -6501,7 +6524,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 84,
+          "t_ms": 101,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Right, are you going to judge me because I drink?",
@@ -6527,7 +6550,7 @@
         },
         {
           "seq": 85,
-          "t_ms": 85,
+          "t_ms": 102,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -6538,17 +6561,17 @@
         },
         {
           "seq": 86,
-          "t_ms": 86,
+          "t_ms": 103,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 87,
-          "t_ms": 85,
+          "t_ms": 102,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -6560,7 +6583,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 10087,
+          "t_ms": 10104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -6581,7 +6604,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 10087,
+          "t_ms": 10104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert. Leaning forward, visibly distressed by pain.",
@@ -6609,7 +6632,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 50087,
+          "t_ms": 50104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -6635,7 +6658,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 50087,
+          "t_ms": 50104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular tachycardia without murmur.",
@@ -6657,7 +6680,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 91087,
+          "t_ms": 91104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -6682,7 +6705,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 91087,
+          "t_ms": 91104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, breath sounds present bilaterally without focal crackles.",
@@ -6704,20 +6727,22 @@
         },
         {
           "seq": 94,
-          "t_ms": 91087,
+          "t_ms": 91104,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "supine",
+            "previous_position": "seated",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 95,
-          "t_ms": 100087,
+          "t_ms": 100104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect abdomen",
@@ -6740,7 +6765,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 100087,
+          "t_ms": 100104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "On inspection, mild upper abdominal distention.",
@@ -6762,7 +6787,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 116087,
+          "t_ms": 116104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -6784,7 +6809,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 116087,
+          "t_ms": 116104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Bowel sounds reduced in the examined quadrants.",
@@ -6806,7 +6831,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 135087,
+          "t_ms": 135104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -6828,7 +6853,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 135087,
+          "t_ms": 135104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tympany over the abdomen.",
@@ -6850,7 +6875,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 166087,
+          "t_ms": 166104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -6875,7 +6900,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 166087,
+          "t_ms": 166104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Marked epigastric tenderness. No involuntary guarding during gentle assessment.",
@@ -6903,20 +6928,22 @@
         },
         {
           "seq": 103,
-          "t_ms": 166087,
+          "t_ms": 166104,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "seated",
+            "previous_position": "supine",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 104,
-          "t_ms": 191087,
+          "t_ms": 191104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -6938,7 +6965,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 191087,
+          "t_ms": 191104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T5 paraspinal tissue texture change with mild tenderness on the right.",
@@ -6960,7 +6987,7 @@
         },
         {
           "seq": 106,
-          "t_ms": 210087,
+          "t_ms": 210104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -6982,7 +7009,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 210087,
+          "t_ms": 210104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -7004,7 +7031,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 210087,
+          "t_ms": 210104,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend urgent assessment of this severe upper abdominal pain. Inflammation around the pancreas is a concern, but heart and other abdominal problems can overlap. Blood tests and selected imaging can help clarify the cause.",
@@ -7016,7 +7043,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 210087,
+          "t_ms": 210104,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend urgent assessment of this severe upper abdominal pain. Inflammation around the pancreas is a concern, but heart and other abdominal problems can overlap. Blood tests and selected imaging can help clarify the cause.",
@@ -7028,7 +7055,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 210087,
+          "t_ms": 210104,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. Thank you for explaining that.",
@@ -7038,7 +7065,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 210087,
+          "t_ms": 210104,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -7051,7 +7078,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 210087,
+          "t_ms": 210104,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Are you going to judge me because I drink?",
@@ -7066,7 +7093,7 @@
         },
         {
           "seq": 113,
-          "t_ms": 210087,
+          "t_ms": 210104,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I will discuss alcohol without judgment. Accurate information helps the team choose safe care; it does not determine how you deserve to be treated. I recommend urgent assessment because of the severe pain and difficulty keeping fluids down.",
@@ -7078,7 +7105,7 @@
         },
         {
           "seq": 114,
-          "t_ms": 210087,
+          "t_ms": 210104,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I will discuss alcohol without judgment. Accurate information helps the team choose safe care; it does not determine how you deserve to be treated. I recommend urgent assessment because of the severe pain and difficulty keeping fluids down.",
@@ -7091,7 +7118,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 210087,
+          "t_ms": 210104,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay. I can do that.",
@@ -7100,13 +7127,13 @@
           }
         }
       ],
-      "note_words": 436,
-      "estimated_encounter_s": 537,
+      "note_words": 459,
+      "estimated_encounter_s": 549,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 4
+        "unresolved_count": 3
       },
       "reasoning": [
         {
@@ -7220,7 +7247,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "d28e95e8f2ce058b3abaebaf3f75fc551758966f8ae13ef95158b5d9a623c521"
+      "case_hash": "e79d19a43473108459a750df4377b37dfb8a0413534d37a938ff4445adb3aecd",
+      "engine_version": "4.0.4"
     },
     {
       "case_id": "gi-epigastric-back-pain",
@@ -7278,7 +7306,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             4,
@@ -7599,7 +7627,7 @@
           "kind": "dialogue",
           "section": "Relevant background",
           "student": "What medical conditions have you been diagnosed with?",
-          "patient": "High triglycerides diagnosed 2 years ago no known gallstones.",
+          "patient": "High triglycerides diagnosed 2 years ago, no known gallstones.",
           "why": "",
           "event_ids": [
             53,
@@ -7726,7 +7754,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your mother had?",
-          "patient": "Mother has diabetes",
+          "patient": "My mom is fifty-six and she has diabetes.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             71,
@@ -7740,7 +7768,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your father had?",
-          "patient": "father has hyperlipidemia",
+          "patient": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             73,
@@ -7754,7 +7782,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems have your siblings had?",
-          "patient": "sister healthy.",
+          "patient": "I have a sister who's twenty-five and she's healthy.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             75,
@@ -7824,22 +7852,22 @@
           "kind": "dialogue",
           "section": "Acknowledge",
           "student": "Thank you for explaining that. I can understand why this is concerning.",
-          "patient": "Right, are you going to judge me because I drink? As I mentioned, I am embarrassed discussing alcohol in front of staff.",
+          "patient": "Right, I am embarrassed discussing alcohol in front of staff. As I mentioned, are you going to judge me because I drink? I am embarrassed discussing alcohol in front of staff.",
           "why": "",
           "event_ids": [
             85,
             86
           ],
           "fact_ids": [
-            "patient_concern",
-            "care_barrier"
+            "care_barrier",
+            "patient_concern"
           ]
         },
         {
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             87,
@@ -8032,7 +8060,7 @@
         }
       ],
       "note": {
-        "S": "cc: Severe upper abdominal pain radiating to the back\n\nHPI: 28-year-old woman with worsening constant deep epigastric pain radiating to the mid-back; onset 12 hours ago. Pain is 9/10 and began after dinner; several alcoholic drinks over the weekend. Eating and lying flat worsen it; leaning forward helps slightly. Antacid ineffective. Nausea, four vomiting episodes and inability to keep water down; weakness and racing heartbeat with pain. No previous episode this severe.\n\nPerspective: Are you going to judge me because I drink?\n\nPMH: High triglycerides diagnosed 2 years ago; no known gallstones.\n\nPSH: No abdominal surgeries.\n\nMeds: Fenofibrate 145 mg daily, often missed.\n\nAllergies: No known drug allergies.\n\nSH: Quit tobacco 2 years ago after 3 pack-years. Usually 3 beers nightly; 6 drinks at a gathering 2 days ago. No recreational drugs. Restaurant manager; lives with husband.\n\nFH: Mother has diabetes; father has hyperlipidemia; sister healthy.\n\nROS: Gastrointestinal - Reports nausea. Reports vomiting. Denies melena. General - Denies fever. Reports fatigue. Denies weight loss. Cardiovascular - Denies chest pain. Reports palpitations. Denies syncope.\n\nPatient concern: I am embarrassed discussing alcohol in front of staff.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+        "S": "cc: Severe upper abdominal pain radiating to the back\n\nHPI: 28-year-old woman with worsening constant deep epigastric pain radiating to the mid-back; onset 12 hours ago. Pain is 9/10 and began after dinner; several alcoholic drinks over the weekend. Eating and lying flat worsen it; leaning forward helps slightly. Antacid ineffective. Nausea, four vomiting episodes and inability to keep water down; weakness and racing heartbeat with pain. No previous episode this severe.\n\nPerspective: Are you going to judge me because I drink?\n\nPMH: High triglycerides diagnosed 2 years ago; no known gallstones.\n\nPSH: No abdominal surgeries.\n\nMeds: Fenofibrate 145 mg daily, often missed.\n\nAllergies: No known drug allergies.\n\nSH: Quit tobacco 2 years ago after 3 pack-years. Usually 3 beers nightly; 6 drinks at a gathering 2 days ago. No recreational drugs. Restaurant manager; lives with husband.\n\nFH: My mom is fifty-six and she has diabetes.; My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.; I have a sister who's twenty-five and she's healthy.\n\nROS: Gastrointestinal - Reports nausea. Reports vomiting. Denies melena. General - Denies fever. Reports fatigue. Denies weight loss. Cardiovascular - Denies chest pain. Reports palpitations. Denies syncope.\n\nPatient concern: I am embarrassed discussing alcohol in front of staff.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
         "O": "Vitals: T 99.4 F oral, P 112 bpm, BP 110/72 mmHg, R 22 rpm, Pulse Ox 97% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Leaning forward, visibly distressed by pain.\nHeart: Regular tachycardia without murmur.\nLungs: In the examined posterior fields, breath sounds present bilaterally without focal crackles.\nAbdomen: On inspection, mild upper abdominal distention.\nAbdomen: Bowel sounds reduced in the examined quadrants.\nAbdomen: Tympany over the abdomen.\nAbdomen: Marked epigastric tenderness. No involuntary guarding during gentle assessment.\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Acute pancreatitis",
@@ -8275,8 +8303,8 @@
             68
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -8290,7 +8318,7 @@
         },
         {
           "section": "S",
-          "statement": "Mother has diabetes;",
+          "statement": "My mom is fifty-six and she has diabetes.;",
           "event_ids": [
             72
           ],
@@ -8300,7 +8328,7 @@
         },
         {
           "section": "S",
-          "statement": "father has hyperlipidemia;",
+          "statement": "My dad is fifty-eight and he has hyperlipidemia",
           "event_ids": [
             74
           ],
@@ -8310,7 +8338,17 @@
         },
         {
           "section": "S",
-          "statement": "sister healthy.",
+          "statement": "the high fats in his blood.;",
+          "event_ids": [
+            74
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "I have a sister who's twenty-five and she's healthy.",
           "event_ids": [
             76
           ],
@@ -8678,52 +8716,55 @@
         },
         {
           "seq": 4,
-          "t_ms": 1,
+          "t_ms": 0,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
           "seq": 5,
-          "t_ms": 1,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
+          }
+        },
+        {
+          "seq": 6,
+          "t_ms": 0,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
-          }
-        },
-        {
-          "seq": 6,
-          "t_ms": 3,
-          "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
-          "meta": {
-            "kind": "consent"
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 7,
-          "t_ms": 1,
+          "t_ms": 4,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
           "seq": 8,
-          "t_ms": 4,
+          "t_ms": 5,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -8735,7 +8776,7 @@
         },
         {
           "seq": 9,
-          "t_ms": 5,
+          "t_ms": 8,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have awful pain high in my stomach that goes straight through to my back.",
@@ -8761,7 +8802,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 6,
+          "t_ms": 9,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I will arrange urgent help from my supervising clinician now. We will not delay emergency care to finish routine questions.",
@@ -8773,7 +8814,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 6,
+          "t_ms": 9,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I will arrange urgent help from my supervising clinician now. We will not delay emergency care to finish routine questions.",
@@ -8785,7 +8826,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 6,
+          "t_ms": 11,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -8795,7 +8836,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 7,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Has the pain let up, and how has it changed?",
@@ -8807,7 +8848,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 8,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It has worsened and has not let up.",
@@ -8833,7 +8874,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 9,
+          "t_ms": 14,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your symptoms first begin?",
@@ -8844,7 +8885,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 10,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It started 12 hours ago.",
@@ -8870,7 +8911,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 11,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -8881,7 +8922,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 11,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is in the upper middle abdomen.",
@@ -8907,7 +8948,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 12,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -8919,7 +8960,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 13,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It goes through to the mid-back.",
@@ -8945,7 +8986,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 14,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -8957,7 +8998,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 15,
+          "t_ms": 21,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is a deep, severe constant pain.",
@@ -8983,7 +9024,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 15,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -8995,7 +9036,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 16,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is 9/10.",
@@ -9021,19 +9062,18 @@
         },
         {
           "seq": 25,
-          "t_ms": 17,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What were you doing when this started?",
           "meta": {
             "open_question": true,
-            "mode": "type",
-            "intent": "question"
+            "mode": "type"
           }
         },
         {
           "seq": 26,
-          "t_ms": 18,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It started after dinner; I had several alcoholic drinks over the weekend.",
@@ -9051,15 +9091,12 @@
             "kind": "answer",
             "checklist_hits": [
               "h_hpi_setting"
-            ],
-            "categories": [
-              "setting"
             ]
           }
         },
         {
           "seq": 27,
-          "t_ms": 19,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -9071,7 +9108,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 20,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Leaning forward helps slightly.",
@@ -9097,7 +9134,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 20,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -9109,7 +9146,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 21,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Eating and lying flat worsen it.",
@@ -9135,7 +9172,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 22,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -9147,7 +9184,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 23,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "An antacid did not help.",
@@ -9173,7 +9210,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 23,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -9185,7 +9222,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 24,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I had no previous episode this severe.",
@@ -9211,7 +9248,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 25,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt nauseated?",
@@ -9223,7 +9260,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 26,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I feel very nauseated.",
@@ -9249,7 +9286,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 27,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you been vomiting?",
@@ -9261,7 +9298,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 28,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have vomited 4 times and cannot keep water down.",
@@ -9287,7 +9324,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 29,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt unusually tired or low in energy?",
@@ -9299,7 +9336,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 30,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I feel weak.",
@@ -9325,7 +9362,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 31,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed your heart racing or beating irregularly?",
@@ -9337,7 +9374,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 32,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My heart feels fast with the pain.",
@@ -9363,7 +9400,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 33,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have your stools been black, tarry, or bloody?",
@@ -9375,7 +9412,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 33,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not had black stools or vomited blood.",
@@ -9401,7 +9438,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 34,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -9413,7 +9450,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 35,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not measured a fever.",
@@ -9439,7 +9476,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 36,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you lost weight without trying?",
@@ -9451,7 +9488,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 37,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recent weight loss.",
@@ -9477,7 +9514,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 38,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any chest pain?",
@@ -9489,7 +9526,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 38,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have no pressure in my chest.",
@@ -9515,7 +9552,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 39,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you actually passed out or lost consciousness?",
@@ -9527,7 +9564,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 40,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not fainted.",
@@ -9553,7 +9590,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 41,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -9565,10 +9602,10 @@
         },
         {
           "seq": 54,
-          "t_ms": 45,
+          "t_ms": 56,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "High triglycerides diagnosed 2 years ago no known gallstones.",
+          "text": "High triglycerides diagnosed 2 years ago, no known gallstones.",
           "meta": {
             "facts_released": [
               "history_pmh_1",
@@ -9598,7 +9635,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 46,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -9610,7 +9647,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 47,
+          "t_ms": 58,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No abdominal surgeries.",
@@ -9636,7 +9673,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 48,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -9648,7 +9685,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 49,
+          "t_ms": 61,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am prescribed fenofibrate 145 mg daily, but I often miss it.",
@@ -9674,7 +9711,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 50,
+          "t_ms": 61,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -9686,7 +9723,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 51,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No known drug allergies.",
@@ -9712,7 +9749,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 52,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -9724,7 +9761,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 53,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Quit tobacco 2 years ago after 3 pack-years.",
@@ -9750,7 +9787,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 54,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -9762,7 +9799,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 54,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Usually 3 beers nightly; 6 drinks at a gathering 2 days ago.",
@@ -9788,7 +9825,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 56,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -9800,7 +9837,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 56,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -9826,7 +9863,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 57,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -9838,7 +9875,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 58,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a restaurant manager.",
@@ -9864,7 +9901,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 59,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -9875,7 +9912,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 60,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband.",
@@ -9901,7 +9938,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 61,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -9913,10 +9950,10 @@
         },
         {
           "seq": 72,
-          "t_ms": 62,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Mother has diabetes",
+          "text": "My mom is fifty-six and she has diabetes.",
           "meta": {
             "facts_released": [
               "history_family_1"
@@ -9924,7 +9961,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has diabetes"
+                "value": "My mom is fifty-six and she has diabetes."
               }
             },
             "volunteered": false,
@@ -9939,7 +9976,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 63,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your father had?",
@@ -9951,10 +9988,10 @@
         },
         {
           "seq": 74,
-          "t_ms": 64,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "father has hyperlipidemia",
+          "text": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood.",
           "meta": {
             "facts_released": [
               "history_family_2"
@@ -9962,7 +9999,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father has hyperlipidemia"
+                "value": "My dad is fifty-eight and he has hyperlipidemia, the high fats in his blood."
               }
             },
             "volunteered": false,
@@ -9977,7 +10014,7 @@
         },
         {
           "seq": 75,
-          "t_ms": 65,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -9989,10 +10026,10 @@
         },
         {
           "seq": 76,
-          "t_ms": 65,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "sister healthy.",
+          "text": "I have a sister who's twenty-five and she's healthy.",
           "meta": {
             "facts_released": [
               "history_family_3"
@@ -10000,7 +10037,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "sister healthy."
+                "value": "I have a sister who's twenty-five and she's healthy."
               }
             },
             "volunteered": false,
@@ -10015,7 +10052,7 @@
         },
         {
           "seq": 77,
-          "t_ms": 66,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -10027,7 +10064,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 67,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant, but I have not taken a pregnancy test.",
@@ -10053,7 +10090,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 69,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -10064,7 +10101,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 69,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 2 weeks ago.",
@@ -10090,7 +10127,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 70,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -10102,7 +10139,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 71,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Are you going to judge me because I drink?",
@@ -10128,7 +10165,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 72,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What might make the care plan difficult for you to follow?",
@@ -10140,7 +10177,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 73,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am embarrassed discussing alcohol in front of staff.",
@@ -10166,7 +10203,7 @@
         },
         {
           "seq": 85,
-          "t_ms": 74,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -10177,31 +10214,33 @@
         },
         {
           "seq": 86,
-          "t_ms": 77,
+          "t_ms": 97,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Right, are you going to judge me because I drink? As I mentioned, I am embarrassed discussing alcohol in front of staff.",
+          "text": "Right, I am embarrassed discussing alcohol in front of staff. As I mentioned, are you going to judge me because I drink? I am embarrassed discussing alcohol in front of staff.",
           "meta": {
             "facts_released": [
-              "patient_concern",
-              "care_barrier"
+              "care_barrier",
+              "patient_concern"
             ],
             "concepts": {
-              "patient_concern": {
-                "polarity": "positive",
-                "value": "Are you going to judge me because I drink?"
-              },
               "care_barrier": {
                 "polarity": "positive",
                 "value": "I am embarrassed discussing alcohol in front of staff."
+              },
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "Are you going to judge me because I drink?"
               }
             },
             "volunteered": false,
             "kind": "answer",
             "checklist_hits": [
+              "h_care_barrier",
               "h_patient_concern",
               "h_care_barrier"
             ],
+            "composed_asks": 2,
             "categories": [
               "fife",
               "fife"
@@ -10210,7 +10249,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 78,
+          "t_ms": 97,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -10221,17 +10260,17 @@
         },
         {
           "seq": 88,
-          "t_ms": 79,
+          "t_ms": 99,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 89,
-          "t_ms": 78,
+          "t_ms": 97,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -10243,7 +10282,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 10080,
+          "t_ms": 10099,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -10264,7 +10303,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 10080,
+          "t_ms": 10099,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert. Leaning forward, visibly distressed by pain.",
@@ -10292,7 +10331,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 50080,
+          "t_ms": 50099,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -10318,7 +10357,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 50080,
+          "t_ms": 50099,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular tachycardia without murmur.",
@@ -10340,7 +10379,7 @@
         },
         {
           "seq": 94,
-          "t_ms": 91080,
+          "t_ms": 91099,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -10365,7 +10404,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 91080,
+          "t_ms": 91099,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, breath sounds present bilaterally without focal crackles.",
@@ -10387,20 +10426,22 @@
         },
         {
           "seq": 96,
-          "t_ms": 91080,
+          "t_ms": 91099,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "supine",
+            "previous_position": "seated",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 97,
-          "t_ms": 100080,
+          "t_ms": 100099,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect abdomen",
@@ -10423,7 +10464,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 100080,
+          "t_ms": 100099,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "On inspection, mild upper abdominal distention.",
@@ -10445,7 +10486,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 116080,
+          "t_ms": 116099,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -10467,7 +10508,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 116080,
+          "t_ms": 116099,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Bowel sounds reduced in the examined quadrants.",
@@ -10489,7 +10530,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 135080,
+          "t_ms": 135099,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -10511,7 +10552,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 135080,
+          "t_ms": 135099,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tympany over the abdomen.",
@@ -10533,7 +10574,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 166080,
+          "t_ms": 166099,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -10558,7 +10599,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 166080,
+          "t_ms": 166099,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Marked epigastric tenderness. No involuntary guarding during gentle assessment.",
@@ -10586,20 +10627,22 @@
         },
         {
           "seq": 105,
-          "t_ms": 166080,
+          "t_ms": 166099,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "seated",
+            "previous_position": "supine",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 106,
-          "t_ms": 191080,
+          "t_ms": 191099,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -10621,7 +10664,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 191080,
+          "t_ms": 191099,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T5 paraspinal tissue texture change with mild tenderness on the right.",
@@ -10643,7 +10686,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 210080,
+          "t_ms": 210099,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -10665,7 +10708,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 210080,
+          "t_ms": 210099,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -10687,7 +10730,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 210080,
+          "t_ms": 210099,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend urgent assessment of this severe upper abdominal pain. Inflammation around the pancreas is a concern, but heart and other abdominal problems can overlap. Blood tests and selected imaging can help clarify the cause.",
@@ -10699,7 +10742,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 210080,
+          "t_ms": 210099,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend urgent assessment of this severe upper abdominal pain. Inflammation around the pancreas is a concern, but heart and other abdominal problems can overlap. Blood tests and selected imaging can help clarify the cause.",
@@ -10711,7 +10754,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 210080,
+          "t_ms": 210099,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. Thank you for explaining that.",
@@ -10721,7 +10764,7 @@
         },
         {
           "seq": 113,
-          "t_ms": 210080,
+          "t_ms": 210099,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -10734,7 +10777,7 @@
         },
         {
           "seq": 114,
-          "t_ms": 210080,
+          "t_ms": 210099,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am embarrassed discussing alcohol in front of staff.",
@@ -10749,7 +10792,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 210080,
+          "t_ms": 210099,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "We can discuss alcohol privately and without judgment. I ask because it can affect the safest evaluation and care; you do not need to discuss it in front of other patients or family members.",
@@ -10761,7 +10804,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 210080,
+          "t_ms": 210099,
           "phase": "encounter",
           "kind": "counseling",
           "text": "We can discuss alcohol privately and without judgment. I ask because it can affect the safest evaluation and care; you do not need to discuss it in front of other patients or family members.",
@@ -10773,7 +10816,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 210080,
+          "t_ms": 210099,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Thank you. I would feel more comfortable discussing it privately.",
@@ -10785,13 +10828,13 @@
           }
         }
       ],
-      "note_words": 459,
-      "estimated_encounter_s": 550,
+      "note_words": 482,
+      "estimated_encounter_s": 565,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 4
+        "unresolved_count": 3
       },
       "reasoning": [
         {
@@ -10905,7 +10948,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "5ee454db23b5a5d2da26b823b66361b927cb0f9229534df7abc036257c13df5e"
+      "case_hash": "da6a5510ba437f2c1792a9e28e380c6dad48ec858e815f69f1630d6823046065",
+      "engine_version": "4.0.4"
     }
   ]
 }

@@ -38,4 +38,4 @@ for(const edition of ['.']){
  const css=fs.readFileSync(path.join(web,'walkthrough-print.css'),'utf8');
  assert(css.includes('size: Letter landscape'));assert(css.includes('10.5pt'));assert(css.includes('grid-template-columns:1fr 1fr'));
 }
-console.log(`PASS ${total} authored paths, ${turns} chronological turns, ${links} note links; exact dialogue/findings/SOAP/recall preserved; source objects immutable; all linked print images present in both editions.`);
+console.log(`PASS ${total} authored paths, ${turns} chronological turns, ${links} note links; exact dialogue/findings/SOAP/recall preserved; source objects immutable; all linked print images present in the public edition.`);

@@ -52,7 +52,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             4,
@@ -373,7 +373,7 @@
           "kind": "dialogue",
           "section": "Relevant background",
           "student": "What medical conditions have you been diagnosed with?",
-          "patient": "Episodes of difficulty relaxing to urinate for 2 years, never previously assessed no neurologic disease.",
+          "patient": "Episodes of difficulty relaxing to urinate for 2 years, never previously assessed, no neurologic disease.",
           "why": "",
           "event_ids": [
             53,
@@ -501,7 +501,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your father had?",
-          "patient": "Father had prostate enlargement",
+          "patient": "My dad is fifty-eight and he's had an enlarged prostate.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             71,
@@ -515,7 +515,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your mother had?",
-          "patient": "mother had hypertension",
+          "patient": "My mom is fifty-six and she has high blood pressure.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             73,
@@ -529,7 +529,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems have your siblings had?",
-          "patient": "brother healthy.",
+          "patient": "I have one brother, he's twenty-nine and he's healthy.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             75,
@@ -599,7 +599,7 @@
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             85,
@@ -805,7 +805,7 @@
         }
       ],
       "note": {
-        "S": "cc: Unable to urinate with lower abdominal pressure\n\nHPI: 26-year-old woman unable to pass urine despite repeated attempts and a strong urge. Last normal void 10 hours ago. Increasing tight painful suprapubic fullness, 8/10, without flank radiation. Weak stream and hesitancy for months, this is the first episode of complete urinary retention. Began an over-the-counter cold medicine yesterday. Attempts to void do not relieve the increasing pressure.\n\nPerspective: Will a catheter hurt?\n\nPMH: Episodes of difficulty relaxing to urinate for 2 years, never previously assessed; no neurologic disease.\n\nPSH: No pelvic surgery or catheterization history.\n\nMeds: No daily prescription medicine; took diphenhydramine 25 mg last night for cold symptoms.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Engineering technician; lives with husband.\n\nFH: Father had prostate enlargement; mother had hypertension; brother healthy.\n\nROS: Urinary - Reports retention. Reports hesitancy. Denies hematuria. Neurologic - Denies back pain. Denies saddle numbness. Denies leg weakness. General - Denies fever. Denies chills. Denies fatigue.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+        "S": "cc: Unable to urinate with lower abdominal pressure\n\nHPI: 26-year-old woman unable to pass urine despite repeated attempts and a strong urge. Last normal void 10 hours ago. Increasing tight painful suprapubic fullness, 8/10, without flank radiation. Weak stream and hesitancy for months, this is the first episode of complete urinary retention. Began an over-the-counter cold medicine yesterday. Attempts to void do not relieve the increasing pressure.\n\nPerspective: Will a catheter hurt?\n\nPMH: Episodes of difficulty relaxing to urinate for 2 years, never previously assessed; no neurologic disease.\n\nPSH: No pelvic surgery or catheterization history.\n\nMeds: No daily prescription medicine; took diphenhydramine 25 mg last night for cold symptoms.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Engineering technician; lives with husband.\n\nFH: My dad is fifty-eight and he's had an enlarged prostate.; My mom is fifty-six and she has high blood pressure.; I have one brother, he's twenty-nine and he's healthy.\n\nROS: Urinary - Reports retention. Reports hesitancy. Denies hematuria. Neurologic - Denies back pain. Denies saddle numbness. Denies leg weakness. General - Denies fever. Denies chills. Denies fatigue.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
         "O": "Vitals: T 98.6 F oral, P 94 bpm, BP 148/86 mmHg, R 18 rpm, Pulse Ox 98% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert and distressed by lower abdominal pressure.\nHeart: Regular rhythm without murmur.\nLungs: In the examined posterior fields, clear breath sounds bilaterally.\nAbdomen: Visible lower midline abdominal fullness.\nAbdomen: Bowel sounds present.\nAbdomen: Dull percussion over the suprapubic fullness.\nAbdomen: Tender rounded fullness in the suprapubic region.\nMusculoskeletal: Lower extremity strength 5/5 bilaterally.\nOsteopathic: T10 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Medication-precipitated acute urinary retention",
@@ -945,8 +945,8 @@
             54
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -1035,8 +1035,8 @@
             68
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -1050,7 +1050,7 @@
         },
         {
           "section": "S",
-          "statement": "Father had prostate enlargement;",
+          "statement": "My dad is fifty-eight and he's had an enlarged prostate.;",
           "event_ids": [
             72
           ],
@@ -1060,7 +1060,7 @@
         },
         {
           "section": "S",
-          "statement": "mother had hypertension;",
+          "statement": "My mom is fifty-six and she has high blood pressure.;",
           "event_ids": [
             74
           ],
@@ -1070,7 +1070,7 @@
         },
         {
           "section": "S",
-          "statement": "brother healthy.",
+          "statement": "I have one brother, he's twenty-nine and he's healthy.",
           "event_ids": [
             76
           ],
@@ -1424,8 +1424,7 @@
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
@@ -1435,30 +1434,34 @@
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
           }
         },
         {
           "seq": 6,
-          "t_ms": 3,
+          "t_ms": 1,
           "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "kind": "consent"
+            "courtesy_id": "consent_exam",
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 7,
-          "t_ms": 1,
+          "t_ms": 3,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
@@ -1525,7 +1528,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 7,
+          "t_ms": 8,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -1535,7 +1538,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 8,
+          "t_ms": 9,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are you having difficulty passing urine despite an urge?",
@@ -1547,7 +1550,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 8,
+          "t_ms": 10,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I cannot pass urine despite a strong urge.",
@@ -1573,7 +1576,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 9,
+          "t_ms": 11,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did you last urinate normally?",
@@ -1584,7 +1587,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 10,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I last passed urine normally 10 hours ago.",
@@ -1610,7 +1613,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 11,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How has the pressure changed through the day?",
@@ -1622,7 +1625,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 12,
+          "t_ms": 14,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It has become worse through the day.",
@@ -1648,7 +1651,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 13,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -1659,7 +1662,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 14,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The pressure is low in the center of my abdomen.",
@@ -1685,7 +1688,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 14,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -1697,7 +1700,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 15,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "There is no flank radiation.",
@@ -1723,7 +1726,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 16,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -1735,7 +1738,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 17,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is a tight, painful fullness.",
@@ -1761,7 +1764,7 @@
         },
         {
           "seq": 25,
-          "t_ms": 18,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -1773,7 +1776,7 @@
         },
         {
           "seq": 26,
-          "t_ms": 19,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The pressure is 8/10.",
@@ -1799,19 +1802,19 @@
         },
         {
           "seq": 27,
-          "t_ms": 20,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you started any medicines recently, including cold medicines?",
           "meta": {
-            "open_question": true,
+            "closed_question": true,
             "mode": "type",
             "intent": "question"
           }
         },
         {
           "seq": 28,
-          "t_ms": 20,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I started an over-the-counter cold medicine yesterday.",
@@ -1837,7 +1840,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 22,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -1849,7 +1852,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 22,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Trying again does not relieve it.",
@@ -1875,7 +1878,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 23,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -1887,7 +1890,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 24,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The fullness keeps increasing.",
@@ -1913,7 +1916,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 25,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -1925,7 +1928,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 26,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have tried to urinate several times without success.",
@@ -1951,7 +1954,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 27,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -1963,7 +1966,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 28,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "For months I have had a weak stream but never complete blockage.",
@@ -1989,7 +1992,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 29,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is it difficult to start your urine stream?",
@@ -2001,7 +2004,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 29,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My stream has been slow to start for months.",
@@ -2027,7 +2030,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 31,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed blood in your urine?",
@@ -2039,7 +2042,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 32,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No blood in the urine before this.",
@@ -2065,7 +2068,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 34,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any back pain?",
@@ -2077,7 +2080,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 35,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No new low back pain.",
@@ -2103,7 +2106,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 36,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed numbness between your legs or when wiping?",
@@ -2115,7 +2118,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 37,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No numbness between my legs.",
@@ -2141,7 +2144,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 38,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed weakness in your legs?",
@@ -2153,7 +2156,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 38,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My legs are not weak.",
@@ -2179,7 +2182,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 40,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -2191,7 +2194,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 40,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No fever.",
@@ -2217,7 +2220,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 41,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had chills?",
@@ -2229,7 +2232,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 42,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No chills.",
@@ -2255,7 +2258,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 43,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt unusually tired or low in energy?",
@@ -2267,7 +2270,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 44,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I felt well before the pressure.",
@@ -2293,7 +2296,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 45,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -2305,10 +2308,10 @@
         },
         {
           "seq": 54,
-          "t_ms": 50,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Episodes of difficulty relaxing to urinate for 2 years, never previously assessed no neurologic disease.",
+          "text": "Episodes of difficulty relaxing to urinate for 2 years, never previously assessed, no neurologic disease.",
           "meta": {
             "facts_released": [
               "history_pmh_1",
@@ -2338,7 +2341,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 51,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -2350,7 +2353,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 52,
+          "t_ms": 56,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No pelvic surgery or catheterization history.",
@@ -2376,7 +2379,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 53,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -2388,7 +2391,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 56,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not take daily prescription medicine. I took diphenhydramine 25 mg last night for cold symptoms.",
@@ -2421,7 +2424,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 57,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -2433,7 +2436,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 58,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No known drug allergies.",
@@ -2459,7 +2462,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 59,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -2471,7 +2474,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 60,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Never smoked tobacco.",
@@ -2497,7 +2500,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 61,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -2509,7 +2512,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 62,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "One alcoholic drink weekly.",
@@ -2535,7 +2538,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 63,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -2547,7 +2550,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 64,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -2573,7 +2576,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 65,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -2585,7 +2588,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 66,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a engineering technician.",
@@ -2611,7 +2614,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 67,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -2622,7 +2625,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 68,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband.",
@@ -2648,7 +2651,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 69,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your father had?",
@@ -2660,10 +2663,10 @@
         },
         {
           "seq": 72,
-          "t_ms": 70,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Father had prostate enlargement",
+          "text": "My dad is fifty-eight and he's had an enlarged prostate.",
           "meta": {
             "facts_released": [
               "history_family_1"
@@ -2671,7 +2674,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Father had prostate enlargement"
+                "value": "My dad is fifty-eight and he's had an enlarged prostate."
               }
             },
             "volunteered": false,
@@ -2686,7 +2689,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 71,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -2698,10 +2701,10 @@
         },
         {
           "seq": 74,
-          "t_ms": 71,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "mother had hypertension",
+          "text": "My mom is fifty-six and she has high blood pressure.",
           "meta": {
             "facts_released": [
               "history_family_2"
@@ -2709,7 +2712,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "mother had hypertension"
+                "value": "My mom is fifty-six and she has high blood pressure."
               }
             },
             "volunteered": false,
@@ -2724,7 +2727,7 @@
         },
         {
           "seq": 75,
-          "t_ms": 73,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -2736,10 +2739,10 @@
         },
         {
           "seq": 76,
-          "t_ms": 73,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "brother healthy.",
+          "text": "I have one brother, he's twenty-nine and he's healthy.",
           "meta": {
             "facts_released": [
               "history_family_3"
@@ -2747,7 +2750,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "brother healthy."
+                "value": "I have one brother, he's twenty-nine and he's healthy."
               }
             },
             "volunteered": false,
@@ -2762,7 +2765,7 @@
         },
         {
           "seq": 77,
-          "t_ms": 74,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -2774,7 +2777,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 75,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant, but I have not taken a pregnancy test.",
@@ -2800,7 +2803,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 77,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -2811,7 +2814,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 77,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 2 weeks ago.",
@@ -2837,7 +2840,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 78,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -2849,43 +2852,6 @@
         },
         {
           "seq": 82,
-          "t_ms": 79,
-          "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Will a catheter hurt?",
-          "meta": {
-            "facts_released": [
-              "patient_concern"
-            ],
-            "concepts": {
-              "patient_concern": {
-                "polarity": "positive",
-                "value": "Will a catheter hurt?"
-              }
-            },
-            "volunteered": false,
-            "kind": "answer",
-            "checklist_hits": [
-              "h_patient_concern"
-            ],
-            "categories": [
-              "fife"
-            ]
-          }
-        },
-        {
-          "seq": 83,
-          "t_ms": 80,
-          "phase": "encounter",
-          "kind": "student_utterance",
-          "text": "Thank you for explaining that. I can understand why this is concerning.",
-          "meta": {
-            "mode": "type",
-            "intent": "question"
-          }
-        },
-        {
-          "seq": 84,
           "t_ms": 83,
           "phase": "encounter",
           "kind": "patient_reply",
@@ -2911,8 +2877,45 @@
           }
         },
         {
-          "seq": 85,
+          "seq": 83,
           "t_ms": 84,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Thank you for explaining that. I can understand why this is concerning.",
+          "meta": {
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 84,
+          "t_ms": 93,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Will a catheter hurt?",
+          "meta": {
+            "facts_released": [
+              "patient_concern"
+            ],
+            "concepts": {
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "Will a catheter hurt?"
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_patient_concern"
+            ],
+            "categories": [
+              "fife"
+            ]
+          }
+        },
+        {
+          "seq": 85,
+          "t_ms": 94,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -2923,17 +2926,17 @@
         },
         {
           "seq": 86,
-          "t_ms": 85,
+          "t_ms": 96,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 87,
-          "t_ms": 84,
+          "t_ms": 94,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -2945,7 +2948,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 10086,
+          "t_ms": 10097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -2965,7 +2968,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 10086,
+          "t_ms": 10097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert and distressed by lower abdominal pressure.",
@@ -2987,7 +2990,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 50086,
+          "t_ms": 50097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -3013,7 +3016,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 50086,
+          "t_ms": 50097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rhythm without murmur.",
@@ -3035,7 +3038,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 91086,
+          "t_ms": 91097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -3060,7 +3063,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 91086,
+          "t_ms": 91097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, clear breath sounds bilaterally.",
@@ -3082,20 +3085,22 @@
         },
         {
           "seq": 94,
-          "t_ms": 91086,
+          "t_ms": 91097,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "supine",
+            "previous_position": "seated",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 95,
-          "t_ms": 100086,
+          "t_ms": 100097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect abdomen",
@@ -3118,7 +3123,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 100086,
+          "t_ms": 100097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Visible lower midline abdominal fullness.",
@@ -3140,7 +3145,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 116086,
+          "t_ms": 116097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -3162,7 +3167,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 116086,
+          "t_ms": 116097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Bowel sounds present.",
@@ -3184,7 +3189,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 135086,
+          "t_ms": 135097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -3206,7 +3211,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 135086,
+          "t_ms": 135097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Dull percussion over the suprapubic fullness.",
@@ -3228,7 +3233,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 162086,
+          "t_ms": 162097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -3251,7 +3256,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 162086,
+          "t_ms": 162097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tender rounded fullness in the suprapubic region.",
@@ -3273,7 +3278,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 181086,
+          "t_ms": 181097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Muscle strength testing",
@@ -3295,7 +3300,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 181086,
+          "t_ms": 181097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Lower extremity strength 5/5 bilaterally.",
@@ -3317,20 +3322,22 @@
         },
         {
           "seq": 105,
-          "t_ms": 181086,
+          "t_ms": 181097,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "seated",
+            "previous_position": "supine",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 106,
-          "t_ms": 206086,
+          "t_ms": 206097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -3352,7 +3359,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 206086,
+          "t_ms": 206097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T10 paraspinal tissue texture change with mild tenderness on the right.",
@@ -3374,7 +3381,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 225086,
+          "t_ms": 225097,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -3396,7 +3403,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 225086,
+          "t_ms": 225097,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -3418,7 +3425,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 225086,
+          "t_ms": 225097,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend urgent assessment of the inability to empty your bladder. Medicines, blockage and nerve problems can contribute. The clinician may need to measure retained urine and relieve the pressure while looking for a cause.",
@@ -3430,7 +3437,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 225086,
+          "t_ms": 225097,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend urgent assessment of the inability to empty your bladder. Medicines, blockage and nerve problems can contribute. The clinician may need to measure retained urine and relieve the pressure while looking for a cause.",
@@ -3442,7 +3449,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 225086,
+          "t_ms": 225097,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. Thank you for explaining that.",
@@ -3452,7 +3459,7 @@
         },
         {
           "seq": 113,
-          "t_ms": 225086,
+          "t_ms": 225097,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -3465,7 +3472,7 @@
         },
         {
           "seq": 114,
-          "t_ms": 225086,
+          "t_ms": 225097,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Will a catheter hurt?",
@@ -3480,7 +3487,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 225086,
+          "t_ms": 225097,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "A catheter can be uncomfortable, and the team should explain the procedure and available comfort measures before obtaining your consent. I recommend urgent assessment to relieve the retention safely and determine the cause; we should not leave the bladder problem untreated because it is embarrassing.",
@@ -3492,7 +3499,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 225086,
+          "t_ms": 225097,
           "phase": "encounter",
           "kind": "counseling",
           "text": "A catheter can be uncomfortable, and the team should explain the procedure and available comfort measures before obtaining your consent. I recommend urgent assessment to relieve the retention safely and determine the cause; we should not leave the bladder problem untreated because it is embarrassing.",
@@ -3504,7 +3511,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 225086,
+          "t_ms": 225097,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay. I can do that.",
@@ -3513,13 +3520,13 @@
           }
         }
       ],
-      "note_words": 432,
-      "estimated_encounter_s": 550,
+      "note_words": 452,
+      "estimated_encounter_s": 561,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 7
+        "unresolved_count": 5
       },
       "reasoning": [
         {
@@ -3637,7 +3644,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "65175beb625b7adfd543751658e69ffb523b6d8a824df6d5ed18c62cea375a62"
+      "case_hash": "48f4de811920f7b47fcd8cdde8ca039fcbd5e656e0164f3f7ef9db6234ed0f5a",
+      "engine_version": "4.0.4"
     },
     {
       "case_id": "renal-acute-retention",
@@ -3695,7 +3703,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             4,
@@ -4016,7 +4024,7 @@
           "kind": "dialogue",
           "section": "Relevant background",
           "student": "What medical conditions have you been diagnosed with?",
-          "patient": "Episodes of difficulty relaxing to urinate for 2 years, never previously assessed no neurologic disease.",
+          "patient": "Episodes of difficulty relaxing to urinate for 2 years, never previously assessed, no neurologic disease.",
           "why": "",
           "event_ids": [
             53,
@@ -4144,7 +4152,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your father had?",
-          "patient": "Father had prostate enlargement",
+          "patient": "My dad is fifty-eight and he's had an enlarged prostate.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             71,
@@ -4158,7 +4166,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your mother had?",
-          "patient": "mother had hypertension",
+          "patient": "My mom is fifty-six and she has high blood pressure.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             73,
@@ -4172,7 +4180,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems have your siblings had?",
-          "patient": "brother healthy.",
+          "patient": "I have one brother, he's twenty-nine and he's healthy.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             75,
@@ -4242,7 +4250,7 @@
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             85,
@@ -4448,7 +4456,7 @@
         }
       ],
       "note": {
-        "S": "cc: Unable to urinate with lower abdominal pressure\n\nHPI: 26-year-old woman unable to pass urine despite repeated attempts and a strong urge. Last normal void 6 hours ago. Increasing tight painful suprapubic fullness, 8/10, without flank radiation. Weak stream and hesitancy for months, this is the first episode of complete urinary retention. Began an over-the-counter cold medicine yesterday. Attempts to void do not relieve the increasing pressure.\n\nPerspective: Will a catheter hurt?\n\nPMH: Episodes of difficulty relaxing to urinate for 2 years, never previously assessed; no neurologic disease.\n\nPSH: No pelvic surgery or catheterization history.\n\nMeds: No daily prescription medicine; took diphenhydramine 25 mg last night for cold symptoms.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Engineering technician; lives with husband.\n\nFH: Father had prostate enlargement; mother had hypertension; brother healthy.\n\nROS: Urinary - Reports retention. Reports hesitancy. Denies hematuria. Neurologic - Denies back pain. Denies saddle numbness. Denies leg weakness. General - Denies fever. Denies chills. Denies fatigue.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+        "S": "cc: Unable to urinate with lower abdominal pressure\n\nHPI: 26-year-old woman unable to pass urine despite repeated attempts and a strong urge. Last normal void 6 hours ago. Increasing tight painful suprapubic fullness, 8/10, without flank radiation. Weak stream and hesitancy for months, this is the first episode of complete urinary retention. Began an over-the-counter cold medicine yesterday. Attempts to void do not relieve the increasing pressure.\n\nPerspective: Will a catheter hurt?\n\nPMH: Episodes of difficulty relaxing to urinate for 2 years, never previously assessed; no neurologic disease.\n\nPSH: No pelvic surgery or catheterization history.\n\nMeds: No daily prescription medicine; took diphenhydramine 25 mg last night for cold symptoms.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Engineering technician; lives with husband.\n\nFH: My dad is fifty-eight and he's had an enlarged prostate.; My mom is fifty-six and she has high blood pressure.; I have one brother, he's twenty-nine and he's healthy.\n\nROS: Urinary - Reports retention. Reports hesitancy. Denies hematuria. Neurologic - Denies back pain. Denies saddle numbness. Denies leg weakness. General - Denies fever. Denies chills. Denies fatigue.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
         "O": "Vitals: T 98.6 F oral, P 94 bpm, BP 148/86 mmHg, R 18 rpm, Pulse Ox 98% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert and distressed by lower abdominal pressure.\nHeart: Regular rhythm without murmur.\nLungs: In the examined posterior fields, clear breath sounds bilaterally.\nAbdomen: Visible lower midline abdominal fullness.\nAbdomen: Bowel sounds present.\nAbdomen: Dull percussion over the suprapubic fullness.\nAbdomen: Tender rounded fullness in the suprapubic region.\nMusculoskeletal: Lower extremity strength 5/5 bilaterally.\nOsteopathic: T10 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Medication-precipitated acute urinary retention",
@@ -4588,8 +4596,8 @@
             54
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -4678,8 +4686,8 @@
             68
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -4693,7 +4701,7 @@
         },
         {
           "section": "S",
-          "statement": "Father had prostate enlargement;",
+          "statement": "My dad is fifty-eight and he's had an enlarged prostate.;",
           "event_ids": [
             72
           ],
@@ -4703,7 +4711,7 @@
         },
         {
           "section": "S",
-          "statement": "mother had hypertension;",
+          "statement": "My mom is fifty-six and she has high blood pressure.;",
           "event_ids": [
             74
           ],
@@ -4713,7 +4721,7 @@
         },
         {
           "section": "S",
-          "statement": "brother healthy.",
+          "statement": "I have one brother, he's twenty-nine and he's healthy.",
           "event_ids": [
             76
           ],
@@ -5061,52 +5069,55 @@
         },
         {
           "seq": 4,
-          "t_ms": 1,
+          "t_ms": 0,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
           "seq": 5,
-          "t_ms": 1,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
+          }
+        },
+        {
+          "seq": 6,
+          "t_ms": 0,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
-          }
-        },
-        {
-          "seq": 6,
-          "t_ms": 6,
-          "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
-          "meta": {
-            "kind": "consent"
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 7,
-          "t_ms": 1,
+          "t_ms": 5,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
           "seq": 8,
-          "t_ms": 7,
+          "t_ms": 5,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -5118,7 +5129,7 @@
         },
         {
           "seq": 9,
-          "t_ms": 11,
+          "t_ms": 7,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I desperately need to pee, but nothing will come out.",
@@ -5144,7 +5155,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 11,
+          "t_ms": 8,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I will arrange urgent help from my supervising clinician now. We will not delay emergency care to finish routine questions.",
@@ -5156,7 +5167,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 11,
+          "t_ms": 8,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I will arrange urgent help from my supervising clinician now. We will not delay emergency care to finish routine questions.",
@@ -5168,7 +5179,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 12,
+          "t_ms": 10,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -5178,7 +5189,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 13,
+          "t_ms": 10,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are you having difficulty passing urine despite an urge?",
@@ -5190,7 +5201,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 14,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I cannot pass urine despite a strong urge.",
@@ -5216,7 +5227,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 15,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did you last urinate normally?",
@@ -5227,7 +5238,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 16,
+          "t_ms": 14,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I last passed urine normally 6 hours ago.",
@@ -5253,7 +5264,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 18,
+          "t_ms": 14,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How has the pressure changed through the day?",
@@ -5265,7 +5276,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 18,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It has become worse through the day.",
@@ -5291,7 +5302,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 19,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -5302,7 +5313,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 20,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The pressure is low in the center of my abdomen.",
@@ -5328,7 +5339,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 21,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -5340,7 +5351,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 22,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "There is no flank radiation.",
@@ -5366,7 +5377,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 22,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -5378,7 +5389,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 23,
+          "t_ms": 21,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is a tight, painful fullness.",
@@ -5404,7 +5415,7 @@
         },
         {
           "seq": 25,
-          "t_ms": 24,
+          "t_ms": 21,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -5416,7 +5427,7 @@
         },
         {
           "seq": 26,
-          "t_ms": 25,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The pressure is 8/10.",
@@ -5442,19 +5453,19 @@
         },
         {
           "seq": 27,
-          "t_ms": 26,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you started any medicines recently, including cold medicines?",
           "meta": {
-            "open_question": true,
+            "closed_question": true,
             "mode": "type",
             "intent": "question"
           }
         },
         {
           "seq": 28,
-          "t_ms": 26,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I started an over-the-counter cold medicine yesterday.",
@@ -5480,7 +5491,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 27,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -5492,7 +5503,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 28,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Trying again does not relieve it.",
@@ -5518,7 +5529,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 29,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -5530,7 +5541,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 30,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The fullness keeps increasing.",
@@ -5556,7 +5567,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 31,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -5568,7 +5579,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 31,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have tried to urinate several times without success.",
@@ -5594,7 +5605,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 32,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -5606,7 +5617,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 33,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "For months I have had a weak stream but never complete blockage.",
@@ -5632,7 +5643,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 34,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is it difficult to start your urine stream?",
@@ -5644,7 +5655,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 35,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My stream has been slow to start for months.",
@@ -5670,7 +5681,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 36,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed blood in your urine?",
@@ -5682,7 +5693,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 36,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No blood in the urine before this.",
@@ -5708,7 +5719,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 37,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any back pain?",
@@ -5720,7 +5731,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 38,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No new low back pain.",
@@ -5746,7 +5757,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 39,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed numbness between your legs or when wiping?",
@@ -5758,7 +5769,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 40,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No numbness between my legs.",
@@ -5784,7 +5795,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 41,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed weakness in your legs?",
@@ -5796,7 +5807,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 42,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My legs are not weak.",
@@ -5822,7 +5833,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 43,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -5860,7 +5871,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 44,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had chills?",
@@ -5872,7 +5883,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 45,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No chills.",
@@ -5898,7 +5909,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 46,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt unusually tired or low in energy?",
@@ -5910,7 +5921,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 47,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I felt well before the pressure.",
@@ -5936,7 +5947,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 48,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -5948,10 +5959,10 @@
         },
         {
           "seq": 54,
-          "t_ms": 52,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Episodes of difficulty relaxing to urinate for 2 years, never previously assessed no neurologic disease.",
+          "text": "Episodes of difficulty relaxing to urinate for 2 years, never previously assessed, no neurologic disease.",
           "meta": {
             "facts_released": [
               "history_pmh_1",
@@ -5981,7 +5992,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 53,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -5993,7 +6004,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 55,
+          "t_ms": 56,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No pelvic surgery or catheterization history.",
@@ -6031,7 +6042,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 61,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not take daily prescription medicine. I took diphenhydramine 25 mg last night for cold symptoms.",
@@ -6064,7 +6075,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 64,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -6076,7 +6087,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 65,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No known drug allergies.",
@@ -6102,7 +6113,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 67,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -6114,7 +6125,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 68,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Never smoked tobacco.",
@@ -6140,7 +6151,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 70,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -6152,7 +6163,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 71,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "One alcoholic drink weekly.",
@@ -6178,7 +6189,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 72,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -6190,7 +6201,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 73,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -6216,7 +6227,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 75,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -6228,7 +6239,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 76,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a engineering technician.",
@@ -6254,7 +6265,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 77,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -6265,7 +6276,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 78,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband.",
@@ -6291,7 +6302,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 80,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your father had?",
@@ -6303,10 +6314,10 @@
         },
         {
           "seq": 72,
-          "t_ms": 81,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Father had prostate enlargement",
+          "text": "My dad is fifty-eight and he's had an enlarged prostate.",
           "meta": {
             "facts_released": [
               "history_family_1"
@@ -6314,7 +6325,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Father had prostate enlargement"
+                "value": "My dad is fifty-eight and he's had an enlarged prostate."
               }
             },
             "volunteered": false,
@@ -6329,7 +6340,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 83,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -6341,10 +6352,10 @@
         },
         {
           "seq": 74,
-          "t_ms": 84,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "mother had hypertension",
+          "text": "My mom is fifty-six and she has high blood pressure.",
           "meta": {
             "facts_released": [
               "history_family_2"
@@ -6352,7 +6363,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "mother had hypertension"
+                "value": "My mom is fifty-six and she has high blood pressure."
               }
             },
             "volunteered": false,
@@ -6367,7 +6378,7 @@
         },
         {
           "seq": 75,
-          "t_ms": 87,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -6379,10 +6390,10 @@
         },
         {
           "seq": 76,
-          "t_ms": 88,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "brother healthy.",
+          "text": "I have one brother, he's twenty-nine and he's healthy.",
           "meta": {
             "facts_released": [
               "history_family_3"
@@ -6390,7 +6401,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "brother healthy."
+                "value": "I have one brother, he's twenty-nine and he's healthy."
               }
             },
             "volunteered": false,
@@ -6405,7 +6416,7 @@
         },
         {
           "seq": 77,
-          "t_ms": 89,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -6417,7 +6428,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 90,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant, but I have not taken a pregnancy test.",
@@ -6443,7 +6454,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 92,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -6454,7 +6465,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 93,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 2 weeks ago.",
@@ -6480,7 +6491,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 95,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -6492,7 +6503,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 96,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Will a catheter hurt?",
@@ -6518,7 +6529,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 97,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -6529,7 +6540,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 102,
+          "t_ms": 93,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Will a catheter hurt?",
@@ -6555,7 +6566,7 @@
         },
         {
           "seq": 85,
-          "t_ms": 103,
+          "t_ms": 94,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -6566,17 +6577,17 @@
         },
         {
           "seq": 86,
-          "t_ms": 104,
+          "t_ms": 95,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 87,
-          "t_ms": 103,
+          "t_ms": 94,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -6588,7 +6599,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 10106,
+          "t_ms": 10095,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -6608,7 +6619,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 10106,
+          "t_ms": 10095,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert and distressed by lower abdominal pressure.",
@@ -6630,7 +6641,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 50106,
+          "t_ms": 50095,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -6656,7 +6667,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 50106,
+          "t_ms": 50095,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rhythm without murmur.",
@@ -6678,7 +6689,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 91106,
+          "t_ms": 91095,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -6703,7 +6714,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 91106,
+          "t_ms": 91095,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, clear breath sounds bilaterally.",
@@ -6725,20 +6736,22 @@
         },
         {
           "seq": 94,
-          "t_ms": 91106,
+          "t_ms": 91095,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "supine",
+            "previous_position": "seated",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 95,
-          "t_ms": 100106,
+          "t_ms": 100095,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect abdomen",
@@ -6761,7 +6774,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 100106,
+          "t_ms": 100095,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Visible lower midline abdominal fullness.",
@@ -6783,7 +6796,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 116106,
+          "t_ms": 116095,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -6805,7 +6818,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 116106,
+          "t_ms": 116095,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Bowel sounds present.",
@@ -6827,7 +6840,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 135106,
+          "t_ms": 135095,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -6849,7 +6862,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 135106,
+          "t_ms": 135095,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Dull percussion over the suprapubic fullness.",
@@ -6871,7 +6884,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 162106,
+          "t_ms": 162095,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -6894,7 +6907,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 162106,
+          "t_ms": 162095,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tender rounded fullness in the suprapubic region.",
@@ -6916,7 +6929,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 181106,
+          "t_ms": 181095,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Muscle strength testing",
@@ -6938,7 +6951,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 181106,
+          "t_ms": 181095,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Lower extremity strength 5/5 bilaterally.",
@@ -6960,20 +6973,22 @@
         },
         {
           "seq": 105,
-          "t_ms": 181106,
+          "t_ms": 181095,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "seated",
+            "previous_position": "supine",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 106,
-          "t_ms": 206106,
+          "t_ms": 206095,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -6995,7 +7010,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 206106,
+          "t_ms": 206095,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T10 paraspinal tissue texture change with mild tenderness on the right.",
@@ -7017,7 +7032,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 225106,
+          "t_ms": 225095,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -7039,7 +7054,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 225106,
+          "t_ms": 225095,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -7061,7 +7076,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 225106,
+          "t_ms": 225095,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend urgent assessment of the inability to empty your bladder. Medicines, blockage and nerve problems can contribute. The clinician may need to measure retained urine and relieve the pressure while looking for a cause.",
@@ -7073,7 +7088,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 225106,
+          "t_ms": 225095,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend urgent assessment of the inability to empty your bladder. Medicines, blockage and nerve problems can contribute. The clinician may need to measure retained urine and relieve the pressure while looking for a cause.",
@@ -7085,7 +7100,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 225106,
+          "t_ms": 225095,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. Thank you for explaining that.",
@@ -7095,7 +7110,7 @@
         },
         {
           "seq": 113,
-          "t_ms": 225106,
+          "t_ms": 225095,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -7108,7 +7123,7 @@
         },
         {
           "seq": 114,
-          "t_ms": 225106,
+          "t_ms": 225095,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Will a catheter hurt?",
@@ -7123,7 +7138,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 225106,
+          "t_ms": 225095,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "A catheter can be uncomfortable, and the team should explain the procedure and available comfort measures before obtaining your consent. I recommend urgent assessment to relieve the retention safely and determine the cause; we should not leave the bladder problem untreated because it is embarrassing.",
@@ -7135,7 +7150,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 225106,
+          "t_ms": 225095,
           "phase": "encounter",
           "kind": "counseling",
           "text": "A catheter can be uncomfortable, and the team should explain the procedure and available comfort measures before obtaining your consent. I recommend urgent assessment to relieve the retention safely and determine the cause; we should not leave the bladder problem untreated because it is embarrassing.",
@@ -7147,7 +7162,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 225106,
+          "t_ms": 225095,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay. I can do that.",
@@ -7156,13 +7171,13 @@
           }
         }
       ],
-      "note_words": 432,
-      "estimated_encounter_s": 550,
+      "note_words": 452,
+      "estimated_encounter_s": 561,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 7
+        "unresolved_count": 5
       },
       "reasoning": [
         {
@@ -7280,7 +7295,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "a9db1f56505adee9003ed79421164ed105d2c2aa23d226c65da2b6c026cd5038"
+      "case_hash": "bc6a201669d106ea7a68ca47a5be2c6db35e3cc90164aac70abb1472b082d96b",
+      "engine_version": "4.0.4"
     },
     {
       "case_id": "renal-acute-retention",
@@ -7338,7 +7354,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             4,
@@ -7659,7 +7675,7 @@
           "kind": "dialogue",
           "section": "Relevant background",
           "student": "What medical conditions have you been diagnosed with?",
-          "patient": "Episodes of difficulty relaxing to urinate for 2 years, never previously assessed no neurologic disease.",
+          "patient": "Episodes of difficulty relaxing to urinate for 2 years, never previously assessed, no neurologic disease.",
           "why": "",
           "event_ids": [
             53,
@@ -7787,7 +7803,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your father had?",
-          "patient": "Father had prostate enlargement",
+          "patient": "My dad is fifty-eight and he's had an enlarged prostate.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             71,
@@ -7801,7 +7817,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your mother had?",
-          "patient": "mother had hypertension",
+          "patient": "My mom is fifty-six and she has high blood pressure.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             73,
@@ -7815,7 +7831,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems have your siblings had?",
-          "patient": "brother healthy.",
+          "patient": "I have one brother, he's twenty-nine and he's healthy.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             75,
@@ -7885,22 +7901,22 @@
           "kind": "dialogue",
           "section": "Acknowledge",
           "student": "Thank you for explaining that. I can understand why this is concerning.",
-          "patient": "Will a catheter hurt? Right, I am too embarrassed to discuss urinary problems with my family.",
+          "patient": "I am too embarrassed to discuss urinary problems with my family. Right, will a catheter hurt? Right, I am too embarrassed to discuss urinary problems with my family.",
           "why": "",
           "event_ids": [
             85,
             86
           ],
           "fact_ids": [
-            "patient_concern",
-            "care_barrier"
+            "care_barrier",
+            "patient_concern"
           ]
         },
         {
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             87,
@@ -8106,7 +8122,7 @@
         }
       ],
       "note": {
-        "S": "cc: Unable to urinate with lower abdominal pressure\n\nHPI: 26-year-old woman unable to pass urine despite repeated attempts and a strong urge. Last normal void 10 hours ago. Increasing tight painful suprapubic fullness, 8/10, without flank radiation. Weak stream and hesitancy for months, this is the first episode of complete urinary retention. Began an over-the-counter cold medicine yesterday. Attempts to void do not relieve the increasing pressure.\n\nPerspective: Will a catheter hurt?\n\nPMH: Episodes of difficulty relaxing to urinate for 2 years, never previously assessed; no neurologic disease.\n\nPSH: No pelvic surgery or catheterization history.\n\nMeds: No daily prescription medicine; took diphenhydramine 25 mg last night for cold symptoms.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Engineering technician; lives with husband.\n\nFH: Father had prostate enlargement; mother had hypertension; brother healthy.\n\nROS: Urinary - Reports retention. Reports hesitancy. Denies hematuria. Neurologic - Denies back pain. Denies saddle numbness. Denies leg weakness. General - Denies fever. Denies chills. Denies fatigue.\n\nPatient concern: I am too embarrassed to discuss urinary problems with my family.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+        "S": "cc: Unable to urinate with lower abdominal pressure\n\nHPI: 26-year-old woman unable to pass urine despite repeated attempts and a strong urge. Last normal void 10 hours ago. Increasing tight painful suprapubic fullness, 8/10, without flank radiation. Weak stream and hesitancy for months, this is the first episode of complete urinary retention. Began an over-the-counter cold medicine yesterday. Attempts to void do not relieve the increasing pressure.\n\nPerspective: Will a catheter hurt?\n\nPMH: Episodes of difficulty relaxing to urinate for 2 years, never previously assessed; no neurologic disease.\n\nPSH: No pelvic surgery or catheterization history.\n\nMeds: No daily prescription medicine; took diphenhydramine 25 mg last night for cold symptoms.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Engineering technician; lives with husband.\n\nFH: My dad is fifty-eight and he's had an enlarged prostate.; My mom is fifty-six and she has high blood pressure.; I have one brother, he's twenty-nine and he's healthy.\n\nROS: Urinary - Reports retention. Reports hesitancy. Denies hematuria. Neurologic - Denies back pain. Denies saddle numbness. Denies leg weakness. General - Denies fever. Denies chills. Denies fatigue.\n\nPatient concern: I am too embarrassed to discuss urinary problems with my family.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
         "O": "Vitals: T 98.6 F oral, P 94 bpm, BP 148/86 mmHg, R 18 rpm, Pulse Ox 98% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert and distressed by lower abdominal pressure.\nHeart: Regular rhythm without murmur.\nLungs: In the examined posterior fields, clear breath sounds bilaterally.\nAbdomen: Visible lower midline abdominal fullness.\nAbdomen: Bowel sounds present.\nAbdomen: Dull percussion over the suprapubic fullness.\nAbdomen: Tender rounded fullness in the suprapubic region.\nMusculoskeletal: Lower extremity strength 5/5 bilaterally.\nOsteopathic: T10 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Medication-precipitated acute urinary retention",
@@ -8246,8 +8262,8 @@
             54
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -8336,8 +8352,8 @@
             68
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -8351,7 +8367,7 @@
         },
         {
           "section": "S",
-          "statement": "Father had prostate enlargement;",
+          "statement": "My dad is fifty-eight and he's had an enlarged prostate.;",
           "event_ids": [
             72
           ],
@@ -8361,7 +8377,7 @@
         },
         {
           "section": "S",
-          "statement": "mother had hypertension;",
+          "statement": "My mom is fifty-six and she has high blood pressure.;",
           "event_ids": [
             74
           ],
@@ -8371,7 +8387,7 @@
         },
         {
           "section": "S",
-          "statement": "brother healthy.",
+          "statement": "I have one brother, he's twenty-nine and he's healthy.",
           "event_ids": [
             76
           ],
@@ -8729,52 +8745,55 @@
         },
         {
           "seq": 4,
-          "t_ms": 1,
+          "t_ms": 0,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
           "seq": 5,
-          "t_ms": 1,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
+          }
+        },
+        {
+          "seq": 6,
+          "t_ms": 0,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
-          }
-        },
-        {
-          "seq": 6,
-          "t_ms": 3,
-          "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
-          "meta": {
-            "kind": "consent"
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 7,
-          "t_ms": 1,
+          "t_ms": 5,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
           "seq": 8,
-          "t_ms": 4,
+          "t_ms": 6,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -8786,7 +8805,7 @@
         },
         {
           "seq": 9,
-          "t_ms": 5,
+          "t_ms": 9,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I desperately need to pee, but nothing will come out.",
@@ -8812,7 +8831,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 5,
+          "t_ms": 10,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I will arrange urgent help from my supervising clinician now. We will not delay emergency care to finish routine questions.",
@@ -8824,7 +8843,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 5,
+          "t_ms": 10,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I will arrange urgent help from my supervising clinician now. We will not delay emergency care to finish routine questions.",
@@ -8836,7 +8855,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 6,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -8846,7 +8865,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 7,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are you having difficulty passing urine despite an urge?",
@@ -8858,7 +8877,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 8,
+          "t_ms": 14,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I cannot pass urine despite a strong urge.",
@@ -8884,7 +8903,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 9,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did you last urinate normally?",
@@ -8895,7 +8914,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 10,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I last passed urine normally 10 hours ago.",
@@ -8921,7 +8940,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 10,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How has the pressure changed through the day?",
@@ -8933,7 +8952,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 11,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It has become worse through the day.",
@@ -8959,7 +8978,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 12,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -8970,7 +8989,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 13,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The pressure is low in the center of my abdomen.",
@@ -8996,7 +9015,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 13,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -9008,7 +9027,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 14,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "There is no flank radiation.",
@@ -9034,7 +9053,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 15,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -9046,7 +9065,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 16,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is a tight, painful fullness.",
@@ -9072,7 +9091,7 @@
         },
         {
           "seq": 25,
-          "t_ms": 16,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -9084,7 +9103,7 @@
         },
         {
           "seq": 26,
-          "t_ms": 17,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The pressure is 8/10.",
@@ -9110,19 +9129,19 @@
         },
         {
           "seq": 27,
-          "t_ms": 18,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you started any medicines recently, including cold medicines?",
           "meta": {
-            "open_question": true,
+            "closed_question": true,
             "mode": "type",
             "intent": "question"
           }
         },
         {
           "seq": 28,
-          "t_ms": 19,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I started an over-the-counter cold medicine yesterday.",
@@ -9148,7 +9167,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 20,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -9160,7 +9179,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 21,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Trying again does not relieve it.",
@@ -9186,7 +9205,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 22,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -9198,7 +9217,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 22,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The fullness keeps increasing.",
@@ -9224,7 +9243,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 23,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -9236,7 +9255,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 24,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have tried to urinate several times without success.",
@@ -9262,7 +9281,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 25,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -9274,7 +9293,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 25,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "For months I have had a weak stream but never complete blockage.",
@@ -9300,7 +9319,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 26,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is it difficult to start your urine stream?",
@@ -9312,7 +9331,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 27,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My stream has been slow to start for months.",
@@ -9338,7 +9357,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 28,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed blood in your urine?",
@@ -9350,7 +9369,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 29,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No blood in the urine before this.",
@@ -9376,7 +9395,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 30,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any back pain?",
@@ -9388,7 +9407,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 31,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No new low back pain.",
@@ -9414,7 +9433,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 32,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed numbness between your legs or when wiping?",
@@ -9426,7 +9445,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 32,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No numbness between my legs.",
@@ -9452,7 +9471,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 33,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed weakness in your legs?",
@@ -9464,7 +9483,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 34,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My legs are not weak.",
@@ -9490,7 +9509,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 35,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -9502,7 +9521,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 36,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No fever.",
@@ -9528,7 +9547,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 36,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had chills?",
@@ -9540,7 +9559,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 37,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No chills.",
@@ -9566,7 +9585,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 38,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt unusually tired or low in energy?",
@@ -9578,7 +9597,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 39,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I felt well before the pressure.",
@@ -9604,7 +9623,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 40,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -9616,10 +9635,10 @@
         },
         {
           "seq": 54,
-          "t_ms": 43,
+          "t_ms": 56,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Episodes of difficulty relaxing to urinate for 2 years, never previously assessed no neurologic disease.",
+          "text": "Episodes of difficulty relaxing to urinate for 2 years, never previously assessed, no neurologic disease.",
           "meta": {
             "facts_released": [
               "history_pmh_1",
@@ -9649,7 +9668,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 45,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -9661,7 +9680,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 45,
+          "t_ms": 58,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No pelvic surgery or catheterization history.",
@@ -9687,7 +9706,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 46,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -9699,7 +9718,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 49,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not take daily prescription medicine. I took diphenhydramine 25 mg last night for cold symptoms.",
@@ -9732,7 +9751,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 50,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -9744,7 +9763,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 51,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No known drug allergies.",
@@ -9770,7 +9789,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 52,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -9782,7 +9801,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 53,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Never smoked tobacco.",
@@ -9808,7 +9827,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 54,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -9820,7 +9839,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 54,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "One alcoholic drink weekly.",
@@ -9846,7 +9865,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 55,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -9858,7 +9877,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 56,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -9884,7 +9903,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 57,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -9896,7 +9915,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 58,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a engineering technician.",
@@ -9922,7 +9941,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 59,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -9933,7 +9952,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 60,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband.",
@@ -9959,7 +9978,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 61,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your father had?",
@@ -9971,10 +9990,10 @@
         },
         {
           "seq": 72,
-          "t_ms": 61,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Father had prostate enlargement",
+          "text": "My dad is fifty-eight and he's had an enlarged prostate.",
           "meta": {
             "facts_released": [
               "history_family_1"
@@ -9982,7 +10001,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Father had prostate enlargement"
+                "value": "My dad is fifty-eight and he's had an enlarged prostate."
               }
             },
             "volunteered": false,
@@ -9997,7 +10016,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 62,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -10009,10 +10028,10 @@
         },
         {
           "seq": 74,
-          "t_ms": 63,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "mother had hypertension",
+          "text": "My mom is fifty-six and she has high blood pressure.",
           "meta": {
             "facts_released": [
               "history_family_2"
@@ -10020,7 +10039,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "mother had hypertension"
+                "value": "My mom is fifty-six and she has high blood pressure."
               }
             },
             "volunteered": false,
@@ -10035,7 +10054,7 @@
         },
         {
           "seq": 75,
-          "t_ms": 64,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -10047,10 +10066,10 @@
         },
         {
           "seq": 76,
-          "t_ms": 65,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "brother healthy.",
+          "text": "I have one brother, he's twenty-nine and he's healthy.",
           "meta": {
             "facts_released": [
               "history_family_3"
@@ -10058,7 +10077,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "brother healthy."
+                "value": "I have one brother, he's twenty-nine and he's healthy."
               }
             },
             "volunteered": false,
@@ -10073,7 +10092,7 @@
         },
         {
           "seq": 77,
-          "t_ms": 66,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -10085,7 +10104,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 67,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant, but I have not taken a pregnancy test.",
@@ -10111,7 +10130,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 68,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -10122,7 +10141,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 69,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 2 weeks ago.",
@@ -10148,7 +10167,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 70,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -10160,7 +10179,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 70,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Will a catheter hurt?",
@@ -10186,7 +10205,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 71,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What might make the care plan difficult for you to follow?",
@@ -10198,7 +10217,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 72,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am too embarrassed to discuss urinary problems with my family.",
@@ -10224,7 +10243,7 @@
         },
         {
           "seq": 85,
-          "t_ms": 73,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -10235,31 +10254,33 @@
         },
         {
           "seq": 86,
-          "t_ms": 77,
+          "t_ms": 98,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Will a catheter hurt? Right, I am too embarrassed to discuss urinary problems with my family.",
+          "text": "I am too embarrassed to discuss urinary problems with my family. Right, will a catheter hurt? Right, I am too embarrassed to discuss urinary problems with my family.",
           "meta": {
             "facts_released": [
-              "patient_concern",
-              "care_barrier"
+              "care_barrier",
+              "patient_concern"
             ],
             "concepts": {
-              "patient_concern": {
-                "polarity": "positive",
-                "value": "Will a catheter hurt?"
-              },
               "care_barrier": {
                 "polarity": "positive",
                 "value": "I am too embarrassed to discuss urinary problems with my family."
+              },
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "Will a catheter hurt?"
               }
             },
             "volunteered": false,
             "kind": "answer",
             "checklist_hits": [
+              "h_care_barrier",
               "h_patient_concern",
               "h_care_barrier"
             ],
+            "composed_asks": 2,
             "categories": [
               "fife",
               "fife"
@@ -10268,7 +10289,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 78,
+          "t_ms": 99,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -10279,17 +10300,17 @@
         },
         {
           "seq": 88,
-          "t_ms": 79,
+          "t_ms": 100,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 89,
-          "t_ms": 78,
+          "t_ms": 99,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -10301,7 +10322,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 10080,
+          "t_ms": 10100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -10321,7 +10342,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 10080,
+          "t_ms": 10100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert and distressed by lower abdominal pressure.",
@@ -10343,7 +10364,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 50080,
+          "t_ms": 50100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -10369,7 +10390,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 50080,
+          "t_ms": 50100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rhythm without murmur.",
@@ -10391,7 +10412,7 @@
         },
         {
           "seq": 94,
-          "t_ms": 91080,
+          "t_ms": 91100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -10416,7 +10437,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 91080,
+          "t_ms": 91100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, clear breath sounds bilaterally.",
@@ -10438,20 +10459,22 @@
         },
         {
           "seq": 96,
-          "t_ms": 91080,
+          "t_ms": 91100,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "supine",
+            "previous_position": "seated",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 97,
-          "t_ms": 100080,
+          "t_ms": 100100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect abdomen",
@@ -10474,7 +10497,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 100080,
+          "t_ms": 100100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Visible lower midline abdominal fullness.",
@@ -10496,7 +10519,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 116080,
+          "t_ms": 116100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -10518,7 +10541,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 116080,
+          "t_ms": 116100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Bowel sounds present.",
@@ -10540,7 +10563,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 135080,
+          "t_ms": 135100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -10562,7 +10585,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 135080,
+          "t_ms": 135100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Dull percussion over the suprapubic fullness.",
@@ -10584,7 +10607,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 162080,
+          "t_ms": 162100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -10607,7 +10630,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 162080,
+          "t_ms": 162100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tender rounded fullness in the suprapubic region.",
@@ -10629,7 +10652,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 181080,
+          "t_ms": 181100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Muscle strength testing",
@@ -10651,7 +10674,7 @@
         },
         {
           "seq": 106,
-          "t_ms": 181080,
+          "t_ms": 181100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Lower extremity strength 5/5 bilaterally.",
@@ -10673,20 +10696,22 @@
         },
         {
           "seq": 107,
-          "t_ms": 181080,
+          "t_ms": 181100,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "seated",
+            "previous_position": "supine",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 108,
-          "t_ms": 206080,
+          "t_ms": 206100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -10708,7 +10733,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 206080,
+          "t_ms": 206100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T10 paraspinal tissue texture change with mild tenderness on the right.",
@@ -10730,7 +10755,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 225080,
+          "t_ms": 225100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -10752,7 +10777,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 225080,
+          "t_ms": 225100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -10774,7 +10799,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 225080,
+          "t_ms": 225100,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend urgent assessment of the inability to empty your bladder. Medicines, blockage and nerve problems can contribute. The clinician may need to measure retained urine and relieve the pressure while looking for a cause.",
@@ -10786,7 +10811,7 @@
         },
         {
           "seq": 113,
-          "t_ms": 225080,
+          "t_ms": 225100,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend urgent assessment of the inability to empty your bladder. Medicines, blockage and nerve problems can contribute. The clinician may need to measure retained urine and relieve the pressure while looking for a cause.",
@@ -10798,7 +10823,7 @@
         },
         {
           "seq": 114,
-          "t_ms": 225080,
+          "t_ms": 225100,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. Thank you for explaining that.",
@@ -10808,7 +10833,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 225080,
+          "t_ms": 225100,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -10821,7 +10846,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 225080,
+          "t_ms": 225100,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am too embarrassed to discuss urinary problems with my family.",
@@ -10836,7 +10861,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 225080,
+          "t_ms": 225100,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "We can keep this conversation private and discuss who, if anyone, you want involved. Embarrassment is understandable, but it should not delay relieving the retention and checking its cause.",
@@ -10848,7 +10873,7 @@
         },
         {
           "seq": 118,
-          "t_ms": 225080,
+          "t_ms": 225100,
           "phase": "encounter",
           "kind": "counseling",
           "text": "We can keep this conversation private and discuss who, if anyone, you want involved. Embarrassment is understandable, but it should not delay relieving the retention and checking its cause.",
@@ -10860,7 +10885,7 @@
         },
         {
           "seq": 119,
-          "t_ms": 225080,
+          "t_ms": 225100,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Thank you for keeping this private. I understand that getting help should not wait because I feel embarrassed.",
@@ -10872,13 +10897,13 @@
           }
         }
       ],
-      "note_words": 461,
-      "estimated_encounter_s": 565,
+      "note_words": 481,
+      "estimated_encounter_s": 581,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 7
+        "unresolved_count": 5
       },
       "reasoning": [
         {
@@ -10996,7 +11021,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "fb8276552217020680883c6a86c9c6d72fa051be26ba0f945fbe44e036907805"
+      "case_hash": "32c2f150f1e25af5e121641b98043344a43ab0c0b85bb9d5712d5136797a65d7",
+      "engine_version": "4.0.4"
     }
   ]
 }

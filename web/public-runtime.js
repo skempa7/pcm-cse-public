@@ -11,11 +11,12 @@
   if(!navigator.locks)throw Error('This browser cannot safely coordinate saved attempts. Use a current Chrome, Edge, Firefox or Safari.');
   await navigator.locks.request('pcm-public-engine-v1',{mode:'exclusive',ifAvailable:true},async lock=>{
    if(!lock)throw Error('This app is already open in another tab. Close that tab, then reload this one to resume the same saved work.');
-   worker=new Worker(new URL('engine-worker.mjs?v=6eb02428e2',base),{type:'module'});
+   worker=new Worker(new URL('engine-worker.mjs?v=ffeb7326f8',base),{type:'module'});
    worker.onmessage=event=>{
     const data=event.data;
     if(data.type==='progress')message(data.message);
     else if(data.type==='ready'){message('Saved on this browser · Computer voice · No paid services');resolveReady();}
+    else if(data.type==='storage-recovered'){message('Saved on this browser · Computer voice · No paid services');}
     else if(data.type==='fatal'){fail('Could not start: '+data.message);}
     else if(pending.has(data.id)){if(data.status>=500)message(data.body?.error||'The last action could not be saved.',true);pending.get(data.id)(data);pending.delete(data.id);}
    };

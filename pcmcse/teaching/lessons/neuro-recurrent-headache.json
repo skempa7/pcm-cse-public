@@ -51,7 +51,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             4,
@@ -387,7 +387,7 @@
           "kind": "dialogue",
           "section": "Relevant background",
           "student": "What medical conditions have you been diagnosed with?",
-          "patient": "Previously diagnosed migraine no malignancy or immunosuppression.",
+          "patient": "Previously diagnosed migraine, no malignancy or immunosuppression.",
           "why": "",
           "event_ids": [
             54,
@@ -515,7 +515,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your mother had?",
-          "patient": "Mother has migraine",
+          "patient": "My mom is fifty-two and she gets migraines.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             72,
@@ -529,7 +529,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your father had?",
-          "patient": "father hypertension",
+          "patient": "My dad is fifty-five and he has high blood pressure.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             74,
@@ -543,7 +543,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems have your siblings had?",
-          "patient": "brother healthy.",
+          "patient": "I have one brother, he's twenty-nine and he's healthy.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             76,
@@ -627,7 +627,7 @@
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             88,
@@ -813,7 +813,7 @@
         }
       ],
       "note": {
-        "S": "cc: Recurrent one-sided headache with light sensitivity\n\nHPI: 26-year-old woman with gradually developing left-sided throbbing headache; current onset 6 hours ago. Pain is 7/10 without neck radiation. Same pattern since age 19, usually twice monthly and lasting 12\u201324 hours. Current episode followed missed lunch and poor sleep. Light, sound and walking worsen symptoms; dark quiet room helps. Acetaminophen 500 mg provided partial relief. Photophobia and nausea.\n\nPerspective: Do I need a brain scan every time this happens?\n\nPMH: Previously diagnosed migraine; no malignancy or immunosuppression.\n\nPSH: No surgeries or hospitalizations.\n\nMeds: Acetaminophen on 2\u20133 days per month; no daily medication.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink monthly. No recreational drugs. Medical student; lives with husband; regular periods, last period 2 weeks ago; pregnancy not suspected.\n\nFH: Mother has migraine; father hypertension; brother healthy.\n\nROS: Neurologic - Reports headache. Reports photophobia. Denies focal weakness. Denies thunderclap. Gastrointestinal - Reports nausea. Denies vomiting. Denies abdominal pain. General - Denies fever. Denies chills. Denies weight loss.",
+        "S": "cc: Recurrent one-sided headache with light sensitivity\n\nHPI: 26-year-old woman with gradually developing left-sided throbbing headache; current onset 6 hours ago. Pain is 7/10 without neck radiation. Same pattern since age 19, usually twice monthly and lasting 12\u201324 hours. Current episode followed missed lunch and poor sleep. Light, sound and walking worsen symptoms; dark quiet room helps. Acetaminophen 500 mg provided partial relief. Photophobia and nausea.\n\nPerspective: Do I need a brain scan every time this happens?\n\nPMH: Previously diagnosed migraine; no malignancy or immunosuppression.\n\nPSH: No surgeries or hospitalizations.\n\nMeds: Acetaminophen on 2\u20133 days per month; no daily medication.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink monthly. No recreational drugs. Medical student; lives with husband; regular periods, last period 2 weeks ago; pregnancy not suspected.\n\nFH: My mom is fifty-two and she gets migraines.; My dad is fifty-five and he has high blood pressure.; I have one brother, he's twenty-nine and he's healthy.\n\nROS: Neurologic - Reports headache. Reports photophobia. Denies focal weakness. Denies thunderclap. Gastrointestinal - Reports nausea. Denies vomiting. Denies abdominal pain. General - Denies fever. Denies chills. Denies weight loss.",
         "O": "Vitals: T 98.4 F oral, P 78 bpm, BP 114/72 mmHg, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Prefers dim light, not toxic appearing.\nHeart: Regular rhythm without murmur.\nLungs: In the examined posterior fields, clear breath sounds bilaterally.\nHEENT: Pupils equal and reactive; extraocular movements intact.\nNeurologic: Face symmetric; tongue midline; speech clear.\nMusculoskeletal: Strength 5/5 in arms and legs bilaterally.\nNeurologic: Light touch symmetric in arms and legs.\nNeck: Neck flexion is comfortable without stiffness.\nOsteopathic: C1 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Migraine without aura",
@@ -1046,16 +1046,18 @@
             69
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
           "statement": "lives with husband;",
-          "event_ids": [],
+          "event_ids": [
+            71
+          ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -1078,7 +1080,7 @@
         },
         {
           "section": "S",
-          "statement": "Mother has migraine;",
+          "statement": "My mom is fifty-two and she gets migraines.;",
           "event_ids": [
             73
           ],
@@ -1088,7 +1090,7 @@
         },
         {
           "section": "S",
-          "statement": "father hypertension;",
+          "statement": "My dad is fifty-five and he has high blood pressure.;",
           "event_ids": [
             75
           ],
@@ -1098,7 +1100,7 @@
         },
         {
           "section": "S",
-          "statement": "brother healthy.",
+          "statement": "I have one brother, he's twenty-nine and he's healthy.",
           "event_ids": [
             77
           ],
@@ -1466,52 +1468,55 @@
         },
         {
           "seq": 4,
-          "t_ms": 1,
+          "t_ms": 0,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
           "seq": 5,
-          "t_ms": 1,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
+          }
+        },
+        {
+          "seq": 6,
+          "t_ms": 0,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
-          }
-        },
-        {
-          "seq": 6,
-          "t_ms": 3,
-          "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
-          "meta": {
-            "kind": "consent"
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 7,
-          "t_ms": 1,
+          "t_ms": 3,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
           "seq": 8,
-          "t_ms": 4,
+          "t_ms": 3,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -1598,7 +1603,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 9,
+          "t_ms": 10,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "This episode began gradually 6 hours ago.",
@@ -1699,7 +1704,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 13,
+          "t_ms": 14,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -1711,7 +1716,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 14,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is throbbing.",
@@ -1749,7 +1754,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 16,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Similar attacks happen about twice a month.",
@@ -1787,7 +1792,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 18,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Similar attacks last 12\u201324 hours.",
@@ -1813,19 +1818,18 @@
         },
         {
           "seq": 24,
-          "t_ms": 18,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What were you doing when this started?",
           "meta": {
             "open_question": true,
-            "mode": "type",
-            "intent": "question"
+            "mode": "type"
           }
         },
         {
           "seq": 25,
-          "t_ms": 19,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It began after I missed lunch and slept poorly.",
@@ -1843,15 +1847,12 @@
             "kind": "answer",
             "checklist_hits": [
               "h_hpi_setting"
-            ],
-            "categories": [
-              "setting"
             ]
           }
         },
         {
           "seq": 26,
-          "t_ms": 20,
+          "t_ms": 21,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -1863,7 +1864,7 @@
         },
         {
           "seq": 27,
-          "t_ms": 21,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "A dark quiet room helps.",
@@ -1901,7 +1902,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 23,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Light, sound and walking worsen it.",
@@ -1939,7 +1940,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 24,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Acetaminophen 500 mg helped a little.",
@@ -1977,7 +1978,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 26,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have had the same pattern since age 19.",
@@ -2003,7 +2004,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 27,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a headache?",
@@ -2015,7 +2016,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 28,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is the same left-sided throbbing pattern as before.",
@@ -2041,7 +2042,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 29,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does light bother your eyes?",
@@ -2053,7 +2054,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 30,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Light hurts my eyes.",
@@ -2079,7 +2080,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 31,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt nauseated?",
@@ -2091,7 +2092,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 32,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I feel nauseated.",
@@ -2117,7 +2118,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 33,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed weakness on one side of your body?",
@@ -2129,7 +2130,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 34,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No new weakness, numbness or trouble speaking.",
@@ -2155,7 +2156,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 35,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you been vomiting?",
@@ -2167,7 +2168,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 35,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not vomited.",
@@ -2193,7 +2194,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 36,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had abdominal pain or pressure?",
@@ -2205,7 +2206,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 37,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No abdominal pain.",
@@ -2231,7 +2232,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 38,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -2243,7 +2244,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 39,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No fever.",
@@ -2269,7 +2270,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 40,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had chills?",
@@ -2281,7 +2282,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 40,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No chills.",
@@ -2307,7 +2308,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 41,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you lost weight without trying?",
@@ -2319,7 +2320,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 42,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No weight loss.",
@@ -2345,7 +2346,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 43,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Did the headache become maximal instantly or build up gradually?",
@@ -2357,7 +2358,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 44,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It built up over an hour; it was not instantly maximal.",
@@ -2383,7 +2384,7 @@
         },
         {
           "seq": 54,
-          "t_ms": 45,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -2395,10 +2396,10 @@
         },
         {
           "seq": 55,
-          "t_ms": 50,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Previously diagnosed migraine no malignancy or immunosuppression.",
+          "text": "Previously diagnosed migraine, no malignancy or immunosuppression.",
           "meta": {
             "facts_released": [
               "history_pmh_1",
@@ -2428,7 +2429,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 52,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -2440,7 +2441,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 52,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No surgeries or hospitalizations.",
@@ -2466,7 +2467,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 53,
+          "t_ms": 56,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -2478,7 +2479,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 56,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I take acetaminophen on 2\u20133 days per month. I do not take daily medication.",
@@ -2511,7 +2512,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 58,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -2523,7 +2524,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 58,
+          "t_ms": 61,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No known drug allergies.",
@@ -2549,7 +2550,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 59,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -2561,7 +2562,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 60,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Never smoked tobacco.",
@@ -2587,7 +2588,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 61,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -2599,7 +2600,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 62,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "One alcoholic drink monthly.",
@@ -2625,7 +2626,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 63,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -2637,7 +2638,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 64,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -2663,7 +2664,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 65,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -2675,7 +2676,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 66,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a medical student.",
@@ -2701,7 +2702,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 67,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -2712,7 +2713,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 68,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband.",
@@ -2738,7 +2739,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 69,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -2750,10 +2751,10 @@
         },
         {
           "seq": 73,
-          "t_ms": 70,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Mother has migraine",
+          "text": "My mom is fifty-two and she gets migraines.",
           "meta": {
             "facts_released": [
               "history_family_1"
@@ -2761,7 +2762,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has migraine"
+                "value": "My mom is fifty-two and she gets migraines."
               }
             },
             "volunteered": false,
@@ -2776,7 +2777,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 71,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your father had?",
@@ -2788,10 +2789,10 @@
         },
         {
           "seq": 75,
-          "t_ms": 71,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "father hypertension",
+          "text": "My dad is fifty-five and he has high blood pressure.",
           "meta": {
             "facts_released": [
               "history_family_2"
@@ -2799,7 +2800,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father hypertension"
+                "value": "My dad is fifty-five and he has high blood pressure."
               }
             },
             "volunteered": false,
@@ -2814,7 +2815,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 72,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -2826,10 +2827,10 @@
         },
         {
           "seq": 77,
-          "t_ms": 73,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "brother healthy.",
+          "text": "I have one brother, he's twenty-nine and he's healthy.",
           "meta": {
             "facts_released": [
               "history_family_3"
@@ -2837,7 +2838,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "brother healthy."
+                "value": "I have one brother, he's twenty-nine and he's healthy."
               }
             },
             "volunteered": false,
@@ -2852,7 +2853,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 74,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are your periods regular?",
@@ -2864,7 +2865,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 75,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My periods are regular.",
@@ -2890,7 +2891,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 76,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -2901,7 +2902,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 80,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 2 weeks ago.",
@@ -2927,7 +2928,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 81,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -2939,7 +2940,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 81,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant.",
@@ -2965,7 +2966,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 83,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -2977,7 +2978,7 @@
         },
         {
           "seq": 85,
-          "t_ms": 84,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Do I need a brain scan every time this happens?",
@@ -3003,7 +3004,7 @@
         },
         {
           "seq": 86,
-          "t_ms": 85,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -3014,7 +3015,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 89,
+          "t_ms": 97,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Right, do I need a brain scan every time this happens?",
@@ -3040,7 +3041,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 90,
+          "t_ms": 98,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -3051,17 +3052,17 @@
         },
         {
           "seq": 89,
-          "t_ms": 91,
+          "t_ms": 99,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 90,
-          "t_ms": 90,
+          "t_ms": 98,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -3073,7 +3074,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 10093,
+          "t_ms": 10100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -3094,7 +3095,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 10093,
+          "t_ms": 10100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert. Prefers dim light, not toxic appearing.",
@@ -3122,7 +3123,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 50093,
+          "t_ms": 50100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -3148,7 +3149,7 @@
         },
         {
           "seq": 94,
-          "t_ms": 50093,
+          "t_ms": 50100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rhythm without murmur.",
@@ -3170,7 +3171,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 91093,
+          "t_ms": 91100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -3195,7 +3196,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 91093,
+          "t_ms": 91100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, clear breath sounds bilaterally.",
@@ -3217,7 +3218,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 107093,
+          "t_ms": 107100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect eyes / pupils",
@@ -3240,7 +3241,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 107093,
+          "t_ms": 107100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Pupils equal and reactive; extraocular movements intact.",
@@ -3262,7 +3263,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 146093,
+          "t_ms": 146100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Cranial nerve examination",
@@ -3286,7 +3287,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 146093,
+          "t_ms": 146100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Face symmetric; tongue midline; speech clear.",
@@ -3308,7 +3309,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 170093,
+          "t_ms": 170100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Muscle strength testing",
@@ -3331,7 +3332,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 170093,
+          "t_ms": 170100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Strength 5/5 in arms and legs bilaterally.",
@@ -3353,7 +3354,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 191093,
+          "t_ms": 191100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Sensory examination",
@@ -3375,7 +3376,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 191093,
+          "t_ms": 191100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Light touch symmetric in arms and legs.",
@@ -3397,7 +3398,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 206093,
+          "t_ms": 206100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Neck range of motion / meningeal signs",
@@ -3419,7 +3420,7 @@
         },
         {
           "seq": 106,
-          "t_ms": 206093,
+          "t_ms": 206100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Neck flexion is comfortable without stiffness.",
@@ -3441,7 +3442,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 231093,
+          "t_ms": 231100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -3463,7 +3464,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 231093,
+          "t_ms": 231100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "C1 paraspinal tissue texture change with mild tenderness on the right.",
@@ -3485,7 +3486,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 250093,
+          "t_ms": 250100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -3507,7 +3508,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 250093,
+          "t_ms": 250100,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -3529,7 +3530,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 250093,
+          "t_ms": 250100,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend comparing this headache carefully with your usual episodes. Migraine is a possibility, but a changed pattern or new warning sign requires another approach. We should review how often you use headache medicines before choosing treatment.",
@@ -3541,7 +3542,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 250093,
+          "t_ms": 250100,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend comparing this headache carefully with your usual episodes. Migraine is a possibility, but a changed pattern or new warning sign requires another approach. We should review how often you use headache medicines before choosing treatment.",
@@ -3554,7 +3555,7 @@
         },
         {
           "seq": 113,
-          "t_ms": 250093,
+          "t_ms": 250100,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -3564,7 +3565,7 @@
         },
         {
           "seq": 114,
-          "t_ms": 250093,
+          "t_ms": 250100,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -3577,7 +3578,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 250093,
+          "t_ms": 250100,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Do I need a brain scan every time this happens?",
@@ -3592,7 +3593,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 250093,
+          "t_ms": 250100,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "A brain scan is not automatically needed for every familiar headache. I recommend using the pattern and examination to decide. A new sudden maximal headache, fever with a stiff neck or a new neurologic problem would change that plan and needs urgent assessment.",
@@ -3604,7 +3605,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 250093,
+          "t_ms": 250100,
           "phase": "encounter",
           "kind": "counseling",
           "text": "A brain scan is not automatically needed for every familiar headache. I recommend using the pattern and examination to decide. A new sudden maximal headache, fever with a stiff neck or a new neurologic problem would change that plan and needs urgent assessment.",
@@ -3616,7 +3617,7 @@
         },
         {
           "seq": 118,
-          "t_ms": 250093,
+          "t_ms": 250100,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. Thank you for explaining that.",
@@ -3625,13 +3626,13 @@
           }
         }
       ],
-      "note_words": 454,
-      "estimated_encounter_s": 566,
+      "note_words": 474,
+      "estimated_encounter_s": 577,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 6
+        "unresolved_count": 4
       },
       "reasoning": [
         {
@@ -3752,7 +3753,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "e6443962495a3d3be0b082253731b56ad1c9fbd1a5f5907d9a8fd66a2e832981"
+      "case_hash": "27a02a48258117c9d9e38ec613656bb228f2923d9ba2fdb7d518133a066e313a",
+      "engine_version": "4.0.4"
     },
     {
       "case_id": "neuro-recurrent-headache",
@@ -3809,7 +3811,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             4,
@@ -4145,7 +4147,7 @@
           "kind": "dialogue",
           "section": "Relevant background",
           "student": "What medical conditions have you been diagnosed with?",
-          "patient": "Previously diagnosed migraine no malignancy or immunosuppression.",
+          "patient": "Previously diagnosed migraine, no malignancy or immunosuppression.",
           "why": "",
           "event_ids": [
             54,
@@ -4273,7 +4275,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your mother had?",
-          "patient": "Mother has migraine",
+          "patient": "My mom is fifty-two and she gets migraines.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             72,
@@ -4287,7 +4289,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your father had?",
-          "patient": "father hypertension",
+          "patient": "My dad is fifty-five and he has high blood pressure.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             74,
@@ -4301,7 +4303,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems have your siblings had?",
-          "patient": "brother healthy.",
+          "patient": "I have one brother, he's twenty-nine and he's healthy.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             76,
@@ -4385,7 +4387,7 @@
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             88,
@@ -4571,7 +4573,7 @@
         }
       ],
       "note": {
-        "S": "cc: Recurrent one-sided headache with light sensitivity\n\nHPI: 26-year-old woman with gradually developing left-sided throbbing headache; current onset 10 hours ago. Pain is 7/10 without neck radiation. Same pattern since age 19, usually twice monthly and lasting 12\u201324 hours. Current episode followed missed lunch and poor sleep. Light, sound and walking worsen symptoms; dark quiet room helps. Acetaminophen 500 mg provided partial relief. Photophobia and nausea.\n\nPerspective: Do I need a brain scan every time this happens?\n\nPMH: Previously diagnosed migraine; no malignancy or immunosuppression.\n\nPSH: No surgeries or hospitalizations.\n\nMeds: Acetaminophen on 2\u20133 days per month; no daily medication.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink monthly. No recreational drugs. Medical student; lives with husband; regular periods, last period 2 weeks ago; pregnancy not suspected.\n\nFH: Mother has migraine; father hypertension; brother healthy.\n\nROS: Neurologic - Reports headache. Reports photophobia. Denies focal weakness. Denies thunderclap. Gastrointestinal - Reports nausea. Denies vomiting. Denies abdominal pain. General - Denies fever. Denies chills. Denies weight loss.",
+        "S": "cc: Recurrent one-sided headache with light sensitivity\n\nHPI: 26-year-old woman with gradually developing left-sided throbbing headache; current onset 10 hours ago. Pain is 7/10 without neck radiation. Same pattern since age 19, usually twice monthly and lasting 12\u201324 hours. Current episode followed missed lunch and poor sleep. Light, sound and walking worsen symptoms; dark quiet room helps. Acetaminophen 500 mg provided partial relief. Photophobia and nausea.\n\nPerspective: Do I need a brain scan every time this happens?\n\nPMH: Previously diagnosed migraine; no malignancy or immunosuppression.\n\nPSH: No surgeries or hospitalizations.\n\nMeds: Acetaminophen on 2\u20133 days per month; no daily medication.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink monthly. No recreational drugs. Medical student; lives with husband; regular periods, last period 2 weeks ago; pregnancy not suspected.\n\nFH: My mom is fifty-two and she gets migraines.; My dad is fifty-five and he has high blood pressure.; I have one brother, he's twenty-nine and he's healthy.\n\nROS: Neurologic - Reports headache. Reports photophobia. Denies focal weakness. Denies thunderclap. Gastrointestinal - Reports nausea. Denies vomiting. Denies abdominal pain. General - Denies fever. Denies chills. Denies weight loss.",
         "O": "Vitals: T 98.4 F oral, P 78 bpm, BP 114/72 mmHg, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Prefers dim light, not toxic appearing.\nHeart: Regular rhythm without murmur.\nLungs: In the examined posterior fields, clear breath sounds bilaterally.\nHEENT: Pupils equal and reactive; extraocular movements intact.\nNeurologic: Face symmetric; tongue midline; speech clear.\nMusculoskeletal: Strength 5/5 in arms and legs bilaterally.\nNeurologic: Light touch symmetric in arms and legs.\nNeck: Neck flexion is comfortable without stiffness.\nOsteopathic: C1 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Migraine without aura",
@@ -4804,16 +4806,18 @@
             69
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
           "statement": "lives with husband;",
-          "event_ids": [],
+          "event_ids": [
+            71
+          ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -4836,7 +4840,7 @@
         },
         {
           "section": "S",
-          "statement": "Mother has migraine;",
+          "statement": "My mom is fifty-two and she gets migraines.;",
           "event_ids": [
             73
           ],
@@ -4846,7 +4850,7 @@
         },
         {
           "section": "S",
-          "statement": "father hypertension;",
+          "statement": "My dad is fifty-five and he has high blood pressure.;",
           "event_ids": [
             75
           ],
@@ -4856,7 +4860,7 @@
         },
         {
           "section": "S",
-          "statement": "brother healthy.",
+          "statement": "I have one brother, he's twenty-nine and he's healthy.",
           "event_ids": [
             77
           ],
@@ -5224,52 +5228,55 @@
         },
         {
           "seq": 4,
-          "t_ms": 1,
+          "t_ms": 0,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
           "seq": 5,
-          "t_ms": 1,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
+          }
+        },
+        {
+          "seq": 6,
+          "t_ms": 0,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
-          }
-        },
-        {
-          "seq": 6,
-          "t_ms": 2,
-          "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
-          "meta": {
-            "kind": "consent"
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 7,
-          "t_ms": 1,
+          "t_ms": 6,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
           "seq": 8,
-          "t_ms": 3,
+          "t_ms": 7,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -5281,7 +5288,7 @@
         },
         {
           "seq": 9,
-          "t_ms": 6,
+          "t_ms": 10,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have another throbbing headache, and the lights are making it worse.",
@@ -5307,7 +5314,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 7,
+          "t_ms": 11,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -5319,7 +5326,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 8,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is 7/10.",
@@ -5345,7 +5352,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 9,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your symptoms first begin?",
@@ -5356,7 +5363,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 9,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "This episode began gradually 10 hours ago.",
@@ -5382,7 +5389,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 10,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -5393,7 +5400,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 11,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is on the left side of my head.",
@@ -5419,7 +5426,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 12,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -5431,7 +5438,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 13,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It does not spread down my neck.",
@@ -5457,7 +5464,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 14,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -5469,7 +5476,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 14,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is throbbing.",
@@ -5495,7 +5502,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 15,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How often do you have similar headaches?",
@@ -5507,7 +5514,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 16,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Similar attacks happen about twice a month.",
@@ -5533,7 +5540,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 17,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How long does each episode last?",
@@ -5545,7 +5552,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 18,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Similar attacks last 12\u201324 hours.",
@@ -5571,19 +5578,18 @@
         },
         {
           "seq": 24,
-          "t_ms": 19,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What were you doing when this started?",
           "meta": {
             "open_question": true,
-            "mode": "type",
-            "intent": "question"
+            "mode": "type"
           }
         },
         {
           "seq": 25,
-          "t_ms": 19,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It began after I missed lunch and slept poorly.",
@@ -5601,15 +5607,12 @@
             "kind": "answer",
             "checklist_hits": [
               "h_hpi_setting"
-            ],
-            "categories": [
-              "setting"
             ]
           }
         },
         {
           "seq": 26,
-          "t_ms": 20,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -5621,7 +5624,7 @@
         },
         {
           "seq": 27,
-          "t_ms": 21,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "A dark quiet room helps.",
@@ -5647,7 +5650,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 22,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -5659,7 +5662,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 23,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Light, sound and walking worsen it.",
@@ -5685,7 +5688,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 24,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -5697,7 +5700,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 24,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Acetaminophen 500 mg helped a little.",
@@ -5723,7 +5726,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 25,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -5735,7 +5738,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 26,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have had the same pattern since age 19.",
@@ -5761,7 +5764,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 27,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a headache?",
@@ -5773,7 +5776,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 28,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is the same left-sided throbbing pattern as before.",
@@ -5799,7 +5802,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 29,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does light bother your eyes?",
@@ -5811,7 +5814,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 29,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Light hurts my eyes.",
@@ -5837,7 +5840,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 30,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt nauseated?",
@@ -5849,7 +5852,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 31,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I feel nauseated.",
@@ -5875,7 +5878,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 32,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed weakness on one side of your body?",
@@ -5887,7 +5890,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 33,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No new weakness, numbness or trouble speaking.",
@@ -5913,7 +5916,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 34,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you been vomiting?",
@@ -5925,7 +5928,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 34,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not vomited.",
@@ -5951,7 +5954,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 35,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had abdominal pain or pressure?",
@@ -5963,7 +5966,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 36,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No abdominal pain.",
@@ -5989,7 +5992,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 37,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -6001,7 +6004,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 38,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No fever.",
@@ -6027,7 +6030,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 39,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had chills?",
@@ -6039,7 +6042,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 39,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No chills.",
@@ -6065,7 +6068,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 40,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you lost weight without trying?",
@@ -6077,7 +6080,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 41,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No weight loss.",
@@ -6103,7 +6106,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 42,
+          "t_ms": 50,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Did the headache become maximal instantly or build up gradually?",
@@ -6115,7 +6118,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 43,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It built up over an hour; it was not instantly maximal.",
@@ -6141,7 +6144,7 @@
         },
         {
           "seq": 54,
-          "t_ms": 44,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -6153,10 +6156,10 @@
         },
         {
           "seq": 55,
-          "t_ms": 52,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Previously diagnosed migraine no malignancy or immunosuppression.",
+          "text": "Previously diagnosed migraine, no malignancy or immunosuppression.",
           "meta": {
             "facts_released": [
               "history_pmh_1",
@@ -6186,7 +6189,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 53,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -6198,7 +6201,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 54,
+          "t_ms": 61,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No surgeries or hospitalizations.",
@@ -6224,7 +6227,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 55,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -6236,7 +6239,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 58,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I take acetaminophen on 2\u20133 days per month. I do not take daily medication.",
@@ -6269,7 +6272,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 59,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -6281,7 +6284,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 59,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No known drug allergies.",
@@ -6307,7 +6310,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 61,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -6319,7 +6322,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 61,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Never smoked tobacco.",
@@ -6345,7 +6348,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 62,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -6357,7 +6360,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 63,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "One alcoholic drink monthly.",
@@ -6383,7 +6386,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 64,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -6395,7 +6398,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 65,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -6421,7 +6424,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 66,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -6433,7 +6436,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 67,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a medical student.",
@@ -6459,7 +6462,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 68,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -6470,7 +6473,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 68,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband.",
@@ -6496,7 +6499,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 69,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -6508,10 +6511,10 @@
         },
         {
           "seq": 73,
-          "t_ms": 70,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Mother has migraine",
+          "text": "My mom is fifty-two and she gets migraines.",
           "meta": {
             "facts_released": [
               "history_family_1"
@@ -6519,7 +6522,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has migraine"
+                "value": "My mom is fifty-two and she gets migraines."
               }
             },
             "volunteered": false,
@@ -6534,7 +6537,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 71,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your father had?",
@@ -6546,10 +6549,10 @@
         },
         {
           "seq": 75,
-          "t_ms": 72,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "father hypertension",
+          "text": "My dad is fifty-five and he has high blood pressure.",
           "meta": {
             "facts_released": [
               "history_family_2"
@@ -6557,7 +6560,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father hypertension"
+                "value": "My dad is fifty-five and he has high blood pressure."
               }
             },
             "volunteered": false,
@@ -6572,7 +6575,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 73,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -6584,10 +6587,10 @@
         },
         {
           "seq": 77,
-          "t_ms": 74,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "brother healthy.",
+          "text": "I have one brother, he's twenty-nine and he's healthy.",
           "meta": {
             "facts_released": [
               "history_family_3"
@@ -6595,7 +6598,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "brother healthy."
+                "value": "I have one brother, he's twenty-nine and he's healthy."
               }
             },
             "volunteered": false,
@@ -6610,7 +6613,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 75,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are your periods regular?",
@@ -6622,7 +6625,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 76,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My periods are regular.",
@@ -6648,7 +6651,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 77,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -6659,7 +6662,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 78,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 2 weeks ago.",
@@ -6685,7 +6688,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 79,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -6697,7 +6700,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 80,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant.",
@@ -6723,7 +6726,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 81,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -6735,7 +6738,7 @@
         },
         {
           "seq": 85,
-          "t_ms": 81,
+          "t_ms": 89,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Do I need a brain scan every time this happens?",
@@ -6761,7 +6764,7 @@
         },
         {
           "seq": 86,
-          "t_ms": 82,
+          "t_ms": 90,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -6772,7 +6775,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 86,
+          "t_ms": 100,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Right, do I need a brain scan every time this happens?",
@@ -6798,7 +6801,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 87,
+          "t_ms": 100,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -6809,17 +6812,17 @@
         },
         {
           "seq": 89,
-          "t_ms": 88,
+          "t_ms": 102,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 90,
-          "t_ms": 87,
+          "t_ms": 100,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -6831,7 +6834,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 10089,
+          "t_ms": 10106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -6852,7 +6855,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 10089,
+          "t_ms": 10106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert. Prefers dim light, not toxic appearing.",
@@ -6880,7 +6883,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 50089,
+          "t_ms": 50106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -6906,7 +6909,7 @@
         },
         {
           "seq": 94,
-          "t_ms": 50089,
+          "t_ms": 50106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rhythm without murmur.",
@@ -6928,7 +6931,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 91089,
+          "t_ms": 91106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -6953,7 +6956,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 91089,
+          "t_ms": 91106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, clear breath sounds bilaterally.",
@@ -6975,7 +6978,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 107089,
+          "t_ms": 107106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect eyes / pupils",
@@ -6998,7 +7001,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 107089,
+          "t_ms": 107106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Pupils equal and reactive; extraocular movements intact.",
@@ -7020,7 +7023,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 146089,
+          "t_ms": 146106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Cranial nerve examination",
@@ -7044,7 +7047,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 146089,
+          "t_ms": 146106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Face symmetric; tongue midline; speech clear.",
@@ -7066,7 +7069,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 170089,
+          "t_ms": 170106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Muscle strength testing",
@@ -7089,7 +7092,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 170089,
+          "t_ms": 170106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Strength 5/5 in arms and legs bilaterally.",
@@ -7111,7 +7114,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 191089,
+          "t_ms": 191106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Sensory examination",
@@ -7133,7 +7136,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 191089,
+          "t_ms": 191106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Light touch symmetric in arms and legs.",
@@ -7155,7 +7158,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 206089,
+          "t_ms": 206106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Neck range of motion / meningeal signs",
@@ -7177,7 +7180,7 @@
         },
         {
           "seq": 106,
-          "t_ms": 206089,
+          "t_ms": 206106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Neck flexion is comfortable without stiffness.",
@@ -7199,7 +7202,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 231089,
+          "t_ms": 231106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -7221,7 +7224,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 231089,
+          "t_ms": 231106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "C1 paraspinal tissue texture change with mild tenderness on the right.",
@@ -7243,7 +7246,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 250089,
+          "t_ms": 250106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -7265,7 +7268,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 250089,
+          "t_ms": 250106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -7287,7 +7290,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 250089,
+          "t_ms": 250106,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend comparing this headache carefully with your usual episodes. Migraine is a possibility, but a changed pattern or new warning sign requires another approach. We should review how often you use headache medicines before choosing treatment.",
@@ -7299,7 +7302,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 250089,
+          "t_ms": 250106,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend comparing this headache carefully with your usual episodes. Migraine is a possibility, but a changed pattern or new warning sign requires another approach. We should review how often you use headache medicines before choosing treatment.",
@@ -7312,7 +7315,7 @@
         },
         {
           "seq": 113,
-          "t_ms": 250089,
+          "t_ms": 250106,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -7322,7 +7325,7 @@
         },
         {
           "seq": 114,
-          "t_ms": 250089,
+          "t_ms": 250106,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -7335,7 +7338,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 250089,
+          "t_ms": 250106,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Do I need a brain scan every time this happens?",
@@ -7350,7 +7353,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 250089,
+          "t_ms": 250106,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "A brain scan is not automatically needed for every familiar headache. I recommend using the pattern and examination to decide. A new sudden maximal headache, fever with a stiff neck or a new neurologic problem would change that plan and needs urgent assessment.",
@@ -7362,7 +7365,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 250089,
+          "t_ms": 250106,
           "phase": "encounter",
           "kind": "counseling",
           "text": "A brain scan is not automatically needed for every familiar headache. I recommend using the pattern and examination to decide. A new sudden maximal headache, fever with a stiff neck or a new neurologic problem would change that plan and needs urgent assessment.",
@@ -7374,7 +7377,7 @@
         },
         {
           "seq": 118,
-          "t_ms": 250089,
+          "t_ms": 250106,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. Thank you for explaining that.",
@@ -7383,13 +7386,13 @@
           }
         }
       ],
-      "note_words": 454,
-      "estimated_encounter_s": 566,
+      "note_words": 474,
+      "estimated_encounter_s": 577,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 6
+        "unresolved_count": 4
       },
       "reasoning": [
         {
@@ -7510,7 +7513,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "34cf0a64f6310777cda924a5845204628fc371c37f0afbbf4fd58f4af5852d8e"
+      "case_hash": "a02a75ce256ddf46203a2ab79683847cab2aeef67942600c906ea8eb26a00a3d",
+      "engine_version": "4.0.4"
     },
     {
       "case_id": "neuro-recurrent-headache",
@@ -7567,7 +7571,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             4,
@@ -7903,7 +7907,7 @@
           "kind": "dialogue",
           "section": "Relevant background",
           "student": "What medical conditions have you been diagnosed with?",
-          "patient": "Previously diagnosed migraine no malignancy or immunosuppression.",
+          "patient": "Previously diagnosed migraine, no malignancy or immunosuppression.",
           "why": "",
           "event_ids": [
             54,
@@ -8031,7 +8035,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your mother had?",
-          "patient": "Mother has migraine",
+          "patient": "My mom is fifty-two and she gets migraines.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             72,
@@ -8045,7 +8049,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your father had?",
-          "patient": "father hypertension",
+          "patient": "My dad is fifty-five and he has high blood pressure.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             74,
@@ -8059,7 +8063,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems have your siblings had?",
-          "patient": "brother healthy.",
+          "patient": "I have one brother, he's twenty-nine and he's healthy.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             76,
@@ -8143,22 +8147,22 @@
           "kind": "dialogue",
           "section": "Acknowledge",
           "student": "Thank you for explaining that. I can understand why this is concerning.",
-          "patient": "Right, do I need a brain scan every time this happens? I skip meals and sleep to study, but I do not think I can change that.",
+          "patient": "Right, I skip meals and sleep to study, but I do not think I can change that. Do I need a brain scan every time this happens? Right, I skip meals and sleep to study, but I do not think I can change that.",
           "why": "",
           "event_ids": [
             88,
             89
           ],
           "fact_ids": [
-            "patient_concern",
-            "care_barrier"
+            "care_barrier",
+            "patient_concern"
           ]
         },
         {
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             90,
@@ -8343,7 +8347,7 @@
         }
       ],
       "note": {
-        "S": "cc: Recurrent one-sided headache with light sensitivity\n\nHPI: 26-year-old woman with gradually developing left-sided throbbing headache; current onset 6 hours ago. Pain is 7/10 without neck radiation. Same pattern since age 19, usually twice monthly and lasting 12\u201324 hours. Current episode followed missed lunch and poor sleep. Light, sound and walking worsen symptoms; dark quiet room helps. Acetaminophen 500 mg provided partial relief. Photophobia and nausea.\n\nPerspective: Do I need a brain scan every time this happens?\n\nPMH: Previously diagnosed migraine; no malignancy or immunosuppression.\n\nPSH: No surgeries or hospitalizations.\n\nMeds: Acetaminophen on 2\u20133 days per month; no daily medication.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink monthly. No recreational drugs. Medical student; lives with husband; regular periods, last period 2 weeks ago; pregnancy not suspected.\n\nFH: Mother has migraine; father hypertension; brother healthy.\n\nROS: Neurologic - Reports headache. Reports photophobia. Denies focal weakness. Denies thunderclap. Gastrointestinal - Reports nausea. Denies vomiting. Denies abdominal pain. General - Denies fever. Denies chills. Denies weight loss.\n\nPatient concern: I skip meals and sleep to study, but I do not think I can change that.",
+        "S": "cc: Recurrent one-sided headache with light sensitivity\n\nHPI: 26-year-old woman with gradually developing left-sided throbbing headache; current onset 6 hours ago. Pain is 7/10 without neck radiation. Same pattern since age 19, usually twice monthly and lasting 12\u201324 hours. Current episode followed missed lunch and poor sleep. Light, sound and walking worsen symptoms; dark quiet room helps. Acetaminophen 500 mg provided partial relief. Photophobia and nausea.\n\nPerspective: Do I need a brain scan every time this happens?\n\nPMH: Previously diagnosed migraine; no malignancy or immunosuppression.\n\nPSH: No surgeries or hospitalizations.\n\nMeds: Acetaminophen on 2\u20133 days per month; no daily medication.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink monthly. No recreational drugs. Medical student; lives with husband; regular periods, last period 2 weeks ago; pregnancy not suspected.\n\nFH: My mom is fifty-two and she gets migraines.; My dad is fifty-five and he has high blood pressure.; I have one brother, he's twenty-nine and he's healthy.\n\nROS: Neurologic - Reports headache. Reports photophobia. Denies focal weakness. Denies thunderclap. Gastrointestinal - Reports nausea. Denies vomiting. Denies abdominal pain. General - Denies fever. Denies chills. Denies weight loss.\n\nPatient concern: I skip meals and sleep to study, but I do not think I can change that.",
         "O": "Vitals: T 98.4 F oral, P 78 bpm, BP 114/72 mmHg, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Prefers dim light, not toxic appearing.\nHeart: Regular rhythm without murmur.\nLungs: In the examined posterior fields, clear breath sounds bilaterally.\nHEENT: Pupils equal and reactive; extraocular movements intact.\nNeurologic: Face symmetric; tongue midline; speech clear.\nMusculoskeletal: Strength 5/5 in arms and legs bilaterally.\nNeurologic: Light touch symmetric in arms and legs.\nNeck: Neck flexion is comfortable without stiffness.\nOsteopathic: C1 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Migraine without aura",
@@ -8576,16 +8580,18 @@
             69
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
           "statement": "lives with husband;",
-          "event_ids": [],
+          "event_ids": [
+            71
+          ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -8608,7 +8614,7 @@
         },
         {
           "section": "S",
-          "statement": "Mother has migraine;",
+          "statement": "My mom is fifty-two and she gets migraines.;",
           "event_ids": [
             73
           ],
@@ -8618,7 +8624,7 @@
         },
         {
           "section": "S",
-          "statement": "father hypertension;",
+          "statement": "My dad is fifty-five and he has high blood pressure.;",
           "event_ids": [
             75
           ],
@@ -8628,7 +8634,7 @@
         },
         {
           "section": "S",
-          "statement": "brother healthy.",
+          "statement": "I have one brother, he's twenty-nine and he's healthy.",
           "event_ids": [
             77
           ],
@@ -9016,52 +9022,55 @@
         },
         {
           "seq": 4,
-          "t_ms": 1,
+          "t_ms": 3,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
           "seq": 5,
-          "t_ms": 1,
+          "t_ms": 3,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
           }
         },
         {
           "seq": 6,
           "t_ms": 3,
           "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "kind": "consent"
+            "courtesy_id": "consent_exam",
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 7,
-          "t_ms": 1,
+          "t_ms": 7,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
           "seq": 8,
-          "t_ms": 4,
+          "t_ms": 8,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -9073,7 +9082,7 @@
         },
         {
           "seq": 9,
-          "t_ms": 5,
+          "t_ms": 10,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have another throbbing headache, and the lights are making it worse.",
@@ -9099,7 +9108,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 6,
+          "t_ms": 11,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -9111,7 +9120,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 6,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is 7/10.",
@@ -9137,7 +9146,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 8,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your symptoms first begin?",
@@ -9148,7 +9157,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 8,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "This episode began gradually 6 hours ago.",
@@ -9174,7 +9183,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 9,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -9185,7 +9194,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 10,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is on the left side of my head.",
@@ -9211,7 +9220,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 11,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -9223,7 +9232,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 12,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It does not spread down my neck.",
@@ -9249,7 +9258,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 13,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -9261,7 +9270,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 13,
+          "t_ms": 21,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is throbbing.",
@@ -9287,7 +9296,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 14,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How often do you have similar headaches?",
@@ -9299,7 +9308,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 15,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Similar attacks happen about twice a month.",
@@ -9325,7 +9334,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 16,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How long does each episode last?",
@@ -9337,7 +9346,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 17,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Similar attacks last 12\u201324 hours.",
@@ -9363,19 +9372,18 @@
         },
         {
           "seq": 24,
-          "t_ms": 18,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What were you doing when this started?",
           "meta": {
             "open_question": true,
-            "mode": "type",
-            "intent": "question"
+            "mode": "type"
           }
         },
         {
           "seq": 25,
-          "t_ms": 18,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It began after I missed lunch and slept poorly.",
@@ -9393,15 +9401,12 @@
             "kind": "answer",
             "checklist_hits": [
               "h_hpi_setting"
-            ],
-            "categories": [
-              "setting"
             ]
           }
         },
         {
           "seq": 26,
-          "t_ms": 19,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -9413,7 +9418,7 @@
         },
         {
           "seq": 27,
-          "t_ms": 20,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "A dark quiet room helps.",
@@ -9439,7 +9444,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 21,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -9451,7 +9456,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 22,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Light, sound and walking worsen it.",
@@ -9477,7 +9482,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 23,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -9489,7 +9494,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 23,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Acetaminophen 500 mg helped a little.",
@@ -9515,7 +9520,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 24,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -9527,7 +9532,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 25,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have had the same pattern since age 19.",
@@ -9553,7 +9558,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 26,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a headache?",
@@ -9565,7 +9570,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 26,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is the same left-sided throbbing pattern as before.",
@@ -9591,7 +9596,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 27,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does light bother your eyes?",
@@ -9603,7 +9608,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 28,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Light hurts my eyes.",
@@ -9629,7 +9634,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 29,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt nauseated?",
@@ -9641,7 +9646,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 30,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I feel nauseated.",
@@ -9667,7 +9672,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 31,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed weakness on one side of your body?",
@@ -9679,7 +9684,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 32,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No new weakness, numbness or trouble speaking.",
@@ -9705,7 +9710,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 32,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you been vomiting?",
@@ -9717,7 +9722,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 33,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not vomited.",
@@ -9743,7 +9748,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 34,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had abdominal pain or pressure?",
@@ -9755,7 +9760,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 35,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No abdominal pain.",
@@ -9781,7 +9786,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 36,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -9793,7 +9798,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 36,
+          "t_ms": 50,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No fever.",
@@ -9819,7 +9824,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 37,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had chills?",
@@ -9831,7 +9836,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 38,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No chills.",
@@ -9857,7 +9862,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 39,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you lost weight without trying?",
@@ -9869,7 +9874,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 40,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No weight loss.",
@@ -9895,7 +9900,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 41,
+          "t_ms": 56,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Did the headache become maximal instantly or build up gradually?",
@@ -9907,7 +9912,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 42,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It built up over an hour; it was not instantly maximal.",
@@ -9933,7 +9938,7 @@
         },
         {
           "seq": 54,
-          "t_ms": 43,
+          "t_ms": 58,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -9945,10 +9950,10 @@
         },
         {
           "seq": 55,
-          "t_ms": 47,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Previously diagnosed migraine no malignancy or immunosuppression.",
+          "text": "Previously diagnosed migraine, no malignancy or immunosuppression.",
           "meta": {
             "facts_released": [
               "history_pmh_1",
@@ -9978,7 +9983,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 48,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -9990,7 +9995,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 48,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No surgeries or hospitalizations.",
@@ -10016,7 +10021,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 49,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -10028,7 +10033,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 52,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I take acetaminophen on 2\u20133 days per month. I do not take daily medication.",
@@ -10061,7 +10066,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 53,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -10073,7 +10078,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 54,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No known drug allergies.",
@@ -10099,7 +10104,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 55,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -10111,7 +10116,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 56,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Never smoked tobacco.",
@@ -10137,7 +10142,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 57,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -10149,7 +10154,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 58,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "One alcoholic drink monthly.",
@@ -10175,7 +10180,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 59,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -10187,7 +10192,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 60,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -10213,7 +10218,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 61,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -10225,7 +10230,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 62,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a medical student.",
@@ -10251,7 +10256,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 63,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -10262,7 +10267,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 63,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband.",
@@ -10288,7 +10293,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 65,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -10300,10 +10305,10 @@
         },
         {
           "seq": 73,
-          "t_ms": 65,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Mother has migraine",
+          "text": "My mom is fifty-two and she gets migraines.",
           "meta": {
             "facts_released": [
               "history_family_1"
@@ -10311,7 +10316,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has migraine"
+                "value": "My mom is fifty-two and she gets migraines."
               }
             },
             "volunteered": false,
@@ -10326,7 +10331,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 66,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your father had?",
@@ -10338,10 +10343,10 @@
         },
         {
           "seq": 75,
-          "t_ms": 67,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "father hypertension",
+          "text": "My dad is fifty-five and he has high blood pressure.",
           "meta": {
             "facts_released": [
               "history_family_2"
@@ -10349,7 +10354,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father hypertension"
+                "value": "My dad is fifty-five and he has high blood pressure."
               }
             },
             "volunteered": false,
@@ -10364,7 +10369,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 68,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -10376,10 +10381,10 @@
         },
         {
           "seq": 77,
-          "t_ms": 69,
+          "t_ms": 89,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "brother healthy.",
+          "text": "I have one brother, he's twenty-nine and he's healthy.",
           "meta": {
             "facts_released": [
               "history_family_3"
@@ -10387,7 +10392,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "brother healthy."
+                "value": "I have one brother, he's twenty-nine and he's healthy."
               }
             },
             "volunteered": false,
@@ -10402,7 +10407,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 70,
+          "t_ms": 90,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are your periods regular?",
@@ -10414,7 +10419,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 71,
+          "t_ms": 92,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My periods are regular.",
@@ -10440,7 +10445,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 72,
+          "t_ms": 92,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -10451,7 +10456,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 72,
+          "t_ms": 94,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 2 weeks ago.",
@@ -10477,7 +10482,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 73,
+          "t_ms": 94,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -10489,7 +10494,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 74,
+          "t_ms": 96,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant.",
@@ -10515,7 +10520,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 75,
+          "t_ms": 96,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -10527,7 +10532,7 @@
         },
         {
           "seq": 85,
-          "t_ms": 76,
+          "t_ms": 97,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Do I need a brain scan every time this happens?",
@@ -10553,7 +10558,7 @@
         },
         {
           "seq": 86,
-          "t_ms": 77,
+          "t_ms": 98,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What might make the care plan difficult for you to follow?",
@@ -10565,7 +10570,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 78,
+          "t_ms": 100,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I skip meals and sleep to study, but I do not think I can change that.",
@@ -10591,7 +10596,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 79,
+          "t_ms": 100,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -10602,31 +10607,33 @@
         },
         {
           "seq": 89,
-          "t_ms": 82,
+          "t_ms": 111,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Right, do I need a brain scan every time this happens? I skip meals and sleep to study, but I do not think I can change that.",
+          "text": "Right, I skip meals and sleep to study, but I do not think I can change that. Do I need a brain scan every time this happens? Right, I skip meals and sleep to study, but I do not think I can change that.",
           "meta": {
             "facts_released": [
-              "patient_concern",
-              "care_barrier"
+              "care_barrier",
+              "patient_concern"
             ],
             "concepts": {
-              "patient_concern": {
-                "polarity": "positive",
-                "value": "Do I need a brain scan every time this happens?"
-              },
               "care_barrier": {
                 "polarity": "positive",
                 "value": "I skip meals and sleep to study, but I do not think I can change that."
+              },
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "Do I need a brain scan every time this happens?"
               }
             },
             "volunteered": false,
             "kind": "answer",
             "checklist_hits": [
+              "h_care_barrier",
               "h_patient_concern",
               "h_care_barrier"
             ],
+            "composed_asks": 2,
             "categories": [
               "fife",
               "fife"
@@ -10635,7 +10642,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 83,
+          "t_ms": 112,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -10646,17 +10653,17 @@
         },
         {
           "seq": 91,
-          "t_ms": 84,
+          "t_ms": 113,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 92,
-          "t_ms": 83,
+          "t_ms": 112,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -10668,7 +10675,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 10085,
+          "t_ms": 10114,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -10689,7 +10696,7 @@
         },
         {
           "seq": 94,
-          "t_ms": 10085,
+          "t_ms": 10114,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert. Prefers dim light, not toxic appearing.",
@@ -10717,7 +10724,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 50085,
+          "t_ms": 50114,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -10743,7 +10750,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 50085,
+          "t_ms": 50114,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rhythm without murmur.",
@@ -10765,7 +10772,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 91085,
+          "t_ms": 91114,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -10790,7 +10797,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 91085,
+          "t_ms": 91114,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, clear breath sounds bilaterally.",
@@ -10812,7 +10819,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 107085,
+          "t_ms": 107114,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect eyes / pupils",
@@ -10835,7 +10842,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 107085,
+          "t_ms": 107114,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Pupils equal and reactive; extraocular movements intact.",
@@ -10857,7 +10864,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 146085,
+          "t_ms": 146114,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Cranial nerve examination",
@@ -10881,7 +10888,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 146085,
+          "t_ms": 146114,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Face symmetric; tongue midline; speech clear.",
@@ -10903,7 +10910,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 170085,
+          "t_ms": 170114,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Muscle strength testing",
@@ -10926,7 +10933,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 170085,
+          "t_ms": 170114,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Strength 5/5 in arms and legs bilaterally.",
@@ -10948,7 +10955,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 191085,
+          "t_ms": 191114,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Sensory examination",
@@ -10970,7 +10977,7 @@
         },
         {
           "seq": 106,
-          "t_ms": 191085,
+          "t_ms": 191114,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Light touch symmetric in arms and legs.",
@@ -10992,7 +10999,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 206085,
+          "t_ms": 206114,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Neck range of motion / meningeal signs",
@@ -11014,7 +11021,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 206085,
+          "t_ms": 206114,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Neck flexion is comfortable without stiffness.",
@@ -11036,7 +11043,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 231085,
+          "t_ms": 231114,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -11058,7 +11065,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 231085,
+          "t_ms": 231114,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "C1 paraspinal tissue texture change with mild tenderness on the right.",
@@ -11080,7 +11087,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 250085,
+          "t_ms": 250114,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -11102,7 +11109,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 250085,
+          "t_ms": 250114,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -11124,7 +11131,7 @@
         },
         {
           "seq": 113,
-          "t_ms": 250085,
+          "t_ms": 250114,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend comparing this headache carefully with your usual episodes. Migraine is a possibility, but a changed pattern or new warning sign requires another approach. We should review how often you use headache medicines before choosing treatment.",
@@ -11136,7 +11143,7 @@
         },
         {
           "seq": 114,
-          "t_ms": 250085,
+          "t_ms": 250114,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend comparing this headache carefully with your usual episodes. Migraine is a possibility, but a changed pattern or new warning sign requires another approach. We should review how often you use headache medicines before choosing treatment.",
@@ -11149,7 +11156,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 250085,
+          "t_ms": 250114,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -11159,7 +11166,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 250085,
+          "t_ms": 250114,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -11172,7 +11179,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 250085,
+          "t_ms": 250114,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I skip meals and sleep to study, but I do not think I can change that.",
@@ -11187,7 +11194,7 @@
         },
         {
           "seq": 118,
-          "t_ms": 250085,
+          "t_ms": 250114,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Let us choose one realistic change around studying, such as a regular meal or a protected sleep period, rather than trying to change everything at once. We can track the pattern and discuss what is workable at follow-up.",
@@ -11197,7 +11204,7 @@
         },
         {
           "seq": 119,
-          "t_ms": 250085,
+          "t_ms": 250114,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Starting with a regular meal around my study schedule feels more manageable than changing everything at once.",
@@ -11209,13 +11216,13 @@
           }
         }
       ],
-      "note_words": 489,
-      "estimated_encounter_s": 588,
+      "note_words": 509,
+      "estimated_encounter_s": 605,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 6
+        "unresolved_count": 4
       },
       "reasoning": [
         {
@@ -11336,7 +11343,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "50324ebb29ad7fc56b3c6266fa41c69611d37743ee2156d8da9073e45377b368"
+      "case_hash": "a0c2400464ace4af3dc7853adabe0d88c282293d98ae6d63ea54ac420a4b3f5b",
+      "engine_version": "4.0.4"
     }
   ]
 }

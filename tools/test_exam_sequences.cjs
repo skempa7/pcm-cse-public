@@ -131,7 +131,7 @@ function run(edition, label) {
 }
 
 const editions = [];
-for (const dir of [path.resolve(__dirname, '..'), path.resolve(__dirname, '../../pcm-cse-public')]) {
+for (const dir of [path.resolve(__dirname, '..')]) {
   if (fs.existsSync(path.join(dir, 'web/patient3d/exam-sequences.js'))) editions.push(dir);
 }
 assert.ok(editions.length, 'no edition contains exam-sequences.js');

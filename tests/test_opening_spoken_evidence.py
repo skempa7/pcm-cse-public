@@ -92,6 +92,15 @@ class SaysRule(unittest.TestCase):
                 opening = "I have %s pain in my chest." % word
                 self.assertFalse(self.says("She has pain in her chest.", opening), word)
 
+    def test_clauses_cannot_exchange_a_symptom_owner_or_timeline(self):
+        self.assertFalse(self.says(
+            "My husband has chest pressure when I push myself at work.",
+            "I've been getting this pressure in my chest when I push myself at work. "
+            "It goes away when I stop. My husband made me come in."))
+        opening = "My stomach started hurting around the middle, but now the pain is low on the right."
+        self.assertFalse(self.says("Pain started low on the right and is now around the middle.", opening))
+        self.assertTrue(self.says("My stomach started hurting around the middle and is now low on the right.", opening))
+
     def test_a_fragment_is_not_a_match(self):
         self.assertFalse(self.says("Pain.", "My stomach is hurting badly today."))
 
@@ -150,6 +159,14 @@ class ThroughTheGrader(unittest.TestCase):
                           'HPI: Abdominal pain that started around the middle.'),
             ['unsupported'])
 
+    def test_reversed_migration_and_wrong_person_are_never_supported(self):
+        for cid, statement in [
+                ('gi-right-lower-pain', 'Pain started low on the right and is now around the middle.'),
+                ('cardio-chest-pressure', 'My husband has chest pressure when I push myself at work.')]:
+            with self.subTest(statement):
+                self.assertTrue(all(v not in ('supported', 'supported_supplied')
+                                    for v in self.verdicts(cid, 'HPI: ' + statement)))
+
     def test_both_halves_of_one_spoken_sentence_agree(self):
         # The defect that started this: "but now the pain is low on the right"
         # was supported while "her stomach started hurting around the middle"
@@ -166,6 +183,12 @@ class ThroughTheGrader(unittest.TestCase):
                              'A': ['', '', ''], 'P': ['', '', '']})
         for claim in audit.audit_note(parsed, s.ledger, case)['claims']:
             self.assertNotEqual(claim['verdict'], 'supported', claim)
+
+    def test_verbatim_opening_also_respects_the_history_header(self):
+        for header in ['FH', 'PMH', 'Meds', 'Allergies', 'ROS']:
+            with self.subTest(header):
+                self.assertTrue(all(v not in ('supported', 'supported_supplied') for v in
+                    self.verdicts('gi-right-lower-pain', header + ': My stomach started hurting around the middle.')))
 
     def test_the_opening_cannot_be_laundered_into_another_header(self):
         """Pre-existing, and worth far more once the opening carries credit.

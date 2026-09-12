@@ -65,7 +65,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             5,
@@ -568,19 +568,21 @@
           "kind": "dialogue",
           "section": "Acknowledge",
           "student": "Thank you for explaining that. I can understand why this is concerning.",
-          "patient": "Could you say that another way?",
+          "patient": "As I mentioned, I keep thinking about my mother. She had stomach cancer. That's what I'm really afraid of.",
           "why": "",
           "event_ids": [
             80,
             81
           ],
-          "fact_ids": []
+          "fact_ids": [
+            "concern_cancer"
+          ]
         },
         {
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             82,
@@ -1111,8 +1113,8 @@
             69
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -1737,8 +1739,7 @@
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
@@ -1748,35 +1749,39 @@
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
           }
         },
         {
           "seq": 7,
-          "t_ms": 2,
+          "t_ms": 1,
           "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "kind": "consent"
+            "courtesy_id": "consent_exam",
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 8,
-          "t_ms": 1,
+          "t_ms": 4,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
           "seq": 9,
-          "t_ms": 3,
+          "t_ms": 4,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -1788,7 +1793,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 4,
+          "t_ms": 6,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I've had this burning pain in the top of my stomach for about six weeks. It's been worse the last few days.",
@@ -1814,7 +1819,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 5,
+          "t_ms": 6,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I will arrange urgent help from my supervising clinician now. We will not delay emergency care to finish routine questions.",
@@ -1826,7 +1831,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 5,
+          "t_ms": 6,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I will arrange urgent help from my supervising clinician now. We will not delay emergency care to finish routine questions.",
@@ -1838,7 +1843,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 6,
+          "t_ms": 9,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -1848,7 +1853,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 7,
+          "t_ms": 9,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your symptoms first begin?",
@@ -1859,7 +1864,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 7,
+          "t_ms": 10,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "About six weeks now.",
@@ -1889,7 +1894,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 8,
+          "t_ms": 11,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How have your symptoms changed since they started?",
@@ -1901,7 +1906,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 9,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It's been creeping up on me, and the last three days it's been a lot worse.",
@@ -1927,7 +1932,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 10,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -1938,7 +1943,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 11,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Right here, just under my breastbone, in the middle.",
@@ -1964,7 +1969,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 12,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -1976,7 +1981,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 12,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, it stays right there. It doesn't go into my back or anywhere else.",
@@ -2002,7 +2007,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 13,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -2014,7 +2019,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 14,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It's a burning, gnawing kind of pain.",
@@ -2040,7 +2045,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 15,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -2052,7 +2057,7 @@
         },
         {
           "seq": 25,
-          "t_ms": 16,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "At its worst, a seven. In between maybe a three.",
@@ -2078,7 +2083,7 @@
         },
         {
           "seq": 26,
-          "t_ms": 17,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is the pain worse when your stomach is empty or at night?",
@@ -2090,7 +2095,7 @@
         },
         {
           "seq": 27,
-          "t_ms": 18,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It's worst when my stomach is empty. It wakes me up around two in the morning most nights.",
@@ -2116,7 +2121,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 18,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -2128,7 +2133,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 19,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Eating helps for a while, and antacids take the edge off.",
@@ -2158,7 +2163,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 20,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -2170,7 +2175,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 21,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Coffee makes it worse. And honestly it's worse on the days I take more ibuprofen.",
@@ -2200,7 +2205,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 22,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -2212,7 +2217,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 23,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Just antacids. And a friend gave me some iron pills because I've been so tired - I started those about a week ago.",
@@ -2242,7 +2247,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 24,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -2254,7 +2259,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 24,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, nothing like this before. I've never been told I had an ulcer.",
@@ -2280,7 +2285,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 25,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed black, tarry, or bloody stools?",
@@ -2292,7 +2297,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 26,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Now that you mention it - two days ago my stool was black and sticky. I assumed it was the iron pills.",
@@ -2319,7 +2324,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 27,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had nausea or vomiting?",
@@ -2331,7 +2336,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 28,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I'm queasy a lot, especially first thing.",
@@ -2357,7 +2362,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 28,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How has your energy been?",
@@ -2369,7 +2374,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 29,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I've been exhausted for the last couple of weeks. I'm falling asleep at my desk.",
@@ -2395,7 +2400,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 30,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you feel lightheaded when standing up?",
@@ -2407,7 +2412,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 31,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "When I stand up fast I get a bit swimmy-headed.",
@@ -2433,7 +2438,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 32,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you vomited blood or material that looks like coffee grounds?",
@@ -2445,7 +2450,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 33,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, I haven't thrown up at all, and definitely nothing bloody.",
@@ -2475,7 +2480,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 34,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had weight loss, trouble swallowing, yellow eyes, or fever?",
@@ -2487,7 +2492,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 35,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My weight's about the same. No trouble swallowing, no fevers, and nobody's said I look yellow.",
@@ -2525,7 +2530,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 36,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had diarrhea or chest pain?",
@@ -2537,7 +2542,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 37,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No diarrhea. No chest pain either.",
@@ -2565,7 +2570,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 37,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had easy bruising, bleeding gums, or nosebleeds?",
@@ -2577,7 +2582,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 38,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, I don't bruise easily. My gums don't bleed and I don't get nosebleeds.",
@@ -2611,7 +2616,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 39,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had night sweats?",
@@ -2623,7 +2628,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 40,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not had night sweats.",
@@ -2649,7 +2654,7 @@
         },
         {
           "seq": 54,
-          "t_ms": 41,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -2661,7 +2666,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 42,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Chronic knee pain after sports injuries, and I get migraines a few times a month.",
@@ -2691,7 +2696,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 43,
+          "t_ms": 56,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -2703,7 +2708,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 44,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Gallbladder out at twenty-five. And two children, both normal deliveries.",
@@ -2733,7 +2738,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 45,
+          "t_ms": 58,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -2745,7 +2750,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 46,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Ibuprofen, eight hundred milligrams, two or three times a day - I've been taking it for months for my knees. And the iron pills for the last week. I do not take a proton pump inhibitor.",
@@ -2779,7 +2784,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 47,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -2791,7 +2796,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 48,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Penicillin. My lips and face swelled up when I was in my twenties.",
@@ -2821,7 +2826,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 49,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -2833,7 +2838,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 50,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, never.",
@@ -2859,7 +2864,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 51,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -2871,7 +2876,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 52,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "A glass or two of wine on the weekend.",
@@ -2897,7 +2902,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 53,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -2909,7 +2914,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 54,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, nothing like that.",
@@ -2935,7 +2940,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 55,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -2947,7 +2952,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 55,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a school administrator.",
@@ -2973,7 +2978,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 56,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -2984,7 +2989,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 57,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband and two children.",
@@ -3010,7 +3015,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 58,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems run in your family?",
@@ -3022,7 +3027,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 59,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My mother died of stomach cancer at sixty-eight. My father's seventy-two, he has high blood pressure. I have one sister, she's well.",
@@ -3056,7 +3061,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 60,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -3068,7 +3073,7 @@
         },
         {
           "seq": 75,
-          "t_ms": 61,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant, but I have not taken a pregnancy test.",
@@ -3094,7 +3099,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 62,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -3105,7 +3110,7 @@
         },
         {
           "seq": 77,
-          "t_ms": 63,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 2 weeks ago.",
@@ -3131,7 +3136,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 64,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -3143,7 +3148,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 65,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I keep thinking about my mother. She had stomach cancer. That's what I'm really afraid of.",
@@ -3170,7 +3175,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 66,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -3181,22 +3186,34 @@
         },
         {
           "seq": 81,
-          "t_ms": 77,
+          "t_ms": 101,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Could you say that another way?",
+          "text": "As I mentioned, I keep thinking about my mother. She had stomach cancer. That's what I'm really afraid of.",
           "meta": {
-            "facts_released": [],
-            "concepts": {},
+            "facts_released": [
+              "concern_cancer"
+            ],
+            "concepts": {
+              "concern_cancer": {
+                "polarity": "positive",
+                "value": "I keep thinking about my mother. She had stomach cancer. That's what I'm really afraid of."
+              }
+            },
             "volunteered": false,
-            "kind": "non_answer",
-            "no_information": true,
-            "categories": []
+            "kind": "answer",
+            "checklist_hits": [
+              "h27"
+            ],
+            "emotion": "worried",
+            "categories": [
+              "fife"
+            ]
           }
         },
         {
           "seq": 82,
-          "t_ms": 78,
+          "t_ms": 102,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -3207,17 +3224,17 @@
         },
         {
           "seq": 83,
-          "t_ms": 79,
+          "t_ms": 104,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 84,
-          "t_ms": 78,
+          "t_ms": 102,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -3229,7 +3246,7 @@
         },
         {
           "seq": 85,
-          "t_ms": 10080,
+          "t_ms": 10105,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -3249,7 +3266,7 @@
         },
         {
           "seq": 86,
-          "t_ms": 10080,
+          "t_ms": 10105,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Adult woman who appears tired and pale. Alert and oriented, in no acute distress.",
@@ -3271,7 +3288,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 50080,
+          "t_ms": 50105,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -3297,7 +3314,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 50080,
+          "t_ms": 50105,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Mildly tachycardic, regular rhythm. S1 and S2 present. No murmurs, rubs or gallops.",
@@ -3319,7 +3336,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 100080,
+          "t_ms": 100105,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -3347,7 +3364,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 100080,
+          "t_ms": 100105,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Clear to auscultation bilaterally, all fields. Good air movement.",
@@ -3370,20 +3387,22 @@
         },
         {
           "seq": 91,
-          "t_ms": 100080,
+          "t_ms": 100105,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "supine",
+            "previous_position": "seated",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 92,
-          "t_ms": 112080,
+          "t_ms": 112105,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect abdomen",
@@ -3408,7 +3427,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 112080,
+          "t_ms": 112105,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Abdomen flat, no distention. Well-healed laparoscopic scars in the right upper quadrant and umbilicus. No visible pulsation.",
@@ -3430,7 +3449,7 @@
         },
         {
           "seq": 94,
-          "t_ms": 132080,
+          "t_ms": 132105,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -3453,7 +3472,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 132080,
+          "t_ms": 132105,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Hyperactive bowel sounds in all four quadrants. No bruits.",
@@ -3475,7 +3494,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 162080,
+          "t_ms": 162105,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -3499,7 +3518,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 162080,
+          "t_ms": 162105,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tympanitic throughout. No shifting dullness. Liver span approximately 9 cm in the midclavicular line.",
@@ -3521,7 +3540,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 202080,
+          "t_ms": 202105,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -3550,7 +3569,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 202080,
+          "t_ms": 202105,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Soft. Focal tenderness in the epigastrium. No rebound tenderness. No guarding. No masses, no hepatosplenomegaly.",
@@ -3594,7 +3613,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 224080,
+          "t_ms": 224105,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Abdominal special tests",
@@ -3618,7 +3637,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 224080,
+          "t_ms": 224105,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Murphy sign negative. McBurney point non-tender. No CVA tenderness.",
@@ -3640,7 +3659,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 242080,
+          "t_ms": 242105,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect eyes / pupils",
@@ -3664,7 +3683,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 242080,
+          "t_ms": 242105,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Conjunctival pallor is present bilaterally. Sclerae anicteric. Pupils equal and reactive.",
@@ -3706,7 +3725,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 271080,
+          "t_ms": 271105,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -3731,7 +3750,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 271080,
+          "t_ms": 271105,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "On the inspected chest, back, arms and legs: skin pale. No telangiectasias, no jaundice, no petechiae or bruising.",
@@ -3753,20 +3772,22 @@
         },
         {
           "seq": 106,
-          "t_ms": 271080,
+          "t_ms": 271105,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "seated",
+            "previous_position": "supine",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 107,
-          "t_ms": 296080,
+          "t_ms": 296105,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -3788,7 +3809,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 296080,
+          "t_ms": 296105,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T5 through T9 bilaterally: paraspinal tissue texture change and tenderness, left greater than right. T7 rotated left.",
@@ -3814,7 +3835,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 313080,
+          "t_ms": 313105,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect / palpate extremities",
@@ -3838,7 +3859,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 313080,
+          "t_ms": 313105,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No edema. Nail beds pale. Capillary refill under two seconds.",
@@ -3868,7 +3889,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 313080,
+          "t_ms": 313105,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend emergency evaluation today because the black tarry stool, symptoms and supplied blood count raise concern for bleeding. Ibuprofen can injure the stomach lining. We should stop it and discuss safer pain treatment with the clinician.",
@@ -3880,7 +3901,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 313080,
+          "t_ms": 313105,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend emergency evaluation today because the black tarry stool, symptoms and supplied blood count raise concern for bleeding. Ibuprofen can injure the stomach lining. We should stop it and discuss safer pain treatment with the clinician.",
@@ -3892,7 +3913,7 @@
         },
         {
           "seq": 113,
-          "t_ms": 313080,
+          "t_ms": 313105,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. I can manage that.",
@@ -3902,7 +3923,7 @@
         },
         {
           "seq": 114,
-          "t_ms": 313080,
+          "t_ms": 313105,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -3915,7 +3936,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 313080,
+          "t_ms": 313105,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The black stool - is that bad?",
@@ -3930,7 +3951,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 313080,
+          "t_ms": 313105,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Black tarry stool can represent digested blood, although iron can also darken stool. I recommend urgent evaluation because of the whole history and supplied hemoglobin; we should not assume iron explains it. The team can discuss whether and when endoscopy is needed after assessing stability.",
@@ -3942,7 +3963,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 313080,
+          "t_ms": 313105,
           "phase": "encounter",
           "kind": "counseling",
           "text": "Black tarry stool can represent digested blood, although iron can also darken stool. I recommend urgent evaluation because of the whole history and supplied hemoglobin; we should not assume iron explains it. The team can discuss whether and when endoscopy is needed after assessing stability.",
@@ -3954,7 +3975,7 @@
         },
         {
           "seq": 118,
-          "t_ms": 313080,
+          "t_ms": 313105,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Thank you for explaining it.",
@@ -3964,12 +3985,12 @@
         }
       ],
       "note_words": 511,
-      "estimated_encounter_s": 717,
+      "estimated_encounter_s": 725,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 10
+        "unresolved_count": 9
       },
       "reasoning": [
         {
@@ -4153,7 +4174,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "8a4d18507c84f5755328d241a3c2e8c8cecaea6ca404b1a3d9e358977c27ed17"
+      "case_hash": "8a4d18507c84f5755328d241a3c2e8c8cecaea6ca404b1a3d9e358977c27ed17",
+      "engine_version": "4.0.4"
     },
     {
       "case_id": "gi-epigastric-melena",
@@ -4224,7 +4246,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             5,
@@ -4755,7 +4777,7 @@
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             84,
@@ -5286,8 +5308,8 @@
             69
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -5926,52 +5948,55 @@
         },
         {
           "seq": 5,
-          "t_ms": 2,
+          "t_ms": 1,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
           "seq": 6,
-          "t_ms": 2,
+          "t_ms": 1,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
+          }
+        },
+        {
+          "seq": 7,
+          "t_ms": 1,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
-          }
-        },
-        {
-          "seq": 7,
-          "t_ms": 6,
-          "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
-          "meta": {
-            "kind": "consent"
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 8,
-          "t_ms": 2,
+          "t_ms": 8,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
           "seq": 9,
-          "t_ms": 7,
+          "t_ms": 9,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -5983,7 +6008,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 12,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I've had this burning pain in the top of my stomach for about six weeks. It's been worse the last few days.",
@@ -6033,7 +6058,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 14,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -6043,7 +6068,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 15,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your symptoms first begin?",
@@ -6054,7 +6079,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 16,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "About six weeks now.",
@@ -6084,7 +6109,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 17,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How have your symptoms changed since they started?",
@@ -6096,7 +6121,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 17,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It's been creeping up on me, and the last three days it's been a lot worse.",
@@ -6122,7 +6147,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 18,
+          "t_ms": 21,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -6133,7 +6158,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 19,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Right here, just under my breastbone, in the middle.",
@@ -6159,7 +6184,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 20,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -6171,7 +6196,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 21,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, it stays right there. It doesn't go into my back or anywhere else.",
@@ -6197,7 +6222,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 22,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -6209,7 +6234,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 23,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It's a burning, gnawing kind of pain.",
@@ -6235,7 +6260,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 23,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -6247,7 +6272,7 @@
         },
         {
           "seq": 25,
-          "t_ms": 24,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "At its worst, a seven. In between maybe a three.",
@@ -6273,7 +6298,7 @@
         },
         {
           "seq": 26,
-          "t_ms": 25,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is the pain worse when your stomach is empty or at night?",
@@ -6285,7 +6310,7 @@
         },
         {
           "seq": 27,
-          "t_ms": 26,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It's worst when my stomach is empty. It wakes me up around two in the morning most nights.",
@@ -6311,7 +6336,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 27,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -6323,7 +6348,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 28,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Eating helps for a while, and antacids take the edge off.",
@@ -6353,7 +6378,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 29,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -6365,7 +6390,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 29,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Coffee makes it worse. And honestly it's worse on the days I take more ibuprofen.",
@@ -6395,7 +6420,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 31,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -6407,7 +6432,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 31,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Just antacids. And a friend gave me some iron pills because I've been so tired - I started those about a week ago.",
@@ -6437,7 +6462,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 32,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -6449,7 +6474,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 33,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, nothing like this before. I've never been told I had an ulcer.",
@@ -6475,7 +6500,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 34,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed black, tarry, or bloody stools?",
@@ -6487,7 +6512,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 35,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Now that you mention it - two days ago my stool was black and sticky. I assumed it was the iron pills.",
@@ -6514,7 +6539,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 36,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had nausea or vomiting?",
@@ -6526,7 +6551,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 37,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I'm queasy a lot, especially first thing.",
@@ -6552,7 +6577,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 37,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How has your energy been?",
@@ -6564,7 +6589,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 38,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I've been exhausted for the last couple of weeks. I'm falling asleep at my desk.",
@@ -6590,7 +6615,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 39,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you feel lightheaded when standing up?",
@@ -6602,7 +6627,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 40,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "When I stand up fast I get a bit swimmy-headed.",
@@ -6628,7 +6653,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 41,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you vomited blood or material that looks like coffee grounds?",
@@ -6640,7 +6665,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 42,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, I haven't thrown up at all, and definitely nothing bloody.",
@@ -6670,7 +6695,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 43,
+          "t_ms": 50,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had weight loss, trouble swallowing, yellow eyes, or fever?",
@@ -6682,7 +6707,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 44,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My weight's about the same. No trouble swallowing, no fevers, and nobody's said I look yellow.",
@@ -6720,7 +6745,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 45,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had diarrhea or chest pain?",
@@ -6732,7 +6757,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 46,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No diarrhea. No chest pain either.",
@@ -6760,7 +6785,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 47,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had easy bruising, bleeding gums, or nosebleeds?",
@@ -6772,7 +6797,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 48,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, I don't bruise easily. My gums don't bleed and I don't get nosebleeds.",
@@ -6806,7 +6831,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 49,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had night sweats?",
@@ -6818,7 +6843,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 50,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not had night sweats.",
@@ -6844,7 +6869,7 @@
         },
         {
           "seq": 54,
-          "t_ms": 51,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -6856,7 +6881,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 51,
+          "t_ms": 61,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Chronic knee pain after sports injuries, and I get migraines a few times a month.",
@@ -6886,7 +6911,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 52,
+          "t_ms": 61,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -6898,7 +6923,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 53,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Gallbladder out at twenty-five. And two children, both normal deliveries.",
@@ -6928,7 +6953,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 54,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -6940,7 +6965,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 56,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Ibuprofen, eight hundred milligrams, two or three times a day - I've been taking it for months for my knees. And the iron pills for the last week. I do not take a proton pump inhibitor.",
@@ -6974,7 +6999,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 57,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -6986,7 +7011,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 58,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Penicillin. My lips and face swelled up when I was in my twenties.",
@@ -7016,7 +7041,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 59,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -7028,7 +7053,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 59,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, never.",
@@ -7054,7 +7079,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 61,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -7066,7 +7091,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 62,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "A glass or two of wine on the weekend.",
@@ -7092,7 +7117,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 63,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -7104,7 +7129,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 64,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, nothing like that.",
@@ -7130,7 +7155,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 65,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -7142,7 +7167,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 65,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a school administrator.",
@@ -7168,7 +7193,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 66,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -7179,7 +7204,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 67,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband and two children.",
@@ -7205,7 +7230,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 68,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems run in your family?",
@@ -7217,7 +7242,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 69,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My mother died of stomach cancer at sixty-eight. My father's seventy-two, he has high blood pressure. I have one sister, she's well.",
@@ -7251,7 +7276,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 70,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -7263,7 +7288,7 @@
         },
         {
           "seq": 75,
-          "t_ms": 71,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant, but I have not taken a pregnancy test.",
@@ -7289,7 +7314,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 72,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -7300,7 +7325,7 @@
         },
         {
           "seq": 77,
-          "t_ms": 73,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 2 weeks ago.",
@@ -7326,7 +7351,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 74,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -7338,7 +7363,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 75,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I keep thinking about my mother. She had stomach cancer. That's what I'm really afraid of.",
@@ -7365,7 +7390,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 76,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What might make the care plan difficult for you to follow?",
@@ -7377,7 +7402,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 77,
+          "t_ms": 89,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have trouble following medical words. Could you explain one thing at a time?",
@@ -7403,7 +7428,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 78,
+          "t_ms": 90,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -7414,7 +7439,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 86,
+          "t_ms": 103,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "As I mentioned, I have trouble following medical words. Could you explain one thing at a time?",
@@ -7440,7 +7465,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 87,
+          "t_ms": 104,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -7451,17 +7476,17 @@
         },
         {
           "seq": 85,
-          "t_ms": 88,
+          "t_ms": 105,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 86,
-          "t_ms": 87,
+          "t_ms": 104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -7473,7 +7498,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 10089,
+          "t_ms": 10106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -7493,7 +7518,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 10089,
+          "t_ms": 10106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Adult woman who appears tired and pale. Alert and oriented, in no acute distress.",
@@ -7515,7 +7540,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 50089,
+          "t_ms": 50106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -7541,7 +7566,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 50089,
+          "t_ms": 50106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Mildly tachycardic, regular rhythm. S1 and S2 present. No murmurs, rubs or gallops.",
@@ -7563,7 +7588,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 100089,
+          "t_ms": 100106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -7591,7 +7616,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 100089,
+          "t_ms": 100106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Clear to auscultation bilaterally, all fields. Good air movement.",
@@ -7614,20 +7639,22 @@
         },
         {
           "seq": 93,
-          "t_ms": 100089,
+          "t_ms": 100106,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "supine",
+            "previous_position": "seated",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 94,
-          "t_ms": 112089,
+          "t_ms": 112106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect abdomen",
@@ -7652,7 +7679,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 112089,
+          "t_ms": 112106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Abdomen flat, no distention. Well-healed laparoscopic scars in the right upper quadrant and umbilicus. No visible pulsation.",
@@ -7674,7 +7701,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 132089,
+          "t_ms": 132106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -7697,7 +7724,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 132089,
+          "t_ms": 132106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Hyperactive bowel sounds in all four quadrants. No bruits.",
@@ -7719,7 +7746,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 162089,
+          "t_ms": 162106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -7743,7 +7770,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 162089,
+          "t_ms": 162106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tympanitic throughout. No shifting dullness. Liver span approximately 9 cm in the midclavicular line.",
@@ -7765,7 +7792,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 202089,
+          "t_ms": 202106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -7794,7 +7821,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 202089,
+          "t_ms": 202106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Soft. Focal tenderness in the epigastrium. No rebound tenderness. No guarding. No masses, no hepatosplenomegaly.",
@@ -7838,7 +7865,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 224089,
+          "t_ms": 224106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Abdominal special tests",
@@ -7862,7 +7889,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 224089,
+          "t_ms": 224106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Murphy sign negative. McBurney point non-tender. No CVA tenderness.",
@@ -7884,7 +7911,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 242089,
+          "t_ms": 242106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect eyes / pupils",
@@ -7908,7 +7935,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 242089,
+          "t_ms": 242106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Conjunctival pallor is present bilaterally. Sclerae anicteric. Pupils equal and reactive.",
@@ -7950,7 +7977,7 @@
         },
         {
           "seq": 106,
-          "t_ms": 271089,
+          "t_ms": 271106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -7975,7 +8002,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 271089,
+          "t_ms": 271106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "On the inspected chest, back, arms and legs: skin pale. No telangiectasias, no jaundice, no petechiae or bruising.",
@@ -7997,20 +8024,22 @@
         },
         {
           "seq": 108,
-          "t_ms": 271089,
+          "t_ms": 271106,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "seated",
+            "previous_position": "supine",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 109,
-          "t_ms": 296089,
+          "t_ms": 296106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -8032,7 +8061,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 296089,
+          "t_ms": 296106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T5 through T9 bilaterally: paraspinal tissue texture change and tenderness, left greater than right. T7 rotated left.",
@@ -8058,7 +8087,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 313089,
+          "t_ms": 313106,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect / palpate extremities",
@@ -8082,7 +8111,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 313089,
+          "t_ms": 313106,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No edema. Nail beds pale. Capillary refill under two seconds.",
@@ -8112,7 +8141,7 @@
         },
         {
           "seq": 113,
-          "t_ms": 313089,
+          "t_ms": 313106,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend emergency evaluation today because the black tarry stool, symptoms and supplied blood count raise concern for bleeding. Ibuprofen can injure the stomach lining. We should stop it and discuss safer pain treatment with the clinician.",
@@ -8124,7 +8153,7 @@
         },
         {
           "seq": 114,
-          "t_ms": 313089,
+          "t_ms": 313106,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend emergency evaluation today because the black tarry stool, symptoms and supplied blood count raise concern for bleeding. Ibuprofen can injure the stomach lining. We should stop it and discuss safer pain treatment with the clinician.",
@@ -8136,7 +8165,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 313089,
+          "t_ms": 313106,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. I can manage that.",
@@ -8146,7 +8175,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 313089,
+          "t_ms": 313106,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -8159,7 +8188,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 313089,
+          "t_ms": 313106,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have trouble following medical words. Could you explain one thing at a time?",
@@ -8174,7 +8203,7 @@
         },
         {
           "seq": 118,
-          "t_ms": 313089,
+          "t_ms": 313106,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I will explain one step at a time and ask you to tell me what is clear and what needs another explanation.",
@@ -8186,7 +8215,7 @@
         },
         {
           "seq": 119,
-          "t_ms": 313089,
+          "t_ms": 313106,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I will explain one step at a time and ask you to tell me what is clear and what needs another explanation.",
@@ -8198,7 +8227,7 @@
         },
         {
           "seq": 120,
-          "t_ms": 313089,
+          "t_ms": 313106,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Thank you for explaining it.",
@@ -8208,12 +8237,12 @@
         }
       ],
       "note_words": 535,
-      "estimated_encounter_s": 725,
+      "estimated_encounter_s": 728,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 10
+        "unresolved_count": 9
       },
       "reasoning": [
         {
@@ -8397,7 +8426,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "fc3d31c31eb0c802744921a18e46c2296aba8a3bd786ec2d31285aaa7a4b1468"
+      "case_hash": "fc3d31c31eb0c802744921a18e46c2296aba8a3bd786ec2d31285aaa7a4b1468",
+      "engine_version": "4.0.4"
     },
     {
       "case_id": "gi-epigastric-melena",
@@ -8468,7 +8498,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             5,
@@ -8999,7 +9029,7 @@
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             84,
@@ -9530,8 +9560,8 @@
             69
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -10160,52 +10190,55 @@
         },
         {
           "seq": 5,
-          "t_ms": 1,
+          "t_ms": 0,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
           "seq": 6,
-          "t_ms": 1,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
+          }
+        },
+        {
+          "seq": 7,
+          "t_ms": 0,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
-          }
-        },
-        {
-          "seq": 7,
-          "t_ms": 3,
-          "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
-          "meta": {
-            "kind": "consent"
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 8,
-          "t_ms": 1,
+          "t_ms": 3,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
           "seq": 9,
-          "t_ms": 4,
+          "t_ms": 3,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -10267,7 +10300,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 6,
+          "t_ms": 8,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -10277,7 +10310,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 7,
+          "t_ms": 8,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your symptoms first begin?",
@@ -10288,7 +10321,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 8,
+          "t_ms": 10,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "About six weeks now.",
@@ -10318,7 +10351,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 9,
+          "t_ms": 10,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How have your symptoms changed since they started?",
@@ -10330,7 +10363,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 10,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It's been creeping up on me, and the last three days it's been a lot worse.",
@@ -10356,7 +10389,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 11,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -10367,7 +10400,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 12,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Right here, just under my breastbone, in the middle.",
@@ -10393,7 +10426,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 12,
+          "t_ms": 14,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -10405,7 +10438,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 13,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, it stays right there. It doesn't go into my back or anywhere else.",
@@ -10431,7 +10464,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 14,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -10443,7 +10476,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 15,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It's a burning, gnawing kind of pain.",
@@ -10469,7 +10502,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 16,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -10481,7 +10514,7 @@
         },
         {
           "seq": 25,
-          "t_ms": 16,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "At its worst, a seven. In between maybe a three.",
@@ -10507,7 +10540,7 @@
         },
         {
           "seq": 26,
-          "t_ms": 17,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is the pain worse when your stomach is empty or at night?",
@@ -10519,7 +10552,7 @@
         },
         {
           "seq": 27,
-          "t_ms": 18,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It's worst when my stomach is empty. It wakes me up around two in the morning most nights.",
@@ -10545,7 +10578,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 19,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -10557,7 +10590,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 20,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Eating helps for a while, and antacids take the edge off.",
@@ -10587,7 +10620,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 21,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -10599,7 +10632,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 22,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Coffee makes it worse. And honestly it's worse on the days I take more ibuprofen.",
@@ -10629,7 +10662,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 22,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -10641,7 +10674,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 23,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Just antacids. And a friend gave me some iron pills because I've been so tired - I started those about a week ago.",
@@ -10671,7 +10704,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 24,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -10683,7 +10716,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 25,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, nothing like this before. I've never been told I had an ulcer.",
@@ -10709,7 +10742,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 26,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed black, tarry, or bloody stools?",
@@ -10721,7 +10754,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 26,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Now that you mention it - two days ago my stool was black and sticky. I assumed it was the iron pills.",
@@ -10748,7 +10781,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 27,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had nausea or vomiting?",
@@ -10760,7 +10793,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 28,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I'm queasy a lot, especially first thing.",
@@ -10786,7 +10819,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 29,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How has your energy been?",
@@ -10798,7 +10831,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 30,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I've been exhausted for the last couple of weeks. I'm falling asleep at my desk.",
@@ -10824,7 +10857,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 31,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you feel lightheaded when standing up?",
@@ -10836,7 +10869,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 31,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "When I stand up fast I get a bit swimmy-headed.",
@@ -10862,7 +10895,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 32,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you vomited blood or material that looks like coffee grounds?",
@@ -10874,7 +10907,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 33,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, I haven't thrown up at all, and definitely nothing bloody.",
@@ -10904,7 +10937,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 34,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had weight loss, trouble swallowing, yellow eyes, or fever?",
@@ -10916,7 +10949,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 35,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My weight's about the same. No trouble swallowing, no fevers, and nobody's said I look yellow.",
@@ -10954,7 +10987,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 36,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had diarrhea or chest pain?",
@@ -10966,7 +10999,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 37,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No diarrhea. No chest pain either.",
@@ -10994,7 +11027,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 38,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had easy bruising, bleeding gums, or nosebleeds?",
@@ -11006,7 +11039,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 38,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, I don't bruise easily. My gums don't bleed and I don't get nosebleeds.",
@@ -11040,7 +11073,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 39,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had night sweats?",
@@ -11052,7 +11085,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 40,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not had night sweats.",
@@ -11078,7 +11111,7 @@
         },
         {
           "seq": 54,
-          "t_ms": 41,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -11090,7 +11123,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 42,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Chronic knee pain after sports injuries, and I get migraines a few times a month.",
@@ -11120,7 +11153,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 43,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -11132,7 +11165,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 44,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Gallbladder out at twenty-five. And two children, both normal deliveries.",
@@ -11162,7 +11195,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 45,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -11174,7 +11207,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 45,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Ibuprofen, eight hundred milligrams, two or three times a day - I've been taking it for months for my knees. And the iron pills for the last week. I do not take a proton pump inhibitor.",
@@ -11208,7 +11241,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 46,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -11220,7 +11253,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 47,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Penicillin. My lips and face swelled up when I was in my twenties.",
@@ -11250,7 +11283,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 48,
+          "t_ms": 58,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -11262,7 +11295,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 49,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, never.",
@@ -11288,7 +11321,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 50,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -11300,7 +11333,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 51,
+          "t_ms": 61,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "A glass or two of wine on the weekend.",
@@ -11326,7 +11359,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 52,
+          "t_ms": 61,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -11338,7 +11371,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 53,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, nothing like that.",
@@ -11364,7 +11397,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 54,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -11376,7 +11409,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 55,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a school administrator.",
@@ -11402,7 +11435,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 56,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -11413,7 +11446,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 56,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband and two children.",
@@ -11439,7 +11472,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 57,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems run in your family?",
@@ -11451,7 +11484,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 58,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My mother died of stomach cancer at sixty-eight. My father's seventy-two, he has high blood pressure. I have one sister, she's well.",
@@ -11485,7 +11518,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 59,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -11497,7 +11530,7 @@
         },
         {
           "seq": 75,
-          "t_ms": 60,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant, but I have not taken a pregnancy test.",
@@ -11523,7 +11556,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 61,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -11534,7 +11567,7 @@
         },
         {
           "seq": 77,
-          "t_ms": 62,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 2 weeks ago.",
@@ -11560,7 +11593,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 63,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -11572,7 +11605,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 64,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I keep thinking about my mother. She had stomach cancer. That's what I'm really afraid of.",
@@ -11599,7 +11632,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 65,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What might make the care plan difficult for you to follow?",
@@ -11611,7 +11644,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 66,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am worried about getting to follow-up and knowing whom to call if I get worse.",
@@ -11637,7 +11670,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 67,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -11648,7 +11681,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 71,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "As I mentioned, I am worried about getting to follow-up and knowing whom to call if I get worse.",
@@ -11674,7 +11707,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 72,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -11685,17 +11718,17 @@
         },
         {
           "seq": 85,
-          "t_ms": 73,
+          "t_ms": 89,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 86,
-          "t_ms": 72,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -11707,7 +11740,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 10074,
+          "t_ms": 10090,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -11727,7 +11760,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 10074,
+          "t_ms": 10090,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Adult woman who appears tired and pale. Alert and oriented, in no acute distress.",
@@ -11749,7 +11782,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 50074,
+          "t_ms": 50090,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -11775,7 +11808,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 50074,
+          "t_ms": 50090,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Mildly tachycardic, regular rhythm. S1 and S2 present. No murmurs, rubs or gallops.",
@@ -11797,7 +11830,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 100074,
+          "t_ms": 100090,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -11825,7 +11858,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 100074,
+          "t_ms": 100090,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Clear to auscultation bilaterally, all fields. Good air movement.",
@@ -11848,20 +11881,22 @@
         },
         {
           "seq": 93,
-          "t_ms": 100074,
+          "t_ms": 100090,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "supine",
+            "previous_position": "seated",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 94,
-          "t_ms": 112074,
+          "t_ms": 112090,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect abdomen",
@@ -11886,7 +11921,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 112074,
+          "t_ms": 112090,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Abdomen flat, no distention. Well-healed laparoscopic scars in the right upper quadrant and umbilicus. No visible pulsation.",
@@ -11908,7 +11943,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 132074,
+          "t_ms": 132090,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -11931,7 +11966,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 132074,
+          "t_ms": 132090,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Hyperactive bowel sounds in all four quadrants. No bruits.",
@@ -11953,7 +11988,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 162074,
+          "t_ms": 162090,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -11977,7 +12012,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 162074,
+          "t_ms": 162090,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tympanitic throughout. No shifting dullness. Liver span approximately 9 cm in the midclavicular line.",
@@ -11999,7 +12034,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 202074,
+          "t_ms": 202090,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -12028,7 +12063,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 202074,
+          "t_ms": 202090,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Soft. Focal tenderness in the epigastrium. No rebound tenderness. No guarding. No masses, no hepatosplenomegaly.",
@@ -12072,7 +12107,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 224074,
+          "t_ms": 224090,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Abdominal special tests",
@@ -12096,7 +12131,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 224074,
+          "t_ms": 224090,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Murphy sign negative. McBurney point non-tender. No CVA tenderness.",
@@ -12118,7 +12153,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 242074,
+          "t_ms": 242090,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect eyes / pupils",
@@ -12142,7 +12177,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 242074,
+          "t_ms": 242090,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Conjunctival pallor is present bilaterally. Sclerae anicteric. Pupils equal and reactive.",
@@ -12184,7 +12219,7 @@
         },
         {
           "seq": 106,
-          "t_ms": 271074,
+          "t_ms": 271090,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -12209,7 +12244,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 271074,
+          "t_ms": 271090,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "On the inspected chest, back, arms and legs: skin pale. No telangiectasias, no jaundice, no petechiae or bruising.",
@@ -12231,20 +12266,22 @@
         },
         {
           "seq": 108,
-          "t_ms": 271074,
+          "t_ms": 271090,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "seated",
+            "previous_position": "supine",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 109,
-          "t_ms": 296074,
+          "t_ms": 296090,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -12266,7 +12303,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 296074,
+          "t_ms": 296090,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T5 through T9 bilaterally: paraspinal tissue texture change and tenderness, left greater than right. T7 rotated left.",
@@ -12292,7 +12329,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 313074,
+          "t_ms": 313090,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect / palpate extremities",
@@ -12316,7 +12353,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 313074,
+          "t_ms": 313090,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No edema. Nail beds pale. Capillary refill under two seconds.",
@@ -12346,7 +12383,7 @@
         },
         {
           "seq": 113,
-          "t_ms": 313074,
+          "t_ms": 313090,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend emergency evaluation today because the black tarry stool, symptoms and supplied blood count raise concern for bleeding. Ibuprofen can injure the stomach lining. We should stop it and discuss safer pain treatment with the clinician.",
@@ -12358,7 +12395,7 @@
         },
         {
           "seq": 114,
-          "t_ms": 313074,
+          "t_ms": 313090,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend emergency evaluation today because the black tarry stool, symptoms and supplied blood count raise concern for bleeding. Ibuprofen can injure the stomach lining. We should stop it and discuss safer pain treatment with the clinician.",
@@ -12370,7 +12407,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 313074,
+          "t_ms": 313090,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. I can manage that.",
@@ -12380,7 +12417,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 313074,
+          "t_ms": 313090,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -12393,7 +12430,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 313074,
+          "t_ms": 313090,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am worried about getting to follow-up and knowing whom to call if I get worse.",
@@ -12408,7 +12445,7 @@
         },
         {
           "seq": 118,
-          "t_ms": 313074,
+          "t_ms": 313090,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend telling the care team about this practical barrier so we can arrange a safe transport and contact plan with you.",
@@ -12420,7 +12457,7 @@
         },
         {
           "seq": 119,
-          "t_ms": 313074,
+          "t_ms": 313090,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend telling the care team about this practical barrier so we can arrange a safe transport and contact plan with you.",
@@ -12432,7 +12469,7 @@
         },
         {
           "seq": 120,
-          "t_ms": 313074,
+          "t_ms": 313090,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Thank you for explaining it.",
@@ -12442,12 +12479,12 @@
         }
       ],
       "note_words": 537,
-      "estimated_encounter_s": 728,
+      "estimated_encounter_s": 730,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 10
+        "unresolved_count": 9
       },
       "reasoning": [
         {
@@ -12631,7 +12668,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "55937d8515bf9c42b14f2725d31927d087d5de0ee8a224618148ecafd34410d9"
+      "case_hash": "55937d8515bf9c42b14f2725d31927d087d5de0ee8a224618148ecafd34410d9",
+      "engine_version": "4.0.4"
     }
   ]
 }

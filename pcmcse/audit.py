@@ -249,6 +249,9 @@ def _verbatim_obtained(claim, ledger):
     for ev in ledger.events:
         if ev["kind"] not in allowed:
             continue
+        if (claim["section"] == "S" and ev.get("meta", {}).get("kind") == "opening"
+                and claim.get("header") not in ("cc", "hpi", None)):
+            continue  # A verbatim opening is still not a medication or family history.
         raw = ev["text"]
         # Join complete independently punctuated findings without changing their
         # wording or polarity. Commas are deliberately excluded: 'no rebound,
@@ -263,6 +266,16 @@ def _verbatim_obtained(claim, ledger):
             for end in boundaries[i+1:i+6]:
                 source = normalize_clause(raw[start:end]).strip(" .;,:!?")
                 if target.strip("!?") == source:
+                    # 2026-09-12: a comma does not end a negated list. Retain
+                    # ordinary positive fragments such as "alert and oriented",
+                    # but "No murmurs, rubs or gallops" must not prove positive
+                    # "rubs or gallops" after its inherited negator is removed.
+                    sentence_start = max([0] + [m.end() for m in re.finditer(
+                        r"[;!?]|(?<!\d)\.(?!\d)", raw[:start])])
+                    if (nlp.is_negated(raw[sentence_start:end], source)
+                            and not (nlp.surface_is_negative(source)
+                                     or nlp.is_negated(source, source))):
+                        continue
                     return ev
     return None
 
@@ -530,6 +543,47 @@ def _short_obtained_history(claim, case, ledger):
         links[match[1]['seq']]=match[1];concepts.extend(match[2])
     return {'verdict':'supported','concepts':sorted(set(concepts)),'evidence':[_ev(e) for e in links.values()], 'explanation':'Each attribute in this statement matches the history actually delivered during the encounter.'}
 
+
+
+def _literal_social_history(claim, case, ledger):
+    """Remove grammar only from disclosed occupation/household statements.
+
+    No synonym, quantity, relationship or qualifier is inferred. Each complete
+    target phrase must have its own actual social-history event.
+    """
+    if claim['section'] != 'S' or claim.get('header') != 'sh':
+        return None
+    def tidy(value):
+        return nlp.normalize(value).strip(' .;,')
+    target = claim.get('eval_text') or claim['text']
+    targets = re.split(r',\s*(?=(?:(?:she|he|the patient) )?lives? with\b)', target, flags=re.I)
+    social_ids = {f['id'] for f in case.get('facts', []) if f.get('category') == 'social'}
+    candidates = []
+    for ev in ledger.by_kind(evidence.PATIENT):
+        if not social_ids.intersection(ev['meta'].get('facts_released', [])):
+            continue
+        for clause in re.split(r'[.!?;]', ev['text']):
+            spoken = tidy(clause)
+            occupation = re.fullmatch(r'i am (?:a|an) ([a-z -]+?)(?: and work from home)?', spoken)
+            household = re.fullmatch(r'i live with my ([a-z0-9 -]+(?: and [a-z0-9 -]+)?)', spoken)
+            if occupation:
+                candidates.append((occupation[1], ev))
+            if household:
+                candidates.append(('lives with ' + household[1], ev))
+    links = []
+    for item in targets:
+        item = re.sub(r'^(?:she|he|the patient) ', '', tidy(item))
+        item = re.sub(r'^live with ', 'lives with ', item)
+        item = re.sub(r'^(lives with) (?:my|her|his) ', r'\1 ', item)
+        match = next((ev for text, ev in candidates if item == text), None)
+        if match is None:
+            return None
+        links.append(match)
+    if not links:
+        return None
+    links = list({ev['seq']: ev for ev in links}.values())
+    return {'verdict': 'supported', 'concepts': [], 'evidence': [_ev(ev) for ev in links],
+            'explanation': 'This concise social history preserves the exact occupation or household wording actually reported; only grammatical framing was removed.'}
 
 def _semantic_history(text, claim, case, released, ledger):
     if claim['section'] != 'S': return {}, ''
@@ -1032,7 +1086,19 @@ def audit_note(parsed, ledger, case):
             findings.append(rec)
             continue
 
+        social = _literal_social_history(claim, case, ledger)
+        if social:
+            rec.update(social)
+            findings.append(rec)
+            continue
+
         scoped = scoped_claims.evaluate(claim,case,ledger,_opening_summary_target)
+        # A bounded parser may not understand a literal qualitative reflex
+        # finding. Preserve its safeguards for unknown modifiers, but let an
+        # exact delivered clause reach the existing verbatim proof below.
+        if (scoped and scoped['verdict'] == 'not_evaluated'
+                and _verbatim_obtained(claim, ledger)):
+            scoped = None
         if scoped:
             scoped['evidence']=[_ev(ev) for ev in scoped.pop('events')]
             rec.update(scoped)

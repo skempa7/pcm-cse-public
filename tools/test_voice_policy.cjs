@@ -142,8 +142,8 @@ function toggleContract(edition, label) {
   ok(!/hands_free\s*=/.test(silence), 'silencing patient audio changes hands-free');
   ok(!/rec\.(?:stop|abort)\(\)/.test(silence), 'silencing patient audio stops the microphone');
   ok(/speechSynthesis\?\.cancel\(\)/.test(silence), 'it does not cancel current speech');
-  ok(/if \(!voice\.speak\) return;/.test(src.slice(src.indexOf('function speak(text){'),
-                                                   src.indexOf('function speak(text){') + 200)),
+  ok(/if \(!voice\.speak\) return;/.test(src.slice(src.indexOf('function speak('),
+                                                   src.indexOf('function speak(') + 200)),
      'speak() does not honour the toggle');
   // No settings surface may survive anywhere.
   for (const dead of ['panelVoice', 'wireVoicePanel', 'btnVoicePanel', 'ewDeviceVoice',
@@ -155,7 +155,7 @@ function toggleContract(edition, label) {
 }
 
 const editions = [];
-for (const dir of [path.resolve(__dirname, '..'), path.resolve(__dirname, '../../pcm-cse-public')]) {
+for (const dir of [path.resolve(__dirname, '..')]) {
   if (fs.existsSync(path.join(dir, 'web/device-voice.js'))) editions.push(dir);
 }
 for (const e of editions) { run(e, path.basename(e)); toggleContract(e, path.basename(e) + ' toggle'); }

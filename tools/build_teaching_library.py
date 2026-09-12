@@ -5,7 +5,7 @@ Uses only an isolated temporary DB. Never copies its attempts into learner histo
 import sys,os,json,re,copy,tempfile,hashlib
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from pcmcse import cases,config,db,engine,evidence,physexam,patient,audit,note as note_module
+from pcmcse import cases,config,db,engine,evidence,physexam,patient,audit,version,note as note_module
 ROOT=Path(__file__).resolve().parents[1]
 PLANS=json.loads((ROOT/'pcmcse/teaching/plans.json').read_text())
 CATEGORIES=['chief_complaint','current_status','onset','chronology','location','radiation','quality','severity','timing','setting','alleviating','aggravating','treatment','past_occurrence','associated','pertinent_negative','pmh','psh','medications','allergies','social','family','obgyn','fife','concern']
@@ -109,19 +109,36 @@ def build(c,variantmeta):
         base=cases.resolve(c['id']);basefacts={f['id']:f for f in base['facts']}
         for f in c['facts']:
             if f.get('value')!=basefacts.get(f['id'],{}).get('value'):differences.append({'topic':f['id'],'base':basefacts.get(f['id'],{}).get('value','Not authored'),'current':f.get('value','')})
-    return {'case_id':c['id'],'variant_id':c['variant_id'],'variant_label':variantmeta.get('label','Core presentation'),'title':c['title'],'patient':{k:c['patient'][k] for k in ('name','age','sex')},'system':c['system'],'doorway':c['station'],'plan':plan,'goals':c.get('teaching',{}).get('goals',[]),'variant_guidance':variantmeta.get('teaching_difference','Use this core presentation to learn the sequence before transferring to a variation.'),'differences':differences,'timeline':timeline,'note':note,'note_links':links,'ledger':s.ledger.events,'note_words':words,'estimated_encounter_s':secs,'estimate_method':'150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.','missing_example_facts':missing,'documentation_audit':{'unsupported':[x['text'] for x in checked['claims'] if x['verdict'] in ('unsupported','contradicts','contradicted','contradictory')],'unresolved_count':sum(x['verdict']=='not_evaluated' for x in checked['claims'])},'reasoning':c.get('teaching',{}).get('reasoning_map',[]),'differentials':c.get('differentials',[]),'omissions':c.get('teaching',{}).get('common_omissions',[]),'recall':[{'prompt':'Before naming a diagnosis, what is the key distinction in this presentation?','answer':plan['pivot']},{'prompt':'Which specific examination or safety step changes what you can document?','answer':plan['exam']},{'prompt':'Name one tempting documentation or reasoning error and how you will prevent it.','answer':plan['avoid']}],'course_sources':COURSE,'sources':c.get('sources',[]),'review_status':'Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.','case_hash':hashlib.sha256(json.dumps(c,sort_keys=True).encode()).hexdigest()}
+    return {'case_id':c['id'],'variant_id':c['variant_id'],'variant_label':variantmeta.get('label','Core presentation'),'title':c['title'],'patient':{k:c['patient'][k] for k in ('name','age','sex')},'system':c['system'],'doorway':c['station'],'plan':plan,'goals':c.get('teaching',{}).get('goals',[]),'variant_guidance':variantmeta.get('teaching_difference','Use this core presentation to learn the sequence before transferring to a variation.'),'differences':differences,'timeline':timeline,'note':note,'note_links':links,'ledger':s.ledger.events,'note_words':words,'estimated_encounter_s':secs,'estimate_method':'150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.','missing_example_facts':missing,'documentation_audit':{'unsupported':[x['text'] for x in checked['claims'] if x['verdict'] in ('unsupported','contradicts','contradicted','contradictory')],'unresolved_count':sum(x['verdict']=='not_evaluated' for x in checked['claims'])},'reasoning':c.get('teaching',{}).get('reasoning_map',[]),'differentials':c.get('differentials',[]),'omissions':c.get('teaching',{}).get('common_omissions',[]),'recall':[{'prompt':'Before naming a diagnosis, what is the key distinction in this presentation?','answer':plan['pivot']},{'prompt':'Which specific examination or safety step changes what you can document?','answer':plan['exam']},{'prompt':'Name one tempting documentation or reasoning error and how you will prevent it.','answer':plan['avoid']}],'course_sources':COURSE,'sources':c.get('sources',[]),'review_status':'Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.','case_hash':hashlib.sha256(json.dumps(c,sort_keys=True).encode()).hexdigest(),'engine_version':version.ENGINE_VERSION}
 
 def main():
-    out=ROOT/'pcmcse/teaching/lessons';out.mkdir(exist_ok=True)
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--report', type=Path, help='Optional local verification report path.')
+    args = parser.parse_args()
+    out=ROOT/'pcmcse/teaching/lessons'
     original=db.DB_PATH
-    with tempfile.TemporaryDirectory() as tmp:
-        db.DB_PATH=str(Path(tmp)/'examples.sqlite');db.init();report=[]
-        for cid,base in cases.all_cases().items():
-            lessons=[build(cases.resolve(cid,v.get('id','base')),v) for v in [{}]+base.get('variants',[])]
-            (out/(cid+'.json')).write_text(json.dumps({'case_id':cid,'review_status':lessons[0]['review_status'],'walkthroughs':lessons},indent=2))
-            report.extend({k:l[k] for k in ('case_id','variant_id','note_words','estimated_encounter_s','missing_example_facts','case_hash')} for l in lessons)
+    built={};report=[]
+    try:
+        with tempfile.TemporaryDirectory() as tmp:
+            db.DB_PATH=str(Path(tmp)/'examples.sqlite');db.init()
+            for cid,base in cases.all_cases().items():
+                lessons=[build(cases.resolve(cid,v.get('id','base')),v) for v in [{}]+base.get('variants',[])]
+                built[cid]={'case_id':cid,'review_status':lessons[0]['review_status'],'walkthroughs':lessons}
+                report.extend({k:l[k] for k in ('case_id','variant_id','note_words','estimated_encounter_s','missing_example_facts','case_hash','engine_version')} for l in lessons)
+    finally:
         db.DB_PATH=original
-    (ROOT/'docs/development/learning-experience').mkdir(parents=True,exist_ok=True)
-    (ROOT/'docs/development/learning-experience/teaching-build.json').write_text(json.dumps(report,indent=2))
-    print(json.dumps({'presentations':len(cases.all_cases()),'walkthroughs':len(report),'missing':[(r['case_id'],r['variant_id'],r['missing_example_facts']) for r in report if r['missing_example_facts']],'over_time':[(r['case_id'],r['variant_id'],r['estimated_encounter_s'],r['note_words']) for r in report if r['estimated_encounter_s']>840 or r['note_words']>550]},indent=2))
+    missing=[(r['case_id'],r['variant_id'],r['missing_example_facts']) for r in report if r['missing_example_facts']]
+    over_time=[(r['case_id'],r['variant_id'],r['estimated_encounter_s'],r['note_words']) for r in report if r['estimated_encounter_s']>840 or r['note_words']>550]
+    # Build and validate the entire library before replacing any published lesson.
+    # A failed dialogue must not leave the library half regenerated.
+    if missing or over_time:
+        raise ValueError(json.dumps({'missing':missing,'over_time':over_time}))
+    out.mkdir(exist_ok=True)
+    for cid,payload in built.items():
+        (out/(cid+'.json')).write_text(json.dumps(payload,indent=2))
+    if args.report:
+        args.report.parent.mkdir(parents=True,exist_ok=True)
+        args.report.write_text(json.dumps(report,indent=2))
+    print(json.dumps({'presentations':len(built),'walkthroughs':len(report),'missing':missing,'over_time':over_time},indent=2))
 if __name__=='__main__':main()

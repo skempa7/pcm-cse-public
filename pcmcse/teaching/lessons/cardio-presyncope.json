@@ -55,7 +55,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             4,
@@ -377,7 +377,7 @@
           "kind": "dialogue",
           "section": "Relevant background",
           "student": "What medical conditions have you been diagnosed with?",
-          "patient": "Hypertension no heart disease or diabetes.",
+          "patient": "Hypertension, no heart disease or diabetes.",
           "why": "",
           "event_ids": [
             52,
@@ -518,7 +518,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your mother had?",
-          "patient": "Mother has hypertension",
+          "patient": "My mother is sixty-two and she has high blood pressure.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             72,
@@ -532,7 +532,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your father had?",
-          "patient": "father died of pneumonia at 80",
+          "patient": "My father died of pneumonia when he was eighty.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             74,
@@ -546,7 +546,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems have your siblings had?",
-          "patient": "one healthy brother.",
+          "patient": "I have one brother, he's thirty-two and he's healthy.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             76,
@@ -588,7 +588,7 @@
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             82,
@@ -735,7 +735,7 @@
         }
       ],
       "note": {
-        "S": "cc: Lightheadedness after standing\n\nHPI: 29-year-old man with new lightheadedness on standing; onset 3 days ago. Describes dimming vision and near-fainting rather than spinning. Episodes last about 20 seconds; holds a chair for support. Sitting or lying down stops symptoms. Rapid standing and hot showers provoke them; now rises more slowly. Antihypertensive dose increased last week. No previous similar episodes.\n\nPerspective: I am scared I will fall while I am alone.\n\nPMH: Hypertension; no heart disease or diabetes.\n\nPSH: No operations or prior hospital admissions.\n\nMeds: Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One glass of wine weekly. No recreational drugs. Librarian; lives with wife; has been drinking less water to avoid bathroom trips.\n\nFH: Mother has hypertension; father died of pneumonia at 80; one healthy brother.\n\nROS: Neurologic - Reports presyncope. Denies vertigo. Denies focal weakness. Cardiovascular - Denies syncope. Denies palpitations. Denies chest pain. Gastrointestinal - Denies melena. Denies vomiting. Denies diarrhea.\n",
+        "S": "cc: Lightheadedness after standing\n\nHPI: 29-year-old man with new lightheadedness on standing; onset 3 days ago. Describes dimming vision and near-fainting rather than spinning. Episodes last about 20 seconds; holds a chair for support. Sitting or lying down stops symptoms. Rapid standing and hot showers provoke them; now rises more slowly. Antihypertensive dose increased last week. No previous similar episodes.\n\nPerspective: I am scared I will fall while I am alone.\n\nPMH: Hypertension; no heart disease or diabetes.\n\nPSH: No operations or prior hospital admissions.\n\nMeds: Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One glass of wine weekly. No recreational drugs. Librarian; lives with wife; has been drinking less water to avoid bathroom trips.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of pneumonia when he was eighty.; I have one brother, he's thirty-two and he's healthy.\n\nROS: Neurologic - Reports presyncope. Denies vertigo. Denies focal weakness. Cardiovascular - Denies syncope. Denies palpitations. Denies chest pain. Gastrointestinal - Denies melena. Denies vomiting. Denies diarrhea.\n",
         "O": "Vitals: T 98.3 F oral, P 78 bpm, BP 126/76 mmHg seated, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Comfortable while seated.\nHeart: Regular rhythm, S1 and S2 without murmur.\nLungs: In the examined posterior fields, breath sounds clear bilaterally.\nGeneral: After 5 minutes supine BP 126/76, pulse 78; at 1 minute standing BP 102/64, pulse 92 with lightheadedness; at 3 minutes standing BP 104/66, pulse 90.\nMusculoskeletal: Strength 5/5 in both arms and legs.\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Medication-associated orthostatic hypotension",
@@ -955,16 +955,18 @@
             67
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
           "statement": "lives with wife;",
-          "event_ids": [],
+          "event_ids": [
+            69
+          ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -978,7 +980,7 @@
         },
         {
           "section": "S",
-          "statement": "Mother has hypertension;",
+          "statement": "My mother is sixty-two and she has high blood pressure.;",
           "event_ids": [
             73
           ],
@@ -988,7 +990,7 @@
         },
         {
           "section": "S",
-          "statement": "father died of pneumonia at 80;",
+          "statement": "My father died of pneumonia when he was eighty.;",
           "event_ids": [
             75
           ],
@@ -998,7 +1000,7 @@
         },
         {
           "section": "S",
-          "statement": "one healthy brother.",
+          "statement": "I have one brother, he's thirty-two and he's healthy.",
           "event_ids": [
             77
           ],
@@ -1302,8 +1304,7 @@
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
@@ -1313,35 +1314,39 @@
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
           }
         },
         {
           "seq": 6,
-          "t_ms": 2,
+          "t_ms": 0,
           "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "kind": "consent"
+            "courtesy_id": "consent_exam",
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 7,
-          "t_ms": 0,
+          "t_ms": 4,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
           "seq": 8,
-          "t_ms": 3,
+          "t_ms": 5,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -1353,7 +1358,7 @@
         },
         {
           "seq": 9,
-          "t_ms": 4,
+          "t_ms": 7,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I keep feeling like I might faint when I stand up.",
@@ -1379,7 +1384,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 5,
+          "t_ms": 7,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your symptoms first begin?",
@@ -1390,7 +1395,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 6,
+          "t_ms": 9,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It began 3 days ago.",
@@ -1416,7 +1421,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 7,
+          "t_ms": 9,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -1427,7 +1432,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 8,
+          "t_ms": 10,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It feels like lightheadedness in my head, not spinning.",
@@ -1453,7 +1458,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 9,
+          "t_ms": 11,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -1465,7 +1470,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 10,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "There is no pain radiating anywhere.",
@@ -1491,7 +1496,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 10,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -1503,7 +1508,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 11,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My vision dims and I feel faint.",
@@ -1529,7 +1534,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 12,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -1541,7 +1546,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 13,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I need to hold a chair when I feel faint.",
@@ -1567,7 +1572,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 14,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the lightheadedness settle after the spell?",
@@ -1579,7 +1584,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 15,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It happens after standing, then settles.",
@@ -1605,7 +1610,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 16,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How long does each episode last?",
@@ -1617,7 +1622,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 17,
+          "t_ms": 21,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Each spell lasts about 20 seconds.",
@@ -1643,19 +1648,19 @@
         },
         {
           "seq": 24,
-          "t_ms": 18,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have there been any recent changes to your medicines?",
           "meta": {
-            "open_question": true,
+            "closed_question": true,
             "mode": "type",
             "intent": "question"
           }
         },
         {
           "seq": 25,
-          "t_ms": 18,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My blood pressure medicine dose increased last week.",
@@ -1681,7 +1686,7 @@
         },
         {
           "seq": 26,
-          "t_ms": 19,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -1693,7 +1698,7 @@
         },
         {
           "seq": 27,
-          "t_ms": 20,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Sitting or lying down makes it stop.",
@@ -1719,7 +1724,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 21,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -1731,7 +1736,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 22,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Standing quickly and hot showers provoke it.",
@@ -1757,7 +1762,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 23,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -1769,7 +1774,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 24,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I started standing more slowly.",
@@ -1795,7 +1800,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 24,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -1807,7 +1812,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 25,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not had this before.",
@@ -1833,7 +1838,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 26,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you feel lightheaded or as if you might faint?",
@@ -1845,7 +1850,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 27,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My vision dims when I stand.",
@@ -1871,7 +1876,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 28,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does it feel as though the room is spinning?",
@@ -1883,7 +1888,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 29,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The room does not spin.",
@@ -1909,7 +1914,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 30,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed weakness on one side of your body?",
@@ -1921,7 +1926,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 30,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have no one-sided weakness.",
@@ -1947,7 +1952,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 31,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you actually passed out or lost consciousness?",
@@ -1959,7 +1964,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 32,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not actually lost consciousness.",
@@ -1985,7 +1990,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 34,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed your heart racing or beating irregularly?",
@@ -1997,7 +2002,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 35,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My heart does not race during it.",
@@ -2023,7 +2028,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 36,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any chest pain?",
@@ -2035,7 +2040,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 37,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No chest pain.",
@@ -2061,7 +2066,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 38,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have your stools been black, tarry, or bloody?",
@@ -2073,7 +2078,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 38,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No black or bloody stools.",
@@ -2099,7 +2104,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 39,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you been vomiting?",
@@ -2111,7 +2116,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 40,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not vomited.",
@@ -2137,7 +2142,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 41,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had diarrhea?",
@@ -2149,7 +2154,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 42,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No diarrhea.",
@@ -2175,7 +2180,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 43,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -2187,10 +2192,10 @@
         },
         {
           "seq": 53,
-          "t_ms": 49,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Hypertension no heart disease or diabetes.",
+          "text": "Hypertension, no heart disease or diabetes.",
           "meta": {
             "facts_released": [
               "history_pmh_1",
@@ -2220,7 +2225,7 @@
         },
         {
           "seq": 54,
-          "t_ms": 50,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -2232,7 +2237,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 51,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No operations or prior hospital admissions.",
@@ -2258,7 +2263,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 52,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -2270,7 +2275,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 53,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My hydrochlorothiazide was increased from 12.5 mg to 25 mg daily last week.",
@@ -2296,7 +2301,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 54,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -2308,7 +2313,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 55,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No known drug allergies.",
@@ -2334,7 +2339,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 56,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -2346,7 +2351,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 56,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Never smoked tobacco.",
@@ -2372,7 +2377,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 57,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -2384,7 +2389,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 58,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "One glass of wine weekly.",
@@ -2410,7 +2415,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 59,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -2422,7 +2427,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 60,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -2448,7 +2453,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 61,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -2460,7 +2465,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 62,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a librarian.",
@@ -2486,7 +2491,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 63,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -2497,7 +2502,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 63,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my wife.",
@@ -2523,7 +2528,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 64,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How much water do you drink, and can you take water breaks?",
@@ -2535,7 +2540,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 65,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have been drinking less water to avoid bathroom trips.",
@@ -2561,7 +2566,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 66,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -2573,10 +2578,10 @@
         },
         {
           "seq": 73,
-          "t_ms": 67,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Mother has hypertension",
+          "text": "My mother is sixty-two and she has high blood pressure.",
           "meta": {
             "facts_released": [
               "history_family_1"
@@ -2584,7 +2589,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has hypertension"
+                "value": "My mother is sixty-two and she has high blood pressure."
               }
             },
             "volunteered": false,
@@ -2599,7 +2604,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 68,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your father had?",
@@ -2611,10 +2616,10 @@
         },
         {
           "seq": 75,
-          "t_ms": 69,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "father died of pneumonia at 80",
+          "text": "My father died of pneumonia when he was eighty.",
           "meta": {
             "facts_released": [
               "history_family_2"
@@ -2622,7 +2627,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father died of pneumonia at 80"
+                "value": "My father died of pneumonia when he was eighty."
               }
             },
             "volunteered": false,
@@ -2637,7 +2642,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 70,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -2649,10 +2654,10 @@
         },
         {
           "seq": 77,
-          "t_ms": 71,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "one healthy brother.",
+          "text": "I have one brother, he's thirty-two and he's healthy.",
           "meta": {
             "facts_released": [
               "history_family_3"
@@ -2660,7 +2665,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "one healthy brother."
+                "value": "I have one brother, he's thirty-two and he's healthy."
               }
             },
             "volunteered": false,
@@ -2675,7 +2680,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 72,
+          "t_ms": 89,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -2687,7 +2692,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 73,
+          "t_ms": 91,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am scared I will fall while I am alone.",
@@ -2713,7 +2718,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 74,
+          "t_ms": 91,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -2724,7 +2729,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 77,
+          "t_ms": 101,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "As I mentioned, I am scared I will fall while I am alone.",
@@ -2750,7 +2755,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 78,
+          "t_ms": 102,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -2761,17 +2766,17 @@
         },
         {
           "seq": 83,
-          "t_ms": 79,
+          "t_ms": 103,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 84,
-          "t_ms": 78,
+          "t_ms": 102,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -2783,7 +2788,7 @@
         },
         {
           "seq": 85,
-          "t_ms": 10080,
+          "t_ms": 10104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -2804,7 +2809,7 @@
         },
         {
           "seq": 86,
-          "t_ms": 10080,
+          "t_ms": 10104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert. Comfortable while seated.",
@@ -2832,7 +2837,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 50080,
+          "t_ms": 50104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -2858,7 +2863,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 50080,
+          "t_ms": 50104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rhythm, S1 and S2 without murmur.",
@@ -2880,7 +2885,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 91080,
+          "t_ms": 91104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -2905,7 +2910,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 91080,
+          "t_ms": 91104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, breath sounds clear bilaterally.",
@@ -2927,7 +2932,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 271080,
+          "t_ms": 271104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Orthostatic vital signs",
@@ -2951,7 +2956,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 271080,
+          "t_ms": 271104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "After 5 minutes supine BP 126/76, pulse 78; at 1 minute standing BP 102/64, pulse 92 with lightheadedness; at 3 minutes standing BP 104/66, pulse 90.",
@@ -2973,7 +2978,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 295080,
+          "t_ms": 295104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Muscle strength testing",
@@ -2996,7 +3001,7 @@
         },
         {
           "seq": 94,
-          "t_ms": 295080,
+          "t_ms": 295104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Strength 5/5 in both arms and legs.",
@@ -3018,7 +3023,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 320080,
+          "t_ms": 320104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -3040,7 +3045,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 320080,
+          "t_ms": 320104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T1 paraspinal tissue texture change with mild tenderness on the right.",
@@ -3062,7 +3067,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 339080,
+          "t_ms": 339104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -3084,7 +3089,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 339080,
+          "t_ms": 339104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -3106,7 +3111,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 339080,
+          "t_ms": 339104,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend checking the blood pressure pattern and reviewing your medicines because the near-faint feeling occurs with standing. We also need to consider heart rhythm problems and other causes. Nearly fainting is different from definitely losing consciousness.",
@@ -3118,7 +3123,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 339080,
+          "t_ms": 339104,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend checking the blood pressure pattern and reviewing your medicines because the near-faint feeling occurs with standing. We also need to consider heart rhythm problems and other causes. Nearly fainting is different from definitely losing consciousness.",
@@ -3130,7 +3135,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 339080,
+          "t_ms": 339104,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -3140,7 +3145,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 339080,
+          "t_ms": 339104,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -3153,7 +3158,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 339080,
+          "t_ms": 339104,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am scared I will fall while I am alone.",
@@ -3168,7 +3173,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 339080,
+          "t_ms": 339104,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "That is a reasonable concern. Sit or lie down as soon as you feel faint and ask for help with walking or stairs for now. I recommend reviewing the recent medicine change and standing measurements with the clinician, and making a practical plan for when you are alone.",
@@ -3180,7 +3185,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 339080,
+          "t_ms": 339104,
           "phase": "encounter",
           "kind": "counseling",
           "text": "That is a reasonable concern. Sit or lie down as soon as you feel faint and ask for help with walking or stairs for now. I recommend reviewing the recent medicine change and standing measurements with the clinician, and making a practical plan for when you are alone.",
@@ -3192,7 +3197,7 @@
         },
         {
           "seq": 106,
-          "t_ms": 339080,
+          "t_ms": 339104,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. Thank you for explaining that.",
@@ -3201,13 +3206,13 @@
           }
         }
       ],
-      "note_words": 441,
-      "estimated_encounter_s": 658,
+      "note_words": 457,
+      "estimated_encounter_s": 668,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 6
+        "unresolved_count": 4
       },
       "reasoning": [
         {
@@ -3313,7 +3318,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "fa1568f8ac17f2b0accdca1759b1ff8c8331bf711d3b7f162f1820f5877f419a"
+      "case_hash": "369342128117db2062498325e52776b5417adbafe9e73ea6ee9d7ab288abd645",
+      "engine_version": "4.0.4"
     },
     {
       "case_id": "cardio-presyncope",
@@ -3374,7 +3380,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             4,
@@ -3696,7 +3702,7 @@
           "kind": "dialogue",
           "section": "Relevant background",
           "student": "What medical conditions have you been diagnosed with?",
-          "patient": "Hypertension no heart disease or diabetes.",
+          "patient": "Hypertension, no heart disease or diabetes.",
           "why": "",
           "event_ids": [
             52,
@@ -3837,7 +3843,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your mother had?",
-          "patient": "Mother has hypertension",
+          "patient": "My mother is sixty-two and she has high blood pressure.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             72,
@@ -3851,7 +3857,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your father had?",
-          "patient": "father died of pneumonia at 80",
+          "patient": "My father died of pneumonia when he was eighty.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             74,
@@ -3865,7 +3871,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems have your siblings had?",
-          "patient": "one healthy brother.",
+          "patient": "I have one brother, he's thirty-two and he's healthy.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             76,
@@ -3907,7 +3913,7 @@
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             82,
@@ -4054,7 +4060,7 @@
         }
       ],
       "note": {
-        "S": "cc: Lightheadedness after standing\n\nHPI: 29-year-old man with new lightheadedness on standing; onset 1 day ago. Describes dimming vision and near-fainting rather than spinning. Episodes last about 20 seconds; holds a chair for support. Sitting or lying down stops symptoms. Rapid standing and hot showers provoke them; now rises more slowly. Antihypertensive dose increased last week. No previous similar episodes.\n\nPerspective: I am scared I will fall while I am alone.\n\nPMH: Hypertension; no heart disease or diabetes.\n\nPSH: No operations or prior hospital admissions.\n\nMeds: Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One glass of wine weekly. No recreational drugs. Librarian; lives with wife; has been drinking less water to avoid bathroom trips.\n\nFH: Mother has hypertension; father died of pneumonia at 80; one healthy brother.\n\nROS: Neurologic - Reports presyncope. Denies vertigo. Denies focal weakness. Cardiovascular - Denies syncope. Denies palpitations. Denies chest pain. Gastrointestinal - Denies melena. Denies vomiting. Denies diarrhea.\n",
+        "S": "cc: Lightheadedness after standing\n\nHPI: 29-year-old man with new lightheadedness on standing; onset 1 day ago. Describes dimming vision and near-fainting rather than spinning. Episodes last about 20 seconds; holds a chair for support. Sitting or lying down stops symptoms. Rapid standing and hot showers provoke them; now rises more slowly. Antihypertensive dose increased last week. No previous similar episodes.\n\nPerspective: I am scared I will fall while I am alone.\n\nPMH: Hypertension; no heart disease or diabetes.\n\nPSH: No operations or prior hospital admissions.\n\nMeds: Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One glass of wine weekly. No recreational drugs. Librarian; lives with wife; has been drinking less water to avoid bathroom trips.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of pneumonia when he was eighty.; I have one brother, he's thirty-two and he's healthy.\n\nROS: Neurologic - Reports presyncope. Denies vertigo. Denies focal weakness. Cardiovascular - Denies syncope. Denies palpitations. Denies chest pain. Gastrointestinal - Denies melena. Denies vomiting. Denies diarrhea.\n",
         "O": "Vitals: T 98.3 F oral, P 78 bpm, BP 126/76 mmHg seated, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Comfortable while seated.\nHeart: Regular rhythm, S1 and S2 without murmur.\nLungs: In the examined posterior fields, breath sounds clear bilaterally.\nGeneral: After 5 minutes supine BP 126/76, pulse 78; at 1 minute standing BP 102/64, pulse 92 with lightheadedness; at 3 minutes standing BP 104/66, pulse 90.\nMusculoskeletal: Strength 5/5 in both arms and legs.\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Medication-associated orthostatic hypotension",
@@ -4274,16 +4280,18 @@
             67
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
           "statement": "lives with wife;",
-          "event_ids": [],
+          "event_ids": [
+            69
+          ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -4297,7 +4305,7 @@
         },
         {
           "section": "S",
-          "statement": "Mother has hypertension;",
+          "statement": "My mother is sixty-two and she has high blood pressure.;",
           "event_ids": [
             73
           ],
@@ -4307,7 +4315,7 @@
         },
         {
           "section": "S",
-          "statement": "father died of pneumonia at 80;",
+          "statement": "My father died of pneumonia when he was eighty.;",
           "event_ids": [
             75
           ],
@@ -4317,7 +4325,7 @@
         },
         {
           "section": "S",
-          "statement": "one healthy brother.",
+          "statement": "I have one brother, he's thirty-two and he's healthy.",
           "event_ids": [
             77
           ],
@@ -4615,52 +4623,55 @@
         },
         {
           "seq": 4,
-          "t_ms": 1,
+          "t_ms": 4,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
           "seq": 5,
-          "t_ms": 1,
+          "t_ms": 4,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
+          }
+        },
+        {
+          "seq": 6,
+          "t_ms": 4,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
-          }
-        },
-        {
-          "seq": 6,
-          "t_ms": 6,
-          "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
-          "meta": {
-            "kind": "consent"
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 7,
-          "t_ms": 1,
+          "t_ms": 15,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
           "seq": 8,
-          "t_ms": 7,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -4672,7 +4683,7 @@
         },
         {
           "seq": 9,
-          "t_ms": 11,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I keep feeling like I might faint when I stand up.",
@@ -4698,7 +4709,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 12,
+          "t_ms": 21,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your symptoms first begin?",
@@ -4709,7 +4720,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 13,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It began 1 day ago.",
@@ -4735,7 +4746,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 14,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -4746,7 +4757,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 15,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It feels like lightheadedness in my head, not spinning.",
@@ -4772,7 +4783,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 16,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -4784,7 +4795,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 16,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "There is no pain radiating anywhere.",
@@ -4810,7 +4821,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 17,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -4822,7 +4833,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 18,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My vision dims and I feel faint.",
@@ -4848,7 +4859,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 19,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -4860,7 +4871,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 20,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I need to hold a chair when I feel faint.",
@@ -4886,7 +4897,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 21,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the lightheadedness settle after the spell?",
@@ -4898,7 +4909,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 21,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It happens after standing, then settles.",
@@ -4924,7 +4935,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 22,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How long does each episode last?",
@@ -4936,7 +4947,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 23,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Each spell lasts about 20 seconds.",
@@ -4962,19 +4973,19 @@
         },
         {
           "seq": 24,
-          "t_ms": 24,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have there been any recent changes to your medicines?",
           "meta": {
-            "open_question": true,
+            "closed_question": true,
             "mode": "type",
             "intent": "question"
           }
         },
         {
           "seq": 25,
-          "t_ms": 25,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My blood pressure medicine dose increased last week.",
@@ -5000,7 +5011,7 @@
         },
         {
           "seq": 26,
-          "t_ms": 26,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -5012,7 +5023,7 @@
         },
         {
           "seq": 27,
-          "t_ms": 26,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Sitting or lying down makes it stop.",
@@ -5038,7 +5049,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 27,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -5050,7 +5061,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 28,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Standing quickly and hot showers provoke it.",
@@ -5076,7 +5087,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 29,
+          "t_ms": 50,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -5088,7 +5099,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 30,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I started standing more slowly.",
@@ -5114,7 +5125,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 31,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -5126,7 +5137,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 31,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not had this before.",
@@ -5152,7 +5163,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 32,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you feel lightheaded or as if you might faint?",
@@ -5164,7 +5175,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 33,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My vision dims when I stand.",
@@ -5190,7 +5201,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 34,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does it feel as though the room is spinning?",
@@ -5202,7 +5213,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 35,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The room does not spin.",
@@ -5228,7 +5239,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 36,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed weakness on one side of your body?",
@@ -5240,7 +5251,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 37,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have no one-sided weakness.",
@@ -5266,7 +5277,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 37,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you actually passed out or lost consciousness?",
@@ -5278,7 +5289,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 38,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not actually lost consciousness.",
@@ -5304,7 +5315,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 39,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed your heart racing or beating irregularly?",
@@ -5316,7 +5327,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 40,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My heart does not race during it.",
@@ -5342,7 +5353,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 41,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any chest pain?",
@@ -5354,7 +5365,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 42,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No chest pain.",
@@ -5380,7 +5391,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 43,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have your stools been black, tarry, or bloody?",
@@ -5392,7 +5403,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 43,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No black or bloody stools.",
@@ -5418,7 +5429,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 44,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you been vomiting?",
@@ -5430,7 +5441,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 45,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not vomited.",
@@ -5456,7 +5467,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 46,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had diarrhea?",
@@ -5468,7 +5479,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 47,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No diarrhea.",
@@ -5494,7 +5505,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 48,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -5506,10 +5517,10 @@
         },
         {
           "seq": 53,
-          "t_ms": 55,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Hypertension no heart disease or diabetes.",
+          "text": "Hypertension, no heart disease or diabetes.",
           "meta": {
             "facts_released": [
               "history_pmh_1",
@@ -5539,7 +5550,7 @@
         },
         {
           "seq": 54,
-          "t_ms": 56,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -5551,7 +5562,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 57,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No operations or prior hospital admissions.",
@@ -5577,7 +5588,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 58,
+          "t_ms": 89,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -5589,7 +5600,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 59,
+          "t_ms": 91,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My hydrochlorothiazide was increased from 12.5 mg to 25 mg daily last week.",
@@ -5615,7 +5626,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 60,
+          "t_ms": 91,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -5627,7 +5638,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 61,
+          "t_ms": 93,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No known drug allergies.",
@@ -5653,7 +5664,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 62,
+          "t_ms": 94,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -5665,7 +5676,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 62,
+          "t_ms": 95,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Never smoked tobacco.",
@@ -5691,7 +5702,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 63,
+          "t_ms": 96,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -5703,7 +5714,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 64,
+          "t_ms": 97,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "One glass of wine weekly.",
@@ -5729,7 +5740,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 65,
+          "t_ms": 98,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -5741,7 +5752,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 66,
+          "t_ms": 99,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -5767,7 +5778,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 67,
+          "t_ms": 100,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -5779,7 +5790,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 68,
+          "t_ms": 101,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a librarian.",
@@ -5805,7 +5816,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 69,
+          "t_ms": 102,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -5816,7 +5827,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 69,
+          "t_ms": 103,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my wife.",
@@ -5842,7 +5853,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 70,
+          "t_ms": 104,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How much water do you drink, and can you take water breaks?",
@@ -5854,7 +5865,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 71,
+          "t_ms": 106,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have been drinking less water to avoid bathroom trips.",
@@ -5880,7 +5891,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 72,
+          "t_ms": 106,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -5892,10 +5903,10 @@
         },
         {
           "seq": 73,
-          "t_ms": 73,
+          "t_ms": 108,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Mother has hypertension",
+          "text": "My mother is sixty-two and she has high blood pressure.",
           "meta": {
             "facts_released": [
               "history_family_1"
@@ -5903,7 +5914,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has hypertension"
+                "value": "My mother is sixty-two and she has high blood pressure."
               }
             },
             "volunteered": false,
@@ -5918,7 +5929,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 74,
+          "t_ms": 109,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your father had?",
@@ -5930,10 +5941,10 @@
         },
         {
           "seq": 75,
-          "t_ms": 75,
+          "t_ms": 110,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "father died of pneumonia at 80",
+          "text": "My father died of pneumonia when he was eighty.",
           "meta": {
             "facts_released": [
               "history_family_2"
@@ -5941,7 +5952,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father died of pneumonia at 80"
+                "value": "My father died of pneumonia when he was eighty."
               }
             },
             "volunteered": false,
@@ -5956,7 +5967,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 76,
+          "t_ms": 111,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -5968,10 +5979,10 @@
         },
         {
           "seq": 77,
-          "t_ms": 76,
+          "t_ms": 112,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "one healthy brother.",
+          "text": "I have one brother, he's thirty-two and he's healthy.",
           "meta": {
             "facts_released": [
               "history_family_3"
@@ -5979,7 +5990,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "one healthy brother."
+                "value": "I have one brother, he's thirty-two and he's healthy."
               }
             },
             "volunteered": false,
@@ -5994,7 +6005,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 77,
+          "t_ms": 113,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -6006,7 +6017,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 78,
+          "t_ms": 114,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am scared I will fall while I am alone.",
@@ -6032,7 +6043,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 79,
+          "t_ms": 115,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -6043,7 +6054,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 82,
+          "t_ms": 125,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "As I mentioned, I am scared I will fall while I am alone.",
@@ -6069,7 +6080,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 83,
+          "t_ms": 126,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -6080,17 +6091,17 @@
         },
         {
           "seq": 83,
-          "t_ms": 84,
+          "t_ms": 128,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 84,
-          "t_ms": 83,
+          "t_ms": 126,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -6102,7 +6113,7 @@
         },
         {
           "seq": 85,
-          "t_ms": 10085,
+          "t_ms": 10129,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -6123,7 +6134,7 @@
         },
         {
           "seq": 86,
-          "t_ms": 10085,
+          "t_ms": 10129,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert. Comfortable while seated.",
@@ -6151,7 +6162,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 50085,
+          "t_ms": 50129,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -6177,7 +6188,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 50085,
+          "t_ms": 50129,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rhythm, S1 and S2 without murmur.",
@@ -6199,7 +6210,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 91085,
+          "t_ms": 91129,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -6224,7 +6235,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 91085,
+          "t_ms": 91129,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, breath sounds clear bilaterally.",
@@ -6246,7 +6257,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 271085,
+          "t_ms": 271129,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Orthostatic vital signs",
@@ -6270,7 +6281,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 271085,
+          "t_ms": 271129,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "After 5 minutes supine BP 126/76, pulse 78; at 1 minute standing BP 102/64, pulse 92 with lightheadedness; at 3 minutes standing BP 104/66, pulse 90.",
@@ -6292,7 +6303,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 295085,
+          "t_ms": 295129,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Muscle strength testing",
@@ -6315,7 +6326,7 @@
         },
         {
           "seq": 94,
-          "t_ms": 295085,
+          "t_ms": 295129,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Strength 5/5 in both arms and legs.",
@@ -6337,7 +6348,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 320085,
+          "t_ms": 320129,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -6359,7 +6370,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 320085,
+          "t_ms": 320129,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T1 paraspinal tissue texture change with mild tenderness on the right.",
@@ -6381,7 +6392,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 339085,
+          "t_ms": 339129,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -6403,7 +6414,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 339085,
+          "t_ms": 339129,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -6425,7 +6436,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 339085,
+          "t_ms": 339129,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend checking the blood pressure pattern and reviewing your medicines because the near-faint feeling occurs with standing. We also need to consider heart rhythm problems and other causes. Nearly fainting is different from definitely losing consciousness.",
@@ -6437,7 +6448,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 339085,
+          "t_ms": 339129,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend checking the blood pressure pattern and reviewing your medicines because the near-faint feeling occurs with standing. We also need to consider heart rhythm problems and other causes. Nearly fainting is different from definitely losing consciousness.",
@@ -6449,7 +6460,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 339085,
+          "t_ms": 339129,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -6459,7 +6470,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 339085,
+          "t_ms": 339129,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -6472,7 +6483,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 339085,
+          "t_ms": 339129,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am scared I will fall while I am alone.",
@@ -6487,7 +6498,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 339085,
+          "t_ms": 339129,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "That is a reasonable concern. Sit or lie down as soon as you feel faint and ask for help with walking or stairs for now. I recommend reviewing the recent medicine change and standing measurements with the clinician, and making a practical plan for when you are alone.",
@@ -6499,7 +6510,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 339085,
+          "t_ms": 339129,
           "phase": "encounter",
           "kind": "counseling",
           "text": "That is a reasonable concern. Sit or lie down as soon as you feel faint and ask for help with walking or stairs for now. I recommend reviewing the recent medicine change and standing measurements with the clinician, and making a practical plan for when you are alone.",
@@ -6511,7 +6522,7 @@
         },
         {
           "seq": 106,
-          "t_ms": 339085,
+          "t_ms": 339129,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. Thank you for explaining that.",
@@ -6520,13 +6531,13 @@
           }
         }
       ],
-      "note_words": 441,
-      "estimated_encounter_s": 658,
+      "note_words": 457,
+      "estimated_encounter_s": 668,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 6
+        "unresolved_count": 4
       },
       "reasoning": [
         {
@@ -6632,7 +6643,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "a231f7be4d2a235d35e329fe12089464b498e45a017db508ac1210f4f5115874"
+      "case_hash": "db589580bcece72a733fea14230f1df8f9febded1ea8eee435ca36a88185feb2",
+      "engine_version": "4.0.4"
     },
     {
       "case_id": "cardio-presyncope",
@@ -6693,7 +6705,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             4,
@@ -7015,7 +7027,7 @@
           "kind": "dialogue",
           "section": "Relevant background",
           "student": "What medical conditions have you been diagnosed with?",
-          "patient": "Hypertension no heart disease or diabetes.",
+          "patient": "Hypertension, no heart disease or diabetes.",
           "why": "",
           "event_ids": [
             52,
@@ -7156,7 +7168,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your mother had?",
-          "patient": "Mother has hypertension",
+          "patient": "My mother is sixty-two and she has high blood pressure.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             72,
@@ -7170,7 +7182,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems has your father had?",
-          "patient": "father died of pneumonia at 80",
+          "patient": "My father died of pneumonia when he was eighty.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             74,
@@ -7184,7 +7196,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What health problems have your siblings had?",
-          "patient": "one healthy brother.",
+          "patient": "I have one brother, he's thirty-two and he's healthy.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
             76,
@@ -7226,22 +7238,22 @@
           "kind": "dialogue",
           "section": "Acknowledge",
           "student": "Thank you for explaining that. I can understand why this is concerning.",
-          "patient": "As I mentioned, I am scared I will fall while I am alone. Like I said, I have stairs at home and nobody there during the day.",
+          "patient": "As I mentioned, I have stairs at home and nobody there during the day. Like I said, I am scared I will fall while I am alone. Like I said, I have stairs at home and nobody there during the day.",
           "why": "",
           "event_ids": [
             82,
             83
           ],
           "fact_ids": [
-            "patient_concern",
-            "care_barrier"
+            "care_barrier",
+            "patient_concern"
           ]
         },
         {
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             84,
@@ -7388,7 +7400,7 @@
         }
       ],
       "note": {
-        "S": "cc: Lightheadedness after standing\n\nHPI: 29-year-old man with new lightheadedness on standing; onset 3 days ago. Describes dimming vision and near-fainting rather than spinning. Episodes last about 20 seconds; holds a chair for support. Sitting or lying down stops symptoms. Rapid standing and hot showers provoke them; now rises more slowly. Antihypertensive dose increased last week. No previous similar episodes.\n\nPerspective: I am scared I will fall while I am alone.\n\nPMH: Hypertension; no heart disease or diabetes.\n\nPSH: No operations or prior hospital admissions.\n\nMeds: Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One glass of wine weekly. No recreational drugs. Librarian; lives with wife; has been drinking less water to avoid bathroom trips.\n\nFH: Mother has hypertension; father died of pneumonia at 80; one healthy brother.\n\nROS: Neurologic - Reports presyncope. Denies vertigo. Denies focal weakness. Cardiovascular - Denies syncope. Denies palpitations. Denies chest pain. Gastrointestinal - Denies melena. Denies vomiting. Denies diarrhea.\n\nPatient concern: I have stairs at home and nobody there during the day.\n",
+        "S": "cc: Lightheadedness after standing\n\nHPI: 29-year-old man with new lightheadedness on standing; onset 3 days ago. Describes dimming vision and near-fainting rather than spinning. Episodes last about 20 seconds; holds a chair for support. Sitting or lying down stops symptoms. Rapid standing and hot showers provoke them; now rises more slowly. Antihypertensive dose increased last week. No previous similar episodes.\n\nPerspective: I am scared I will fall while I am alone.\n\nPMH: Hypertension; no heart disease or diabetes.\n\nPSH: No operations or prior hospital admissions.\n\nMeds: Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One glass of wine weekly. No recreational drugs. Librarian; lives with wife; has been drinking less water to avoid bathroom trips.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of pneumonia when he was eighty.; I have one brother, he's thirty-two and he's healthy.\n\nROS: Neurologic - Reports presyncope. Denies vertigo. Denies focal weakness. Cardiovascular - Denies syncope. Denies palpitations. Denies chest pain. Gastrointestinal - Denies melena. Denies vomiting. Denies diarrhea.\n\nPatient concern: I have stairs at home and nobody there during the day.\n",
         "O": "Vitals: T 98.3 F oral, P 78 bpm, BP 126/76 mmHg seated, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Comfortable while seated.\nHeart: Regular rhythm, S1 and S2 without murmur.\nLungs: In the examined posterior fields, breath sounds clear bilaterally.\nGeneral: After 5 minutes supine BP 126/76, pulse 78; at 1 minute standing BP 102/64, pulse 92 with lightheadedness; at 3 minutes standing BP 104/66, pulse 90.\nMusculoskeletal: Strength 5/5 in both arms and legs.\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Medication-associated orthostatic hypotension",
@@ -7608,16 +7620,18 @@
             67
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
           "statement": "lives with wife;",
-          "event_ids": [],
+          "event_ids": [
+            69
+          ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -7631,7 +7645,7 @@
         },
         {
           "section": "S",
-          "statement": "Mother has hypertension;",
+          "statement": "My mother is sixty-two and she has high blood pressure.;",
           "event_ids": [
             73
           ],
@@ -7641,7 +7655,7 @@
         },
         {
           "section": "S",
-          "statement": "father died of pneumonia at 80;",
+          "statement": "My father died of pneumonia when he was eighty.;",
           "event_ids": [
             75
           ],
@@ -7651,7 +7665,7 @@
         },
         {
           "section": "S",
-          "statement": "one healthy brother.",
+          "statement": "I have one brother, he's thirty-two and he's healthy.",
           "event_ids": [
             77
           ],
@@ -7965,8 +7979,7 @@
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
@@ -7976,35 +7989,39 @@
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
           }
         },
         {
           "seq": 6,
-          "t_ms": 3,
+          "t_ms": 1,
           "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "kind": "consent"
+            "courtesy_id": "consent_exam",
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 7,
-          "t_ms": 1,
+          "t_ms": 3,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
           "seq": 8,
-          "t_ms": 4,
+          "t_ms": 3,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -8042,7 +8059,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 6,
+          "t_ms": 5,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your symptoms first begin?",
@@ -8079,7 +8096,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 8,
+          "t_ms": 7,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -8116,7 +8133,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 10,
+          "t_ms": 9,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -8128,7 +8145,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 11,
+          "t_ms": 10,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "There is no pain radiating anywhere.",
@@ -8306,19 +8323,19 @@
         },
         {
           "seq": 24,
-          "t_ms": 19,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have there been any recent changes to your medicines?",
           "meta": {
-            "open_question": true,
+            "closed_question": true,
             "mode": "type",
             "intent": "question"
           }
         },
         {
           "seq": 25,
-          "t_ms": 19,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My blood pressure medicine dose increased last week.",
@@ -8432,7 +8449,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 24,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I started standing more slowly.",
@@ -8458,7 +8475,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 25,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -8470,7 +8487,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 26,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not had this before.",
@@ -8508,7 +8525,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 28,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My vision dims when I stand.",
@@ -8534,7 +8551,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 29,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does it feel as though the room is spinning?",
@@ -8546,7 +8563,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 30,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The room does not spin.",
@@ -8572,7 +8589,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 30,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed weakness on one side of your body?",
@@ -8584,7 +8601,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 31,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have no one-sided weakness.",
@@ -8610,7 +8627,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 32,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you actually passed out or lost consciousness?",
@@ -8622,7 +8639,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 33,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not actually lost consciousness.",
@@ -8648,7 +8665,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 34,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed your heart racing or beating irregularly?",
@@ -8660,7 +8677,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 35,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My heart does not race during it.",
@@ -8686,7 +8703,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 36,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any chest pain?",
@@ -8698,7 +8715,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 36,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No chest pain.",
@@ -8724,7 +8741,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 37,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have your stools been black, tarry, or bloody?",
@@ -8736,7 +8753,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 38,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No black or bloody stools.",
@@ -8762,7 +8779,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 39,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you been vomiting?",
@@ -8774,7 +8791,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 40,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not vomited.",
@@ -8800,7 +8817,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 41,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had diarrhea?",
@@ -8812,7 +8829,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 42,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No diarrhea.",
@@ -8838,7 +8855,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 43,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -8850,10 +8867,10 @@
         },
         {
           "seq": 53,
-          "t_ms": 47,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Hypertension no heart disease or diabetes.",
+          "text": "Hypertension, no heart disease or diabetes.",
           "meta": {
             "facts_released": [
               "history_pmh_1",
@@ -8883,7 +8900,7 @@
         },
         {
           "seq": 54,
-          "t_ms": 48,
+          "t_ms": 50,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -8895,7 +8912,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 49,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No operations or prior hospital admissions.",
@@ -8921,7 +8938,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 50,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -8933,7 +8950,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 51,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My hydrochlorothiazide was increased from 12.5 mg to 25 mg daily last week.",
@@ -8959,7 +8976,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 52,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -8971,7 +8988,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 53,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No known drug allergies.",
@@ -8997,7 +9014,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 54,
+          "t_ms": 56,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -9009,7 +9026,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 54,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Never smoked tobacco.",
@@ -9035,7 +9052,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 55,
+          "t_ms": 58,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -9047,7 +9064,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 56,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "One glass of wine weekly.",
@@ -9073,7 +9090,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 57,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -9085,7 +9102,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 58,
+          "t_ms": 61,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -9111,7 +9128,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 59,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -9123,7 +9140,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 60,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a librarian.",
@@ -9149,7 +9166,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 61,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -9160,7 +9177,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 61,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my wife.",
@@ -9186,7 +9203,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 63,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How much water do you drink, and can you take water breaks?",
@@ -9198,7 +9215,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 63,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have been drinking less water to avoid bathroom trips.",
@@ -9224,7 +9241,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 65,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -9236,10 +9253,10 @@
         },
         {
           "seq": 73,
-          "t_ms": 65,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Mother has hypertension",
+          "text": "My mother is sixty-two and she has high blood pressure.",
           "meta": {
             "facts_released": [
               "history_family_1"
@@ -9247,7 +9264,7 @@
             "concepts": {
               "history_family_1": {
                 "polarity": "positive",
-                "value": "Mother has hypertension"
+                "value": "My mother is sixty-two and she has high blood pressure."
               }
             },
             "volunteered": false,
@@ -9262,7 +9279,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 66,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your father had?",
@@ -9274,10 +9291,10 @@
         },
         {
           "seq": 75,
-          "t_ms": 67,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "father died of pneumonia at 80",
+          "text": "My father died of pneumonia when he was eighty.",
           "meta": {
             "facts_released": [
               "history_family_2"
@@ -9285,7 +9302,7 @@
             "concepts": {
               "history_family_2": {
                 "polarity": "positive",
-                "value": "father died of pneumonia at 80"
+                "value": "My father died of pneumonia when he was eighty."
               }
             },
             "volunteered": false,
@@ -9300,7 +9317,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 68,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -9312,10 +9329,10 @@
         },
         {
           "seq": 77,
-          "t_ms": 69,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "one healthy brother.",
+          "text": "I have one brother, he's thirty-two and he's healthy.",
           "meta": {
             "facts_released": [
               "history_family_3"
@@ -9323,7 +9340,7 @@
             "concepts": {
               "history_family_3": {
                 "polarity": "positive",
-                "value": "one healthy brother."
+                "value": "I have one brother, he's thirty-two and he's healthy."
               }
             },
             "volunteered": false,
@@ -9338,7 +9355,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 70,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -9350,7 +9367,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 71,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am scared I will fall while I am alone.",
@@ -9376,7 +9393,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 72,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What might make the care plan difficult for you to follow?",
@@ -9388,7 +9405,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 73,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have stairs at home and nobody there during the day.",
@@ -9414,7 +9431,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 74,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -9425,31 +9442,33 @@
         },
         {
           "seq": 83,
-          "t_ms": 78,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "As I mentioned, I am scared I will fall while I am alone. Like I said, I have stairs at home and nobody there during the day.",
+          "text": "As I mentioned, I have stairs at home and nobody there during the day. Like I said, I am scared I will fall while I am alone. Like I said, I have stairs at home and nobody there during the day.",
           "meta": {
             "facts_released": [
-              "patient_concern",
-              "care_barrier"
+              "care_barrier",
+              "patient_concern"
             ],
             "concepts": {
-              "patient_concern": {
-                "polarity": "positive",
-                "value": "I am scared I will fall while I am alone."
-              },
               "care_barrier": {
                 "polarity": "positive",
                 "value": "I have stairs at home and nobody there during the day."
+              },
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "I am scared I will fall while I am alone."
               }
             },
             "volunteered": false,
             "kind": "answer",
             "checklist_hits": [
+              "h_care_barrier",
               "h_patient_concern",
               "h_care_barrier"
             ],
+            "composed_asks": 2,
             "categories": [
               "fife",
               "fife"
@@ -9458,7 +9477,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 79,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -9469,17 +9488,17 @@
         },
         {
           "seq": 85,
-          "t_ms": 80,
+          "t_ms": 89,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 86,
-          "t_ms": 79,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -9491,7 +9510,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 10081,
+          "t_ms": 10090,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -9512,7 +9531,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 10081,
+          "t_ms": 10090,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert. Comfortable while seated.",
@@ -9540,7 +9559,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 50081,
+          "t_ms": 50090,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -9566,7 +9585,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 50081,
+          "t_ms": 50090,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rhythm, S1 and S2 without murmur.",
@@ -9588,7 +9607,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 91081,
+          "t_ms": 91090,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -9613,7 +9632,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 91081,
+          "t_ms": 91090,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, breath sounds clear bilaterally.",
@@ -9635,7 +9654,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 271081,
+          "t_ms": 271090,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Orthostatic vital signs",
@@ -9659,7 +9678,7 @@
         },
         {
           "seq": 94,
-          "t_ms": 271081,
+          "t_ms": 271090,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "After 5 minutes supine BP 126/76, pulse 78; at 1 minute standing BP 102/64, pulse 92 with lightheadedness; at 3 minutes standing BP 104/66, pulse 90.",
@@ -9681,7 +9700,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 295081,
+          "t_ms": 295090,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Muscle strength testing",
@@ -9704,7 +9723,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 295081,
+          "t_ms": 295090,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Strength 5/5 in both arms and legs.",
@@ -9726,7 +9745,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 320081,
+          "t_ms": 320090,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -9748,7 +9767,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 320081,
+          "t_ms": 320090,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T1 paraspinal tissue texture change with mild tenderness on the right.",
@@ -9770,7 +9789,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 339081,
+          "t_ms": 339090,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -9792,7 +9811,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 339081,
+          "t_ms": 339090,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -9814,7 +9833,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 339081,
+          "t_ms": 339090,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend checking the blood pressure pattern and reviewing your medicines because the near-faint feeling occurs with standing. We also need to consider heart rhythm problems and other causes. Nearly fainting is different from definitely losing consciousness.",
@@ -9826,7 +9845,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 339081,
+          "t_ms": 339090,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend checking the blood pressure pattern and reviewing your medicines because the near-faint feeling occurs with standing. We also need to consider heart rhythm problems and other causes. Nearly fainting is different from definitely losing consciousness.",
@@ -9838,7 +9857,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 339081,
+          "t_ms": 339090,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -9848,7 +9867,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 339081,
+          "t_ms": 339090,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -9861,7 +9880,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 339081,
+          "t_ms": 339090,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have stairs at home and nobody there during the day.",
@@ -9876,7 +9895,7 @@
         },
         {
           "seq": 106,
-          "t_ms": 339081,
+          "t_ms": 339090,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Let us plan around the stairs and the time you are alone. Sit or lie down if symptoms begin, and ask someone to help with stairs until you have been assessed. We can discuss a practical contact if you feel unsafe at home.",
@@ -9888,7 +9907,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 339081,
+          "t_ms": 339090,
           "phase": "encounter",
           "kind": "counseling",
           "text": "Let us plan around the stairs and the time you are alone. Sit or lie down if symptoms begin, and ask someone to help with stairs until you have been assessed. We can discuss a practical contact if you feel unsafe at home.",
@@ -9900,7 +9919,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 339081,
+          "t_ms": 339090,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I will sit or lie down if it starts again and ask for help with the stairs while this is being assessed.",
@@ -9912,13 +9931,13 @@
           }
         }
       ],
-      "note_words": 469,
-      "estimated_encounter_s": 677,
+      "note_words": 485,
+      "estimated_encounter_s": 692,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 6
+        "unresolved_count": 4
       },
       "reasoning": [
         {
@@ -10024,7 +10043,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "a81d96a6135db21deae6035dde5d69a704eae547718fad4ef5c7cb1319262157"
+      "case_hash": "a83b2b7269d81312fb2d2f88b5169a2b6c78cd4ebb022d84c62555e9b350d8d1",
+      "engine_version": "4.0.4"
     }
   ]
 }

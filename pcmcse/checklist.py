@@ -129,9 +129,16 @@ def _score_physical(item, performed, attempted, refusals, courtesy, ledger):
     if not rec:
         if mid in attempted:
             base["status"] = "selected"
-            base["detail"] = ("You named this examination but did not specify it "
-                              "enough to perform: %s"
-                              % attempted[mid][0]["meta"].get("reason", ""))
+            latest = attempted[mid][-1]
+            status = latest["meta"].get("status")
+            messages = {
+                "interrupted": "This examination was interrupted before completion; it released no findings.",
+                "in_progress": "This examination is still in progress; findings are not available yet.",
+                "not_simulated": "This examination has no authored result in this simulation; no finding was released.",
+            }
+            base["detail"] = messages.get(status) or (
+                "You named this examination but did not specify it enough to perform: %s"
+                % latest["meta"].get("reason", ""))
         return base
 
     need = item.get("components") or []

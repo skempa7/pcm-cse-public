@@ -824,7 +824,7 @@ function positionRoomFrame(){
   const b=slot.getBoundingClientRect();host.hidden=false;Object.assign(host.style,{left:(b.left+window.scrollX)+'px',top:(b.top+window.scrollY)+'px',width:b.width+'px',height:b.height+'px'});
 }
 function mountPatientFrame(){
-  let host=$('#roomFrameHost');if(!host){host=document.createElement('div');host.id='roomFrameHost';host.innerHTML=`<iframe id="unityFrame" src="patient3d/index.html?v=878ddfba16" title="Interactive patient and examination room" allow="autoplay"></iframe>`;document.body.append(host);roomFrameReady=false;$('#unityFrame').onload=notifyPublicState;}
+  let host=$('#roomFrameHost');if(!host){host=document.createElement('div');host.id='roomFrameHost';host.innerHTML=`<iframe id="unityFrame" src="patient3d/index.html?v=363eae844d" title="Interactive patient and examination room" allow="autoplay"></iframe>`;document.body.append(host);roomFrameReady=false;$('#unityFrame').onload=notifyPublicState;}
   roomViewportObserver?.disconnect();roomViewportObserver=new ResizeObserver(positionRoomFrame);for(const target of [$('#roomViewport'),$('#patientVoiceSettings'),document.body])if(target)roomViewportObserver.observe(target);positionRoomFrame();if(roomFrameReady&&$('#unityStatus'))$('#unityStatus').textContent=patientDisplayLabel();notifyPublicState();
 }
 window.addEventListener('resize',positionRoomFrame);document.addEventListener('scroll',positionRoomFrame,true);
@@ -966,7 +966,7 @@ function renderRoom(){
         ${m.coach?'<button class="btn ghost" id="quickUnstuck" type="button">Get unstuck</button>':''}
         <span class="tiny muted" id="unityStatus">${patientDisplayLabel()}</span>
       </div>
-      <details class="scene-help"><summary>View &amp; examination controls</summary><p>Use Face, Upper body, Full patient or Reset to frame your patient. Choose Adjust view for deliberate camera movement. Ordinary scrolling and browser zoom remain available. Select a body region or choose Examine patient; a region opens your choices, and only a completed examination releases its findings. Expressions and demeanor do not establish examination findings.</p><button class="btn sm" id="unityFallback" type="button">Accessible examination controls</button><p class="tiny muted">Keyboard: Alt+1 conversation · Alt+2 examination · Alt+3 doorway chart.</p></details>
+      <details class="scene-help"><summary>View &amp; examination controls</summary><p>Use Face, Upper body, Full patient or Reset to frame your patient. Drag the patient view to orbit and use the magnifying-glass buttons to zoom. Ordinary scrolling and browser zoom remain available. Use Physical Exam to perform examinations; completed findings are saved in Notes. Expressions and demeanor do not establish examination findings.</p><button class="btn sm" id="unityFallback" type="button">Accessible examination controls</button><p class="tiny muted">Keyboard: Alt+1 conversation · Alt+2 examination · Alt+3 doorway chart.</p></details>
     </section>
     <section class="convo card" aria-label="Talk with your patient">
       <div class="conversation-heading"><div><span class="eyebrow">Listen · ask · connect</span><h2>Conversation</h2></div><span class="tiny muted" id="turnCount"></span><button class="btn sm ghost" id="toggleRecord" aria-pressed="false">Full record</button></div>
@@ -1142,12 +1142,23 @@ async function sendSay(textOverride, confidence){
   const r = await api(`/api/session/${S.id}/say`, {
     text, mode: S.interaction_mode === 'voice' ? 'voice' : 'type', confidence: conf
   });
+  if(r.error && r.error!=='closed'){
+    // A failed request can arrive after the student starts typing their next
+    // question. Preserve both, including dictated text, without auto-resending
+    // an action that may already have reached the engine.
+    const here=S?.id===sid&&S.phase==='encounter';
+    const newer=here&&input?input.value:(draftValue('conversation',sid)||'');
+    const recovered=newer.trim()===text?text:[text,newer].filter(Boolean).join('\n');
+    keepDraft('conversation',sid,recovered);
+    if(here){if(input){input.value=recovered;autogrow(input);}pushTurn('bad','Simulator',
+      (r.message||r.error)+ ' Your question is kept in the text box. Check Notes before sending it again.');setPatientState('idle');}
+    return;
+  }
+  if(!r.error&&textOverride===undefined)clearMatchingDraft('conversation',sid,text);
   if(!S||S.id!==sid)return;
-  if (r.error === 'offline') { if(input&&textOverride===undefined){input.value=text;autogrow(input);}pushTurn('bad', 'Simulator', r.message); setPatientState('idle'); return; }
   if (r.error === 'closed') { pushTurn('sys', 'Simulator', r.message); return refresh(); }
   if (r.uncertain) pushTurn('sys', 'Simulator', 'Speech recognition confidence was low for ' +
     'that turn. The text is kept as heard and will not be scored as a definite error.');
-  if(!r.error&&textOverride===undefined)clearMatchingDraft('conversation',sid,text);
   if (r.state) S = Object.assign({}, S, r.state);
   const events = r.events || [];
   // An examination that is still occupying its time owns the patient's state,
@@ -1853,7 +1864,7 @@ function setupVoice(){
         'audio-capture':'No microphone was found.',
         'network':'Speech recognition lost its network connection.' })[ev.error] ||
         ('Microphone error: ' + ev.error + '.');
-      voiceBar(esc(msg) + ' Nothing you have said is lost, and typing keeps working. ' +
+      voiceBar(esc(msg) + ' Your recorded conversation is retained. Unrecognized speech may need repeating; typing keeps working. ' +
         '<button class="btn sm" data-act="retry" type="button">Try the microphone again</button> ' +
         '<button class="btn sm" data-act="type" type="button">Type instead</button>', true);
       alertNow(msg + ' Typing still works.');
@@ -1916,7 +1927,7 @@ function resumeListeningAfterPatient(){
 
 function startListening(){
   if(!voice.rec||S?.phase!=='encounter')return;
-  voice.failed=false;voice.wanted=true;
+  voice.failed=false;voice.wanted=true;voice.hands_free=true;
   interruptPatient();
   scheduleListening();
   $('#btnMic')?.setAttribute('aria-pressed','true');
@@ -1931,6 +1942,16 @@ function stopListening(){
   const el = $('#interim'); if (el) el.textContent = '';
   setPatientState('idle');
 }
+/* Escape cancels buffered recognition as well as patient speech. Stop() would
+   finalize speech after the user had explicitly canceled it. */
+function cancelListening(){
+  voice.wanted=false;voice.hands_free=false;voice.recSession=null;clearTimeout(voice.restartTimer);
+  try{voice.rec?.abort();}catch(e){}
+  voice.listening=false;
+  $('#btnMic')?.setAttribute('aria-pressed','false');
+  const el=$('#interim');if(el)el.textContent='';
+  voiceBar('Microphone stopped. Click it to listen again.');
+}
 /* A turn the recognizer was unsure about is not sent blind: it lands in the
    composer, marked, so it can be corrected before the patient ever hears it. */
 function stageUncertain(text, conf){
@@ -1943,9 +1964,10 @@ function stageUncertain(text, conf){
   voice.pending = conf;
 }
 function interruptPatient(){
+  cancelPendingSpeech();
   window.pcmAIInterrupt?.();
   window.pcmNaturalVoice?.stop();voice.muteUntil=Date.now()+350;
-  voice.patientSpeaking=false;voice.suppressed=false;voice.lastFinal=-1;
+  voice.patientSpeaking=false;voice.suppressed=false;
   setPatientState('idle');notifyPublicState();
   const speechStatus=$('#naturalVoiceStatus');if(speechStatus)speechStatus.textContent='Speech stopped.';
   try { if (window.speechSynthesis && window.speechSynthesis.speaking) {
@@ -1960,6 +1982,7 @@ function interruptPatient(){
    the learner cutting the patient off mid-sentence. It also leaves the
    clinician's microphone and hands-free preference untouched. */
 function silencePatientAudio(){
+  cancelPendingSpeech();
   try{ window.speechSynthesis?.cancel(); }catch(e){}
   voice.patientSpeaking=false;
   setPatientState('idle');
@@ -1969,8 +1992,10 @@ function silencePatientAudio(){
   if(voice.suppressed) resumeListeningAfterPatient();
 }
 function stopVoice(){
+  cancelPendingSpeech();
   window.pcmNaturalVoice?.stop();voice.muteUntil=0;voice.patientSpeaking=false;
   voice.listening = false; voice.hands_free = false; voice.wanted = false; voice.suppressed = false;
+  voice.recSession=null;clearTimeout(voice.restartTimer);
   voice.lastFinal = -1; voice.lastSentText = ''; voice.lastSentAt = 0;
   // abort() discards anything buffered; stop() would finalize and deliver it
   // after the listener believes it has been switched off.
@@ -2020,16 +2045,27 @@ window.pcmSpeakSegment=(text,{onstart,onend,onerror}={})=>{
   }catch(e){onerror?.();}
 };
 window.pcmSpeechOptions={enabled:()=>voice.speak,phase:()=>S?.phase,setEnabled:value=>{voice.speak=!!value;LS.set('prefs',Object.assign({},LS.get('prefs')||{},{speak:voice.speak}));if(!voice.speak)silencePatientAudio();window.dispatchEvent(new Event('pcm-speech-preference'));}};
-function speak(text){
+function cancelPendingSpeech(){
+  if(voice.waitForVoices)window.speechSynthesis?.removeEventListener('voiceschanged',voice.waitForVoices);
+  voice.waitForVoices=null;
+}
+function speak(text,voiceRetry=false){
+  cancelPendingSpeech();
   if (!voice.speak) return;                       // toggle is authoritative
   if (!window.speechSynthesis) { setPatientState('idle'); return; }
   try {
     const u = new SpeechSynthesisUtterance(text);
     const info = configurePatientSpeech(u);
-    if (info && info.loading) {
+    if (info && info.loading && !voiceRetry) {
       // Chrome delivers its voice list asynchronously. Wait for exactly one
       // voiceschanged, then decide once -- no polling, no growing queue.
-      const retry = () => { window.speechSynthesis.removeEventListener('voiceschanged', retry); speak(text); };
+      const sid=S?.id;
+      const retry=()=>{
+        if(voice.waitForVoices!==retry)return;
+        cancelPendingSpeech();
+        if(S?.id===sid&&S.phase==='encounter'&&voice.speak)speak(text,true);
+      };
+      voice.waitForVoices=retry;
       window.speechSynthesis.addEventListener('voiceschanged', retry, { once: true });
       return;
     }
@@ -2043,7 +2079,10 @@ function speak(text){
     suppressListeningForPatient();
     voice.muteUntil = Date.now() + 60000;
     window.speechSynthesis.speak(u);
-  } catch(e) { setPatientState('idle'); }
+  } catch(e) {
+    if(voice.suppressed)resumeListeningAfterPatient();else setPatientState('idle');
+    toast('Patient audio could not play. The answer is available in Talk.');
+  }
 }
 
 /* ======================================================================== */
@@ -3083,7 +3122,7 @@ window.addEventListener('beforeunload', e => {
   if (S && ((S.phase === 'note' && noteSave.state !== 'saved')||(S.phase==='organize'&&scratchNeedsSave&&!scratchProtected))) { e.preventDefault(); e.returnValue = ''; }
 });
 /* Keyboard actions are scoped to the encounter; Space remains page scrolling.
-   The focused microphone button owns its own Space/Enter hold behavior. */
+   The focused microphone button uses native Space/Enter click behavior. */
 view.addEventListener('keydown',e=>{
   if(!S||S.phase!=='encounter'||overlay||e.metaKey||e.ctrlKey||e.isComposing)return;
   // Alt+2 and Alt+3 type a character on macOS. Firing a navigation shortcut
@@ -3092,7 +3131,7 @@ view.addEventListener('keydown',e=>{
   const typing=/^(INPUT|TEXTAREA)$/.test(e.target?.tagName||'')||e.target?.isContentEditable;
   if(e.altKey&&!e.shiftKey&&!typing){const id={'1':'say','2':'toolExam','3':'toolChart'}[e.key];
     if(!id)return;e.preventDefault();if(id==='say')$('#say')?.focus();else $('#'+id)?.click();return;}
-  if(e.key==='Escape'&&!e.altKey&&!e.shiftKey)interruptPatient();
+  if(e.key==='Escape'&&!e.altKey&&!e.shiftKey){cancelListening();interruptPatient();}
 });
 
 (async function boot(){

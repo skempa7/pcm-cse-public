@@ -646,9 +646,20 @@ def question_clauses(question):
     return [part.strip() for part in re.split(r'[?;]|,\s*(?='+starters+r')|,?\s+and\s+(?='+starters+r')',question,flags=re.I) if part.strip()]
 
 
+def functional_effect_question(question):
+    """Interference with activity is different from the symptom stopping."""
+    q = nlp.normalize(question)
+    if _instruction_or_other_person(question):
+        return False
+    return bool(re.search(r"\b(?:stop|prevent|keep|limit) you (?:from )?"
+                          r"(?:doing|working|walking|sleeping|functioning|moving)\b"
+                          r"|\binterfere with (?:your )?(?:work|sleep|activities|daily life)\b", q))
+
+
 def temporal_question_dimensions(question):
     """Explicit temporal requests; progression never stands in for constancy."""
     q=nlp.normalize(question);dims=set()
+    if functional_effect_question(question):return dims
     if re.search(r'constant|continuous|come and go|comes and goes|intermittent|all the time|(?:has|does|did).*stop|(?:has|have).*let up|between.*(?:spell|episode|wave|bowel movement)|feel well between|settle after|every urination',q):dims.add('constancy')
     if re.search(r'how (?:often|frequent)|how many times|frequency',q):dims.add('frequency')
     clauses=question_clauses(q)
@@ -1113,7 +1124,7 @@ class PatientEngine:
         # not a statement plus a question, and splitting it lets the first half
         # reach a clinical fact. `identity` is deliberately absent: "what is
         # your name and what brings you in?" must still compose.
-        if conversation_route(utterance) in ('introduction', 'diagnostic_uncertainty', 'onset_activity'):
+        if conversation_route(utterance) in ('introduction', 'diagnostic_uncertainty'):
             return True
         # An authored example question is a unit the case author declared.
         # "Have you had any surgeries or hospital admissions?" is written once
@@ -1610,6 +1621,12 @@ class PatientEngine:
             if nlp.normalize(pair['student']).strip(' .?') == text.strip(' .?'):
                 meta['kind']='education_response'
                 return pair['patient']
+        family = self._family_history_hits(utterance)
+        if family is not None:
+            if family:
+                return dialogue.join_spoken([self._say(f, state, meta) for f, _ in family[:3]])
+            meta.update(kind="non_answer", no_information=True, unscripted_topic=True)
+            return "I am not sure about that. I cannot give you a definite answer."
         # Authored single-fact example questions are an explicit disclosure route.
         # Ambiguous shared prompts still use the contextual matcher below.
         exact = [f for f in self.facts.values() if any(nlp.normalize(q).strip(' .?') == text.strip(' .?') for q in f.get('example_questions', []))]
@@ -2107,17 +2124,40 @@ class PatientEngine:
             meta["summary_verdict"] = "corrected_timeline"
             return timeline
 
-        # Telling a learner they invented the whole thing is a serious thing
-        # to say, so it is said only when the record recognizes nothing at
-        # all -- or almost nothing in a long summary.  A short accurate
-        # summary carries few words to match ("the pressure spreads into
-        # your arm"), and accusing THAT of being made up is the same defect
-        # as confirming a wrong summary, pointed the other way.
-        recognized = _overlap(tokens, self._record_vocabulary())
-        if recognized == 0 or (len(tokens) >= 4 and recognized <= 1):
-            meta["summary_verdict"] = "unrecognized"
-            return ("I'm sorry — that's not what I've been telling you. "
-                    "Could you go over it again?")
+        # Confirmation must cover each claim, not just a couple of familiar
+        # words anywhere in the case. The old overlap floor confirmed "cough
+        # and blue toenails", and even a proposed cancer diagnosis. Reuse the
+        # existing speech-containment check, including its polarity/modality
+        # guards, against information the patient actually disclosed.
+        from .opening_evidence import says, spoken_clauses
+        spoken = [line for fid in state["released"] if fid in self.facts
+                  for line in (self.facts[fid].get("sp_says") or
+                               [self.facts[fid].get("value", "")])]
+        if state.get("opened"):
+            spoken.append(self.opening())
+        pat = self.case["patient"]
+        spoken += ["My name is %s." % pat["name"],
+                   "I am %s years old." % pat["age"]]
+        for clause in clauses:
+            # Short clinical names (HIV, TB) and numbers still carry meaning.
+            # The general lexical scorer drops them; confirmation must not.
+            if not any(t not in _CONTENT_STOP for t in _tokens(clause)):
+                continue
+            # The learner addresses the patient as "your"; the patient's own
+            # account uses "my". Translate grammatical person, not relatives
+            # or symptom subjects, before applying the shared speech check.
+            addressed = re.sub(r"\byour\b", "my", clause)
+            supported = any(says(addressed, source)[0] for source in spoken)
+            # A short literal answer such as "fever" can contain only one
+            # content word; allow exact spoken clauses without relaxing the
+            # multiword containment guard.
+            exact = any(nlp.normalize(clause).strip(" .:") ==
+                        nlp.normalize(part).strip(" .:")
+                        for source in spoken for part in spoken_clauses(source))
+            if not (supported or exact):
+                meta["summary_verdict"] = "needs_clarification"
+                return ("I'm not sure every part matches what I told you. "
+                        "Could you check those details with me one at a time?")
 
         meta["summary_verdict"] = "confirmed"
         return self.rng.choice([
@@ -2198,7 +2238,7 @@ class PatientEngine:
             claimed = _time_expressions(clause)
             if not claimed:
                 continue
-            related = self._facts_about(clause)
+            related = self._facts_about(clause, state["released"])
             if not related:
                 continue
             attested = set()
@@ -2216,7 +2256,7 @@ class PatientEngine:
             return "That's not quite right — " + _lower_first(line)
         return ""
 
-    def _facts_about(self, clause):
+    def _facts_about(self, clause, disclosed_ids=None):
         """The facts whose own words this clause is talking about.
 
         The interval itself is removed before the comparison: "three weeks"
@@ -2234,6 +2274,8 @@ class PatientEngine:
             return []
         scored = []
         for fact in self.case.get("facts", []):
+            if disclosed_ids is not None and fact["id"] not in disclosed_ids:
+                continue
             score = _overlap(tokens, set(_content_tokens(self._fact_text(fact))))
             if score:
                 scored.append((score, fact))
@@ -2417,7 +2459,13 @@ class PatientEngine:
         named = {w for w in named if len(w) > 3}
         if not named:
             return hits
-        on_topic = [(f, s) for f, s in hits if self._spoken_words(f) & named]
+        # Short answers such as "About six weeks" refer to the symptom named
+        # by that fact's authored concepts. Requiring it to repeat "stomach"
+        # discarded the main pain's onset while correctly accepting a second
+        # symptom's named timeline. Existing concept aliases supply the topic,
+        # not a new clinical fact or a guessed temporal relationship.
+        on_topic = [(f, s) for f, s in hits
+                    if (self._spoken_words(f) | set(_tokens(self._fact_text(f)))) & named]
         if on_topic:
             return on_topic
         kept = [(f, s) for f, s in hits
@@ -2497,6 +2545,86 @@ class PatientEngine:
             return [(f, 3.0) for f in found]
         return None
 
+    _ROS_WORDINGS = (
+        (r"shortness of breath|short of breath|breathlessness|breathless|dyspnea|"
+         r"trouble breathing|difficulty breathing|winded", "short of breath"),
+        (r"nausea|nauseous|nauseated|queasy|queasiness", "nausea"),
+        (r"constipation|constipated", "constipation"),
+        (r"hematuria|blood in (?:your |the )?urine|bloody urine", "hematuria"),
+        (r"dysuria|painful urination|burning (?:with|during) urination|"
+         r"pain (?:with|during) urination", "dysuria"),
+        (r"leg swelling|swollen (?:legs|ankles)|ankle swelling|edema", "leg swelling"),
+    )
+
+    def _direct_ros_hits(self, utterance):
+        text = nlp.normalize(utterance).strip(" .?")
+        if _instruction_or_other_person(utterance):
+            return None
+        text = re.sub(r"^(?:have you|do you|did you|are you)(?: (?:have|had|been|"
+                      r"felt|noticed|experienced|having|feeling))?\s+|^any\s+", "", text)
+        text = re.sub(r"^(?:any |some )| at all$", "", text)
+        if re.fullmatch(r"(?:trouble|difficulty|problems) (?:urinating|peeing|passing urine)"
+                        r"|(?:urinary|urination) (?:problems|symptoms)"
+                        r"|problems with (?:urination|urinating)", text):
+            # Broad urinary ROS may use the case's explicitly tagged urinary
+            # symptoms. It does not authorize unrelated HPI timelines, or a
+            # denial in a case that supplies no urinary response.
+            return [(f, 3.0) for f in self.facts.values()
+                    if f.get("ros_system") == "urinary" and
+                    f.get("category") in ("associated", "pertinent_negative") and
+                    len(f.get("concepts", {})) == 1 and
+                    not f.get("requires_current_status_question")]
+        canonical = next((word for pattern, word in self._ROS_WORDINGS
+                          if re.fullmatch(pattern, text)), None)
+        if canonical is None:
+            return None
+        candidates = []
+        for fact in self.facts.values():
+            if fact.get("category") not in ("associated", "pertinent_negative"):
+                continue
+            # Bundled negatives require their reviewed, multi-topic question.
+            if len(fact.get("concepts", {})) != 1 or fact.get("requires_current_status_question"):
+                continue
+            triggers = (fact.get("triggers") or {}).get("any", [])
+            if any(nlp.normalize(t).strip(" .?") == canonical for t in triggers):
+                candidates.append((fact, 3.0))
+        # No new answer is inferred when the case lacks an atomic response.
+        return candidates or None
+
+    def _family_history_hits(self, utterance):
+        """A relative's symptoms or timeline cannot become the patient's own."""
+        if not family_scoped(utterance):
+            return None
+        text = nlp.normalize(utterance)
+        relatives = [f for f in self.facts.values() if f.get("category") == "family"]
+        member_patterns = (r"mother|mom|mum", r"father|dad", r"sister", r"brother",
+                           r"grandmother", r"grandfather")
+        named = [p for p in member_patterns if re.search(r"\b(?:" + p + r")\b", text)]
+        if re.search(r"\bparents?\b", text) and not named:
+            named = list(member_patterns[:2])
+        if named:
+            relatives = [f for f in relatives if any(re.search(r"\b(?:" + p + r")\b",
+                         self._fact_text(f), re.I) for p in named)]
+        # Exact authored examples remain explicit disclosure routes. General
+        # family histories do not author an illness's onset or surgery date.
+        exact = [f for f in relatives if any(nlp.normalize(q).strip(" .?") ==
+                 text.strip(" .?") for q in f.get("example_questions", []))]
+        if exact:
+            return [(f, 3.0) for f in exact]
+        if re.search(r"\bwhen\b|how long|how often|at what age", text):
+            return []
+        generic = _CONTENT_STOP | set("""family relatives relative mother mothers mom mum father fathers dad
+            parents parent sister sisters brother brothers sibling siblings grandmother grandfather
+            grandparents anyone anybody related hereditary run runs illness illnesses disease diseases
+            medical health healthy problem problems condition conditions issue issues history histories
+            old age ages living alive still currently doing known major born side both good bad well
+            tell ask asking asked mean meant could would please anyone anything get gets ever previously past similar details""".split())
+        specified = [w for w in _tokens(text) if w not in generic and len(w) > 1]
+        if specified:
+            relatives = [f for f in relatives if _overlap(specified,
+                         set(_tokens(self._fact_text(f)))) == len(specified)]
+        return [(f, 3.0) for f in relatives]
+
     def _typed_question_hits(self, utterance):
         """Resolve an explicit question dimension before broad trigger words.
 
@@ -2511,6 +2639,13 @@ class PatientEngine:
         if focused is not None:return [(f,3.0) for f in self.facts.values() if f['id'] in focused and regional_fact_allowed(f,utterance)]
         specific=self._specific_setting_hits(utterance)
         if specific is not None:return specific
+        ros = self._direct_ros_hits(utterance)
+        if ros is not None:return ros
+        if functional_effect_question(utterance):
+            return [(f, 3.0) for f in self.facts.values()
+                    if f.get("category") == "severity" and
+                    re.search(r"affect|activit|function|work|sleep|walk", " ".join(
+                        f.get("example_questions", []) + f.get("sp_says", [])), re.I)]
         text = nlp.normalize(utterance)
         # A bare "family" carries no authored trigger of its own -- those name
         # the members ("mother", "father") or the phrase "family history" -- so

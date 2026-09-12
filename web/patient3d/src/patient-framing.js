@@ -25,3 +25,21 @@ export function transitionConversationFrame(from,to,progress){
  const offset=Vector3.Lerp(from.position.subtract(from.target),to.position.subtract(to.target),e);
  return {target,position:target.add(offset),fov:from.fov+(to.fov-from.fov)*e};
 }
+
+/** Fit the full posed patient inside either a wide or tall bedside pane.
+ * Uses actual skinned bounds supplied by the renderer. The padding leaves room
+ * for the compact overlay controls; it does not alter user-controlled orbit. */
+export function fitPatientFrame(frame,bounds,aspect=1){
+ if(!bounds?.min||!bounds?.max||!Number.isFinite(aspect)||aspect<=0)return frame;
+ const target=Vector3.Lerp(bounds.min,bounds.max,.5);
+ const backward=frame.position.subtract(frame.target).normalize();
+ const right=Vector3.Cross(Vector3.Up(),backward).normalize();
+ const up=Vector3.Cross(backward,right).normalize();
+ const tan=Math.tan(frame.fov/2);
+ let distance=Vector3.Distance(frame.position,frame.target);
+ for(const x of [bounds.min.x,bounds.max.x])for(const y of [bounds.min.y,bounds.max.y])for(const z of [bounds.min.z,bounds.max.z]){
+  const point=V(x,y,z).subtract(target),depth=Vector3.Dot(point,backward);
+  distance=Math.max(distance,depth+Math.abs(Vector3.Dot(point,right))/(tan*aspect*.85),depth+Math.abs(Vector3.Dot(point,up))/(tan*.78));
+ }
+ return{...frame,target,position:target.add(backward.scale(distance))};
+}

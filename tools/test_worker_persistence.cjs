@@ -1,0 +1,8 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert/strict'),path=require('path');
+const root=path.resolve(__dirname,'..');
+let out=[],diskFailure=false,writes=0,flushes=0;
+const py={FS:{syncfs(populate,done){flushes++;done(diskFailure?Error('quota full'):null)},mkdir(){},mount(){},filesystems:{IDBFS:{}}},unpackArchive(){},runPythonAsync:async()=>{},globals:{get(){return(p,m)=>{if(m==='POST')writes++;return JSON.stringify({status:200,body:{writes}})}}}};
+const c={URL,Error,Promise,JSON,Uint8Array,loadPyodide:async()=>py,fetch:async()=>({ok:true,arrayBuffer:async()=>new ArrayBuffer(0)}),postMessage:m=>out.push(m)};
+vm.createContext(c);const source=fs.readFileSync(path.join(root,'web/engine-worker.mjs'),'utf8').replace(/^import.*\n/,'').replaceAll('import.meta.url',"'http://localhost/web/engine-worker.mjs'");vm.runInContext(source,c);
+async function turn(id,method){c.onmessage({data:{id,path:'/api/test',method}});await vm.runInContext('queue',c);return out.find(x=>x.id===id)}
+(async()=>{await vm.runInContext('ready',c);diskFailure=true;assert.equal((await turn(1,'POST')).status,503);assert.equal(writes,1,'the operation happened once in memory');assert.equal((await turn(2,'POST')).status,503);assert.equal(writes,1,'no further mutation while storage fails');diskFailure=false;assert.equal((await turn(3,'GET')).status,200);assert.equal(writes,1,'recovery must not replay the failed mutation');assert(out.some(x=>x.type==='storage-recovered'));assert.equal((await turn(4,'POST')).body.writes,2);console.log('PASS storage failure blocks further writes; recovery flushes existing work without replay; later work succeeds');})().catch(e=>{console.error(e);process.exit(1)});

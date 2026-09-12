@@ -65,7 +65,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             5,
@@ -708,19 +708,21 @@
           "kind": "dialogue",
           "section": "Acknowledge",
           "student": "Thank you for explaining that. I can understand why this is concerning.",
-          "patient": "Could you say that another way?",
+          "patient": "As I mentioned, and I have a big exam on Friday. I can't afford to be sick for that.",
           "why": "",
           "event_ids": [
             100,
             101
           ],
-          "fact_ids": []
+          "fact_ids": [
+            "concern_exam"
+          ]
         },
         {
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             102,
@@ -913,7 +915,7 @@
         }
       ],
       "note": {
-        "S": "CC: Dysuria for 2 days, right flank pain for 1 day.\nHPI: 24-year-old woman with worsening constant dull right flank pain just under the ribs, radiating toward groin, 7/10 (8/10 worst); burning on voiding 5/10. Movement/jarring worsen pain; heat/ibuprofen partly help. Fever, shaking chills, nausea, one emesis, frequency, urgency and cloudy malodorous urine; no gross hematuria. Prior bladder infection 6 months ago without flank symptoms. Tried ibuprofen, cranberry juice and fluids. Concerned about kidney damage because aunt required dialysis.\nPMH: No chronic conditions. PSH: Wisdom teeth at 18; no admission.\nMeds: Oral contraceptive daily; ibuprofen 400 mg a couple times/day for 2 days. Sulfonamides cause hives.\nSH: Graduate student, roommate; no tobacco/drugs; 2\u20133 drinks on weekends. One male sexual partner; inconsistent condoms, no new partner. LMP 3 weeks ago, regular; pregnancy possible.\nFH: Mother HTN, father diabetes; brother healthy. No known kidney disease/stones in parents/brother; aunt's dialysis cause unknown.\nROS: GU as above, no discharge. GI: nausea/vomiting, no diarrhea/constipation. General: fever/chills, no weight loss. No cough, chest pain, rash or headache.",
+        "S": "CC: Dysuria for 2 days, right flank pain for 1 day.\nHPI: 24-year-old woman with worsening constant dull right flank pain just under the ribs, radiating toward groin, 7/10 (8/10 worst); burning on voiding 5/10. Movement/jarring worsen pain; heat/ibuprofen partly help. Fever, shaking chills, nausea, one emesis, frequency, urgency and cloudy malodorous urine; no gross hematuria. Prior bladder infection 6 months ago without flank symptoms. Tried ibuprofen, cranberry juice and fluids. Concerned about kidney damage because aunt required dialysis.\nPMH: No chronic conditions. PSH: Wisdom teeth at 18; no admission.\nMeds: Oral contraceptive daily; ibuprofen 400 mg a couple times/day for 2 days. Sulfonamides cause hives.\nSH: Graduate student; lives with husband off campus; no tobacco/drugs; 2\u20133 drinks on weekends. One male sexual partner; inconsistent condoms, no new partner. LMP 3 weeks ago, regular; pregnancy possible.\nFH: Mother HTN, father diabetes; brother healthy. No known kidney disease/stones in parents/brother; aunt's dialysis cause unknown.\nROS: GU as above, no discharge. GI: nausea/vomiting, no diarrhea/constipation. General: fever/chills, no weight loss. No cough, chest pain, rash or headache.",
         "P": [
           "1. Obtain urine culture/urinalysis, pregnancy test, CBC and BMP; assess intake, perfusion and obstruction/sepsis risk. Clinician to select a renal-tissue-active antibiotic using pregnancy, allergy and resistance data; avoid sulfonamide allergen and nitrofurantoin for pyelonephritis. Explain adherence, hydration and urgent deterioration precautions. Emergency evaluation for instability, inability to retain fluids or infected obstruction; otherwise review in 48\u201372 hours with culture results.",
           "2. Obtain appropriate renal imaging if obstruction is suspected; clinician-directed analgesia/antiemetic and urgent urology input for infected obstruction. Explain that fever with obstruction needs more than hydration.",
@@ -1166,13 +1168,23 @@
         },
         {
           "section": "S",
-          "statement": "Graduate student, roommate;",
+          "statement": "Graduate student;",
           "event_ids": [
             79
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "lives with husband off campus;",
+          "event_ids": [
+            83
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -1821,8 +1833,7 @@
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
@@ -1832,35 +1843,39 @@
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
           }
         },
         {
           "seq": 7,
-          "t_ms": 2,
+          "t_ms": 1,
           "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "kind": "consent"
+            "courtesy_id": "consent_exam",
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 8,
-          "t_ms": 1,
+          "t_ms": 3,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
           "seq": 9,
-          "t_ms": 3,
+          "t_ms": 4,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -1872,7 +1887,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 5,
+          "t_ms": 6,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I've had this burning when I pee for a couple of days, and since yesterday my back has been hurting on the right side. I've been feeling really lousy \u2014 I think I have a fever.",
@@ -1922,7 +1937,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 6,
+          "t_ms": 9,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -1932,7 +1947,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 8,
+          "t_ms": 9,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -1944,7 +1959,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 9,
+          "t_ms": 11,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The back pain is about a seven out of ten right now \u2014 it got up to an eight last night. The burning is maybe a five.",
@@ -1974,7 +1989,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 10,
+          "t_ms": 11,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is the back ache constant, and when does the burning happen?",
@@ -1986,7 +2001,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 11,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The back ache is there all the time. The burning only happens when I actually go.",
@@ -2012,7 +2027,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 12,
+          "t_ms": 14,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did the burning with urination start?",
@@ -2023,7 +2038,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 13,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The burning started about two days ago.",
@@ -2053,7 +2068,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 14,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did the back pain start?",
@@ -2064,7 +2079,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 14,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The back pain started yesterday, on the right side.",
@@ -2094,7 +2109,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 15,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How have your symptoms changed since they started?",
@@ -2106,7 +2121,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 16,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It started with just the burning. Then yesterday the back pain and the fever came on, and it's been getting worse since.",
@@ -2132,7 +2147,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 17,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -2143,7 +2158,7 @@
         },
         {
           "seq": 25,
-          "t_ms": 18,
+          "t_ms": 21,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It's right here \u2014 the right side of my back, just under my ribs. The burning is lower down, in front, when I go.",
@@ -2169,7 +2184,7 @@
         },
         {
           "seq": 26,
-          "t_ms": 19,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -2181,7 +2196,7 @@
         },
         {
           "seq": 27,
-          "t_ms": 20,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Sometimes it wraps around toward the front, down near my right hip and groin.",
@@ -2207,7 +2222,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 21,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -2219,7 +2234,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 22,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The back pain is like a deep, constant ache. The peeing is more of a burning, stinging feeling.",
@@ -2249,19 +2264,19 @@
         },
         {
           "seq": 30,
-          "t_ms": 23,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Was there an injury or any trigger you noticed?",
           "meta": {
-            "open_question": true,
+            "closed_question": true,
             "mode": "type",
             "intent": "question"
           }
         },
         {
           "seq": 31,
-          "t_ms": 24,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Nothing that I can think of. I didn't hurt my back or fall or anything.",
@@ -2287,7 +2302,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 25,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -2299,7 +2314,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 26,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Ibuprofen takes the edge off a bit, and a heating pad helps a little.",
@@ -2329,7 +2344,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 27,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -2341,7 +2356,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 27,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Moving around makes it worse. Riding in the car over bumps was awful.",
@@ -2367,7 +2382,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 29,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -2379,7 +2394,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 30,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I've been taking ibuprofen, drinking cranberry juice, and pushing water. It hasn't really fixed it.",
@@ -2405,7 +2420,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 31,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -2417,7 +2432,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 32,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I had a bladder infection about six months ago. They gave me antibiotics and it cleared up. But it never got into my back like this.",
@@ -2443,7 +2458,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 33,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt feverish or measured your temperature?",
@@ -2455,7 +2470,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 34,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I've felt hot and sweaty since yesterday. I didn't take my temperature at home.",
@@ -2481,7 +2496,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 35,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had shaking chills?",
@@ -2493,7 +2508,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 36,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Yes \u2014 I had shaking chills last night under two blankets.",
@@ -2519,7 +2534,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 37,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had nausea or vomiting?",
@@ -2531,7 +2546,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 37,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I've been nauseated, and I actually threw up once this morning.",
@@ -2561,7 +2576,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 39,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How often are you urinating?",
@@ -2573,7 +2588,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 39,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I'm going way more often than normal \u2014 every hour or so, and barely anything comes out.",
@@ -2599,7 +2614,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 40,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you get a sudden urge and have to rush to the bathroom?",
@@ -2611,7 +2626,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 41,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "When I have to go, I really have to go \u2014 it comes on all of a sudden.",
@@ -2637,7 +2652,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 42,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does your urine look and smell like? Have you seen blood?",
@@ -2649,7 +2664,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 43,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It's been cloudy and it smells stronger than usual. I haven't seen any blood in it.",
@@ -2679,7 +2694,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 45,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had vaginal discharge or itching?",
@@ -2691,7 +2706,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 45,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, nothing like that. No discharge or itching.",
@@ -2717,7 +2732,7 @@
         },
         {
           "seq": 54,
-          "t_ms": 47,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had diarrhea or constipation?",
@@ -2729,7 +2744,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 47,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, my bowels have been normal.",
@@ -2753,7 +2768,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 48,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had cough, trouble breathing, or chest pain?",
@@ -2765,7 +2780,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 49,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No cough, no trouble breathing, no chest pain.",
@@ -2797,7 +2812,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 50,
+          "t_ms": 56,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had rash, headache, weight loss, or night sweats?",
@@ -2809,7 +2824,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 51,
+          "t_ms": 58,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No rash anywhere, and no headache. My weight is the same and I haven't had night sweats.",
@@ -2845,7 +2860,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 53,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had diarrhea?",
@@ -2857,7 +2872,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 53,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not had diarrhea.",
@@ -2883,7 +2898,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 54,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had constipation?",
@@ -2895,7 +2910,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 55,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not had constipation.",
@@ -2921,7 +2936,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 56,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -2933,7 +2948,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 57,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I'm healthy otherwise. No ongoing medical problems \u2014 just that bladder infection six months ago.",
@@ -2963,7 +2978,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 58,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -2975,7 +2990,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 59,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I had my wisdom teeth out when I was eighteen. That's it \u2014 I've never been in the hospital.",
@@ -3005,7 +3020,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 60,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -3017,7 +3032,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 62,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I take a birth control pill every day. And I've been taking ibuprofen \u2014 400 milligrams, a couple of times a day for the last two days.",
@@ -3047,7 +3062,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 63,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -3059,7 +3074,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 64,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Yes \u2014 sulfa drugs. I broke out in hives when I took something with sulfa as a kid.",
@@ -3089,7 +3104,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 65,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -3101,7 +3116,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 66,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, I've never smoked.",
@@ -3127,7 +3142,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 67,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -3139,7 +3154,7 @@
         },
         {
           "seq": 75,
-          "t_ms": 68,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I'll have two or three drinks on a weekend, that's about it.",
@@ -3165,7 +3180,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 69,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -3177,7 +3192,7 @@
         },
         {
           "seq": 77,
-          "t_ms": 70,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, I don't use any drugs.",
@@ -3203,7 +3218,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 71,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -3215,7 +3230,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 72,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a graduate student.",
@@ -3241,7 +3256,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 73,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are you sexually active?",
@@ -3253,7 +3268,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 74,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am sexually active.",
@@ -3279,7 +3294,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 75,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -3290,7 +3305,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 76,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband off campus.",
@@ -3316,7 +3331,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 77,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How many sexual partners do you have, and have you had a new partner?",
@@ -3328,7 +3343,7 @@
         },
         {
           "seq": 85,
-          "t_ms": 78,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have one male partner, my boyfriend, and no new partners.",
@@ -3354,7 +3369,7 @@
         },
         {
           "seq": 86,
-          "t_ms": 79,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you use for birth control?",
@@ -3366,7 +3381,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 80,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "We use condoms sometimes, not always.",
@@ -3392,7 +3407,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 81,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems run in your family?",
@@ -3404,7 +3419,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 82,
+          "t_ms": 89,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My mom is 52 and has high blood pressure. My dad is 55 and has type 2 diabetes. I have one older brother and he's healthy. No kidney problems or stones in my parents or my brother. My aunt \u2014 my mom's sister \u2014 was on dialysis, but I never really knew what caused it.",
@@ -3446,7 +3461,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 83,
+          "t_ms": 89,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -3457,7 +3472,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 84,
+          "t_ms": 91,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 3 weeks ago.",
@@ -3483,7 +3498,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 85,
+          "t_ms": 91,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -3495,7 +3510,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 86,
+          "t_ms": 93,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant, but it is possible.",
@@ -3521,7 +3536,7 @@
         },
         {
           "seq": 94,
-          "t_ms": 87,
+          "t_ms": 93,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are your periods regular?",
@@ -3533,7 +3548,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 88,
+          "t_ms": 95,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My periods are regular.",
@@ -3559,7 +3574,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 89,
+          "t_ms": 95,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -3571,7 +3586,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 90,
+          "t_ms": 97,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Honestly? I'm scared it's my kidneys. My aunt ended up on dialysis and I keep thinking about that.",
@@ -3598,7 +3613,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 91,
+          "t_ms": 97,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How is this affecting your school work?",
@@ -3610,7 +3625,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 92,
+          "t_ms": 99,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "And I have a big exam on Friday. I can't afford to be sick for that.",
@@ -3634,7 +3649,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 93,
+          "t_ms": 100,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -3645,22 +3660,30 @@
         },
         {
           "seq": 101,
-          "t_ms": 108,
+          "t_ms": 120,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Could you say that another way?",
+          "text": "As I mentioned, and I have a big exam on Friday. I can't afford to be sick for that.",
           "meta": {
-            "facts_released": [],
-            "concepts": {},
+            "facts_released": [
+              "concern_exam"
+            ],
+            "concepts": {
+              "concern_exam": {
+                "polarity": "positive",
+                "value": "And I have a big exam on Friday. I can't afford to be sick for that."
+              }
+            },
             "volunteered": false,
-            "kind": "non_answer",
-            "no_information": true,
-            "categories": []
+            "kind": "answer",
+            "categories": [
+              "fife"
+            ]
           }
         },
         {
           "seq": 102,
-          "t_ms": 109,
+          "t_ms": 123,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -3671,17 +3694,17 @@
         },
         {
           "seq": 103,
-          "t_ms": 110,
+          "t_ms": 124,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 104,
-          "t_ms": 109,
+          "t_ms": 123,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -3693,7 +3716,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 10111,
+          "t_ms": 10127,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -3713,7 +3736,7 @@
         },
         {
           "seq": 106,
-          "t_ms": 10111,
+          "t_ms": 10127,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Young woman who appears uncomfortable, shifting position in the chair. Alert and oriented, in mild distress. Flushed.",
@@ -3735,7 +3758,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 50111,
+          "t_ms": 50127,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -3761,7 +3784,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 50111,
+          "t_ms": 50127,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tachycardic, regular rhythm. S1 and S2 present. No murmurs, rubs or gallops.",
@@ -3783,7 +3806,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 100111,
+          "t_ms": 100127,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -3812,7 +3835,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 100111,
+          "t_ms": 100127,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Clear to auscultation bilaterally, all fields. Good air movement. No rales, rhonchi or wheezes.",
@@ -3836,20 +3859,22 @@
         },
         {
           "seq": 111,
-          "t_ms": 100111,
+          "t_ms": 100127,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "supine",
+            "previous_position": "seated",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 112,
-          "t_ms": 120111,
+          "t_ms": 120127,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -3872,7 +3897,7 @@
         },
         {
           "seq": 113,
-          "t_ms": 120111,
+          "t_ms": 120127,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Bowel sounds present and normoactive in all four quadrants. No bruits.",
@@ -3894,7 +3919,7 @@
         },
         {
           "seq": 114,
-          "t_ms": 150111,
+          "t_ms": 150127,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -3918,7 +3943,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 150111,
+          "t_ms": 150127,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tympanitic throughout. No shifting dullness. Liver span normal.",
@@ -3948,7 +3973,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 190111,
+          "t_ms": 190127,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -3977,7 +4002,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 190111,
+          "t_ms": 190127,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Abdomen soft and non-distended. Tenderness in the right upper quadrant and right flank. No rebound tenderness. No guarding. No masses, no organomegaly.",
@@ -4025,7 +4050,7 @@
         },
         {
           "seq": 118,
-          "t_ms": 217111,
+          "t_ms": 217127,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Abdominal special tests",
@@ -4052,7 +4077,7 @@
         },
         {
           "seq": 119,
-          "t_ms": 217111,
+          "t_ms": 217127,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Costovertebral angle tenderness: markedly positive on the RIGHT. Left is non-tender. Murphy sign negative. McBurney point non-tender. Psoas and obturator negative.",
@@ -4096,7 +4121,7 @@
         },
         {
           "seq": 120,
-          "t_ms": 246111,
+          "t_ms": 246127,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -4121,7 +4146,7 @@
         },
         {
           "seq": 121,
-          "t_ms": 246111,
+          "t_ms": 246127,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "On the inspected chest, back, arms and legs: no rashes or lesions on the areas inspected.",
@@ -4143,20 +4168,22 @@
         },
         {
           "seq": 122,
-          "t_ms": 246111,
+          "t_ms": 246127,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "seated",
+            "previous_position": "supine",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 123,
-          "t_ms": 276111,
+          "t_ms": 276127,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -4179,7 +4206,7 @@
         },
         {
           "seq": 124,
-          "t_ms": 276111,
+          "t_ms": 276127,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T10 through L1 on the right: increased paraspinal tissue texture change, tenderness and hypertonicity. T11 is rotated right.",
@@ -4205,7 +4232,7 @@
         },
         {
           "seq": 125,
-          "t_ms": 276111,
+          "t_ms": 276127,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend evaluating a kidney infection because the urinary symptoms are accompanied by fever and flank pain. We should check urine and pregnancy testing and decide whether you can safely drink and take treatment outside the hospital.",
@@ -4217,7 +4244,7 @@
         },
         {
           "seq": 126,
-          "t_ms": 276111,
+          "t_ms": 276127,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend evaluating a kidney infection because the urinary symptoms are accompanied by fever and flank pain. We should check urine and pregnancy testing and decide whether you can safely drink and take treatment outside the hospital.",
@@ -4230,7 +4257,7 @@
         },
         {
           "seq": 127,
-          "t_ms": 276111,
+          "t_ms": 276127,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. Thank you for explaining that.",
@@ -4240,7 +4267,7 @@
         },
         {
           "seq": 128,
-          "t_ms": 276111,
+          "t_ms": 276127,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -4253,7 +4280,7 @@
         },
         {
           "seq": 129,
-          "t_ms": 276111,
+          "t_ms": 276127,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Do you think I'm going to have to go to the hospital for this?",
@@ -4268,7 +4295,7 @@
         },
         {
           "seq": 130,
-          "t_ms": 276111,
+          "t_ms": 276127,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Hospital care may be needed if you are unstable, cannot retain fluids or have an obstructed infected kidney. I recommend assessing those risks now before deciding where treatment is safest. We can address your examination plans after that assessment; I cannot promise recovery by a particular day.",
@@ -4280,7 +4307,7 @@
         },
         {
           "seq": 131,
-          "t_ms": 276111,
+          "t_ms": 276127,
           "phase": "encounter",
           "kind": "counseling",
           "text": "Hospital care may be needed if you are unstable, cannot retain fluids or have an obstructed infected kidney. I recommend assessing those risks now before deciding where treatment is safest. We can address your examination plans after that assessment; I cannot promise recovery by a particular day.",
@@ -4293,7 +4320,7 @@
         },
         {
           "seq": 132,
-          "t_ms": 276111,
+          "t_ms": 276127,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay. I can do that.",
@@ -4302,13 +4329,13 @@
           }
         }
       ],
-      "note_words": 495,
-      "estimated_encounter_s": 794,
+      "note_words": 499,
+      "estimated_encounter_s": 803,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 9
+        "unresolved_count": 8
       },
       "reasoning": [
         {
@@ -4502,7 +4529,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "8aa9266db51674a622f72769cb839f924de3b125a2aa7bf858ffad23e2438474"
+      "case_hash": "62b58a56184ebe6f385fb5b352a7c87aa789929b6b5fd122ebc7363556d9be5b",
+      "engine_version": "4.0.4"
     },
     {
       "case_id": "renal-flank-pain",
@@ -4573,7 +4601,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             5,
@@ -5244,7 +5272,7 @@
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             104,
@@ -5437,7 +5465,7 @@
         }
       ],
       "note": {
-        "S": "CC: Dysuria for 2 days, right flank pain for 1 day.\nHPI: 24-year-old woman with worsening constant dull right flank pain just under the ribs, radiating toward groin, 7/10 (8/10 worst); burning on voiding 5/10. Movement/jarring worsen pain; heat/ibuprofen partly help. Fever, shaking chills, nausea, one emesis, frequency, urgency and cloudy malodorous urine; no gross hematuria. Prior bladder infection 6 months ago without flank symptoms. Tried ibuprofen, cranberry juice and fluids. Concerned about kidney damage because aunt required dialysis.\nPMH: No chronic conditions. PSH: Wisdom teeth at 18; no admission.\nMeds: Oral contraceptive daily; ibuprofen 400 mg a couple times/day for 2 days. Sulfonamides cause hives.\nSH: Graduate student, roommate; no tobacco/drugs; 2\u20133 drinks on weekends. One male sexual partner; inconsistent condoms, no new partner. LMP 3 weeks ago, regular; pregnancy possible.\nFH: Mother HTN, father diabetes; brother healthy. No known kidney disease/stones in parents/brother; aunt's dialysis cause unknown.\nROS: GU as above, no discharge. GI: nausea/vomiting, no diarrhea/constipation. General: fever/chills, no weight loss. No cough, chest pain, rash or headache.\nCare needs: I have trouble following medical words. Could you explain one thing at a time?",
+        "S": "CC: Dysuria for 2 days, right flank pain for 1 day.\nHPI: 24-year-old woman with worsening constant dull right flank pain just under the ribs, radiating toward groin, 7/10 (8/10 worst); burning on voiding 5/10. Movement/jarring worsen pain; heat/ibuprofen partly help. Fever, shaking chills, nausea, one emesis, frequency, urgency and cloudy malodorous urine; no gross hematuria. Prior bladder infection 6 months ago without flank symptoms. Tried ibuprofen, cranberry juice and fluids. Concerned about kidney damage because aunt required dialysis.\nPMH: No chronic conditions. PSH: Wisdom teeth at 18; no admission.\nMeds: Oral contraceptive daily; ibuprofen 400 mg a couple times/day for 2 days. Sulfonamides cause hives.\nSH: Graduate student; lives with husband off campus; no tobacco/drugs; 2\u20133 drinks on weekends. One male sexual partner; inconsistent condoms, no new partner. LMP 3 weeks ago, regular; pregnancy possible.\nFH: Mother HTN, father diabetes; brother healthy. No known kidney disease/stones in parents/brother; aunt's dialysis cause unknown.\nROS: GU as above, no discharge. GI: nausea/vomiting, no diarrhea/constipation. General: fever/chills, no weight loss. No cough, chest pain, rash or headache.\nCare needs: I have trouble following medical words. Could you explain one thing at a time?",
         "P": [
           "1. Obtain urine culture/urinalysis, pregnancy test, CBC and BMP; assess intake, perfusion and obstruction/sepsis risk. Clinician to select a renal-tissue-active antibiotic using pregnancy, allergy and resistance data; avoid sulfonamide allergen and nitrofurantoin for pyelonephritis. Explain adherence, hydration and urgent deterioration precautions. Emergency evaluation for instability, inability to retain fluids or infected obstruction; otherwise review in 48\u201372 hours with culture results. Use one step at a time with teach-back.",
           "2. Obtain appropriate renal imaging if obstruction is suspected; clinician-directed analgesia/antiemetic and urgent urology input for infected obstruction. Explain that fever with obstruction needs more than hydration.",
@@ -5690,13 +5718,23 @@
         },
         {
           "section": "S",
-          "statement": "Graduate student, roommate;",
+          "statement": "Graduate student;",
           "event_ids": [
             79
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "lives with husband off campus;",
+          "event_ids": [
+            83
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -6359,52 +6397,55 @@
         },
         {
           "seq": 5,
-          "t_ms": 1,
+          "t_ms": 0,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
           "seq": 6,
-          "t_ms": 1,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
+          }
+        },
+        {
+          "seq": 7,
+          "t_ms": 0,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
-          }
-        },
-        {
-          "seq": 7,
-          "t_ms": 6,
-          "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
-          "meta": {
-            "kind": "consent"
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 8,
-          "t_ms": 1,
+          "t_ms": 7,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
           "seq": 9,
-          "t_ms": 7,
+          "t_ms": 8,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -6416,7 +6457,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 11,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I've had this burning when I pee for a couple of days, and since yesterday my back has been hurting on the right side. I've been feeling really lousy \u2014 I think I have a fever.",
@@ -6442,7 +6483,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 13,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I will arrange urgent help from my supervising clinician now. We will not delay emergency care to finish routine questions.",
@@ -6454,7 +6495,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 13,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I will arrange urgent help from my supervising clinician now. We will not delay emergency care to finish routine questions.",
@@ -6466,7 +6507,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 14,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -6488,7 +6529,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 16,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The back pain is about a seven out of ten right now \u2014 it got up to an eight last night. The burning is maybe a five.",
@@ -6518,7 +6559,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 17,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is the back ache constant, and when does the burning happen?",
@@ -6530,7 +6571,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 18,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The back ache is there all the time. The burning only happens when I actually go.",
@@ -6556,7 +6597,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 19,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did the burning with urination start?",
@@ -6567,7 +6608,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 20,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The burning started about two days ago.",
@@ -6597,7 +6638,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 21,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did the back pain start?",
@@ -6608,7 +6649,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 21,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The back pain started yesterday, on the right side.",
@@ -6638,7 +6679,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 23,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How have your symptoms changed since they started?",
@@ -6650,7 +6691,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 23,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It started with just the burning. Then yesterday the back pain and the fever came on, and it's been getting worse since.",
@@ -6676,7 +6717,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 24,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -6687,7 +6728,7 @@
         },
         {
           "seq": 25,
-          "t_ms": 25,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It's right here \u2014 the right side of my back, just under my ribs. The burning is lower down, in front, when I go.",
@@ -6713,7 +6754,7 @@
         },
         {
           "seq": 26,
-          "t_ms": 26,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -6725,7 +6766,7 @@
         },
         {
           "seq": 27,
-          "t_ms": 27,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Sometimes it wraps around toward the front, down near my right hip and groin.",
@@ -6751,7 +6792,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 28,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -6763,7 +6804,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 29,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The back pain is like a deep, constant ache. The peeing is more of a burning, stinging feeling.",
@@ -6793,19 +6834,19 @@
         },
         {
           "seq": 30,
-          "t_ms": 30,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Was there an injury or any trigger you noticed?",
           "meta": {
-            "open_question": true,
+            "closed_question": true,
             "mode": "type",
             "intent": "question"
           }
         },
         {
           "seq": 31,
-          "t_ms": 31,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Nothing that I can think of. I didn't hurt my back or fall or anything.",
@@ -6831,7 +6872,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 32,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -6843,7 +6884,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 32,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Ibuprofen takes the edge off a bit, and a heating pad helps a little.",
@@ -6873,7 +6914,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 33,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -6885,7 +6926,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 34,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Moving around makes it worse. Riding in the car over bumps was awful.",
@@ -6911,7 +6952,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 35,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -6923,7 +6964,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 36,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I've been taking ibuprofen, drinking cranberry juice, and pushing water. It hasn't really fixed it.",
@@ -6949,7 +6990,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 37,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -6961,7 +7002,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 38,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I had a bladder infection about six months ago. They gave me antibiotics and it cleared up. But it never got into my back like this.",
@@ -6987,7 +7028,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 39,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt feverish or measured your temperature?",
@@ -6999,7 +7040,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 40,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I've felt hot and sweaty since yesterday. I didn't take my temperature at home.",
@@ -7025,7 +7066,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 41,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had shaking chills?",
@@ -7037,7 +7078,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 42,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Yes \u2014 I had shaking chills last night under two blankets.",
@@ -7063,7 +7104,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 43,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had nausea or vomiting?",
@@ -7075,7 +7116,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 44,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I've been nauseated, and I actually threw up once this morning.",
@@ -7105,7 +7146,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 45,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How often are you urinating?",
@@ -7117,7 +7158,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 46,
+          "t_ms": 50,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I'm going way more often than normal \u2014 every hour or so, and barely anything comes out.",
@@ -7143,7 +7184,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 47,
+          "t_ms": 50,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you get a sudden urge and have to rush to the bathroom?",
@@ -7155,7 +7196,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 48,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "When I have to go, I really have to go \u2014 it comes on all of a sudden.",
@@ -7181,7 +7222,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 49,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does your urine look and smell like? Have you seen blood?",
@@ -7193,7 +7234,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 50,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It's been cloudy and it smells stronger than usual. I haven't seen any blood in it.",
@@ -7223,7 +7264,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 51,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had vaginal discharge or itching?",
@@ -7235,7 +7276,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 52,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, nothing like that. No discharge or itching.",
@@ -7261,7 +7302,7 @@
         },
         {
           "seq": 54,
-          "t_ms": 53,
+          "t_ms": 58,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had diarrhea or constipation?",
@@ -7273,7 +7314,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 54,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, my bowels have been normal.",
@@ -7297,7 +7338,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 55,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had cough, trouble breathing, or chest pain?",
@@ -7309,7 +7350,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 56,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No cough, no trouble breathing, no chest pain.",
@@ -7341,7 +7382,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 57,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had rash, headache, weight loss, or night sweats?",
@@ -7353,7 +7394,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 58,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No rash anywhere, and no headache. My weight is the same and I haven't had night sweats.",
@@ -7389,7 +7430,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 59,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had diarrhea?",
@@ -7401,7 +7442,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 60,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not had diarrhea.",
@@ -7427,7 +7468,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 61,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had constipation?",
@@ -7439,7 +7480,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 62,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not had constipation.",
@@ -7465,7 +7506,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 63,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -7477,7 +7518,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 64,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I'm healthy otherwise. No ongoing medical problems \u2014 just that bladder infection six months ago.",
@@ -7507,7 +7548,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 65,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -7519,7 +7560,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 66,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I had my wisdom teeth out when I was eighteen. That's it \u2014 I've never been in the hospital.",
@@ -7549,7 +7590,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 67,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -7561,7 +7602,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 68,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I take a birth control pill every day. And I've been taking ibuprofen \u2014 400 milligrams, a couple of times a day for the last two days.",
@@ -7591,7 +7632,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 69,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -7603,7 +7644,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 70,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Yes \u2014 sulfa drugs. I broke out in hives when I took something with sulfa as a kid.",
@@ -7633,7 +7674,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 71,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -7645,7 +7686,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 72,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, I've never smoked.",
@@ -7671,7 +7712,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 73,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -7683,7 +7724,7 @@
         },
         {
           "seq": 75,
-          "t_ms": 74,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I'll have two or three drinks on a weekend, that's about it.",
@@ -7709,7 +7750,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 75,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -7721,7 +7762,7 @@
         },
         {
           "seq": 77,
-          "t_ms": 76,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, I don't use any drugs.",
@@ -7747,7 +7788,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 77,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -7759,7 +7800,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 78,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a graduate student.",
@@ -7785,7 +7826,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 79,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are you sexually active?",
@@ -7797,7 +7838,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 80,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am sexually active.",
@@ -7823,7 +7864,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 82,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -7834,7 +7875,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 82,
+          "t_ms": 89,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband off campus.",
@@ -7860,7 +7901,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 83,
+          "t_ms": 90,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How many sexual partners do you have, and have you had a new partner?",
@@ -7872,7 +7913,7 @@
         },
         {
           "seq": 85,
-          "t_ms": 84,
+          "t_ms": 91,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have one male partner, my boyfriend, and no new partners.",
@@ -7898,7 +7939,7 @@
         },
         {
           "seq": 86,
-          "t_ms": 86,
+          "t_ms": 92,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you use for birth control?",
@@ -7910,7 +7951,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 86,
+          "t_ms": 93,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "We use condoms sometimes, not always.",
@@ -7936,7 +7977,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 88,
+          "t_ms": 94,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems run in your family?",
@@ -7948,7 +7989,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 89,
+          "t_ms": 95,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My mom is 52 and has high blood pressure. My dad is 55 and has type 2 diabetes. I have one older brother and he's healthy. No kidney problems or stones in my parents or my brother. My aunt \u2014 my mom's sister \u2014 was on dialysis, but I never really knew what caused it.",
@@ -7990,7 +8031,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 90,
+          "t_ms": 96,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -8001,7 +8042,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 91,
+          "t_ms": 97,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 3 weeks ago.",
@@ -8027,7 +8068,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 92,
+          "t_ms": 98,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -8039,7 +8080,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 93,
+          "t_ms": 99,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant, but it is possible.",
@@ -8065,7 +8106,7 @@
         },
         {
           "seq": 94,
-          "t_ms": 95,
+          "t_ms": 100,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are your periods regular?",
@@ -8077,7 +8118,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 95,
+          "t_ms": 101,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My periods are regular.",
@@ -8103,7 +8144,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 96,
+          "t_ms": 102,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -8115,7 +8156,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 97,
+          "t_ms": 103,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Honestly? I'm scared it's my kidneys. My aunt ended up on dialysis and I keep thinking about that.",
@@ -8142,7 +8183,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 99,
+          "t_ms": 104,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How is this affecting your school work?",
@@ -8154,7 +8195,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 100,
+          "t_ms": 106,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "And I have a big exam on Friday. I can't afford to be sick for that.",
@@ -8178,7 +8219,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 101,
+          "t_ms": 106,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What might make the care plan difficult for you to follow?",
@@ -8190,7 +8231,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 102,
+          "t_ms": 108,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have trouble following medical words. Could you explain one thing at a time?",
@@ -8216,7 +8257,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 103,
+          "t_ms": 109,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -8227,7 +8268,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 111,
+          "t_ms": 124,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "As I mentioned, I have trouble following medical words. Could you explain one thing at a time?",
@@ -8253,7 +8294,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 113,
+          "t_ms": 124,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -8264,17 +8305,17 @@
         },
         {
           "seq": 105,
-          "t_ms": 113,
+          "t_ms": 125,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 106,
-          "t_ms": 113,
+          "t_ms": 124,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -8286,7 +8327,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 10115,
+          "t_ms": 10126,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -8306,7 +8347,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 10115,
+          "t_ms": 10126,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Young woman who appears uncomfortable, shifting position in the chair. Alert and oriented, in mild distress. Flushed.",
@@ -8328,7 +8369,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 50115,
+          "t_ms": 50126,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -8354,7 +8395,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 50115,
+          "t_ms": 50126,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tachycardic, regular rhythm. S1 and S2 present. No murmurs, rubs or gallops.",
@@ -8376,7 +8417,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 100115,
+          "t_ms": 100126,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -8405,7 +8446,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 100115,
+          "t_ms": 100126,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Clear to auscultation bilaterally, all fields. Good air movement. No rales, rhonchi or wheezes.",
@@ -8429,20 +8470,22 @@
         },
         {
           "seq": 113,
-          "t_ms": 100115,
+          "t_ms": 100126,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "supine",
+            "previous_position": "seated",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 114,
-          "t_ms": 120115,
+          "t_ms": 120126,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -8465,7 +8508,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 120115,
+          "t_ms": 120126,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Bowel sounds present and normoactive in all four quadrants. No bruits.",
@@ -8487,7 +8530,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 150115,
+          "t_ms": 150126,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -8511,7 +8554,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 150115,
+          "t_ms": 150126,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tympanitic throughout. No shifting dullness. Liver span normal.",
@@ -8541,7 +8584,7 @@
         },
         {
           "seq": 118,
-          "t_ms": 190115,
+          "t_ms": 190126,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -8570,7 +8613,7 @@
         },
         {
           "seq": 119,
-          "t_ms": 190115,
+          "t_ms": 190126,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Abdomen soft and non-distended. Tenderness in the right upper quadrant and right flank. No rebound tenderness. No guarding. No masses, no organomegaly.",
@@ -8618,7 +8661,7 @@
         },
         {
           "seq": 120,
-          "t_ms": 217115,
+          "t_ms": 217126,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Abdominal special tests",
@@ -8645,7 +8688,7 @@
         },
         {
           "seq": 121,
-          "t_ms": 217115,
+          "t_ms": 217126,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Costovertebral angle tenderness: markedly positive on the RIGHT. Left is non-tender. Murphy sign negative. McBurney point non-tender. Psoas and obturator negative.",
@@ -8689,7 +8732,7 @@
         },
         {
           "seq": 122,
-          "t_ms": 246115,
+          "t_ms": 246126,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -8714,7 +8757,7 @@
         },
         {
           "seq": 123,
-          "t_ms": 246115,
+          "t_ms": 246126,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "On the inspected chest, back, arms and legs: no rashes or lesions on the areas inspected.",
@@ -8736,20 +8779,22 @@
         },
         {
           "seq": 124,
-          "t_ms": 246115,
+          "t_ms": 246126,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "seated",
+            "previous_position": "supine",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 125,
-          "t_ms": 276115,
+          "t_ms": 276126,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -8772,7 +8817,7 @@
         },
         {
           "seq": 126,
-          "t_ms": 276115,
+          "t_ms": 276126,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T10 through L1 on the right: increased paraspinal tissue texture change, tenderness and hypertonicity. T11 is rotated right.",
@@ -8798,7 +8843,7 @@
         },
         {
           "seq": 127,
-          "t_ms": 276115,
+          "t_ms": 276126,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend evaluating a kidney infection because the urinary symptoms are accompanied by fever and flank pain. We should check urine and pregnancy testing and decide whether you can safely drink and take treatment outside the hospital.",
@@ -8810,7 +8855,7 @@
         },
         {
           "seq": 128,
-          "t_ms": 276115,
+          "t_ms": 276126,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend evaluating a kidney infection because the urinary symptoms are accompanied by fever and flank pain. We should check urine and pregnancy testing and decide whether you can safely drink and take treatment outside the hospital.",
@@ -8823,7 +8868,7 @@
         },
         {
           "seq": 129,
-          "t_ms": 276115,
+          "t_ms": 276126,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. Thank you for explaining that.",
@@ -8833,7 +8878,7 @@
         },
         {
           "seq": 130,
-          "t_ms": 276115,
+          "t_ms": 276126,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -8846,7 +8891,7 @@
         },
         {
           "seq": 131,
-          "t_ms": 276115,
+          "t_ms": 276126,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have trouble following medical words. Could you explain one thing at a time?",
@@ -8861,7 +8906,7 @@
         },
         {
           "seq": 132,
-          "t_ms": 276115,
+          "t_ms": 276126,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I will explain one step at a time and ask you to tell me what is clear and what needs another explanation.",
@@ -8873,7 +8918,7 @@
         },
         {
           "seq": 133,
-          "t_ms": 276115,
+          "t_ms": 276126,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I will explain one step at a time and ask you to tell me what is clear and what needs another explanation.",
@@ -8885,7 +8930,7 @@
         },
         {
           "seq": 134,
-          "t_ms": 276115,
+          "t_ms": 276126,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay. I can do that.",
@@ -8894,13 +8939,13 @@
           }
         }
       ],
-      "note_words": 519,
-      "estimated_encounter_s": 799,
+      "note_words": 523,
+      "estimated_encounter_s": 802,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 9
+        "unresolved_count": 8
       },
       "reasoning": [
         {
@@ -9094,7 +9139,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "6db801ee8e88fde7e9ab76b78a6a78955cb7559322d3fad828480cfaa4803337"
+      "case_hash": "adf610e5c2bdbc1d3a140dba8da98314408a29b4a08be2836df8343d699d9b74",
+      "engine_version": "4.0.4"
     },
     {
       "case_id": "renal-flank-pain",
@@ -9165,7 +9211,7 @@
           "kind": "dialogue",
           "section": "Connect",
           "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
-          "patient": "Yes, that's fine. Go ahead.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "why": "",
           "event_ids": [
             5,
@@ -9836,7 +9882,7 @@
           "kind": "dialogue",
           "section": "Explain and ask permission",
           "student": "May I have your permission to examine you?",
-          "patient": "Sure, that's okay with me.",
+          "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
             104,
@@ -10029,7 +10075,7 @@
         }
       ],
       "note": {
-        "S": "CC: Dysuria for 2 days, right flank pain for 1 day.\nHPI: 24-year-old woman with worsening constant dull right flank pain just under the ribs, radiating toward groin, 7/10 (8/10 worst); burning on voiding 5/10. Movement/jarring worsen pain; heat/ibuprofen partly help. Fever, shaking chills, nausea, one emesis, frequency, urgency and cloudy malodorous urine; no gross hematuria. Prior bladder infection 6 months ago without flank symptoms. Tried ibuprofen, cranberry juice and fluids. Concerned about kidney damage because aunt required dialysis.\nPMH: No chronic conditions. PSH: Wisdom teeth at 18; no admission.\nMeds: Oral contraceptive daily; ibuprofen 400 mg a couple times/day for 2 days. Sulfonamides cause hives.\nSH: Graduate student, roommate; no tobacco/drugs; 2\u20133 drinks on weekends. One male sexual partner; inconsistent condoms, no new partner. LMP 3 weeks ago, regular; pregnancy possible.\nFH: Mother HTN, father diabetes; brother healthy. No known kidney disease/stones in parents/brother; aunt's dialysis cause unknown.\nROS: GU as above, no discharge. GI: nausea/vomiting, no diarrhea/constipation. General: fever/chills, no weight loss. No cough, chest pain, rash or headache.\nCare needs: I am worried about getting to follow-up and knowing whom to call if I get worse.",
+        "S": "CC: Dysuria for 2 days, right flank pain for 1 day.\nHPI: 24-year-old woman with worsening constant dull right flank pain just under the ribs, radiating toward groin, 7/10 (8/10 worst); burning on voiding 5/10. Movement/jarring worsen pain; heat/ibuprofen partly help. Fever, shaking chills, nausea, one emesis, frequency, urgency and cloudy malodorous urine; no gross hematuria. Prior bladder infection 6 months ago without flank symptoms. Tried ibuprofen, cranberry juice and fluids. Concerned about kidney damage because aunt required dialysis.\nPMH: No chronic conditions. PSH: Wisdom teeth at 18; no admission.\nMeds: Oral contraceptive daily; ibuprofen 400 mg a couple times/day for 2 days. Sulfonamides cause hives.\nSH: Graduate student; lives with husband off campus; no tobacco/drugs; 2\u20133 drinks on weekends. One male sexual partner; inconsistent condoms, no new partner. LMP 3 weeks ago, regular; pregnancy possible.\nFH: Mother HTN, father diabetes; brother healthy. No known kidney disease/stones in parents/brother; aunt's dialysis cause unknown.\nROS: GU as above, no discharge. GI: nausea/vomiting, no diarrhea/constipation. General: fever/chills, no weight loss. No cough, chest pain, rash or headache.\nCare needs: I am worried about getting to follow-up and knowing whom to call if I get worse.",
         "P": [
           "1. Obtain urine culture/urinalysis, pregnancy test, CBC and BMP; assess intake, perfusion and obstruction/sepsis risk. Clinician to select a renal-tissue-active antibiotic using pregnancy, allergy and resistance data; avoid sulfonamide allergen and nitrofurantoin for pyelonephritis. Explain adherence, hydration and urgent deterioration precautions. Emergency evaluation for instability, inability to retain fluids or infected obstruction; otherwise review in 48\u201372 hours with culture results. Confirm transport and a practical contact for deterioration.",
           "2. Obtain appropriate renal imaging if obstruction is suspected; clinician-directed analgesia/antiemetic and urgent urology input for infected obstruction. Explain that fever with obstruction needs more than hydration.",
@@ -10282,13 +10328,23 @@
         },
         {
           "section": "S",
-          "statement": "Graduate student, roommate;",
+          "statement": "Graduate student;",
           "event_ids": [
             79
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "lives with husband off campus;",
+          "event_ids": [
+            83
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
@@ -10947,8 +11003,7 @@
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
             "plan_talk": true,
-            "mode": "type",
-            "intent": "consent"
+            "mode": "type"
           }
         },
         {
@@ -10958,35 +11013,39 @@
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "courtesy_id": "consent_exam",
-            "label": "Explain the exam and ask permission"
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
           }
         },
         {
           "seq": 7,
-          "t_ms": 3,
+          "t_ms": 1,
           "phase": "encounter",
-          "kind": "patient_reply",
-          "text": "Yes, that's fine. Go ahead.",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
           "meta": {
-            "kind": "consent"
+            "courtesy_id": "consent_exam",
+            "label": "Explain the exam and ask permission",
+            "components": []
           }
         },
         {
           "seq": 8,
-          "t_ms": 1,
+          "t_ms": 9,
           "phase": "encounter",
-          "kind": "exam_action",
-          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
           "meta": {
-            "status": "consented",
-            "maneuver": null,
-            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
           }
         },
         {
           "seq": 9,
-          "t_ms": 4,
+          "t_ms": 9,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -10998,7 +11057,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 5,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I've had this burning when I pee for a couple of days, and since yesterday my back has been hurting on the right side. I've been feeling really lousy \u2014 I think I have a fever.",
@@ -11024,7 +11083,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 6,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I will arrange urgent help from my supervising clinician now. We will not delay emergency care to finish routine questions.",
@@ -11036,7 +11095,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 6,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I will arrange urgent help from my supervising clinician now. We will not delay emergency care to finish routine questions.",
@@ -11048,7 +11107,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 7,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -11058,7 +11117,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 8,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -11070,7 +11129,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 8,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The back pain is about a seven out of ten right now \u2014 it got up to an eight last night. The burning is maybe a five.",
@@ -11100,7 +11159,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 9,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is the back ache constant, and when does the burning happen?",
@@ -11112,7 +11171,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 10,
+          "t_ms": 21,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The back ache is there all the time. The burning only happens when I actually go.",
@@ -11138,7 +11197,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 11,
+          "t_ms": 21,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did the burning with urination start?",
@@ -11149,7 +11208,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 12,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The burning started about two days ago.",
@@ -11179,7 +11238,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 13,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did the back pain start?",
@@ -11190,7 +11249,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 14,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The back pain started yesterday, on the right side.",
@@ -11220,7 +11279,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 15,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How have your symptoms changed since they started?",
@@ -11232,7 +11291,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 15,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It started with just the burning. Then yesterday the back pain and the fever came on, and it's been getting worse since.",
@@ -11258,7 +11317,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 16,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -11269,7 +11328,7 @@
         },
         {
           "seq": 25,
-          "t_ms": 17,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It's right here \u2014 the right side of my back, just under my ribs. The burning is lower down, in front, when I go.",
@@ -11295,7 +11354,7 @@
         },
         {
           "seq": 26,
-          "t_ms": 18,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -11307,7 +11366,7 @@
         },
         {
           "seq": 27,
-          "t_ms": 19,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Sometimes it wraps around toward the front, down near my right hip and groin.",
@@ -11333,7 +11392,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 20,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -11345,7 +11404,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 21,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The back pain is like a deep, constant ache. The peeing is more of a burning, stinging feeling.",
@@ -11375,19 +11434,19 @@
         },
         {
           "seq": 30,
-          "t_ms": 22,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Was there an injury or any trigger you noticed?",
           "meta": {
-            "open_question": true,
+            "closed_question": true,
             "mode": "type",
             "intent": "question"
           }
         },
         {
           "seq": 31,
-          "t_ms": 22,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Nothing that I can think of. I didn't hurt my back or fall or anything.",
@@ -11413,7 +11472,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 24,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -11425,7 +11484,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 24,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Ibuprofen takes the edge off a bit, and a heating pad helps a little.",
@@ -11455,7 +11514,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 25,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -11467,7 +11526,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 26,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Moving around makes it worse. Riding in the car over bumps was awful.",
@@ -11493,7 +11552,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 27,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -11505,7 +11564,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 28,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I've been taking ibuprofen, drinking cranberry juice, and pushing water. It hasn't really fixed it.",
@@ -11531,7 +11590,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 29,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -11543,7 +11602,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 30,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I had a bladder infection about six months ago. They gave me antibiotics and it cleared up. But it never got into my back like this.",
@@ -11569,7 +11628,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 31,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt feverish or measured your temperature?",
@@ -11581,7 +11640,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 32,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I've felt hot and sweaty since yesterday. I didn't take my temperature at home.",
@@ -11607,7 +11666,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 33,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had shaking chills?",
@@ -11619,7 +11678,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 34,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Yes \u2014 I had shaking chills last night under two blankets.",
@@ -11645,7 +11704,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 35,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had nausea or vomiting?",
@@ -11657,7 +11716,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 36,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I've been nauseated, and I actually threw up once this morning.",
@@ -11687,7 +11746,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 37,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How often are you urinating?",
@@ -11699,7 +11758,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 37,
+          "t_ms": 50,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I'm going way more often than normal \u2014 every hour or so, and barely anything comes out.",
@@ -11725,7 +11784,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 38,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you get a sudden urge and have to rush to the bathroom?",
@@ -11737,7 +11796,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 39,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "When I have to go, I really have to go \u2014 it comes on all of a sudden.",
@@ -11763,7 +11822,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 40,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does your urine look and smell like? Have you seen blood?",
@@ -11775,7 +11834,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 41,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It's been cloudy and it smells stronger than usual. I haven't seen any blood in it.",
@@ -11805,7 +11864,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 42,
+          "t_ms": 56,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had vaginal discharge or itching?",
@@ -11817,7 +11876,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 43,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, nothing like that. No discharge or itching.",
@@ -11843,7 +11902,7 @@
         },
         {
           "seq": 54,
-          "t_ms": 44,
+          "t_ms": 58,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had diarrhea or constipation?",
@@ -11855,7 +11914,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 45,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, my bowels have been normal.",
@@ -11879,7 +11938,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 46,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had cough, trouble breathing, or chest pain?",
@@ -11891,7 +11950,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 47,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No cough, no trouble breathing, no chest pain.",
@@ -11923,7 +11982,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 48,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had rash, headache, weight loss, or night sweats?",
@@ -11935,7 +11994,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 49,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No rash anywhere, and no headache. My weight is the same and I haven't had night sweats.",
@@ -11971,7 +12030,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 50,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had diarrhea?",
@@ -11983,7 +12042,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 51,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not had diarrhea.",
@@ -12009,7 +12068,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 52,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had constipation?",
@@ -12021,7 +12080,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 52,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not had constipation.",
@@ -12047,7 +12106,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 53,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -12059,7 +12118,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 54,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I'm healthy otherwise. No ongoing medical problems \u2014 just that bladder infection six months ago.",
@@ -12089,7 +12148,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 55,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -12101,7 +12160,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 56,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I had my wisdom teeth out when I was eighteen. That's it \u2014 I've never been in the hospital.",
@@ -12131,7 +12190,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 57,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -12143,7 +12202,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 58,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I take a birth control pill every day. And I've been taking ibuprofen \u2014 400 milligrams, a couple of times a day for the last two days.",
@@ -12173,7 +12232,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 59,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -12185,7 +12244,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 60,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Yes \u2014 sulfa drugs. I broke out in hives when I took something with sulfa as a kid.",
@@ -12215,7 +12274,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 61,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -12227,7 +12286,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 62,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, I've never smoked.",
@@ -12253,7 +12312,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 63,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -12265,7 +12324,7 @@
         },
         {
           "seq": 75,
-          "t_ms": 64,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I'll have two or three drinks on a weekend, that's about it.",
@@ -12291,7 +12350,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 65,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -12303,7 +12362,7 @@
         },
         {
           "seq": 77,
-          "t_ms": 66,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, I don't use any drugs.",
@@ -12329,7 +12388,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 67,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -12341,7 +12400,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 68,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a graduate student.",
@@ -12367,7 +12426,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 69,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are you sexually active?",
@@ -12379,7 +12438,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 69,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am sexually active.",
@@ -12405,7 +12464,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 71,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -12416,7 +12475,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 71,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband off campus.",
@@ -12442,7 +12501,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 72,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How many sexual partners do you have, and have you had a new partner?",
@@ -12454,7 +12513,7 @@
         },
         {
           "seq": 85,
-          "t_ms": 74,
+          "t_ms": 90,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have one male partner, my boyfriend, and no new partners.",
@@ -12480,7 +12539,7 @@
         },
         {
           "seq": 86,
-          "t_ms": 75,
+          "t_ms": 91,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you use for birth control?",
@@ -12492,7 +12551,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 76,
+          "t_ms": 92,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "We use condoms sometimes, not always.",
@@ -12518,7 +12577,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 77,
+          "t_ms": 93,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems run in your family?",
@@ -12530,7 +12589,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 78,
+          "t_ms": 95,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My mom is 52 and has high blood pressure. My dad is 55 and has type 2 diabetes. I have one older brother and he's healthy. No kidney problems or stones in my parents or my brother. My aunt \u2014 my mom's sister \u2014 was on dialysis, but I never really knew what caused it.",
@@ -12572,7 +12631,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 79,
+          "t_ms": 95,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -12583,7 +12642,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 80,
+          "t_ms": 97,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 3 weeks ago.",
@@ -12609,7 +12668,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 81,
+          "t_ms": 97,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -12621,7 +12680,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 82,
+          "t_ms": 99,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant, but it is possible.",
@@ -12647,7 +12706,7 @@
         },
         {
           "seq": 94,
-          "t_ms": 83,
+          "t_ms": 99,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are your periods regular?",
@@ -12659,7 +12718,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 84,
+          "t_ms": 101,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My periods are regular.",
@@ -12685,7 +12744,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 85,
+          "t_ms": 101,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -12697,7 +12756,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 86,
+          "t_ms": 103,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Honestly? I'm scared it's my kidneys. My aunt ended up on dialysis and I keep thinking about that.",
@@ -12724,7 +12783,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 87,
+          "t_ms": 103,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How is this affecting your school work?",
@@ -12736,7 +12795,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 88,
+          "t_ms": 105,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "And I have a big exam on Friday. I can't afford to be sick for that.",
@@ -12760,7 +12819,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 89,
+          "t_ms": 105,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What might make the care plan difficult for you to follow?",
@@ -12772,7 +12831,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 90,
+          "t_ms": 107,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am worried about getting to follow-up and knowing whom to call if I get worse.",
@@ -12798,7 +12857,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 91,
+          "t_ms": 108,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -12809,7 +12868,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 95,
+          "t_ms": 123,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "As I mentioned, I am worried about getting to follow-up and knowing whom to call if I get worse.",
@@ -12835,7 +12894,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 97,
+          "t_ms": 123,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -12846,17 +12905,17 @@
         },
         {
           "seq": 105,
-          "t_ms": 97,
+          "t_ms": 125,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "Sure, that's okay with me.",
+          "text": "Yes, that's fine. Go ahead.",
           "meta": {
             "kind": "consent"
           }
         },
         {
           "seq": 106,
-          "t_ms": 97,
+          "t_ms": 123,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -12868,7 +12927,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 10098,
+          "t_ms": 10125,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -12888,7 +12947,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 10098,
+          "t_ms": 10125,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Young woman who appears uncomfortable, shifting position in the chair. Alert and oriented, in mild distress. Flushed.",
@@ -12910,7 +12969,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 50098,
+          "t_ms": 50125,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -12936,7 +12995,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 50098,
+          "t_ms": 50125,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tachycardic, regular rhythm. S1 and S2 present. No murmurs, rubs or gallops.",
@@ -12958,7 +13017,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 100098,
+          "t_ms": 100125,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -12987,7 +13046,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 100098,
+          "t_ms": 100125,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Clear to auscultation bilaterally, all fields. Good air movement. No rales, rhonchi or wheezes.",
@@ -13011,20 +13070,22 @@
         },
         {
           "seq": 113,
-          "t_ms": 100098,
+          "t_ms": 100125,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "supine",
+            "previous_position": "seated",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 114,
-          "t_ms": 120098,
+          "t_ms": 120125,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -13047,7 +13108,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 120098,
+          "t_ms": 120125,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Bowel sounds present and normoactive in all four quadrants. No bruits.",
@@ -13069,7 +13130,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 150098,
+          "t_ms": 150125,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -13093,7 +13154,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 150098,
+          "t_ms": 150125,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tympanitic throughout. No shifting dullness. Liver span normal.",
@@ -13123,7 +13184,7 @@
         },
         {
           "seq": 118,
-          "t_ms": 190098,
+          "t_ms": 190125,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -13152,7 +13213,7 @@
         },
         {
           "seq": 119,
-          "t_ms": 190098,
+          "t_ms": 190125,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Abdomen soft and non-distended. Tenderness in the right upper quadrant and right flank. No rebound tenderness. No guarding. No masses, no organomegaly.",
@@ -13200,7 +13261,7 @@
         },
         {
           "seq": 120,
-          "t_ms": 217098,
+          "t_ms": 217125,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Abdominal special tests",
@@ -13227,7 +13288,7 @@
         },
         {
           "seq": 121,
-          "t_ms": 217098,
+          "t_ms": 217125,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Costovertebral angle tenderness: markedly positive on the RIGHT. Left is non-tender. Murphy sign negative. McBurney point non-tender. Psoas and obturator negative.",
@@ -13271,7 +13332,7 @@
         },
         {
           "seq": 122,
-          "t_ms": 246098,
+          "t_ms": 246125,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -13296,7 +13357,7 @@
         },
         {
           "seq": 123,
-          "t_ms": 246098,
+          "t_ms": 246125,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "On the inspected chest, back, arms and legs: no rashes or lesions on the areas inspected.",
@@ -13318,20 +13379,22 @@
         },
         {
           "seq": 124,
-          "t_ms": 246098,
+          "t_ms": 246125,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
           "meta": {
             "courtesy_id": "position_help",
             "position": "seated",
+            "previous_position": "supine",
             "accepted": true,
-            "simulated": true
+            "simulated": true,
+            "no_finding": true
           }
         },
         {
           "seq": 125,
-          "t_ms": 276098,
+          "t_ms": 276125,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -13354,7 +13417,7 @@
         },
         {
           "seq": 126,
-          "t_ms": 276098,
+          "t_ms": 276125,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T10 through L1 on the right: increased paraspinal tissue texture change, tenderness and hypertonicity. T11 is rotated right.",
@@ -13380,7 +13443,7 @@
         },
         {
           "seq": 127,
-          "t_ms": 276098,
+          "t_ms": 276125,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend evaluating a kidney infection because the urinary symptoms are accompanied by fever and flank pain. We should check urine and pregnancy testing and decide whether you can safely drink and take treatment outside the hospital.",
@@ -13392,7 +13455,7 @@
         },
         {
           "seq": 128,
-          "t_ms": 276098,
+          "t_ms": 276125,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend evaluating a kidney infection because the urinary symptoms are accompanied by fever and flank pain. We should check urine and pregnancy testing and decide whether you can safely drink and take treatment outside the hospital.",
@@ -13405,7 +13468,7 @@
         },
         {
           "seq": 129,
-          "t_ms": 276098,
+          "t_ms": 276125,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. Thank you for explaining that.",
@@ -13415,7 +13478,7 @@
         },
         {
           "seq": 130,
-          "t_ms": 276098,
+          "t_ms": 276125,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -13428,7 +13491,7 @@
         },
         {
           "seq": 131,
-          "t_ms": 276098,
+          "t_ms": 276125,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am worried about getting to follow-up and knowing whom to call if I get worse.",
@@ -13443,7 +13506,7 @@
         },
         {
           "seq": 132,
-          "t_ms": 276098,
+          "t_ms": 276125,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend telling the care team about this practical barrier so we can arrange a safe transport and contact plan with you.",
@@ -13455,7 +13518,7 @@
         },
         {
           "seq": 133,
-          "t_ms": 276098,
+          "t_ms": 276125,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend telling the care team about this practical barrier so we can arrange a safe transport and contact plan with you.",
@@ -13467,7 +13530,7 @@
         },
         {
           "seq": 134,
-          "t_ms": 276098,
+          "t_ms": 276125,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay. I can do that.",
@@ -13476,13 +13539,13 @@
           }
         }
       ],
-      "note_words": 521,
-      "estimated_encounter_s": 801,
+      "note_words": 525,
+      "estimated_encounter_s": 804,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 9
+        "unresolved_count": 8
       },
       "reasoning": [
         {
@@ -13676,7 +13739,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "3d3c3fb1d57499657839bafd7e0ed85735912f70b7d3d2c350355ba05c64f9c2"
+      "case_hash": "70bc0624b43b9d31daa3b5360aaef66aab7349f823ca1734069086904ad67c6d",
+      "engine_version": "4.0.4"
     }
   ]
 }

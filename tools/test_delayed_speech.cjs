@@ -1,0 +1,14 @@
+const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict'),path=require('path');
+const root=path.resolve(__dirname,'..');const source=fs.readFileSync(path.join(root,'web/app.js'),'utf8');
+const listeners=new Set(),spoken=[];let loading=true;
+const c={voice:{speak:true},S:{id:'first',phase:'encounter'},SpeechSynthesisUtterance:class{constructor(text){this.text=text;}},window:{speechSynthesis:{addEventListener(_,fn){listeners.add(fn)},removeEventListener(_,fn){listeners.delete(fn)},speak(u){spoken.push(u.text)}}},configurePatientSpeech:()=>({available:!loading,loading}),setPatientState(){},notifyPublicState(){},reportVoiceUnavailable(){},suppressListeningForPatient(){c.voice.suppressed=true;},resumeListeningAfterPatient(){c.voice.suppressed=false;},toast(){},Date};vm.createContext(c);
+vm.runInContext(source.slice(source.indexOf('function cancelPendingSpeech(){'),source.indexOf('/* 5a. ORGANIZATION INTERVAL')),c);
+const emit=()=>[...listeners].forEach(fn=>fn());
+c.speak('old reply');c.speak('current reply');assert.equal(listeners.size,1);loading=false;emit();assert.deepEqual(spoken,['current reply']);
+loading=true;c.speak('previous patient');c.S={id:'second',phase:'encounter'};loading=false;emit();assert.deepEqual(spoken,['current reply']);
+loading=true;c.speak('canceled reply');c.cancelPendingSpeech();loading=false;emit();assert.deepEqual(spoken,['current reply']);
+loading=true;c.speak('still loading');emit();assert.equal(listeners.size,0,'empty changed event must not leave a growing queue');
+c.voice.speak=false;loading=false;c.speak('speech disabled');assert.deepEqual(spoken,['current reply']);
+c.voice.speak=true;c.window.speechSynthesis.speak=()=>{throw Error('speech service failed')};c.speak('playback failure');assert.equal(c.voice.suppressed,false,'speech failure must release the microphone');
+for(const name of ['stopVoice','silencePatientAudio','interruptPatient'])assert(source.includes('function '+name+'(){\n  cancelPendingSpeech();'));
+console.log('PASS delayed voice list: only latest reply, no previous-patient or canceled playback, no growing retry queue');

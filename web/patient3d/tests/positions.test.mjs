@@ -32,12 +32,28 @@ for(const file of files)test(`${file}: actual four poses and transitions preserv
    if(isPublic){
     const anatomical=asset.meshes.find(m=>m.name==='PCM_AnatomicalBody');
     const covered=asset.meshes.filter(m=>m.name.startsWith('PCM_Public'));
+    const fullIndices=Array.from(anatomical.getIndices()),skinMaterial=anatomical.material;
     assert.ok(covered.length>=4,'Covered body and complete outfit are present');
     c.update({...state,posture,reducedMotion:true,appearance:{...state.appearance,outfit:'fitted-casual'}});c.animate(performance.now());
-    assert.equal(anatomical.isEnabled(),false,`${posture}: anatomical surface hidden by clothing switch`);
+    // 2026-09-12: the female covered outfit intentionally uses a small,
+    // dark pelvic subset to close a gap in the trousers. Check the actual
+    // coverage contract and lossless anatomy restoration instead of treating
+    // the intentional filler as a fully exposed anatomical body.
+    if(male)assert.equal(anatomical.isEnabled(),false,`${posture}: male anatomy hidden beneath trousers`);
+    else{
+     const filler=Array.from(anatomical.getIndices());
+     assert.equal(anatomical.isEnabled(),true,`${posture}: female trouser gap stays filled`);
+     assert.ok(filler.length>0&&filler.length<fullIndices.length*.05,'Only a small body subset fills the garment gap');
+     const available=new Set(fullIndices);assert.ok(filler.every(index=>available.has(index)),'Filler uses authored vertices');
+     assert.notEqual(anatomical.material,skinMaterial,'Clothed filler must not use visible skin');
+     assert.equal(anatomical.material.albedoTexture,null,'Skin texture is not exposed beneath clothing');
+     assert.ok(anatomical.material.albedoColor.asArray().every(value=>value<.1),'Filler reads as a garment shadow');
+    }
     assert.ok(covered.every(m=>m.isEnabled()),`${posture}: covered body and clothes remain visible`);
     c.update({...state,posture,reducedMotion:true});c.animate(performance.now());
     assert.equal(anatomical.isEnabled(),true,`${posture}: anatomical view restored`);
+    assert.deepEqual(Array.from(anatomical.getIndices()),fullIndices,'Anatomy toggle restores every authored triangle');
+    assert.equal(anatomical.material,skinMaterial,'Anatomy toggle restores the original skin material');
     assert.ok(covered.every(m=>!m.isEnabled()),`${posture}: clothes hidden in anatomical view`);
    }
   }

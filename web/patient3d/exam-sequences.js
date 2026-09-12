@@ -32,7 +32,7 @@
         {
           id: 'inspect',
           title: 'Inspect',
-          instruction: 'Look at the patient and the precordium. Note comfort at rest, work of breathing, colour, and any visible chest wall pulsation.',
+          instruction: 'Look at the patient and the precordium. Note comfort at rest, work of breathing, color, and any visible chest wall pulsation.',
           assessing: 'Distress, cyanosis, visible heave or lift.',
           normal: 'Comfortable at rest, no cyanosis, no visible precordial impulse.',
           soap: 'Comfortable at rest',
@@ -80,7 +80,7 @@
         { title: 'Carotid auscultation', why: 'Adds a bruit check; useful with a murmur or vascular risk.' },
         { title: 'Bell at the apex', why: 'For a low-pitched S3/S4 or mitral stenosis murmur.' },
         { title: 'JVP assessment', why: 'Slow and hard to do reliably; reserve for suspected heart failure.' },
-        { title: 'Peripheral oedema', why: 'Quick and worth adding when volume overload is a question.' },
+        { title: 'Peripheral edema', why: 'Quick and worth adding when volume overload is a question.' },
       ],
       soapPrefix: 'CV:',
     },

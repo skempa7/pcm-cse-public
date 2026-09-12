@@ -54,7 +54,7 @@ async function printLesson(l){
  let status=$('#printLessonStatus');if(!status){status=document.createElement('p');status.id='printLessonStatus';status.setAttribute('role','status');button.closest('.reader-top').after(status);}
  status.textContent='Loading local images and checking that every paragraph fits. Your encounter and note are unchanged.';
  try{
-  printModule=printModule||await import(new URL('./walkthrough-print.js?v=landscape-1',location.href));
+  printModule=printModule||await import(new URL('./walkthrough-print.js?v=e7aa65af8a',location.href));
   const prepared=await printModule.prepareWalkthrough(l);
   if(token!==printTask||location.hash!==route){printModule.clearWalkthroughPrint();return;}
   if(!await verifyCached(true)){printModule.clearWalkthroughPrint();return;}

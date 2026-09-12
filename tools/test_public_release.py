@@ -48,5 +48,5 @@ for p in (ROOT/'web/patient3d/assets').glob('public-*.glb'):
  assert not any(m.get('name')=='PCM_ClinicalManikin' for m in g['materials'])
  assets.append({'file':p.name,'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)})
 assert len(assets)==4
-out={'result':'PASS','playable_paths':len(report),'women':18,'men':6,'checks':report,'assets':assets,'limits':'Structural/route regression checks, not independent clinical validation. Existing grading defects remain.'}
+out={'result':'PASS','playable_paths':len(report),'women':18,'men':6,'checks':report,'assets':assets,'limits':'Structural/route regression checks, not independent clinical validation. Symbolic SOAP grading is provisional; unrecognized wording receives no automatic credit.'}
 (ROOT/'public-verification.json').write_text(json.dumps(out,indent=2));print(json.dumps({k:out[k]for k in ('result','playable_paths','women','men','limits')}))
