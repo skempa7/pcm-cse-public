@@ -34,8 +34,7 @@ function rememberStream(){
 }
 function restoreVoice(){/* retired: the voice settings panel no longer exists */}
 function cleanup(){if(!active)return;clearTimeout(active.outcomeTimer);closeSheet();restoreVoice();
- const brand=q('#btnBrand');
- if(brand&&brand.dataset.ewStoodDown){brand.setAttribute('aria-label',brand.dataset.ewLabel||'Chat CSE — Home');brand.removeAttribute('tabindex');brand.style.pointerEvents='';delete brand.dataset.ewStoodDown;delete brand.dataset.ewLabel;}document.body.classList.remove('encounter-workspace-active');document.documentElement.style.removeProperty('--ew-available');active=null;}
+ document.body.classList.remove('encounter-workspace-active');document.documentElement.style.removeProperty('--ew-available');active=null;}
 function fit(){if(!active)return;const room=active.root;if(!room.isConnected)return;const top=Math.max(0,room.getBoundingClientRect().top);document.documentElement.style.setProperty('--ew-available',Math.max(280,innerHeight-top-8)+'px');positionRoomFrame?.();}
 function selectTab(name,focus=false){
  if(name==='guide'){name='talk';const guide=q('#ewPanelGuide');if(guide)guide.open=true;}
@@ -411,7 +410,7 @@ function updateExamStatus(){if(!active)return;const busy=!!latest?.pending_exam|
   b.title=busy?'Wait for the running examination to finish before repositioning':'';});}
 async function perform(key){if(!active||!latest||latest.phase!=='encounter'||latest.pending_exam||active.examSending)return;const ctx=active,m=ctx.examList.find(x=>x.actionKey===key);if(!m)return;const sid=latest.id,components=m.components;ctx.examSending=true;updateExamStatus();
  try{const r=await api('/api/session/'+sid+'/exam',{maneuver_id:m.id,components,source_text:'Perform: '+m.label+(components.length?' ('+components.join(', ')+')':'')+' — patient '+recordedPosition()});if(active!==ctx||S?.id!==sid)return;if(r.error){outcome('Examination could not complete',r.message||'Please try again.');return;}if(r.state)S=Object.assign({},S,r.state);(r.events||[]).forEach(deliverEvent);if(r.state?.transcript)paintStream(S.transcript||[]);paintExamProgress();notifyPublicState();}
- catch{if(active===ctx)outcome('Connection interrupted','Reconnect and check Record before retrying.');}
+ catch{if(active===ctx)outcome('Connection interrupted','Reconnect and check Notes before retrying.');}
  finally{ctx.examSending=false;if(active===ctx)updateExamStatus();}
 }
 // Display feedback separately from the evidence ledger: explanations are not findings.
@@ -495,7 +494,20 @@ function recordHtml(summary){
  const dedupe=(html,items)=>{let last='';return items.map((item,i)=>{
    const label=item.label||(item.fact_id?'Reported':'Finding');
    const out=html(item,label===last&&i>0);last=label;return out;}).join('');};
- return summary.groups.map(group=>
+ const hpiHtml=group=>{
+   const slots=[['onset','O · Onset'],['location','L · Location / radiation'],['duration','D · Duration'],['character','C · Character'],['aggravating','A · Aggravating factors'],['relieving','R · Relieving factors'],['timing','T · Timing / course'],['severity','S · Severity']];
+   const buckets=Object.fromEntries(slots.map(([id])=>[id,[]])),other=[];
+   for(const section of group.sections)for(const item of section.items){
+     const category=item.category;
+     let slot=({onset:'onset',setting:'onset',location:'location',radiation:'location',duration:'duration',quality:'character',aggravating:'aggravating',alleviating:'relieving',timing:'timing',chronology:'timing',severity:'severity'})[category];
+     // Duration is an authored fact identity, not a guess from a time mentioned
+     // inside a longer answer. Every disclosed row appears exactly once.
+     if(category==='timing'&&/duration/.test(item.fact_id||''))slot='duration';
+     (slot?buckets[slot]:other).push(item);
+   }
+   return '<section class="ew-rec-group"><h3>History of present illness · OLDCARTS</h3>'+slots.map(([id,label])=>'<h4 class="ew-oldcarts-title">'+E(label)+'</h4>'+(buckets[id].length?'<dl class="ew-rec">'+dedupe(row,buckets[id])+'</dl>':'<p class="ew-oldcarts-empty">Not yet recorded</p>')).join('')+(other.length?'<h4 class="ew-oldcarts-title">Associated symptoms, prior episodes &amp; treatments</h4><dl class="ew-rec">'+dedupe(row,other)+'</dl>':'')+'</section>';
+ };
+ return summary.groups.map(group=>group.id==='hpi'?hpiHtml(group):
    '<section class="ew-rec-group"><h3>'+E(group.label)+'</h3><dl class="ew-rec">'
    +group.sections.map(section=>
      dedupe((item,repeat)=>item.fact_id?row(item,repeat):finding(item,repeat),section.items)
@@ -540,13 +552,7 @@ function arrangeGuide(){if(!active)return;const panel=q('#encounterGuide');if(!p
 function mount(s){
  const root=q('#view .experience-room'),convo=q('.convo',root);if(!root||!convo)return;if(active?.root===root){latest=s;return;}cleanup();latest=s;
  active={root,convo,tab:'talk',sessionId:s.id};const small=document.createElement('p');small.className='ew-small-screen';small.textContent='Compact screen: the patient and tools stack here. The action bar stays available while you scroll. Use a wider window for the single-screen encounter.';root.prepend(small);document.body.classList.add('encounter-workspace-active');root.classList.add('ew-room');
- // The brand and the Home button are two ways to leave, side by side, in the
- // only chrome that survives the encounter. Keep the labelled one and let the
- // brand be branding while an encounter is open.
- const brand=q('#btnBrand');
- if(brand&&!brand.dataset.ewStoodDown){brand.dataset.ewStoodDown='1';brand.dataset.ewLabel=brand.getAttribute('aria-label')||'';
-  brand.setAttribute('aria-label','Chat CSE');brand.setAttribute('tabindex','-1');brand.style.pointerEvents='none';}
- const work=document.createElement('div');work.className='ew-right';const hasGuide=['guided','coached'].includes(s.learning_mode);work.innerHTML='<nav class="ew-tabs" role="tablist" aria-label="Encounter workspace">'+[['talk','Talk'],['exam','Examine'],['record','Record']].map(([id,label])=>'<button type="button" role="tab" id="ewTab'+id+'" data-ew-tab="'+id+'" aria-controls="ewPanel'+id[0].toUpperCase()+id.slice(1)+'"><span aria-hidden="true">'+icons[id]+'</span> '+label+'</button>').join('')+'</nav><div class="ew-panels"><section role="tabpanel" id="ewPanelTalk" data-ew-panel="talk" aria-labelledby="ewTabtalk">'+'<div id="ewTalkLog"></div>'+(hasGuide?'<details id="ewPanelGuide" class="ew-talk-guide" open><summary><span class="ew-guide-eyebrow">Next step</span><span class="ew-guide-toggle" aria-hidden="true"></span></summary><div id="ewGuideCard"><p class="small ew-guide-loading">Preparing your next step…</p></div></details>':'')+'</section><section role="tabpanel" id="ewPanelExam" data-ew-panel="exam" aria-labelledby="ewTabexam" hidden></section>'+'<section role="tabpanel" id="ewPanelRecord" data-ew-panel="record" aria-labelledby="ewTabrecord" hidden><p class="small ew-record-note">What you have learned so far, arranged the way your note is scored. The conversation itself stays in Talk.</p><div id="ewRecordLog"></div></section></div>';
+ const work=document.createElement('div');work.className='ew-right';const hasGuide=['guided','coached'].includes(s.learning_mode);work.innerHTML='<nav class="ew-tabs" role="tablist" aria-label="Encounter workspace">'+[['talk','Talk'],['exam','Physical Exam'],['record','Notes']].map(([id,label])=>'<button type="button" role="tab" id="ewTab'+id+'" data-ew-tab="'+id+'" aria-controls="ewPanel'+id[0].toUpperCase()+id.slice(1)+'"><span aria-hidden="true">'+icons[id]+'</span> '+label+'</button>').join('')+'</nav><div class="ew-panels"><section role="tabpanel" id="ewPanelTalk" data-ew-panel="talk" aria-labelledby="ewTabtalk">'+'<div id="ewTalkLog"></div>'+(hasGuide?'<details id="ewPanelGuide" class="ew-talk-guide" open><summary><span class="ew-guide-eyebrow">Next step</span><span class="ew-guide-toggle" aria-hidden="true"></span></summary><div id="ewGuideCard"><p class="small ew-guide-loading">Preparing your next step…</p></div></details>':'')+'</section><section role="tabpanel" id="ewPanelExam" data-ew-panel="exam" aria-labelledby="ewTabexam" hidden></section>'+'<section role="tabpanel" id="ewPanelRecord" data-ew-panel="record" aria-labelledby="ewTabrecord" hidden><p class="small ew-record-note">What you have learned so far. Present illness is organized by OLDCARTS. The conversation itself stays in Talk.</p><div id="ewRecordLog"></div></section></div>';
  convo.before(work);work.append(convo);convo.classList.add('ew-conversation');q('#ewTalkLog',work).append(q('#stream',convo));const composer=q('.composer',convo);const reply=document.createElement('div');reply.className='ew-latest-reply';reply.innerHTML='<button class="btn sm ghost" type="button" aria-label="Read full conversation">Patient ↗</button><p></p>';reply.querySelector('button').onclick=()=>selectTab('talk');work.append(reply,composer);q('#voiceBar',convo)&&q('#ewPanelTalk',work).prepend(q('#voiceBar',convo));q('.branch-reminder',convo)&&q('#ewPanelTalk',work).prepend(q('.branch-reminder',convo));
  const bar=document.createElement('div');bar.className='ew-bottom';bar.setAttribute('aria-label','Essential encounter actions');root.append(bar);const tools=document.createElement('div');tools.className='ew-bottom-tools';bar.append(tools);
  const bedside=button('♡ Bedside','ewBedside');tools.append(bedside);bedside.onclick=openBedside;

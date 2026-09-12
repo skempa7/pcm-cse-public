@@ -59,6 +59,7 @@ def load(cid):
 # clinical content, which is the failure this file exists to catch.
 # --------------------------------------------------------------------------
 NON_CLINICAL = [
+    "i am not sure about that. i cannot give you a definite answer.",
     "my name is", "i am", "i'm", "years old", "hello", "thank you for introducing",
     "i am ready to talk", "i do not know what is causing", "i am here to find out",
     "i do not have an answer", "please treat it as information unavailable",

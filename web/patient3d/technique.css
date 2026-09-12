@@ -118,3 +118,11 @@
 @media (prefers-reduced-motion:reduce){
   #techniqueLaunch{transition:none}
 }
+
+/* Keep the guide inside the viewport; global room buttons use no-wrap pills. */
+#techniquePanel,#techniquePanel *{box-sizing:border-box;min-width:0}
+#techniquePanel{overflow-x:hidden;overflow-y:auto}
+#techniquePanel button:not(.tech-close){white-space:normal;overflow-wrap:anywhere;max-width:100%;border-radius:12px}
+#techniquePanel .exam-choice{width:100%;display:block;text-align:left}
+#techniquePanel p,#techniquePanel h2,#techniquePanel span,#techniquePanel dd{white-space:normal;overflow-wrap:anywhere;max-width:100%}
+#techniquePanel .tech-nav{flex-wrap:wrap}

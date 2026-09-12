@@ -316,7 +316,7 @@ _ASPECTS = [
               "anything like this before", "in the past", "similar episode"]},
     {"id": "pmh", "categories": ["pmh"],
      "cues": ["medical problem", "medical condition", "medical history",
-              "health problem", "diagnosed with", "chronic condition",
+              "health problem", "diagnosed with", "chronic condition", "chronic illness", "long term illness",
               "other health", "any conditions"]},
     {"id": "psh", "categories": ["psh"],
      "cues": ["surgery", "surgeries", "operation", "hospitalized",
@@ -1643,7 +1643,7 @@ class PatientEngine:
                 selected.extend(f for f in self.facts.values() if topic in position_history_fact_topics(f) and f not in selected)
             parts=[self._say(f,state,meta) for f in selected[:3]]
             missing=[topic for topic in posture if not any(topic in position_history_fact_topics(f) for f in selected)]
-            if missing or not parts:parts.append('I do not have an answer to that in this simulated case. Please treat it as information unavailable, not as a denial.')
+            if missing or not parts:parts.append('I am not sure about that. I cannot give you a definite answer.')
             if not selected:meta.update(kind='non_answer',no_information=True,unscripted_topic=True)
             if missing:meta['unavailable_topics']=missing
             return dialogue.join_spoken(parts)
@@ -1656,7 +1656,7 @@ class PatientEngine:
             parts=[self._say(f,state,meta) for f in selected[:3]]
             missing=[topic for topic in focused if not any(f['id'] in _FOCUSED_FACT_IDS[topic] for f in selected)]
             if missing or not parts:
-                parts.append('I do not have an answer to that in this simulated case. Please treat it as information unavailable, not as a denial.')
+                parts.append('I am not sure about that. I cannot give you a definite answer.')
             if not selected:meta.update(kind='non_answer',no_information=True,unscripted_topic=True)
             if missing:meta['unavailable_topics']=missing
             return dialogue.join_spoken(parts)
@@ -1798,6 +1798,15 @@ class PatientEngine:
         #    which would send the learner rephrasing a question that was
         #    already fine and burn encounter time on it. Neither reply adds a
         #    fact, so neither can be documented.
+        # A recognized ROS symptom is a clear ask even without punctuation.
+        # Missing authoring is unknown, never a fabricated clinical negative.
+        symptoms = nlp.find_concepts(utterance, {
+            c: lexicon.CORE_CONCEPTS[c] for c in lexicon.DENIABLE_SYMPTOMS
+            if c in lexicon.CORE_CONCEPTS})
+        if symptoms and not _instruction_or_other_person(utterance):
+            meta.update(kind="non_answer", no_information=True, unscripted_topic=True)
+            labels = [hit["surface"] for hit in symptoms.values()][:3]
+            return "I'm not sure about %s. I can't give you a definite yes or no." % ", ".join(labels)
         clarify = self._clarify_ambiguous(utterance, state, meta)
         if clarify is not None:
             return clarify
@@ -1814,7 +1823,7 @@ class PatientEngine:
             return self._say(already, state, meta, prefixed=True)
         if any(_reads_as_a_clear_question(part) for part in question_clauses(utterance)):
             meta["unscripted_topic"] = True
-            return "I do not have an answer to that in this simulated case. Please treat it as information unavailable, not as a denial."
+            return "I am not sure about that. I cannot give you a definite answer."
         return self.rng.choice(_NON_ANSWERS)
 
     def _already_said(self, text, state):

@@ -824,7 +824,7 @@ function positionRoomFrame(){
   const b=slot.getBoundingClientRect();host.hidden=false;Object.assign(host.style,{left:(b.left+window.scrollX)+'px',top:(b.top+window.scrollY)+'px',width:b.width+'px',height:b.height+'px'});
 }
 function mountPatientFrame(){
-  let host=$('#roomFrameHost');if(!host){host=document.createElement('div');host.id='roomFrameHost';host.innerHTML=`<iframe id="unityFrame" src="patient3d/index.html?v=1b526bfc59" title="Interactive patient and examination room" allow="autoplay"></iframe>`;document.body.append(host);roomFrameReady=false;$('#unityFrame').onload=notifyPublicState;}
+  let host=$('#roomFrameHost');if(!host){host=document.createElement('div');host.id='roomFrameHost';host.innerHTML=`<iframe id="unityFrame" src="patient3d/index.html?v=878ddfba16" title="Interactive patient and examination room" allow="autoplay"></iframe>`;document.body.append(host);roomFrameReady=false;$('#unityFrame').onload=notifyPublicState;}
   roomViewportObserver?.disconnect();roomViewportObserver=new ResizeObserver(positionRoomFrame);for(const target of [$('#roomViewport'),$('#patientVoiceSettings'),document.body])if(target)roomViewportObserver.observe(target);positionRoomFrame();if(roomFrameReady&&$('#unityStatus'))$('#unityStatus').textContent=patientDisplayLabel();notifyPublicState();
 }
 window.addEventListener('resize',positionRoomFrame);document.addEventListener('scroll',positionRoomFrame,true);
@@ -976,7 +976,7 @@ function renderRoom(){
       <div class="composer">
         <div id="interim" class="interim" aria-live="polite"></div>
         <div class="composer-row">
-          <span class="mic-wrap ${S.interaction_mode==='voice'?'':'hidden'}"><button class="btn mic-btn" id="btnMic" type="button" aria-pressed="false" aria-label="Push to talk. Hold to speak, release to send.">Mic</button></span>
+          <span class="mic-wrap ${S.interaction_mode==='voice'?'':'hidden'}"><button class="btn mic-btn" id="btnMic" type="button" aria-pressed="false" aria-label="Microphone: click to start or stop hands-free listening.">Mic</button></span>
           <label class="sr-only" for="say">What you say to the patient, or the examination you perform</label>
           <textarea id="say" rows="2" autocomplete="off" spellcheck="true" placeholder="Talk to ${esc((S.patient_name||'your patient').split(' ')[0])}…"></textarea>
           <button class="btn sm ghost" id="stopPatient" type="button" disabled hidden aria-label="Stop patient speech">Stop speech</button><button class="btn primary" id="btnSay" type="button" aria-label="Send to patient">Send <span aria-hidden="true">↑</span></button>
@@ -1807,9 +1807,13 @@ function setupVoice(){
   if (!voice.rec) {
     const rec = new SR();
     rec.continuous = true; rec.interimResults = true; rec.lang = 'en-US';
-    rec.onstart = () => { voice.lastFinal = -1; setPatientState('listening');
-      voiceBar('Listening. Release to send, or press Escape to cancel this turn.'); };
+    rec.onstart = () => { voice.recActive=true; voice.starting=false;
+      if(!voice.wanted||voice.suppressed){try{rec.abort();}catch(e){}return;}
+      voice.listening=true; voice.lastFinal=-1; setPatientState('listening');
+      $('#btnMic')?.setAttribute('aria-pressed','true');
+      voiceBar('Listening hands-free. Click the microphone to stop, or press Escape to cancel.'); };
     rec.onresult = e => {
+      if(S?.phase!=='encounter'||voice.recSession!==S.id)return;
       // The patient's synthesized voice must never be transcribed back as the
       // student's own turn: anything heard while speech synthesis is speaking,
       // or in the short tail after it, is discarded.
@@ -1841,8 +1845,9 @@ function setupVoice(){
       const el = $('#interim'); if (el) el.textContent = interim;
     };
     rec.onerror = ev => {
-      voice.failed = true;
-      if (ev.error === 'no-speech') { voiceBar('No speech detected. Hold the button and speak, or type.'); return; }
+      if(ev.error==='aborted')return;
+      if(ev.error==='no-speech'){voiceBar('Still listening. Speak when ready, or click the microphone to stop.');return;}
+      voice.failed = true; voice.wanted=false; voice.hands_free=false;
       const msg = ({ 'not-allowed':'The browser blocked microphone access.',
         'service-not-allowed':'Speech recognition was refused by the browser.',
         'audio-capture':'No microphone was found.',
@@ -1859,34 +1864,35 @@ function setupVoice(){
       voice.listening = false;
     };
     rec.onend = () => {
-      if (voice.listening && voice.hands_free && !voice.suppressed && !voice.patientSpeaking
-          && !window.pcmNaturalBusy && Date.now() >= voice.muteUntil) { try { rec.start(); } catch(e){} }
-      else if (!voice.failed) { setPatientState('idle'); voiceBar(''); }
+      voice.recActive=false;voice.starting=false;voice.listening=false;
+      $('#btnMic')?.setAttribute('aria-pressed','false');
+      if(voice.wanted&&voice.hands_free&&!voice.failed) scheduleListening();
+      else if(!voice.failed){setPatientState('idle');voiceBar('');}
     };
     voice.rec = rec;
   }
-  if (btn) {
-    btn.onmousedown = e => { e.preventDefault(); startListening(); };
-    btn.onmouseup = () => stopListening();
-    btn.onmouseleave = () => { if (voice.listening && !voice.hands_free) stopListening(); };
-    btn.ontouchstart = e => { e.preventDefault(); startListening(); };
-    btn.ontouchend = e => { e.preventDefault(); stopListening(); };
-    btn.onkeydown = e => { if (!e.metaKey && !e.ctrlKey && !e.altKey && (e.key === ' ' || e.key === 'Enter')) { e.preventDefault();
-      if (!voice.listening) startListening(); } };
-    btn.onkeyup = e => { if (!e.metaKey && !e.ctrlKey && !e.altKey && (e.key === ' ' || e.key === 'Enter')) { e.preventDefault(); stopListening(); } };
-    btn.ondblclick = () => { voice.hands_free = !voice.hands_free;
-      voice.wanted = voice.hands_free;
-      toast(voice.hands_free ? 'Hands-free listening on' : 'Hands-free listening off');
-      // Toggling always returns to a known state: one recognition instance is
-      // reused for the page, and each session starts with a clean watermark so
-      // repeated toggling cannot accumulate handlers or replay old results.
-      voice.suppressed = false; voice.lastFinal = -1;
-      if (!voice.hands_free) stopListening();
-      else if (!voice.listening) startListening(); };
+  if(btn){
+    // Native click supports mouse, touch, Enter and Space without competing
+    // press/release and double-click recognition sessions.
+    btn.onclick=()=>{if(voice.wanted){voice.hands_free=false;stopListening();}
+      else{voice.hands_free=true;startListening();}};
+    btn.setAttribute('aria-label','Microphone: click to start or stop hands-free listening');
+    btn.setAttribute('aria-pressed',String(!!voice.wanted));
   }
-  voiceBar('Hold the microphone button, or focus it and hold Space or Enter, to talk. ' +
-    'Double-click the button for hands-free.');
+  voiceBar('Click the microphone to listen hands-free. Click again to stop.');
 }
+function scheduleListening(){
+  clearTimeout(voice.restartTimer);
+  voice.restartTimer=setTimeout(()=>{
+    if(!voice.wanted||!voice.hands_free||voice.failed||S?.phase!=='encounter')return;
+    if(voice.suppressed||voice.patientSpeaking||window.pcmNaturalBusy||Date.now()<voice.muteUntil){scheduleListening();return;}
+    if(voice.recActive||voice.starting)return;
+    voice.starting=true;voice.recSession=S.id;
+    try{voice.rec.start();}catch(e){voice.starting=false;voice.listening=false;voice.wanted=false;voice.failed=true;
+      $('#btnMic')?.setAttribute('aria-pressed','false');voiceBar('Microphone could not start. Click it to retry, or type your question.',true);}
+  },400);
+}
+
 /* The patient is about to be audible. `abort()` is deliberate: `stop()` asks
    the recognizer to FINALIZE what it has buffered, which is then delivered
    through onresult once the mute window has lapsed -- that is how the
@@ -1905,30 +1911,20 @@ function resumeListeningAfterPatient(){
   voice.muteUntil = Date.now() + 350;
   notifyPublicState();
   setPatientState('idle');
-  setTimeout(() => {
-    voice.suppressed = false;
-    // `hands_free` is the MODE; `wanted` is whether the learner still wants the
-    // microphone open. Resuming on the mode alone turned the microphone back on
-    // after they had switched it off -- and this microphone submits clinician
-    // turns, so ambient speech in the room would become recorded evidence.
-    if (!voice.wanted || !voice.hands_free || !voice.rec) return;
-    if (S?.phase !== 'encounter' || window.pcmNaturalBusy) return;
-    voice.listening = true;
-    voice.lastFinal = -1;
-    try { voice.rec.start(); } catch(e){}
-  }, 400);
+  setTimeout(()=>{voice.suppressed=false;if(voice.wanted&&voice.hands_free)scheduleListening();},400);
 }
+
 function startListening(){
-  if (!voice.rec || voice.listening) return;
+  if(!voice.rec||S?.phase!=='encounter')return;
+  voice.failed=false;voice.wanted=true;
   interruptPatient();
-  voice.wanted = true;
-  voice.listening = true;
-  const btn = $('#btnMic'); if (btn) btn.setAttribute('aria-pressed', 'true');
-  try { voice.rec.start(); } catch(e) {}
+  scheduleListening();
+  $('#btnMic')?.setAttribute('aria-pressed','true');
+  voiceBar('Starting microphone… Click again to stop.');
 }
 function stopListening(){
-  voice.wanted = false;
-  if (!voice.rec || !voice.listening) return;
+  voice.wanted = false;clearTimeout(voice.restartTimer);
+  if (!voice.rec) return;
   voice.listening = false;
   const btn = $('#btnMic'); if (btn) btn.setAttribute('aria-pressed', 'false');
   try { voice.rec.stop(); } catch(e){}

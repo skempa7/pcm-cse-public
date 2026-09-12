@@ -104,6 +104,12 @@ export function applyMPFBWardrobe(container, appearance = {}) {
       mesh.setEnabled(true);
       continue;
     }
+    // Male genital geometry projects beyond the trousers. Never reuse it as
+    // a clothed gap filler; leave the authored anatomy intact for anatomy view.
+    if(appearance.presentation==='male'){
+      mesh.setEnabled(false);
+      continue;
+    }
     if(!mesh.metadata)mesh.metadata={};
     if(mesh.metadata.pcmFullIndices===undefined){
       mesh.metadata.pcmFullIndices=Array.from(mesh.getIndices()||[]);
@@ -156,7 +162,7 @@ export function createMPFBPatient(scene, options = {}) {
   const assetName=presentation==='male'?'public-male-standard.glb':'public-female-'+(bodyBuild||'standard')+'.glb';
   return createAnimatedPatient(scene, {
     preciseSkinnedPicking:true, label: 'Patient', rootName: 'MPFB public patient', presentation,
-    assetUrl: new URL('../assets/'+assetName+'?v=room-clearance-1',import.meta.url).href,
+    assetUrl: new URL('../assets/'+assetName+'?v='+(presentation==='male'?'america250-back-1':'room-clearance-1'),import.meta.url).href,
     capabilityMetadata: {model:'mpfb-public-patient',trial:false,bodyBuild:bodyBuild||'original'},
     isEligible: state => state.appearance?.model === 'mpfb-public-patient' && state.appearance?.presentation === presentation,
     controlNames: {blink:['Blink'],speech:['Speech'],concern:['Concern'],discomfort:['Discomfort'],hairSupport:['PCM_HairSupineSupport'],hairProneSupport:['PCM_HairProneSupport']},

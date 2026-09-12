@@ -311,6 +311,7 @@ def summarize(case, events):
                 shortened = condense(value)
                 items[fid] = {
                     "fact_id": fid, "section": section,
+                    "category": fact.get("category"),
                     "label": _item_label(fact),
                     "text": shortened,
                     # Kept so the exact disclosed wording is always recoverable;
