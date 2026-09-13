@@ -2,8 +2,8 @@
 (()=>{'use strict';
 const $=s=>document.querySelector(s), esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let request=0;
-let accessCheck=0, approvedPrint=false, printDialogOpen=false, tabPaused=false;
-let printModule=null, printTask=0;
+let accessCheck=0, forcedAccessChecks=0, approvedPrint=false, printDialogOpen=false, tabPaused=false;
+let printModule=null, printTask=0, printReturn=null;
 const accessKey='pcmcse.solution-access-change.v1';
 let accessChannel=null;try{accessChannel=new BroadcastChannel(accessKey);}catch{}
 const inLibrary=()=>/^#learn(?:\/|$)/.test(location.hash);
@@ -17,7 +17,9 @@ function coverSolutions(message='Checking active attempts before showing this le
 }
 function notifyAccess(pending){const value={pending,at:Date.now(),nonce:Math.random()};try{localStorage.setItem(accessKey,JSON.stringify(value));}catch{}try{accessChannel?.postMessage(value);}catch{}coverSolutions('An independent attempt is being opened. Answers stay hidden until access is checked.');}
 async function verifyCached(force=false){
- if(!inLibrary())return false;
+ // Periodic probes must not cancel the access check started by a user action.
+ if(!inLibrary()||(!force&&forcedAccessChecks))return false;
+ if(force)forcedAccessChecks++;
  const token=++accessCheck;if(force)coverSolutions();
  try{
   const r=await api('/api/teaching/status');if(token!==accessCheck||!inLibrary())return false;
@@ -27,6 +29,7 @@ async function verifyCached(force=false){
   if(document.hidden||tabPaused)return false;
   $('#view').classList.remove('solution-locked');$('#solutionStatus')?.remove();return true;
  }catch{coverSolutions('The server cannot verify solution access. Answers remain hidden; reconnect and try again. Your work is retained.');return false;}
+ finally{if(force)forcedAccessChecks--;}
 }
 const accessChanged=()=>{accessCheck++;coverSolutions('Active attempts changed in another tab. Review solution access to continue.');};
 if(accessChannel)accessChannel.onmessage=accessChanged;
@@ -38,7 +41,8 @@ window.addEventListener('pagehide',()=>{tabPaused=true;coverSolutions();});windo
 window.addEventListener('hashchange',()=>{if(!inLibrary()){$('#view').classList.remove('solution-locked');$('#solutionStatus')?.remove();}});
 function closePrintedLesson(){
  approvedPrint=false;printDialogOpen=false;printTask++;printModule?.clearWalkthroughPrint();
- document.querySelector('#printLesson')?.focus();
+ const previous=printReturn;printReturn=null;
+ if(previous?.route===location.hash){document.querySelector('#printLesson')?.focus({preventScroll:true});window.scrollTo(previous.x,previous.y);}
 }
 window.addEventListener('beforeprint',()=>{
  if(!approvedPrint||!document.body.hasAttribute('data-walkthrough-preview'))coverSolutions('Use Print walkthrough to verify solution access before printing.');
@@ -48,13 +52,14 @@ window.addEventListener('afterprint',()=>{closePrintedLesson();verifyCached(true
 window.addEventListener('hashchange',closePrintedLesson);
 window.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.hasAttribute('data-walkthrough-preview')){e.preventDefault();closePrintedLesson();}});
 async function printLesson(l){
- const token=++printTask,route=location.hash,button=$('#printLesson');
+ const token=++printTask,route=location.hash,button=$('#printLesson'),previous={route,x:window.scrollX,y:window.scrollY};
  if(!await verifyCached(true))return;
+ printReturn=previous;
  button.disabled=true;button.textContent='Preparing landscape pages…';
  let status=$('#printLessonStatus');if(!status){status=document.createElement('p');status.id='printLessonStatus';status.setAttribute('role','status');button.closest('.reader-top').after(status);}
  status.textContent='Loading local images and checking that every paragraph fits. Your encounter and note are unchanged.';
  try{
-  printModule=printModule||await import(new URL('./walkthrough-print.js?v=e7aa65af8a',location.href));
+  printModule=printModule||await import(new URL('./walkthrough-print.js?v=801e31db86',location.href));
   const prepared=await printModule.prepareWalkthrough(l);
   if(token!==printTask||location.hash!==route){printModule.clearWalkthroughPrint();return;}
   if(!await verifyCached(true)){printModule.clearWalkthroughPrint();return;}

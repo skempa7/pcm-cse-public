@@ -50,6 +50,25 @@ class CacheStampingTests(unittest.TestCase):
             digest = hashlib.sha256((self.root / 'web' / child).read_bytes()).hexdigest()[:10]
             self.assertIn(child + '?v=' + digest, (self.root / 'web' / page).read_text())
 
+    def test_print_styles_and_image_manifest_invalidate_page_in_one_pass(self):
+        module = self.root / 'web/walkthrough-print.js'
+        module.write_text("load('walkthrough-print.css?v=old');fetch('print-assets/manifest.json?v=old')")
+        css = self.root / 'web/walkthrough-print.css'
+        css.write_text('print layout one')
+        manifest = self.root / 'web/print-assets/manifest.json'
+        manifest.parent.mkdir()
+        manifest.write_text('{"assets":{"patient.png":"old"}}')
+        self.assertEqual(self.stamp(), 0)
+        first = (self.root / 'web/index.html').read_bytes()
+        css.write_text('print layout two')
+        manifest.write_text('{"assets":{"patient.png":"new"}}')
+        self.assertEqual(self.stamp(), 0)
+        self.assertEqual(self.stamp(check=True), 0)
+        self.assertNotEqual(first, (self.root / 'web/index.html').read_bytes())
+        for child in [css, manifest]:
+            digest = hashlib.sha256(child.read_bytes()).hexdigest()[:10]
+            self.assertIn(child.relative_to(self.root / 'web').as_posix() + '?v=' + digest, module.read_text())
+
     def test_stale_check_is_read_only(self):
         p = self.root / 'web/index.html'
         before = p.read_bytes()

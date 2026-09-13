@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -9,6 +10,8 @@ for(const edition of ['.']){
  const web=path.join(root,edition,'web');
  const {buildPrintSections,chooseSimulation}=await import(path.join(web,'walkthrough-print.js'));
  const manifest=JSON.parse(fs.readFileSync(path.join(web,'print-assets/manifest.json')));
+ const credits=JSON.parse(fs.readFileSync(path.join(web,'print-assets/APP-SOURCES.json')));
+ for(const c of credits){const bytes=fs.readFileSync(path.join(web,'print-assets',c.file));const hash=crypto.createHash('sha256').update(bytes).digest('hex');assert.equal(hash,c.sha256,'image credit hash '+c.file);assert.equal(manifest.assets[c.file],hash,'image cache identity '+c.file);}
  const lessons=path.join(root,edition,'pcmcse/teaching/lessons');
  let count=0;
  for(const file of fs.readdirSync(lessons).filter(f=>f.endsWith('.json'))){
@@ -23,8 +26,12 @@ for(const edition of ['.']){
    for(const link of l.note_links){assert(html.includes(esc(link.statement)));for(const id of link.event_ids){const e=l.ledger.find(x=>x.seq===id);const mapped=l.timeline.some(t=>(t.event_ids||[]).includes(id));if(e&&!mapped)assert(html.includes(esc(e.text).replaceAll('\n','<br>')),`missing extra ledger ${id}`);if(mapped)assert(html.includes('Record IDs:')&&html.includes(String(id)),`missing referenced ledger ${id}`);}}
    for(const r of l.recall){assert(html.includes(esc(r.prompt)));assert(html.includes(esc(r.answer)));}
    const simulation=chooseSimulation(l,manifest);assert(simulation,'missing simulation screenshot');
+   if(simulation.exact){assert.equal(manifest.cases[l.case_id].patient.name,l.patient.name);assert.equal(manifest.cases[l.case_id].patient.sex,l.patient.sex);assert.equal(manifest.cases[l.case_id].patient.age,l.patient.age);}
+   const altered={...l,patient:{...l.patient,name:'Different fictional patient'}};assert.equal(chooseSimulation(altered,manifest).exact,false,'changed patient must use representative caption');
+   assert(sections.find(s=>s.title==='Recall explanations').startPage,'answers start separately from recall prompts');
+   for(const label of ['Physical Exam','Saved in Notes','OLDCARTS','Submit note'])assert(html.includes(label),'current app instruction '+label);
    const imgs=[...html.matchAll(/<img src="([^"]+)"/g)].map(m=>new URL(m[1]));assert(imgs.length>0);
-   for(const image of imgs)assert(fs.existsSync(image),'missing local asset '+image);
+   for(const image of imgs){assert(fs.existsSync(image),'missing local asset '+image);const hash=manifest.assets[path.basename(image.pathname)];if(hash)assert.equal(image.searchParams.get('v'),hash,'versioned screenshot URL');}
    assert(!html.includes('src="http'),'all print images local');
    assert(!html.includes('undefined'),'undefined content');
    count++;turns+=l.timeline.length;links+=l.note_links.length;

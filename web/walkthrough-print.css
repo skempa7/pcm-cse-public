@@ -101,3 +101,15 @@
 #walkthroughPrint .pw-step{width:.23in;height:.23in;font-size:9pt;}
 #walkthroughPrint .pw-turn-photo{width:1.18in;}
 #walkthroughPrint .pw-turn-photo img{height:.88in;}
+
+/* 2026-09-13: readable vital labels and compact orientation in the current app. */
+#walkthroughPrint .pw-vitals div{display:block;padding:.035in 0;min-width:0}
+#walkthroughPrint .pw-vitals dt{font-size:8pt;color:#52645c;margin-bottom:.015in}
+#walkthroughPrint .pw-vitals dd{font-size:10pt}
+#walkthroughPrint .pw-app-guide{padding:.1in .12in;border:1pt solid #a9c2b1;background:#f4f7f2}
+#walkthroughPrint .pw-app-guide p{font-size:10pt}
+#walkthroughPrint .pw-turn-photo figcaption{font-size:7.6pt;line-height:1.2}
+@media screen and (max-width:1020px){
+ body[data-walkthrough-preview="true"] #walkthroughPrintToolbar{min-width:0;flex-wrap:wrap;padding:10px 14px}
+ #walkthroughPrintToolbar>div{flex:1 1 100%;min-width:0}
+}

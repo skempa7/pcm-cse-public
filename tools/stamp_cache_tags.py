@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ENTRY_FILES = (
     'web/index.html', 'web/patient3d/index.html', 'web/app.js',
     'web/public-runtime.js', 'web/engine-worker.mjs', 'web/study.js',
+    'web/walkthrough-print.js',
 )
 REFERENCE = re.compile(r'''(["'])([A-Za-z0-9._/-]+)(\?v=)([A-Za-z0-9._-]+)(["'])''')
 

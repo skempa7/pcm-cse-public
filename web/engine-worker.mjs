@@ -5,7 +5,7 @@ const ready=(async()=>{
  postMessage({type:'progress',message:'Loading the local browser engine…'});
  py=await loadPyodide({indexURL:new URL('./vendor/pyodide/',import.meta.url).href});
  py.FS.mkdir('/pcm-cse-public-v1');py.FS.mount(py.FS.filesystems.IDBFS,{},'/pcm-cse-public-v1');await sync(true);
- const response=await fetch(new URL('./engine.zip?v=b79695081e',import.meta.url),{cache:'no-store'});if(!response.ok)throw Error('The browser engine download failed. Reload to try again.');
+ const response=await fetch(new URL('./engine.zip?v=31f3ea0530',import.meta.url),{cache:'no-store'});if(!response.ok)throw Error('The browser engine download failed. Reload to try again.');
  py.unpackArchive(new Uint8Array(await response.arrayBuffer()),'zip',{extractDir:'/app'});
  await py.runPythonAsync(`import os,sys\nos.environ['PCM_CSE_DB']='/pcm-cse-public-v1/attempts.sqlite'\nos.environ['PCM_CSE_SETTINGS']='/pcm-cse-public-v1/settings.json'\nsys.path.insert(0,'/app')\nfrom pcmcse import db\ndb.init()\nfrom offline_routes import request`);
  request=py.globals.get('request');await sync(false);postMessage({type:'ready'});
