@@ -8,9 +8,10 @@ This public repository is the sole current application. The retired private serv
 
 ## Current experience
 
-- **Talk:** type or dictate questions. Guided and Coached modes offer an encounter coach within Talk. Bedside suggestions enter the composer for review; stated actions are performed through the ordinary conversation path.
+- **Talk:** type or dictate questions. Guided and Coached modes offer an encounter coach within Talk. Selected guidance stays available; Bedside suggestions become editable drafts with explicit choices when you already have writing. Stated actions are performed through the ordinary conversation path.
 - **Physical Exam:** one-click actions perform the technique listed on each tile. Findings appear in the panel and are saved in **Notes**; its badge highlights new findings. Unavailable, declined, and interrupted actions do not become normal findings.
 - **Notes:** a condensed summary of obtained information, with HPI organized by **OLDCARTS**. Missing information stays unknown. Choosing a view or opening a teaching suggestion creates no clinical evidence.
+- **SOAP writing:** a full editor with permitted references alongside it on wide windows, or a writing/reference switch on narrower windows. Drafts, editing position, and recoverable writing are preserved; saving and submitting remain distinct.
 - The top-left logo returns Home with save/leave safeguards. Progress contains saved attempts, original submissions, feedback and separate repairs/regrades.
 - Patient camera controls are always available: drag to orbit, use the zoom icons and framing presets, or use the labeled View menu. The shirt icon switches clothing/anatomical appearance without performing an examination. Seated, supine, standing and prone are recorded position choices. Reduced motion retains the same final poses.
 - Exam guide is a rehearsal aid. Its example documentation is conditional, not a finding obtained from clicking through the lesson. Written walkthroughs provide an access-checked landscape print preview.
@@ -54,7 +55,7 @@ Current source and outputs:
 - `pcmcse/teaching/lessons/`: generated written walkthroughs. Their engine/case stamps and replay checks must match current sources.
 - `tools/` and `tests/`: verification and build tools. Original asset-generation/parity tools may require historical local inputs and are not a way to regenerate later manual artwork/body edits automatically.
 - Ignored `editable-public-assets/`, `verification-private/` and `backups/`: local working material, not part of the published package. Do not publish these wholesale or replace runtime assets with an older export.
-- Dated reports before September 12 describe historical snapshots, including retired private-edition checks; they are not current acceptance results. See `AUDIT-2026-09-12.md` for the current independent review and its limits.
+- Dated reports before September 12 describe historical snapshots, including retired private-edition checks; they are not current acceptance results. See `AUDIT-2026-09-12.md` for the independent review and `FRONTEND-PASS-2026-09-12.md` for the subsequent interface improvements and validation limits.
 
 After Python, case or lesson edits run `python3 tools/package_engine.py`. For renderer edits, run `npm ci` and `npm run build` from `web/patient3d/`. Then run `python3 tools/stamp_cache_tags.py` once; it stamps the nested worker, iframe and print-module dependencies before the containing page. `--check` verifies freshness without changing files.
 

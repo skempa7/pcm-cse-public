@@ -22,7 +22,34 @@
  */
 (() => {
   const EXAMS = window.PCM_EXAM_SEQUENCES || {};
-  let examId = null, step = 0, done = [], mode = 'learn', priorFocus = null, region = null;
+  let examId = null, step = 0, done = [], mode = 'learn', priorFocus = null;
+  let guideSession = null, showingMenu = true, completeReported = false, savedScroll = 0;
+  function savePlace() {
+    if (!guideSession) return;
+    try { localStorage.setItem('pcm-exam-guide:' + guideSession,
+      JSON.stringify({examId, step, done, mode, showingMenu, completeReported, scroll: savedScroll})); }
+    catch (_) { /* In-memory navigation remains usable when storage is unavailable. */ }
+  }
+  function receiveSession() {
+    if (guideSession === state.sessionId) return;
+    guideSession = state.sessionId; examId = null; step = 0; done = [];
+    mode = 'learn'; showingMenu = true; completeReported = false; savedScroll = 0;
+    panel.hidden = true; document.body.classList.remove('technique-open');
+    if (!guideSession) return;
+    try {
+      const saved = JSON.parse(localStorage.getItem('pcm-exam-guide:' + guideSession) || 'null');
+      const exam = saved && EXAMS[saved.examId];
+      if (!exam) return;
+      examId = saved.examId; step = Math.max(0, Math.min(exam.steps.length, Number(saved.step) || 0));
+      done = (Array.isArray(saved.done) ? saved.done : []).filter(id => exam.steps.some(item => item.id === id));
+      mode = saved.mode === 'quick' ? 'quick' : 'learn'; showingMenu = !!saved.showingMenu;
+      completeReported = !!saved.completeReported; savedScroll = Math.max(0, Number(saved.scroll) || 0);
+    } catch (_) { /* An invalid saved place falls back to the sequence chooser. */ }
+  }
+  function showPanel() {
+    panel.hidden = false; document.body.classList.add('technique-open');
+    try { send({type:'pcm-technique-visibility', sessionId:state.sessionId, open:true}); } catch (_) {}
+  }
 
   const launch = document.createElement('button');
   launch.id = 'techniqueLaunch';
@@ -53,8 +80,9 @@
   }
 
   function close() {
-    panel.hidden = true;
-    examId = null; step = 0; done = []; region = null;
+    savedScroll = panel.scrollTop; savePlace(); panel.hidden = true;
+    document.body.classList.remove('technique-open');
+    try { send({type:'pcm-technique-visibility', sessionId:state.sessionId, open:false}); } catch (_) {}
     apply();
     priorFocus?.focus();
   }
@@ -81,7 +109,10 @@
     const shapes = marks.map(m => {
       const cls = 'mk mk-' + (m.kind || 'zone');
       const title = m.title ? '<title>' + esc(m.title) + '</title>' : '';
-      const label = m.label ? '<text x="' + m.x + '" y="' + (m.y + 2.6) + '" class="mkl">' + esc(m.label) + '</text>' : '';
+      // Long words do not fit small hand markers. Keep those labels above
+      // the hotspot in dark text; white overflow vanished into the background.
+      const outside = String(m.label || '').length > 3 && m.r < 14;
+      const label = m.label ? '<text x="' + m.x + '" y="' + (outside ? m.y-m.r-4 : m.y+2.6) + '" class="mkl' + (outside?' mkl-outside':'') + '">' + esc(m.label) + '</text>' : '';
       return '<g>' + title + '<circle cx="' + m.x + '" cy="' + m.y + '" r="' + m.r + '" class="' + cls + '"/>' + label + '</g>';
     }).join('');
     const arrows = (demo.arrows || []).map(([a, b, style]) => {
@@ -100,7 +131,9 @@
     // Cropped viewBox: the schematics occupy the middle of the 0-100 space, so
     // a full-square view letterboxes them into a small figure inside a wide
     // panel. Mark coordinates stay in the same 0-100 space.
-    return '<figure class="tech-demo"><svg viewBox="14 2 72 96" role="img" aria-label="' +
+    // The wrist lies at x=82; the torso crop cut off its radial label and hand.
+    const viewBox=demo.view==='arm'?'0 2 104 96':'14 2 72 96';
+    return '<figure class="tech-demo"><svg viewBox="' + viewBox + '" role="img" aria-label="' +
       esc(demo.caption || 'Examination diagram') + '">' +
       '<defs><marker id="tri" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="5" markerHeight="5" orient="auto">' +
       '<path d="M0 0 L8 4 L0 8z" class="arh"/></marker></defs>' +
@@ -116,12 +149,12 @@
 
   function menu() {
     if(panel.hidden)priorFocus = document.activeElement;
-    examId = null; step = 0; done = [];
-    panel.hidden = false;
-    panel.className = 'tech-menu';
+    showingMenu = true; savedScroll = 0; savePlace();
+    showPanel(); panel.className = 'tech-menu';
     panel.innerHTML = head('PHYSICAL EXAM REHEARSAL') +
       '<h2>Choose an examination</h2>' +
       '<p class="tech-sub">Short, CSE-sized sequences. What to do, what to check, what to write.</p>' +
+      (EXAMS[examId] ? '<button type="button" class="exam-choice tech-resume" id="techResume"><span class="ex-title">Resume ' + esc(EXAMS[examId].title) + '</span><span class="ex-time">' + (mode==='quick'?'Quick reference':step>=EXAMS[examId].steps.length?'Rehearsal summary':'Step '+(step+1)+' of '+EXAMS[examId].steps.length) + '</span></button>' : '') +
       Object.values(EXAMS).map(e =>
         '<button class="exam-choice" type="button" data-exam="' + e.id + '">' +
         '<span class="ex-title">' + esc(e.title) + '</span>' +
@@ -140,22 +173,23 @@
             + 'Opening it records this attempt as assisted practice. Your findings, '
             + 'notes and timing are not affected, and no examination credit is given '
             + 'for reading it.\n\nOpen the guide?')) return;
-        examId = b.dataset.exam; step = 0; done = []; mode = 'learn';
+        examId = b.dataset.exam; step = 0; done = []; mode = 'learn'; completeReported = false;
         report('start'); render();
       };
     });
-    focusHeading();
+    panel.querySelector('#techResume')?.addEventListener('click',()=>render());
+    panel.scrollTop=0;focusHeading();
   }
 
   function render() {
     const exam = EXAMS[examId];
     if (!exam) return menu();
+    showingMenu=false; savedScroll=0; savePlace();
     if (mode === 'quick') return quick();
     if (step >= exam.steps.length) return summary();
     const item = exam.steps[step];
     const total = exam.steps.length;
-    panel.hidden = false;
-    panel.className = 'tech-step';
+    showPanel();panel.className = 'tech-step';
     panel.innerHTML = head(exam.title.toUpperCase() + ' · STEP ' + (step + 1) + ' OF ' + total) +
       '<div class="tech-bar" role="progressbar" aria-valuemin="1" aria-valuemax="' + total +
       '" aria-valuenow="' + (step + 1) + '">' +
@@ -166,7 +200,7 @@
       '<p class="tech-do">' + esc(item.instruction) + '</p>' +
       '<dl class="tech-facts">' +
       '<dt>Checking for</dt><dd>' + esc(item.assessing) + '</dd>' +
-      '<dt>Normal</dt><dd>' + esc(item.normal) + '</dd>' +
+      '<dt>Normal example</dt><dd>' + esc(item.normal) + '</dd>' +
       '</dl>' +
       (item.soap ? '<p class="tech-soap"><span>SOAP</span>' + esc(item.soap) + '</p>' : '') +
       '<p class="tech-note" role="status"></p>' +
@@ -175,12 +209,14 @@
       // Skipping is a real option, and the closing note reflects it. Without
       // this the sequence could only ever be completed in full, and the
       // documentation discipline would never actually be exercised.
-      '<button type="button" id="techSkip" class="ghost" title="Advance without counting this step as performed">Skip</button>' +
+      '<button type="button" id="techSkip" class="ghost" title="Advance without including this step in the rehearsal example">Skip</button>' +
       '<button type="button" id="techNext" class="primary">' +
-      (step === total - 1 ? 'Finish' : 'Next →') + '</button>' +
+      (step === total - 1 ? 'Review summary' : 'Next →') + '</button>' +
       '</div>' +
-      (step === 0 && exam.position ? '<p class="tech-pos">' + esc(exam.position) + '</p>' : '');
+      (step === 0 && exam.position ? '<p class="tech-pos">' + esc(exam.position) + '</p>' : '') +
+      '<button type="button" class="tech-link" id="techMenu">← All examinations</button>';
     wire();
+    panel.querySelector('#techMenu').onclick=menu;
     panel.querySelector('#techBack').onclick = () => { if (step > 0) { step--; render(); } };
     panel.querySelector('#techNext').onclick = () => {
       if (!done.includes(item.id)) done.push(item.id);
@@ -190,7 +226,7 @@
       done = done.filter(id => id !== item.id);
       step++; report('skip'); render();
     };
-    focusHeading();
+    panel.scrollTop=0;focusHeading();
   }
 
   function summary() {
@@ -202,8 +238,7 @@
       ? exam.soapPrefix + ' ' + fragments.join(', ').replace(/\s+/g, ' ') + '.'
       : null;
     const skipped = exam.steps.filter(s => !done.includes(s.id));
-    panel.hidden = false;
-    panel.className = 'tech-done';
+    showPanel();panel.className = 'tech-done';
     panel.innerHTML = head(exam.title.toUpperCase() + ' · COMPLETE') +
       '<h2>Rehearsal complete</h2>' +
       '<p class="tech-warn">These are practice examples, not this patient’s findings. Perform actions in Physical Exam and use the findings saved in Notes.</p>' +
@@ -226,18 +261,17 @@
       '</div>' +
       '<button type="button" class="tech-link" id="techMenu">← All examinations</button>';
     wire();
-    panel.querySelector('#techAgain').onclick = () => { step = 0; done = []; mode = 'learn'; render(); };
+    panel.querySelector('#techAgain').onclick = () => { step = 0; done = []; mode = 'learn'; completeReported = false;render(); };
     panel.querySelector('#techQuick').onclick = () => { mode = 'quick'; render(); };
     panel.querySelector('#techMenu').onclick = menu;
-    report('complete', { performed: performed.length, skipped: skipped.length });
-    focusHeading();
+    if(!completeReported){report('complete', { performed: performed.length, skipped: skipped.length });completeReported=true;savePlace();}
+    panel.scrollTop=0;focusHeading();
   }
 
   function quick() {
     const exam = EXAMS[examId];
     const line = exam.soapPrefix + ' ' + exam.steps.map(s => s.soap).filter(Boolean).join(', ') + '.';
-    panel.hidden = false;
-    panel.className = 'tech-quick';
+    showPanel();panel.className = 'tech-quick';
     panel.innerHTML = head(exam.title.toUpperCase() + ' · QUICK SEQUENCE') +
       '<h2>' + esc(exam.title) + '</h2>' +
       '<p class="tech-sub">' + esc(exam.duration) + '</p>' +
@@ -252,7 +286,7 @@
       '<button type="button" id="techMenu2" class="primary">← All examinations</button>' +
       '</div>';
     wire();
-    panel.querySelector('#techLearn').onclick = () => { mode = 'learn'; step = 0; done = []; render(); };
+    panel.querySelector('#techLearn').onclick = () => { mode = 'learn'; step = 0; done = []; completeReported=false;render(); };
     panel.querySelector('#techMenu2').onclick = menu;
     focusHeading();
   }
@@ -267,7 +301,13 @@
   }
 
   panel.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagation(); close(); } });
-  launch.onclick = () => (panel.hidden ? menu() : close());
+  launch.onclick = () => {
+    receiveSession();
+    if(!panel.hidden)return close();
+    priorFocus=document.activeElement;
+    if(examId&&!showingMenu){const top=savedScroll;render();panel.scrollTop=top;}
+    else menu();
+  };
 
   /* The guide is available whenever the student is with the patient IN A MODE
      THAT TEACHES. It reads nothing from the case and changes nothing, so there
@@ -279,6 +319,7 @@
      server had in fact refused, and returned an error on every Next and Skip.
      The gate now matches the one the server enforces. */
   window.pcmTechniqueState = () => {
+    receiveSession();
     const allowed = state.phase === 'encounter'
       && ['guided', 'coached'].includes(state.mode);
     launch.hidden = !allowed;

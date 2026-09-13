@@ -79,7 +79,7 @@ function makeDom() {
 function harness(edition) {
   const src = fs.readFileSync(path.join(edition, 'web/encounter-workspace.js'), 'utf8');
   const start = src.indexOf('const POSITION_GLYPH');
-  const end = src.indexOf('function makeExam(');
+  const end = src.indexOf('/* ---------- Bedside');
   assert.ok(start > 0 && end > start, 'position helpers not found in ' + edition);
   const helpers = src.slice(start, end);
 
@@ -211,7 +211,7 @@ function bedside(edition, label) {
   ok(/sendSay\(text\)/.test(actionBranch), 'an action does not go through sendSay');
   ok(!/sendSay/.test(suggestBranch), 'a SUGGESTION sends itself instead of reaching the composer');
   ok(/q\('#say'\)/.test(suggestBranch), 'a suggestion does not reach the composer');
-  ok(/box\.value=text/.test(suggestBranch), 'the suggestion is not placed for review');
+  ok(/pcmDraftSuggestion/.test(suggestBranch)&&/box\.value=move\.text/.test(src), 'the suggestion does not reach the shared editable draft path');
 
   // Opening the menu must not send or record anything.
   const opener = src.slice(src.indexOf("bedside.onclick=openBedside"), src.indexOf("bedside.onclick=openBedside") + 60);
@@ -222,7 +222,11 @@ function bedside(edition, label) {
   // A used action stays usable - repeating is sometimes correct.
   ok(!/disabled=true/.test(open) && !/\.disabled\s*=/.test(open),
      'a used bedside action is permanently disabled');
-  ok(/classList\.add\('used'\)/.test(open), 'a completed action shows no state');
+  // Changed contract: a failed request is never marked complete. The browser
+  // failure-injection walkthrough verifies no badge on503 and RECORDED only
+  // after the successful response. Opening derives state from courtesyDone.
+  ok(/courtesyDone/.test(open)&&/used\?' used'/.test(open), 'recorded actions have no evidence-derived state');
+  ok(!/classList\.add\('used'\)/.test(actionBranch), 'a click is marked complete before the response');
   console.log('PASS %s: %d checks — grouped, actions send, suggestions only reach the '
               + 'composer, opening records nothing', label, n);
 }

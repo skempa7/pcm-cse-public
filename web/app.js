@@ -342,7 +342,7 @@ async function refresh(){
   } else if (S.phase === 'note') { S.note = draft; }
   else if (S.phase === 'encounter') {
     if(previousTranscript!==JSON.stringify(S.transcript||[])){paintStream(S.transcript||[]);paintRapport();paintExamProgress();}
-    if(!S.pending_exam){if(!voice.patientSpeaking&&!window.pcmAISpeaking)setPatientState(window.pcmNaturalBusy?'preparing':window.pcmAIThinking?'thinking':patientIsListening()?'listening':'idle');const body=overlay?$('#ovBody',overlay):null;if(body){lockManeuverButtons(body,false);if(wasExamPending)paintManList(body);const running=$('#examRunning',body);if(running)running.innerHTML='';}}
+    if(!S.pending_exam){if(!voice.patientSpeaking&&!window.pcmAISpeaking)setPatientState(window.pcmNaturalBusy?'preparing':(window.pcmAIThinking||sendSay.pendingId===S.id)?'thinking':patientIsListening()?'listening':'idle');const body=overlay?$('#ovBody',overlay):null;if(body){lockManeuverButtons(body,false);if(wasExamPending)paintManList(body);const running=$('#examRunning',body);if(running)running.innerHTML='';}}
   }
   notifyPublicState();
 }
@@ -378,7 +378,7 @@ function renderLobby(){
     <div class="lobby-hero">
       <div class="eyebrow">Patient encounter library</div>
       <h1>Choose your next encounter.</h1>
-      <p>Choose your support, explore a presentation, then read the doorway before entering.</p>
+      <p>Choose a practice mode and a patient presentation.</p>
       <div class="hero-path" aria-label="Practice journey"><span>01 &nbsp; Meet</span><span>02 &nbsp; Explore</span><span>03 &nbsp; Reflect</span></div>
     </div>
 
@@ -824,7 +824,7 @@ function positionRoomFrame(){
   const b=slot.getBoundingClientRect();host.hidden=false;Object.assign(host.style,{left:(b.left+window.scrollX)+'px',top:(b.top+window.scrollY)+'px',width:b.width+'px',height:b.height+'px'});
 }
 function mountPatientFrame(){
-  let host=$('#roomFrameHost');if(!host){host=document.createElement('div');host.id='roomFrameHost';host.innerHTML=`<iframe id="unityFrame" src="patient3d/index.html?v=363eae844d" title="Interactive patient and examination room" allow="autoplay"></iframe>`;document.body.append(host);roomFrameReady=false;$('#unityFrame').onload=notifyPublicState;}
+  let host=$('#roomFrameHost');if(!host){host=document.createElement('div');host.id='roomFrameHost';host.innerHTML=`<iframe id="unityFrame" src="patient3d/index.html?v=8835da023b" title="Interactive patient and examination room" allow="autoplay"></iframe>`;document.body.append(host);roomFrameReady=false;$('#unityFrame').onload=notifyPublicState;}
   roomViewportObserver?.disconnect();roomViewportObserver=new ResizeObserver(positionRoomFrame);for(const target of [$('#roomViewport'),$('#patientVoiceSettings'),document.body])if(target)roomViewportObserver.observe(target);positionRoomFrame();if(roomFrameReady&&$('#unityStatus'))$('#unityStatus').textContent=patientDisplayLabel();notifyPublicState();
 }
 window.addEventListener('resize',positionRoomFrame);document.addEventListener('scroll',positionRoomFrame,true);
@@ -980,7 +980,7 @@ function renderRoom(){
           <label class="sr-only" for="say">What you say to the patient, or the examination you perform</label>
           <textarea id="say" rows="2" autocomplete="off" spellcheck="true" placeholder="Talk to ${esc((S.patient_name||'your patient').split(' ')[0])}…"></textarea>
           <button class="btn sm ghost" id="stopPatient" type="button" disabled hidden aria-label="Stop patient speech">Stop speech</button><button class="btn primary" id="btnSay" type="button" aria-label="Send to patient">Send <span aria-hidden="true">↑</span></button>
-        </div><p class="hint">Enter to send · Shift+Enter for a new line. Speak naturally, one question at a time.</p>
+        </div><p class="hint">Enter to send · Shift+Enter for a new line</p>
       </div>
     </section>
     <div class="room-left">
@@ -989,7 +989,7 @@ function renderRoom(){
     <div class="room-right card encounter-next"><div><span class="eyebrow">When you are ready</span><h3>Bring the encounter together.</h3><p class="small muted">Finish your conversation, then move into documentation.</p></div><div class="row"><button class="btn ghost sm" id="toolRefuse">Propose a sensitive examination</button><button class="btn" id="btnEnd">Finish encounter →</button></div><span class="tiny muted" id="examProgressSub"></span></div>
   </div>`;
   mountPatientFrame();paintRapport();paintStream(S.transcript||[]);
-  $('#stopPatient').onclick=interruptPatient;$('#btnSay').onclick=()=>sendSay();$('#say').onkeydown=composerKey;$('#say').value=draftValue('conversation',S.id)||'';$('#say').onfocus=()=>requestAnimationFrame(()=>{const pair=$('.experience-room'),patient=$('.unity-room'),conversation=$('.convo');if(innerWidth>820&&pair&&patient&&conversation&&Math.max(patient.offsetHeight,conversation.offsetHeight)<innerHeight-76){window.scrollTo({top:Math.max(0,pair.getBoundingClientRect().top+scrollY-76),behavior:'instant'});positionRoomFrame();}});$('#say').oninput=e=>{autogrow(e.target);keepDraft('conversation',S.id,e.target.value);setPatientState(e.target.value?'listening':'idle');notifyPublicState();};
+  $('#stopPatient').onclick=interruptPatient;$('#btnSay').onclick=()=>sendSay();$('#say').onkeydown=composerKey;$('#say').value=draftValue('conversation',S.id)||'';$('#say').onfocus=()=>requestAnimationFrame(()=>{const pair=$('.experience-room'),patient=$('.unity-room'),conversation=$('.convo');if(innerWidth>820&&pair&&patient&&conversation&&Math.max(patient.offsetHeight,conversation.offsetHeight)<innerHeight-76){window.scrollTo({top:Math.max(0,pair.getBoundingClientRect().top+scrollY-76),behavior:'instant'});positionRoomFrame();}});$('#say').oninput=e=>{autogrow(e.target);keepDraft('conversation',S.id,e.target.value);notifyPublicState();};
   $('#btnEnd').onclick=confirmEnd;$('#toolExam').onclick=openExamPanel;$('#unityFallback').onclick=openExamPanel;
   $('#toolChart').onclick=()=>openOverlay('Doorway information & vital signs',`<div class="doorway-vitals">${chartHtml(chart)}</div><ul class="doorway-lines">${(chart.doorway||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`);
   if($('#quickUnstuck'))$('#quickUnstuck').onclick=()=>{const guide=$('#encounterGuide');if(guide){guide.scrollIntoView({block:'center',behavior:LS.get('reducedMotion')?'instant':'smooth'});$('#unstuckButton')?.click();}};
@@ -1123,7 +1123,9 @@ async function sendSay(textOverride, confidence){
   if(!S||S.phase!=='encounter')return;const sid=S.id;
   const input = $('#say');
   const text = (textOverride !== undefined ? textOverride : (input ? input.value : '')).trim();
-  if (!text) return;
+  if (!text || sendSay.pendingId===sid) return;
+  sendSay.pendingId=sid;const sendButton=$('#btnSay');if(sendButton)sendButton.disabled=true;
+  try {
   // Secondary defence, not the fix: if a recognition event is somehow
   // delivered twice, the identical text arrives within milliseconds. Saying
   // the same thing again deliberately takes far longer than this window, so a
@@ -1143,6 +1145,9 @@ async function sendSay(textOverride, confidence){
     text, mode: S.interaction_mode === 'voice' ? 'voice' : 'type', confidence: conf
   });
   if(r.error && r.error!=='closed'){
+    // A failed explicit action may be retried immediately. Keep duplicate
+    // suppression for successful recognition events and in-flight requests.
+    if(S?.id===sid&&textOverride!==undefined&&voice.lastSentText===text){voice.lastSentText='';voice.lastSentAt=0;}
     // A failed request can arrive after the student starts typing their next
     // question. Preserve both, including dictated text, without auto-resending
     // an action that may already have reached the engine.
@@ -1169,6 +1174,7 @@ async function sendSay(textOverride, confidence){
   events.forEach(deliverEvent);
   paintRapport(); paintExamProgress(); paintTurnCount(); notifyPublicState();
   if (!examining && !events.some(e => e.kind === 'patient')) setPatientState('idle');
+  } finally {if(sendSay.pendingId===sid)sendSay.pendingId=null;if(S?.id===sid&&sendButton?.isConnected)sendButton.disabled=false;}
 }
 /* An examination narrated in the conversation occupies its time exactly as one
    started from the examination surface does: the outcome is held back until the
@@ -1259,8 +1265,8 @@ function markStreamBehind(){
   if (!jump) {
     jump = document.createElement('button');
     jump.id = 'streamJump'; jump.type = 'button'; jump.className = 'stream-jump';
-    jump.innerHTML = 'New below <span aria-hidden="true">\u2193</span>';
-    jump.onclick = () => { s.scrollTop = s.scrollHeight; markStreamCaughtUp(); };
+    jump.innerHTML = 'Latest response <span aria-hidden="true">\u2193</span>';
+    jump.onclick = () => { s.dataset.pinned='1';s.scrollTop = s.scrollHeight; markStreamCaughtUp(); };
   }
   // The log moves between panels, so re-home the marker beside it every time.
   const host = s.parentElement || s;
@@ -1285,7 +1291,7 @@ function watchStream(s){
     // back. Neither is a reading position.
     if (s.dataset.moving || !s.clientHeight) return;
     const at = streamAtBottom(s); s.dataset.pinned = at ? '1' : '0';
-    if (at) markStreamCaughtUp();
+    if (at) markStreamCaughtUp();else markStreamBehind();
   }, {passive:true});
 }
 window.pcmStreamPinned = streamPinned;
@@ -2004,7 +2010,7 @@ function stopVoice(){
   const el = $('#interim'); if (el) el.textContent = '';
 }
 function patientIsListening(){
-  return S?.phase==='encounter'&&!voice.patientSpeaking&&!window.pcmAISpeaking&&Boolean(voice.listening||window.pcmAIRecording||(document.activeElement===$('#say')&&$('#say')?.value));
+  return S?.phase==='encounter'&&!voice.patientSpeaking&&!window.pcmAISpeaking&&Boolean(voice.listening||window.pcmAIRecording);
 }
 function configurePatientSpeech(utterance){
   // The patient's sex comes from the case's AUTHORED presentation, never from
@@ -2118,141 +2124,72 @@ const NOTE_HINTS = {
   O: 'Vitals, General, systems examined, osteopathic structural exam'
 };
 function renderNote(){
+  renderNote.cleanup?.();
   stopVoice(); cancelRunningExam();
-  recoverScratch();const recoveredNote=draftValue('note',S.id);const n=recoveredNote||S.note||{};
-  const A = (n.A || []).concat(['', '', '']).slice(0, 3);
-  const Pn = (n.P || []).concat(['', '', '']).slice(0, 3);
-  const exam = !mode().coach;
-  const chart = S.station_chart || { vitals:{}, supplied_results:[] };
-  view.innerHTML = `<div class="note-layout">
-    <div>
-      <div class="note-sheet">
-        <div class="note-head">
-          <span class="n-title">SOAP note</span>
-          <span class="n-sub">${esc(S.patient_name || '')} · ${esc(stationTitle(S.case_id))}</span>
-          <div class="spacer"></div>
-          <span class="n-sub">time left</span>
-          <span class="clock" style="font-size:var(--fs-md);padding:2px 8px"
-            ><span class="digits" data-clock>--:--</span></span>
-        </div>
-        <div class="note-sec">
-          <div class="sec-head"><span class="sec-letter">S</span>
-            <span class="sec-name">Subjective</span>
-            <span class="sec-hint">${exam ? '' : esc(NOTE_HINTS.S)}</span></div>
-          <label class="sr-only" for="noteS">Subjective</label>
-          <textarea id="noteS" spellcheck="true" autocomplete="off"
-            placeholder="${exam ? '' : 'cc: chief complaint and duration\nHPI: age/sex, onset, setting, location, duration, character, alleviating/aggravating, radiation, associated symptoms\nPMH:   PSH:   Meds:   SH:   FH:   Allergies:   ROS:'}">${esc(n.S || '')}</textarea>
-        </div>
-        <div class="note-sec">
-          <div class="sec-head"><span class="sec-letter">O</span>
-            <span class="sec-name">Objective</span>
-            <span class="sec-hint">${exam ? '' : esc(NOTE_HINTS.O)}</span></div>
-          <label class="sr-only" for="noteO">Objective</label>
-          <textarea id="noteO" spellcheck="true" autocomplete="off"
-            placeholder="${exam ? '' : 'Vitals:\nGeneral:\nHeart:   Lungs:\n(area of concern — document the expanded exam)\nOsteopathic:'}">${esc(n.O || '')}</textarea>
-        </div>
-        <div class="note-sec" style="border-bottom:0">
-          <div class="sec-head"><span class="sec-letter">A/P</span>
-            <span class="sec-name">Assessment paired with its plan</span>
-            <span class="sec-hint">numbered 1, 2, 3</span></div>
-          ${[0, 1, 2].map(i => `
-          <div class="ap-pair">
-            <div class="pair-head"><span class="pair-no">${i + 1}</span>
-              <span>Assessment ${i + 1} and its plan</span></div>
-            <div class="ap-cols">
-              <div><div class="ap-lab" id="alab${i}">Assessment ${i + 1}</div>
-                <textarea id="noteA${i}" rows="2" aria-labelledby="alab${i}"
-                  autocomplete="off" placeholder="Differential diagnosis ${i + 1}">${esc(A[i])}</textarea></div>
-              <div><div class="ap-lab" id="plab${i}">Plan ${i + 1}</div>
-                <textarea id="noteP${i}" rows="2" aria-labelledby="plab${i}"
-                  autocomplete="off" placeholder="Plan for assessment ${i + 1}">${esc(Pn[i])}</textarea></div>
-            </div>
-          </div>`).join('')}
-        </div>
-      </div>
-      <div class="savebar">
-        <button class="btn primary" id="btnSubmit" type="button">Submit note</button>
-        <span class="savestate" id="saveState" role="status">
-          <span class="dot" aria-hidden="true"></span><span class="txt">Draft not yet saved</span></span>
-        <div class="spacer" style="flex:1"></div>
-        <span class="tiny muted">The numbers 1, 2 and 3 shown beside each pair are
-        submitted with the note.</span>
-      </div>
+  recoverScratch();const sid=S.id,recoveredNote=draftValue('note',sid),n=recoveredNote||S.note||{};
+  const A=(n.A||[]).concat(['','','']).slice(0,3),Pn=(n.P||[]).concat(['','','']).slice(0,3);
+  const exam=!mode().coach,chart=S.station_chart||{vitals:{},supplied_results:[]};
+  // The server decides which references are permitted. Never reconstruct a
+  // missing record from case truth or a prior encounter's browser state.
+  const refs=[...(S.record?[['notes','Notes']]:[]),['chart','Supplied chart'],...(S.assisted?[['transcript','Conversation']]:[]),...(S.scratch?[['scratch','Scratchpad']]:[])];
+  const previous=uiMeta(sid).noteWorkspace||{};
+  const position={field:previous.field||'noteS',start:previous.start||0,end:previous.end||0,writeTop:previous.writeTop||0,referenceTop:previous.referenceTop||0,panels:previous.panels||{},view:previous.view==='reference'?'reference':'write',reference:refs.some(([id])=>id===previous.reference)?previous.reference:refs[0][0]};
+  const ids=['noteS','noteO','noteA0','noteA1','noteA2','noteP0','noteP1','noteP2'];
+  view.innerHTML=`<section class="note-workspace" aria-label="Write and review your SOAP note" data-note-view="${position.view}">
+    <header class="note-workspace-head"><div class="note-context"><h1>SOAP note</h1><span>${esc(S.patient_name||'')} · ${esc(stationTitle(S.case_id))}</span></div>
+      <div class="note-save-controls"><span class="savestate" id="saveState" role="status"><span class="dot" aria-hidden="true"></span><span class="txt">Draft not yet saved</span></span><button class="btn sm" id="retryNoteSave" type="button" hidden>Retry save</button><button class="btn primary sm" id="btnSubmit" type="button">Submit note</button></div>
+      <nav class="note-mobile-switch" aria-label="Note workspace"><button class="btn sm" type="button" data-note-view="write" aria-controls="noteEditor">Write note</button><button class="btn sm" type="button" data-note-view="reference" aria-controls="noteReference">Reference</button></nav>
+    </header>
+    <div class="note-layout">
+      <section class="note-editor" id="noteEditor" aria-label="SOAP note editor"><nav class="note-section-nav" aria-label="Go to a note section"><button type="button" data-note-section="noteS">Subjective</button><button type="button" data-note-section="noteO">Objective</button><button type="button" data-note-section="noteA0">Assessment &amp; plan</button></nav>
+        <div class="note-sheet">
+          <div class="note-sec"><div class="sec-head"><span class="sec-letter">S</span><span class="sec-name">Subjective</span>${exam?'':`<span class="sec-hint">${esc(NOTE_HINTS.S)}</span>`}</div><label class="sr-only" for="noteS">Subjective</label><textarea id="noteS" spellcheck="true" autocomplete="off" placeholder="${exam?'':'Chief concern and HPI, followed by relevant history and review of systems.'}">${esc(n.S||'')}</textarea></div>
+          <div class="note-sec"><div class="sec-head"><span class="sec-letter">O</span><span class="sec-name">Objective</span>${exam?'':`<span class="sec-hint">${esc(NOTE_HINTS.O)}</span>`}</div><label class="sr-only" for="noteO">Objective</label><textarea id="noteO" spellcheck="true" autocomplete="off" placeholder="${exam?'':'Supplied vitals and the findings you obtained.'}">${esc(n.O||'')}</textarea></div>
+          <div class="note-sec"><div class="sec-head"><span class="sec-letter">A/P</span><span class="sec-name">Assessment &amp; plan</span><span class="sec-hint">Three numbered pairs</span></div>${[0,1,2].map(i=>`<div class="ap-pair"><div class="pair-head"><span class="pair-no">${i+1}</span><span>Assessment and its plan</span></div><div class="ap-cols"><div><label class="ap-lab" id="alab${i}" for="noteA${i}">Assessment ${i+1}</label><textarea id="noteA${i}" rows="2" spellcheck="true" aria-labelledby="alab${i}" autocomplete="off" placeholder="Differential diagnosis ${i+1}">${esc(A[i])}</textarea></div><div><label class="ap-lab" id="plab${i}" for="noteP${i}">Plan ${i+1}</label><textarea id="noteP${i}" rows="2" spellcheck="true" aria-labelledby="plab${i}" autocomplete="off" placeholder="Plan for assessment ${i+1}">${esc(Pn[i])}</textarea></div></div></div>`).join('')}</div>
+        </div><p class="note-submit-explanation">Your draft saves automatically. Submitting locks the note and opens feedback. Assessment and plan entries are submitted with the numbers shown.</p>
+      </section>
+      <aside class="note-reference-panel" id="noteReference" aria-label="Permitted reference material"><div class="note-reference-title"><h2>Reference</h2><span>${S.record?'From this encounter':'Supplied information only'}</span></div><nav class="note-reference-tabs" role="tablist" aria-label="Reference material">${refs.map(([id,label])=>`<button type="button" role="tab" id="noteRefTab-${id}" data-note-reference="${id}" aria-controls="noteRef-${id}">${esc(label)}</button>`).join('')}</nav>
+        ${S.record?`<section class="note-reference-pane" id="noteRef-notes" role="tabpanel" aria-labelledby="noteRefTab-notes"><nav class="note-ref-jump" aria-label="Jump to a part of your notes">${(S.record.groups||[]).map((g,i)=>`<button type="button" data-ref-jump="${i}">${esc(g.label)}</button>`).join('')}</nav><div class="note-reference-content note-ref-body">${window.pcmRecordHtml?window.pcmRecordHtml(S.record):''}</div></section>`:''}
+        <section class="note-reference-pane" id="noteRef-chart" role="tabpanel" aria-labelledby="noteRefTab-chart"><div class="note-reference-content">${chartHtml(chart)}${!S.record?'<p class="note-restriction">Interview notes and conversation are unavailable during this unassisted note period. Supplied chart information remains available.</p>':''}</div></section>
+        ${S.assisted?`<section class="note-reference-pane" id="noteRef-transcript" role="tabpanel" aria-labelledby="noteRefTab-transcript"><p class="note-reference-caption">Conversation access is recorded as assistance.</p><div class="note-reference-content">${(S.assisted_transcript||[]).filter(r=>['student_utterance','patient_reply','exam_finding','exam_refused','station_info'].includes(r.kind)).map(r=>`<div class="note-transcript-row"><div><b>${r.kind==='student_utterance'?'You':r.kind==='patient_reply'?esc(S.patient_name||'Patient'):esc(r.kind.replace(/_/g,' '))}</b><span>${esc(r.time)}</span></div><p>${esc(r.text)}</p></div>`).join('')}</div></section>`:''}
+        ${S.scratch?`<section class="note-reference-pane" id="noteRef-scratch" role="tabpanel" aria-labelledby="noteRefTab-scratch"><div class="note-reference-content"><pre class="note-out">${esc(S.scratch)}</pre></div></section>`:''}
+      </aside>
     </div>
-    <div>
-      <div class="card tight"><div class="card-head"><h3 style="font-size:var(--fs-md)">Chart</h3></div>
-        ${chartHtml(chart)}</div>
-      ${S.scratch ? `<div class="card tight"><div class="card-head">
-        <h3 style="font-size:var(--fs-md)">Your scratchpad</h3></div>
-        <pre class="note-out" style="margin:0">${esc(S.scratch)}</pre></div>` : ''}
-      ${S.assisted ? `<div class="card tight"><div class="card-head">
-        <h3 style="font-size:var(--fs-md)">Transcript</h3>
-        <span class="badge b-warn">assisted mode</span></div>
-        <div style="max-height:340px;overflow:auto">${(S.assisted_transcript || [])
-          .filter(r => ['student_utterance','patient_reply','exam_finding','exam_refused','station_info'].indexOf(r.kind) >= 0)
-          .map(r => `<div class="tx-row"><span class="tt">${esc(r.time)}</span>
-            <span class="kk"><span class="badge b-mute">${esc(r.kind.replace(/_/g, ' '))}</span></span>
-            <span>${esc(r.text)}</span></div>`).join('')}</div>
-        <p class="tiny muted" style="margin-top:var(--sp-2)">This assistance is named on
-        your results.</p></div>`
-      : S.record
-      // What you obtained, in the shape the note is scored in. The modes that
-      // permit it now supply this; the rail used to say nothing was available
-      // even then, so the summary sat in the payload unread.
-      ? `<div class="card tight note-reference"><div class="note-ref-head"><h3>What you obtained</h3>
-        <span class="tiny muted">Your own findings · nothing added</span></div>
-        <nav class="note-ref-jump" aria-label="Jump to a part of your record">${
-          (S.record.groups||[]).map((g,i)=>`<button type="button" data-ref-jump="${i}">${esc(g.label)}</button>`).join('')}</nav>
-        <div class="note-ref-body">${(window.pcmRecordHtml ? window.pcmRecordHtml(S.record) : '')}</div></div>`
-      : `<div class="card tight"><p class="small muted">No reference material, no transcript
-      and no omission warnings — the syllabus allows none of it while the note is being
-      written (p. 5). Everything is revealed after you submit.</p></div>`}
-    </div></div>`;
-
-  // The rail is a 1400px list inside a 720px box with nothing to say so. The
-  // examination findings a student needs for Objective sat at the bottom of a
-  // nested scroller they had no reason to think would scroll.
-  (() => {
-    const rail = document.querySelector('.note-reference'); if (!rail) return;
-    const body = rail.querySelector('.note-ref-body'); if (!body) return;
-    const groups = [...body.querySelectorAll('.ew-rec-group')];
-    const chips = [...rail.querySelectorAll('[data-ref-jump]')];
-    chips.forEach(b => b.onclick = () => {
-      const target = groups[Number(b.dataset.refJump)]; if (!target) return;
-      body.scrollTop = target.offsetTop - body.firstElementChild.offsetTop;
-      chips.forEach(x => x.setAttribute('aria-current', String(x === b)));
-    });
-    const shade = () => {
-      body.classList.toggle('has-more', body.scrollHeight - body.scrollTop - body.clientHeight > 6);
-      body.classList.toggle('has-above', body.scrollTop > 6);
-    };
-    body.addEventListener('scroll', shade, {passive:true}); shade();
-  })();
-
-  ['noteS','noteO','noteA0','noteA1','noteA2','noteP0','noteP1','noteP2'].forEach(id => {
-    const el = $('#' + id); if (!el) return;
-    autogrow(el);
-    el.oninput=()=>{autogrow(el);keepDraft('note',S.id,collectNote());setSaveState('unsaved');queueNoteSave();};
-  });
-  $('#btnSubmit').onclick = async () => {
-    const sid=S.id; const frozenDraft=collectNote();
-    if (!await confirmChoice('Your note locks when you submit it, and the debrief is revealed.',
-        {title:'Submit your note?',confirm:'Submit note',cancel:'Keep writing'})) return;
-    if(!S||S.id!==sid||S.phase!=='note')return;
-    const r = await persistNote();
-    if (!r.saved) {
-      setSaveState('error', r.reason);
-      if (!await confirmChoice('This draft was not stored — ' + r.reason,
-          {title:'Submit without a stored draft?',confirm:'Submit anyway',cancel:'Keep writing'})) return;
-    }
-    if(!S||S.id!==sid||S.phase!=='note')return;
-    clearTimeout(noteSaveTimer);
-    const next = await api(`/api/session/${sid}/submit`, { note: frozenDraft });
-    if (next.error) { toast(next.message || 'The note could not be submitted.'); return; }
-    clearMatchingDraft('note',sid,frozenDraft);S = next; renderPhase(true);
-  };
+  </section>`;
+  const workspace=$('.note-workspace'),controller=new AbortController(),signal=controller.signal,narrow=matchMedia('(max-width:1099px)');
+  let scrollTimer,submitting=false,restoring=true,referencesReady=false;
+  const valid=()=>workspace.isConnected&&S?.id===sid&&S.phase==='note';
+  const store=()=>{if(valid())setUiMeta(sid,{...uiMeta(sid),noteWorkspace:{...position,panels:{...position.panels}}});};
+  const rememberField=el=>{if(!ids.includes(el?.id))return;position.field=el.id;position.start=el.selectionStart;position.end=el.selectionEnd;store();};
+  const grow=el=>{el.style.height='auto';el.style.height=Math.max(el.scrollHeight,el.id==='noteS'||el.id==='noteO'?190:100)+'px';};
+  const rememberScroll=()=>{if(restoring)return;if(!valid()){controller.abort();return;}if(narrow.matches&&position.view==='reference')position.referenceTop=scrollY;else position.writeTop=scrollY;clearTimeout(scrollTimer);scrollTimer=setTimeout(store,120);};
+  let editorWidth=0;const editorResize=new ResizeObserver(()=>{const width=$('#noteEditor')?.clientWidth||0;if(width&&width!==editorWidth){editorWidth=width;ids.forEach(id=>grow($('#'+id)));}const top=$('.topbar')?.offsetHeight||0,head=$('.note-workspace-head')?.offsetHeight||0;workspace.style.setProperty('--note-header-top',(top+8)+'px');workspace.style.setProperty('--note-rail-top',(top+head+24)+'px');});editorResize.observe($('#noteEditor'));editorResize.observe($('.note-workspace-head'));if($('.topbar'))editorResize.observe($('.topbar'));
+  renderNote.cleanup=()=>{clearTimeout(scrollTimer);controller.abort();editorResize.disconnect();};
+  window.addEventListener('scroll',rememberScroll,{passive:true,signal});window.addEventListener('pagehide',store,{signal});
+  const restoreEditor=()=>{const el=$('#'+position.field)||$('#noteS');el.focus({preventScroll:true});el.setSelectionRange(Math.min(position.start,el.value.length),Math.min(position.end,el.value.length));};
+  const paintView=()=>{$$('[data-note-view]',workspace).filter(el=>el.tagName==='BUTTON').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.noteView===position.view)));};
+  $$('button[data-note-view]',workspace).forEach(b=>b.onclick=()=>{if(position.view===b.dataset.noteView)return;rememberScroll();rememberField(document.activeElement);position.view=b.dataset.noteView;workspace.dataset.noteView=position.view;paintView();if(position.view==='write')ids.forEach(id=>grow($('#'+id)));requestAnimationFrame(()=>{window.scrollTo({top:position.view==='write'?position.writeTop:position.referenceTop,behavior:'instant'});if(position.view==='write')restoreEditor();});store();});paintView();
+  const chooseReference=(id,focus=false)=>{const old=$('#noteRef-'+position.reference+' .note-reference-content');if(referencesReady&&old)position.panels[position.reference]=old.scrollTop;referencesReady=true;position.reference=id;$$('[data-note-reference]',workspace).forEach(b=>{const selected=b.dataset.noteReference===id;b.setAttribute('aria-selected',String(selected));b.tabIndex=selected?0:-1;});$$('.note-reference-pane',workspace).forEach(p=>p.hidden=p.id!=='noteRef-'+id);const content=$('#noteRef-'+id+' .note-reference-content');if(content)content.scrollTop=position.panels[id]||0;if(focus)$('#noteRefTab-'+id)?.focus({preventScroll:true});store();};
+  $$('[data-note-reference]',workspace).forEach((b,i,list)=>{b.onclick=()=>chooseReference(b.dataset.noteReference);b.onkeydown=e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const next=e.key==='Home'?0:e.key==='End'?list.length-1:(i+(e.key==='ArrowRight'?1:-1)+list.length)%list.length;chooseReference(list[next].dataset.noteReference,true);};});chooseReference(position.reference);
+  $$('.note-reference-content',workspace).forEach(content=>content.addEventListener('scroll',()=>{position.panels[content.closest('.note-reference-pane').id.replace('noteRef-','')]=content.scrollTop;store();},{passive:true,signal}));
+  $$('[data-ref-jump]',workspace).forEach(b=>b.onclick=()=>{const content=$('#noteRef-notes .note-reference-content'),target=$$('.ew-rec-group',content)[Number(b.dataset.refJump)];if(target){content.scrollTop+=target.getBoundingClientRect().top-content.getBoundingClientRect().top;$$('[data-ref-jump]',workspace).forEach(x=>x.setAttribute('aria-current',String(x===b)));}});
+  $$('[data-note-section]',workspace).forEach(b=>b.onclick=()=>{const el=$('#'+b.dataset.noteSection);if(!el)return;el.focus({preventScroll:true});el.scrollIntoView({block:'start',behavior:'instant'});rememberField(el);});
+  ids.forEach(id=>{const el=$('#'+id);grow(el);el.oninput=()=>{grow(el);keepDraft('note',sid,collectNote());rememberField(el);setSaveState('unsaved');queueNoteSave();};['select','keyup','click','focusout'].forEach(event=>el.addEventListener(event,()=>rememberField(el),{signal}));});
+  narrow.addEventListener('change',()=>{ids.forEach(id=>grow($('#'+id)));requestAnimationFrame(()=>{if(narrow.matches&&position.view==='reference')window.scrollTo({top:position.referenceTop,behavior:'instant'});});},{signal});
+  $('#retryNoteSave').onclick=async()=>{const b=$('#retryNoteSave');b.disabled=true;setSaveState('saving');const r=await persistNote();if(!valid())return;b.disabled=false;if(r.saved){if(r.newer)queueNoteSave();else{noteSave.at=r.at;setSaveState('saved');}}else setSaveState('error',r.reason);if(document.activeElement===document.body)restoreEditor();};
+  $('#btnSubmit').onclick=async()=>{if(submitting)return;submitting=true;const button=$('#btnSubmit');button.disabled=true;try{
+    if(!await confirmChoice('Your note locks when you submit it, and feedback is revealed.',{title:'Submit your note?',confirm:'Submit note',cancel:'Keep writing'}))return;
+    if(!valid())return;
+    const frozenDraft=collectNote(),r=await persistNote();
+    if(!r.saved){setSaveState('error',r.reason);if(!await confirmChoice('This draft was not stored — '+r.reason,{title:'Submit without a stored draft?',confirm:'Submit anyway',cancel:'Keep writing'}))return;}
+    if(!valid())return;
+    clearTimeout(noteSaveTimer);ids.forEach(id=>$('#'+id).readOnly=true);button.textContent='Submitting…';
+    const next=await api(`/api/session/${sid}/submit`,{note:frozenDraft});
+    if(next.error){toast(next.message||'The note was not submitted. Your draft is retained; try again.');return;}
+    clearMatchingDraft('note',sid,frozenDraft);renderNote.cleanup();S=next;renderPhase(true);
+  }finally{submitting=false;if(valid()){button.disabled=false;button.textContent='Submit note';ids.forEach(id=>$('#'+id).readOnly=false);if(document.activeElement===document.body||document.activeElement===view)button.focus({preventScroll:true});}}};
   if(recoveredNote)toast('Recovered your unsent note draft from this browser.');
-  $('#noteS').focus();
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{if(!valid())return;if(narrow.matches&&position.view==='reference')$('#noteRefTab-'+position.reference)?.focus({preventScroll:true});else restoreEditor();window.scrollTo({top:narrow.matches&&position.view==='reference'?position.referenceTop:position.writeTop,behavior:'instant'});restoring=false;}));
   queueNoteSave();
 }
 
@@ -2296,7 +2233,7 @@ function setSaveState(state, reason){
   noteSave.state = state; noteSave.reason = reason || '';
   const el = $('#saveState'); if (!el) return;
   el.className = 'savestate ' + state;
-  const txt = $('.txt', el);
+  const txt = $('.txt', el);const retry=$('#retryNoteSave');if(retry)retry.hidden=state!=='error';
   if (state === 'saving') txt.textContent = 'Saving…';
   else if (state === 'saved') txt.textContent = 'Saved ' + new Date(noteSave.at).toLocaleTimeString();
   else if (state === 'unsaved') txt.textContent = 'Unsaved changes';
@@ -2306,14 +2243,16 @@ function setSaveState(state, reason){
   } else txt.textContent = 'Draft not yet saved';
 }
 function queueNoteSave(){
-  clearTimeout(noteSaveTimer);
+  clearTimeout(noteSaveTimer);const sid=S?.id;
   // "Saving…" belongs to a request that is actually running. Setting it here
   // made the chip say "Saving…" for the whole debounce -- restarting on every
   // keystroke -- so a student typing steadily never saw "Unsaved changes" and
   // never saw a "Saved <time>" confirmation either.
   noteSaveTimer = setTimeout(async () => {
+    if(S?.id!==sid||S.phase!=='note')return;
     setSaveState('saving');
     const r = await persistNote();
+    if(S?.id!==sid||S.phase!=='note')return;
     if (r.saved) {if(r.newer){queueNoteSave();return;}noteSave.at = r.at; setSaveState('saved');}
     else setSaveState('error', r.reason);
   }, 500);
@@ -2354,7 +2293,7 @@ function paintDebrief(){
   const r = RESULTS.results;
   const recovery=draftValue('note',S.id);
   const historical=RESULTS.reader_versions?.is_regrade;
-  const tabs = [['lessons','Three lessons'],['score','Score'],['timeline','Timeline'],
+  const tabs = [['lessons','Priorities'],['score','Score'],['timeline','Timeline'],
     ['audit','Documentation'],['checklist','Encounter checklist'],['comm','Communication'],
     ['notes','Note comparison'],['transcript','Transcript'],['practice','Deliberate practice'],
     ['about','About this case']];
@@ -2395,9 +2334,17 @@ function paintDebrief(){
       <div class="dr-actions"><a class="btn sm primary" href="#practice">Start another encounter</a></div>
     </section>`);
   }
+  // Keep the common review route direct; secondary evidence tools remain named
+  // and available together without ten equally prominent navigation choices.
+  const reviewTabs=$('.tabs');
+  const more=document.createElement('details');more.className='feedback-more';
+  more.innerHTML='<summary>More feedback</summary><div class="feedback-more-tabs"></div>';
+  reviewTabs.append(more);
+  $$('.tabs button').filter(b=>!['lessons','score','notes'].includes(b.dataset.t)).forEach(b=>$('.feedback-more-tabs',more).append(b));
+  more.open=!['lessons','score','notes'].includes(activeTab);
   const btns = $$('.tabs button');
   btns.forEach((b, i) => {
-    b.onclick = () => { activeTab = b.dataset.t; paintDebrief(); $('#tab-' + activeTab).focus(); };
+    b.onclick = () => { activeTab = b.dataset.t; paintDebrief(); const more=$('.feedback-more');if(more&& !['lessons','score','notes'].includes(activeTab))more.open=true;$('#tab-' + activeTab).focus(); };
     b.onkeydown = e => {
       let j = null;
       if (e.key === 'ArrowRight') j = (i + 1) % btns.length;
@@ -2405,7 +2352,7 @@ function paintDebrief(){
       if (e.key === 'Home') j = 0;
       if (e.key === 'End')  j = btns.length - 1;
       if (j === null) return;
-      e.preventDefault(); activeTab = btns[j].dataset.t; paintDebrief(); $('#tab-' + activeTab).focus();
+      e.preventDefault(); activeTab = btns[j].dataset.t; paintDebrief();const more=$('.feedback-more');if(more&&!['lessons','score','notes'].includes(activeTab))more.open=true;$('#tab-' + activeTab).focus();
     };
   });
   paintDebriefBody(r);
@@ -3092,7 +3039,7 @@ window.pcmActiveAttempt=()=>S?.phase!=='submitted'?S?.id:null;
 window.pcmEnterWorkbench=async kind=>{
   if(S?.phase==='note'){const saved=await persistNote();if(!saved.saved){toast('Your draft could not be saved. Reconnect before leaving.');location.hash='#/'+S.id;return false;}}
   if(S?.phase==='organize'){const value=$('#scratch')?.value??S.scratch??'';keepDraft('scratch',S.id,value);const result=await saveScratch(S.id,value);if(!result.saved){toast('Your organization draft could not sync. Keep this page open and reconnect.');history.replaceState(null,'','#/'+S.id);return false;}}
-  if(S)window.pcmLastAttempt=S.id;
+  renderNote.cleanup?.();if(S)window.pcmLastAttempt=S.id;
   stopVoice();cancelRunningExam();closeOverlay(true);clearPendingReveals();
   if(poll)clearInterval(poll);if(tick)clearInterval(tick);S=null;lastPhase=null;document.body.dataset.phase=kind;positionRoomFrame();clockEl.classList.add('hidden');chipEl.classList.add('hidden');homeBtn.classList.add('hidden');window.scrollTo(0,0);return true;
 };
@@ -3130,7 +3077,7 @@ view.addEventListener('keydown',e=>{
   // the student somewhere else.
   const typing=/^(INPUT|TEXTAREA)$/.test(e.target?.tagName||'')||e.target?.isContentEditable;
   if(e.altKey&&!e.shiftKey&&!typing){const id={'1':'say','2':'toolExam','3':'toolChart'}[e.key];
-    if(!id)return;e.preventDefault();if(id==='say')$('#say')?.focus();else $('#'+id)?.click();return;}
+    if(!id)return;e.preventDefault();if(id==='say'){$('[data-ew-tab=talk]')?.click();$('#say')?.focus();}else $('#'+id)?.click();return;}
   if(e.key==='Escape'&&!e.altKey&&!e.shiftKey){cancelListening();interruptPatient();}
 });
 

@@ -31,7 +31,7 @@ body.encounter-workspace-active .ew-room #roomViewport{flex:1 1 0;height:0!impor
 .ew-right>.composer{flex:0 0 auto;padding:8px 10px;border-top:1px solid var(--line);background:var(--surface);margin:0}
 .ew-right .composer-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:6px;align-items:end}
 .ew-right .composer .mic-wrap.hidden{display:none}.ew-right .composer-row:has(.mic-wrap.hidden){grid-template-columns:minmax(0,1fr) auto auto}
-.ew-room .composer #say{font-size:14px;min-height:55px!important;max-height:82px!important;height:55px!important;resize:none;padding:8px;line-height:1.4;overflow:auto}
+
 .ew-room .composer #btnSay,.ew-room .composer #stopPatient,.ew-room .composer .mic-btn{min-height:36px;font-size:11px;padding:7px 9px}
 .ew-room .composer .hint{font-size:10px;line-height:1.3;margin:5px 0 0}.ew-room .interim:empty{display:none}
 .ew-bottom{grid-column:1/-1;grid-row:2;display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:12px;padding:5px 7px;background:var(--surface);min-width:0}
@@ -65,7 +65,7 @@ body.encounter-workspace-active #ewPanelGuide>#encounterGuide{margin:0!important
 .ew-sheet{position:fixed;inset:0;margin:auto;width:min(720px,calc(100vw - 28px));max-width:none;max-height:calc(100dvh - 40px);padding:0;border:1px solid var(--line);border-radius:18px;background:var(--surface);color:var(--ink);box-shadow:0 20px 90px #102b4450;overflow:hidden}.ew-sheet::backdrop{background:#102b4466}.ew-sheet[open]{display:flex;flex-direction:column}.ew-sheet-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);flex:0 0 auto}.ew-sheet-head h2{font-size:19px;margin:0}.ew-sheet-body{padding:16px 18px;min-height:0;overflow:auto;font-size:13px}.ew-sheet-body>details>summary{display:none}.ew-sheet-body #patientVoiceSettings{margin:0!important;padding:0!important;max-width:none}.ew-sheet-body .bedside-card{padding:0;border:0;box-shadow:none}.ew-sheet-body .rapport{display:grid;grid-template-columns:1fr 1fr;gap:7px}.ew-sheet-body .scene-help{padding:0;background:transparent}.ew-sheet-body .ew-view-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.ew-sheet-body .guide-route,.ew-sheet-body .guide-coverage{display:block!important}.ew-sheet-body .guide-route select{font-size:13px}.ew-sheet-body .guide-route{margin:0;padding:0;border:0}.ew-sheet-body #toolRefuse{margin-top:12px}
 body.encounter-workspace-active .room.ew-room.patient-focus{grid-template-columns:minmax(0,2.8fr) minmax(300px,1fr)}
 @media(max-width:1150px){body.encounter-workspace-active .room.ew-room{grid-template-columns:minmax(0,1.4fr) minmax(330px,1fr);gap:7px}.ew-room .unity-heading h2{font-size:16px}.ew-room .unity-heading{padding:7px 9px}.ew-room .state-pill{max-width:120px;overflow:hidden}.ew-bottom .btn{font-size:11px;padding:6px 8px}.ew-pos{padding:6px 7px;font-size:10px}.ew-pos-i{display:none}}
-@media(max-height:680px) and (min-width:850px){.ew-room .ew-panel-title{padding:7px 10px}.ew-panel-title h2{font-size:15px}.ew-panel-title span{display:none}.ew-exam-filters{gap:5px;padding-bottom:5px}.ew-exam-filters label{gap:2px}.ew-exam-filters select,.ew-exam-filters input{min-height:29px;padding:4px 6px}.ew-room .composer #say{min-height:45px!important;height:45px!important;max-height:65px!important}.ew-right>.composer{padding:6px 8px}.ew-tabs button{padding:7px 3px}.ew-guide-scroll{padding:7px 9px}.ew-room .guide-actions .btn,.ew-room .guide-navigation .btn,.ew-room #ewGuideMore{min-height:27px;padding:4px 6px}.ew-guide-footer{padding:5px 8px}.ew-room .guide-current{padding:7px}.ew-room .guide-current blockquote{margin:5px 0;padding:5px 7px}.ew-room .guide-current .guide-message{display:none}.ew-room .guide-current-label{display:none}.ew-room .guide-urgency{margin:0}.ew-room .guide-position{max-width:95px}.ew-room .guide-case-context{display:none}}
+@media(max-height:680px) and (min-width:850px){.ew-room .ew-panel-title{padding:7px 10px}.ew-panel-title h2{font-size:15px}.ew-panel-title span{display:none}.ew-exam-filters{gap:5px;padding-bottom:5px}.ew-exam-filters label{gap:2px}.ew-exam-filters select,.ew-exam-filters input{min-height:29px;padding:4px 6px}.ew-right>.composer{padding:6px 8px}.ew-tabs button{padding:7px 3px}.ew-guide-scroll{padding:7px 9px}.ew-room .guide-actions .btn,.ew-room .guide-navigation .btn,.ew-room #ewGuideMore{min-height:27px;padding:4px 6px}.ew-guide-footer{padding:5px 8px}.ew-room .guide-current{padding:7px}.ew-room .guide-current blockquote{margin:5px 0;padding:5px 7px}.ew-room .guide-current .guide-message{display:none}.ew-room .guide-current-label{display:none}.ew-room .guide-urgency{margin:0}.ew-room .guide-position{max-width:95px}.ew-room .guide-case-context{display:none}}
 @media(max-width:849px){body.encounter-workspace-active #view{padding:6px!important}body.encounter-workspace-active .room.ew-room,body.encounter-workspace-active .room.ew-room.patient-focus{grid-template-columns:minmax(0,1fr) minmax(290px,1fr);gap:6px;grid-template-rows:minmax(0,1fr) 46px}.ew-room .unity-heading{align-items:flex-start;flex-direction:column;gap:3px}.ew-room .unity-heading h2{font-size:15px}.ew-room .unity-heading .patient-heading-actions{width:100%;justify-content:space-between}.ew-room .unity-heading .state-pill{font-size:9px}.ew-bottom-tools{gap:4px}.ew-bottom .btn{font-size:10px;padding:5px 7px}.ew-pos{padding:5px 6px;font-size:10px}.ew-pos-i{display:none}.ew-bottom #btnEnd{font-size:10px;padding:5px 8px}.ew-bottom{gap:5px;padding:4px}.ew-room .composer #stopPatient{font-size:10px;padding:5px}.ew-room .composer #btnSay{font-size:10px;padding:5px}}
 @media(max-width:619px),(max-height:420px){body.encounter-workspace-active .room.ew-room,body.encounter-workspace-active .room.ew-room.patient-focus{height:auto;max-height:none;display:flex!important;flex-direction:column}.ew-room>.unity-room{height:45dvh;min-height:250px}.ew-right{height:65dvh;min-height:370px}.ew-bottom{position:sticky;bottom:5px;z-index:8;flex-wrap:wrap;min-height:48px}.ew-position{flex-wrap:wrap}.ew-bottom-tools{flex-wrap:wrap}.ew-room .unity-heading{flex-direction:row}.ew-room .unity-heading .patient-heading-actions{width:auto}.ew-sheet-body .ew-view-grid{grid-template-columns:1fr 1fr}}
 
@@ -114,7 +114,7 @@ body.encounter-workspace-active #ewGuideCard>#encounterGuide{display:block!impor
 #ewRecordLog{display:block;overflow:auto;padding:3px 14px 14px}.ew-record-group{margin:8px 0 18px}.ew-record-group h3{display:flex;justify-content:space-between}.ew-record-group details{border:0;border-bottom:1px solid var(--line);border-radius:0;padding:0;margin:0;background:transparent;color:var(--ink)}
 .ew-record-group summary{display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.45;padding:11px 0;cursor:pointer;list-style:none}.ew-record-group summary::-webkit-details-marker{display:none}.ew-check{display:inline-grid;place-items:center;width:21px;height:21px;flex:none;border-radius:6px;background:var(--surface-2);color:var(--accent);font-weight:bold}.ew-check.uncertain{color:var(--ink-2)}
 .ew-record-group details>div{padding:0 4px 11px 30px}.ew-record-group p{font-size:13px;line-height:1.5;white-space:pre-line;margin:4px 0}.ew-record-group small{font-size:10px;color:var(--ink-2)}.ew-record-group .ew-empty{font-size:12px;color:var(--ink-2);padding:5px 0}.ew-record-note{line-height:1.5}
-.ew-right>.composer .hint{font-size:10px}.ew-room .composer #say{border-radius:12px;min-height:52px!important;height:52px!important}.ew-room .composer #stopPatient{font-size:10px}
+.ew-right>.composer .hint{font-size:10px}.ew-room .composer #stopPatient{font-size:10px}
 @media(max-height:720px){#ewGuideCard{padding:9px 12px;flex-basis:58%}#ewGuideCard .guide-current h3{font-size:13px}#ewGuideCard .guide-current blockquote{font-size:13px;margin:5px 0}#ewGuideCard .guide-why{font-size:11px}.ew-guide-chat-label{padding-top:4px}#ewGuideCard .guide-actions .btn,#ewGuideCard .guide-navigation .btn{min-height:28px;padding:4px 8px;font-size:11px}}
 @media(max-width:849px){.ew-action-grid{gap:6px}.ew-action-tile{padding:9px 7px;grid-template-columns:17px 1fr}.ew-tabs button{font-size:11px}.ew-tabs button span{font-size:13px;margin-right:2px}}
 
@@ -317,3 +317,106 @@ body.encounter-workspace-active #ewGuideCard>#encounterGuide{display:block!impor
  #ewPanelExam .ew-exam-scroll{overflow:visible;min-height:180px}
  #ewPanelExam .ew-exam-outcome{max-height:none}
 }
+
+/* Task workspace, September 12: one predictable toolbar, task-sized columns,
+   stable editor and optional assistance. Earlier device breakpoints yield here. */
+@media(min-width:850px){
+ body.encounter-workspace-active .room.ew-room:not(.patient-focus){grid-template-columns:minmax(320px,.65fr) minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr) auto}
+ body.encounter-workspace-active .room.ew-room:not(.patient-focus):is([data-workspace-tab=exam],[data-workspace-tab=record]){grid-template-columns:minmax(300px,.45fr) minmax(0,1fr)!important}
+}
+.ew-room .composer #say{font-size:15px;line-height:1.5;min-height:58px;max-height:160px;resize:none;overflow:auto;padding:10px 12px;border-radius:10px}
+.ew-room .composer #btnSay,.ew-room .composer .mic-btn{font-size:13px;min-height:40px;padding:8px 12px}
+.ew-right>.composer .hint{font-size:11px;margin:5px 0 0}
+.ew-tabs button{font-size:14px;min-height:42px}
+.ew-room .stream .bubble{font-size:15px;line-height:1.55}
+.ew-room .stream .who{font-size:11px;letter-spacing:.02em}
+.ew-room .stream .turn{margin-bottom:16px}
+.ew-room #ewTalkLog{position:relative;overflow:hidden}
+.ew-talk-guide{max-height:230px;margin:0 10px 8px;flex-shrink:0}
+.ew-talk-guide>summary{font-size:12px;letter-spacing:.02em;text-transform:none;padding:9px 12px}
+#ewPanelTalk #ewGuideCard{padding:10px 12px}
+.ew-room .guide-current-label{display:none}
+.ew-room .guide-current blockquote{font-size:15px!important;margin:6px 0!important}
+.ew-room .guide-current h3{font-size:14px!important}
+.ew-room .guide-actions .btn,.ew-room .guide-navigation .btn{font-size:12px!important;min-height:34px!important}
+.ew-room .ew-guide-scroll{overflow:visible}
+.ew-room .ew-guide-footer{padding:6px 0 0}
+.ew-room .ew-latest-reply{padding:8px 12px;align-items:center;gap:8px}
+.ew-latest-reply #ewReturnTalk{margin-left:auto;white-space:nowrap;font-size:12px}
+.ew-room:is([data-workspace-tab=exam],[data-workspace-tab=record]) .ew-right>.composer{display:none}
+.ew-room[data-workspace-tab=talk] #ewReturnTalk{display:none}
+.ew-bottom{flex-wrap:wrap;gap:7px;padding:6px 8px}
+.ew-bottom-tools{flex-wrap:wrap;gap:6px;flex:1 1 auto}
+.ew-bottom .btn,.ew-pos{font-size:12px!important;min-height:36px;padding:7px 10px!important}
+.ew-position{flex-wrap:wrap}
+.ew-room .unity-heading{flex-wrap:wrap;min-height:46px}
+.ew-room .unity-heading .patient-heading-actions{flex-wrap:wrap}
+.ew-room #patientFocus{font-size:11px}
+.ew-action-tile{min-height:95px;padding:12px 10px;gap:5px}
+.ew-action-tile b{font-size:13px;line-height:1.4;overflow-wrap:normal}
+.ew-action-tile small{font-size:11px;line-height:1.4}
+.ew-action-tile.is-running{outline:2px solid var(--accent);outline-offset:-2px}
+.ew-board-search{padding:0 14px 8px}
+.ew-board-search input{font-size:14px;min-height:38px}
+.ew-board-search .btn,.ew-exam-regions button{min-height:32px;font-size:12px}
+.ew-panel-title h2{font-size:17px}
+.ew-exam-outcome{background:var(--surface-2);color:var(--ink);border-left:3px solid var(--accent);max-height:35%;padding:10px 12px}
+.ew-exam-outcome p{font-size:14px;margin:5px 0 8px}
+.ew-exam-outcome .btn{font-size:12px;min-height:32px}
+.ew-oldcarts-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px}
+.ew-oldcarts-slot{min-width:0;border-bottom:1px solid var(--line);padding:2px 0 8px}
+.ew-oldcarts-title{font-size:13px!important;margin:5px 0!important}
+.ew-oldcarts-empty{font-size:12px!important;margin:3px 0!important}
+.ew-oldcarts-slot .ew-rec-row{display:block;padding:2px 0}
+.ew-oldcarts-slot .ew-rec-row dt{font-size:11px}
+.ew-rec-row dd{font-size:14px;line-height:1.5;overflow-wrap:anywhere}
+.ew-source-detail{margin:4px 0 0;border:0;background:none;padding:0}
+.ew-source-detail summary{font-size:11px;color:var(--ink-2);cursor:pointer}
+.ew-source-detail p{font-size:13px;margin:5px 0}
+.ew-suggestion{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;margin:0 0 8px;background:var(--surface-2)}
+.ew-suggestion[hidden]{display:none}
+.ew-suggestion>summary{display:flex;justify-content:space-between;gap:8px;cursor:pointer;padding:7px 10px;font-size:12px;list-style:none}
+.ew-suggestion-state{color:var(--ink-2)}
+.ew-suggestion-body{padding:0 10px 10px;max-height:210px;overflow:auto}
+#ewSuggestionText{font-size:14px;line-height:1.5;margin:5px 0 8px}
+#ewSuggestionWhy{margin:0;border:0;padding:0;background:none;font-size:12px}
+#ewDraftStatus{font-size:12px;color:var(--ink-2);margin:8px 0}
+.ew-draft-actions{display:flex;gap:5px;flex-wrap:wrap}
+.ew-draft-actions .btn{font-size:12px;min-height:34px}
+.ew-selected-move{padding:10px 12px;background:var(--surface-2);border-left:3px solid var(--accent);border-radius:8px}
+.ew-selected-move p{font-size:14px;margin:0 0 6px}
+.ew-bs{font-size:14px;min-height:40px}
+.ew-bs-group h3{font-size:12px}
+.ew-bs-kind{font-size:11px}
+@media(max-width:1100px) and (min-width:850px){.ew-action-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.ew-room .unity-heading .patient-heading-actions{justify-content:flex-start}}
+@media(max-width:849px){
+ body.encounter-workspace-active .room.ew-room,body.encounter-workspace-active .room.ew-room.patient-focus{height:auto;max-height:none;display:flex!important;flex-direction:column}
+ .ew-room>.unity-room{height:300px;min-height:260px}
+ .ew-bottom{order:1;position:static}
+ .ew-right{order:2;height:720px;min-height:560px;max-height:90dvh}
+ .ew-small-screen{display:none!important}
+ .ew-action-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .ew-room .ew-tabs button{font-size:13px}
+ .ew-talk-guide{max-height:220px}
+ .ew-room .unity-heading{flex-direction:row}
+ .ew-room .unity-heading .patient-heading-actions{width:auto}
+}
+@media(max-width:480px){.ew-oldcarts-grid{grid-template-columns:1fr}.ew-room .ew-latest-reply p{display:none}.ew-room .ew-latest-reply{flex-wrap:wrap}.ew-position{gap:0}.ew-pos{font-size:11px!important;padding:7px!important}}
+
+#ewGuideCard .guide-current-label{display:none}
+#ewGuideCard .guide-current .guide-why{font-size:12px;margin:4px 0}
+.ew-exam-outcome progress{width:100%;height:6px;accent-color:var(--accent);display:block;margin-top:8px}
+.ew-room .ew-guide-footer{position:sticky;bottom:0;background:var(--surface-2)!important;z-index:2}
+.ew-room .guide-navigation{gap:5px;flex-wrap:wrap}
+.ew-suggestion-body .ew-draft-actions button{min-height:34px}
+
+/* Guide navigation remains visible; the teaching body can scroll independently. */
+#ewGuideCard .case-guide{display:flex!important;flex-direction:column}
+#ewGuideCard .case-guide>.ew-guide-scroll{min-height:0;flex:1 1 auto;overflow:auto}
+#ewGuideCard .case-guide>.ew-guide-footer{flex:0 0 auto}
+#ewGuideCard .case-guide .guide-current{margin:4px 0}
+@media(max-width:849px){.ew-room.ew-guide-visible>.unity-room{height:700px;min-height:700px;scroll-margin-top:70px}}
+
+.ew-talk-guide{max-height:260px}
+#ewPanelTalk #ewGuideCard{max-height:215px;display:flex;min-height:0;padding:8px 12px}
+#ewGuideCard>.case-guide{flex:1 1 auto;min-height:0}

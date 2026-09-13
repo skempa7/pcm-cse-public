@@ -68,6 +68,7 @@
 .mk-move{fill:none;stroke:#205e53;stroke-width:2;stroke-dasharray:3 2}
 .mk-zone{fill:#20655312;stroke:#4d8a7a;stroke-width:1.2;stroke-dasharray:3 2}
 .mkl{font-size:6.5px;font-weight:700;fill:#fff;text-anchor:middle;pointer-events:none}
+.mkl.mkl-outside{fill:#203d3c;font-size:6px}
 .mk-zone+.mkl,.mk-move+.mkl{fill:#20443d}
 .ar{stroke:#205e53;stroke-width:1.1}
 .ar-compare{stroke:#c08a2e;stroke-width:1.3;stroke-dasharray:3 2}
@@ -126,3 +127,22 @@
 #techniquePanel .exam-choice{width:100%;display:block;text-align:left}
 #techniquePanel p,#techniquePanel h2,#techniquePanel span,#techniquePanel dd{white-space:normal;overflow-wrap:anywhere;max-width:100%}
 #techniquePanel .tech-nav{flex-wrap:wrap}
+
+/* A guide uses the patient pane while it is being read. The parent expands
+   this pane on narrow screens; keeping a 119px camera-control reservation here
+   needlessly squeezed the demonstration into a strip. */
+body.technique-open #techniquePanel{
+  top:12px!important;right:12px!important;bottom:12px!important;left:12px!important;
+  width:auto!important;max-width:none!important;max-height:calc(100% - 24px)!important;
+  padding:16px;font-size:13px;scrollbar-gutter:stable;
+}
+body.technique-open #techniquePanel .tech-close{
+  position:sticky;float:right;top:0;right:0;z-index:2;min-width:34px;min-height:34px;
+  margin:-6px -6px 0 4px;background:#fffff6;border:1px solid #d4ddce;
+}
+body.technique-open #techniquePanel small{font-size:10px}
+body.technique-open #techniquePanel h2{font-size:18px}
+body.technique-open #techniquePanel .tech-demo svg{height:180px}
+body.technique-open #techniquePanel .tech-nav button{min-height:36px}
+body.technique-open #techniquePanel .tech-resume{border-color:#39796c;background:#edf4e9}
+body.technique-open #techniqueLaunch{visibility:hidden}

@@ -1,7 +1,44 @@
 /* Evidence-bound learning UI. The server owns assistance, timing and repairs. */
 (()=>{
   const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  let current=null, learning=null, loading=false, selected='orient',lastEvidenceKey='',lobbyRequest=0,askedGap=null;
+  let current=null, learning=null, selected='orient',lastEvidenceKey='',lobbyRequest=0,askedGap=null;
+  // Navigation is a student choice; fresh evidence may recommend another move
+  // but must not replace the question or technique they are still reading.
+  let guidePlace={key:null,coached:null,guidedId:null},learningRequest=0;
+  function retainGuidePlace(s){
+    const key=s?`${s.id}:${s.phase}:${s.learning_mode}`:null;
+    if(guidePlace.key===key)return;
+    guidePlace={key,coached:null,guidedId:null};askedGap=null;
+    if(key)try{const saved=JSON.parse(localStorage.getItem('pcm-guide-place:'+key)||'null');
+      if(saved?.key===key)guidePlace=saved;}catch(_){/* Navigation still works if storage is unavailable. */}
+  }
+  function saveGuidePlace(){
+    if(guidePlace.key)try{localStorage.setItem('pcm-guide-place:'+guidePlace.key,JSON.stringify(guidePlace));}catch(_){}
+  }
+  function dockNoteGuide(s,panel){
+    const workspace=s.phase==='note'?document.querySelector('.note-workspace'):null;
+    if(!workspace)return;
+    let help=workspace.querySelector('#noteGuideHelp');
+    if(!help){help=document.createElement('details');help.id='noteGuideHelp';help.className='note-guide-help';
+      help.innerHTML='<summary>Note-writing guidance</summary>';help.open=!!guidePlace.noteHelpOpen;
+      help.addEventListener('toggle',()=>{guidePlace.noteHelpOpen=help.open;saveGuidePlace();});
+      const header=workspace.querySelector('.note-workspace-head');if(header)header.after(help);else workspace.prepend(help);
+    }
+    if(panel.parentElement!==help)help.append(panel);
+  }
+  const moveKey=move=>move?JSON.stringify([move.kind,move.group,move.title,move.question]):'';
+  function acceptGuideData(s,data,choose=false){
+    retainGuidePlace(s);learning=data;
+    if(data.case_guide){
+      const guide=data.case_guide;
+      if(choose||!guide.tasks.some(t=>t.id===guidePlace.guidedId))guidePlace.guidedId=guide.selected;
+      guide.selected=guidePlace.guidedId;
+    }else{
+      if(choose||!guidePlace.coached)guidePlace.coached={move:data.next_action,stage:data.selected};
+      selected=guidePlace.coached.stage||data.selected;
+    }
+    saveGuidePlace();
+  }
   if(!document.getElementById('caseGuideStyles')){const style=document.createElement('link');style.id='caseGuideStyles';style.rel='stylesheet';style.href=new URL('./guided.css?v=portal-1',location.href).href;document.head.append(style);}
   const request=async(path,body)=>{try{const r=await fetch(path,{method:body?'POST':'GET',headers:{'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});const d=await r.json();if(!r.ok)throw Error(d.error||'Request failed');return d;}catch(e){return {error:e.message};}};
   function lobby(){
@@ -40,8 +77,8 @@
     document.getElementById('btnStart').onclick=()=>window.pcmStart(false,{variant_id:['independent','rehearsal'].includes(document.querySelector('input[name=uimode]:checked')?.value)?'random':document.getElementById('variantChoice').value});
     if(typeof currentUiMode==='function'&&typeof MODES!=='undefined')window.pcmPortal?.decoratePractice(currentUiMode(),MODES[currentUiMode()]?.reveal);
   }
-  async function render(s){
-    current=s;
+  async function render(s,providedData=null){
+    retainGuidePlace(s);current=s;
     if(!s){
       learning=null;
       const requestId=++lobbyRequest,grid=document.getElementById('stationGrid');
@@ -54,32 +91,49 @@
     }
     if(s.phase==='submitted'){await repairPanel(s);return;}
     if(!['guided','coached'].includes(s.learning_mode)||!['encounter','organize','note'].includes(s.phase))return;
-    const data=await request(`/api/session/${s.id}/learning`+(askedGap?`?gap=${encodeURIComponent(askedGap)}`:''));if(current?.id!==s.id||data.error||!data.available)return;
-    learning=data;selected=data.selected;
+    const requestId=++learningRequest;
+    const data=providedData||await request(`/api/session/${s.id}/learning`+(askedGap?`?gap=${encodeURIComponent(askedGap)}`:''));
+    if(requestId!==learningRequest||current?.id!==s.id||current?.phase!==s.phase||data.error||!data.available)return;
+    acceptGuideData(s,data);
     if(s.learning_mode==='guided'&&data.case_guide){renderCaseGuide(s,data);return;}
     let panel=document.getElementById('encounterGuide');if(!panel){panel=document.createElement('section');panel.id='encounterGuide';panel.className='encounter-guide';const wrap=document.querySelector('#coachDock')||document.querySelector('#view .wrap-wide,#view .wrap-mid,#view .room-shell')||document.getElementById('view');wrap.prepend(panel);}
     panel.classList.toggle('coaching-open',s.learning_mode==='guided'&&s.phase==='encounter');
     panel.classList.toggle('coach-aside',s.phase!=='encounter');
+    dockNoteGuide(s,panel);
     panel.innerHTML=`<div class="guide-top"><div><span class="eyebrow">${E(data.timing)}</span></div><button class="btn sm ghost guide-expand" id="toggleGuide" aria-expanded="${s.learning_mode==='guided'&&s.phase==='encounter'}">Show approach</button><button class="btn sm ghost" id="unstuckButton">I'm stuck</button></div><nav class="encounter-steps" aria-label="Mental sequence">${data.steps.map((x,i)=>`<button class="step-button ${x.id===selected?'active':''}" data-step="${E(x.id)}" aria-pressed="${x.id===selected}"><span>${i+1}</span>${E(x.label)}</button>`).join('')}</nav><div class="guide-purpose" id="guidePurpose"></div><div id="recoveryBody" aria-live="polite"></div><div id="guideApplication" aria-live="polite"></div><details class="reasoning-expand"><summary>See how questions change the next decision</summary><div class="reasoning-map">${(data.reasoning_map||[]).map(x=>`<article><h3>${E(x.question||x.label||'A discriminating question')}</h3><p>${E(x.why||'')}</p><div class="decision-fork"><div><b>If present</b><p>${E(x.if_present||'Consider how this changes urgency.')}</p></div><div><b>If absent</b><p>${E(x.if_absent||'Reconsider likelihood; absence alone may not exclude disease.')}</p></div></div><p>${E(x.next_action||'')}</p><p class="small">Document: ${E(x.document||'Only the answer you actually obtained.')}</p></article>`).join('')||'<p>Complaint → working possibilities → a discriminating question → a relevant examination → interpretation → explanation → evidence-supported SOAP.</p>'}</div></details>`;
     document.getElementById('toggleGuide').onclick=e=>{const opened=panel.classList.toggle('coaching-open');e.currentTarget.setAttribute('aria-expanded',String(opened));e.currentTarget.textContent=opened?'Hide approach':'Show approach';};
     const purpose=()=>paintPurpose(data,s,selected);purpose();
-    panel.querySelectorAll('[data-step]').forEach(b=>b.onclick=async()=>{selected=b.dataset.step;await request(`/api/session/${s.id}/stage`,{step:selected});document.querySelectorAll('[data-step]').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b));});document.getElementById('recoveryBody').innerHTML='';purpose();
-      // The move is derived server-side from the stage the student is in, and
-      // the refresh is keyed on the transcript -- so without this the choice
-      // changed nothing until the patient next spoke.
-      lastEvidenceKey='';syncGuide(current||s);const history=data.hint_history?.[selected];if(history?.unlocked)drawHint(s,{...history.cues[history.unlocked-1],unlocked:history.unlocked,wait_ms:history.wait_ms,replay:true});});
+    panel.querySelectorAll('[data-step]').forEach(b=>b.onclick=async()=>{
+      const nextStep=b.dataset.step,requestId=++learningRequest;
+      const buttons=[...document.querySelectorAll('[data-step]')];buttons.forEach(x=>x.disabled=true);
+      const result=await request(`/api/session/${s.id}/stage`,{step:nextStep});
+      buttons.forEach(x=>x.disabled=false);
+      if(current?.id!==s.id||current?.phase!==s.phase||requestId!==learningRequest)return;
+      if(result.error){document.getElementById('guidePurpose').insertAdjacentHTML('beforeend',`<p role="status">Could not change the guide. ${E(result.error)} Try choosing the move again.</p>`);return;}
+      selected=nextStep;askedGap=null;guidePlace.coached=null;saveGuidePlace();
+      document.getElementById('recoveryBody').innerHTML='';lastEvidenceKey='';syncGuide(current||s);
+      const history=data.hint_history?.[selected];
+      if(history?.unlocked)drawHint(s,{...history.cues[history.unlocked-1],unlocked:history.unlocked,wait_ms:history.wait_ms,replay:true});
+    });
     document.getElementById('unstuckButton').onclick=()=>showHint(s);
     if(s.learning_mode==='guided'&&s.phase==='encounter'){
       const exercise=document.createElement('details');exercise.className='guided-first';exercise.innerHTML='<summary>Practice the first move</summary><p>You have introduced yourself. Before narrowing to yes/no questions, which move helps you build a shared agenda?</p><div class="choice-row"><button class="btn" data-first="0">Start listing diagnoses.</button><button class="btn" data-first="1">Invite the patient’s story.</button><button class="btn" data-first="2">Skip to examination.</button></div><p class="first-result" role="status"></p>';
       panel.append(exercise);exercise.querySelectorAll('[data-first]').forEach(b=>b.onclick=()=>{exercise.querySelector('.first-result').textContent=b.dataset.first==='1'?'Yes. Now ask an open invitation in your own words, listen, then clarify one detail.':'Pause and recall the purpose: understand their concern before narrowing the story. Try again.';});
     }
   }
-  function draftQuestion(question,host){
+  function draftQuestion(question,host,title='',why=''){
+    if(window.pcmDraftSuggestion){window.pcmDraftSuggestion({text:question,title,why});return;}
     const input=document.getElementById('say')||document.querySelector('.composer textarea');
-    if(!input){host?.insertAdjacentHTML('beforeend','<p role="status">Return to the encounter composer to practice this line.</p>');return;}
-    if(input.value.trim()&&input.value.trim()!==question.trim()&&!window.confirm('Replace your unsent question with this practice draft?'))return;
+    const status=host?.querySelector('[data-guide-message]');
+    if(!input){if(status)status.textContent='Return to Talk to draft this question.';return;}
+    // A cached workspace may not yet have the shared draft tray. Keep the
+    // student's words intact; no separate confirmation flow can discard them.
+    if(input.value.trim()&&input.value.trim()!==question.trim()){
+      if(status)status.textContent='Your unsent message is unchanged. Send or clear it, then draft this question.';
+      input.focus();return;
+    }
     input.value=question;input.dispatchEvent(new Event('input',{bubbles:true}));input.focus();
-    const status=host?.querySelector('[data-guide-message]');if(status)status.textContent='Draft ready. Review or edit it, then send it to the patient.';
+    if(status)status.textContent='Draft ready. Edit it before sending.';
   }
   const mentalStep=group=>({connect:'orient',opening:'orient',pattern:'pattern',discriminate:'discriminate',background:'discriminate',context:'discriminate',perspective:'discriminate',ros:'discriminate',prepare:'examine',examine:'examine',close:'close',document:'document'}[group]||'orient');
   function coverageHtml(coverage){
@@ -92,7 +146,8 @@
   // the refresh overwrites the move with the stage blurb again.
   function paintPurpose(data,s,selected){
     const host=document.getElementById('guidePurpose');if(!host)return;
-    const move=data.next_action;
+    const move=guidePlace.coached?.move||data.next_action;
+    const next=data.next_action,newSuggestion=moveKey(next)!==moveKey(move);
     if(move&&move.title){
       // 41 of the 47 question tasks carry the same string as title AND
       // question, so the panel printed the sentence twice -- "Next When did
@@ -108,25 +163,32 @@
       // heading and the move said "Auscultate abdomen" twice.
       const label=(move.question&&move.title&&move.title!==move.question)?move.title:'';
       const lead=move.question?`\u201c${E(move.question)}\u201d`:E(move.title);
-      const showProgress=move.group_total>1&&Number.isFinite(move.group_done);
+      // Coaching offers optional moves, not a compulsory checklist.
       // Tolerate either shape: the engine used to send gap LABELS and now sends
       // {id,label}. A browser holding a cached engine must not render blanks.
-      const gapList=(move.gaps||[]).map(g=>typeof g==='string'?{id:'',label:g}:g).filter(g=>g&&g.label);
-      host.innerHTML=`<div class="coach-next">`
+      const gapList=(data.next_action?.gaps||[]).map(g=>typeof g==='string'?{id:'',label:g}:g).filter(g=>g&&g.label);
+      const whyOpen=!!host.querySelector('.coach-why[open]');
+      const focusElement=host.contains(document.activeElement)?document.activeElement:null;
+      const focused=focusElement?{id:focusElement.id,text:focusElement.textContent.trim(),tag:focusElement.tagName}:null;
+      host.dataset.hasNextSuggestion=String(newSuggestion);
+      host.dataset.selectedStage=selected;
+      const scrollHost=host.closest('#ewGuideCard'),scrollTop=scrollHost?.scrollTop||0;
+      host.innerHTML=`<div class="coach-next" data-selected-move="${E(moveKey(move))}">`
         +(label?`<p class="coach-label">${E(label)}</p>`:'')
         +`<p class="coach-move${move.question?' is-quote':''}">${lead}</p>`
         +`<div class="coach-actions">`
         +`${move.question&&s.phase==='encounter'?'<button class="btn sm" id="coachDraft">Draft question</button>':''}`
         +`</div>`
-        +(((move.gaps&&move.gaps.length)||showProgress)?`<p class="coach-meta">`
-            +(showProgress?`<span class="coach-progress">${E(move.group_label||'This phase')} \u00b7 ${move.group_done} of ${move.group_total}</span>`:'')
-            +(gapList.length?`<span class="coach-gaps">${s.phase==='encounter'?'Still to establish':'Your record has nothing for'}: ${
+        +(gapList.length?`<p class="coach-meta">`
+            +(`<span class="coach-gaps">${s.phase==='encounter'?'Or work on':'Not yet in Notes'}: ${
                 gapList.map(g=>(s.phase==='encounter'&&g.id)
                   ? `<button type="button" class="coach-gap" data-gap="${E(g.id)}" aria-pressed="${String(g.id===move.gap)}">${E(g.label)}</button>`
-                  : E(g.label)).join(' ')}</span>`:'')
+                  : E(g.label)).join(' ')}</span>`)
           +`</p>`:'')
         +((move.why||'').trim()?`<details class="coach-why"><summary>Why this</summary><p>${E(move.why)}</p></details>`:'')
         +`</div>`;
+      if(whyOpen&&host.querySelector('.coach-why'))host.querySelector('.coach-why').open=true;
+      if(scrollHost)scrollHost.scrollTop=scrollTop;
       const actions=host.querySelector('.coach-actions');
       if(actions){
         const add=(label,primary,fn)=>{const b=document.createElement('button');b.type='button';
@@ -134,20 +196,26 @@
         // An examination move cannot be drafted into the composer; the useful
         // action is to open the panel that performs it.
         if(!move.question&&move.kind==='exam'&&s.phase==='encounter'){
-          add('Open Examine',true,()=>document.querySelector('[data-ew-tab=exam]')?.click());
+          add('Select in Physical Exam',true,()=>document.querySelector('[data-ew-tab=exam]')?.click());
         }
         // Choosing a different move opens the stage list in a sheet, where each
         // one names itself -- and the move you were reading is still here when
         // you come back, which the old dropdown could not promise.
+        if(newSuggestion&&next?.title){
+          const nextButton=add('Use next suggestion',false,()=>{
+            acceptGuideData(s,data,true);paintPurpose(data,s,selected);
+          });nextButton.id='coachRecommend';
+          nextButton.title=next.question||next.title;
+        }
         const steps=document.querySelector('#encounterGuide .encounter-steps');
-        if(steps&&window.pcmSheet)add('Work on something else',false,()=>{
+        if(steps&&window.pcmSheet)add('Choose a move',false,()=>{
           steps.hidden=false;
           // The list is the seven parts of an encounter, not seven alternative
           // questions. Labelling it "other moves" promised something it never
           // contained, and picking one appeared to do nothing at all.
           let note=document.getElementById('coachStageNote');
           if(!note){note=document.createElement('p');note.id='coachStageNote';note.className='coach-stage-note';
-            note.textContent='Pick the part you are actually working on. Your coach suggests its next move from there. Nothing is said to the patient and nothing is recorded in your encounter.';}
+            note.textContent='Choose a part of the encounter for a suggestion. This selects guidance; it does not ask or perform anything.';}
           window.pcmSheet('Which part of the encounter are you working on?',[note,steps]);
         });
         // The workspace hides #recoveryBody, so calling showHint() alone spent
@@ -170,31 +238,15 @@
       // was already applying -- nothing new is revealed.
       host.querySelectorAll('[data-gap]').forEach(b=>b.onclick=async()=>{
         const want=b.getAttribute('aria-pressed')==='true'?null:b.dataset.gap;
-        askedGap=want;
+        const requestId=++learningRequest;askedGap=want;
         const fresh=await request(`/api/session/${s.id}/learning`+(want?`?gap=${encodeURIComponent(want)}`:''));
-        if(fresh.error||current?.id!==s.id)return;
-        learning=fresh;paintPurpose(fresh,s,selected);
+        if(requestId!==learningRequest||fresh.error||current?.id!==s.id||current?.phase!==s.phase)return;
+        acceptGuideData(s,fresh,true);paintPurpose(fresh,s,selected);
       });
       const draft=document.getElementById('coachDraft');
-      if(draft)draft.onclick=()=>{
-        // Drafting fills the box and stops. It never sends, never scores, and
-        // never overwrites something the student has already typed.
-        const box=document.getElementById('say');if(!box)return;
-        const existing=box.value.trim();
-        if(existing&&existing!==move.question){
-          // Something is already typed. Silently focusing the box looked like a
-          // dead button; silently replacing would lose the student's words.
-          const row=document.querySelector('.coach-actions');if(!row)return;
-          if(document.getElementById('coachDraftReplace')){box.focus();return;}
-          const ask=document.createElement('span');ask.className='coach-conflict';
-          ask.innerHTML='You have an unsent message. <button type="button" class="btn sm ghost" id="coachDraftReplace">Replace it</button> <button type="button" class="btn sm ghost" id="coachDraftKeep">Keep mine</button>';
-          row.append(ask);
-          ask.querySelector('#coachDraftReplace').onclick=()=>{box.value=move.question;box.dispatchEvent(new Event('input',{bubbles:true}));ask.remove();box.focus();};
-          ask.querySelector('#coachDraftKeep').onclick=()=>{ask.remove();box.focus();};
-          return;
-        }
-        box.value=move.question;box.dispatchEvent(new Event('input',{bubbles:true}));box.focus();
-      };
+      if(draft)draft.onclick=()=>draftQuestion(move.question,host,move.title,move.why);
+      if(focused){const target=(focused.id&&document.getElementById(focused.id))||[...host.querySelectorAll('button,summary')].find(el=>el.tagName===focused.tag&&el.textContent.trim()===focused.text);target?.focus({preventScroll:true});}
+      if(scrollHost)scrollHost.scrollTop=scrollTop;
       return;
     }
     host.textContent=(data.steps||[]).find(x=>x.id===selected)?.purpose||'';
@@ -207,10 +259,12 @@
     const before=document.activeElement;
     const focusKey=panel&&panel.contains(before)?(before.id||before.textContent.trim()):null;
     const open=panel?[...panel.querySelectorAll('details[open] > summary')].map(x=>x.textContent.trim()):[];
+    const scrolls=['#ewGuideCard','.ew-guide-scroll'].map(selector=>[selector,document.querySelector(selector)?.scrollTop||0]);
     paint();
     const after=document.getElementById('encounterGuide');if(!after)return;
     open.forEach(label=>{const sum=[...after.querySelectorAll('details > summary')].find(x=>x.textContent.trim()===label);
       if(sum)sum.parentElement.open=true;});
+    requestAnimationFrame(()=>requestAnimationFrame(()=>scrolls.forEach(([selector,top])=>{const el=document.querySelector(selector);if(el)el.scrollTop=top;})));
     if(!focusKey)return;
     // The workspace re-parents this card's children into its own scroll and
     // footer AFTER the paint, and re-parenting blurs. Put the keyboard back
@@ -225,6 +279,14 @@
     }));
   }
   function renderCaseGuide(s,data){
+    // Steps/cues are temporarily moved into a sheet. Rebuilding their parent
+    // would destroy its return markers while the student is reading the sheet.
+    const sheet=document.querySelector('dialog.ew-sheet:has(#guideJump),dialog.ew-sheet:has(#recoveryBody)');
+    if(sheet?.open){
+      if(!sheet.dataset.guideRefresh){sheet.dataset.guideRefresh='true';sheet.addEventListener('close',()=>{
+        if(current?.id===s.id&&learning?.case_guide)renderCaseGuide(current,learning);
+      },{once:true});}return;
+    }
     const panelBefore=document.getElementById('encounterGuide');
     if(panelBefore&&panelBefore.classList.contains('case-guide'))
       return keepPlace(panelBefore,()=>renderCaseGuideInner(s,data));
@@ -235,32 +297,33 @@
     let panel=document.getElementById('encounterGuide');
     if(!panel){panel=document.createElement('section');panel.id='encounterGuide';} const guideHost=s.phase==='encounter'?document.querySelector('#view .convo'):null; if(guideHost){guideHost.prepend(panel);}else if(!panel.isConnected){(document.getElementById('coachDock')||document.getElementById('view')).prepend(panel);}
     panel.className='encounter-guide case-guide coaching-open';
+    dockNoteGuide(s,panel);
     const active=guide.tasks.find(t=>t.id===guide.selected)||guide.tasks[0],index=guide.tasks.indexOf(active),group=guide.groups.find(g=>g.id===active.group);
     selected=mentalStep(active.group);
     const sameGroup=guide.tasks.filter(t=>t.group===active.group),groupIndex=sameGroup.indexOf(active)+1;
     const ready=active.status==='obtained',deferred=active.status==='deferred';
-    panel.innerHTML=`<div class="case-guide-top"><div><span class="eyebrow">Guided encounter · ${E(guide.variant_label)}</span><h2>${E(group?.label||'Your next move')}</h2></div><span class="guide-position">${groupIndex}/${sameGroup.length} in this phase</span></div>
+    panel.innerHTML=`<div class="case-guide-top"><div><span class="eyebrow">Guided encounter · ${E(guide.variant_label)}</span><h2>${E(group?.label||'Your next move')}</h2></div><span class="guide-position">Step ${groupIndex} of ${sameGroup.length}</span></div>
       <div class="guide-case-context"><b>${E(guide.title)}</b><span>${E(data.timing)}</span></div>
       ${guide.urgent?`<details class="guide-urgency"><summary>Prioritize urgent care when needed</summary><p>${E(guide.notice)} Continue nonurgent practice only while care permits; do not delay escalation to finish a checklist.</p></details>`:''}
-      <article class="guide-current" aria-live="polite"><div class="guide-current-label"><span>${ready?'✓ Evidence recorded':deferred?'Deferred · no credit':active.status==='review'?'Coverage checkpoint · review':'Your next move'}</span><span>One step at a time</span></div>
-      <h3>${E(active.kind==='question'&&active.title===active.question?'Ask, listen, then follow the answer':active.title)}</h3>
+      <article class="guide-current" aria-live="polite"><div class="guide-current-label"><span>${ready?'✓ Evidence recorded':deferred?'Deferred · no credit':active.status==='review'?'Coverage checkpoint · review':'Selected move'}</span><span>One step at a time</span></div>
+      ${active.question&&active.title===active.question?'':`<h3>${E(active.title)}</h3>`}
       ${active.question?`<blockquote>${E(active.question)}</blockquote>`:''}
-      <p class="guide-why"><b>Why:</b> ${E(active.why)}</p>
-      ${active.kind==='exam'?`<div class="guide-technique"><b>Sites and technique to consider</b><p>${E((active.components||[]).join(' · ')||'General observation')}</p>${active.technique?`<details><summary>Technique note</summary><p>${E(active.technique)}</p></details>`:''}<p class="small">${active.focused_subset?'This path selects the authored key special test. Additional tests remain available when indicated.':'A focused selection from this case’s written example; other catalog actions remain available when indicated.'} Select the appropriate components yourself. No result is supplied until the examination finishes.</p></div>`:''}
+      <details class="guide-why"><summary>Why this move</summary><p>${E(active.why)}</p></details>
+      ${active.kind==='exam'?`<details class="guide-technique"><summary>Technique and preparation</summary><p>${E((active.components||[]).join(' · ')||'General observation')}</p>${active.technique?`<details><summary>Technique note</summary><p>${E(active.technique)}</p></details>`:''}<p class="small">${active.focused_subset?'This path selects the authored key special test. Additional tests remain available when indicated.':'A focused selection from this case’s written example; other catalog actions remain available when indicated.'} Select the appropriate components yourself. No result is supplied until the examination finishes.</p></details>`:''}
       ${active.kind==='checkpoint'?coverageHtml(guide.coverage):''}${active.kind==='decision'?`<p class="small">${E(active.decision_note)}</p>`:''}
       ${active.evidence_ids?.length?`<p class="guide-sources">Evidence: ${active.evidence_ids.map(n=>'#'+n).join(', ')}. ${active.kind==='question'?'The spoken reply remains in your encounter record.':''}</p>`:''}
-      <div class="guide-actions">${active.question&&s.phase==='encounter'?'<button class="btn primary" id="guideDraft">Draft this question</button>':''}${active.kind==='exam'&&s.phase==='encounter'?'<button class="btn primary" id="guideOpenExam">Open this examination</button>':''}${active.kind==='document'&&s.phase==='encounter'?'<button class="btn primary" id="guideFinish">Go to Finish encounter</button>':''}${active.kind==='decision'?'<button class="btn primary" id="guideChart">Review doorway &amp; vitals</button><button class="btn" id="guideDecisionContinue">Continue focused history</button>':''}<button class="btn ghost" id="unstuckButton">Help me get unstuck</button></div><p class="small guide-message" data-guide-message role="status">${ready?'You can revisit this step or move on.':deferred?'This step was deferred. It remains absent from your evidence until actually obtained.':''}</p>
-      </article><div class="guide-navigation"><button class="btn sm" id="guidePrevious" ${index===0?'disabled':''}>← Previous</button><button class="btn sm" id="guideNext" ${index===guide.tasks.length-1?'disabled':''}>Next →</button><button class="btn sm ghost" id="guideRecommend">Next needed step</button>${!ready?`<button class="btn sm ghost" id="guideDefer">${deferred?'Restore this step':'Defer this step'}</button>`:''}</div>
+      <div class="guide-actions">${active.question&&s.phase==='encounter'?'<button class="btn primary" id="guideDraft">Draft this question</button>':''}${active.kind==='exam'&&s.phase==='encounter'?'<button class="btn primary" id="guideOpenExam">Select in Physical Exam</button>':''}${active.kind==='document'&&s.phase==='encounter'?'<button class="btn primary" id="guideFinish">Review finish control</button>':''}${active.kind==='decision'?'<button class="btn primary" id="guideChart">Review doorway &amp; vitals</button><button class="btn" id="guideDecisionContinue">Continue focused history</button>':''}<button class="btn ghost" id="unstuckButton">Help me get unstuck</button></div><p class="small guide-message" data-guide-message role="status">${ready?'You can revisit this step or move on.':deferred?'This step was deferred. It remains absent from your evidence until actually obtained.':''}</p>
+      </article><div class="guide-navigation"><button class="btn sm" id="guidePrevious" ${index===0?'disabled':''}>← Previous</button><button class="btn sm" id="guideNext" ${index===guide.tasks.length-1?'disabled':''}>Next →</button><button class="btn sm ghost" id="guideRecommend" ${active.id===guide.recommended?'disabled':''}>Use next suggestion</button>${!ready?`<button class="btn sm ghost" id="guideDefer">${deferred?'Restore this step':'Defer this step'}</button>`:''}</div>
       <details class="guide-route"><summary>Browse the encounter path · ${guide.completed} supported, ${guide.deferred} deferred</summary><label>Jump to a step<select id="guideJump">${guide.groups.map(g=>`<optgroup label="${E(g.label)}">${guide.tasks.filter(t=>t.group===g.id).map(t=>`<option value="${E(t.id)}" ${t.id===active.id?'selected':''}>${t.status==='obtained'?'✓ ':t.status==='deferred'?'Deferred: ':t.status==='review'?'Review: ':''}${E(t.title)}</option>`).join('')}</optgroup>`).join('')}</select></label><p class="small">${E(guide.source_note)}</p><p class="small">${E(guide.limits)}</p></details>
       <details class="guide-coverage"><summary>What can my Subjective and Objective contain so far?</summary>${coverageHtml(guide.coverage)}<p class="small">${E(guide.checkpoint_note)}</p></details>
       <div id="recoveryBody" aria-live="polite"></div><div id="guideApplication" aria-live="polite"></div>`;
-    const move=async(step,action='select')=>{const response=await request(`/api/session/${s.id}/guide`,{step,action});if(current?.id!==s.id)return;if(response.error){panel.querySelector('[data-guide-message]').textContent=response.error;return;}learning.case_guide=response;renderCaseGuide(s,learning);};
+    const move=async(step,action='select')=>{const response=await request(`/api/session/${s.id}/guide`,{step,action});if(current?.id!==s.id)return;if(response.error){panel.querySelector('[data-guide-message]').textContent=response.error;return;}learning.case_guide=response;guidePlace.guidedId=response.selected;saveGuidePlace();renderCaseGuide(s,learning);};
     panel.querySelector('#guidePrevious').onclick=()=>move(guide.tasks[index-1].id);
     panel.querySelector('#guideNext').onclick=()=>move(guide.tasks[index+1].id);
     panel.querySelector('#guideRecommend').onclick=()=>move(guide.recommended);
     panel.querySelector('#guideJump').onchange=e=>move(e.target.value);
     panel.querySelector('#guideDefer')?.addEventListener('click',()=>move(active.id,deferred?'restore':'defer'));
-    panel.querySelector('#guideDraft')?.addEventListener('click',()=>draftQuestion(active.question,panel));
+    panel.querySelector('#guideDraft')?.addEventListener('click',()=>draftQuestion(active.question,panel,active.title,active.why));
     panel.querySelector('#unstuckButton').onclick=()=>showHint(s);
     panel.querySelector('#guideChart')?.addEventListener('click',()=>document.getElementById('toolChart')?.click());
     panel.querySelector('#guideDecisionContinue')?.addEventListener('click',()=>move(active.id,'defer'));
@@ -283,11 +346,11 @@
     body.querySelector('#cueNext').onclick=()=>showHint(s,result.level+1,result.step);
     const more=body.querySelector('#moreHint');if(more){const unlock=()=>{if(more.isConnected){more.disabled=false;more.textContent='Unlock cue '+(unlocked+1);}};if(result.wait_ms>0)setTimeout(unlock,result.wait_ms+50);else unlock();more.onclick=()=>showHint(s,unlocked+1,result.step);}
     body.querySelector('#tryCue')?.addEventListener('click',()=>{
-      draftQuestion(result.question,document.getElementById('encounterGuide'));
+      draftQuestion(result.question,document.getElementById('encounterGuide'),'Practice this cue',result.text);
       // The composer is behind this modal. Leaving the sheet open made a
       // successful draft look like a dead button.
       body.closest('dialog')?.close();
-      document.getElementById('say')?.focus({preventScroll:true});
+      if(!window.pcmDraftSuggestion)document.getElementById('say')?.focus({preventScroll:true});
     });
   }
   async function showHint(s,level=null,step=null){
@@ -326,19 +389,19 @@
   }
   async function syncGuide(s){
     // A gap the student asked about belongs to THAT encounter.
-    if(current&&s&&current.id!==s.id)askedGap=null;
-    current=s;if(!s||!['guided','coached'].includes(s.learning_mode)||s.phase==='submitted')return;
+    retainGuidePlace(s);current=s;if(!s||!['guided','coached'].includes(s.learning_mode)||s.phase==='submitted')return;
     const key=s.id+':'+s.phase+':'+(s.transcript||[]).map(x=>x.seq).join(',');
-    if(key===lastEvidenceKey||loading)return;lastEvidenceKey=key;loading=true;
-    const data=await request(`/api/session/${s.id}/learning`+(askedGap?`?gap=${encodeURIComponent(askedGap)}`:''));loading=false;
-    if(current?.id!==s.id||data.error||!data.available)return;
-    if(s.learning_mode==='guided'&&data.case_guide){learning=data;renderCaseGuide(s,data);return;}
-    const previousStep=selected;learning=data;selected=data.selected;
+    if(key===lastEvidenceKey)return;lastEvidenceKey=key;const requestId=++learningRequest;
+    const data=await request(`/api/session/${s.id}/learning`+(askedGap?`?gap=${encodeURIComponent(askedGap)}`:''));
+    if(requestId!==learningRequest||current?.id!==s.id||current?.phase!==s.phase)return;
+    if(data.error||!data.available){lastEvidenceKey='';return;}
+    const previousStep=selected;acceptGuideData(s,data);
+    if(s.learning_mode==='guided'&&data.case_guide){renderCaseGuide(s,data);return;}
     // Clearing the cue when the suggested stage moves on is right on the card.
     // It is not right while the student is reading that cue in an open sheet:
     // the assistance count is already spent and there is no way back to it.
     if(previousStep!==selected){const old=document.getElementById('recoveryBody');if(old&&!old.closest('dialog'))old.innerHTML='';}
-    const panel=document.getElementById('encounterGuide');if(!panel)return;
+    const panel=document.getElementById('encounterGuide');if(!panel){render(s,data);return;}
     panel.querySelectorAll('[data-step]').forEach(b=>{b.classList.toggle('active',b.dataset.step===selected);b.setAttribute('aria-pressed',String(b.dataset.step===selected));});
     paintPurpose(data,s,selected);
     showApplication(data,s);

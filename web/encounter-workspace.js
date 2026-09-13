@@ -21,10 +21,10 @@ function sheet(title,nodes){
   if(!target&&prevLabel)target=qa('button',active?.root||document).find(b=>b.textContent.trim()===prevLabel&&b.offsetParent);
   (target||q('[data-ew-tab="'+(active?.tab||'talk')+'"]',active?.root||document))?.focus({preventScroll:true});
  };
- const finish=()=>{moved.forEach(({node,marker,open})=>{if(marker.isConnected){marker.replaceWith(node);if(node.tagName==='DETAILS')node.open=open;}});d.remove();openedSheet=null;restore();positionRoomFrame?.();};
+ const finish=()=>{moved.forEach(({node,marker,open})=>{if(marker.isConnected){marker.replaceWith(node);if(node.tagName==='DETAILS')node.open=open;}});d.remove();openedSheet=null;if(!d.dataset.keepFocus)restore();positionRoomFrame?.();};
  d.addEventListener('close',finish,{once:true});d.addEventListener('click',e=>{if(e.target.closest('#toolRefuse,#toolPrompts,#unityFallback,#guideRecommend,#guideDefer,[data-step]'))d.close();},{capture:true});d.addEventListener('change',e=>{if(e.target.id==='guideJump')d.close();},{capture:true});q('button',d).onclick=()=>d.close();d.addEventListener('click',e=>{if(e.target===d)d.close();});openedSheet=d;d.showModal();return d;
 }
-function closeSheet(){if(openedSheet?.open)openedSheet.close();}
+function closeSheet(keepFocus=false){if(openedSheet?.open){if(keepFocus)openedSheet.dataset.keepFocus='1';openedSheet.close();}}
 /* Where the student had the conversation scrolled, and whether that was the
    newest turn. Read before any move of the log, never after. */
 function rememberStream(){
@@ -41,6 +41,7 @@ function selectTab(name,focus=false){
  if(!active||!q('[data-ew-tab="'+name+'"]',active.root))return;
  rememberStream();
  active.tab=name;
+ setUiMeta(latest.id,{...uiMeta(latest.id),workspaceTab:name});
  qa('[data-ew-tab]',active.root).forEach(b=>{const selected=b.dataset.ewTab===name;b.setAttribute('aria-selected',String(selected));b.tabIndex=selected?0:-1;});
  qa('[data-ew-panel]',active.root).forEach(p=>p.hidden=p.dataset.ewPanel!==name);
  // Moving the log between panels used to end with a jump to the newest turn,
@@ -211,7 +212,7 @@ function openBedside(){
     // The effect belongs on the group, as a short verb, not as a sentence
     // repeated above every list. Two kinds, two labels, no paragraph.
     '<section class="ew-bs-group ew-bs-'+E(g.kind)+'"><h3>'+E(g.title)
-      +'<span class="ew-bs-kind">'+(g.kind==='action'?'Says it to the patient':'Fills the composer')+'</span></h3>'
+      +'<span class="ew-bs-kind">'+(g.kind==='action'?'Send a stated action':'Choose a draft')+'</span></h3>'
       +'<div class="ew-bs-items">'+
     g.items.map((it,i)=>{
       const parts=(typeof courtesyParts==='function')?(courtesyParts()[it.id]||[]):[];
@@ -222,48 +223,67 @@ function openBedside(){
         (it.why?' title="'+E(it.why)+'"':'')+'>'+
         (g.kind==='action'?'<span class="ew-bs-tick" aria-hidden="true">'+(used?'✓':'○')+'</span>':'<span class="ew-bs-tick" aria-hidden="true">›</span>')+
         '<span>'+E(it.label)+'</span>'+
-        (used?'<span class="ew-bs-done">done</span>'
+        (used?'<span class="ew-bs-done">recorded</span>'
              :partial?'<span class="ew-bs-done ew-bs-partial">'+E(remainingLabel(it.id,parts))+'</span>':'')+'</button>';
     }).join('')+'</div></section>').join('')+
     '<p class="ew-bs-status" id="ewBedsideStatus" role="status"></p>';
   sheet('Bedside',[host]);
+  if(active.suggestion){
+    const chosen=document.createElement('div');chosen.className='ew-selected-move';
+    const label=document.createElement('p');label.textContent='Selected move: '+(active.suggestion.title||active.suggestion.text);
+    const again=button('Return to selected draft','','ghost');again.onclick=()=>window.pcmDraftSuggestion(active.suggestion);
+    chosen.append(label,again);host.prepend(chosen);
+  }
   qa('.ew-bs',host).forEach(b=>{b.onclick=()=>{
     const text=b.dataset.say;
     if(b.dataset.kind==='action'){
-      // Same pipeline as typing or speaking it. A repeat is allowed: repeating
-      // an action is sometimes the right thing to do, and the record shows it.
-      if(typeof sendSay==='function')sendSay(text);
-      b.classList.add('used');
-      const tick=q('.ew-bs-tick',b);if(tick)tick.textContent='✓';
-      bedsideStatus('Said to your patient and recorded.');
-      closeSheet();
+      // Completion is painted only from the response/evidence, never the click.
+      if(typeof sendSay==='function'){closeSheet();selectTab('talk');sendSay(text);}
     }else{
-      const box=q('#say');
-      if(!box){bedsideStatus('The composer is not available on this screen.');return;}
-      const fill=()=>{box.value=text;if(typeof autogrow==='function')autogrow(box);
-        box.dispatchEvent(new Event('input',{bubbles:true}));
-        bedsideStatus('Placed in the composer — edit it, then send when you are ready.');
-        closeSheet();box.focus();};
-      const existing=box.value.trim();
-      // Silently replacing an unsent message threw away the student's own
-      // words. The coach's Draft asks first; this is the same action and now
-      // asks the same question.
-      if(existing&&existing!==text){
-        const host=q('#ewBedsideStatus');if(!host)return fill();
-        host.innerHTML='';
-        host.append(document.createTextNode('You have an unsent message. '));
-        const replace=button('Replace it','','ghost'),keep=button('Keep mine','','ghost');
-        replace.onclick=fill;keep.onclick=()=>{bedsideStatus('Kept what you had typed.');};
-        host.append(replace,keep);
-        return;
-      }
-      fill();
+      const move=bedsideGroups().flatMap(g=>g.items).find(x=>x.say===text);
+      window.pcmDraftSuggestion({text,title:move?.label||'Bedside suggestion',why:move?.why||''});
     }
   };});
 }
+function installSuggestionTray(composer){
+ const tray=document.createElement('details');tray.id='ewSuggestion';tray.className='ew-suggestion';tray.hidden=true;
+ tray.innerHTML='<summary><span>Selected suggestion</span><span class="ew-suggestion-state">Not sent</span></summary><div class="ew-suggestion-body"><p id="ewSuggestionText"></p><details id="ewSuggestionWhy"><summary>Why this move</summary><p></p></details><p id="ewDraftStatus" role="status"></p><div class="ew-draft-actions"></div></div>';
+ composer.prepend(tray);tray.addEventListener('toggle',()=>{if(tray.open&&active?.suggestion)paintSuggestion(true);});
+}
+function paintSuggestion(expand){
+ const tray=q('#ewSuggestion'),move=active?.suggestion;if(!tray||!move)return;
+ tray.hidden=false;tray.open=!!expand;q('#ewSuggestionText').textContent=move.text;
+ const why=q('#ewSuggestionWhy');why.hidden=!move.why;q('p',why).textContent=move.why||'';
+ const box=q('#say'),row=q('.ew-draft-actions',tray);row.replaceChildren();
+ const status=q('#ewDraftStatus');const existing=box.value.trim(),same=existing===move.text.trim();
+ status.textContent=same?'Draft ready in the message box. Edit it before sending.':existing?'Your unsent message is kept. Choose how to use this suggestion.':'Use this suggestion as an editable message. Nothing is sent yet.';
+ const insert=append=>{
+  const text=append&&box.value.trim()?box.value.trimEnd()+'\n'+move.text:move.text;
+  if(box.value.trim()!==move.text.trim()&&!(append&&box.value.includes(move.text)))box.value=text;
+  box.dispatchEvent(new Event('input',{bubbles:true}));tray.open=false;
+  q('.ew-suggestion-state',tray).textContent='Draft ready · not sent';box.focus({preventScroll:true});
+ };
+ const add=(label,fn,cls='ghost')=>{const b=button(label,'',cls);b.onclick=fn;row.append(b);};
+ if(existing&&!same){
+  add('Add to my draft',()=>insert(true));
+  add('Replace my draft',()=>insert(false));
+  add('Keep my draft',()=>{tray.open=false;q('.ew-suggestion-state',tray).textContent='Your draft kept';box.focus({preventScroll:true});});
+ }else add(same?'Edit draft':'Use draft',()=>insert(false));
+ add('Dismiss suggestion',()=>{active.suggestion=null;setUiMeta(latest.id,{...uiMeta(latest.id),suggestion:null});tray.hidden=true;box.focus({preventScroll:true});});
+ q('.ew-suggestion-state',tray).textContent=same?'Draft ready · not sent':'Not sent';
+}
+window.pcmDraftSuggestion=move=>{
+ if(!active||!move?.text||latest?.phase!=='encounter')return false;
+ active.suggestion={text:move.text,title:move.title||'Selected suggestion',why:move.why||''};
+ setUiMeta(latest.id,{...uiMeta(latest.id),suggestion:active.suggestion});
+ closeSheet(true);selectTab('talk');const guide=q('#ewPanelGuide');if(guide)guide.open=false;
+ const box=q('#say');if(!box.value.trim()){box.value=move.text;box.dispatchEvent(new Event('input',{bubbles:true}));paintSuggestion(false);box.focus({preventScroll:true});}
+ else {paintSuggestion(true);q('.ew-draft-actions button')?.focus({preventScroll:true});}
+ return true;
+};
 function makeExam(panel){
  panel.innerHTML='<div class="ew-panel-title"><h2>Perform an examination</h2><span id="ewExamScope"></span><button type="button" class="btn sm ghost" id="ewRefuse">Propose a sensitive examination</button></div><div class="ew-board-search"><input id="manSearch" type="search" aria-label="Find an examination" placeholder="Find an action…"><button class="btn sm ghost" id="ewExamAll" aria-pressed="false">All actions</button></div><select id="ewManeuver" hidden aria-hidden="true"><option value="">Choose an action</option></select><div id="regionList" hidden><button data-region="" type="button">All regions</button></div><div id="manCount" class="tiny muted" aria-live="polite"></div><nav id="ewExamRegions" class="ew-exam-regions" aria-label="Jump to a body system" hidden></nav><section id="ewExamOutcome" class="ew-exam-outcome" role="status" aria-live="polite" hidden></section><div class="ew-exam-scroll"><div id="ewExamBoard"></div></div><p id="examRunning" role="status" class="small ew-exam-running"></p>';
- q('#manSearch',panel).oninput=()=>refreshExam(true);q('#regionList button',panel).onclick=()=>{active.showAllExams=true;refreshExam(true);};q('#ewExamAll',panel).onclick=()=>{active.showAllExams=!active.showAllExams;refreshExam(true);};q('#ewManeuver',panel).onchange=drawManeuver;
+ q('#manSearch',panel).value=uiMeta(latest.id).examSearch||'';q('#manSearch',panel).oninput=e=>{setUiMeta(latest.id,{...uiMeta(latest.id),examSearch:e.target.value});refreshExam(true);};q('#regionList button',panel).onclick=()=>{active.showAllExams=true;refreshExam(true);};q('#ewExamAll',panel).onclick=()=>{active.showAllExams=!active.showAllExams;setUiMeta(latest.id,{...uiMeta(latest.id),showAllExams:active.showAllExams});refreshExam(true);};q('#ewManeuver',panel).onchange=drawManeuver;
  // The syllabus form -- "At this point, I would do a (xxx) exam" -- is named,
  // never performed, and it is the only way to earn those rows. Its one entry
  // point lived on the card this workspace stores away, so it existed and could
@@ -339,6 +359,12 @@ function performedActions(){
 function isPerformed(m,done){
  return done.some(d=>d.id===m.id&&(m.components||[]).every(c=>d.components.has(c)));
 }
+function examDuration(m){
+ const full=catalog().flatMap(g=>g.maneuvers).find(x=>x.id===m.id);
+ const total=full?.components?.length||0,count=m.components?.length||0;
+ const fraction=total?(count?.45+.55*(count/total):.5):1;
+ return Math.max(4,Math.round(m.duration_s*fraction*(latest?.learning_mode==='guided'?.15:1)));
+}
 function refreshExam(reset=false){if(!active)return;const panel=q('#ewPanelExam'),sel=q('#ewManeuver',panel);if(!panel||!sel)return;
  const searchBox=q('#manSearch',panel);const search=(searchBox?searchBox.value:'').trim().toLowerCase(),regions=relevantRegions(latest),all=active.showAllExams||!regions||!!search;
  const candidates=catalog().flatMap(g=>g.maneuvers.flatMap(m=>quickActions({...m,region:g.region}))).filter(m=>all||regions.has(m.region));
@@ -351,7 +377,7 @@ function refreshExam(reset=false){if(!active)return;const panel=q('#ewPanelExam'
  // real but secondary, and a 27-tile wall made the core route hard to find.
  const regionsInOrder=[...new Set(list.map(m=>m.region))];
  const core=regionsInOrder.slice(0,3),rest=regionsInOrder.slice(3);
- const groupHtml=region=>'<section class="ew-action-group"><h3>'+E(region)+'</h3><div class="ew-action-grid">'+list.filter(m=>m.region===region).map(m=>'<button type="button" class="ew-action-tile" data-exam-action="'+E(m.actionKey)+'"><span aria-hidden="true">'+({inspect:'\u25c9',auscultate:'\u25d6',palpate:'\u270b',percuss:'\u22ef',special:'\u25c7'}[m.method]||'\u271a')+'</span><b>'+E(m.label)+'</b><small>'+E(m.method)+' \u00b7 '+m.duration_s+'s</small><small class="ew-done-flag" hidden>✓ performed</small>'+(statedTechnique(m)?'<small class="ew-states">'+E(statedTechnique(m))+'</small>':'')+'</button>').join('')+'</div></section>';
+ const groupHtml=region=>'<section class="ew-action-group"><h3>'+E(region)+'</h3><div class="ew-action-grid">'+list.filter(m=>m.region===region).map(m=>'<button type="button" class="ew-action-tile" data-exam-action="'+E(m.actionKey)+'"><span aria-hidden="true">'+({inspect:'\u25c9',auscultate:'\u25d6',palpate:'\u270b',percuss:'\u22ef',special:'\u25c7'}[m.method]||'\u271a')+'</span><b>'+E(m.label)+'</b><small>'+E(m.method)+' \u00b7 ~'+examDuration(m)+'s</small><small class="ew-done-flag" hidden>✓ performed</small>'+(statedTechnique(m)?'<small class="ew-states">'+E(statedTechnique(m))+'</small>':'')+'</button>').join('')+'</div></section>';
  q('#ewExamBoard',panel).innerHTML=list.length
   ?core.map(groupHtml).join('')
     +(rest.length?'<details class="ew-more-systems"><summary>Other systems ('+rest.length+')</summary>'+rest.map(groupHtml).join('')+'</details>':'')
@@ -395,13 +421,13 @@ function paintExamDone(){
  });
  const count=q('#manCount',panel);
  if(count)count.textContent=(count.dataset.total||0)+' actions · '+(n?n+' already performed · ':'')
-   +'one click performs the action and records the technique listed on it';
+   +'select an action to perform it';
 }
 function drawManeuver(){if(!active)return;updateExamStatus();}
-function updateExamStatus(){if(!active)return;const busy=!!latest?.pending_exam||active.examSending;
+function updateExamStatus(){if(!active)return;const busy=!!(latest?.pending_exam||active.examSending);
  const why=busy?'An examination is already running. Its findings appear here when it finishes.'
    :latest?.phase!=='encounter'?'The encounter is closed; no further examinations can be performed.':'';
- qa('[data-exam-action]',q('#ewPanelExam')).forEach(b=>{b.disabled=!!why;b.title=why;});
+ qa('[data-exam-action]',q('#ewPanelExam')).forEach(b=>{b.disabled=!!why;b.title=why;b.classList.toggle('is-running',busy&&b.dataset.examAction===active.selectedExam);});
  // A board that greys out with no explanation reads as broken. The engine
  // already knows the reason; put it beside the board rather than nowhere.
  const running=q('#examRunning');if(running)running.textContent=why;
@@ -410,13 +436,14 @@ function updateExamStatus(){if(!active)return;const busy=!!latest?.pending_exam|
  const pos=q('#ewPosition');
  if(pos)qa('.ew-pos',pos).forEach(b=>{b.disabled=busy||!!active.positionBusy;
   b.title=busy?'Wait for the running examination to finish before repositioning':'';});}
-async function perform(key){if(!active||!latest||latest.phase!=='encounter'||latest.pending_exam||active.examSending)return;const ctx=active,m=ctx.examList.find(x=>x.actionKey===key);if(!m)return;const sid=latest.id,components=m.components;ctx.examSending=true;updateExamStatus();
+async function perform(key){if(!active||!latest||latest.phase!=='encounter'||latest.pending_exam||active.examSending)return;const ctx=active,m=ctx.examList.find(x=>x.actionKey===key);if(!m)return;const sid=latest.id,components=m.components;ctx.examSending=true;ctx.selectedExam=key;outcome(m.label+' — starting','Waiting for the examination to start.');updateExamStatus();
  try{const r=await api('/api/session/'+sid+'/exam',{maneuver_id:m.id,components,source_text:'Perform: '+m.label+(components.length?' ('+components.join(', ')+')':'')+' — patient '+recordedPosition()});if(active!==ctx||S?.id!==sid)return;if(r.error){outcome('Examination could not complete',r.message||'Please try again.');return;}if(r.state)S=Object.assign({},S,r.state);(r.events||[]).forEach(deliverEvent);if(r.state?.transcript)paintStream(S.transcript||[]);paintExamProgress();notifyPublicState();}
  catch{if(active===ctx)outcome('Connection interrupted','Reconnect and check Notes before retrying.');}
  finally{ctx.examSending=false;if(active===ctx)updateExamStatus();}
 }
 // Display feedback separately from the evidence ledger: explanations are not findings.
-function outcome(title,text){const host=q('#ewExamOutcome');if(!host)return;const signature=title+'|'+text;if(host.dataset.signature===signature)return;host.dataset.signature=signature;host.hidden=false;host.innerHTML='<strong>'+E(title)+'</strong><p>'+E(text)+'</p>';
+function outcome(title,text,recorded=false){const host=q('#ewExamOutcome');if(!host)return;const signature=title+'|'+text;if(host.dataset.signature===signature)return;host.dataset.signature=signature;host.hidden=false;host.innerHTML='<strong>'+E(title)+'</strong><p>'+E(text)+'</p>';
+ if(recorded){const link=button('Saved in Notes →','','ghost');link.onclick=()=>{selectTab('record');const section=qa('.ew-rec-group',q('#ewRecordLog')).find(x=>/exam|objective/i.test(q('h3',x)?.textContent||''));section?.scrollIntoView({block:'start'});q('#ewTabrecord')?.focus({preventScroll:true});};host.append(link);}
  clearTimeout(active?.outcomeTimer);
  if(!active)return;
  // The result of the examination you just performed used to disappear after
@@ -424,7 +451,7 @@ function outcome(title,text){const host=q('#ewExamOutcome');if(!host)return;cons
  // panel for Record. It is the panel's own status line: it stays until the
  // next examination replaces it, which costs no extra space and removes a
  // panel switch from every examination.
- if(active.tab!=='exam')markExamUnread();}
+ if(active.tab!=='exam'&&!active.hydrating)markExamUnread();}
 function markExamUnread(){
  const tab=q('[data-ew-tab=exam]');if(!tab||tab.querySelector('.ew-new-badge'))return;
  tab.insertAdjacentHTML('beforeend','<small class="ew-new-badge">Result</small>');tab.classList.add('ew-record-new');}
@@ -440,12 +467,12 @@ function syncExamOutcome(s){
   const tab=q('[data-ew-tab=record]');if(tab&&!tab.querySelector('.ew-new-badge')){tab.insertAdjacentHTML('beforeend','<small class="ew-new-badge">New</small>');tab.classList.add('ew-record-new');}
  }
  active.lastFindingSeq=last?.seq||0;
- if(s.pending_exam){active.outcomeSeq=null;outcome('Examination in progress','The action is running. Its findings will appear here when it finishes.');return;}
+ if(s.pending_exam){active.outcomeSeq=null;outcome(((active.examList||[]).find(m=>m.id===s.pending_exam.maneuver_id)?.label||catalog().flatMap(g=>g.maneuvers).find(m=>m.id===s.pending_exam.maneuver_id)?.label||'Examination')+' — in progress','Keep the patient in position. Findings will appear here when the action finishes.');const host=q('#ewExamOutcome');if(!q('progress',host)){const progress=document.createElement('progress');progress.max=1;progress.setAttribute('aria-label','Examination progress');host.append(progress);}const progress=q('progress',host);progress.value=Math.max(0,Math.min(1,1-(s.pending_exam.due_at-Date.now())/(s.pending_exam.duration_s*1000)));return;}
  const index=events.findLastIndex(e=>e.kind==='exam_action'||e.kind==='exam_refused');if(index<0)return;
  const action=events[index],meta=action.meta||{},rows=events.slice(index+1).filter(e=>e.kind==='exam_finding');
  const signature=String(action.seq)+':'+rows.map(e=>e.seq).join(',');if(active.outcomeSeq===signature)return;active.outcomeSeq=signature;
  const title=meta.label||meta.maneuver_id||'Examination';
- if(rows.length)outcome(title+' — findings',rows.map(e=>e.text).join('\n\n'));
+ if(rows.length)outcome(title+' — findings',rows.map(e=>e.text).join('\n\n'),true);
  else if(action.kind==='exam_refused')outcome('Examination declined',action.text);
  else if(meta.status==='not_simulated')outcome(title+' — result unavailable','This case has no authored result for this action. The action is recorded, but it provides no finding to document. This does not mean the examination is clinically irrelevant or normal.');
  else if(meta.status==='interrupted')outcome('Examination interrupted','No findings were released. Check the encounter phase before trying again.');
@@ -463,7 +490,7 @@ function renderRecord(){
  const host=q('#ewRecordLog');if(!host||!active)return;
  const summary=latest?.record;
  const signature=JSON.stringify(summary||null);if(signature===active.recordSignature)return;active.recordSignature=signature;
- host.innerHTML=recordHtml(summary);
+ const top=host.scrollTop;host.innerHTML=recordHtml(summary);host.scrollTop=top;
 }
 // The same summary is wanted on the note screen, where the reference rail used
 // to say nothing was available even in the modes that supply it.
@@ -484,7 +511,7 @@ function recordHtml(summary){
   const exact=item.text_full?' title="Said: '+E(item.text_full)+'"':'';
   return '<div class="ew-rec-row"><dt'+(repeat?' class="ew-rec-cont" aria-hidden="true"':'')+'>'
    +(repeat?'':E(item.label||'Reported'))+'</dt><dd'+exact+'>'+E(item.text)
-   +(notes.length?' <span class="ew-rec-note">'+E(notes.join(' \u00b7 '))+'</span>':'')+'</dd></div>';
+   +(notes.length?' <span class="ew-rec-note">'+E(notes.join(' \u00b7 '))+'</span>':'')+(item.text_full&&item.text_full!==item.text?'<details class="ew-source-detail"><summary>Patient’s words</summary><p>'+E(item.text_full)+'</p></details>':'')+'</dd></div>';
  };
  const finding=(item,repeat)=>'<div class="ew-rec-row"><dt'+(repeat?' class="ew-rec-cont" aria-hidden="true"':'')+'>'
    +(repeat?'':E(item.label))+'</dt><dd>'+E(item.text)
@@ -507,7 +534,7 @@ function recordHtml(summary){
      if(category==='timing'&&/duration/.test(item.fact_id||''))slot='duration';
      (slot?buckets[slot]:other).push(item);
    }
-   return '<section class="ew-rec-group"><h3>History of present illness · OLDCARTS</h3>'+slots.map(([id,label])=>'<h4 class="ew-oldcarts-title">'+E(label)+'</h4>'+(buckets[id].length?'<dl class="ew-rec">'+dedupe(row,buckets[id])+'</dl>':'<p class="ew-oldcarts-empty">Not yet recorded</p>')).join('')+(other.length?'<h4 class="ew-oldcarts-title">Associated symptoms, prior episodes &amp; treatments</h4><dl class="ew-rec">'+dedupe(row,other)+'</dl>':'')+'</section>';
+   return '<section class="ew-rec-group"><h3>History of present illness · OLDCARTS</h3><div class="ew-oldcarts-grid">'+slots.map(([id,label])=>'<section class="ew-oldcarts-slot"><h4 class="ew-oldcarts-title">'+E(label)+'</h4>'+(buckets[id].length?'<dl class="ew-rec">'+dedupe(row,buckets[id])+'</dl>':'<p class="ew-oldcarts-empty">Not yet recorded</p>')+'</section>').join('')+'</div>'+(other.length?'<h4 class="ew-oldcarts-title">Associated symptoms, prior episodes &amp; treatments</h4><dl class="ew-rec">'+dedupe(row,other)+'</dl>':'')+'</section>';
  };
  return summary.groups.map(group=>group.id==='hpi'?hpiHtml(group):
    '<section class="ew-rec-group"><h3>'+E(group.label)+'</h3><dl class="ew-rec">'
@@ -531,7 +558,7 @@ function arrangeAside(){
 function arrangeGuide(){if(!active)return;const panel=q('#encounterGuide');if(!panel||!active.root.contains(panel))return;const dest=q('#ewGuideCard');if(!dest)return;if(panel.parentElement!==dest)dest.append(panel);
  if(panel.classList.contains('case-guide')&&!q('.ew-guide-scroll',panel)){
   const scroll=document.createElement('div');scroll.className='ew-guide-scroll';const footer=document.createElement('div');footer.className='ew-guide-footer';const actions=q('.guide-current .guide-actions',panel),nav=q('.guide-navigation',panel);const contents=[...panel.children];contents.forEach(n=>scroll.append(n));if(actions)footer.append(actions);if(nav)footer.append(nav);panel.append(scroll,footer);
-  const route=q('.guide-route',panel);const moreActions=document.createElement('div');moreActions.className='guide-navigation';[q('#guideRecommend',panel),q('#guideDefer',panel)].filter(Boolean).forEach(n=>moreActions.append(n));if(route){route.append(moreActions);const urgency=q('.guide-urgency',panel);if(urgency)route.append(urgency);}const draft=q('#guideDraft',panel);if(draft)draft.textContent='Draft question';// One name for one action. The coached card calls this "I'm stuck"; calling
+  const route=q('.guide-route',panel);const moreActions=document.createElement('div');moreActions.className='guide-navigation';[q('#guideDefer',panel)].filter(Boolean).forEach(n=>moreActions.append(n));if(route){route.append(moreActions);const urgency=q('.guide-urgency',panel);if(urgency)route.append(urgency);}const draft=q('#guideDraft',panel);if(draft)draft.textContent='Draft question';// One name for one action. The coached card calls this "I'm stuck"; calling
   // it "Get unstuck" here made the same button read as a different feature.
   const help=q('#unstuckButton',panel);if(help)help.textContent="I'm stuck";
   const extra=button('Steps','ewGuideMore','ghost');(nav||footer).append(extra);extra.onclick=()=>sheet('Your encounter path and obtained evidence',[q('.guide-route',panel),q('.guide-coverage',panel)]);
@@ -549,12 +576,12 @@ function arrangeGuide(){if(!active)return;const panel=q('#encounterGuide');if(!p
    // The card renders its own "Other moves" button; this only hides the strip.
   }
  }
- if(!panel.dataset.sidebarWired){panel.dataset.sidebarWired='true';panel.addEventListener('click',e=>{if(e.target.closest('#guideDraft')){selectTab('talk');q('#say')?.focus({preventScroll:true});}if(e.target.closest('#unstuckButton')){const body=q('#recoveryBody',panel);if(body)sheet('Get unstuck · pause, orient, choose',[body]);}});}
+ if(!panel.dataset.sidebarWired){panel.dataset.sidebarWired='true';panel.addEventListener('click',e=>{if(e.target.closest('#unstuckButton')){const body=q('#recoveryBody',panel);if(body)sheet('Get unstuck · pause, orient, choose',[body]);}});}
 }
 function mount(s){
  const root=q('#view .experience-room'),convo=q('.convo',root);if(!root||!convo)return;if(active?.root===root){latest=s;return;}cleanup();latest=s;
- active={root,convo,tab:'talk',sessionId:s.id};const small=document.createElement('p');small.className='ew-small-screen';small.textContent='Compact screen: scroll between the patient and tools. Use a wider window to keep the encounter side by side.';root.prepend(small);document.body.classList.add('encounter-workspace-active');root.classList.add('ew-room');
- const work=document.createElement('div');work.className='ew-right';const hasGuide=['guided','coached'].includes(s.learning_mode);work.innerHTML='<nav class="ew-tabs" role="tablist" aria-label="Encounter workspace">'+[['talk','Talk'],['exam','Physical Exam'],['record','Notes']].map(([id,label])=>'<button type="button" role="tab" id="ewTab'+id+'" data-ew-tab="'+id+'" aria-controls="ewPanel'+id[0].toUpperCase()+id.slice(1)+'"><span aria-hidden="true">'+icons[id]+'</span> '+label+'</button>').join('')+'</nav><div class="ew-panels"><section role="tabpanel" id="ewPanelTalk" data-ew-panel="talk" aria-labelledby="ewTabtalk">'+'<div id="ewTalkLog"></div>'+(hasGuide?'<details id="ewPanelGuide" class="ew-talk-guide" open><summary><span class="ew-guide-eyebrow">Next step</span><span class="ew-guide-toggle" aria-hidden="true"></span></summary><div id="ewGuideCard"><p class="small ew-guide-loading">Preparing your next step…</p></div></details>':'')+'</section><section role="tabpanel" id="ewPanelExam" data-ew-panel="exam" aria-labelledby="ewTabexam" hidden></section>'+'<section role="tabpanel" id="ewPanelRecord" data-ew-panel="record" aria-labelledby="ewTabrecord" hidden><p class="small ew-record-note">What you have learned so far. Present illness is organized by OLDCARTS. The conversation itself stays in Talk.</p><div id="ewRecordLog"></div></section></div>';
+ const savedUi=uiMeta(s.id);active={root,convo,tab:savedUi.workspaceTab||'talk',sessionId:s.id,hydrating:true,suggestion:savedUi.suggestion||null,showAllExams:!!savedUi.showAllExams};const small=document.createElement('p');small.className='ew-small-screen';small.textContent='Compact screen: scroll between the patient and tools. Use a wider window to keep the encounter side by side.';root.prepend(small);document.body.classList.add('encounter-workspace-active');root.classList.add('ew-room');
+ const work=document.createElement('div');work.className='ew-right';const hasGuide=['guided','coached'].includes(s.learning_mode);work.innerHTML='<nav class="ew-tabs" role="tablist" aria-label="Encounter workspace">'+[['talk','Talk'],['exam','Physical Exam'],['record','Notes']].map(([id,label])=>'<button type="button" role="tab" id="ewTab'+id+'" data-ew-tab="'+id+'" aria-controls="ewPanel'+id[0].toUpperCase()+id.slice(1)+'"><span aria-hidden="true">'+icons[id]+'</span> '+label+'</button>').join('')+'</nav><div class="ew-panels"><section role="tabpanel" id="ewPanelTalk" data-ew-panel="talk" aria-labelledby="ewTabtalk">'+'<div id="ewTalkLog"></div>'+(hasGuide?'<details id="ewPanelGuide" class="ew-talk-guide"><summary><span class="ew-guide-eyebrow">Interview coach</span><span class="ew-guide-toggle" aria-hidden="true"></span></summary><div id="ewGuideCard"><p class="small ew-guide-loading">Preparing your next step…</p></div></details>':'')+'</section><section role="tabpanel" id="ewPanelExam" data-ew-panel="exam" aria-labelledby="ewTabexam" hidden></section>'+'<section role="tabpanel" id="ewPanelRecord" data-ew-panel="record" aria-labelledby="ewTabrecord" hidden><p class="small ew-record-note">What you have learned so far. Present illness is organized by OLDCARTS. The conversation itself stays in Talk.</p><div id="ewRecordLog"></div></section></div>';
  convo.before(work);work.append(convo);convo.classList.add('ew-conversation');q('#ewTalkLog',work).append(q('#stream',convo));const composer=q('.composer',convo);const reply=document.createElement('div');reply.className='ew-latest-reply';reply.innerHTML='<button class="btn sm ghost" type="button" aria-label="Read full conversation">Patient ↗</button><p></p>';reply.querySelector('button').onclick=()=>selectTab('talk');work.append(reply,composer);q('#voiceBar',convo)&&q('#ewPanelTalk',work).prepend(q('#voiceBar',convo));q('.branch-reminder',convo)&&q('#ewPanelTalk',work).prepend(q('.branch-reminder',convo));
  const bar=document.createElement('div');bar.className='ew-bottom';bar.setAttribute('aria-label','Essential encounter actions');root.append(bar);const tools=document.createElement('div');tools.className='ew-bottom-tools';bar.append(tools);
  const bedside=button('♡ Bedside','ewBedside');tools.append(bedside);bedside.onclick=openBedside;
@@ -577,18 +604,35 @@ function mount(s){
   requestPosition(b.dataset.pos,positionControl);
  };});
  const view=button('⊙ View','ewView');view.onclick=views;tools.append(view);const chart=q('#toolChart',root);chart.textContent='Vitals';tools.append(chart);const audio=button('','ewVoice');audio.className='btn sm ew-toggle';tools.append(audio);paintVoiceToggle();audio.onclick=toggleVoice;
- const end=q('#btnEnd',root);end.textContent='Finish encounter →';end.classList.add('primary');bar.append(end);
+ const end=q('#btnEnd',root);end.textContent='End encounter →';end.classList.add('primary');bar.append(end);
  const store=document.createElement('div');store.className='ew-stored';store.hidden=true;root.append(store);[q('.room-left',root),q('.room-right',root),q('.patient-toolbar',root),q('.scene-help',root)].filter(Boolean).forEach(n=>store.append(n));
  q('#toolExam',root).onclick=()=>selectTab('exam');q('#unityFallback',root).onclick=()=>selectTab('exam');if(q('#quickUnstuck',root))q('#quickUnstuck',root).onclick=()=>{selectTab('guide');q('#unstuckButton')?.click();};
  q('#toggleRecord',root).onclick=()=>selectTab(active.tab==='record'?'talk':'record');
  qa('[data-ew-tab]',work).forEach(b=>{b.onclick=()=>selectTab(b.dataset.ewTab);b.onkeydown=e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const tabs=qa('[data-ew-tab]',work);let i=tabs.indexOf(b);i=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;selectTab(tabs[i].dataset.ewTab,true);};});
  const say=q('#say');say.onfocus=null;const focus=q('#patientFocus');focus.onclick=()=>{const expanded=root.classList.toggle('patient-focus');focus.textContent=expanded?'Return to split view':'Expand patient view';focus.setAttribute('aria-pressed',String(expanded));setUiMeta(s.id,{...uiMeta(s.id),expandedPatient:expanded});fit();};
- const recordNote=q('.ew-record-note',work);recordNote.textContent='Only what you obtained in this encounter, in the order your note is scored. Hover a row to see the patient\u2019s exact words.';
+ const recordNote=q('.ew-record-note',work);recordNote.textContent='Obtained history, supplied information and examination findings.';
+ const guidePane=q('#ewPanelGuide');if(guidePane){guidePane.open=savedUi.guideOpen??s.learning_mode==='guided';guidePane.addEventListener('toggle',()=>{if(active?.sessionId===s.id)setUiMeta(s.id,{...uiMeta(s.id),guideOpen:guidePane.open});});}
+ const draftReturn=button('Return to your draft','ewReturnTalk','ghost');draftReturn.onclick=()=>{selectTab('talk');q('#say')?.focus({preventScroll:true});};reply.append(draftReturn);
+ installSuggestionTray(composer);if(active.suggestion)paintSuggestion(false);
+ autogrow(say);
  makeExam(q('#ewPanelExam'));selectTab(active.tab);arrangeGuide();arrangeAside();fit();
 }
 function extras(){if(!active)return;arrangeGuide();arrangeAside();if(active.tab==='record')renderRecord();const pane=q('#ewPanelGuide');if(pane&&q('#encounterGuide',pane))q('.ew-guide-loading',pane)?.remove();}
-window.pcmEncounterWorkspaceState=s=>{latest=s;if(!s||s.phase!=='encounter'){cleanup();return;}if(!active||active.root!==q('#view .experience-room')){requestAnimationFrame(()=>{if(latest?.phase==='encounter'){mount(latest);window.pcmEncounterWorkspaceState(latest);}});return;}if(active){const pos=q('#ewPosition');if(pos&&!qa('.ew-pos',pos).every(b=>b.disabled))paintPosition(s.patient_posture||'seated');updateExamStatus();paintExamDone();syncExamOutcome(s);const last=(s.transcript||[]).filter(x=>['patient_reply','patient'].includes(x.kind)).slice(-1)[0];const text=q('.ew-latest-reply p');if(text&&text.textContent!==(last?.text||'Your conversation appears here.'))text.textContent=last?.text||'Your conversation appears here.';extras();}};
+window.pcmEncounterWorkspaceState=s=>{latest=s;if(!s||s.phase!=='encounter'){cleanup();return;}if(!active||active.root!==q('#view .experience-room')){requestAnimationFrame(()=>{if(latest?.phase==='encounter'){mount(latest);window.pcmEncounterWorkspaceState(latest);}});return;}if(active){const pos=q('#ewPosition');if(pos&&!qa('.ew-pos',pos).every(b=>b.disabled))paintPosition(s.patient_posture||'seated');updateExamStatus();paintExamDone();syncExamOutcome(s);active.hydrating=false;const last=(s.transcript||[]).filter(x=>['patient_reply','patient'].includes(x.kind)).slice(-1)[0];const text=q('.ew-latest-reply p');if(text&&text.textContent!==(last?.text||'Your conversation appears here.'))text.textContent=last?.text||'Your conversation appears here.';extras();}};
 window.pcmFocusExam=function(id){if(!active)return false;selectTab('exam');const search=q('#manSearch');search.value=id;search.dispatchEvent(new Event('input',{bubbles:true}));search.focus({preventScroll:true});return true;};
 window.openExamPanel=function(){if(active){selectTab('exam');return;}return priorExam?.();};
+// A guide inside the patient frame needs enough room to teach at narrow widths.
+// This presentation message never changes the encounter timer or evidence.
+window.addEventListener('message',e=>{
+ if(!active||e.origin!==location.origin||e.source!==q('#unityFrame')?.contentWindow||e.data?.type!=='pcm-technique-visibility'||e.data.sessionId!==active.sessionId)return;
+ const open=!!e.data.open;if(open===!!active.guideVisible)return;
+ active.guideVisible=open;if(open)active.guidePageTop=scrollY;
+ active.root.classList.toggle('ew-guide-visible',open);fit();
+ if(innerWidth<850)requestAnimationFrame(()=>{
+  if(!active)return;
+  if(open)q('.unity-room',active.root)?.scrollIntoView({block:'start',behavior:'instant'});
+  else window.scrollTo({top:active.guidePageTop||0,behavior:'instant'});
+ });
+});
 const observer=new MutationObserver(()=>{if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;if(document.body.dataset.phase!=='encounter'){cleanup();return;}if(typeof S!=='undefined'&&S?.phase==='encounter'){mount(S);extras();fit();}});});observer.observe(document.getElementById('view'),{childList:true,subtree:true});new MutationObserver(()=>{if(document.body.dataset.phase!=='encounter')cleanup();}).observe(document.body,{attributes:true,attributeFilter:['data-phase']});document.addEventListener('toggle',e=>{const detail=e.target;if(active&&detail instanceof HTMLDetailsElement&&detail.open&&detail.closest('.public-notice')){detail.open=false;sheet('About this public edition',[detail]);}},{capture:true});window.addEventListener('resize',fit);if(typeof S!=='undefined'&&S?.phase==='encounter')window.pcmEncounterWorkspaceState(S);
 })();

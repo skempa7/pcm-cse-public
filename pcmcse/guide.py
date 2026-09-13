@@ -350,7 +350,16 @@ def next_action(s, gap=None):
         group_order = [g['id'] for g in (full.get('groups') or [])]
         try:
             from . import learning as learning_mod
-            here = group_order.index(_STEP_GROUP.get(learning_mod.inferred_step(s), ''))
+            stage = learning_mod.inferred_step(s)
+            # 2026-09-12: the stage selector already records a deliberate choice.
+            # Match learning.state() while that choice is current; ranking only
+            # from inferred history made its selected label and suggested move
+            # disagree. New clinical evidence resumes the usual recommendation.
+            manual = next((event for event in reversed(learning_mod.events(s.id))
+                           if event['kind'] == 'stage'), None)
+            if manual and manual['payload'].get('after_seq') == len(s.ledger.events):
+                stage = manual['payload']['step']
+            here = group_order.index(_STEP_GROUP.get(stage, ''))
         except (ImportError, ValueError, Exception):
             here = 0
 

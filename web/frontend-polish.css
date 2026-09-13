@@ -1,0 +1,28 @@
+/* Shared setup and review hierarchy. Preserve the existing brand palette. */
+body[data-workspace=practice] .lobby-hero{padding:22px 0 18px;margin:0}
+body[data-workspace=practice] .lobby-hero h1{font-size:28px;margin:6px 0}
+body[data-workspace=practice] .lobby-hero p{margin:6px 0}
+body[data-workspace=practice] .mode-card{padding:13px 15px;gap:5px}
+body[data-workspace=practice] .mode-card .m-ico{display:none}
+body[data-workspace=practice] .mode-card .m-name{font-size:16px}
+body[data-workspace=practice] .mode-card .m-time{font-size:12px}
+body[data-workspace=practice] .mode-card .m-desc{font-size:13px;line-height:1.4}
+body[data-workspace=practice] .mode-card:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:3px}
+body[data-workspace=practice] .lobby .card{padding:18px 22px}
+body[data-workspace=practice] .learning-library>.small.muted{display:none}
+body[data-workspace=practice] .coverage-strip{font-size:12px;background:none;padding:0;gap:14px}
+body[data-workspace=practice] .coverage-strip strong{font-size:14px}
+body[data-workspace=practice] .learning-library>details{margin:8px 0}
+body[data-workspace=practice] .station-head{position:sticky;top:64px;z-index:5;background:var(--surface);padding:10px 0;border-bottom:1px solid var(--line)}
+body[data-workspace=practice] .station-head h2{font-size:18px}
+body[data-workspace=practice] .portal-family{padding:8px 10px;font-size:12px;min-height:38px}
+body[data-workspace=practice] .portal-family svg{height:22px;width:22px}
+body[data-phase=submitted] .tabs{display:flex;flex-wrap:wrap;gap:4px;border-bottom:1px solid var(--line);padding:8px 0}
+body[data-phase=submitted] .tabs button{font-size:13px;padding:8px 11px;min-height:38px}
+body[data-phase=submitted] .debrief-result{padding:20px 24px}
+@media(max-width:700px){body[data-workspace=practice] .station-head{position:static}body[data-workspace=practice] .mode-grid{grid-template-columns:1fr 1fr}}
+
+.feedback-more{border:0;padding:0;margin:0;background:none;align-self:start;min-width:0}
+.feedback-more>summary{padding:9px 12px;cursor:pointer;font-size:13px;min-height:38px}
+.feedback-more-tabs{display:flex;flex-wrap:wrap;gap:4px;padding:6px 0}
+.feedback-more[open]{flex:1 1 100%}
