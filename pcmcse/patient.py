@@ -1237,6 +1237,8 @@ class PatientEngine:
         # Resolve each ask against a private meta so one segment's outcome
         # cannot mislabel another's.
         spoken_ids, parts, subs, unanswered, declined = set(), [], [], [], []
+        explicit_limits = []
+        final_context = None
         # Resolving a segment MARKS things in `state`: the fact is released,
         # the patient's pending question is resolved. When composition is then
         # abandoned (fewer than two segments answered) the whole turn is
@@ -1259,6 +1261,14 @@ class PatientEngine:
                 # a whole turn may not fit it. Losing one segment must never
                 # lose the turn.
                 continue
+            if sub.get('context_subject'):
+                final_context = sub['context_subject']
+                if sub.get('no_information'):
+                    self._remember(segment, seg_text, probe, sub, part)
+            elif self._informative(part, sub):
+                final_context = None
+            if sub.get('unavailable_topics'):
+                explicit_limits.append((part, sub))
             if self._informative(part, sub):
                 # Each informative clause becomes the local referent for the next
                 # clause. Otherwise 'allergies, and what happens?' inherits a
@@ -1310,6 +1320,17 @@ class PatientEngine:
             meta['kind'] = sub.get('kind', 'answer')
             meta.pop('no_information', None)
             return parts[0]
+        # Recognized but unauthored details are complete outcomes, not a
+        # reason to rematch the whole compound against unrelated keywords.
+        if not parts and len(explicit_limits) == len(real_asks) and explicit_limits:
+            state.clear()
+            state.update(probe)
+            meta.update(kind='non_answer', no_information=True, unscripted_topic=True,
+                        unavailable_topics=list(dict.fromkeys(topic for _, sub in explicit_limits
+                            for topic in sub.get('unavailable_topics', []))))
+            if final_context:
+                meta['context_subject'] = final_context
+            return dialogue.join_spoken(list(dict.fromkeys(part for part, _ in explicit_limits)))
         # `state` is still pristine here, so the re-run sees the turn as new.
         if len(parts) < 2 and not (len(parts) == 1 and real_asks):
             return self._resolve_single(utterance, text, state, meta)
@@ -1338,6 +1359,8 @@ class PatientEngine:
         kinds = {sub.get('kind') for sub in subs}
         meta['kind'] = kinds.pop() if len(kinds) == 1 else 'answer'
         meta['composed_asks'] = len(parts)
+        if final_context:
+            meta['context_subject'] = final_context
         # Some part of the turn was answered, so the turn is not a non-answer.
         # This matters beyond wording: the encounter engine REPLACES a reply
         # flagged no_information, which would throw away the answers above.
@@ -1384,6 +1407,106 @@ class PatientEngine:
             if cue in fid or cue in topic:
                 return {name}
         return set()
+
+    def _sleep_history_reply(self, utterance, state, meta):
+        """Recognize sleep questions without inventing a missing sleep history."""
+        text = nlp.normalize(dialogue.strip_discourse(utterance)).strip(" .?")
+        if _instruction_or_other_person(utterance):
+            return None
+        amount = bool(re.fullmatch(
+            r"how (?:much sleep|many hours(?: of sleep)?) (?:do|did) you (?:get|sleep)"
+            r"(?: (?:a|per|each|every) (?:night|day))?", text))
+        adequacy = bool(re.fullmatch(
+            r"(?:do|did) you (?:get enough sleep|sleep (?:enough|well))"
+            r"|are you (?:getting enough sleep|sleeping (?:enough|well))"
+            r"|do you (?:feel|wake up feeling) (?:well )?rested", text))
+        general = bool(re.fullmatch(
+            r"how (?:are|have) you (?:been )?sleeping|how (?:is|has) your sleep(?: been)?"
+            r"|how are your sleep habits"
+            r"|(?:do|have|are) you (?:have |had |having )?(?:any )?(?:trouble|difficulty) sleeping", text))
+        if state.get('last_subjects') == ['sleep'] and re.fullmatch(
+                r"how many hours(?: do you get)?(?: (?:a|per|each) (?:night|day))?|how much(?: sleep)?", text):
+            amount = True
+        if not (amount or adequacy or general):
+            return None
+        meta['context_subject'] = 'sleep'
+        # Sleep posture and bundled cardiac negatives require their own
+        # focused questions. Only relevant, authored sleep-context text is used.
+        candidates = []
+        for fact in self.facts.values():
+            words = ' '.join(fact.get('sp_says') or [fact.get('value', '')])
+            category = fact.get('category')
+            if category not in ('social', 'associated', 'function', 'expectation', 'care_barrier'):
+                continue
+            if re.search(r'\bsleep(?:ing)?\b|\basleep\b|night of coughing|work nights', words, re.I):
+                candidates.append(fact)
+        # A work/study schedule, fatigue or a pillow count does not tell us
+        # whether sleep is sufficient or how many hours the patient sleeps.
+        supported = [f for f in candidates if (amount and re.search(
+            r'\b(?:sleep|get|getting)\w*[^.!?]{0,16}\b(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten) hours?\b', self._fact_text(f), re.I))
+            or (adequacy and re.search(r'\b(?:not enough sleep|enough sleep|sleep well|sleep poorly)\b', self._fact_text(f), re.I))]
+        chosen = supported if amount or adequacy else candidates[:1]
+        parts = [self._say(f, state, meta, prefixed=False) for f in chosen[:2]]
+        missing = not supported if amount or adequacy else not chosen
+        if missing:
+            dimension = 'sleep duration' if amount else 'whether sleep feels sufficient' if adequacy else 'sleep history'
+            meta['unavailable_topics'] = [dimension]
+            parts.append('The case does not specify ' + dimension + '. This information is unavailable, not a negative finding.')
+        if not chosen:
+            meta.update(kind='non_answer', no_information=True, unscripted_topic=True)
+        return dialogue.join_spoken(parts)
+
+    def _routine_followup_reply(self, utterance, state, meta):
+        """Keep frequency/amount questions on the behavior actually discussed."""
+        dimension = dialogue.routine_followup(utterance)
+        if dimension is None or _instruction_or_other_person(utterance):
+            return None
+        anchors = set(state.get('last_subjects') or []) & dialogue.ANCHORABLE_SUBJECTS
+        recent = [self.facts[fid] for fid in state.get('last_facts', []) if fid in self.facts]
+        candidates = [f for f in recent if self._fact_subjects(f) & anchors]
+        text = nlp.normalize(utterance)
+        action = re.search(r'\b(?:do|did) you (?:also )?(take|drink|smoke|eat|use|work out)\b', text)
+        allowed = {'take': {'medications'}, 'drink': {'caffeine', 'alcohol'},
+                   'smoke': {'tobacco', 'drugs'}, 'eat': {'diet'},
+                   'use': {'medications', 'drugs', 'tobacco'}, 'work out': {'exercise'}}
+        if action and not anchors & allowed[action[1]]:
+            return None  # An explicit new action may name a different topic.
+        if not candidates:
+            # Existing HPI handling remains responsible for "how often?" after
+            # a symptom. A bare routine confirmation with no referent must ask.
+            if re.match(r'how (?:long|much|many|often)', text) and (
+                    any(f.get('category') in dialogue.HPI_FAMILY for f in recent) or
+                    (dimension == 'duration' and not anchors)) and anchors != {'sleep'}:
+                return None
+            meta.update(kind='clarification', no_information=True)
+            if anchors == {'sleep'}:
+                meta['unavailable_topics'] = ['sleep history']
+                return 'The case does not provide that detail about sleep.'
+            return 'Which activity are you asking about?'
+        # Prefer the relevant detail already delivered, never a fresh sibling
+        # from the same broad category. A supplemental-medication denial must
+        # not outrank the dose/frequency of the medication being taken.
+        schedule = r'\b(?:daily|nightly|every|each|workdays|weekends|mornings?|evenings?|most|rarely|never|once|twice|when|whenever|as needed|prn|per day|a day|a week)\b'
+        quantities = r'\b(?:\d+|one|two|three|four|five|six|several)\b'
+        suited = [f for f in candidates if re.search(schedule if dimension == 'frequency' else quantities,
+                  f.get('value', ''), re.I)]
+        selected = (suited or candidates)[:2]
+        known = ' '.join(f.get('value', '') for f in selected).lower()
+        off_days = re.search(r'weekends|days off|not working', text)
+        has_frequency = re.search(schedule, known)
+        has_duration = re.search(r'\bfor (?:\d+|one|two|three|four|five|six|several|many|a few) (?:days?|weeks?|months?|years?)\b|\bsince\b', known)
+        has_duration = has_duration or re.search(r'\bfrom age \d+ to \d+\b|\bquit(?: [a-z]+)? (?:\d+|one|two|three|four|five|six|several) years? ago\b', known)
+        has_duration = has_duration or re.search(r'\b(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|several|many) (?:years?|months?)(?: or so| now)?[.!?]*$', known)
+        absent = all(re.match(r"(?:no\b|none\b|never\b|i (?:have never|do not|don't|never)\b)", f.get('value', '').lower()) for f in selected)
+        missing = ('consumption or activity on days off' if off_days and not re.search(r'weekends|days off', known)
+                   else 'how long this habit or treatment has been in place' if dimension == 'duration' and not has_duration and not absent
+                   else 'the exact frequency' if dimension == 'frequency' and not has_frequency and not absent else None)
+        if missing:
+            meta.update(kind='non_answer', no_information=True, unscripted_topic=True,
+                        unavailable_topics=[missing])
+            return 'The case does not specify ' + missing + '.'
+        parts = [self._say(f, state, meta, prefixed=False) for f in selected]
+        return dialogue.join_spoken(parts)
 
     def _followup_hits(self, utterance, state):
         """Answer a bare follow-up out of the history just discussed.
@@ -1858,6 +1981,13 @@ class PatientEngine:
         if associated is not None:
             return self._join(ack, associated)
 
+        sleep = self._sleep_history_reply(utterance, state, meta)
+        if sleep is not None:
+            return self._join(ack, sleep)
+        routine = self._routine_followup_reply(utterance, state, meta)
+        if routine is not None:
+            return self._join(ack, routine)
+
         # 4b. A bare follow-up resolves against the subject already on the
         #     table before any general matcher gets to guess at its topic.
         followup = self._followup_hits(utterance, state)
@@ -2031,8 +2161,15 @@ class PatientEngine:
             if pending and pending.get('open') and pending.get('fact_id') not in spoken:
                 pending['open'] = False
                 pending['superseded'] = True
+        if meta.get('context_subject'):
+            subjects = {meta['context_subject']}
         if not subjects:
             subjects = set(dialogue.subjects_in(text))
+        if (not spoken and meta.get('no_information') and not subjects
+                and not _instruction_or_other_person(text)
+                and re.search(r'\b(?:pain|palpitations?|symptoms?|cough|dizziness|nausea)\b|\bheart (?:race|racing|beat|flutter)', text)):
+            state['last_subjects'] = []
+            state['last_facts'] = []
         if subjects:
             state['last_subjects'] = sorted(subjects)
 

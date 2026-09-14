@@ -130,6 +130,8 @@ TOPIC_CUES = {
     "alcohol":     [r"alcohol", r"\bdrink", r"\bbeer\b", r"\bwine\b", r"liquor", r"\betoh\b"],
     "drugs":       [r"recreational", r"street drug", r"illicit", r"\bcocaine\b", r"\bheroin\b",
                     r"\bmarijuana\b", r"\bweed\b", r"inject", r"\bdrug use\b"],
+    "caffeine":    [r"\bcaffeine\b", r"\bcoffee\b", r"\benergy drinks?\b"],
+    "sleep":       [r"\bsleep(?:ing)?\b", r"\binsomnia\b", r"\bwell rested\b", r"\bfeel rested\b"],
     "diet":        [r"\bdiet\b", r"what do you eat", r"eating habits"],
     "exercise":    [r"exercis", r"physical activity", r"work out", r"\bgym\b"],
     "sexual":      [r"sexual", r"sexually active", r"\bpartners?\b", r"contracept",
@@ -169,6 +171,7 @@ TOPIC_QUESTION = {
     "medications": "what medications do you take", "allergies": "do you have any allergies",
     "family": "any family history", "tobacco": "do you smoke",
     "alcohol": "do you drink alcohol", "drugs": "do you use any recreational drugs",
+    "caffeine": "do you drink coffee or energy drinks", "sleep": "how have you been sleeping",
     "diet": "what is your diet like", "exercise": "do you exercise",
     "sexual": "are you sexually active", "obgyn": "when was your last period",
     "travel": "have you travelled recently", "concern": "what worries you most",
@@ -411,7 +414,7 @@ SUBJECT_TOPICS = {
     "name", "age", "sex", "occupation", "household", "chief_complaint",
     "location", "radiation", "associated", "past_occurrence", "pmh", "psh",
     "medications", "allergies", "family", "tobacco", "alcohol", "drugs",
-    "diet", "exercise", "sexual", "obgyn", "travel", "concern",
+    "diet", "caffeine", "sleep", "exercise", "sexual", "obgyn", "travel", "concern",
 }
 ATTRIBUTE_TOPICS = {
     "onset", "duration", "quality", "severity", "timing", "chronology",
@@ -425,7 +428,7 @@ ATTRIBUTE_TOPICS = {
 # genuinely collides across different histories ("how long" after smoking).
 ANCHORABLE_SUBJECTS = {
     "tobacco", "alcohol", "drugs", "medications", "allergies", "pmh", "psh",
-    "family", "occupation", "household", "diet", "exercise", "sexual",
+    "family", "occupation", "household", "diet", "caffeine", "sleep", "exercise", "sexual",
     "obgyn", "travel",
 }
 # A fact's own authored category is a far better statement of what it is about
@@ -439,11 +442,12 @@ CATEGORY_TOPIC = {
 }
 # Social facts share one category, so they are separated by their fact id.
 SOCIAL_ID_TOPIC = {
+    "caffeine": "caffeine", "energy_drink": "caffeine", "coffee": "caffeine", "sleep": "sleep",
     "tobacco": "tobacco", "smok": "tobacco", "alcohol": "alcohol",
     "drink": "alcohol", "drug": "drugs", "occupation": "occupation",
     "work": "occupation", "household": "household", "live": "household",
     "diet": "diet", "exercise": "exercise", "sexual": "sexual",
-    "travel": "travel", "caffeine": "diet",
+    "travel": "travel",
 }
 # Bare attribute follow-ups that carry no topic word of their own.
 BARE_FOLLOWUP = re.compile(
@@ -479,6 +483,29 @@ def is_elaboration(text):
 def subjects_in(text):
     """Only the stand-alone topics named by this text."""
     return [t for t in topics_in(text) if t in SUBJECT_TOPICS]
+
+
+# These short confirmations refer to the last discussed behavior. They must
+# not be interpreted as a fresh question about symptom-related daily activity.
+def routine_followup(text):
+    text = nlp.normalize(strip_discourse(text)).strip(" .?")
+    period = r"(?:every (?:single )?(?:day|night)|each day|each night|daily|nightly|regularly|on (?:weekends|workdays)|on your days off|on days off)"
+    action = r"(?:do|take|drink|use|smoke|eat|work out)"
+    referent = r"(?:this|that|it|them|those|these)"
+    frequency = (r"(?:do|did) you (?:also )?" + action + " " + referent + " " + period
+                 + r"|(?:is|was) " + referent + " " + period
+                 + r"|" + period + r"(?: too)?"
+                 + r"|(?:what about|and) (?:on )?(?:weekends|workdays|your days off|days off)"
+                 + r"|how (?:much|many)(?: a day| on days off| on weekends)"
+                 + r"|do you (?:avoid|drink|consume) (?:energy drinks|coffee) when you are not working"
+                 + r"|how often(?: do you " + action + r"(?: " + referent + r")?)?")
+    if re.fullmatch(frequency, text):
+        return "frequency"
+    if re.fullmatch(r"how (?:much|many)(?: do you (?:take|drink|use|smoke|eat)(?: " + referent + r")?)?", text):
+        return "amount"
+    if re.fullmatch(r"how long(?: have you been (?:doing|taking|drinking|using|smoking|eating) " + referent + r")?|for how many (?:years|months|weeks|days)", text):
+        return "duration"
+    return None
 
 
 def is_bare_followup(text):
