@@ -5,7 +5,7 @@ const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt
 let active=null,latest=null,queued=false,voiceAnchor=null,voiceNode=null,openedSheet=null,priorExam=window.openExamPanel;
 const icons={talk:'◌',exam:'✚',guide:'◇',record:'≡'};
 function button(text,id,cls=''){const b=document.createElement('button');b.type='button';b.className='btn sm '+cls;b.id=id;b.textContent=text;return b;}
-function sheet(title,nodes){
+function sheet(title,nodes,opener){
  closeSheet();const d=document.createElement('dialog');d.className='ew-sheet';d.setAttribute('aria-label',title);d.innerHTML='<div class="ew-sheet-head"><h2>'+E(title)+'</h2><button type="button" class="btn sm">Close</button></div><div class="ew-sheet-body"></div>';
  const moved=nodes.filter(Boolean).map(node=>{const marker=document.createComment('encounter-sheet-return');node.before(marker);q('.ew-sheet-body',d).append(node);return {node,marker,open:node.open};});
  moved.forEach(x=>{if(x.node.tagName==='DETAILS')x.node.open=true;});document.body.append(d);
@@ -13,7 +13,7 @@ function sheet(title,nodes){
  // been re-rendered while it was open -- the coach rebuilds its action row on
  // every state update -- and "prev is gone" used to mean focus fell to <main>,
  // stranding a keyboard user at the top of the page.
- const prev=document.activeElement,prevId=prev?.id||'',prevLabel=(prev?.textContent||'').trim();
+ const prev=opener||document.activeElement,prevId=prev?.id||'',prevLabel=(prev?.textContent||'').trim();
  const restore=()=>{
   if(q('#overlayRoot .overlay'))return;
   let target=prev?.isConnected?prev:null;
@@ -35,7 +35,18 @@ function rememberStream(){
 function restoreVoice(){/* retired: the voice settings panel no longer exists */}
 function cleanup(){if(!active)return;clearTimeout(active.outcomeTimer);closeSheet();restoreVoice();
  document.body.classList.remove('encounter-workspace-active');document.documentElement.style.removeProperty('--ew-available');active=null;}
-function fit(){if(!active)return;const room=active.root;if(!room.isConnected)return;const top=Math.max(0,room.getBoundingClientRect().top);document.documentElement.style.setProperty('--ew-available',Math.max(280,innerHeight-top-8)+'px');positionRoomFrame?.();}
+function fit(){
+ if(!active)return;const room=active.root;if(!room.isConnected)return;
+ const viewport=window.visualViewport;
+ // Safari's software keyboard changes the visual viewport without necessarily
+ // resizing the layout viewport. Keep enough document height for real controls
+ // and let the browser scroll to the composer instead of crushing its panels.
+ // Pinch zoom must remain a browser operation, not trigger a workspace reflow.
+ const visible=viewport&&Math.abs(viewport.scale-1)<.01?viewport.height+viewport.offsetTop:innerHeight;
+ const top=Math.max(0,room.getBoundingClientRect().top);
+ document.documentElement.style.setProperty('--ew-available',Math.max(460,visible-top-8)+'px');
+ positionRoomFrame?.();
+}
 function selectTab(name,focus=false){
  if(name==='guide'){name='talk';const guide=q('#ewPanelGuide');if(guide)guide.open=true;}
  if(!active||!q('[data-ew-tab="'+name+'"]',active.root))return;
@@ -110,7 +121,7 @@ function views(){
    } else closeSheet();
   };
  });
- const helper=q('.scene-help',active.root);sheet('Patient view',[host,helper]);}
+ const helper=q('.scene-help',active.root);sheet('Patient view',[host,helper],q('#ewView'));}
 /* Patient speech is a direct on/off control, not a settings screen. It governs
    the PATIENT'S output only: it never touches the clinician's microphone or the
    hands-free preference. Turning it off cancels anything currently or pending
@@ -227,7 +238,7 @@ function openBedside(){
              :partial?'<span class="ew-bs-done ew-bs-partial">'+E(remainingLabel(it.id,parts))+'</span>':'')+'</button>';
     }).join('')+'</div></section>').join('')+
     '<p class="ew-bs-status" id="ewBedsideStatus" role="status"></p>';
-  sheet('Bedside',[host]);
+  sheet('Bedside',[host],q('#ewBedside'));
   if(active.suggestion){
     const chosen=document.createElement('div');chosen.className='ew-selected-move';
     const label=document.createElement('p');label.textContent='Selected move: '+(active.suggestion.title||active.suggestion.text);
@@ -552,7 +563,7 @@ function recordHtml(summary){
     : '');
 }
 window.pcmRecordHtml=recordHtml;
-window.pcmSheet=(title,nodes)=>sheet(title,nodes);
+window.pcmSheet=(title,nodes,opener)=>sheet(title,nodes,opener);
 function arrangeAside(){
  // Settings belong next to the control they affect, not above the conversation.
  if(!active)return;const ai=q('#aiConversation');const composer=q('.ew-right > .composer');
@@ -564,7 +575,7 @@ function arrangeGuide(){if(!active)return;const panel=q('#encounterGuide');if(!p
   const route=q('.guide-route',panel);const moreActions=document.createElement('div');moreActions.className='guide-navigation';[q('#guideDefer',panel)].filter(Boolean).forEach(n=>moreActions.append(n));if(route){route.append(moreActions);const urgency=q('.guide-urgency',panel);if(urgency)route.append(urgency);}const draft=q('#guideDraft',panel);if(draft)draft.textContent='Draft question';// One name for one action. The coached card calls this "I'm stuck"; calling
   // it "Get unstuck" here made the same button read as a different feature.
   const help=q('#unstuckButton',panel);if(help)help.textContent="I'm stuck";
-  const extra=button('Steps','ewGuideMore','ghost');(nav||footer).append(extra);extra.onclick=()=>sheet('Your encounter path and obtained evidence',[q('.guide-route',panel),q('.guide-coverage',panel)]);
+  const extra=button('Steps','ewGuideMore','ghost');(nav||footer).append(extra);extra.onclick=()=>sheet('Your encounter path and obtained evidence',[q('.guide-route',panel),q('.guide-coverage',panel)],extra);
   qa('.guide-route,.guide-coverage',panel).forEach(n=>n.hidden=true);
   extra.addEventListener('click',()=>qa('.ew-sheet .guide-route,.ew-sheet .guide-coverage').forEach(n=>n.hidden=false));
  }
@@ -579,7 +590,7 @@ function arrangeGuide(){if(!active)return;const panel=q('#encounterGuide');if(!p
    // The card renders its own "Other moves" button; this only hides the strip.
   }
  }
- if(!panel.dataset.sidebarWired){panel.dataset.sidebarWired='true';panel.addEventListener('click',e=>{if(e.target.closest('#unstuckButton')){const body=q('#recoveryBody',panel);if(body)sheet('Get unstuck · pause, orient, choose',[body]);}});}
+ if(!panel.dataset.sidebarWired){panel.dataset.sidebarWired='true';panel.addEventListener('click',e=>{if(e.target.closest('#unstuckButton')){const body=q('#recoveryBody',panel);if(body)sheet('Get unstuck · pause, orient, choose',[body],e.target.closest('#unstuckButton'));}});}
 }
 function mount(s){
  const root=q('#view .experience-room'),convo=q('.convo',root);if(!root||!convo)return;if(active?.root===root){latest=s;return;}cleanup();latest=s;
@@ -637,5 +648,5 @@ window.addEventListener('message',e=>{
   else window.scrollTo({top:active.guidePageTop||0,behavior:'instant'});
  });
 });
-const observer=new MutationObserver(()=>{if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;if(document.body.dataset.phase!=='encounter'){cleanup();return;}if(typeof S!=='undefined'&&S?.phase==='encounter'){mount(S);extras();fit();}});});observer.observe(document.getElementById('view'),{childList:true,subtree:true});new MutationObserver(()=>{if(document.body.dataset.phase!=='encounter')cleanup();}).observe(document.body,{attributes:true,attributeFilter:['data-phase']});document.addEventListener('toggle',e=>{const detail=e.target;if(active&&detail instanceof HTMLDetailsElement&&detail.open&&detail.closest('.public-notice')){detail.open=false;sheet('About this public edition',[detail]);}},{capture:true});window.addEventListener('resize',fit);if(typeof S!=='undefined'&&S?.phase==='encounter')window.pcmEncounterWorkspaceState(S);
+const observer=new MutationObserver(()=>{if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;if(document.body.dataset.phase!=='encounter'){cleanup();return;}if(typeof S!=='undefined'&&S?.phase==='encounter'){mount(S);extras();fit();}});});observer.observe(document.getElementById('view'),{childList:true,subtree:true});new MutationObserver(()=>{if(document.body.dataset.phase!=='encounter')cleanup();}).observe(document.body,{attributes:true,attributeFilter:['data-phase']});document.addEventListener('toggle',e=>{const detail=e.target;if(active&&detail instanceof HTMLDetailsElement&&detail.open&&detail.closest('.public-notice')){detail.open=false;sheet('About this public edition',[detail]);}},{capture:true});window.addEventListener('resize',fit);window.visualViewport?.addEventListener('resize',fit);window.visualViewport?.addEventListener('scroll',fit);if(typeof S!=='undefined'&&S?.phase==='encounter')window.pcmEncounterWorkspaceState(S);
 })();

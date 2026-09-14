@@ -146,3 +146,12 @@ body.technique-open #techniquePanel .tech-demo svg{height:180px}
 body.technique-open #techniquePanel .tech-nav button{min-height:36px}
 body.technique-open #techniquePanel .tech-resume{border-color:#39796c;background:#edf4e9}
 body.technique-open #techniqueLaunch{visibility:hidden}
+
+/* A finger target stays large even when the patient column is narrow. */
+@media (pointer:coarse){
+ body.technique-open #techniquePanel .tech-close{min-width:44px;min-height:44px}
+ body.technique-open #techniquePanel .tech-nav button,
+ body.technique-open #techniquePanel .tech-link,
+ body.technique-open #techniquePanel .exam-choice{min-height:44px}
+ body.technique-open #techniquePanel h2{margin-right:42px}
+}

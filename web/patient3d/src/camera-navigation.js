@@ -1,4 +1,4 @@
-// Deliberate orbit only. Wheel, touch/pinch and keyboard remain browser-owned.
+// Deliberate orbit only. Vertical touch scrolling, pinch, wheel and keyboard remain browser-owned.
 const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
 export function orbitDirection(alpha,beta){return{x:Math.cos(alpha)*Math.sin(beta),y:Math.cos(beta),z:Math.sin(alpha)*Math.sin(beta)};}
 /** Forward ray interval through an expanded world-space box. */
@@ -23,7 +23,7 @@ export function safeOrbitRadius({target,alpha,beta,radius,obstacles=[],boundarie
  let best=null,distance=Infinity;for(const [lo,hi]of clear){const candidate=clamp(radius,lo,hi),delta=Math.abs(candidate-radius);if(delta<distance){best=candidate;distance=delta;}}return best;
 }
 export function createCameraNavigation({canvas,camera,allowed=()=>true,constraints=()=>({}),onChange=()=>{},onInteraction=()=>{}}){
- let adjusting=false,drag=null,referenceRadius=camera.radius;
+ let adjusting=false,drag=null,referenceRadius=camera.radius;const touches=new Set();
  const release=()=>{const id=drag?.id;drag=null;if(id!==undefined&&canvas.hasPointerCapture?.(id))try{canvas.releasePointerCapture(id);}catch{}};
  function remember(){referenceRadius=camera.radius;}
  function setAdjusting(value){release();adjusting=!!value&&allowed();canvas.classList.toggle('adjusting-view',adjusting);if(adjusting){remember();onInteraction();}onChange(adjusting);return adjusting;}
@@ -42,9 +42,20 @@ export function createCameraNavigation({canvas,camera,allowed=()=>true,constrain
   }
   return true;
  }
- const down=event=>{if(!allowed()||event.pointerType!=='mouse'||event.button!==0||event.ctrlKey||event.metaKey||event.altKey)return;release();drag={id:event.pointerId,x:event.clientX,y:event.clientY};try{canvas.setPointerCapture?.(event.pointerId);}catch{drag=null;}};
- const movePointer=event=>{if(!drag||event.pointerId!==drag.id)return;if(!allowed()||event.ctrlKey||event.metaKey||event.altKey){release();return;}const dx=event.clientX-drag.x,dy=event.clientY-drag.y;drag.x=event.clientX;drag.y=event.clientY;move(-dx*.006,-dy*.006);};
- const up=event=>{if(event.pointerId===drag?.id)release();};
+ const down=event=>{
+  if(event.pointerType==='touch'){touches.add(event.pointerId);if(touches.size>1){release();return;}}
+  if(!allowed()||!['mouse','touch','pen'].includes(event.pointerType)||event.button!==0||event.ctrlKey||event.metaKey||event.altKey)return;
+  release();drag={id:event.pointerId,x:event.clientX,y:event.clientY,touch:event.pointerType==='touch',started:event.pointerType!=='touch'};
+  if(!drag.touch)try{canvas.setPointerCapture?.(event.pointerId);}catch{drag=null;}
+ };
+ const movePointer=event=>{
+  if(!drag||event.pointerId!==drag.id)return;if(!allowed()||event.ctrlKey||event.metaKey||event.altKey){release();return;}
+  const dx=event.clientX-drag.x,dy=event.clientY-drag.y;
+  // Do not intercept a vertical page swipe or the beginning of a pinch.
+  if(drag.touch&&!drag.started){if(Math.hypot(dx,dy)<6)return;if(Math.abs(dy)>Math.abs(dx)){release();return;}drag.started=true;try{canvas.setPointerCapture?.(event.pointerId);}catch{release();return;}}
+  drag.x=event.clientX;drag.y=event.clientY;move(-dx*.006,drag.touch?0:-dy*.006);
+ };
+ const up=event=>{touches.delete(event.pointerId);if(event.pointerId===drag?.id)release();};
  canvas.addEventListener('pointerdown',down);canvas.addEventListener('pointermove',movePointer);canvas.addEventListener('pointerup',up);canvas.addEventListener('pointercancel',up);canvas.addEventListener('lostpointercapture',up);
  return{remember,setAdjusting,move,get adjusting(){return adjusting;},get referenceRadius(){return referenceRadius;},dispose(){setAdjusting(false);canvas.removeEventListener('pointerdown',down);canvas.removeEventListener('pointermove',movePointer);canvas.removeEventListener('pointerup',up);canvas.removeEventListener('pointercancel',up);canvas.removeEventListener('lostpointercapture',up);}};
 }

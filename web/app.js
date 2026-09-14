@@ -482,7 +482,7 @@ function renderLobby(){
     const c = picked ? caseById(picked.value) : null;
     const reveal = (MODES[currentUiMode()] || MODES.coached).reveal;
     if (chosen) chosen.textContent = c
-      ? (reveal ? stationTitle(c.id) + ' — ' + c.title : stationTitle(c.id) + ' — contents sealed')
+      ? ((reveal ? stationTitle(c.id) + ' — ' + c.title : stationTitle(c.id) + ' — contents sealed') + (picked.closest('.station-card').hidden ? ' · selected outside this filter' : ''))
       : 'Choose a presentation to begin.';
     if (row) row.classList.toggle('is-ready', !!c);
   };
@@ -490,6 +490,7 @@ function renderLobby(){
     $$('#stationGrid .station-card').forEach(x => x.classList.toggle('sel', $('input', x).checked));
     paintChosen(); }; });
   $$('input[name=drill]').forEach(r => r.addEventListener('change', paintChosen));
+  $('#stationGrid').addEventListener('pcm-selection-change',paintChosen);
   paintChosen();
   $$('.segbtn[data-talk]').forEach(b => { b.onclick = () => {
     $$('.segbtn[data-talk]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
@@ -818,14 +819,14 @@ async function begin(random, opts){
 /* ======================================================================== */
 let roomFrameReady=false,entryPending=null,roomViewportObserver=null;
 const patientDisplayStates=new Map();
-function patientDisplayLabel(){const status=patientDisplayStates.get(S?.id);return status==='ready'?'Patient ready':status==='loading'?'Preparing patient…':status==='failed'?'Patient display unavailable · text controls available':roomFrameReady?'Room ready · preparing patient':'Preparing room…';}
+function patientDisplayLabel(){const status=patientDisplayStates.get(S?.id);return status==='ready'?'Patient ready':status==='loading'?'Preparing patient…':status==='failed'?'Patient display unavailable · text controls available':status==='limited'?'3D patient not assigned · text controls available':roomFrameReady?'Room ready · preparing patient':'Preparing room…';}
 function positionRoomFrame(){
   const host=$('#roomFrameHost'),slot=$('#roomViewport');if(!host)return;
   if(!slot||!S||!['briefing','encounter'].includes(S.phase)){host.hidden=true;return;}
   const b=slot.getBoundingClientRect();host.hidden=false;Object.assign(host.style,{left:(b.left+window.scrollX)+'px',top:(b.top+window.scrollY)+'px',width:b.width+'px',height:b.height+'px'});
 }
 function mountPatientFrame(){
-  let host=$('#roomFrameHost');if(!host){host=document.createElement('div');host.id='roomFrameHost';host.innerHTML=`<iframe id="unityFrame" src="patient3d/index.html?v=8835da023b" title="Interactive patient and examination room" allow="autoplay"></iframe>`;document.body.append(host);roomFrameReady=false;$('#unityFrame').onload=notifyPublicState;}
+  let host=$('#roomFrameHost');if(!host){host=document.createElement('div');host.id='roomFrameHost';host.innerHTML=`<iframe id="unityFrame" src="patient3d/index.html?v=fddecb9796" title="Interactive patient and examination room" allow="autoplay"></iframe>`;document.body.append(host);roomFrameReady=false;$('#unityFrame').onload=notifyPublicState;}
   roomViewportObserver?.disconnect();roomViewportObserver=new ResizeObserver(positionRoomFrame);for(const target of [$('#roomViewport'),$('#patientVoiceSettings'),document.body])if(target)roomViewportObserver.observe(target);positionRoomFrame();if(roomFrameReady&&$('#unityStatus'))$('#unityStatus').textContent=patientDisplayLabel();notifyPublicState();
 }
 window.addEventListener('resize',positionRoomFrame);document.addEventListener('scroll',positionRoomFrame,true);
@@ -992,7 +993,7 @@ function renderRoom(){
   mountPatientFrame();paintRapport();paintStream(S.transcript||[]);
   $('#stopPatient').onclick=interruptPatient;$('#btnSay').onclick=()=>sendSay();$('#say').onkeydown=composerKey;$('#say').value=draftValue('conversation',S.id)||'';$('#say').onfocus=()=>requestAnimationFrame(()=>{const pair=$('.experience-room'),patient=$('.unity-room'),conversation=$('.convo');if(innerWidth>820&&pair&&patient&&conversation&&Math.max(patient.offsetHeight,conversation.offsetHeight)<innerHeight-76){window.scrollTo({top:Math.max(0,pair.getBoundingClientRect().top+scrollY-76),behavior:'instant'});positionRoomFrame();}});$('#say').oninput=e=>{autogrow(e.target);keepDraft('conversation',S.id,e.target.value);notifyPublicState();};
   $('#btnEnd').onclick=confirmEnd;$('#toolExam').onclick=openExamPanel;$('#unityFallback').onclick=openExamPanel;
-  $('#toolChart').onclick=()=>openOverlay('Doorway information & vital signs',`<div class="doorway-vitals">${chartHtml(chart)}</div><ul class="doorway-lines">${(chart.doorway||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`);
+  $('#toolChart').onclick=e=>openOverlay('Doorway information & vital signs',`<div class="doorway-vitals">${chartHtml(chart)}</div><ul class="doorway-lines">${(chart.doorway||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`,null,e.currentTarget);
   if($('#quickUnstuck'))$('#quickUnstuck').onclick=()=>{const guide=$('#encounterGuide');if(guide){guide.scrollIntoView({block:'center',behavior:LS.get('reducedMotion')?'instant':'smooth'});$('#unstuckButton')?.click();}};
   $('#patientFocus').onclick=e=>{const active=$('.experience-room').classList.toggle('patient-focus');setUiMeta(S.id,{...uiMeta(S.id),expandedPatient:active});e.currentTarget.setAttribute('aria-pressed',String(active));e.currentTarget.textContent=active?'Return to split view':'Expand patient view';positionRoomFrame();$('.unity-room').scrollIntoView({block:'start',behavior:LS.get('reducedMotion')||window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});};
   $('#toggleRecord').onclick=e=>{const active=$('.convo').classList.toggle('full-record');e.currentTarget.setAttribute('aria-pressed',String(active));e.currentTarget.textContent=active?'Dialogue view':'Full record';};
@@ -1375,8 +1376,10 @@ async function confirmEnd(){
 /* ======================================================================== */
 /* overlay panels (tools that open when needed)                              */
 /* ======================================================================== */
-function openOverlay(title, bodyHtml, onMount){
-  lastFocus = document.activeElement;
+function openOverlay(title, bodyHtml, onMount, opener){
+  // Safari does not focus a button just because it was tapped. Keep the
+  // actual triggering control when supplied, so closing restores context.
+  lastFocus = opener || document.activeElement;
   overlayRoot.innerHTML = `<div class="overlay" role="presentation">
     <div class="overlay-panel" role="dialog" aria-modal="true" aria-labelledby="ovTitle">
       <div class="overlay-head"><h2 id="ovTitle">${esc(title)}</h2><div class="spacer"></div>
@@ -2979,6 +2982,7 @@ window.addEventListener('message',async event=>{
   const frame=$('#unityFrame');if(!frame||event.source!==frame.contentWindow||event.origin!==location.origin)return;
   const data=event.data||{};
   if(data.type==='pcm-unity-ready'){const badge=$('#unityStatus');if(badge)badge.textContent=patientDisplayLabel();notifyPublicState();return;}
+  if(data.type==='pcm-room-restored'&&S&&data.sessionId===S.id){const badge=$('#unityStatus');if(badge)badge.textContent=patientDisplayLabel();if(S?.phase==='briefing'&&!entryPending)setEntryStatus('Ready when you are. The clock starts after you enter.');return;}
   if(data.type==='pcm-unity-error'){const badge=$('#unityStatus');if(badge)badge.textContent='Use accessible controls';toast('The 3D room is unavailable. Conversation and examination controls still work.');return;}
   if(data.type==='pcm-unity-teaching'&&S&&data.sessionId===S.id){
     const r=await api(`/api/session/${S.id}/room-lesson`,data);

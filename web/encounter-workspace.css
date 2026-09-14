@@ -411,7 +411,7 @@ body.encounter-workspace-active #ewGuideCard>#encounterGuide{display:block!impor
 .ew-suggestion-body .ew-draft-actions button{min-height:34px}
 
 /* Guide navigation remains visible; the teaching body can scroll independently. */
-#ewGuideCard .case-guide{display:flex!important;flex-direction:column}
+body.encounter-workspace-active #ewGuideCard>#encounterGuide.case-guide{display:flex!important;flex-direction:column}
 #ewGuideCard .case-guide>.ew-guide-scroll{min-height:0;flex:1 1 auto;overflow:auto}
 #ewGuideCard .case-guide>.ew-guide-footer{flex:0 0 auto}
 #ewGuideCard .case-guide .guide-current{margin:4px 0}
@@ -420,3 +420,39 @@ body.encounter-workspace-active #ewGuideCard>#encounterGuide{display:block!impor
 .ew-talk-guide{max-height:260px}
 #ewPanelTalk #ewGuideCard{max-height:215px;display:flex;min-height:0;padding:8px 12px}
 #ewGuideCard>.case-guide{flex:1 1 auto;min-height:0}
+
+
+/* Tablet and touch use: targets stay easy to tap at either orientation. Font
+   sizes in editable fields also avoid Safari's automatic input-focus zoom. */
+@media(pointer:coarse){
+ .ew-room .ew-tabs button,.ew-room #patientFocus,.ew-bottom .btn,.ew-pos,
+ .ew-room .composer #btnSay,.ew-room .composer #stopPatient,.ew-room .composer .mic-btn,
+ .ew-room .guide-actions .btn,.ew-room .guide-navigation .btn,
+ .ew-room .ew-board-search .btn,.ew-room .ew-exam-regions button,
+ .ew-room .ew-exam-outcome .btn,.ew-room .ew-draft-actions .btn,
+ .ew-sheet .btn,.ew-sheet .ew-bs,.ew-room #ewReturnTalk{min-height:44px!important}
+ .ew-room .ew-tabs button{font-size:14px}
+ .ew-room .composer #say,.ew-room .ew-board-search input,
+ .ew-sheet input:not([type=checkbox]):not([type=radio]),.ew-sheet select,.ew-sheet textarea{font-size:16px}
+ .ew-room .ew-board-search input{min-height:44px}
+ .ew-sheet .ew-bs-group.ew-bs-action .ew-bs{padding:10px 12px}
+ .ew-sheet .ew-bs{line-height:1.45}
+ .ew-room .ew-source-detail summary,.ew-room .ew-more-systems>summary,
+ .ew-room .ew-talk-guide>summary,.ew-room .ew-suggestion>summary{min-height:44px;padding-top:12px;padding-bottom:12px}
+ .ew-room .guide-why summary{padding:10px 0;min-height:44px}
+ .ew-room .ew-guide-footer{position:static}
+ .ew-room #ewPanelTalk #ewGuideCard{max-height:245px}
+ .ew-room .ew-talk-guide{max-height:295px}
+ .ew-room .ew-bottom{padding-bottom:max(6px,env(safe-area-inset-bottom))}
+ .ew-sheet-head{padding:12px 16px}
+ .ew-sheet{max-height:calc(100dvh - 24px)}
+}
+/* With the software keyboard up, or a short landscape window, the conversation
+   must retain a readable area. Its optional coach can scroll within its card. */
+@media(pointer:coarse) and (max-height:850px) and (min-width:850px){
+ .ew-room .ew-talk-guide{max-height:260px}
+ .ew-room #ewPanelTalk #ewGuideCard{max-height:210px}
+ .ew-room #ewTalkLog{min-height:100px}
+ .ew-room .ew-panels>#ewPanelTalk{overflow:auto}
+ .ew-room .composer #say{max-height:110px}
+}

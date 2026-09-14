@@ -455,6 +455,9 @@ export function createAnimatedPatient(scene, options = {}) {
       for (const key of options.requiredLandmarks || []) if (!landmarkNodes[key]) throw new Error(`Required ${key} landmark is missing from ${label.toLowerCase()}.`);
       for (const name of options.requiredMeshes || []) if (!container.meshes.some(mesh => mesh.name === name)) throw new Error(`Required ${name} mesh is missing from ${label.toLowerCase()}.`);
       if (options.prepare) ownedResources.push(...(await options.prepare(container, scene) || []));
+      // A case switch can dispose this patient while optional textures prepare.
+      // Dispose resources that finished afterward and never re-add stale meshes.
+      if (disposed) { for (const resource of ownedResources) resource?.dispose?.(); return false; }
       for (const mesh of container.meshes) {
         if(options.preciseSkinnedPicking && mesh.skeleton && mesh.getTotalVertices()>0){
           const proxy = new Mesh(`${mesh.name} picking surface`,scene);

@@ -61,7 +61,7 @@
       const skill=document.getElementById('skillFilter').value, difficulty=document.getElementById('difficultyFilter').value, experience=document.getElementById('experienceFilter').value,system=document.getElementById('sysPick').value;
       return cases.filter(c=>(!skill||(c.skills||[]).includes(skill))&&(!difficulty||c.difficulty===difficulty)&&(!system||c.system===system)&&(experience!=='new'||!(progress.attempted_cases||[]).includes(c.id))&&(experience!=='weak'||(progress.weaknesses||[]).some(w=>(c.skills||[]).includes(w.skill))));
     };
-    const filter=()=>{const ids=new Set(visible().map(c=>c.id));grid.querySelectorAll('[data-case]').forEach(card=>{card.hidden=!ids.has(card.dataset.case);if(card.hidden)card.querySelector('input').checked=false;});document.getElementById('filterCount').textContent=`${ids.size} matching presentations${!ids.size?' — broaden a filter or complete an attempt to establish weaknesses.':''}`;};
+    const filter=()=>{const ids=new Set(visible().map(c=>c.id));grid.querySelectorAll('[data-case]').forEach(card=>{card.hidden=!ids.has(card.dataset.case);});window.pcmPortal?.updatePracticeGroups();document.getElementById('filterCount').textContent=`${ids.size} matching presentations${!ids.size?' — broaden a filter or complete an attempt to establish weaknesses.':''}`;};
     section.querySelectorAll('select').forEach(x=>x.addEventListener('change',filter));document.getElementById('sysPick').addEventListener('change',filter);
     const refreshVariants=()=>{
       const id=grid.querySelector('input:checked')?.value,c=cases.find(c=>c.id===id),v=document.getElementById('variantChoice');

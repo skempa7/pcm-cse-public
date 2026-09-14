@@ -25,8 +25,13 @@ assert.equal(interactions,1,'a plain drag no longer orbits the camera');
 handlers.get('pointerup')(event());interactions=0;
 nav.setAdjusting(true);const baseline=interactions;
 for(const modifier of ['ctrlKey','metaKey','altKey']){handlers.get('pointerdown')(event({[modifier]:true}));handlers.get('pointermove')(event({clientX:130}));assert.equal(interactions,baseline)}
-handlers.get('pointerdown')(event({pointerType:'touch'}));handlers.get('pointermove')(event({pointerType:'touch',clientX:120}));assert.equal(interactions,baseline);
-handlers.get('pointerdown')(event());handlers.get('pointermove')(event({clientX:130,clientY:120}));assert.equal(interactions,baseline+1);assert.notEqual(camera.alpha,1.5);handlers.get('pointerup')(event());assert.equal(captured,null);
+// A horizontal finger drag orbits; vertical swipes and two-finger gestures
+// remain browser-owned. No preventDefault is needed for any of these inputs.
+handlers.get('pointerdown')(event({pointerType:'touch'}));handlers.get('pointermove')(event({pointerType:'touch',clientX:103,clientY:130}));assert.equal(interactions,baseline);handlers.get('pointerup')(event({pointerType:'touch'}));
+const touchBeta=camera.beta;
+handlers.get('pointerdown')(event({pointerType:'touch'}));handlers.get('pointermove')(event({pointerType:'touch',clientX:120}));assert.equal(interactions,baseline+1);assert.equal(camera.beta,touchBeta);assert.equal(captured,1);
+handlers.get('pointerdown')(event({pointerType:'touch',pointerId:2}));assert.equal(captured,null);handlers.get('pointermove')(event({pointerType:'touch',clientX:180}));assert.equal(interactions,baseline+1);handlers.get('pointerup')(event({pointerType:'touch'}));handlers.get('pointerup')(event({pointerType:'touch',pointerId:2}));
+handlers.get('pointerdown')(event());handlers.get('pointermove')(event({clientX:130,clientY:120}));assert.equal(interactions,baseline+2);assert.notEqual(camera.alpha,1.5);handlers.get('pointerup')(event());assert.equal(captured,null);
 // A phase/mode change or cancellation releases a live pointer capture.
 handlers.get('pointerdown')(event());nav.setAdjusting(false);assert.equal(captured,null);
 nav.setAdjusting(true);handlers.get('pointerdown')(event());handlers.get('pointercancel')(event());assert.equal(captured,null);

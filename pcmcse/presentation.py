@@ -39,9 +39,13 @@ def appearance(case):
     profile = {"presentation": style, "age": age,
             "skinTone": palette("skinTone", 5, seed[0] % 5),
             "hairTone": palette("hairTone", 4, seed[1] % 4)}
-    # Explicitly authored current cohort only. Older saved patients retain
-    # their original demographic presentation; no name-based inference.
-    if person.get('cohort') == 'public-adults-v1' and style in ('female','male') and age is not None and 18 <= age <= 30:
+    # 2026-09-14: select the model explicitly authored for an adult, including
+    # cases outside the original 18–30 cohort. Cohort is a legacy asset marker,
+    # not a clinical age limit. Preserve the saved person's age and other facts;
+    # never infer a model from a name or substitute an adult model for a child.
+    authored_model = authored.get('model') == 'mpfb-public-patient'
+    legacy_cohort = person.get('cohort') == 'public-adults-v1'
+    if (authored_model or legacy_cohort) and style in ('female','male') and age is not None and 18 <= age <= 120:
         profile.update(model='mpfb-public-patient', cohort='public-adults-v1',
             skinTone=palette('skinTone',3,0), hairColor=authored.get('hairColor','brunette'),
             eyeColor='green' if authored.get('eyeColor')=='green' else 'blue',

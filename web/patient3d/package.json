@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "build": "esbuild src/room.js --bundle --minify --format=esm --outdir=dist"
+    "build": "esbuild src/room.js --bundle --minify --format=esm --supported:template-literal=false --outdir=dist"
   },
   "dependencies": {
     "@babylonjs/core": "9.25.0",

@@ -1,4 +1,4 @@
-"""Execute the opt-in camera controller against Babylon's real camera math.
+"""Execute the deliberate-drag camera controller against Babylon's real camera math.
 
 This checks event ownership, bounded movement, and pose reframing. It does not
 substitute for browser scroll/zoom and visual collision inspection.
@@ -14,7 +14,7 @@ NODE = os.environ.get('PCM_NODE_BINARY') or shutil.which('node') or str(Path.hom
 
 @unittest.skipUnless(os.path.exists(NODE), 'Node unavailable')
 class CameraNavigation(unittest.TestCase):
-    def test_native_inputs_opt_in_drag_and_pose_bounds(self):
+    def test_native_inputs_horizontal_touch_drag_and_pose_bounds(self):
         script = ROOT/'web/patient3d/tests/camera-navigation.mjs'
         result=subprocess.run([NODE,str(script)],cwd=ROOT,text=True,capture_output=True,timeout=30)
         self.assertEqual(result.returncode,0,result.stdout+result.stderr)
@@ -24,11 +24,12 @@ class CameraNavigation(unittest.TestCase):
         css=(ROOT/'web/patient3d/room.css').read_text()
         html=(ROOT/'web/patient3d/index.html').read_text()
         self.assertIn('camera.inputs.clear()',room)
+        self.assertIn('doNotHandleTouchAction:true',room)
         self.assertNotIn('attachControl(',room)
         self.assertIn('scene.preventDefaultOnPointerDown=false',room)
         self.assertIn('scene.preventDefaultOnPointerUp=false',room)
         self.assertNotIn('touch-action:none',css)
-        self.assertIn('touch-action:auto',css)
+        self.assertIn('touch-action:pan-y pinch-zoom',css)
         # The camera controls are icon buttons now, so their name lives in
         # aria-label rather than in text content. Checking '>Face<' was really
         # checking the old markup; checking the accessible name is what the
@@ -48,7 +49,7 @@ class CameraNavigation(unittest.TestCase):
         for direction in ('left','right','up','down'):
             self.assertNotIn('data-camera="'+direction+'"',html)
         # The same guidance now lives on the canvas's accessible label.
-        self.assertIn('Drag to rotate around the patient',html)
+        self.assertIn('Drag horizontally to rotate around the patient',html)
         self.assertIn('constraints:orbitClearances',room)
         self.assertIn('mesh.refreshBoundingInfo(true,true)',room)
 

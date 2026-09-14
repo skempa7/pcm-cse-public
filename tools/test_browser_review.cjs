@@ -75,7 +75,7 @@ const output=process.env.CSE_TEST_OUTPUT||require('node:os').tmpdir()+'/cse-brow
  await p.locator('#btnBrand').click();await p.waitForFunction(()=>document.body.dataset.workspace==='home');
  const resume=p.locator('[data-resume="'+sid+'"]');assert(await resume.count());
  console.log('PASS cancel Home, finish encounter, note save/reload, submit feedback, Home and saved attempt');
- await p.locator('[data-portal-go=learn]').first().click();await p.locator('.lesson-card').first().waitFor();await p.locator('.lesson-card').first().click();await p.locator('#printLesson').click();await p.waitForFunction(()=>document.body.hasAttribute('data-walkthrough-preview'),{},{timeout:30000});
+ await p.locator('[data-destination=cases]').click();await p.locator('#materialGrid .lesson-card').first().waitFor();await p.locator('#materialGrid .lesson-card').first().click();await p.locator('.material-details summary').click();await p.getByRole('link',{name:'Read the demonstrated encounter and source references →'}).click();await p.locator('#printLesson').click();await p.locator('#preparePrintDocument').click();await p.waitForFunction(()=>document.body.hasAttribute('data-walkthrough-preview'),{},{timeout:30000});
  const print=await p.evaluate(()=>window.pcmPrintReport);assert.equal(print.oversized.length,0);assert(print.pages>0);await p.screenshot({path:path.join(output,'review-print.png'),fullPage:false});
  console.log('PASS rendered written walkthrough and print preview',JSON.stringify({pages:print.pages,images:print.images,oversized:print.oversized.length}));
  // Exercise course-timed note writing and the solution assistance boundary.

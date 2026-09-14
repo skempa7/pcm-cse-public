@@ -2,7 +2,7 @@
 (()=>{'use strict';
 const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const $=s=>document.querySelector(s);
-let generation=0,context=null,voicePanel=null,voiceUnsubscribe=null,previewActive=false;
+let generation=0,context=null,voicePanel=null,voiceUnsubscribe=null,previewActive=false,headerObserver=null;
 const shapes={
  home:'<path d="M4 11 12 4l8 7v9h-6v-6h-4v6H4z"/>',
  practice:'<rect x="5" y="3" width="14" height="18" rx="3"/><path d="M9 8h6m-6 4h6m-6 4h3"/>',
@@ -13,19 +13,46 @@ const shapes={
  sealed:'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6m-6 4h6"/><circle cx="15.5" cy="16" r=".8"/>',
 };
 function icon(key){return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${shapes[key]||shapes.practice}</svg>`;}
-function family(system){const s=String(system||'').toLowerCase();return /resp|pulmon/.test(s)?'pulmonary':/card/.test(s)?'cardio':/gastro|abdom|gi\b/.test(s)?'gi':/renal|urinar|genit/.test(s)?'renal':/neuro/.test(s)?'neuro':'general';}
+// The display taxonomy uses authored system labels; it never infers a diagnosis.
+const systemOrder=['Cardiovascular','Cardiopulmonary','Respiratory','Gastrointestinal','Renal / Genitourinary','Neurologic','Musculoskeletal','HEENT','Skin'];
+function orderedSystems(cases){return [...new Set(cases.map(c=>c.system).filter(Boolean))].sort((a,b)=>{const x=systemOrder.indexOf(a),y=systemOrder.indexOf(b);return (x<0?99:x)-(y<0?99:y)||a.localeCompare(b);});}
+function systemLabel(system){return system==='HEENT'?'Head, eyes, ears, nose & throat':system;}
+function family(system){const s=String(system||'').toLowerCase();return /cardiopulmon/.test(s)?'cardiopulmonary':/resp|pulmon/.test(s)?'pulmonary':/card/.test(s)?'cardio':/gastro|abdom|gi\b/.test(s)?'gi':/renal|urinar|genit/.test(s)?'renal':/neuro/.test(s)?'neuro':/musculo|msk/.test(s)?'msk':/heent|head.*neck/.test(s)?'heent':/skin|dermat/.test(s)?'skin':'general';}
 function illustration(key='general'){
  const body={
-  cardio:'<path d="M68 43c-12-23-42-12-40 8 2 17 21 31 40 43 19-12 38-26 40-43 2-20-28-31-40-8Z" fill="#e79988"/><path d="M37 62h17l7-17 12 35 8-19h18" stroke="#783f43" stroke-width="4" fill="none"/>',
-  pulmonary:'<g data-organ="lungs"><path d="M61 40c-8-7-16 3-23 16-10 17-17 34-12 49 3 10 23 8 31 0 8-9 6-28 6-42Z" fill="#94bfc4" stroke="#497780" stroke-width="3"/><path d="M79 40c8-7 16 3 23 16 10 17 17 34 12 49-3 10-22 8-30 0-5-5-4-11-1-17 4-7-8-11-8-23Z" fill="#a7ccd0" stroke="#497780" stroke-width="3"/><path d="M70 23v35m0 0L49 77m21-19 22 19M51 75l-12 6m12-6 3 16m35-17 12 7m-12-7-3 15" fill="none" stroke="#f5e2c6" stroke-width="6" stroke-linecap="round"/><path d="M66 29h8m-8 8h8m-8 8h8" stroke="#7e9ca0" stroke-width="2"/><path d="m29 92 21 2m42-3 19 6" stroke="#65969c" stroke-width="2" fill="none"/></g>',
-  gi:'<path d="M61 21v31c-10 5-16 14-14 25 3 18 39 26 52 7 12-18 1-31-11-37-12-5-17-13-17-26" fill="#e8b872" stroke="#8c612e" stroke-width="3"/><path d="M50 95c-15 2-16 19-1 20h37c15 0 17-15 4-16H64" fill="none" stroke="#c39254" stroke-width="8"/>',
-  renal:'<path d="M48 31c-26-1-28 43-9 54 10 7 20 0 19-10-1-7-12-7-11-15s13-5 14-12c2-9-5-15-13-17Zm40 0c26-1 28 43 9 54-10 7-20 0-19-10 1-7 12-7 11-15S76 55 75 48c-2-9 5-15 13-17Z" fill="#bf879c" stroke="#79596e" stroke-width="3"/><path d="M52 64c15 13 2 31 12 41m20-41c-15 13-2 31-12 41" stroke="#bd9a61" stroke-width="3" fill="none"/><path d="M59 104h18v8c0 12-18 12-18 0Z" fill="#ddb874"/>',
-  neuro:'<path d="M83 113V92c18-10 25-25 19-46-7-25-43-30-63-11-11 11-10 27-9 37l-9 13h14v18h23v10" fill="#bcbdde" stroke="#686485" stroke-width="3"/><path d="M56 35c-11 1-17 9-14 17-7 8-3 19 6 21m21-41c-12-3-14 12-6 16-12-1-17 13-7 17m20-29c14 0 18 13 9 19 8 10 1 17-9 16m-7-25v29" fill="none" stroke="#7c729d" stroke-width="4"/>',
-  sealed:'<rect x="35" y="19" width="68" height="103" rx="7" fill="#9db9af" stroke="#526f67" stroke-width="3"/><rect x="46" y="32" width="46" height="28" rx="3" fill="#e5ece0"/><path d="M56 42h26m-26 9h19" stroke="#7d978b" stroke-width="3"/><circle cx="88" cy="83" r="4" fill="#cb9e58"/>',
-  general:'<rect x="35" y="24" width="70" height="91" rx="9" fill="#a2c1b6"/><rect x="52" y="16" width="37" height="16" rx="5" fill="#587f70"/><path d="M59 47h22m-11-11v22M50 74h40M50 86h40M50 98h27" stroke="#fffaf0" stroke-width="5"/>',
+  cardio:'<path d="M69 45C56 21 29 34 30 54c1 20 21 35 39 49 18-14 39-29 40-49 1-20-27-33-40-9Z" fill="#e79988" stroke="#8d5755"/><path d="M38 65h17l7-15 11 30 8-15h19" fill="none" stroke="#754249"/>',
+  pulmonary:'<path d="M60 39c-11-3-20 10-28 24-8 15-10 31-4 39 6 8 21 6 29-1 8-7 7-24 7-39V43Z" fill="#9cc6cb" stroke="#4e7f88"/><path d="M80 39c11-3 20 10 28 24 8 15 10 31 4 39-6 8-21 6-29-1-8-7-7-24-7-39V43Z" fill="#9cc6cb" stroke="#4e7f88"/><path d="M70 26v31m0 0L48 76m22-19 22 19m-22-44h-5m5 9h-5m5 9h-5" fill="none" stroke="#47737b"/><path d="m48 76-10 7m10-7 2 16m42-16 10 7m-10-7-2 16" fill="none" stroke="#47737b"/>',
+  cardiopulmonary:'<path d="M56 37C42 36 25 66 25 87c0 13 15 15 27 7l8-45m24-12c14-1 31 29 31 50 0 13-15 15-27 7l-8-45" fill="#9cc6cb" stroke="#4e7f88"/><path d="M70 24v29m0 0L48 72m22-19 22 19" fill="none" stroke="#47737b"/><path d="M70 82c-11-16-30-6-24 9 4 10 16 18 24 24 8-6 20-14 24-24 6-15-13-25-24-9Z" fill="#e79988" stroke="#8d5755"/>',
+  gi:'<path d="M61 24v28c-12 5-20 17-16 31 5 20 38 27 51 9 13-19 1-33-12-39-10-5-14-15-14-29" fill="#e8bc83" stroke="#966e43"/><path d="M46 103c-16 1-15 16 0 16h44m-1-15H65" fill="none" stroke="#bd955e"/>',
+  renal:'<path d="M46 32C23 30 20 68 34 83c9 9 22 5 23-5 1-9-11-9-11-17s11-6 13-13c2-8-5-15-13-16Zm48 0c23-2 26 36 12 51-9 9-22 5-23-5-1-9 11-9 11-17s-11-6-13-13c-2-8 5-15 13-16Z" fill="#c295a5" stroke="#805d73"/><path d="M50 65c16 12 7 26 16 38m24-38c-16 12-7 26-16 38" stroke="#a88a54" fill="none"/><path d="M58 103h24v7c0 15-24 15-24 0Z" fill="#e0c084" stroke="#a88a54"/>',
+  neuro:'<path d="M84 114V96c19-12 27-31 19-51-9-23-41-28-60-11-11 10-14 25-12 38L22 86h13v18h23v10" fill="#c2c1df" stroke="#746d95"/><path d="M56 38c-10 0-17 10-12 18-8 7-3 18 6 20m18-39c-12-5-17 10-9 17-10 3-13 13-4 18m24-34c13 1 17 13 8 20 7 11 0 19-10 17m-7-22v26" fill="none" stroke="#7f789f"/>',
+  msk:'<path d="M46 31c-9-7-18 4-13 12l27 28 14-14-28-26Zm29 47 27 29c8 8 19-2 13-11L88 65Z" fill="#ede0bf" stroke="#a18d65"/><path d="M59 56c-6-4-13 0-13 7s8 12 15 8l9-9c4-7-1-15-8-15s-10 7-3 9Zm26 25c7 5 14-1 13-8-1-7-9-11-15-7l-9 9c-4 6 0 14 7 15 7 1 13-6 4-9Z" fill="#a9c9c3" stroke="#527f78"/><path d="m51 84-7 7m17-7-1 11m18-40 7-7m-7 16 11-1" stroke="#789b92" fill="none"/>',
+  heent:'<path d="M89 114V97c17-14 22-33 13-52-9-20-37-25-55-13-15 10-17 25-17 41L20 86h15v15h23v13" fill="#e8c8a8" stroke="#997b62"/><path d="M70 66c0-14 19-17 22-3 2 8-5 10-6 15-2 10-14 8-14-1m6-7c-2-6 6-10 8-5M41 59h10m-6-4v8M39 90h10" fill="none" stroke="#846b58"/>',
+  skin:'<path d="M24 57c13-10 24 8 38 0s25 8 38 0 16-1 16-1v50H24Z" fill="#e7b6a1" stroke="#a17665"/><path d="M24 72c13-10 24 8 38 0s25 8 38 0 16-1 16-1v35H24Z" fill="#efd2b4" stroke="#a17665"/><path d="M73 36c-4 12-4 29 1 43 3 10-9 18-13 8-4-11 10-15 2-36m26 44 7-12m-7 3 12 2m-61 4 8-12" fill="none" stroke="#916c58"/><circle cx="43" cy="60" r="3" fill="#be7f70" stroke="none"/><circle cx="95" cy="62" r="3" fill="#be7f70" stroke="none"/>',
+  sealed:'<rect x="37" y="23" width="66" height="94" rx="6" fill="#a8c1b5" stroke="#617f73"/><path d="M51 39h37M51 50h27" stroke="#edf2df"/><rect x="56" y="73" width="29" height="25" rx="4" fill="#f0d294" stroke="#8f825a"/><path d="M62 73v-8a9 9 0 0 1 18 0v8m-9 12v5" fill="none" stroke="#8f825a"/>',
+  general:'<rect x="37" y="28" width="66" height="85" rx="8" fill="#a8c9bd" stroke="#628878"/><rect x="53" y="20" width="34" height="15" rx="5" fill="#e2d6a4" stroke="#958862"/><path d="M60 52h20m-10-10v20M51 79h38M51 93h29" stroke="#3f7062"/>',
  };
- return `<svg viewBox="0 0 140 140" aria-hidden="true"><circle cx="70" cy="70" r="64" fill="currentColor" opacity=".07"/><circle cx="112" cy="28" r="10" fill="currentColor" opacity=".10"/>${body[key]||body.general}</svg>`;
+ const safe=Object.hasOwn(body,key)?key:'general';
+ return `<svg class="system-illustration" data-organ="${safe}" viewBox="0 0 140 140" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><circle cx="70" cy="70" r="63" fill="currentColor" opacity=".055" stroke="none"/>${body[safe]}</svg>`;
 }
+function updatePracticeGroups(){
+ const grid=$('#stationGrid');if(!grid)return;
+ grid.querySelectorAll('.station-system').forEach(group=>{const count=group.querySelectorAll('.station-card:not([hidden])').length;group.hidden=!count;group.querySelector('.system-count').textContent=count+' presentation'+(count===1?'':'s');});
+ grid.dispatchEvent(new Event('pcm-selection-change'));
+}
+function groupPractice(grid,cases,reveal){
+ const mode=reveal?'systems':'sealed';if(grid.dataset.grouping===mode)return;
+ const selected=document.activeElement,cards=[...grid.querySelectorAll('.station-card')];
+ if(!grid._stationOrder)grid._stationOrder=new Map(cards.map((card,i)=>[card.dataset.case,i]));
+ const order=grid._stationOrder;
+ cards.sort((a,b)=>(order.get(a.dataset.case)??99)-(order.get(b.dataset.case)??99));
+ grid.replaceChildren();grid.dataset.grouping=mode;
+ if(reveal){orderedSystems(cases).forEach((system,i)=>{const rows=cards.filter(card=>cases.find(c=>c.id===card.dataset.case)?.system===system);const group=document.createElement('section');group.className='station-system';group.dataset.system=system;group.setAttribute('role','group');group.setAttribute('aria-labelledby','stationSystem-'+i);group.innerHTML=`<div class="case-system-heading"><h3 id="stationSystem-${i}">${E(systemLabel(system))}</h3><span class="system-count"></span></div><div class="station-system-cards"></div>`;group.querySelector('.station-system-cards').append(...rows);grid.append(group);});}
+ else grid.append(...cards);
+ if(selected&&grid.contains(selected))selected.focus({preventScroll:true});
+ updatePracticeGroups();
+}
+function groupedCaseLinks(cases,renderCard){return orderedSystems(cases).map((system,i)=>{const rows=cases.filter(c=>c.system===system);return `<section class="case-library-system" data-system="${E(system)}" aria-labelledby="caseLibrarySystem-${i}"><div class="case-system-heading"><h2 id="caseLibrarySystem-${i}">${E(systemLabel(system))}</h2><span class="system-count">${rows.length} presentation${rows.length===1?'':'s'}</span></div><div class="system-case-grid">${rows.map(renderCard).join('')}</div></section>`;}).join('');}
 const phaseLabel={briefing:'At the doorway',encounter:'Patient encounter',organize:'Organization interval',note:'SOAP note',submitted:'Feedback ready'};
 function nav(kind){document.querySelectorAll('[data-destination]').forEach(b=>b.setAttribute('aria-current',b.dataset.destination===kind?'page':'false'));}
 function buttons(root){root.querySelectorAll('[data-portal-go]').forEach(b=>b.onclick=()=>window.pcmNavigate?.(b.dataset.portalGo));root.querySelectorAll('[data-resume]').forEach(b=>b.onclick=()=>{location.hash='#/'+b.dataset.resume;});}
@@ -67,28 +94,33 @@ function restoreVoicePanel(){
 function decoratePractice(mode,reveal){
  const grid=$('#stationGrid');if(!grid)return;
  document.body.dataset.workspace='practice';
+ const cases=context?.boot?.cases||window.pcmPortalCases?.()||[];
  grid.querySelectorAll('.station-card').forEach(card=>{
   let art=card.querySelector('.s-illustration');if(!art){art=document.createElement('span');art.className='s-illustration';card.prepend(art);}
-  const c=(context?.boot?.cases||window.pcmPortalCases?.()||[]).find(c=>c.id===card.dataset.case),key=reveal?family(c?.system):'sealed';
+  const c=cases.find(c=>c.id===card.dataset.case),key=reveal?family(c?.system):'sealed';
   if(art.dataset.kind!==key){art.dataset.kind=key;art.innerHTML=illustration(key);}
  });
- const system=$('#sysPick');if(system){system.hidden=!reveal;system.disabled=!reveal;if(!reveal&&system.value){system.value='';system.dispatchEvent(new Event('change',{bubbles:true}));}}
+ groupPractice(grid,cases,reveal);
+ const system=$('#sysPick');if(system){system.hidden=true;system.disabled=!reveal;if(!reveal&&system.value){system.value='';system.dispatchEvent(new Event('change',{bubbles:true}));}}
  for(const id of ['skillFilter','variantChoice']){const el=$('#'+id);if(!el)continue;el.closest('label').hidden=!reveal;if(!reveal&&id==='skillFilter'&&el.value){el.value='';el.dispatchEvent(new Event('change',{bubbles:true}));}}
- let families=$('#portalFamilies');if(!families){families=document.createElement('div');families.id='portalFamilies';families.className='portal-families';families.setAttribute('aria-label','Choose a complaint family');grid.before(families);}
+ let families=$('#portalFamilies');if(!families){families=document.createElement('div');families.id='portalFamilies';families.className='portal-families';families.setAttribute('aria-label','Filter by system');grid.before(families);}
  families.hidden=!reveal;
- const systems=[...new Set((context?.boot?.cases||window.pcmPortalCases?.()||[]).map(c=>c.system))];
  if(reveal&&families.dataset.ready!=='true'){
-  families.innerHTML=`<button type="button" class="portal-family selected" data-family="">${icon('practice')}<span>All presentations</span></button>`+systems.map(s=>`<button type="button" class="portal-family" data-family="${E(s)}">${illustration(family(s))}<span>${E(s)}</span></button>`).join('');families.dataset.ready='true';
+  families.innerHTML=`<button type="button" class="portal-family selected" data-family="" aria-pressed="true">${icon('practice')}<span>All systems</span></button>`+orderedSystems(cases).map(s=>`<button type="button" class="portal-family" data-family="${E(s)}" aria-pressed="false">${illustration(family(s))}<span>${E(s)}</span></button>`).join('');families.dataset.ready='true';
   families.querySelectorAll('button').forEach(b=>b.onclick=()=>{system.value=b.dataset.family;system.dispatchEvent(new Event('change',{bubbles:true}));});
   system?.addEventListener('change',()=>families.querySelectorAll('button').forEach(b=>{const selected=b.dataset.family===system.value;b.classList.toggle('selected',selected);b.setAttribute('aria-pressed',String(selected));}));
  }
+ updatePracticeGroups();
 }
 function setupNavigation(){
+ const header=$('.topbar');
+ if(header){const measure=()=>document.documentElement.style.setProperty('--portal-header-height',header.getBoundingClientRect().height+'px');headerObserver?.disconnect();if(window.ResizeObserver){headerObserver=new ResizeObserver(measure);headerObserver.observe(header);}measure();}
+
  const skip=$('.skip-link');if(skip)skip.onclick=e=>{e.preventDefault();const view=$('#view');view?.focus({preventScroll:true});view?.scrollIntoView({block:'start',behavior:'instant'});};
  const bar=$('.workspace-nav');if(bar)bar.innerHTML=[['home','Home'],['practice','Practice'],['cases','Cases & print'],['progress','Progress'],['scoring','Scoring']].map(([key,label])=>`<button class="btn ghost sm" type="button" data-destination="${key}">${icon(key)}<span>${label}</span></button>`).join('');
  document.querySelectorAll('[data-destination]').forEach(b=>b.onclick=()=>window.pcmNavigate?.(b.dataset.destination));
  $('#btnBrand')?.addEventListener('click',()=>window.pcmNavigate?.('home'));
 }
-window.pcmPortal={render,decoratePractice,icon,illustration,setupNavigation,nav,invalidate:()=>{restoreVoicePanel();generation++;}};
+window.pcmPortal={render,decoratePractice,updatePracticeGroups,orderedSystems,systemLabel,family,groupedCaseLinks,icon,illustration,setupNavigation,nav,invalidate:()=>{restoreVoicePanel();generation++;}};
 window.addEventListener('pcm-lobby-ready',()=>decoratePractice(window.pcmPortalMode?.().mode,window.pcmPortalMode?.().reveal));
 })();
