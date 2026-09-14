@@ -647,6 +647,30 @@ def question_clauses(question):
     return [part.strip() for part in re.split(r'[?;]|,\s*(?='+starters+r')|,?\s+and\s+(?='+starters+r')',question,flags=re.I) if part.strip()]
 
 
+# Presence is its own question, not a request to repeat the last descriptor.
+# Keep the grammar bounded: named sites, timing, severity, radiation, causes,
+# treatment and another person's symptoms keep their more specific routes.
+def generic_pain_presence_question(question):
+    q = nlp.normalize(dialogue.strip_discourse(question)).strip(" .?")
+    if _instruction_or_other_person(question):
+        return False
+    referent = (r"(?:it|this|that|these symptoms|the symptoms|this feeling|that feeling|"
+                r"(?:(?:the|your) )?(?:palpitations|(?:racing |fluttering |fast |irregular )?heart(?:beat)?))")
+    suffix = (r"(?: (?:associated with|along with|with|from) " + referent +
+              r"| at all| anywhere(?: else)?)?")
+    forms = (
+        r"(?:(?:do|did) you (?:have|feel|experience)|have you (?:had|felt|experienced)|"
+        r"are you (?:having|feeling|experiencing)|is there) (?:any |some )?(?:pain|discomfort)",
+        r"(?:any|what about) (?:pain|discomfort)",
+        r"are you in (?:any )?pain",
+        r"(?:is|was|are|were) " + referent + r" (?:at all )?painful",
+        r"(?:does|did) " + referent + r" hurt",
+        r"does anything hurt",
+        r"are you hurting",
+    )
+    return any(re.fullmatch(form + suffix, q) for form in forms)
+
+
 def functional_effect_question(question):
     """Interference with activity is different from the symptom stopping."""
     q = nlp.normalize(question)
@@ -1766,6 +1790,24 @@ class PatientEngine:
             self._release_opening_facts(state, meta)
             return self._join(ack, self.opening())
 
+        # Pain presence carries a new request even when it refers to "that".
+        # Appending the old question would answer a new symptom with the old
+        # symptom's quality; a recognized presence question therefore ends here.
+        if generic_pain_presence_question(utterance):
+            pain = self._pain_presence_hits(utterance, state)
+            if pain:
+                parts = [self._say(fact, state, meta) for fact in pain]
+                if "anywhere" in text and all(
+                        fact.get("category") == "pertinent_negative" for fact in pain):
+                    # A regional denial does not answer a whole-body screen.
+                    meta["unavailable_topics"] = ["pain elsewhere"]
+                    parts.append("The case does not provide information about pain elsewhere.")
+                return self._join(ack, dialogue.join_spoken(parts))
+            meta.update(kind="non_answer", no_information=True, unscripted_topic=True)
+            subject = "pain elsewhere" if "anywhere else" in text else "pain with this symptom"
+            return self._join(ack, "I do not have information about " + subject +
+                             " in this simulated case. Please treat it as unavailable, not as a denial.")
+
         # 4b. A bare follow-up resolves against the subject already on the
         #     table before any general matcher gets to guess at its topic.
         followup = self._followup_hits(utterance, state)
@@ -2536,6 +2578,14 @@ class PatientEngine:
         aspect = self._aspect_hits(utterance)
         if aspect:
             return aspect
+        # A newly named symptom is not an empty pronoun. If this case has no
+        # answer for "any nausea with that?", borrowing the preceding quality
+        # question confidently answers the wrong symptom and grants bad credit.
+        named_symptoms = nlp.find_concepts(utterance, {
+            cid: lexicon.CORE_CONCEPTS[cid] for cid in lexicon.DENIABLE_SYMPTOMS
+            if cid in lexicon.CORE_CONCEPTS})
+        if named_symptoms:
+            return []
         if self._is_elliptical(utterance) and state.get("last_question"):
             context = utterance + " " + state["last_question"]
             hits = self._trigger_hits(context, state)
@@ -2543,6 +2593,92 @@ class PatientEngine:
                 return hits
             return self._aspect_hits(context)
         return []
+
+    @staticmethod
+    def _pain_regions(text):
+        """Anatomical scope in authored patient language, never a diagnosis."""
+        cues = {
+            "chest": r"chest|heart|breastbone|breath|cough|palpitat",
+            "abdomen": r"abdom|stomach|belly|ribs",
+            "back": r"back|flank",
+            "head": r"head|migraine",
+            "ear": r"ear",
+            "throat": r"throat|swallow",
+            "urinary": r"urin|pee|bladder|urethra",
+            "leg": r"leg|calf|shin|knee",
+            "hand": r"hand|finger|knuckle|wrist",
+            "shoulder": r"shoulder|arm",
+            "foot": r"feet|foot|toe",
+            "skin": r"rash|itch|skin",
+        }
+        return {name for name, cue in cues.items()
+                if re.search(r"\b(?:" + cue + r")", text, re.I)}
+
+    def _pain_presence_hits(self, utterance, state):
+        """Return what the case actually says about pain in this complaint.
+
+        Primary pain/discomfort beats an unrelated regional negative. A chest
+        pain denial stays a chest pain denial; it is never rewritten as "no
+        pain anywhere". Severity and radiation cannot establish pain presence.
+        """
+        def spoken(fact):
+            return " ".join(fact.get("sp_says") or [fact.get("value") or ""])
+
+        pain_language = re.compile(
+            r"\b(?:pains?|painful|hurt(?:s|ing)?|aches?|achy|aching|headaches?|"
+            r"cramps?|cramping|crampy|sore|soreness|burn(?:s|ing)?|stinging|pressure)\b", re.I)
+        candidates = [f for f in self.facts.values()
+                      if f.get("category") in ("associated", "pertinent_negative")
+                      and len(f.get("concepts", {})) == 1
+                      and any(re.search(r"(?:pain|odynophagia)", cid)
+                              for cid in f.get("concepts", {}))
+                      and pain_language.search(spoken(f))
+                      and not f.get("requires_current_status_question")]
+        recent = [f for f in candidates if f["id"] in state.get("last_facts", [])]
+        query = nlp.normalize(utterance)
+        if "anywhere else" in query:
+            return []
+        if re.search(r"\b(?:it|this|that)\b", query) and len(recent) == 1:
+            return recent
+        opening_facts = [f for f in self.facts.values()
+                         if f.get("category") == "chief_complaint"]
+        primary = [f for f in self.facts.values()
+                   if f.get("category") in ("chief_complaint", "location", "quality")]
+        quality = [f for f in primary if f.get("category") == "quality"]
+        complaint_text = " ".join([self.opening()] + [spoken(f) for f in primary])
+        # An explicitly named heartbeat remains cardiac even when the case's
+        # main complaint is elsewhere; it cannot borrow that complaint's pain.
+        if re.search(r"\bpalpitations\b|\bheart(?:beat)?\b", query):
+            cardiac = [f for f in candidates if "chest" in self._pain_regions(spoken(f))]
+            if len(cardiac) == 1:
+                return cardiac
+            if not re.search(r"palpitat|heart.*(?:flutter|rac|fast|irregular)|flutter|heartbeat",
+                             complaint_text, re.I):
+                return []
+        # An explicit painless opening is the answer, not an inferred denial
+        # assembled from whichever regional negative appears first in the file.
+        painless = [f for f in opening_facts if re.search(
+            r"nothing hurts|no pain|without (?:any )?pain|painless", spoken(f), re.I)]
+        if painless:
+            return painless[:1]
+        pain_quality = [f for f in quality if pain_language.search(spoken(f))]
+        if pain_quality:
+            return pain_quality[:1]
+        # "It is throbbing" is a meaningful answer once the authored opening
+        # identifies a headache; the same descriptor rule must not turn a
+        # cough's sputum quality into an answer about chest pain.
+        if pain_language.search(self.opening()):
+            descriptors = [f for f in quality if re.search(
+                r"\b(?:throbbing|scratchy|raw|sharp|dull|squeezing)\b", spoken(f), re.I)]
+            if descriptors:
+                return descriptors[:1]
+            painful_opening = [f for f in opening_facts if pain_language.search(spoken(f))]
+            if painful_opening:
+                return painful_opening[:1]
+        complaint_regions = self._pain_regions(complaint_text)
+        scoped = [f for f in candidates
+                  if complaint_regions & self._pain_regions(spoken(f))]
+        return scoped[:1] if len(scoped) == 1 else []
 
     def _specific_setting_hits(self, utterance):
         """A preceding-illness or exposure question, answered only by a fact
