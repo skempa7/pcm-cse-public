@@ -444,7 +444,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "Do you drink alcohol, and how much?",
-          "patient": "One alcoholic drink weekly; none during this illness.",
+          "patient": "I do not drink alcohol.",
           "why": "",
           "event_ids": [
             62,
@@ -472,7 +472,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What do you do for work?",
-          "patient": "I am a preschool teacher.",
+          "patient": "I am a preschool teacher. I help the children use the toilet and prepare their snacks.",
           "why": "",
           "event_ids": [
             66,
@@ -795,7 +795,7 @@
         {
           "kind": "dialogue",
           "section": "Explain next steps",
-          "student": "I recommend replacing fluids safely and assessing the effect of the diarrhea on your circulation. An infection is possible, but medicines and other bowel conditions may matter. We should review whether testing or supervised fluid treatment is needed.",
+          "student": "I recommend replacing fluids safely and assessing the effect of the diarrhea on your circulation. An infection is possible, but medicines and other bowel conditions may matter. We should review whether testing or supervised fluid treatment is needed. Because you help with toileting and snacks, wash your hands with soap and water and avoid preparing food or caring for children while ill and for at least 48 hours after symptoms stop. Follow your workplace and local public-health return rules.",
           "patient": "Okay, that makes sense.",
           "why": "Proposed care, not a record of tests or treatment already completed.",
           "event_ids": [
@@ -832,7 +832,7 @@
         }
       ],
       "note": {
-        "S": "cc: Watery diarrhea and reduced fluid intake\n\nHPI: 25-year-old woman with watery diarrhea; onset 2 days ago. Seven stools in the past day without visible blood. Nonradiating lower abdominal cramps, 4/10, precede stools and ease afterward; large meals worsen cramps. Household child had similar symptoms. Nausea and two vomiting episodes yesterday, none today; thirsty, fatigued and lightheaded when standing. Only two voids today, dark urine. Small sips of oral rehydration drink help; limited food intake. No recent similar illness.\n\nPerspective: Do I need antibiotics to get back to work?\n\nPMH: No inflammatory bowel disease or immunosuppression.\n\nPSH: No surgeries or admissions.\n\nMeds: No daily medication; no antibiotics in the past 3 months.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly; none during this illness. No recreational drugs. Preschool teacher; lives with husband and child; no recent travel or untreated-water exposure; last period 1 week ago.\n\nFH: My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.; I have a brother who's twenty-three and he's healthy.; No one in my family has inflammatory bowel disease.\n\nROS: Gastrointestinal - Reports diarrhea. Reports nausea. Reports vomiting. General - Reports thirst. Denies fever. Reports fatigue. Urinary - Reports urine output. Denies dysuria. Denies hematuria.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.",
+        "S": "cc: Watery diarrhea and reduced fluid intake\n\nHPI: 25-year-old woman with watery diarrhea; onset 2 days ago. Seven stools in the past day without visible blood. Nonradiating lower abdominal cramps, 4/10, precede stools and ease afterward; large meals worsen cramps. Household child had similar symptoms. Nausea and two vomiting episodes yesterday, none today; thirsty, fatigued and lightheaded when standing. Only two voids today, dark urine. Small sips of oral rehydration drink help; limited food intake. No recent similar illness.\n\nPerspective: Do I need antibiotics to get back to work?\n\nPMH: No inflammatory bowel disease or immunosuppression.\n\nPSH: No surgeries or admissions.\n\nMeds: No daily medication; no antibiotics in the past 3 months.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked; no alcohol or recreational drugs. Preschool teacher who assists with toileting and prepares snacks. Lives with husband and child. No recent travel or untreated-water exposure; last period 1 week ago.\n\nFH: My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.; I have a brother who's twenty-three and he's healthy.; No one in my family has inflammatory bowel disease.\n\nROS: Gastrointestinal - Reports diarrhea. Reports nausea. Reports vomiting. General - Reports thirst. Denies fever. Reports fatigue. Urinary - Reports reduced urine output. Denies dysuria. Denies hematuria.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.",
         "O": "Vitals: T 98.8 F oral, P 100 bpm, BP 108/70 mmHg, R 18 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Tired appearing, able to drink small sips.\nHeart: Regular rhythm, mildly fast.\nLungs: In the examined posterior fields, clear breath sounds bilaterally.\nAbdomen: Abdomen not distended.\nAbdomen: Active bowel sounds in all quadrants.\nAbdomen: Tympanitic throughout.\nAbdomen: Mild diffuse lower abdominal tenderness. No involuntary guarding.\nHEENT: Oral mucosa is dry.\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Acute infectious gastroenteritis",
@@ -840,7 +840,7 @@
           "3. Medication-associated diarrhea"
         ],
         "P": [
-          "1. Assess hydration and ability to tolerate oral rehydration; consider BMP when dehydration is significant and targeted stool testing for severe, persistent or bloody illness rather than routinely; educate about oral rehydration, hand hygiene and warning signs; recheck within 24\u201348 hours and use urgent care for inability to drink, scant urine, bloody stool or worsening focal pain.",
+          "1. Assess hydration and ability to tolerate oral rehydration; consider BMP when dehydration is significant and targeted stool testing for severe, persistent or bloody illness rather than routinely; educate about oral rehydration, hand hygiene and warning signs; recheck within 24\u201348 hours and use urgent care for inability to drink, scant urine, bloody stool or worsening focal pain. Wash hands with soap and water; avoid preparing food or caring for children until at least 48 hours after symptoms stop, following workplace/public-health rules.",
           "2. Ask about recurrent episodes, nocturnal diarrhea, weight loss and blood; pursue stool inflammatory testing and gastroenterology evaluation only if persistent features support it; explain that current acute exposure makes infection more likely.",
           "3. Reconcile antibiotics, laxatives and supplements; avoid unnecessary antibiotics and review any culprit medication with the prescriber; educate on medication-related diarrhea and arrange reassessment in 48\u201372 hours if symptoms persist despite recovery measures; consider targeted stool testing for persistent illness."
         ]
@@ -1058,7 +1058,7 @@
         },
         {
           "section": "S",
-          "statement": "Never smoked tobacco.",
+          "statement": "Never smoked;",
           "event_ids": [
             61
           ],
@@ -1068,28 +1068,9 @@
         },
         {
           "section": "S",
-          "statement": "One alcoholic drink weekly;",
+          "statement": "no alcohol or recreational drugs.",
           "event_ids": [
-            63
-          ],
-          "classification": "reported / supplied history",
-          "trace_method": "grader-linked delivered evidence",
-          "audit_verdict": "supported"
-        },
-        {
-          "section": "S",
-          "statement": "none during this illness.",
-          "event_ids": [
-            63
-          ],
-          "classification": "reported / supplied history",
-          "trace_method": "grader-linked delivered evidence",
-          "audit_verdict": "supported"
-        },
-        {
-          "section": "S",
-          "statement": "No recreational drugs.",
-          "event_ids": [
+            63,
             65
           ],
           "classification": "reported / supplied history",
@@ -1098,17 +1079,17 @@
         },
         {
           "section": "S",
-          "statement": "Preschool teacher;",
+          "statement": "Preschool teacher who assists with toileting and prepares snacks.",
           "event_ids": [
             67
           ],
           "classification": "reported / supplied history",
-          "trace_method": "grader-linked delivered evidence",
-          "audit_verdict": "supported"
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
         },
         {
           "section": "S",
-          "statement": "lives with husband and child;",
+          "statement": "Lives with husband and child.",
           "event_ids": [
             69
           ],
@@ -1118,7 +1099,7 @@
         },
         {
           "section": "S",
-          "statement": "no recent travel or untreated-water exposure;",
+          "statement": "No recent travel or untreated-water exposure;",
           "event_ids": [
             73
           ],
@@ -1238,7 +1219,7 @@
         },
         {
           "section": "S",
-          "statement": "Urinary - Reports urine output.",
+          "statement": "Urinary - Reports reduced urine output.",
           "event_ids": [
             45
           ],
@@ -1561,7 +1542,7 @@
         },
         {
           "seq": 7,
-          "t_ms": 6,
+          "t_ms": 8,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
@@ -1574,7 +1555,7 @@
         },
         {
           "seq": 8,
-          "t_ms": 6,
+          "t_ms": 9,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -1586,7 +1567,7 @@
         },
         {
           "seq": 9,
-          "t_ms": 8,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have had diarrhea all night, and I feel dried out.",
@@ -1612,7 +1593,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 8,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your symptoms first begin?",
@@ -1623,7 +1604,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 10,
+          "t_ms": 14,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It started 2 days ago.",
@@ -1649,7 +1630,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 10,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -1660,7 +1641,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 12,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The cramps are across my lower abdomen.",
@@ -1686,7 +1667,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 12,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -1698,7 +1679,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 15,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "They do not spread elsewhere.",
@@ -1724,7 +1705,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 15,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -1736,7 +1717,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 16,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The pain is crampy and the stool is watery.",
@@ -1762,7 +1743,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 17,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -1774,7 +1755,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 21,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The cramps are 4/10.",
@@ -1838,7 +1819,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 24,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do the cramps ease between bowel movements?",
@@ -1876,7 +1857,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 26,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Has anyone around you had similar symptoms?",
@@ -1964,7 +1945,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 31,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "A large meal worsens the cramps.",
@@ -2078,7 +2059,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 38,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The stools are watery, without visible blood.",
@@ -2116,7 +2097,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 40,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I feel nauseated.",
@@ -2294,7 +2275,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 48,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -2332,7 +2313,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 50,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does it burn when you urinate?",
@@ -2382,7 +2363,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 53,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No blood in urine.",
@@ -2420,7 +2401,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 55,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No inflammatory bowel disease or immunosuppression.",
@@ -2458,7 +2439,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 57,
+          "t_ms": 56,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No surgeries or admissions.",
@@ -2579,7 +2560,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 66,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Never smoked tobacco.",
@@ -2617,10 +2598,10 @@
         },
         {
           "seq": 63,
-          "t_ms": 69,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "One alcoholic drink weekly; none during this illness.",
+          "text": "I do not drink alcohol.",
           "meta": {
             "facts_released": [
               "alcohol_use"
@@ -2628,7 +2609,7 @@
             "concepts": {
               "alcohol_use": {
                 "polarity": "positive",
-                "value": "One alcoholic drink weekly; none during this illness."
+                "value": "I do not drink alcohol."
               }
             },
             "volunteered": false,
@@ -2696,7 +2677,7 @@
           "t_ms": 72,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "I am a preschool teacher.",
+          "text": "I am a preschool teacher. I help the children use the toilet and prepare their snacks.",
           "meta": {
             "facts_released": [
               "history_context_1"
@@ -2704,7 +2685,7 @@
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a preschool teacher."
+                "value": "I am a preschool teacher. I help the children use the toilet and prepare their snacks."
               }
             },
             "volunteered": false,
@@ -2756,7 +2737,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 74,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you traveled recently?",
@@ -2794,7 +2775,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 76,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you drunk any untreated water?",
@@ -2832,7 +2813,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 78,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -2870,7 +2851,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 80,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -2908,7 +2889,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 82,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are there any other inherited illnesses in your family?",
@@ -2946,7 +2927,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 84,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -2957,7 +2938,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 85,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 1 week ago.",
@@ -2995,7 +2976,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 87,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant, but I have not taken a pregnancy test.",
@@ -3033,7 +3014,7 @@
         },
         {
           "seq": 85,
-          "t_ms": 89,
+          "t_ms": 90,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Do I need antibiotics to get back to work?",
@@ -3059,7 +3040,7 @@
         },
         {
           "seq": 86,
-          "t_ms": 90,
+          "t_ms": 91,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -3070,7 +3051,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 103,
+          "t_ms": 104,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "As I mentioned, do I need antibiotics to get back to work?",
@@ -3096,7 +3077,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 104,
+          "t_ms": 105,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -3107,7 +3088,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 105,
+          "t_ms": 106,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Yes, that's fine. Go ahead.",
@@ -3117,7 +3098,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 104,
+          "t_ms": 105,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -3129,7 +3110,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 10106,
+          "t_ms": 10107,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -3150,7 +3131,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 10106,
+          "t_ms": 10107,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert. Tired appearing, able to drink small sips.",
@@ -3178,7 +3159,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 50106,
+          "t_ms": 50107,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -3204,7 +3185,7 @@
         },
         {
           "seq": 94,
-          "t_ms": 50106,
+          "t_ms": 50107,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rhythm, mildly fast.",
@@ -3226,7 +3207,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 91106,
+          "t_ms": 91107,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -3251,7 +3232,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 91106,
+          "t_ms": 91107,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, clear breath sounds bilaterally.",
@@ -3273,7 +3254,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 91106,
+          "t_ms": 91107,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
@@ -3288,7 +3269,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 100106,
+          "t_ms": 100107,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect abdomen",
@@ -3311,7 +3292,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 100106,
+          "t_ms": 100107,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Abdomen not distended.",
@@ -3333,7 +3314,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 116106,
+          "t_ms": 116107,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -3355,7 +3336,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 116106,
+          "t_ms": 116107,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Active bowel sounds in all quadrants.",
@@ -3377,7 +3358,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 135106,
+          "t_ms": 135107,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -3399,7 +3380,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 135106,
+          "t_ms": 135107,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tympanitic throughout.",
@@ -3421,7 +3402,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 166106,
+          "t_ms": 166107,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -3446,7 +3427,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 166106,
+          "t_ms": 166107,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Mild diffuse lower abdominal tenderness. No involuntary guarding.",
@@ -3474,7 +3455,7 @@
         },
         {
           "seq": 106,
-          "t_ms": 182106,
+          "t_ms": 182107,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect mouth and throat with light",
@@ -3496,7 +3477,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 182106,
+          "t_ms": 182107,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Oral mucosa is dry.",
@@ -3518,7 +3499,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 182106,
+          "t_ms": 182107,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
@@ -3533,7 +3514,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 207106,
+          "t_ms": 207107,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -3555,7 +3536,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 207106,
+          "t_ms": 207107,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T5 paraspinal tissue texture change with mild tenderness on the right.",
@@ -3577,7 +3558,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 226106,
+          "t_ms": 226107,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -3599,7 +3580,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 226106,
+          "t_ms": 226107,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -3621,10 +3602,10 @@
         },
         {
           "seq": 113,
-          "t_ms": 226106,
+          "t_ms": 226107,
           "phase": "encounter",
           "kind": "student_utterance",
-          "text": "I recommend replacing fluids safely and assessing the effect of the diarrhea on your circulation. An infection is possible, but medicines and other bowel conditions may matter. We should review whether testing or supervised fluid treatment is needed.",
+          "text": "I recommend replacing fluids safely and assessing the effect of the diarrhea on your circulation. An infection is possible, but medicines and other bowel conditions may matter. We should review whether testing or supervised fluid treatment is needed. Because you help with toileting and snacks, wash your hands with soap and water and avoid preparing food or caring for children while ill and for at least 48 hours after symptoms stop. Follow your workplace and local public-health return rules.",
           "meta": {
             "plan_talk": true,
             "mode": "type",
@@ -3633,10 +3614,10 @@
         },
         {
           "seq": 114,
-          "t_ms": 226106,
+          "t_ms": 226107,
           "phase": "encounter",
           "kind": "counseling",
-          "text": "I recommend replacing fluids safely and assessing the effect of the diarrhea on your circulation. An infection is possible, but medicines and other bowel conditions may matter. We should review whether testing or supervised fluid treatment is needed.",
+          "text": "I recommend replacing fluids safely and assessing the effect of the diarrhea on your circulation. An infection is possible, but medicines and other bowel conditions may matter. We should review whether testing or supervised fluid treatment is needed. Because you help with toileting and snacks, wash your hands with soap and water and avoid preparing food or caring for children while ill and for at least 48 hours after symptoms stop. Follow your workplace and local public-health return rules.",
           "meta": {
             "topics": [
               "hydration",
@@ -3646,7 +3627,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 226106,
+          "t_ms": 226107,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -3656,7 +3637,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 226106,
+          "t_ms": 226107,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -3669,7 +3650,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 226106,
+          "t_ms": 226107,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Do I need antibiotics to get back to work?",
@@ -3684,7 +3665,7 @@
         },
         {
           "seq": 118,
-          "t_ms": 226106,
+          "t_ms": 226107,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Antibiotics are not automatically helpful for watery diarrhea and can have harms. I recommend checking dehydration and whether features require targeted tests. The first practical step is small frequent amounts of oral rehydration solution, with urgent reassessment if you cannot drink or pass very little urine.",
@@ -3696,7 +3677,7 @@
         },
         {
           "seq": 119,
-          "t_ms": 226106,
+          "t_ms": 226107,
           "phase": "encounter",
           "kind": "counseling",
           "text": "Antibiotics are not automatically helpful for watery diarrhea and can have harms. I recommend checking dehydration and whether features require targeted tests. The first practical step is small frequent amounts of oral rehydration solution, with urgent reassessment if you cannot drink or pass very little urine.",
@@ -3710,7 +3691,7 @@
         },
         {
           "seq": 120,
-          "t_ms": 226106,
+          "t_ms": 226107,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. Thank you for explaining that.",
@@ -3719,13 +3700,13 @@
           }
         }
       ],
-      "note_words": 468,
-      "estimated_encounter_s": 571,
+      "note_words": 493,
+      "estimated_encounter_s": 591,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 7
+        "unresolved_count": 8
       },
       "reasoning": [
         {
@@ -3837,11 +3818,18 @@
           "kind": "supplementary_clinical",
           "reviewed": "2026-09-08",
           "review_scope": "Presentation pattern, key danger signs, and diagnostic/management direction; local prescribing protocols are not specified."
+        },
+        {
+          "title": "How to prevent norovirus",
+          "url": "https://www.cdc.gov/norovirus/prevention/index.html",
+          "kind": "supplementary_clinical",
+          "reviewed": "2026-09-14",
+          "review_scope": "Soap-and-water hygiene and at least48hours symptom-free before food preparation or childcare are relevant to suspected infectious gastroenteritis in a preschool worker; no pathogen is claimed confirmed."
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "d1b3555924f4862fa9cac30ad9660d5d488a106ac2be5481c0b635d6e5a80afb",
-      "engine_version": "4.0.4"
+      "case_hash": "2fe0449ae2aa439f98b45244087bdf75fba5d47bc673a042ea94e2737b3e622a",
+      "engine_version": "4.1.0"
     },
     {
       "case_id": "gi-diarrhea-dehydration",
@@ -4291,7 +4279,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "Do you drink alcohol, and how much?",
-          "patient": "One alcoholic drink weekly; none during this illness.",
+          "patient": "I do not drink alcohol.",
           "why": "",
           "event_ids": [
             62,
@@ -4319,7 +4307,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What do you do for work?",
-          "patient": "I am a preschool teacher.",
+          "patient": "I am a preschool teacher. I help the children use the toilet and prepare their snacks.",
           "why": "",
           "event_ids": [
             66,
@@ -4642,7 +4630,7 @@
         {
           "kind": "dialogue",
           "section": "Explain next steps",
-          "student": "I recommend replacing fluids safely and assessing the effect of the diarrhea on your circulation. An infection is possible, but medicines and other bowel conditions may matter. We should review whether testing or supervised fluid treatment is needed.",
+          "student": "I recommend replacing fluids safely and assessing the effect of the diarrhea on your circulation. An infection is possible, but medicines and other bowel conditions may matter. We should review whether testing or supervised fluid treatment is needed. Because you help with toileting and snacks, wash your hands with soap and water and avoid preparing food or caring for children while ill and for at least 48 hours after symptoms stop. Follow your workplace and local public-health return rules.",
           "patient": "Okay, that makes sense.",
           "why": "Proposed care, not a record of tests or treatment already completed.",
           "event_ids": [
@@ -4679,7 +4667,7 @@
         }
       ],
       "note": {
-        "S": "cc: Watery diarrhea and reduced fluid intake\n\nHPI: 25-year-old woman with watery diarrhea; onset 4 days ago. Seven stools in the past day without visible blood. Nonradiating lower abdominal cramps, 4/10, precede stools and ease afterward; large meals worsen cramps. Household child had similar symptoms. Nausea and two vomiting episodes yesterday, none today; thirsty, fatigued and lightheaded when standing. Only two voids today, dark urine. Small sips of oral rehydration drink help; limited food intake. No recent similar illness.\n\nPerspective: Do I need antibiotics to get back to work?\n\nPMH: No inflammatory bowel disease or immunosuppression.\n\nPSH: No surgeries or admissions.\n\nMeds: No daily medication; no antibiotics in the past 3 months.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly; none during this illness. No recreational drugs. Preschool teacher; lives with husband and child; no recent travel or untreated-water exposure; last period 1 week ago.\n\nFH: My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.; I have a brother who's twenty-three and he's healthy.; No one in my family has inflammatory bowel disease.\n\nROS: Gastrointestinal - Reports diarrhea. Reports nausea. Reports vomiting. General - Reports thirst. Denies fever. Reports fatigue. Urinary - Reports urine output. Denies dysuria. Denies hematuria.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.",
+        "S": "cc: Watery diarrhea and reduced fluid intake\n\nHPI: 25-year-old woman with watery diarrhea; onset 4 days ago. Seven stools in the past day without visible blood. Nonradiating lower abdominal cramps, 4/10, precede stools and ease afterward; large meals worsen cramps. Household child had similar symptoms. Nausea and two vomiting episodes yesterday, none today; thirsty, fatigued and lightheaded when standing. Only two voids today, dark urine. Small sips of oral rehydration drink help; limited food intake. No recent similar illness.\n\nPerspective: Do I need antibiotics to get back to work?\n\nPMH: No inflammatory bowel disease or immunosuppression.\n\nPSH: No surgeries or admissions.\n\nMeds: No daily medication; no antibiotics in the past 3 months.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked; no alcohol or recreational drugs. Preschool teacher who assists with toileting and prepares snacks. Lives with husband and child. No recent travel or untreated-water exposure; last period 1 week ago.\n\nFH: My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.; I have a brother who's twenty-three and he's healthy.; No one in my family has inflammatory bowel disease.\n\nROS: Gastrointestinal - Reports diarrhea. Reports nausea. Reports vomiting. General - Reports thirst. Denies fever. Reports fatigue. Urinary - Reports reduced urine output. Denies dysuria. Denies hematuria.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.",
         "O": "Vitals: T 98.8 F oral, P 100 bpm, BP 108/70 mmHg, R 18 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Tired appearing, able to drink small sips.\nHeart: Regular rhythm, mildly fast.\nLungs: In the examined posterior fields, clear breath sounds bilaterally.\nAbdomen: Abdomen not distended.\nAbdomen: Active bowel sounds in all quadrants.\nAbdomen: Tympanitic throughout.\nAbdomen: Mild diffuse lower abdominal tenderness. No involuntary guarding.\nHEENT: Oral mucosa is dry.\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Acute infectious gastroenteritis",
@@ -4687,7 +4675,7 @@
           "3. Medication-associated diarrhea"
         ],
         "P": [
-          "1. Assess hydration and ability to tolerate oral rehydration; consider BMP when dehydration is significant and targeted stool testing for severe, persistent or bloody illness rather than routinely; educate about oral rehydration, hand hygiene and warning signs; recheck within 24\u201348 hours and use urgent care for inability to drink, scant urine, bloody stool or worsening focal pain.",
+          "1. Assess hydration and ability to tolerate oral rehydration; consider BMP when dehydration is significant and targeted stool testing for severe, persistent or bloody illness rather than routinely; educate about oral rehydration, hand hygiene and warning signs; recheck within 24\u201348 hours and use urgent care for inability to drink, scant urine, bloody stool or worsening focal pain. Wash hands with soap and water; avoid preparing food or caring for children until at least 48 hours after symptoms stop, following workplace/public-health rules.",
           "2. Ask about recurrent episodes, nocturnal diarrhea, weight loss and blood; pursue stool inflammatory testing and gastroenterology evaluation only if persistent features support it; explain that current acute exposure makes infection more likely.",
           "3. Reconcile antibiotics, laxatives and supplements; avoid unnecessary antibiotics and review any culprit medication with the prescriber; educate on medication-related diarrhea and arrange reassessment in 48\u201372 hours if symptoms persist despite recovery measures; consider targeted stool testing for persistent illness."
         ]
@@ -4905,7 +4893,7 @@
         },
         {
           "section": "S",
-          "statement": "Never smoked tobacco.",
+          "statement": "Never smoked;",
           "event_ids": [
             61
           ],
@@ -4915,28 +4903,9 @@
         },
         {
           "section": "S",
-          "statement": "One alcoholic drink weekly;",
+          "statement": "no alcohol or recreational drugs.",
           "event_ids": [
-            63
-          ],
-          "classification": "reported / supplied history",
-          "trace_method": "grader-linked delivered evidence",
-          "audit_verdict": "supported"
-        },
-        {
-          "section": "S",
-          "statement": "none during this illness.",
-          "event_ids": [
-            63
-          ],
-          "classification": "reported / supplied history",
-          "trace_method": "grader-linked delivered evidence",
-          "audit_verdict": "supported"
-        },
-        {
-          "section": "S",
-          "statement": "No recreational drugs.",
-          "event_ids": [
+            63,
             65
           ],
           "classification": "reported / supplied history",
@@ -4945,17 +4914,17 @@
         },
         {
           "section": "S",
-          "statement": "Preschool teacher;",
+          "statement": "Preschool teacher who assists with toileting and prepares snacks.",
           "event_ids": [
             67
           ],
           "classification": "reported / supplied history",
-          "trace_method": "grader-linked delivered evidence",
-          "audit_verdict": "supported"
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
         },
         {
           "section": "S",
-          "statement": "lives with husband and child;",
+          "statement": "Lives with husband and child.",
           "event_ids": [
             69
           ],
@@ -4965,7 +4934,7 @@
         },
         {
           "section": "S",
-          "statement": "no recent travel or untreated-water exposure;",
+          "statement": "No recent travel or untreated-water exposure;",
           "event_ids": [
             73
           ],
@@ -5085,7 +5054,7 @@
         },
         {
           "section": "S",
-          "statement": "Urinary - Reports urine output.",
+          "statement": "Urinary - Reports reduced urine output.",
           "event_ids": [
             45
           ],
@@ -5373,7 +5342,7 @@
         },
         {
           "seq": 4,
-          "t_ms": 0,
+          "t_ms": 1,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
@@ -5384,7 +5353,7 @@
         },
         {
           "seq": 5,
-          "t_ms": 0,
+          "t_ms": 1,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
@@ -5396,7 +5365,7 @@
         },
         {
           "seq": 6,
-          "t_ms": 0,
+          "t_ms": 1,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
@@ -5408,7 +5377,7 @@
         },
         {
           "seq": 7,
-          "t_ms": 7,
+          "t_ms": 8,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
@@ -5421,7 +5390,7 @@
         },
         {
           "seq": 8,
-          "t_ms": 8,
+          "t_ms": 9,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -5433,7 +5402,7 @@
         },
         {
           "seq": 9,
-          "t_ms": 11,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have had diarrhea all night, and I feel dried out.",
@@ -5459,7 +5428,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 11,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your symptoms first begin?",
@@ -5470,7 +5439,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 13,
+          "t_ms": 14,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It started 4 days ago.",
@@ -5496,7 +5465,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 13,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -5507,7 +5476,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 15,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The cramps are across my lower abdomen.",
@@ -5533,7 +5502,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 15,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -5545,7 +5514,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 16,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "They do not spread elsewhere.",
@@ -5571,7 +5540,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 17,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -5583,7 +5552,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 18,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The pain is crampy and the stool is watery.",
@@ -5609,7 +5578,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 19,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -5621,7 +5590,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 20,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The cramps are 4/10.",
@@ -5647,7 +5616,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 21,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How many watery stools have you had in the past day?",
@@ -5659,7 +5628,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 22,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have had 7 watery stools in the past day.",
@@ -5685,7 +5654,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 23,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do the cramps ease between bowel movements?",
@@ -5697,7 +5666,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 24,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Cramps come before each bowel movement and then ease.",
@@ -5723,7 +5692,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 25,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Has anyone around you had similar symptoms?",
@@ -5735,7 +5704,7 @@
         },
         {
           "seq": 25,
-          "t_ms": 26,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "A child in my household had similar symptoms.",
@@ -5761,7 +5730,7 @@
         },
         {
           "seq": 26,
-          "t_ms": 27,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -5773,7 +5742,7 @@
         },
         {
           "seq": 27,
-          "t_ms": 28,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Small sips of oral rehydration drink help.",
@@ -5799,7 +5768,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 29,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -5811,7 +5780,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 30,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "A large meal worsens the cramps.",
@@ -5837,7 +5806,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 31,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -5849,7 +5818,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 32,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I tried small sips of water but have eaten little.",
@@ -5875,7 +5844,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 33,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -5887,7 +5856,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 35,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No similar illness recently.",
@@ -5925,7 +5894,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 37,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The stools are watery, without visible blood.",
@@ -6027,7 +5996,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 41,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt unusually thirsty?",
@@ -6103,7 +6072,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 45,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How much have you been urinating today?",
@@ -6141,7 +6110,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 47,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -6153,7 +6122,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 48,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No measured fever.",
@@ -6179,7 +6148,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 49,
+          "t_ms": 50,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does it burn when you urinate?",
@@ -6191,7 +6160,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 50,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "There is no burning when I urinate.",
@@ -6217,7 +6186,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 51,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed blood in your urine?",
@@ -6229,7 +6198,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 52,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No blood in urine.",
@@ -6267,7 +6236,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 54,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No inflammatory bowel disease or immunosuppression.",
@@ -6305,7 +6274,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 56,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No surgeries or admissions.",
@@ -6376,7 +6345,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 62,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -6414,7 +6383,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 64,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -6452,7 +6421,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 66,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -6464,10 +6433,10 @@
         },
         {
           "seq": 63,
-          "t_ms": 68,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "One alcoholic drink weekly; none during this illness.",
+          "text": "I do not drink alcohol.",
           "meta": {
             "facts_released": [
               "alcohol_use"
@@ -6475,7 +6444,7 @@
             "concepts": {
               "alcohol_use": {
                 "polarity": "positive",
-                "value": "One alcoholic drink weekly; none during this illness."
+                "value": "I do not drink alcohol."
               }
             },
             "volunteered": false,
@@ -6490,7 +6459,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 68,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -6502,7 +6471,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 70,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -6528,7 +6497,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 70,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -6540,10 +6509,10 @@
         },
         {
           "seq": 67,
-          "t_ms": 71,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "I am a preschool teacher.",
+          "text": "I am a preschool teacher. I help the children use the toilet and prepare their snacks.",
           "meta": {
             "facts_released": [
               "history_context_1"
@@ -6551,7 +6520,7 @@
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a preschool teacher."
+                "value": "I am a preschool teacher. I help the children use the toilet and prepare their snacks."
               }
             },
             "volunteered": false,
@@ -6566,7 +6535,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 72,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -6577,7 +6546,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 73,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband and child.",
@@ -6603,7 +6572,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 74,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you traveled recently?",
@@ -6615,7 +6584,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 75,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not traveled recently.",
@@ -6641,7 +6610,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 76,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you drunk any untreated water?",
@@ -6653,7 +6622,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 77,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not had untreated-water exposure.",
@@ -6679,7 +6648,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 78,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -6691,7 +6660,7 @@
         },
         {
           "seq": 75,
-          "t_ms": 79,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.",
@@ -6717,7 +6686,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 80,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -6729,7 +6698,7 @@
         },
         {
           "seq": 77,
-          "t_ms": 81,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have a brother who's twenty-three and he's healthy.",
@@ -6767,7 +6736,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 83,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No one in my family has inflammatory bowel disease.",
@@ -6793,7 +6762,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 83,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -6804,7 +6773,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 85,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 1 week ago.",
@@ -6830,7 +6799,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 85,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -6842,7 +6811,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 87,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant, but I have not taken a pregnancy test.",
@@ -6868,7 +6837,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 87,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -6906,7 +6875,7 @@
         },
         {
           "seq": 86,
-          "t_ms": 89,
+          "t_ms": 90,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -6917,7 +6886,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 100,
+          "t_ms": 101,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "As I mentioned, do I need antibiotics to get back to work?",
@@ -6943,7 +6912,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 101,
+          "t_ms": 102,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -6954,7 +6923,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 102,
+          "t_ms": 103,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Yes, that's fine. Go ahead.",
@@ -6964,7 +6933,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 101,
+          "t_ms": 102,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -6976,7 +6945,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 10103,
+          "t_ms": 10104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -6997,7 +6966,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 10103,
+          "t_ms": 10104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert. Tired appearing, able to drink small sips.",
@@ -7025,7 +6994,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 50103,
+          "t_ms": 50104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -7051,7 +7020,7 @@
         },
         {
           "seq": 94,
-          "t_ms": 50103,
+          "t_ms": 50104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rhythm, mildly fast.",
@@ -7073,7 +7042,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 91103,
+          "t_ms": 91104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -7098,7 +7067,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 91103,
+          "t_ms": 91104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, clear breath sounds bilaterally.",
@@ -7120,7 +7089,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 91103,
+          "t_ms": 91104,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
@@ -7135,7 +7104,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 100103,
+          "t_ms": 100104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect abdomen",
@@ -7158,7 +7127,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 100103,
+          "t_ms": 100104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Abdomen not distended.",
@@ -7180,7 +7149,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 116103,
+          "t_ms": 116104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -7202,7 +7171,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 116103,
+          "t_ms": 116104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Active bowel sounds in all quadrants.",
@@ -7224,7 +7193,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 135103,
+          "t_ms": 135104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -7246,7 +7215,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 135103,
+          "t_ms": 135104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tympanitic throughout.",
@@ -7268,7 +7237,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 166103,
+          "t_ms": 166104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -7293,7 +7262,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 166103,
+          "t_ms": 166104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Mild diffuse lower abdominal tenderness. No involuntary guarding.",
@@ -7321,7 +7290,7 @@
         },
         {
           "seq": 106,
-          "t_ms": 182103,
+          "t_ms": 182104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect mouth and throat with light",
@@ -7343,7 +7312,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 182103,
+          "t_ms": 182104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Oral mucosa is dry.",
@@ -7365,7 +7334,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 182103,
+          "t_ms": 182104,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
@@ -7380,7 +7349,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 207103,
+          "t_ms": 207104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -7402,7 +7371,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 207103,
+          "t_ms": 207104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T5 paraspinal tissue texture change with mild tenderness on the right.",
@@ -7424,7 +7393,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 226103,
+          "t_ms": 226104,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -7446,7 +7415,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 226103,
+          "t_ms": 226104,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -7468,10 +7437,10 @@
         },
         {
           "seq": 113,
-          "t_ms": 226103,
+          "t_ms": 226104,
           "phase": "encounter",
           "kind": "student_utterance",
-          "text": "I recommend replacing fluids safely and assessing the effect of the diarrhea on your circulation. An infection is possible, but medicines and other bowel conditions may matter. We should review whether testing or supervised fluid treatment is needed.",
+          "text": "I recommend replacing fluids safely and assessing the effect of the diarrhea on your circulation. An infection is possible, but medicines and other bowel conditions may matter. We should review whether testing or supervised fluid treatment is needed. Because you help with toileting and snacks, wash your hands with soap and water and avoid preparing food or caring for children while ill and for at least 48 hours after symptoms stop. Follow your workplace and local public-health return rules.",
           "meta": {
             "plan_talk": true,
             "mode": "type",
@@ -7480,10 +7449,10 @@
         },
         {
           "seq": 114,
-          "t_ms": 226103,
+          "t_ms": 226104,
           "phase": "encounter",
           "kind": "counseling",
-          "text": "I recommend replacing fluids safely and assessing the effect of the diarrhea on your circulation. An infection is possible, but medicines and other bowel conditions may matter. We should review whether testing or supervised fluid treatment is needed.",
+          "text": "I recommend replacing fluids safely and assessing the effect of the diarrhea on your circulation. An infection is possible, but medicines and other bowel conditions may matter. We should review whether testing or supervised fluid treatment is needed. Because you help with toileting and snacks, wash your hands with soap and water and avoid preparing food or caring for children while ill and for at least 48 hours after symptoms stop. Follow your workplace and local public-health return rules.",
           "meta": {
             "topics": [
               "hydration",
@@ -7493,7 +7462,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 226103,
+          "t_ms": 226104,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -7503,7 +7472,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 226103,
+          "t_ms": 226104,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -7516,7 +7485,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 226103,
+          "t_ms": 226104,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Do I need antibiotics to get back to work?",
@@ -7531,7 +7500,7 @@
         },
         {
           "seq": 118,
-          "t_ms": 226103,
+          "t_ms": 226104,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Antibiotics are not automatically helpful for watery diarrhea and can have harms. I recommend checking dehydration and whether features require targeted tests. The first practical step is small frequent amounts of oral rehydration solution, with urgent reassessment if you cannot drink or pass very little urine.",
@@ -7543,7 +7512,7 @@
         },
         {
           "seq": 119,
-          "t_ms": 226103,
+          "t_ms": 226104,
           "phase": "encounter",
           "kind": "counseling",
           "text": "Antibiotics are not automatically helpful for watery diarrhea and can have harms. I recommend checking dehydration and whether features require targeted tests. The first practical step is small frequent amounts of oral rehydration solution, with urgent reassessment if you cannot drink or pass very little urine.",
@@ -7557,7 +7526,7 @@
         },
         {
           "seq": 120,
-          "t_ms": 226103,
+          "t_ms": 226104,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. Thank you for explaining that.",
@@ -7566,13 +7535,13 @@
           }
         }
       ],
-      "note_words": 468,
-      "estimated_encounter_s": 571,
+      "note_words": 493,
+      "estimated_encounter_s": 591,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 7
+        "unresolved_count": 8
       },
       "reasoning": [
         {
@@ -7684,11 +7653,18 @@
           "kind": "supplementary_clinical",
           "reviewed": "2026-09-08",
           "review_scope": "Presentation pattern, key danger signs, and diagnostic/management direction; local prescribing protocols are not specified."
+        },
+        {
+          "title": "How to prevent norovirus",
+          "url": "https://www.cdc.gov/norovirus/prevention/index.html",
+          "kind": "supplementary_clinical",
+          "reviewed": "2026-09-14",
+          "review_scope": "Soap-and-water hygiene and at least48hours symptom-free before food preparation or childcare are relevant to suspected infectious gastroenteritis in a preschool worker; no pathogen is claimed confirmed."
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "fb99200397997d9029a5ab3e741496a5abae150785f514e8d84f36ab67304839",
-      "engine_version": "4.0.4"
+      "case_hash": "494b11d940c7878f3b2accf889c1132286abc972a3bf8f4ede0e7edd26acf0c6",
+      "engine_version": "4.1.0"
     },
     {
       "case_id": "gi-diarrhea-dehydration",
@@ -8138,7 +8114,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "Do you drink alcohol, and how much?",
-          "patient": "One alcoholic drink weekly; none during this illness.",
+          "patient": "I do not drink alcohol.",
           "why": "",
           "event_ids": [
             62,
@@ -8166,7 +8142,7 @@
           "kind": "dialogue",
           "section": "Life and context",
           "student": "What do you do for work?",
-          "patient": "I am a preschool teacher.",
+          "patient": "I am a preschool teacher. I help the children use the toilet and prepare their snacks.",
           "why": "",
           "event_ids": [
             66,
@@ -8504,7 +8480,7 @@
         {
           "kind": "dialogue",
           "section": "Explain next steps",
-          "student": "I recommend replacing fluids safely and assessing the effect of the diarrhea on your circulation. An infection is possible, but medicines and other bowel conditions may matter. We should review whether testing or supervised fluid treatment is needed.",
+          "student": "I recommend replacing fluids safely and assessing the effect of the diarrhea on your circulation. An infection is possible, but medicines and other bowel conditions may matter. We should review whether testing or supervised fluid treatment is needed. Because you help with toileting and snacks, wash your hands with soap and water and avoid preparing food or caring for children while ill and for at least 48 hours after symptoms stop. Follow your workplace and local public-health return rules.",
           "patient": "Okay, that makes sense.",
           "why": "Proposed care, not a record of tests or treatment already completed.",
           "event_ids": [
@@ -8540,7 +8516,7 @@
         }
       ],
       "note": {
-        "S": "cc: Watery diarrhea and reduced fluid intake\n\nHPI: 25-year-old woman with watery diarrhea; onset 2 days ago. Seven stools in the past day without visible blood. Nonradiating lower abdominal cramps, 4/10, precede stools and ease afterward; large meals worsen cramps. Household child had similar symptoms. Nausea and two vomiting episodes yesterday, none today; thirsty, fatigued and lightheaded when standing. Only two voids today, dark urine. Small sips of oral rehydration drink help; limited food intake. No recent similar illness.\n\nPerspective: Do I need antibiotics to get back to work?\n\nPMH: No inflammatory bowel disease or immunosuppression.\n\nPSH: No surgeries or admissions.\n\nMeds: No daily medication; no antibiotics in the past 3 months.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly; none during this illness. No recreational drugs. Preschool teacher; lives with husband and child; no recent travel or untreated-water exposure; last period 1 week ago.\n\nFH: My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.; I have a brother who's twenty-three and he's healthy.; No one in my family has inflammatory bowel disease.\n\nROS: Gastrointestinal - Reports diarrhea. Reports nausea. Reports vomiting. General - Reports thirst. Denies fever. Reports fatigue. Urinary - Reports urine output. Denies dysuria. Denies hematuria.\n\nPatient concern: I thought sports drinks and oral rehydration solution were exactly the same.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.",
+        "S": "cc: Watery diarrhea and reduced fluid intake\n\nHPI: 25-year-old woman with watery diarrhea; onset 2 days ago. Seven stools in the past day without visible blood. Nonradiating lower abdominal cramps, 4/10, precede stools and ease afterward; large meals worsen cramps. Household child had similar symptoms. Nausea and two vomiting episodes yesterday, none today; thirsty, fatigued and lightheaded when standing. Only two voids today, dark urine. Small sips of oral rehydration drink help; limited food intake. No recent similar illness.\n\nPerspective: Do I need antibiotics to get back to work?\n\nPMH: No inflammatory bowel disease or immunosuppression.\n\nPSH: No surgeries or admissions.\n\nMeds: No daily medication; no antibiotics in the past 3 months.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked; no alcohol or recreational drugs. Preschool teacher who assists with toileting and prepares snacks. Lives with husband and child. No recent travel or untreated-water exposure; last period 1 week ago.\n\nFH: My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.; I have a brother who's twenty-three and he's healthy.; No one in my family has inflammatory bowel disease.\n\nROS: Gastrointestinal - Reports diarrhea. Reports nausea. Reports vomiting. General - Reports thirst. Denies fever. Reports fatigue. Urinary - Reports reduced urine output. Denies dysuria. Denies hematuria.\n\nPatient concern: I thought sports drinks and oral rehydration solution were exactly the same.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.",
         "O": "Vitals: T 98.8 F oral, P 100 bpm, BP 108/70 mmHg, R 18 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Tired appearing, able to drink small sips.\nHeart: Regular rhythm, mildly fast.\nLungs: In the examined posterior fields, clear breath sounds bilaterally.\nAbdomen: Abdomen not distended.\nAbdomen: Active bowel sounds in all quadrants.\nAbdomen: Tympanitic throughout.\nAbdomen: Mild diffuse lower abdominal tenderness. No involuntary guarding.\nHEENT: Oral mucosa is dry.\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Acute infectious gastroenteritis",
@@ -8548,7 +8524,7 @@
           "3. Medication-associated diarrhea"
         ],
         "P": [
-          "1. Assess hydration and ability to tolerate oral rehydration; consider BMP when dehydration is significant and targeted stool testing for severe, persistent or bloody illness rather than routinely; educate about oral rehydration, hand hygiene and warning signs; recheck within 24\u201348 hours and use urgent care for inability to drink, scant urine, bloody stool or worsening focal pain. Explain oral rehydration in simple terms and have the patient describe a feasible drinking plan.",
+          "1. Assess hydration and ability to tolerate oral rehydration; consider BMP when dehydration is significant and targeted stool testing for severe, persistent or bloody illness rather than routinely; educate about oral rehydration, hand hygiene and warning signs; recheck within 24\u201348 hours and use urgent care for inability to drink, scant urine, bloody stool or worsening focal pain. Explain oral rehydration in simple terms and have the patient describe a feasible drinking plan. Wash hands with soap and water; avoid preparing food or caring for children until at least 48 hours after symptoms stop, following workplace/public-health rules.",
           "2. Ask about recurrent episodes, nocturnal diarrhea, weight loss and blood; pursue stool inflammatory testing and gastroenterology evaluation only if persistent features support it; explain that current acute exposure makes infection more likely.",
           "3. Reconcile antibiotics, laxatives and supplements; avoid unnecessary antibiotics and review any culprit medication with the prescriber; educate on medication-related diarrhea and arrange reassessment in 48\u201372 hours if symptoms persist despite recovery measures; consider targeted stool testing for persistent illness."
         ]
@@ -8766,7 +8742,7 @@
         },
         {
           "section": "S",
-          "statement": "Never smoked tobacco.",
+          "statement": "Never smoked;",
           "event_ids": [
             61
           ],
@@ -8776,28 +8752,9 @@
         },
         {
           "section": "S",
-          "statement": "One alcoholic drink weekly;",
+          "statement": "no alcohol or recreational drugs.",
           "event_ids": [
-            63
-          ],
-          "classification": "reported / supplied history",
-          "trace_method": "grader-linked delivered evidence",
-          "audit_verdict": "supported"
-        },
-        {
-          "section": "S",
-          "statement": "none during this illness.",
-          "event_ids": [
-            63
-          ],
-          "classification": "reported / supplied history",
-          "trace_method": "grader-linked delivered evidence",
-          "audit_verdict": "supported"
-        },
-        {
-          "section": "S",
-          "statement": "No recreational drugs.",
-          "event_ids": [
+            63,
             65
           ],
           "classification": "reported / supplied history",
@@ -8806,17 +8763,17 @@
         },
         {
           "section": "S",
-          "statement": "Preschool teacher;",
+          "statement": "Preschool teacher who assists with toileting and prepares snacks.",
           "event_ids": [
             67
           ],
           "classification": "reported / supplied history",
-          "trace_method": "grader-linked delivered evidence",
-          "audit_verdict": "supported"
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
         },
         {
           "section": "S",
-          "statement": "lives with husband and child;",
+          "statement": "Lives with husband and child.",
           "event_ids": [
             69
           ],
@@ -8826,7 +8783,7 @@
         },
         {
           "section": "S",
-          "statement": "no recent travel or untreated-water exposure;",
+          "statement": "No recent travel or untreated-water exposure;",
           "event_ids": [
             73
           ],
@@ -8946,7 +8903,7 @@
         },
         {
           "section": "S",
-          "statement": "Urinary - Reports urine output.",
+          "statement": "Urinary - Reports reduced urine output.",
           "event_ids": [
             45
           ],
@@ -9279,7 +9236,7 @@
         },
         {
           "seq": 7,
-          "t_ms": 3,
+          "t_ms": 9,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
@@ -9292,7 +9249,7 @@
         },
         {
           "seq": 8,
-          "t_ms": 3,
+          "t_ms": 10,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -9304,7 +9261,7 @@
         },
         {
           "seq": 9,
-          "t_ms": 5,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have had diarrhea all night, and I feel dried out.",
@@ -9330,7 +9287,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 5,
+          "t_ms": 14,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your symptoms first begin?",
@@ -9341,7 +9298,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 7,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It started 2 days ago.",
@@ -9367,7 +9324,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 7,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -9378,7 +9335,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 9,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The cramps are across my lower abdomen.",
@@ -9404,7 +9361,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 9,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -9416,7 +9373,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 10,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "They do not spread elsewhere.",
@@ -9442,7 +9399,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 11,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -9454,7 +9411,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 12,
+          "t_ms": 21,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The pain is crampy and the stool is watery.",
@@ -9480,7 +9437,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 12,
+          "t_ms": 21,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -9492,7 +9449,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 14,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The cramps are 4/10.",
@@ -9518,7 +9475,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 15,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How many watery stools have you had in the past day?",
@@ -9530,7 +9487,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 16,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have had 7 watery stools in the past day.",
@@ -9556,7 +9513,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 16,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do the cramps ease between bowel movements?",
@@ -9568,7 +9525,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 18,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Cramps come before each bowel movement and then ease.",
@@ -9594,7 +9551,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 18,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Has anyone around you had similar symptoms?",
@@ -9606,7 +9563,7 @@
         },
         {
           "seq": 25,
-          "t_ms": 20,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "A child in my household had similar symptoms.",
@@ -9632,7 +9589,7 @@
         },
         {
           "seq": 26,
-          "t_ms": 20,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -9644,7 +9601,7 @@
         },
         {
           "seq": 27,
-          "t_ms": 21,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Small sips of oral rehydration drink help.",
@@ -9670,7 +9627,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 22,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -9682,7 +9639,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 23,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "A large meal worsens the cramps.",
@@ -9708,7 +9665,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 23,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -9720,7 +9677,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 25,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I tried small sips of water but have eaten little.",
@@ -9746,7 +9703,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 25,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -9758,7 +9715,7 @@
         },
         {
           "seq": 33,
-          "t_ms": 27,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No similar illness recently.",
@@ -9784,7 +9741,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 27,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had diarrhea?",
@@ -9796,7 +9753,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 28,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The stools are watery, without visible blood.",
@@ -9822,7 +9779,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 29,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt nauseated?",
@@ -9834,7 +9791,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 30,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I feel nauseated.",
@@ -9860,7 +9817,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 30,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you been vomiting?",
@@ -9872,7 +9829,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 32,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I vomited twice yesterday but not today.",
@@ -9898,7 +9855,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 32,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt unusually thirsty?",
@@ -9910,7 +9867,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 33,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am very thirsty.",
@@ -9936,7 +9893,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 34,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt unusually tired or low in energy?",
@@ -9948,7 +9905,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 35,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I feel tired and lightheaded standing.",
@@ -9974,7 +9931,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 36,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How much have you been urinating today?",
@@ -9986,7 +9943,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 37,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have urinated only twice today and it looks dark.",
@@ -10012,7 +9969,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 38,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -10024,7 +9981,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 39,
+          "t_ms": 50,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No measured fever.",
@@ -10050,7 +10007,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 39,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does it burn when you urinate?",
@@ -10062,7 +10019,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 41,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "There is no burning when I urinate.",
@@ -10088,7 +10045,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 41,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed blood in your urine?",
@@ -10100,7 +10057,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 42,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No blood in urine.",
@@ -10126,7 +10083,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 43,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -10138,7 +10095,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 44,
+          "t_ms": 56,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No inflammatory bowel disease or immunosuppression.",
@@ -10164,7 +10121,7 @@
         },
         {
           "seq": 54,
-          "t_ms": 45,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -10176,7 +10133,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 47,
+          "t_ms": 58,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No surgeries or admissions.",
@@ -10202,7 +10159,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 47,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -10214,7 +10171,7 @@
         },
         {
           "seq": 57,
-          "t_ms": 50,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not take daily medication. I have not taken antibiotics in the past 3 months.",
@@ -10247,7 +10204,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 50,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -10259,7 +10216,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 52,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No known drug allergies.",
@@ -10285,7 +10242,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 53,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -10297,7 +10254,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 54,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Never smoked tobacco.",
@@ -10323,7 +10280,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 55,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -10335,10 +10292,10 @@
         },
         {
           "seq": 63,
-          "t_ms": 56,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "One alcoholic drink weekly; none during this illness.",
+          "text": "I do not drink alcohol.",
           "meta": {
             "facts_released": [
               "alcohol_use"
@@ -10346,7 +10303,7 @@
             "concepts": {
               "alcohol_use": {
                 "polarity": "positive",
-                "value": "One alcoholic drink weekly; none during this illness."
+                "value": "I do not drink alcohol."
               }
             },
             "volunteered": false,
@@ -10361,7 +10318,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 57,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -10373,7 +10330,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 58,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -10399,7 +10356,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 58,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -10411,10 +10368,10 @@
         },
         {
           "seq": 67,
-          "t_ms": 60,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "I am a preschool teacher.",
+          "text": "I am a preschool teacher. I help the children use the toilet and prepare their snacks.",
           "meta": {
             "facts_released": [
               "history_context_1"
@@ -10422,7 +10379,7 @@
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a preschool teacher."
+                "value": "I am a preschool teacher. I help the children use the toilet and prepare their snacks."
               }
             },
             "volunteered": false,
@@ -10437,7 +10394,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 60,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -10448,7 +10405,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 61,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband and child.",
@@ -10474,7 +10431,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 62,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you traveled recently?",
@@ -10486,7 +10443,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 63,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not traveled recently.",
@@ -10512,7 +10469,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 64,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you drunk any untreated water?",
@@ -10524,7 +10481,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 65,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not had untreated-water exposure.",
@@ -10550,7 +10507,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 66,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -10562,7 +10519,7 @@
         },
         {
           "seq": 75,
-          "t_ms": 67,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.",
@@ -10588,7 +10545,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 67,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -10600,7 +10557,7 @@
         },
         {
           "seq": 77,
-          "t_ms": 69,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have a brother who's twenty-three and he's healthy.",
@@ -10626,7 +10583,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 69,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are there any other inherited illnesses in your family?",
@@ -10638,7 +10595,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 70,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No one in my family has inflammatory bowel disease.",
@@ -10664,7 +10621,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 71,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -10675,7 +10632,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 72,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 1 week ago.",
@@ -10701,7 +10658,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 73,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -10713,7 +10670,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 74,
+          "t_ms": 90,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant, but I have not taken a pregnancy test.",
@@ -10739,7 +10696,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 75,
+          "t_ms": 90,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -10751,7 +10708,7 @@
         },
         {
           "seq": 85,
-          "t_ms": 76,
+          "t_ms": 92,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Do I need antibiotics to get back to work?",
@@ -10777,7 +10734,7 @@
         },
         {
           "seq": 86,
-          "t_ms": 76,
+          "t_ms": 92,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What might make the care plan difficult for you to follow?",
@@ -10789,7 +10746,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 78,
+          "t_ms": 94,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I thought sports drinks and oral rehydration solution were exactly the same.",
@@ -10815,7 +10772,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 79,
+          "t_ms": 95,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -10826,7 +10783,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 88,
+          "t_ms": 107,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "As I mentioned, I thought sports drinks and oral rehydration solution were exactly the same. As I mentioned, do I need antibiotics to get back to work? As I mentioned, I thought sports drinks and oral rehydration solution were exactly the same.",
@@ -10861,7 +10818,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 89,
+          "t_ms": 107,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -10872,7 +10829,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 90,
+          "t_ms": 109,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Yes, that's fine. Go ahead.",
@@ -10882,7 +10839,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 89,
+          "t_ms": 107,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -10894,7 +10851,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 10091,
+          "t_ms": 10109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -10915,7 +10872,7 @@
         },
         {
           "seq": 94,
-          "t_ms": 10091,
+          "t_ms": 10109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert. Tired appearing, able to drink small sips.",
@@ -10943,7 +10900,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 50091,
+          "t_ms": 50109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -10969,7 +10926,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 50091,
+          "t_ms": 50109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rhythm, mildly fast.",
@@ -10991,7 +10948,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 91091,
+          "t_ms": 91109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -11016,7 +10973,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 91091,
+          "t_ms": 91109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, clear breath sounds bilaterally.",
@@ -11038,7 +10995,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 91091,
+          "t_ms": 91109,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
@@ -11053,7 +11010,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 100091,
+          "t_ms": 100109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect abdomen",
@@ -11076,7 +11033,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 100091,
+          "t_ms": 100109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Abdomen not distended.",
@@ -11098,7 +11055,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 116091,
+          "t_ms": 116109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -11120,7 +11077,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 116091,
+          "t_ms": 116109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Active bowel sounds in all quadrants.",
@@ -11142,7 +11099,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 135091,
+          "t_ms": 135109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -11164,7 +11121,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 135091,
+          "t_ms": 135109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tympanitic throughout.",
@@ -11186,7 +11143,7 @@
         },
         {
           "seq": 106,
-          "t_ms": 166091,
+          "t_ms": 166109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -11211,7 +11168,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 166091,
+          "t_ms": 166109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Mild diffuse lower abdominal tenderness. No involuntary guarding.",
@@ -11239,7 +11196,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 182091,
+          "t_ms": 182109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect mouth and throat with light",
@@ -11261,7 +11218,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 182091,
+          "t_ms": 182109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Oral mucosa is dry.",
@@ -11283,7 +11240,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 182091,
+          "t_ms": 182109,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
@@ -11298,7 +11255,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 207091,
+          "t_ms": 207109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -11320,7 +11277,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 207091,
+          "t_ms": 207109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T5 paraspinal tissue texture change with mild tenderness on the right.",
@@ -11342,7 +11299,7 @@
         },
         {
           "seq": 113,
-          "t_ms": 226091,
+          "t_ms": 226109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -11364,7 +11321,7 @@
         },
         {
           "seq": 114,
-          "t_ms": 226091,
+          "t_ms": 226109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -11386,10 +11343,10 @@
         },
         {
           "seq": 115,
-          "t_ms": 226091,
+          "t_ms": 226109,
           "phase": "encounter",
           "kind": "student_utterance",
-          "text": "I recommend replacing fluids safely and assessing the effect of the diarrhea on your circulation. An infection is possible, but medicines and other bowel conditions may matter. We should review whether testing or supervised fluid treatment is needed.",
+          "text": "I recommend replacing fluids safely and assessing the effect of the diarrhea on your circulation. An infection is possible, but medicines and other bowel conditions may matter. We should review whether testing or supervised fluid treatment is needed. Because you help with toileting and snacks, wash your hands with soap and water and avoid preparing food or caring for children while ill and for at least 48 hours after symptoms stop. Follow your workplace and local public-health return rules.",
           "meta": {
             "plan_talk": true,
             "mode": "type",
@@ -11398,10 +11355,10 @@
         },
         {
           "seq": 116,
-          "t_ms": 226091,
+          "t_ms": 226109,
           "phase": "encounter",
           "kind": "counseling",
-          "text": "I recommend replacing fluids safely and assessing the effect of the diarrhea on your circulation. An infection is possible, but medicines and other bowel conditions may matter. We should review whether testing or supervised fluid treatment is needed.",
+          "text": "I recommend replacing fluids safely and assessing the effect of the diarrhea on your circulation. An infection is possible, but medicines and other bowel conditions may matter. We should review whether testing or supervised fluid treatment is needed. Because you help with toileting and snacks, wash your hands with soap and water and avoid preparing food or caring for children while ill and for at least 48 hours after symptoms stop. Follow your workplace and local public-health return rules.",
           "meta": {
             "topics": [
               "hydration",
@@ -11411,7 +11368,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 226091,
+          "t_ms": 226109,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -11421,7 +11378,7 @@
         },
         {
           "seq": 118,
-          "t_ms": 226091,
+          "t_ms": 226109,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -11434,7 +11391,7 @@
         },
         {
           "seq": 119,
-          "t_ms": 226091,
+          "t_ms": 226109,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I thought sports drinks and oral rehydration solution were exactly the same.",
@@ -11449,7 +11406,7 @@
         },
         {
           "seq": 120,
-          "t_ms": 226091,
+          "t_ms": 226109,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Oral rehydration solution has a particular balance of salts and sugar; a sports drink is not an identical substitute. I can show you the recommended product instructions and ask you to explain how you will take small amounts at home.",
@@ -11459,7 +11416,7 @@
         },
         {
           "seq": 121,
-          "t_ms": 226091,
+          "t_ms": 226109,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I understand that the rehydration solution and a sports drink are different. I will follow the recommended product instructions and take small amounts.",
@@ -11471,13 +11428,13 @@
           }
         }
       ],
-      "note_words": 497,
-      "estimated_encounter_s": 598,
+      "note_words": 522,
+      "estimated_encounter_s": 618,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 7
+        "unresolved_count": 8
       },
       "reasoning": [
         {
@@ -11589,11 +11546,18 @@
           "kind": "supplementary_clinical",
           "reviewed": "2026-09-08",
           "review_scope": "Presentation pattern, key danger signs, and diagnostic/management direction; local prescribing protocols are not specified."
+        },
+        {
+          "title": "How to prevent norovirus",
+          "url": "https://www.cdc.gov/norovirus/prevention/index.html",
+          "kind": "supplementary_clinical",
+          "reviewed": "2026-09-14",
+          "review_scope": "Soap-and-water hygiene and at least48hours symptom-free before food preparation or childcare are relevant to suspected infectious gastroenteritis in a preschool worker; no pathogen is claimed confirmed."
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "b8b7f45610f620c9156d6b64e03b09187f9f18ddafde972fe51862e35620404f",
-      "engine_version": "4.0.4"
+      "case_hash": "8e6a3f65572c7ae75300af03be72f7ff3ad78aab558b1084d725e1cb961748d5",
+      "engine_version": "4.1.0"
     }
   ]
 }

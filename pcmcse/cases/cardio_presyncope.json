@@ -38,7 +38,7 @@
     "age": 29,
     "sex": "male",
     "pronouns": "he/him",
-    "persona": "Librarian; lives with wife; has been drinking less water to avoid bathroom trips. Communication style: expresses concern. Gives consistent answers without diagnostic labels.",
+    "persona": "Librarian who shelves books from a step stool; lives alone; nearby brother can stay tonight. Communication style: expresses concern. Gives consistent answers without diagnostic labels.",
     "affect": "I am scared I will fall while I am alone.",
     "communication_style": "expresses concern",
     "opening": "I keep feeling like I might faint when I stand up.",
@@ -235,9 +235,11 @@
       "past medical"
     ],
     "history_psh_1": [
-      "No operations or prior hospital admissions.",
-      "No operations or prior hospital admissions",
-      "past surgical"
+      "past surgery",
+      "operations",
+      "procedures",
+      "hospital stays",
+      "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays."
     ],
     "history_medications_1": [
       "Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.",
@@ -256,20 +258,19 @@
       "No allergies to medications"
     ],
     "tobacco_use": [
-      "tobacco",
-      "smoked",
+      "smoke",
       "smoking",
+      "tobacco",
       "cigarettes",
-      "smoker",
-      "Never smoked tobacco."
+      "quit smoking",
+      "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago."
     ],
     "alcohol_use": [
       "alcohol",
-      "alcoholic",
+      "drink alcohol",
       "beer",
       "wine",
-      "drinks",
-      "One glass of wine weekly."
+      "I do not drink alcohol."
     ],
     "drug_use": [
       "recreational drugs",
@@ -280,18 +281,25 @@
       "No recreational drugs."
     ],
     "history_context_1": [
-      "I am a librarian."
+      "occupation",
+      "work duties",
+      "job",
+      "do for a living",
+      "I am a librarian. I often climb a step stool to shelve books."
     ],
     "history_family_1": [
-      "My mother is sixty-two and she has high blood pressure.", "Mother has hypertension",
+      "My mother is sixty-two and she has high blood pressure.",
+      "Mother has hypertension",
       "mother"
     ],
     "history_family_2": [
-      "My father died of pneumonia when he was eighty.", "father died of pneumonia at 80",
+      "My father died of pneumonia when he was eighty.",
+      "father died of pneumonia at 80",
       "father"
     ],
     "history_family_3": [
-      "I have one brother, he's thirty-two and he's healthy.", "one healthy brother.",
+      "I have one brother, he's thirty-two and he's healthy.",
+      "one healthy brother.",
       "brother"
     ],
     "patient_concern": [
@@ -322,7 +330,11 @@
       "No visible rash on the inspected arms."
     ],
     "history_household": [
-      "I live with my wife."
+      "live with",
+      "living situation",
+      "household",
+      "support at home",
+      "I live alone. My brother lives nearby and can stay with me tonight."
     ],
     "history_fluids": [
       "I have been drinking less water to avoid bathroom trips."
@@ -1323,23 +1335,23 @@
       "id": "history_psh_1",
       "category": "psh",
       "checklist": "h_history_psh_1",
-      "value": "No operations or prior hospital admissions.",
+      "value": "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays.",
       "sp_says": [
-        "No operations or prior hospital admissions."
+        "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays."
       ],
       "triggers": {
         "any": [
           "Have you had any surgeries or hospital admissions?",
-          "surgery",
+          "past surgery",
           "operations",
-          "hospitalized",
-          "past surgical"
+          "procedures",
+          "hospital stays"
         ]
       },
       "concepts": {
         "history_psh_1": {
           "polarity": "positive",
-          "value": "No operations or prior hospital admissions."
+          "value": "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays."
         }
       },
       "example_questions": [
@@ -1348,11 +1360,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "No operations or prior hospital admissions.",
+            "text": "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays.",
             "concepts": {
               "history_psh_1": {
                 "polarity": "positive",
-                "value": "No operations or prior hospital admissions."
+                "value": "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays."
               }
             },
             "complete_fact": true
@@ -1450,22 +1462,24 @@
       "id": "tobacco_use",
       "category": "social",
       "checklist": "h_tobacco_use",
-      "value": "Never smoked tobacco.",
+      "value": "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago.",
       "sp_says": [
-        "Never smoked tobacco."
+        "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago."
       ],
       "triggers": {
         "any": [
           "Do you use tobacco or smoke?",
-          "tobacco",
           "smoke",
-          "smoking"
+          "smoking",
+          "tobacco",
+          "cigarettes",
+          "quit smoking"
         ]
       },
       "concepts": {
         "tobacco_use": {
           "polarity": "negative",
-          "value": "Never smoked tobacco."
+          "value": "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago."
         }
       },
       "example_questions": [
@@ -1474,11 +1488,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "Never smoked tobacco.",
+            "text": "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago.",
             "concepts": {
               "tobacco_use": {
                 "polarity": "negative",
-                "value": "Never smoked tobacco."
+                "value": "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago."
               }
             },
             "complete_fact": true
@@ -1491,9 +1505,9 @@
       "id": "alcohol_use",
       "category": "social",
       "checklist": "h_alcohol_use",
-      "value": "One glass of wine weekly.",
+      "value": "I do not drink alcohol.",
       "sp_says": [
-        "One glass of wine weekly."
+        "I do not drink alcohol."
       ],
       "triggers": {
         "any": [
@@ -1507,7 +1521,7 @@
       "concepts": {
         "alcohol_use": {
           "polarity": "positive",
-          "value": "One glass of wine weekly."
+          "value": "I do not drink alcohol."
         }
       },
       "example_questions": [
@@ -1516,11 +1530,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "One glass of wine weekly.",
+            "text": "I do not drink alcohol.",
             "concepts": {
               "alcohol_use": {
                 "polarity": "positive",
-                "value": "One glass of wine weekly."
+                "value": "I do not drink alcohol."
               }
             },
             "complete_fact": true
@@ -1574,25 +1588,23 @@
       "id": "history_context_1",
       "category": "social",
       "checklist": "h_history_context_1",
-      "value": "I am a librarian.",
+      "value": "I am a librarian. I often climb a step stool to shelve books.",
       "sp_says": [
-        "I am a librarian."
+        "I am a librarian. I often climb a step stool to shelve books."
       ],
       "triggers": {
         "any": [
           "What do you do for work?",
-          "what do you do for work",
-          "what do you do for a living",
           "occupation",
-          "your job",
-          "do you work",
-          "are you a student"
+          "work duties",
+          "job",
+          "do for a living"
         ]
       },
       "concepts": {
         "history_context_1": {
           "polarity": "positive",
-          "value": "I am a librarian."
+          "value": "I am a librarian. I often climb a step stool to shelve books."
         }
       },
       "history_topic": "occupation",
@@ -1602,11 +1614,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "I am a librarian.",
+            "text": "I am a librarian. I often climb a step stool to shelve books.",
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a librarian."
+                "value": "I am a librarian. I often climb a step stool to shelve books."
               }
             },
             "complete_fact": true
@@ -1795,23 +1807,23 @@
       "id": "history_household",
       "category": "social",
       "checklist": "h_history_household",
-      "value": "I live with my wife.",
+      "value": "I live alone. My brother lives nearby and can stay with me tonight.",
       "sp_says": [
-        "I live with my wife."
+        "I live alone. My brother lives nearby and can stay with me tonight."
       ],
       "triggers": {
         "any": [
           "Who do you live with?",
-          "who do you live with",
-          "live with my wife",
+          "live with",
           "living situation",
-          "live with"
+          "household",
+          "support at home"
         ]
       },
       "concepts": {
         "history_household": {
           "polarity": "positive",
-          "value": "I live with my wife."
+          "value": "I live alone. My brother lives nearby and can stay with me tonight."
         }
       },
       "history_topic": "household",
@@ -1821,11 +1833,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "I live with my wife.",
+            "text": "I live alone. My brother lives nearby and can stay with me tonight.",
             "concepts": {
               "history_household": {
                 "polarity": "positive",
-                "value": "I live with my wife."
+                "value": "I live alone. My brother lives nearby and can stay with me tonight."
               }
             },
             "complete_fact": true
@@ -2258,7 +2270,7 @@
       },
       {
         "id": "h_history_psh_1",
-        "text": "No operations or prior hospital admissions."
+        "text": "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays."
       },
       {
         "id": "h_history_medications_1",
@@ -2270,11 +2282,11 @@
       },
       {
         "id": "h_tobacco_use",
-        "text": "Never smoked tobacco."
+        "text": "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago."
       },
       {
         "id": "h_alcohol_use",
-        "text": "One glass of wine weekly."
+        "text": "I do not drink alcohol."
       },
       {
         "id": "h_drug_use",
@@ -2282,7 +2294,7 @@
       },
       {
         "id": "h_history_context_1",
-        "text": "I am a librarian."
+        "text": "I am a librarian. I often climb a step stool to shelve books."
       },
       {
         "id": "h_history_family_1",
@@ -2302,7 +2314,7 @@
       },
       {
         "id": "h_history_household",
-        "text": "I live with my wife."
+        "text": "I live alone. My brother lives nearby and can stay with me tonight."
       },
       {
         "id": "h_history_fluids",
@@ -2402,7 +2414,7 @@
     ]
   },
   "model_note": {
-    "S": "cc: Lightheadedness after standing\n\nHPI: 29 yo m. Patient reports: It began 3 days ago. It feels like lightheadedness in my head, not spinning. There is no pain radiating anywhere. My vision dims and I feel faint. It lasts about 20 seconds and I need to hold a chair. It happens after standing, then settles. My blood pressure medicine dose increased last week. Sitting or lying down makes it stop. Standing quickly and hot showers provoke it. I started standing more slowly. I have not had this before. My vision dims when I stand.\n\nPatient perspective: I am scared I will fall while I am alone.\n\nPMH: Hypertension; no heart disease or diabetes.\n\nPSH: No operations or prior hospital admissions.\n\nMeds: Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One glass of wine weekly. No recreational drugs. Librarian; lives with wife; has been drinking less water to avoid bathroom trips.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of pneumonia when he was eighty.; I have one brother, he's thirty-two and he's healthy.\n\nROS: Neurologic - Reports presyncope. Denies vertigo. Denies focal weakness. Cardiovascular - Denies syncope. Denies palpitations. Denies chest pain. Gastrointestinal - Denies melena. Denies vomiting. Denies diarrhea.\n",
+    "S": "cc: Lightheadedness after standing\n\nHPI: 29 yo m. Patient reports: It began 3 days ago. It feels like lightheadedness in my head, not spinning. There is no pain radiating anywhere. My vision dims and I feel faint. It lasts about 20 seconds and I need to hold a chair. It happens after standing, then settles. My blood pressure medicine dose increased last week. Sitting or lying down makes it stop. Standing quickly and hot showers provoke it. I started standing more slowly. I have not had this before. My vision dims when I stand.\n\nPatient perspective: I am scared I will fall while I am alone.\n\nPMH: Hypertension; no heart disease or diabetes.\n\nPSH: Right knee ligament repair at age 19; no other operations or hospital stays.\n\nMeds: Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.\n\nAllergies: No known drug allergies.\n\nSH: Former smoker, 5 cigarettes/day from ages 18\u201322; quit 7 years ago. No alcohol or recreational drugs. Librarian who uses a step stool to shelve books. Lives alone; nearby brother can stay tonight. Restricts water to avoid bathroom trips.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of pneumonia when he was eighty.; I have one brother, he's thirty-two and he's healthy.\n\nROS: Neurologic - Reports presyncope. Denies vertigo. Denies focal weakness. Cardiovascular - Denies syncope. Denies palpitations. Denies chest pain. Gastrointestinal - Denies melena. Denies vomiting. Denies diarrhea.\n",
     "O": "Vitals: T 98.3 F oral, P 78 bpm, BP 126/76 mmHg seated, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Comfortable while seated.\n\nHeart: Regular rhythm, S1 and S2 without murmur. After 5 minutes supine BP 126/76, pulse 78; at 1 minute standing BP 102/64, pulse 92 with lightheadedness; at 3 minutes standing BP 104/66, pulse 90.\n\nLungs: Breath sounds clear bilaterally.\n\nNeuro: Strength 5/5 in both arms and legs.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
     "A": [
       "1. Medication-associated orthostatic hypotension",
@@ -2410,7 +2422,7 @@
       "3. Anemia"
     ],
     "P": [
-      "1. Measure orthostatic vitals safely and obtain ECG, BMP and CBC; review the recent dose change with the prescribing clinician before altering therapy; discuss hydration if not contraindicated, slow standing and fall precautions; follow up within 48 hours and seek emergency care for syncope, chest pain or focal deficits.",
+      "1. Measure orthostatic vitals safely and obtain ECG, BMP and CBC; review the recent dose change with the prescribing clinician before altering therapy; discuss hydration if not contraindicated, slow standing and fall precautions; follow up within 48 hours and seek emergency care for syncope, chest pain or focal deficits. Avoid step stools while symptomatic and arrange the offered family support.",
       "2. Obtain ECG and consider ambulatory monitoring if unexplained or recurrent; assess exertional episodes and family sudden death; arrange cardiology review if rhythm or risk findings warrant it. Educate the patient to sit or lie down promptly if symptoms recur and to avoid situations in which another episode could cause injury while the cause is being assessed.",
       "3. Check CBC and ask about blood loss; investigate any identified anemia rather than empirically treating without a cause; explain emergency precautions for bleeding or worsening weakness. Arrange follow-up to review the CBC and any bleeding history within 48 hours if stable enough for outpatient care; active bleeding or worsening presyncope requires immediate reassessment."
     ]
@@ -2493,7 +2505,8 @@
       "https://www.nhlbi.nih.gov/health/low-blood-pressure"
     ],
     "round3_plan_review": "Made vague alternative plans actionable with conditional evaluation, safety counseling and follow-up. Specific outpatient review intervals are authored teaching examples, not confirmed course mandates. No new findings or clinician approval.",
-    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional."
+    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional.",
+    "background_revision": "2026-09-14: New synthetic background facts reviewed for internal consistency and relevance against primary clinical sources; source references support clinical plausibility, not the existence of a real patient. No clinician approval."
   },
   "sources": [
     {
@@ -2632,7 +2645,8 @@
     "experience_position_history": "Existing standing-trigger and rest-relief statements have explicit question-routing tags. No new symptom, timing, examination or orthostatic result is authored.",
     "experience_review2_language": "Reviewed vomiting tense forms; unsupported progression is not invented; timing cues reference obtainable dimensions; target maneuver removed from public doorway.",
     "demeanor": "demeanor-axes-v1: independently authored communication style and emotional state; legacy pace/gesture style retained; no physical finding credit.",
-    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+    "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
   },
   "cohort": {
     "id": "young-adult-male-v1",
@@ -2654,7 +2668,7 @@
           "age": 29,
           "sex": "male",
           "pronouns": "he/him",
-          "persona": "Librarian; lives with wife; has been drinking less water to avoid bathroom trips. Communication style: expresses concern. Gives consistent answers without diagnostic labels.",
+          "persona": "Librarian who shelves books from a step stool; lives alone; nearby brother can stay tonight. Communication style: expresses concern. Gives consistent answers without diagnostic labels.",
           "affect": "I am scared I will fall while I am alone.",
           "communication_style": "expresses concern",
           "opening": "I keep feeling like I might faint when I stand up.",
@@ -2851,9 +2865,11 @@
             "past medical"
           ],
           "history_psh_1": [
-            "No operations or prior hospital admissions.",
-            "No operations or prior hospital admissions",
-            "past surgical"
+            "past surgery",
+            "operations",
+            "procedures",
+            "hospital stays",
+            "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays."
           ],
           "history_medications_1": [
             "Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.",
@@ -2872,20 +2888,19 @@
             "No allergies to medications"
           ],
           "tobacco_use": [
-            "tobacco",
-            "smoked",
+            "smoke",
             "smoking",
+            "tobacco",
             "cigarettes",
-            "smoker",
-            "Never smoked tobacco."
+            "quit smoking",
+            "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago."
           ],
           "alcohol_use": [
             "alcohol",
-            "alcoholic",
+            "drink alcohol",
             "beer",
             "wine",
-            "drinks",
-            "One glass of wine weekly."
+            "I do not drink alcohol."
           ],
           "drug_use": [
             "recreational drugs",
@@ -2896,18 +2911,25 @@
             "No recreational drugs."
           ],
           "history_context_1": [
-            "I am a librarian."
+            "occupation",
+            "work duties",
+            "job",
+            "do for a living",
+            "I am a librarian. I often climb a step stool to shelve books."
           ],
           "history_family_1": [
-            "My mother is sixty-two and she has high blood pressure.", "Mother has hypertension",
+            "My mother is sixty-two and she has high blood pressure.",
+            "Mother has hypertension",
             "mother"
           ],
           "history_family_2": [
-            "My father died of pneumonia when he was eighty.", "father died of pneumonia at 80",
+            "My father died of pneumonia when he was eighty.",
+            "father died of pneumonia at 80",
             "father"
           ],
           "history_family_3": [
-            "I have one brother, he's thirty-two and he's healthy.", "one healthy brother.",
+            "I have one brother, he's thirty-two and he's healthy.",
+            "one healthy brother.",
             "brother"
           ],
           "patient_concern": [
@@ -2938,7 +2960,11 @@
             "No visible rash on the inspected arms."
           ],
           "history_household": [
-            "I live with my wife."
+            "live with",
+            "living situation",
+            "household",
+            "support at home",
+            "I live alone. My brother lives nearby and can stay with me tonight."
           ],
           "history_fluids": [
             "I have been drinking less water to avoid bathroom trips."
@@ -3939,23 +3965,23 @@
             "id": "history_psh_1",
             "category": "psh",
             "checklist": "h_history_psh_1",
-            "value": "No operations or prior hospital admissions.",
+            "value": "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays.",
             "sp_says": [
-              "No operations or prior hospital admissions."
+              "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays."
             ],
             "triggers": {
               "any": [
                 "Have you had any surgeries or hospital admissions?",
-                "surgery",
+                "past surgery",
                 "operations",
-                "hospitalized",
-                "past surgical"
+                "procedures",
+                "hospital stays"
               ]
             },
             "concepts": {
               "history_psh_1": {
                 "polarity": "positive",
-                "value": "No operations or prior hospital admissions."
+                "value": "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays."
               }
             },
             "example_questions": [
@@ -3964,11 +3990,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "No operations or prior hospital admissions.",
+                  "text": "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays.",
                   "concepts": {
                     "history_psh_1": {
                       "polarity": "positive",
-                      "value": "No operations or prior hospital admissions."
+                      "value": "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays."
                     }
                   },
                   "complete_fact": true
@@ -4066,22 +4092,24 @@
             "id": "tobacco_use",
             "category": "social",
             "checklist": "h_tobacco_use",
-            "value": "Never smoked tobacco.",
+            "value": "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago.",
             "sp_says": [
-              "Never smoked tobacco."
+              "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago."
             ],
             "triggers": {
               "any": [
                 "Do you use tobacco or smoke?",
-                "tobacco",
                 "smoke",
-                "smoking"
+                "smoking",
+                "tobacco",
+                "cigarettes",
+                "quit smoking"
               ]
             },
             "concepts": {
               "tobacco_use": {
                 "polarity": "negative",
-                "value": "Never smoked tobacco."
+                "value": "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago."
               }
             },
             "example_questions": [
@@ -4090,11 +4118,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Never smoked tobacco.",
+                  "text": "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago.",
                   "concepts": {
                     "tobacco_use": {
                       "polarity": "negative",
-                      "value": "Never smoked tobacco."
+                      "value": "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago."
                     }
                   },
                   "complete_fact": true
@@ -4107,9 +4135,9 @@
             "id": "alcohol_use",
             "category": "social",
             "checklist": "h_alcohol_use",
-            "value": "One glass of wine weekly.",
+            "value": "I do not drink alcohol.",
             "sp_says": [
-              "One glass of wine weekly."
+              "I do not drink alcohol."
             ],
             "triggers": {
               "any": [
@@ -4123,7 +4151,7 @@
             "concepts": {
               "alcohol_use": {
                 "polarity": "positive",
-                "value": "One glass of wine weekly."
+                "value": "I do not drink alcohol."
               }
             },
             "example_questions": [
@@ -4132,11 +4160,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "One glass of wine weekly.",
+                  "text": "I do not drink alcohol.",
                   "concepts": {
                     "alcohol_use": {
                       "polarity": "positive",
-                      "value": "One glass of wine weekly."
+                      "value": "I do not drink alcohol."
                     }
                   },
                   "complete_fact": true
@@ -4190,25 +4218,23 @@
             "id": "history_context_1",
             "category": "social",
             "checklist": "h_history_context_1",
-            "value": "I am a librarian.",
+            "value": "I am a librarian. I often climb a step stool to shelve books.",
             "sp_says": [
-              "I am a librarian."
+              "I am a librarian. I often climb a step stool to shelve books."
             ],
             "triggers": {
               "any": [
                 "What do you do for work?",
-                "what do you do for work",
-                "what do you do for a living",
                 "occupation",
-                "your job",
-                "do you work",
-                "are you a student"
+                "work duties",
+                "job",
+                "do for a living"
               ]
             },
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a librarian."
+                "value": "I am a librarian. I often climb a step stool to shelve books."
               }
             },
             "history_topic": "occupation",
@@ -4218,11 +4244,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I am a librarian.",
+                  "text": "I am a librarian. I often climb a step stool to shelve books.",
                   "concepts": {
                     "history_context_1": {
                       "polarity": "positive",
-                      "value": "I am a librarian."
+                      "value": "I am a librarian. I often climb a step stool to shelve books."
                     }
                   },
                   "complete_fact": true
@@ -4411,23 +4437,23 @@
             "id": "history_household",
             "category": "social",
             "checklist": "h_history_household",
-            "value": "I live with my wife.",
+            "value": "I live alone. My brother lives nearby and can stay with me tonight.",
             "sp_says": [
-              "I live with my wife."
+              "I live alone. My brother lives nearby and can stay with me tonight."
             ],
             "triggers": {
               "any": [
                 "Who do you live with?",
-                "who do you live with",
-                "live with my wife",
+                "live with",
                 "living situation",
-                "live with"
+                "household",
+                "support at home"
               ]
             },
             "concepts": {
               "history_household": {
                 "polarity": "positive",
-                "value": "I live with my wife."
+                "value": "I live alone. My brother lives nearby and can stay with me tonight."
               }
             },
             "history_topic": "household",
@@ -4437,11 +4463,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I live with my wife.",
+                  "text": "I live alone. My brother lives nearby and can stay with me tonight.",
                   "concepts": {
                     "history_household": {
                       "polarity": "positive",
-                      "value": "I live with my wife."
+                      "value": "I live alone. My brother lives nearby and can stay with me tonight."
                     }
                   },
                   "complete_fact": true
@@ -4640,7 +4666,7 @@
             },
             {
               "id": "h_history_psh_1",
-              "text": "No operations or prior hospital admissions."
+              "text": "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays."
             },
             {
               "id": "h_history_medications_1",
@@ -4652,11 +4678,11 @@
             },
             {
               "id": "h_tobacco_use",
-              "text": "Never smoked tobacco."
+              "text": "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago."
             },
             {
               "id": "h_alcohol_use",
-              "text": "One glass of wine weekly."
+              "text": "I do not drink alcohol."
             },
             {
               "id": "h_drug_use",
@@ -4664,7 +4690,7 @@
             },
             {
               "id": "h_history_context_1",
-              "text": "I am a librarian."
+              "text": "I am a librarian. I often climb a step stool to shelve books."
             },
             {
               "id": "h_history_family_1",
@@ -4684,7 +4710,7 @@
             },
             {
               "id": "h_history_household",
-              "text": "I live with my wife."
+              "text": "I live alone. My brother lives nearby and can stay with me tonight."
             },
             {
               "id": "h_history_fluids",
@@ -4783,7 +4809,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Lightheadedness after standing\n\nHPI: 29 yo m. Patient reports: It began 1 day ago. It feels like lightheadedness in my head, not spinning. There is no pain radiating anywhere. My vision dims and I feel faint. It lasts about 20 seconds and I need to hold a chair. It happens after standing, then settles. My blood pressure medicine dose increased last week. Sitting or lying down makes it stop. Standing quickly and hot showers provoke it. I started standing more slowly. I have not had this before. My vision dims when I stand.\n\nPatient perspective: I am scared I will fall while I am alone.\n\nPMH: Hypertension; no heart disease or diabetes.\n\nPSH: No operations or prior hospital admissions.\n\nMeds: Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One glass of wine weekly. No recreational drugs. Librarian; lives with wife; has been drinking less water to avoid bathroom trips.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of pneumonia when he was eighty.; I have one brother, he's thirty-two and he's healthy.\n\nROS: Neurologic - Reports presyncope. Denies vertigo. Denies focal weakness. Cardiovascular - Denies syncope. Denies palpitations. Denies chest pain. Gastrointestinal - Denies melena. Denies vomiting. Denies diarrhea.\n",
+          "S": "cc: Lightheadedness after standing\n\nHPI: 29 yo m. Patient reports: It began 1 day ago. It feels like lightheadedness in my head, not spinning. There is no pain radiating anywhere. My vision dims and I feel faint. It lasts about 20 seconds and I need to hold a chair. It happens after standing, then settles. My blood pressure medicine dose increased last week. Sitting or lying down makes it stop. Standing quickly and hot showers provoke it. I started standing more slowly. I have not had this before. My vision dims when I stand.\n\nPatient perspective: I am scared I will fall while I am alone.\n\nPMH: Hypertension; no heart disease or diabetes.\n\nPSH: Right knee ligament repair at age 19; no other operations or hospital stays.\n\nMeds: Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.\n\nAllergies: No known drug allergies.\n\nSH: Former smoker, 5 cigarettes/day from ages 18\u201322; quit 7 years ago. No alcohol or recreational drugs. Librarian who uses a step stool to shelve books. Lives alone; nearby brother can stay tonight. Restricts water to avoid bathroom trips.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of pneumonia when he was eighty.; I have one brother, he's thirty-two and he's healthy.\n\nROS: Neurologic - Reports presyncope. Denies vertigo. Denies focal weakness. Cardiovascular - Denies syncope. Denies palpitations. Denies chest pain. Gastrointestinal - Denies melena. Denies vomiting. Denies diarrhea.\n",
           "O": "Vitals: T 98.3 F oral, P 78 bpm, BP 126/76 mmHg seated, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Comfortable while seated.\n\nHeart: Regular rhythm, S1 and S2 without murmur. After 5 minutes supine BP 126/76, pulse 78; at 1 minute standing BP 102/64, pulse 92 with lightheadedness; at 3 minutes standing BP 104/66, pulse 90.\n\nLungs: Breath sounds clear bilaterally.\n\nNeuro: Strength 5/5 in both arms and legs.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Medication-associated orthostatic hypotension",
@@ -4791,13 +4817,14 @@
             "3. Anemia"
           ],
           "P": [
-            "1. Measure orthostatic vitals safely and obtain ECG, BMP and CBC; review the recent dose change with the prescribing clinician before altering therapy; discuss hydration if not contraindicated, slow standing and fall precautions; follow up within 48 hours and seek emergency care for syncope, chest pain or focal deficits.",
+            "1. Measure orthostatic vitals safely and obtain ECG, BMP and CBC; review the recent dose change with the prescribing clinician before altering therapy; discuss hydration if not contraindicated, slow standing and fall precautions; follow up within 48 hours and seek emergency care for syncope, chest pain or focal deficits. Avoid step stools while symptomatic and arrange the offered family support.",
             "2. Obtain ECG and consider ambulatory monitoring if unexplained or recurrent; assess exertional episodes and family sudden death; arrange cardiology review if rhythm or risk findings warrant it. Educate the patient to sit or lie down promptly if symptoms recur and to avoid situations in which another episode could cause injury while the cause is being assessed.",
             "3. Check CBC and ask about blood loss; investigate any identified anemia rather than empirically treating without a cause; explain emergency precautions for bleeding or worsening weakness. Arrange follow-up to review the CBC and any bleeding history within 48 hours if stable enough for outpatient care; active bleeding or worsening presyncope requires immediate reassessment."
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"
@@ -4812,7 +4839,7 @@
           "age": 29,
           "sex": "male",
           "pronouns": "he/him",
-          "persona": "Librarian; lives with wife; has been drinking less water to avoid bathroom trips. Communication style: expresses concern. Gives consistent answers without diagnostic labels. I have stairs at home and nobody there during the day.",
+          "persona": "Librarian who shelves books from a step stool; lives alone; nearby brother can stay tonight. Communication style: expresses concern. Gives consistent answers without diagnostic labels. I have stairs at home and nobody there during the day.",
           "affect": "I am scared I will fall while I am alone.",
           "communication_style": "expresses concern",
           "opening": "I keep feeling like I might faint when I stand up.",
@@ -5010,9 +5037,11 @@
             "past medical"
           ],
           "history_psh_1": [
-            "No operations or prior hospital admissions.",
-            "No operations or prior hospital admissions",
-            "past surgical"
+            "past surgery",
+            "operations",
+            "procedures",
+            "hospital stays",
+            "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays."
           ],
           "history_medications_1": [
             "Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.",
@@ -5031,20 +5060,19 @@
             "No allergies to medications"
           ],
           "tobacco_use": [
-            "tobacco",
-            "smoked",
+            "smoke",
             "smoking",
+            "tobacco",
             "cigarettes",
-            "smoker",
-            "Never smoked tobacco."
+            "quit smoking",
+            "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago."
           ],
           "alcohol_use": [
             "alcohol",
-            "alcoholic",
+            "drink alcohol",
             "beer",
             "wine",
-            "drinks",
-            "One glass of wine weekly."
+            "I do not drink alcohol."
           ],
           "drug_use": [
             "recreational drugs",
@@ -5055,18 +5083,25 @@
             "No recreational drugs."
           ],
           "history_context_1": [
-            "I am a librarian."
+            "occupation",
+            "work duties",
+            "job",
+            "do for a living",
+            "I am a librarian. I often climb a step stool to shelve books."
           ],
           "history_family_1": [
-            "My mother is sixty-two and she has high blood pressure.", "Mother has hypertension",
+            "My mother is sixty-two and she has high blood pressure.",
+            "Mother has hypertension",
             "mother"
           ],
           "history_family_2": [
-            "My father died of pneumonia when he was eighty.", "father died of pneumonia at 80",
+            "My father died of pneumonia when he was eighty.",
+            "father died of pneumonia at 80",
             "father"
           ],
           "history_family_3": [
-            "I have one brother, he's thirty-two and he's healthy.", "one healthy brother.",
+            "I have one brother, he's thirty-two and he's healthy.",
+            "one healthy brother.",
             "brother"
           ],
           "patient_concern": [
@@ -5097,7 +5132,11 @@
             "No visible rash on the inspected arms."
           ],
           "history_household": [
-            "I live with my wife."
+            "live with",
+            "living situation",
+            "household",
+            "support at home",
+            "I live alone. My brother lives nearby and can stay with me tonight."
           ],
           "history_fluids": [
             "I have been drinking less water to avoid bathroom trips."
@@ -6101,23 +6140,23 @@
             "id": "history_psh_1",
             "category": "psh",
             "checklist": "h_history_psh_1",
-            "value": "No operations or prior hospital admissions.",
+            "value": "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays.",
             "sp_says": [
-              "No operations or prior hospital admissions."
+              "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays."
             ],
             "triggers": {
               "any": [
                 "Have you had any surgeries or hospital admissions?",
-                "surgery",
+                "past surgery",
                 "operations",
-                "hospitalized",
-                "past surgical"
+                "procedures",
+                "hospital stays"
               ]
             },
             "concepts": {
               "history_psh_1": {
                 "polarity": "positive",
-                "value": "No operations or prior hospital admissions."
+                "value": "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays."
               }
             },
             "example_questions": [
@@ -6126,11 +6165,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "No operations or prior hospital admissions.",
+                  "text": "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays.",
                   "concepts": {
                     "history_psh_1": {
                       "polarity": "positive",
-                      "value": "No operations or prior hospital admissions."
+                      "value": "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays."
                     }
                   },
                   "complete_fact": true
@@ -6228,22 +6267,24 @@
             "id": "tobacco_use",
             "category": "social",
             "checklist": "h_tobacco_use",
-            "value": "Never smoked tobacco.",
+            "value": "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago.",
             "sp_says": [
-              "Never smoked tobacco."
+              "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago."
             ],
             "triggers": {
               "any": [
                 "Do you use tobacco or smoke?",
-                "tobacco",
                 "smoke",
-                "smoking"
+                "smoking",
+                "tobacco",
+                "cigarettes",
+                "quit smoking"
               ]
             },
             "concepts": {
               "tobacco_use": {
                 "polarity": "negative",
-                "value": "Never smoked tobacco."
+                "value": "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago."
               }
             },
             "example_questions": [
@@ -6252,11 +6293,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Never smoked tobacco.",
+                  "text": "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago.",
                   "concepts": {
                     "tobacco_use": {
                       "polarity": "negative",
-                      "value": "Never smoked tobacco."
+                      "value": "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago."
                     }
                   },
                   "complete_fact": true
@@ -6269,9 +6310,9 @@
             "id": "alcohol_use",
             "category": "social",
             "checklist": "h_alcohol_use",
-            "value": "One glass of wine weekly.",
+            "value": "I do not drink alcohol.",
             "sp_says": [
-              "One glass of wine weekly."
+              "I do not drink alcohol."
             ],
             "triggers": {
               "any": [
@@ -6285,7 +6326,7 @@
             "concepts": {
               "alcohol_use": {
                 "polarity": "positive",
-                "value": "One glass of wine weekly."
+                "value": "I do not drink alcohol."
               }
             },
             "example_questions": [
@@ -6294,11 +6335,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "One glass of wine weekly.",
+                  "text": "I do not drink alcohol.",
                   "concepts": {
                     "alcohol_use": {
                       "polarity": "positive",
-                      "value": "One glass of wine weekly."
+                      "value": "I do not drink alcohol."
                     }
                   },
                   "complete_fact": true
@@ -6352,25 +6393,23 @@
             "id": "history_context_1",
             "category": "social",
             "checklist": "h_history_context_1",
-            "value": "I am a librarian.",
+            "value": "I am a librarian. I often climb a step stool to shelve books.",
             "sp_says": [
-              "I am a librarian."
+              "I am a librarian. I often climb a step stool to shelve books."
             ],
             "triggers": {
               "any": [
                 "What do you do for work?",
-                "what do you do for work",
-                "what do you do for a living",
                 "occupation",
-                "your job",
-                "do you work",
-                "are you a student"
+                "work duties",
+                "job",
+                "do for a living"
               ]
             },
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a librarian."
+                "value": "I am a librarian. I often climb a step stool to shelve books."
               }
             },
             "history_topic": "occupation",
@@ -6380,11 +6419,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I am a librarian.",
+                  "text": "I am a librarian. I often climb a step stool to shelve books.",
                   "concepts": {
                     "history_context_1": {
                       "polarity": "positive",
-                      "value": "I am a librarian."
+                      "value": "I am a librarian. I often climb a step stool to shelve books."
                     }
                   },
                   "complete_fact": true
@@ -6618,23 +6657,23 @@
             "id": "history_household",
             "category": "social",
             "checklist": "h_history_household",
-            "value": "I live with my wife.",
+            "value": "I live alone. My brother lives nearby and can stay with me tonight.",
             "sp_says": [
-              "I live with my wife."
+              "I live alone. My brother lives nearby and can stay with me tonight."
             ],
             "triggers": {
               "any": [
                 "Who do you live with?",
-                "who do you live with",
-                "live with my wife",
+                "live with",
                 "living situation",
-                "live with"
+                "household",
+                "support at home"
               ]
             },
             "concepts": {
               "history_household": {
                 "polarity": "positive",
-                "value": "I live with my wife."
+                "value": "I live alone. My brother lives nearby and can stay with me tonight."
               }
             },
             "history_topic": "household",
@@ -6644,11 +6683,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I live with my wife.",
+                  "text": "I live alone. My brother lives nearby and can stay with me tonight.",
                   "concepts": {
                     "history_household": {
                       "polarity": "positive",
-                      "value": "I live with my wife."
+                      "value": "I live alone. My brother lives nearby and can stay with me tonight."
                     }
                   },
                   "complete_fact": true
@@ -6847,7 +6886,7 @@
             },
             {
               "id": "h_history_psh_1",
-              "text": "No operations or prior hospital admissions."
+              "text": "I had a torn ligament in my right knee repaired when I was 19. I have not had other operations or hospital stays."
             },
             {
               "id": "h_history_medications_1",
@@ -6859,11 +6898,11 @@
             },
             {
               "id": "h_tobacco_use",
-              "text": "Never smoked tobacco."
+              "text": "I smoked 5 cigarettes a day from age 18 to 22. I quit 7 years ago."
             },
             {
               "id": "h_alcohol_use",
-              "text": "One glass of wine weekly."
+              "text": "I do not drink alcohol."
             },
             {
               "id": "h_drug_use",
@@ -6871,7 +6910,7 @@
             },
             {
               "id": "h_history_context_1",
-              "text": "I am a librarian."
+              "text": "I am a librarian. I often climb a step stool to shelve books."
             },
             {
               "id": "h_history_family_1",
@@ -6895,7 +6934,7 @@
             },
             {
               "id": "h_history_household",
-              "text": "I live with my wife."
+              "text": "I live alone. My brother lives nearby and can stay with me tonight."
             },
             {
               "id": "h_history_fluids",
@@ -6994,7 +7033,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Lightheadedness after standing\n\nHPI: 29 yo m. Patient reports: It began 3 days ago. It feels like lightheadedness in my head, not spinning. There is no pain radiating anywhere. My vision dims and I feel faint. It lasts about 20 seconds and I need to hold a chair. It happens after standing, then settles. My blood pressure medicine dose increased last week. Sitting or lying down makes it stop. Standing quickly and hot showers provoke it. I started standing more slowly. I have not had this before. My vision dims when I stand.\n\nPatient perspective: I am scared I will fall while I am alone.\n\nPMH: Hypertension; no heart disease or diabetes.\n\nPSH: No operations or prior hospital admissions.\n\nMeds: Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One glass of wine weekly. No recreational drugs. Librarian; lives with wife; has been drinking less water to avoid bathroom trips.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of pneumonia when he was eighty.; I have one brother, he's thirty-two and he's healthy.\n\nROS: Neurologic - Reports presyncope. Denies vertigo. Denies focal weakness. Cardiovascular - Denies syncope. Denies palpitations. Denies chest pain. Gastrointestinal - Denies melena. Denies vomiting. Denies diarrhea.\n\nPatient concern: I have stairs at home and nobody there during the day.\n",
+          "S": "cc: Lightheadedness after standing\n\nHPI: 29 yo m. Patient reports: It began 3 days ago. It feels like lightheadedness in my head, not spinning. There is no pain radiating anywhere. My vision dims and I feel faint. It lasts about 20 seconds and I need to hold a chair. It happens after standing, then settles. My blood pressure medicine dose increased last week. Sitting or lying down makes it stop. Standing quickly and hot showers provoke it. I started standing more slowly. I have not had this before. My vision dims when I stand.\n\nPatient perspective: I am scared I will fall while I am alone.\n\nPMH: Hypertension; no heart disease or diabetes.\n\nPSH: Right knee ligament repair at age 19; no other operations or hospital stays.\n\nMeds: Hydrochlorothiazide increased from 12.5 mg to 25 mg daily last week.\n\nAllergies: No known drug allergies.\n\nSH: Former smoker, 5 cigarettes/day from ages 18\u201322; quit 7 years ago. No alcohol or recreational drugs. Librarian who uses a step stool to shelve books. Lives alone; nearby brother can stay tonight. Restricts water to avoid bathroom trips.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of pneumonia when he was eighty.; I have one brother, he's thirty-two and he's healthy.\n\nROS: Neurologic - Reports presyncope. Denies vertigo. Denies focal weakness. Cardiovascular - Denies syncope. Denies palpitations. Denies chest pain. Gastrointestinal - Denies melena. Denies vomiting. Denies diarrhea.\n\nPatient concern: I have stairs at home and nobody there during the day.\n",
           "O": "Vitals: T 98.3 F oral, P 78 bpm, BP 126/76 mmHg seated, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Comfortable while seated.\n\nHeart: Regular rhythm, S1 and S2 without murmur. After 5 minutes supine BP 126/76, pulse 78; at 1 minute standing BP 102/64, pulse 92 with lightheadedness; at 3 minutes standing BP 104/66, pulse 90.\n\nLungs: Breath sounds clear bilaterally.\n\nNeuro: Strength 5/5 in both arms and legs.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Medication-associated orthostatic hypotension",
@@ -7002,13 +7041,14 @@
             "3. Anemia"
           ],
           "P": [
-            "1. Measure orthostatic vitals safely and obtain ECG, BMP and CBC; review the recent dose change with the prescribing clinician before altering therapy; discuss hydration if not contraindicated, slow standing and fall precautions; follow up within 48 hours and seek emergency care for syncope, chest pain or focal deficits. Develop a specific fall-prevention and check-in plan with the patient rather than merely advising caution.",
+            "1. Measure orthostatic vitals safely and obtain ECG, BMP and CBC; review the recent dose change with the prescribing clinician before altering therapy; discuss hydration if not contraindicated, slow standing and fall precautions; follow up within 48 hours and seek emergency care for syncope, chest pain or focal deficits. Develop a specific fall-prevention and check-in plan with the patient rather than merely advising caution. Avoid step stools while symptomatic and arrange the offered family support.",
             "2. Obtain ECG and consider ambulatory monitoring if unexplained or recurrent; assess exertional episodes and family sudden death; arrange cardiology review if rhythm or risk findings warrant it. Educate the patient to sit or lie down promptly if symptoms recur and to avoid situations in which another episode could cause injury while the cause is being assessed.",
             "3. Check CBC and ask about blood loss; investigate any identified anemia rather than empirically treating without a cause; explain emergency precautions for bleeding or worsening weakness. Arrange follow-up to review the CBC and any bleeding history within 48 hours if stable enough for outpatient care; active bleeding or worsening presyncope requires immediate reassessment."
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"

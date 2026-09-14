@@ -238,13 +238,12 @@
       "past surgical"
     ],
     "history_medications_1": [
-      "Calcium carbonate antacid; frequency not established.",
-      "Calcium carbonate antacid as needed",
+      "medications",
+      "medicines",
       "take daily",
       "over the counter",
-      "antacid",
-      "calcium carbonate",
-      "I take calcium carbonate antacid as needed."
+      "cream",
+      "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week."
     ],
     "history_allergies_1": [
       "No known drug allergies.",
@@ -282,15 +281,18 @@
       "I am a bicycle mechanic."
     ],
     "history_family_1": [
-      "My mother is still alive, and she had a stroke when she was seventy-eight.", "Mother had stroke at 78",
+      "My mother is still alive, and she had a stroke when she was seventy-eight.",
+      "Mother had stroke at 78",
       "mother"
     ],
     "history_family_2": [
-      "My father died of lung cancer when he was seventy.", "father died of lung cancer at 70",
+      "My father died of lung cancer when he was seventy.",
+      "father died of lung cancer at 70",
       "father"
     ],
     "history_family_3": [
-      "I have one sister and she is healthy.", "one healthy sister.",
+      "I have one sister and she is healthy.",
+      "one healthy sister.",
       "sister"
     ],
     "patient_concern": [
@@ -1356,25 +1358,24 @@
       "id": "history_medications_1",
       "category": "medications",
       "checklist": "h_history_medications_1",
-      "value": "I take calcium carbonate antacid as needed.",
+      "value": "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week.",
       "sp_says": [
-        "I take calcium carbonate antacid as needed."
+        "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week."
       ],
       "triggers": {
         "any": [
           "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
           "medications",
           "medicines",
-          "pills",
-          "prescription",
           "take daily",
-          "over the counter"
+          "over the counter",
+          "cream"
         ]
       },
       "concepts": {
         "history_medications_1": {
           "polarity": "positive",
-          "value": "I take calcium carbonate antacid as needed."
+          "value": "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week."
         }
       },
       "example_questions": [
@@ -1383,11 +1384,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "I take calcium carbonate antacid as needed.",
+            "text": "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week.",
             "concepts": {
               "history_medications_1": {
                 "polarity": "positive",
-                "value": "I take calcium carbonate antacid as needed."
+                "value": "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week."
               }
             },
             "complete_fact": true
@@ -2364,7 +2365,7 @@
       },
       {
         "id": "h_history_medications_1",
-        "text": "I take calcium carbonate antacid as needed."
+        "text": "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week."
       },
       {
         "id": "h_history_allergies_1",
@@ -2539,7 +2540,7 @@
     ]
   },
   "model_note": {
-    "S": "cc: Food sticking and unintentional weight loss\n\nHPI: 26 yo m. Patient reports: It began 8 weeks ago. Food seems to stop behind my breastbone. There is no pain spreading to the arms or back. It feels like food sticks after I swallow. I have lost 10 pounds without trying. Solid food was the problem first; now soft foods are becoming difficult. I have had years of heartburn. Small bites and water sometimes help food pass. Meat and bread are hardest to swallow. Over-the-counter antacid helps heartburn but not the sticking. This progressive sticking is new. Solid food sticks after swallowing. Sometimes food comes back up. I lost 10 pounds in 2 months. I have less energy.\n\nPatient perspective: My father had cancer. Is that what this is?\n\nPMH: Longstanding reflux; no prior endoscopy.\n\nPSH: No surgeries or admissions.\n\nMeds: Calcium carbonate antacid; frequency not established.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Bicycle mechanic; lives with wife; still able to swallow liquids and manage saliva.\n\nFH: My mother is still alive, and she had a stroke when she was seventy-eight.; My father died of lung cancer when he was seventy.; I have one sister and she is healthy.\n\nROS: Gastrointestinal - Reports dysphagia. Denies odynophagia. Reports regurgitation. General - Reports weight loss. Reports fatigue. Denies fever. Respiratory - Denies cough. Denies dyspnea. Denies hemoptysis.\nAdditional PMH: I have had eczema since childhood.\n",
+    "S": "cc: Food sticking and unintentional weight loss\n\nHPI: 26 yo m. Patient reports: It began 8 weeks ago. Food seems to stop behind my breastbone. There is no pain spreading to the arms or back. It feels like food sticks after I swallow. I have lost 10 pounds without trying. Solid food was the problem first; now soft foods are becoming difficult. I have had years of heartburn. Small bites and water sometimes help food pass. Meat and bread are hardest to swallow. Over-the-counter antacid helps heartburn but not the sticking. This progressive sticking is new. Solid food sticks after swallowing. Sometimes food comes back up. I lost 10 pounds in 2 months. I have less energy.\n\nPatient perspective: My father had cancer. Is that what this is?\n\nPMH: Longstanding reflux; no prior endoscopy.\n\nPSH: No surgeries or admissions.\n\nMeds: Calcium carbonate antacid as needed. Hydrocortisone 1% cream to eczema patches once daily for up to 1 week during flares.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Bicycle mechanic; lives with wife; still able to swallow liquids and manage saliva.\n\nFH: My mother is still alive, and she had a stroke when she was seventy-eight.; My father died of lung cancer when he was seventy.; I have one sister and she is healthy.\n\nROS: Gastrointestinal - Reports dysphagia. Denies odynophagia. Reports regurgitation. General - Reports weight loss. Reports fatigue. Denies fever. Respiratory - Denies cough. Denies dyspnea. Denies hemoptysis.\nAdditional PMH: I have had eczema since childhood.\n",
     "O": "Vitals: T 98.1 F oral, P 82 bpm, BP 124/76 mmHg, R 16 rpm, Pulse Ox 98% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Thin appearing; handles secretions without distress.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nHEENT: Oropharynx without visible lesions. No palpable cervical or supraclavicular nodes.\n\nAbd: Abdomen not distended. Bowel sounds present. No focal tenderness with gentle palpation. Tympanic in examined quadrants.\n\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
     "A": [
       "1. Eosinophilic esophagitis",
@@ -2629,7 +2630,8 @@
     "sources": [
       "https://www.nice.org.uk/guidance/ng12/chapter/recommendations-organised-by-site-of-cancer"
     ],
-    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional."
+    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional.",
+    "background_revision": "2026-09-14: New synthetic background facts reviewed for internal consistency and relevance against primary clinical sources; source references support clinical plausibility, not the existence of a real patient. No clinician approval."
   },
   "sources": [
     {
@@ -2671,6 +2673,13 @@
       "kind": "supplementary_clinical",
       "reviewed": "2026-09-09",
       "review_scope": "Age/anatomy-dependent cohort adaptation; does not establish course scoring or a patient diagnosis."
+    },
+    {
+      "title": "Atopic dermatitis diagnosis and treatment",
+      "url": "https://www.aad.org/public/diseases/eczema/types/atopic-dermatitis/treatment",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Topical corticosteroid use is a plausible existing eczema treatment; this is authored medication history, not a new prescription."
     }
   ],
   "teaching": {
@@ -2790,7 +2799,8 @@
     "young_female_cohort": "New male adult18\u201330 authoring; old saved snapshots remain outside this generator.",
     "experience_review2_language": "Reviewed vomiting tense forms; unsupported progression is not invented; timing cues reference obtainable dimensions; target maneuver removed from public doorway.",
     "demeanor": "demeanor-axes-v1: independently authored communication style and emotional state; legacy pace/gesture style retained; no physical finding credit.",
-    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+    "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
   },
   "cohort": {
     "id": "young-adult-male-v1",
@@ -3016,13 +3026,12 @@
             "past surgical"
           ],
           "history_medications_1": [
-            "Calcium carbonate antacid; frequency not established.",
-            "Calcium carbonate antacid as needed",
+            "medications",
+            "medicines",
             "take daily",
             "over the counter",
-            "antacid",
-            "calcium carbonate",
-            "I take calcium carbonate antacid as needed."
+            "cream",
+            "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week."
           ],
           "history_allergies_1": [
             "No known drug allergies.",
@@ -3060,15 +3069,18 @@
             "I am a bicycle mechanic."
           ],
           "history_family_1": [
-            "My mother is still alive, and she had a stroke when she was seventy-eight.", "Mother had stroke at 78",
+            "My mother is still alive, and she had a stroke when she was seventy-eight.",
+            "Mother had stroke at 78",
             "mother"
           ],
           "history_family_2": [
-            "My father died of lung cancer when he was seventy.", "father died of lung cancer at 70",
+            "My father died of lung cancer when he was seventy.",
+            "father died of lung cancer at 70",
             "father"
           ],
           "history_family_3": [
-            "I have one sister and she is healthy.", "one healthy sister.",
+            "I have one sister and she is healthy.",
+            "one healthy sister.",
             "sister"
           ],
           "patient_concern": [
@@ -4134,25 +4146,24 @@
             "id": "history_medications_1",
             "category": "medications",
             "checklist": "h_history_medications_1",
-            "value": "I take calcium carbonate antacid as needed.",
+            "value": "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week.",
             "sp_says": [
-              "I take calcium carbonate antacid as needed."
+              "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week."
             ],
             "triggers": {
               "any": [
                 "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
                 "medications",
                 "medicines",
-                "pills",
-                "prescription",
                 "take daily",
-                "over the counter"
+                "over the counter",
+                "cream"
               ]
             },
             "concepts": {
               "history_medications_1": {
                 "polarity": "positive",
-                "value": "I take calcium carbonate antacid as needed."
+                "value": "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week."
               }
             },
             "example_questions": [
@@ -4161,11 +4172,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I take calcium carbonate antacid as needed.",
+                  "text": "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week.",
                   "concepts": {
                     "history_medications_1": {
                       "polarity": "positive",
-                      "value": "I take calcium carbonate antacid as needed."
+                      "value": "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week."
                     }
                   },
                   "complete_fact": true
@@ -4829,7 +4840,7 @@
             },
             {
               "id": "h_history_medications_1",
-              "text": "I take calcium carbonate antacid as needed."
+              "text": "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week."
             },
             {
               "id": "h_history_allergies_1",
@@ -5003,7 +5014,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Food sticking and unintentional weight loss\n\nHPI: 26 yo m. Patient reports: It began 5 weeks ago. Food seems to stop behind my breastbone. There is no pain spreading to the arms or back. It feels like food sticks after I swallow. I have lost 10 pounds without trying. Solid food was the problem first; now soft foods are becoming difficult. I have had years of heartburn. Small bites and water sometimes help food pass. Meat and bread are hardest to swallow. Over-the-counter antacid helps heartburn but not the sticking. This progressive sticking is new. Solid food sticks after swallowing. Sometimes food comes back up. I lost 10 pounds in 2 months. I have less energy.\n\nPatient perspective: My father had cancer. Is that what this is?\n\nPMH: Longstanding reflux; no prior endoscopy.\n\nPSH: No surgeries or admissions.\n\nMeds: Calcium carbonate antacid; frequency not established.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Bicycle mechanic; lives with wife; still able to swallow liquids and manage saliva.\n\nFH: My mother is still alive, and she had a stroke when she was seventy-eight.; My father died of lung cancer when he was seventy.; I have one sister and she is healthy.\n\nROS: Gastrointestinal - Reports dysphagia. Denies odynophagia. Reports regurgitation. General - Reports weight loss. Reports fatigue. Denies fever. Respiratory - Denies cough. Denies dyspnea. Denies hemoptysis.\nAdditional PMH: I have had eczema since childhood.\n",
+          "S": "cc: Food sticking and unintentional weight loss\n\nHPI: 26 yo m. Patient reports: It began 5 weeks ago. Food seems to stop behind my breastbone. There is no pain spreading to the arms or back. It feels like food sticks after I swallow. I have lost 10 pounds without trying. Solid food was the problem first; now soft foods are becoming difficult. I have had years of heartburn. Small bites and water sometimes help food pass. Meat and bread are hardest to swallow. Over-the-counter antacid helps heartburn but not the sticking. This progressive sticking is new. Solid food sticks after swallowing. Sometimes food comes back up. I lost 10 pounds in 2 months. I have less energy.\n\nPatient perspective: My father had cancer. Is that what this is?\n\nPMH: Longstanding reflux; no prior endoscopy.\n\nPSH: No surgeries or admissions.\n\nMeds: Calcium carbonate antacid as needed. Hydrocortisone 1% cream to eczema patches once daily for up to 1 week during flares.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Bicycle mechanic; lives with wife; still able to swallow liquids and manage saliva.\n\nFH: My mother is still alive, and she had a stroke when she was seventy-eight.; My father died of lung cancer when he was seventy.; I have one sister and she is healthy.\n\nROS: Gastrointestinal - Reports dysphagia. Denies odynophagia. Reports regurgitation. General - Reports weight loss. Reports fatigue. Denies fever. Respiratory - Denies cough. Denies dyspnea. Denies hemoptysis.\nAdditional PMH: I have had eczema since childhood.\n",
           "O": "Vitals: T 98.1 F oral, P 82 bpm, BP 124/76 mmHg, R 16 rpm, Pulse Ox 98% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Thin appearing; handles secretions without distress.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nHEENT: Oropharynx without visible lesions. No palpable cervical or supraclavicular nodes.\n\nAbd: Abdomen not distended. Bowel sounds present. No focal tenderness with gentle palpation. Tympanic in examined quadrants.\n\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Eosinophilic esophagitis",
@@ -5017,7 +5028,8 @@
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"
@@ -5237,13 +5249,12 @@
             "past surgical"
           ],
           "history_medications_1": [
-            "Calcium carbonate antacid; frequency not established.",
-            "Calcium carbonate antacid as needed",
+            "medications",
+            "medicines",
             "take daily",
             "over the counter",
-            "antacid",
-            "calcium carbonate",
-            "I take calcium carbonate antacid as needed."
+            "cream",
+            "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week."
           ],
           "history_allergies_1": [
             "No known drug allergies.",
@@ -5281,15 +5292,18 @@
             "I am a bicycle mechanic."
           ],
           "history_family_1": [
-            "My mother is still alive, and she had a stroke when she was seventy-eight.", "Mother had stroke at 78",
+            "My mother is still alive, and she had a stroke when she was seventy-eight.",
+            "Mother had stroke at 78",
             "mother"
           ],
           "history_family_2": [
-            "My father died of lung cancer when he was seventy.", "father died of lung cancer at 70",
+            "My father died of lung cancer when he was seventy.",
+            "father died of lung cancer at 70",
             "father"
           ],
           "history_family_3": [
-            "I have one sister and she is healthy.", "one healthy sister.",
+            "I have one sister and she is healthy.",
+            "one healthy sister.",
             "sister"
           ],
           "patient_concern": [
@@ -6358,25 +6372,24 @@
             "id": "history_medications_1",
             "category": "medications",
             "checklist": "h_history_medications_1",
-            "value": "I take calcium carbonate antacid as needed.",
+            "value": "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week.",
             "sp_says": [
-              "I take calcium carbonate antacid as needed."
+              "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week."
             ],
             "triggers": {
               "any": [
                 "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
                 "medications",
                 "medicines",
-                "pills",
-                "prescription",
                 "take daily",
-                "over the counter"
+                "over the counter",
+                "cream"
               ]
             },
             "concepts": {
               "history_medications_1": {
                 "polarity": "positive",
-                "value": "I take calcium carbonate antacid as needed."
+                "value": "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week."
               }
             },
             "example_questions": [
@@ -6385,11 +6398,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I take calcium carbonate antacid as needed.",
+                  "text": "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week.",
                   "concepts": {
                     "history_medications_1": {
                       "polarity": "positive",
-                      "value": "I take calcium carbonate antacid as needed."
+                      "value": "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week."
                     }
                   },
                   "complete_fact": true
@@ -7098,7 +7111,7 @@
             },
             {
               "id": "h_history_medications_1",
-              "text": "I take calcium carbonate antacid as needed."
+              "text": "I take calcium carbonate antacid as needed. For eczema flares, I put hydrocortisone 1% cream on the itchy patches once a day, for up to a week."
             },
             {
               "id": "h_history_allergies_1",
@@ -7276,7 +7289,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Food sticking and unintentional weight loss\n\nHPI: 26 yo m. Patient reports: It began 8 weeks ago. Food seems to stop behind my breastbone. There is no pain spreading to the arms or back. It feels like food sticks after I swallow. I have lost 10 pounds without trying. Solid food was the problem first; now soft foods are becoming difficult. I have had years of heartburn. Small bites and water sometimes help food pass. Meat and bread are hardest to swallow. Over-the-counter antacid helps heartburn but not the sticking. This progressive sticking is new. Solid food sticks after swallowing. Sometimes food comes back up. I lost 10 pounds in 2 months. I have less energy.\n\nPatient perspective: My father had cancer. Is that what this is?\n\nPMH: Longstanding reflux; no prior endoscopy.\n\nPSH: No surgeries or admissions.\n\nMeds: Calcium carbonate antacid; frequency not established.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Bicycle mechanic; lives with wife; still able to swallow liquids and manage saliva.\n\nFH: My mother is still alive, and she had a stroke when she was seventy-eight.; My father died of lung cancer when he was seventy.; I have one sister and she is healthy.\n\nROS: Gastrointestinal - Reports dysphagia. Denies odynophagia. Reports regurgitation. General - Reports weight loss. Reports fatigue. Denies fever. Respiratory - Denies cough. Denies dyspnea. Denies hemoptysis.\n\nPatient concern: I am afraid an endoscopy will be very painful, so I may skip it.\nAdditional PMH: I have had eczema since childhood.\n",
+          "S": "cc: Food sticking and unintentional weight loss\n\nHPI: 26 yo m. Patient reports: It began 8 weeks ago. Food seems to stop behind my breastbone. There is no pain spreading to the arms or back. It feels like food sticks after I swallow. I have lost 10 pounds without trying. Solid food was the problem first; now soft foods are becoming difficult. I have had years of heartburn. Small bites and water sometimes help food pass. Meat and bread are hardest to swallow. Over-the-counter antacid helps heartburn but not the sticking. This progressive sticking is new. Solid food sticks after swallowing. Sometimes food comes back up. I lost 10 pounds in 2 months. I have less energy.\n\nPatient perspective: My father had cancer. Is that what this is?\n\nPMH: Longstanding reflux; no prior endoscopy.\n\nPSH: No surgeries or admissions.\n\nMeds: Calcium carbonate antacid as needed. Hydrocortisone 1% cream to eczema patches once daily for up to 1 week during flares.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Bicycle mechanic; lives with wife; still able to swallow liquids and manage saliva.\n\nFH: My mother is still alive, and she had a stroke when she was seventy-eight.; My father died of lung cancer when he was seventy.; I have one sister and she is healthy.\n\nROS: Gastrointestinal - Reports dysphagia. Denies odynophagia. Reports regurgitation. General - Reports weight loss. Reports fatigue. Denies fever. Respiratory - Denies cough. Denies dyspnea. Denies hemoptysis.\n\nPatient concern: I am afraid an endoscopy will be very painful, so I may skip it.\nAdditional PMH: I have had eczema since childhood.\n",
           "O": "Vitals: T 98.1 F oral, P 82 bpm, BP 124/76 mmHg, R 16 rpm, Pulse Ox 98% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Thin appearing; handles secretions without distress.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nHEENT: Oropharynx without visible lesions. No palpable cervical or supraclavicular nodes.\n\nAbd: Abdomen not distended. Bowel sounds present. No focal tenderness with gentle palpation. Tympanic in examined quadrants.\n\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Eosinophilic esophagitis",
@@ -7290,7 +7303,8 @@
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"

@@ -1,0 +1,2368 @@
+{
+  "id": "msk-shoulder-overuse",
+  "presentation_id": "msk-shoulder-overuse",
+  "title": "Shoulder pain with overhead work",
+  "hidden_label": "Station 28",
+  "system": "Musculoskeletal",
+  "complaint_family": "Musculoskeletal",
+  "level": "M2",
+  "difficulty": "intermediate",
+  "blurb": "My right shoulder hurts when I reach overhead.",
+  "curriculum_note": "Supplementary fictional practice for the course history, physical examination and SOAP skills; not an official or predicted station.",
+  "scope_status": "supplementary_cross_system",
+  "station": {
+    "doorway": [
+      "Elena Torres, 46-year-old female.",
+      "My right shoulder hurts when I reach overhead.",
+      "Vital signs are available on the chart.",
+      "Perform a focused history and physical examination, discuss your plan, and document only what you obtain.",
+      "Use the time limit stated for your selected practice mode."
+    ],
+    "vitals": {
+      "BP": "128/78 mmHg",
+      "P": "72 bpm",
+      "R": "16 rpm",
+      "T": "98.4 F oral",
+      "Pulse Ox": "99% on room air",
+      "Ht": "5' 6\"",
+      "Wt": "172 lbs"
+    },
+    "supplied_results": []
+  },
+  "patient": {
+    "name": "Elena Torres",
+    "age": 46,
+    "sex": "female",
+    "pronouns": "she/her",
+    "persona": "I paint houses. My boss can give me lower-wall work for a while. I live with my teenage son. He can help with lifting.",
+    "opening": "My right shoulder hurts when I reach overhead.",
+    "opening_facts": [
+      "opening_complaint"
+    ],
+    "opening_contract": {
+      "text": "My right shoulder hurts when I reach overhead.",
+      "fact_ids": [
+        "opening_complaint"
+      ],
+      "review": "Exact opening only."
+    },
+    "volunteer_budget": 1,
+    "volunteer_order": [
+      "patient_concern"
+    ],
+    "affect": "I want to know what is causing this and how to get back to my usual activities.",
+    "communication_style": "concise",
+    "empathy_replies": [
+      "Thank you for listening.",
+      "I appreciate you explaining that."
+    ],
+    "closing_questions": [
+      "I want to know what is causing this and how to get back to my usual activities."
+    ],
+    "appearance": {
+      "presentation": "female",
+      "model": "mpfb-public-patient",
+      "skinTone": 1,
+      "eyeColor": "brown",
+      "hairColor": "brunette",
+      "hairStyle": "long",
+      "outfit": "fitted-casual",
+      "bodyBuild": "standard"
+    },
+    "voice": {
+      "rate": 1,
+      "pitch": 1,
+      "gender": "female",
+      "adult": true
+    },
+    "education_responses": [
+      {
+        "student": "We will reduce overhead strain and start a gentle rehabilitation plan. Because naproxen caused hives and lip swelling, I will not assume another anti-inflammatory pill is safe. We will reassess in three weeks.",
+        "patient": "Thank you. I understand that the next steps depend on the examination and tests."
+      },
+      {
+        "student": "Modified work can help protect your income while the shoulder recovers. Persistent weakness or increasing stiffness would change the next steps.",
+        "patient": "That would help. Thank you."
+      }
+    ]
+  },
+  "facts": [
+    {
+      "id": "opening_complaint",
+      "category": "chief_complaint",
+      "print_label": "Opening complaint",
+      "checklist": "h_opening_complaint",
+      "value": "My right shoulder hurts when I reach overhead.",
+      "sp_says": [
+        "My right shoulder hurts when I reach overhead."
+      ],
+      "triggers": {
+        "any": [
+          "What brings you in today?"
+        ]
+      },
+      "concepts": {
+        "opening_complaint": {
+          "polarity": "positive",
+          "value": "My right shoulder hurts when I reach overhead."
+        }
+      },
+      "example_questions": [
+        "What brings you in today?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My right shoulder hurts when I reach overhead.",
+            "concepts": {
+              "opening_complaint": {
+                "polarity": "positive",
+                "value": "My right shoulder hurts when I reach overhead."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "My right shoulder hurts when I reach overhead."
+    },
+    {
+      "id": "hpi_onset",
+      "category": "onset",
+      "print_label": "Onset",
+      "checklist": "h_hpi_onset",
+      "value": "About 5 weeks ago after several days painting ceilings.",
+      "sp_says": [
+        "About 5 weeks ago after several days painting ceilings."
+      ],
+      "triggers": {
+        "any": [
+          "When did your shoulder pain start?",
+          "when did",
+          "started",
+          "began"
+        ]
+      },
+      "concepts": {
+        "hpi_onset": {
+          "polarity": "positive",
+          "value": "About 5 weeks ago after several days painting ceilings."
+        }
+      },
+      "example_questions": [
+        "When did your shoulder pain start?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "About 5 weeks ago after several days painting ceilings.",
+            "concepts": {
+              "hpi_onset": {
+                "polarity": "positive",
+                "value": "About 5 weeks ago after several days painting ceilings."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Five weeks of right shoulder pain after ceiling painting.",
+      "temporal_role": "first_episode_onset"
+    },
+    {
+      "id": "hpi_location",
+      "category": "location",
+      "print_label": "Location",
+      "checklist": "h_hpi_location",
+      "value": "On the outer shoulder and the top of my arm.",
+      "sp_says": [
+        "On the outer shoulder and the top of my arm."
+      ],
+      "triggers": {
+        "any": [
+          "Where does the shoulder hurt?",
+          "where",
+          "which side"
+        ]
+      },
+      "concepts": {
+        "hpi_location": {
+          "polarity": "positive",
+          "value": "On the outer shoulder and the top of my arm."
+        }
+      },
+      "example_questions": [
+        "Where does the shoulder hurt?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "On the outer shoulder and the top of my arm.",
+            "concepts": {
+              "hpi_location": {
+                "polarity": "positive",
+                "value": "On the outer shoulder and the top of my arm."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Lateral shoulder and proximal upper-arm pain."
+    },
+    {
+      "id": "hpi_radiation",
+      "category": "radiation",
+      "print_label": "Spread",
+      "checklist": "h_hpi_radiation",
+      "value": "Sometimes a tingle reaches my thumb when my neck is stiff, but the shoulder ache stays above the elbow.",
+      "sp_says": [
+        "Sometimes a tingle reaches my thumb when my neck is stiff, but the shoulder ache stays above the elbow."
+      ],
+      "triggers": {
+        "any": [
+          "Does the pain go below the elbow?",
+          "spread",
+          "radiate"
+        ]
+      },
+      "concepts": {
+        "hpi_radiation": {
+          "polarity": "positive",
+          "value": "Sometimes a tingle reaches my thumb when my neck is stiff, but the shoulder ache stays above the elbow."
+        }
+      },
+      "example_questions": [
+        "Does the pain go below the elbow?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Sometimes a tingle reaches my thumb when my neck is stiff, but the shoulder ache stays above the elbow.",
+            "concepts": {
+              "hpi_radiation": {
+                "polarity": "positive",
+                "value": "Sometimes a tingle reaches my thumb when my neck is stiff, but the shoulder ache stays above the elbow."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Shoulder ache remains proximal to elbow; occasional thumb tingling with neck stiffness."
+    },
+    {
+      "id": "hpi_quality",
+      "category": "quality",
+      "print_label": "Character",
+      "checklist": "h_hpi_quality",
+      "value": "A dull ache that pinches when I lift the arm.",
+      "sp_says": [
+        "A dull ache that pinches when I lift the arm."
+      ],
+      "triggers": {
+        "any": [
+          "What does the pain feel like?",
+          "feel like",
+          "describe"
+        ]
+      },
+      "concepts": {
+        "hpi_quality": {
+          "polarity": "positive",
+          "value": "A dull ache that pinches when I lift the arm."
+        }
+      },
+      "example_questions": [
+        "What does the pain feel like?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "A dull ache that pinches when I lift the arm.",
+            "concepts": {
+              "hpi_quality": {
+                "polarity": "positive",
+                "value": "A dull ache that pinches when I lift the arm."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Aching with pain during elevation."
+    },
+    {
+      "id": "hpi_severity",
+      "category": "severity",
+      "print_label": "Severity and function",
+      "checklist": "h_hpi_severity",
+      "value": "About 5 out of 10. Reaching shelves and washing my hair hurt.",
+      "sp_says": [
+        "About 5 out of 10. Reaching shelves and washing my hair hurt."
+      ],
+      "triggers": {
+        "any": [
+          "How bad is the pain?",
+          "how bad",
+          "out of ten",
+          "severity"
+        ]
+      },
+      "concepts": {
+        "hpi_severity": {
+          "polarity": "positive",
+          "value": "About 5 out of 10. Reaching shelves and washing my hair hurt."
+        }
+      },
+      "example_questions": [
+        "How bad is the pain?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "About 5 out of 10. Reaching shelves and washing my hair hurt.",
+            "concepts": {
+              "hpi_severity": {
+                "polarity": "positive",
+                "value": "About 5 out of 10. Reaching shelves and washing my hair hurt."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "5/10; limits overhead reach and hair washing."
+    },
+    {
+      "id": "hpi_timing",
+      "category": "timing",
+      "print_label": "Pattern",
+      "checklist": "h_hpi_timing",
+      "value": "During overhead work and when I lie on that shoulder.",
+      "sp_says": [
+        "During overhead work and when I lie on that shoulder."
+      ],
+      "triggers": {
+        "any": [
+          "When is the pain worst?",
+          "how long each",
+          "how often"
+        ]
+      },
+      "concepts": {
+        "hpi_timing": {
+          "polarity": "positive",
+          "value": "During overhead work and when I lie on that shoulder."
+        }
+      },
+      "example_questions": [
+        "When is the pain worst?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "During overhead work and when I lie on that shoulder.",
+            "concepts": {
+              "hpi_timing": {
+                "polarity": "positive",
+                "value": "During overhead work and when I lie on that shoulder."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Worse with overhead use and lying on right side."
+    },
+    {
+      "id": "hpi_chronology",
+      "category": "chronology",
+      "print_label": "Stiffness",
+      "checklist": "h_hpi_chronology",
+      "value": "It feels a little stiff in the morning but loosens after about 10 minutes.",
+      "sp_says": [
+        "It feels a little stiff in the morning but loosens after about 10 minutes."
+      ],
+      "triggers": {
+        "any": [
+          "Has your movement become stiffer?",
+          "changed",
+          "progressed"
+        ]
+      },
+      "concepts": {
+        "hpi_chronology": {
+          "polarity": "positive",
+          "value": "It feels a little stiff in the morning but loosens after about 10 minutes."
+        }
+      },
+      "example_questions": [
+        "Has your movement become stiffer?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "It feels a little stiff in the morning but loosens after about 10 minutes.",
+            "concepts": {
+              "hpi_chronology": {
+                "polarity": "positive",
+                "value": "It feels a little stiff in the morning but loosens after about 10 minutes."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Morning stiffness approximately 10 minutes.",
+      "question_dimensions": [
+        "progression"
+      ],
+      "temporal_role": "pattern_or_progression"
+    },
+    {
+      "id": "hpi_setting",
+      "category": "setting",
+      "print_label": "Injury",
+      "checklist": "h_hpi_setting",
+      "value": "No fall, pop or sudden pull.",
+      "sp_says": [
+        "No fall, pop or sudden pull."
+      ],
+      "triggers": {
+        "any": [
+          "Was there a fall or sudden injury?",
+          "trigger",
+          "doing when"
+        ]
+      },
+      "concepts": {
+        "hpi_setting": {
+          "polarity": "positive",
+          "value": "No fall, pop or sudden pull."
+        }
+      },
+      "example_questions": [
+        "Was there a fall or sudden injury?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No fall, pop or sudden pull.",
+            "concepts": {
+              "hpi_setting": {
+                "polarity": "positive",
+                "value": "No fall, pop or sudden pull."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No fall or sudden injury."
+    },
+    {
+      "id": "hpi_aggravating",
+      "category": "aggravating",
+      "print_label": "Neck relationship",
+      "checklist": "h_hpi_aggravating",
+      "value": "Turning my neck sometimes brings on the thumb tingle, but not the main shoulder pain.",
+      "sp_says": [
+        "Turning my neck sometimes brings on the thumb tingle, but not the main shoulder pain."
+      ],
+      "triggers": {
+        "any": [
+          "Do neck movements change the shoulder pain?",
+          "makes worse"
+        ]
+      },
+      "concepts": {
+        "hpi_aggravating": {
+          "polarity": "positive",
+          "value": "Turning my neck sometimes brings on the thumb tingle, but not the main shoulder pain."
+        }
+      },
+      "example_questions": [
+        "Do neck movements change the shoulder pain?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Turning my neck sometimes brings on the thumb tingle, but not the main shoulder pain.",
+            "concepts": {
+              "hpi_aggravating": {
+                "polarity": "positive",
+                "value": "Turning my neck sometimes brings on the thumb tingle, but not the main shoulder pain."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Neck rotation can reproduce thumb tingling, not the principal shoulder pain."
+    },
+    {
+      "id": "hpi_alleviating",
+      "category": "alleviating",
+      "print_label": "Relief",
+      "checklist": "h_hpi_alleviating",
+      "value": "Resting it and a warm shower help.",
+      "sp_says": [
+        "Resting it and a warm shower help."
+      ],
+      "triggers": {
+        "any": [
+          "What relieves the shoulder pain?",
+          "helps",
+          "relieves"
+        ]
+      },
+      "concepts": {
+        "hpi_alleviating": {
+          "polarity": "positive",
+          "value": "Resting it and a warm shower help."
+        }
+      },
+      "example_questions": [
+        "What relieves the shoulder pain?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Resting it and a warm shower help.",
+            "concepts": {
+              "hpi_alleviating": {
+                "polarity": "positive",
+                "value": "Resting it and a warm shower help."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Relief with rest and warmth."
+    },
+    {
+      "id": "hpi_treatment",
+      "category": "treatment",
+      "print_label": "Self-treatment",
+      "checklist": "h_hpi_treatment",
+      "value": "Acetaminophen 500 milligrams once or twice a day on workdays. It helps a little.",
+      "sp_says": [
+        "Acetaminophen 500 milligrams once or twice a day on workdays. It helps a little."
+      ],
+      "triggers": {
+        "any": [
+          "What have you taken for the pain?",
+          "tried for",
+          "taken for"
+        ]
+      },
+      "concepts": {
+        "hpi_treatment": {
+          "polarity": "positive",
+          "value": "Acetaminophen 500 milligrams once or twice a day on workdays. It helps a little."
+        }
+      },
+      "example_questions": [
+        "What have you taken for the pain?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Acetaminophen 500 milligrams once or twice a day on workdays. It helps a little.",
+            "concepts": {
+              "hpi_treatment": {
+                "polarity": "positive",
+                "value": "Acetaminophen 500 milligrams once or twice a day on workdays. It helps a little."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Partial relief with acetaminophen 500 mg once or twice on workdays."
+    },
+    {
+      "id": "hpi_past_occurrence",
+      "category": "past_occurrence",
+      "print_label": "Prior symptoms",
+      "checklist": "h_hpi_past_occurrence",
+      "value": "No previous shoulder trouble. My neck has ached on and off for a year.",
+      "sp_says": [
+        "No previous shoulder trouble. My neck has ached on and off for a year."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had shoulder trouble before?",
+          "had before"
+        ]
+      },
+      "concepts": {
+        "hpi_past_occurrence": {
+          "polarity": "positive",
+          "value": "No previous shoulder trouble. My neck has ached on and off for a year."
+        }
+      },
+      "example_questions": [
+        "Have you had shoulder trouble before?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No previous shoulder trouble. My neck has ached on and off for a year.",
+            "concepts": {
+              "hpi_past_occurrence": {
+                "polarity": "positive",
+                "value": "No previous shoulder trouble. My neck has ached on and off for a year."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No previous shoulder episode; intermittent neck ache for 1 year."
+    },
+    {
+      "id": "history_medical_history",
+      "category": "pmh",
+      "print_label": "Medical history",
+      "checklist": "h_history_medical_history",
+      "value": "Type 2 diabetes for 8 years. My last A1c was 7.2 three months ago.",
+      "sp_says": [
+        "Type 2 diabetes for 8 years. My last A1c was 7.2 three months ago."
+      ],
+      "triggers": {
+        "any": [
+          "What medical conditions do you have?",
+          "What illnesses have you had?",
+          "Any medical conditions?"
+        ]
+      },
+      "concepts": {
+        "history_medical_history": {
+          "polarity": "positive",
+          "value": "Type 2 diabetes for 8 years. My last A1c was 7.2 three months ago."
+        }
+      },
+      "example_questions": [
+        "What medical conditions do you have?",
+        "What illnesses have you had?",
+        "Any medical conditions?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Type 2 diabetes for 8 years. My last A1c was 7.2 three months ago.",
+            "concepts": {
+              "history_medical_history": {
+                "polarity": "positive",
+                "value": "Type 2 diabetes for 8 years. My last A1c was 7.2 three months ago."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Type 2 diabetes for 8 years; reported A1c 7.2% 3 months ago."
+    },
+    {
+      "id": "history_surgery",
+      "category": "psh",
+      "print_label": "Surgery",
+      "checklist": "h_history_surgery",
+      "value": "A cesarean delivery 18 years ago.",
+      "sp_says": [
+        "A cesarean delivery 18 years ago."
+      ],
+      "triggers": {
+        "any": [
+          "What surgery have you had?",
+          "Have you had any operations?"
+        ]
+      },
+      "concepts": {
+        "history_surgery": {
+          "polarity": "positive",
+          "value": "A cesarean delivery 18 years ago."
+        }
+      },
+      "example_questions": [
+        "What surgery have you had?",
+        "Have you had any operations?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "A cesarean delivery 18 years ago.",
+            "concepts": {
+              "history_surgery": {
+                "polarity": "positive",
+                "value": "A cesarean delivery 18 years ago."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Cesarean delivery 18 years ago."
+    },
+    {
+      "id": "history_medication",
+      "category": "medications",
+      "print_label": "Medication",
+      "checklist": "h_history_medication",
+      "value": "Metformin 1000 milligrams twice daily, plus the acetaminophen for this shoulder.",
+      "sp_says": [
+        "Metformin 1000 milligrams twice daily, plus the acetaminophen for this shoulder."
+      ],
+      "triggers": {
+        "any": [
+          "What medicines do you take?",
+          "What medications are you taking?"
+        ]
+      },
+      "concepts": {
+        "history_medication": {
+          "polarity": "positive",
+          "value": "Metformin 1000 milligrams twice daily, plus the acetaminophen for this shoulder."
+        }
+      },
+      "example_questions": [
+        "What medicines do you take?",
+        "What medications are you taking?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Metformin 1000 milligrams twice daily, plus the acetaminophen for this shoulder.",
+            "concepts": {
+              "history_medication": {
+                "polarity": "positive",
+                "value": "Metformin 1000 milligrams twice daily, plus the acetaminophen for this shoulder."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Metformin 1000 mg twice daily; acetaminophen as above."
+    },
+    {
+      "id": "history_drug_reactions",
+      "category": "allergies",
+      "print_label": "Drug reactions",
+      "checklist": "h_history_drug_reactions",
+      "value": "Naproxen gave me hives and lip swelling, so I avoid it and other anti-inflammatory pain pills.",
+      "sp_says": [
+        "Naproxen gave me hives and lip swelling, so I avoid it and other anti-inflammatory pain pills."
+      ],
+      "triggers": {
+        "any": [
+          "What medication allergies do you have?",
+          "Any medication allergies?"
+        ]
+      },
+      "concepts": {
+        "history_drug_reactions": {
+          "polarity": "positive",
+          "value": "Naproxen gave me hives and lip swelling, so I avoid it and other anti-inflammatory pain pills."
+        }
+      },
+      "example_questions": [
+        "What medication allergies do you have?",
+        "Any medication allergies?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Naproxen gave me hives and lip swelling, so I avoid it and other anti-inflammatory pain pills.",
+            "concepts": {
+              "history_drug_reactions": {
+                "polarity": "positive",
+                "value": "Naproxen gave me hives and lip swelling, so I avoid it and other anti-inflammatory pain pills."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Naproxen: hives and lip swelling; avoids NSAIDs."
+    },
+    {
+      "id": "history_smoking",
+      "category": "social",
+      "print_label": "Smoking",
+      "checklist": "h_history_smoking",
+      "value": "I never smoked.",
+      "sp_says": [
+        "I never smoked."
+      ],
+      "triggers": {
+        "any": [
+          "Do you smoke?"
+        ]
+      },
+      "concepts": {
+        "history_smoking": {
+          "polarity": "positive",
+          "value": "I never smoked."
+        }
+      },
+      "example_questions": [
+        "Do you smoke?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I never smoked.",
+            "concepts": {
+              "history_smoking": {
+                "polarity": "positive",
+                "value": "I never smoked."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Never smoked.",
+      "history_topic": "tobacco"
+    },
+    {
+      "id": "history_alcohol",
+      "category": "social",
+      "print_label": "Alcohol",
+      "checklist": "h_history_alcohol",
+      "value": "A glass of wine once or twice a month.",
+      "sp_says": [
+        "A glass of wine once or twice a month."
+      ],
+      "triggers": {
+        "any": [
+          "Do you drink alcohol?"
+        ]
+      },
+      "concepts": {
+        "history_alcohol": {
+          "polarity": "positive",
+          "value": "A glass of wine once or twice a month."
+        }
+      },
+      "example_questions": [
+        "Do you drink alcohol?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "A glass of wine once or twice a month.",
+            "concepts": {
+              "history_alcohol": {
+                "polarity": "positive",
+                "value": "A glass of wine once or twice a month."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "One or two glasses of wine monthly.",
+      "history_topic": "alcohol"
+    },
+    {
+      "id": "history_drugs",
+      "category": "social",
+      "print_label": "Drugs",
+      "checklist": "h_history_drugs",
+      "value": "No.",
+      "sp_says": [
+        "No."
+      ],
+      "triggers": {
+        "any": [
+          "Do you use recreational drugs?"
+        ]
+      },
+      "concepts": {
+        "history_drugs": {
+          "polarity": "positive",
+          "value": "No."
+        }
+      },
+      "example_questions": [
+        "Do you use recreational drugs?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No.",
+            "concepts": {
+              "history_drugs": {
+                "polarity": "positive",
+                "value": "No."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No recreational drugs.",
+      "history_topic": "drugs"
+    },
+    {
+      "id": "history_work",
+      "category": "social",
+      "print_label": "Work",
+      "checklist": "h_history_work",
+      "value": "I paint houses. My boss can give me lower-wall work for a while.",
+      "sp_says": [
+        "I paint houses. My boss can give me lower-wall work for a while."
+      ],
+      "triggers": {
+        "any": [
+          "What work do you do?"
+        ]
+      },
+      "concepts": {
+        "history_work": {
+          "polarity": "positive",
+          "value": "I paint houses. My boss can give me lower-wall work for a while."
+        }
+      },
+      "example_questions": [
+        "What work do you do?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I paint houses. My boss can give me lower-wall work for a while.",
+            "concepts": {
+              "history_work": {
+                "polarity": "positive",
+                "value": "I paint houses. My boss can give me lower-wall work for a while."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "House painter; temporary modified duties available.",
+      "history_topic": "occupation"
+    },
+    {
+      "id": "history_home",
+      "category": "social",
+      "print_label": "Home",
+      "checklist": "h_history_home",
+      "value": "I live with my teenage son. He can help with lifting.",
+      "sp_says": [
+        "I live with my teenage son. He can help with lifting."
+      ],
+      "triggers": {
+        "any": [
+          "Who helps you at home?"
+        ]
+      },
+      "concepts": {
+        "history_home": {
+          "polarity": "positive",
+          "value": "I live with my teenage son. He can help with lifting."
+        }
+      },
+      "example_questions": [
+        "Who helps you at home?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I live with my teenage son. He can help with lifting.",
+            "concepts": {
+              "history_home": {
+                "polarity": "positive",
+                "value": "I live with my teenage son. He can help with lifting."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Lives with teenage son; lifting help available.",
+      "history_topic": "social_context"
+    },
+    {
+      "id": "history_family_history",
+      "category": "family",
+      "print_label": "Family history",
+      "checklist": "h_history_family_history",
+      "value": "My mother developed rheumatoid arthritis in her fifties.",
+      "sp_says": [
+        "My mother developed rheumatoid arthritis in her fifties."
+      ],
+      "triggers": {
+        "any": [
+          "Does arthritis run in your family?"
+        ]
+      },
+      "concepts": {
+        "history_family_history": {
+          "polarity": "positive",
+          "value": "My mother developed rheumatoid arthritis in her fifties."
+        }
+      },
+      "example_questions": [
+        "Does arthritis run in your family?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My mother developed rheumatoid arthritis in her fifties.",
+            "concepts": {
+              "history_family_history": {
+                "polarity": "positive",
+                "value": "My mother developed rheumatoid arthritis in her fifties."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Mother: rheumatoid arthritis in her 50s."
+    },
+    {
+      "id": "history_other_family",
+      "category": "family",
+      "print_label": "Other family",
+      "checklist": "h_history_other_family",
+      "value": "My father has high blood pressure. My sister has no major illness.",
+      "sp_says": [
+        "My father has high blood pressure. My sister has no major illness."
+      ],
+      "triggers": {
+        "any": [
+          "What about your father and siblings?"
+        ]
+      },
+      "concepts": {
+        "history_other_family": {
+          "polarity": "positive",
+          "value": "My father has high blood pressure. My sister has no major illness."
+        }
+      },
+      "example_questions": [
+        "What about your father and siblings?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My father has high blood pressure. My sister has no major illness.",
+            "concepts": {
+              "history_other_family": {
+                "polarity": "positive",
+                "value": "My father has high blood pressure. My sister has no major illness."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Father: hypertension; sister: no known major illness."
+    },
+    {
+      "id": "symptom_joint_pain",
+      "category": "associated",
+      "print_label": "Joint pain",
+      "checklist": "h_symptom_joint_pain",
+      "value": "Only this shoulder hurts regularly.",
+      "sp_says": [
+        "Only this shoulder hurts regularly."
+      ],
+      "triggers": {
+        "any": [
+          "Any other joint pain?",
+          "joint pain"
+        ]
+      },
+      "concepts": {
+        "symptom_joint_pain": {
+          "polarity": "positive",
+          "value": "Only this shoulder hurts regularly."
+        }
+      },
+      "example_questions": [
+        "Any other joint pain?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Only this shoulder hurts regularly.",
+            "concepts": {
+              "symptom_joint_pain": {
+                "polarity": "positive",
+                "value": "Only this shoulder hurts regularly."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Joint pain limited to the right shoulder.",
+      "ros_system": "musculoskeletal"
+    },
+    {
+      "id": "symptom_joint_swelling",
+      "category": "pertinent_negative",
+      "print_label": "Joint swelling",
+      "checklist": "h_symptom_joint_swelling",
+      "value": "I have not seen swelling of the shoulder or other joints.",
+      "sp_says": [
+        "I have not seen swelling of the shoulder or other joints."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had joint swelling?",
+          "swollen joints"
+        ]
+      },
+      "concepts": {
+        "symptom_joint_swelling": {
+          "polarity": "negative",
+          "value": "I have not seen swelling of the shoulder or other joints."
+        }
+      },
+      "example_questions": [
+        "Have you had joint swelling?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not seen swelling of the shoulder or other joints.",
+            "concepts": {
+              "symptom_joint_swelling": {
+                "polarity": "negative",
+                "value": "I have not seen swelling of the shoulder or other joints."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No reported joint swelling.",
+      "ros_system": "musculoskeletal"
+    },
+    {
+      "id": "symptom_myalgia",
+      "category": "pertinent_negative",
+      "print_label": "Myalgia",
+      "checklist": "h_symptom_myalgia",
+      "value": "No aching all over my muscles.",
+      "sp_says": [
+        "No aching all over my muscles."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had myalgia?",
+          "muscle aches",
+          "body aches"
+        ]
+      },
+      "concepts": {
+        "symptom_myalgia": {
+          "polarity": "negative",
+          "value": "No aching all over my muscles."
+        }
+      },
+      "example_questions": [
+        "Have you had myalgia?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No aching all over my muscles.",
+            "concepts": {
+              "symptom_myalgia": {
+                "polarity": "negative",
+                "value": "No aching all over my muscles."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No generalized myalgia.",
+      "ros_system": "musculoskeletal"
+    },
+    {
+      "id": "symptom_numbness",
+      "category": "pertinent_negative",
+      "print_label": "Numbness",
+      "checklist": "h_symptom_numbness",
+      "value": "No constant numbness.",
+      "sp_says": [
+        "No constant numbness."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had numbness?",
+          "numbness",
+          "numb"
+        ]
+      },
+      "concepts": {
+        "symptom_numbness": {
+          "polarity": "negative",
+          "value": "No constant numbness."
+        }
+      },
+      "example_questions": [
+        "Have you had numbness?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No constant numbness.",
+            "concepts": {
+              "symptom_numbness": {
+                "polarity": "negative",
+                "value": "No constant numbness."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No persistent numbness.",
+      "ros_system": "neurologic"
+    },
+    {
+      "id": "symptom_tingling",
+      "category": "associated",
+      "print_label": "Tingling",
+      "checklist": "h_symptom_tingling",
+      "value": "The thumb tingle is brief, only now and then.",
+      "sp_says": [
+        "The thumb tingle is brief, only now and then."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had tingling?",
+          "pins and needles",
+          "tingling"
+        ]
+      },
+      "concepts": {
+        "symptom_tingling": {
+          "polarity": "positive",
+          "value": "The thumb tingle is brief, only now and then."
+        }
+      },
+      "example_questions": [
+        "Have you had tingling?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "The thumb tingle is brief, only now and then.",
+            "concepts": {
+              "symptom_tingling": {
+                "polarity": "positive",
+                "value": "The thumb tingle is brief, only now and then."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Intermittent brief thumb paresthesia.",
+      "ros_system": "neurologic"
+    },
+    {
+      "id": "symptom_weakness",
+      "category": "pertinent_negative",
+      "print_label": "Weakness",
+      "checklist": "h_symptom_weakness",
+      "value": "I can grip normally. Lifting hurts rather than feeling powerless.",
+      "sp_says": [
+        "I can grip normally. Lifting hurts rather than feeling powerless."
+      ],
+      "triggers": {
+        "any": [
+          "Have you noticed weakness?",
+          "weak",
+          "weakness"
+        ]
+      },
+      "concepts": {
+        "symptom_weakness": {
+          "polarity": "negative",
+          "value": "I can grip normally. Lifting hurts rather than feeling powerless."
+        }
+      },
+      "example_questions": [
+        "Have you noticed weakness?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I can grip normally. Lifting hurts rather than feeling powerless.",
+            "concepts": {
+              "symptom_weakness": {
+                "polarity": "negative",
+                "value": "I can grip normally. Lifting hurts rather than feeling powerless."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No grip weakness; elevation pain-limited.",
+      "ros_system": "neurologic"
+    },
+    {
+      "id": "symptom_fever",
+      "category": "pertinent_negative",
+      "print_label": "Fever",
+      "checklist": "h_symptom_fever",
+      "value": "No fever.",
+      "sp_says": [
+        "No fever."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had a fever?",
+          "fever"
+        ]
+      },
+      "concepts": {
+        "symptom_fever": {
+          "polarity": "negative",
+          "value": "No fever."
+        }
+      },
+      "example_questions": [
+        "Have you had a fever?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No fever.",
+            "concepts": {
+              "symptom_fever": {
+                "polarity": "negative",
+                "value": "No fever."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No fever.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_weight_loss",
+      "category": "pertinent_negative",
+      "print_label": "Weight loss",
+      "checklist": "h_symptom_weight_loss",
+      "value": "My weight is unchanged.",
+      "sp_says": [
+        "My weight is unchanged."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had weight loss?",
+          "weight loss"
+        ]
+      },
+      "concepts": {
+        "symptom_weight_loss": {
+          "polarity": "negative",
+          "value": "My weight is unchanged."
+        }
+      },
+      "example_questions": [
+        "Have you had weight loss?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My weight is unchanged.",
+            "concepts": {
+              "symptom_weight_loss": {
+                "polarity": "negative",
+                "value": "My weight is unchanged."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No weight loss.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_fatigue",
+      "category": "pertinent_negative",
+      "print_label": "Fatigue",
+      "checklist": "h_symptom_fatigue",
+      "value": "I am not unusually tired.",
+      "sp_says": [
+        "I am not unusually tired."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had fatigue?",
+          "fatigue"
+        ]
+      },
+      "concepts": {
+        "symptom_fatigue": {
+          "polarity": "negative",
+          "value": "I am not unusually tired."
+        }
+      },
+      "example_questions": [
+        "Have you had fatigue?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I am not unusually tired.",
+            "concepts": {
+              "symptom_fatigue": {
+                "polarity": "negative",
+                "value": "I am not unusually tired."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No unusual fatigue.",
+      "ros_system": "general"
+    },
+    {
+      "id": "patient_concern",
+      "category": "concern",
+      "print_label": "Concern",
+      "checklist": "h_patient_concern",
+      "value": "I want to know what is causing this and how to get back to my usual activities.",
+      "sp_says": [
+        "I want to know what is causing this and how to get back to my usual activities."
+      ],
+      "triggers": {
+        "any": [
+          "What worries you most?"
+        ]
+      },
+      "concepts": {
+        "patient_concern": {
+          "polarity": "positive",
+          "value": "I want to know what is causing this and how to get back to my usual activities."
+        }
+      },
+      "example_questions": [
+        "What worries you most?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I want to know what is causing this and how to get back to my usual activities.",
+            "concepts": {
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "I want to know what is causing this and how to get back to my usual activities."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Wants explanation and return to usual activities."
+    }
+  ],
+  "concept_lexicon": {
+    "opening_complaint": [
+      "My right shoulder hurts when I reach overhead."
+    ],
+    "hpi_onset": [
+      "About 5 weeks ago after several days painting ceilings.",
+      "Five weeks of right shoulder pain after ceiling painting."
+    ],
+    "hpi_location": [
+      "On the outer shoulder and the top of my arm.",
+      "Lateral shoulder and proximal upper-arm pain."
+    ],
+    "hpi_radiation": [
+      "Sometimes a tingle reaches my thumb when my neck is stiff, but the shoulder ache stays above the elbow.",
+      "Shoulder ache remains proximal to elbow; occasional thumb tingling with neck stiffness."
+    ],
+    "hpi_quality": [
+      "A dull ache that pinches when I lift the arm.",
+      "Aching with pain during elevation."
+    ],
+    "hpi_severity": [
+      "About 5 out of 10. Reaching shelves and washing my hair hurt.",
+      "5/10; limits overhead reach and hair washing."
+    ],
+    "hpi_timing": [
+      "During overhead work and when I lie on that shoulder.",
+      "Worse with overhead use and lying on right side."
+    ],
+    "hpi_chronology": [
+      "It feels a little stiff in the morning but loosens after about 10 minutes.",
+      "Morning stiffness approximately 10 minutes."
+    ],
+    "hpi_setting": [
+      "No fall, pop or sudden pull.",
+      "No fall or sudden injury."
+    ],
+    "hpi_aggravating": [
+      "Turning my neck sometimes brings on the thumb tingle, but not the main shoulder pain.",
+      "Neck rotation can reproduce thumb tingling, not the principal shoulder pain."
+    ],
+    "hpi_alleviating": [
+      "Resting it and a warm shower help.",
+      "Relief with rest and warmth."
+    ],
+    "hpi_treatment": [
+      "Acetaminophen 500 milligrams once or twice a day on workdays. It helps a little.",
+      "Partial relief with acetaminophen 500 mg once or twice on workdays."
+    ],
+    "hpi_past_occurrence": [
+      "No previous shoulder trouble. My neck has ached on and off for a year.",
+      "No previous shoulder episode; intermittent neck ache for 1 year."
+    ],
+    "history_medical_history": [
+      "Type 2 diabetes for 8 years. My last A1c was 7.2 three months ago.",
+      "Type 2 diabetes for 8 years; reported A1c 7.2% 3 months ago."
+    ],
+    "history_surgery": [
+      "A cesarean delivery 18 years ago.",
+      "Cesarean delivery 18 years ago."
+    ],
+    "history_medication": [
+      "Metformin 1000 milligrams twice daily, plus the acetaminophen for this shoulder.",
+      "Metformin 1000 mg twice daily; acetaminophen as above."
+    ],
+    "history_drug_reactions": [
+      "Naproxen gave me hives and lip swelling, so I avoid it and other anti-inflammatory pain pills.",
+      "Naproxen: hives and lip swelling; avoids NSAIDs."
+    ],
+    "history_smoking": [
+      "I never smoked.",
+      "Never smoked."
+    ],
+    "history_alcohol": [
+      "A glass of wine once or twice a month.",
+      "One or two glasses of wine monthly."
+    ],
+    "history_drugs": [
+      "No.",
+      "No recreational drugs."
+    ],
+    "history_work": [
+      "I paint houses. My boss can give me lower-wall work for a while.",
+      "House painter; temporary modified duties available."
+    ],
+    "history_home": [
+      "I live with my teenage son. He can help with lifting.",
+      "Lives with teenage son; lifting help available."
+    ],
+    "history_family_history": [
+      "My mother developed rheumatoid arthritis in her fifties.",
+      "Mother: rheumatoid arthritis in her 50s."
+    ],
+    "history_other_family": [
+      "My father has high blood pressure. My sister has no major illness.",
+      "Father: hypertension; sister: no known major illness."
+    ],
+    "symptom_joint_pain": [
+      "Only this shoulder hurts regularly.",
+      "Joint pain limited to the right shoulder.",
+      "joint pain"
+    ],
+    "symptom_joint_swelling": [
+      "I have not seen swelling of the shoulder or other joints.",
+      "No reported joint swelling.",
+      "swollen joints"
+    ],
+    "symptom_myalgia": [
+      "No aching all over my muscles.",
+      "No generalized myalgia.",
+      "muscle aches",
+      "body aches"
+    ],
+    "symptom_numbness": [
+      "No constant numbness.",
+      "No persistent numbness.",
+      "numbness",
+      "numb"
+    ],
+    "symptom_tingling": [
+      "The thumb tingle is brief, only now and then.",
+      "Intermittent brief thumb paresthesia.",
+      "pins and needles",
+      "tingling"
+    ],
+    "symptom_weakness": [
+      "I can grip normally. Lifting hurts rather than feeling powerless.",
+      "No grip weakness; elevation pain-limited.",
+      "weak",
+      "weakness"
+    ],
+    "symptom_fever": [
+      "No fever.",
+      "fever"
+    ],
+    "symptom_weight_loss": [
+      "My weight is unchanged.",
+      "No weight loss.",
+      "weight loss"
+    ],
+    "symptom_fatigue": [
+      "I am not unusually tired.",
+      "No unusual fatigue.",
+      "fatigue"
+    ],
+    "patient_concern": [
+      "I want to know what is causing this and how to get back to my usual activities.",
+      "Wants explanation and return to usual activities."
+    ],
+    "exam_general_inspect": [
+      "Alert and comfortable at rest."
+    ],
+    "exam_msk_inspect": [
+      "No shoulder deformity, erythema or visible swelling."
+    ],
+    "exam_msk_palpate": [
+      "Tenderness over the right greater tuberosity and lateral shoulder; no acromioclavicular point tenderness."
+    ],
+    "exam_msk_rom": [
+      "Right active shoulder elevation painful from 70 to 120 degrees; passive flexion nearly full with mild end-range discomfort. External rotation mildly limited by discomfort; left shoulder motion full."
+    ],
+    "exam_msk_strength": [
+      "Right shoulder elevation and external rotation 4+/5 with pain; elbow, wrist and grip strength 5/5 bilaterally."
+    ],
+    "exam_neck_rom": [
+      "Mildly reduced cervical rotation to the right with neck discomfort."
+    ],
+    "exam_neuro_sensory": [
+      "Light touch intact in both upper limbs, including thumbs."
+    ],
+    "exam_heart_auscultate": [
+      "Regular rate and rhythm without murmur."
+    ],
+    "exam_lungs_auscultate": [
+      "Clear bilateral breath sounds."
+    ],
+    "exam_osteo_screen": [
+      "C5 right paraspinal tissue texture change and tenderness."
+    ]
+  },
+  "exam_findings": {
+    "general_inspect": [
+      {
+        "id": "exam_general_inspect",
+        "text": "Alert and comfortable at rest.",
+        "concepts": {
+          "exam_general_inspect": {
+            "polarity": "positive",
+            "value": "Alert and comfortable at rest."
+          }
+        },
+        "scopes": [
+          "general"
+        ],
+        "checklist": "p_exam_general_inspect",
+        "requires_components": [],
+        "key_finding": true
+      }
+    ],
+    "msk_inspect": [
+      {
+        "id": "exam_msk_inspect",
+        "text": "No shoulder deformity, erythema or visible swelling.",
+        "concepts": {
+          "exam_msk_inspect": {
+            "polarity": "positive",
+            "value": "No shoulder deformity, erythema or visible swelling."
+          }
+        },
+        "scopes": [
+          "msk.inspection"
+        ],
+        "checklist": "p_exam_msk_inspect",
+        "requires_components": [
+          "swelling",
+          "deformity",
+          "erythema"
+        ],
+        "key_finding": true
+      }
+    ],
+    "msk_palpate": [
+      {
+        "id": "exam_msk_palpate",
+        "text": "Tenderness over the right greater tuberosity and lateral shoulder; no acromioclavicular point tenderness.",
+        "concepts": {
+          "exam_msk_palpate": {
+            "polarity": "positive",
+            "value": "Tenderness over the right greater tuberosity and lateral shoulder; no acromioclavicular point tenderness."
+          }
+        },
+        "scopes": [
+          "msk.palpation"
+        ],
+        "checklist": "p_exam_msk_palpate",
+        "requires_components": [
+          "point tenderness"
+        ],
+        "key_finding": true
+      }
+    ],
+    "msk_rom": [
+      {
+        "id": "exam_msk_rom",
+        "text": "Right active shoulder elevation painful from 70 to 120 degrees; passive flexion nearly full with mild end-range discomfort. External rotation mildly limited by discomfort; left shoulder motion full.",
+        "concepts": {
+          "exam_msk_rom": {
+            "polarity": "positive",
+            "value": "Right active shoulder elevation painful from 70 to 120 degrees; passive flexion nearly full with mild end-range discomfort. External rotation mildly limited by discomfort; left shoulder motion full."
+          }
+        },
+        "scopes": [
+          "msk.rom"
+        ],
+        "checklist": "p_exam_msk_rom",
+        "requires_components": [
+          "flexion",
+          "rotation"
+        ],
+        "key_finding": true
+      }
+    ],
+    "msk_strength": [
+      {
+        "id": "exam_msk_strength",
+        "text": "Right shoulder elevation and external rotation 4+/5 with pain; elbow, wrist and grip strength 5/5 bilaterally.",
+        "concepts": {
+          "exam_msk_strength": {
+            "polarity": "positive",
+            "value": "Right shoulder elevation and external rotation 4+/5 with pain; elbow, wrist and grip strength 5/5 bilaterally."
+          }
+        },
+        "scopes": [
+          "neuro.motor"
+        ],
+        "checklist": "p_exam_msk_strength",
+        "requires_components": [
+          "upper extremity"
+        ],
+        "key_finding": true
+      }
+    ],
+    "neck_rom": [
+      {
+        "id": "exam_neck_rom",
+        "text": "Mildly reduced cervical rotation to the right with neck discomfort.",
+        "concepts": {
+          "exam_neck_rom": {
+            "polarity": "positive",
+            "value": "Mildly reduced cervical rotation to the right with neck discomfort."
+          }
+        },
+        "scopes": [
+          "neck"
+        ],
+        "checklist": "p_exam_neck_rom",
+        "requires_components": [
+          "rotation"
+        ],
+        "key_finding": true
+      }
+    ],
+    "neuro_sensory": [
+      {
+        "id": "exam_neuro_sensory",
+        "text": "Light touch intact in both upper limbs, including thumbs.",
+        "concepts": {
+          "exam_neuro_sensory": {
+            "polarity": "positive",
+            "value": "Light touch intact in both upper limbs, including thumbs."
+          }
+        },
+        "scopes": [
+          "neuro.sensory"
+        ],
+        "checklist": "p_exam_neuro_sensory",
+        "requires_components": [
+          "light touch"
+        ],
+        "key_finding": true
+      }
+    ],
+    "heart_auscultate": [
+      {
+        "id": "exam_heart_auscultate",
+        "text": "Regular rate and rhythm without murmur.",
+        "concepts": {
+          "exam_heart_auscultate": {
+            "polarity": "positive",
+            "value": "Regular rate and rhythm without murmur."
+          }
+        },
+        "scopes": [
+          "heart"
+        ],
+        "checklist": "p_exam_heart_auscultate",
+        "requires_components": [
+          "aortic",
+          "pulmonic",
+          "tricuspid",
+          "mitral",
+          "on skin"
+        ],
+        "key_finding": true
+      }
+    ],
+    "lungs_auscultate": [
+      {
+        "id": "exam_lungs_auscultate",
+        "text": "Clear bilateral breath sounds.",
+        "concepts": {
+          "exam_lungs_auscultate": {
+            "polarity": "positive",
+            "value": "Clear bilateral breath sounds."
+          }
+        },
+        "scopes": [
+          "lungs"
+        ],
+        "checklist": "p_exam_lungs_auscultate",
+        "requires_components": [
+          "posterior",
+          "on skin",
+          "compare side to side",
+          "mouth open"
+        ],
+        "key_finding": true
+      }
+    ],
+    "osteo_screen": [
+      {
+        "id": "exam_osteo_screen",
+        "text": "C5 right paraspinal tissue texture change and tenderness.",
+        "concepts": {
+          "exam_osteo_screen": {
+            "polarity": "positive",
+            "value": "C5 right paraspinal tissue texture change and tenderness."
+          }
+        },
+        "scopes": [
+          "osteopathic"
+        ],
+        "checklist": "p_exam_osteo_screen",
+        "requires_components": [
+          "cervical"
+        ],
+        "key_finding": false
+      }
+    ]
+  },
+  "refusals": [],
+  "refusal_expectation": {},
+  "area_of_concern": {
+    "system": "Musculoskeletal",
+    "required_methods": [
+      "inspect",
+      "palpate"
+    ],
+    "special_tests": [],
+    "note": "Compare active and passive motion while checking neurologic symptoms and medication safety."
+  },
+  "osteopathic": {
+    "expected_documentation": "Document the supplied level and palpatory descriptor only after the structural screen; treatment is not implied."
+  },
+  "ros_pertinent_systems": [
+    "musculoskeletal",
+    "neurologic",
+    "general"
+  ],
+  "differentials": [
+    {
+      "rank": 1,
+      "name": "Rotator cuff tendinopathy from overuse",
+      "vindicate": "T",
+      "aliases": [
+        "Rotator cuff tendinopathy from overuse"
+      ],
+      "supported_by": [
+        "hpi_onset",
+        "hpi_timing",
+        "exam_msk_rom"
+      ],
+      "teaching_context": "Overhead overuse, lateral pain and pain-limited active elevation support tendinopathy."
+    },
+    {
+      "rank": 2,
+      "name": "Cervical degenerative radiculopathy",
+      "vindicate": "D",
+      "aliases": [
+        "Cervical degenerative radiculopathy"
+      ],
+      "supported_by": [
+        "hpi_radiation",
+        "hpi_aggravating",
+        "exam_neck_rom"
+      ],
+      "teaching_context": "Neck-related thumb tingling supports a possible cervical contributor; normal distal examination lowers immediate concern."
+    },
+    {
+      "rank": 3,
+      "name": "Early adhesive capsulitis",
+      "vindicate": "I",
+      "aliases": [
+        "Early adhesive capsulitis"
+      ],
+      "supported_by": [
+        "history_medical_history",
+        "hpi_chronology",
+        "exam_msk_rom"
+      ],
+      "teaching_context": "Diabetes and stiffness allow early capsulitis, but near-preserved passive motion makes it less likely than tendinopathy."
+    }
+  ],
+  "implausible_differentials": [],
+  "plan_expectations": {
+    "tests": [],
+    "medications": [],
+    "omt": [],
+    "education": [],
+    "referral": [],
+    "follow_up": []
+  },
+  "checklist": {
+    "history": [
+      {
+        "id": "h_opening_complaint",
+        "text": "Opening complaint"
+      },
+      {
+        "id": "h_hpi_onset",
+        "text": "Onset"
+      },
+      {
+        "id": "h_hpi_location",
+        "text": "Location"
+      },
+      {
+        "id": "h_hpi_radiation",
+        "text": "Spread"
+      },
+      {
+        "id": "h_hpi_quality",
+        "text": "Character"
+      },
+      {
+        "id": "h_hpi_severity",
+        "text": "Severity and function"
+      },
+      {
+        "id": "h_hpi_timing",
+        "text": "Pattern"
+      },
+      {
+        "id": "h_hpi_chronology",
+        "text": "Stiffness"
+      },
+      {
+        "id": "h_hpi_setting",
+        "text": "Injury"
+      },
+      {
+        "id": "h_hpi_aggravating",
+        "text": "Neck relationship"
+      },
+      {
+        "id": "h_hpi_alleviating",
+        "text": "Relief"
+      },
+      {
+        "id": "h_hpi_treatment",
+        "text": "Self-treatment"
+      },
+      {
+        "id": "h_hpi_past_occurrence",
+        "text": "Prior symptoms"
+      },
+      {
+        "id": "h_history_medical_history",
+        "text": "Medical history"
+      },
+      {
+        "id": "h_history_surgery",
+        "text": "Surgery"
+      },
+      {
+        "id": "h_history_medication",
+        "text": "Medication"
+      },
+      {
+        "id": "h_history_drug_reactions",
+        "text": "Drug reactions"
+      },
+      {
+        "id": "h_history_smoking",
+        "text": "Smoking"
+      },
+      {
+        "id": "h_history_alcohol",
+        "text": "Alcohol"
+      },
+      {
+        "id": "h_history_drugs",
+        "text": "Drugs"
+      },
+      {
+        "id": "h_history_work",
+        "text": "Work"
+      },
+      {
+        "id": "h_history_home",
+        "text": "Home"
+      },
+      {
+        "id": "h_history_family_history",
+        "text": "Family history"
+      },
+      {
+        "id": "h_history_other_family",
+        "text": "Other family"
+      },
+      {
+        "id": "h_symptom_joint_pain",
+        "text": "Joint pain"
+      },
+      {
+        "id": "h_symptom_joint_swelling",
+        "text": "Joint swelling"
+      },
+      {
+        "id": "h_symptom_myalgia",
+        "text": "Myalgia"
+      },
+      {
+        "id": "h_symptom_numbness",
+        "text": "Numbness"
+      },
+      {
+        "id": "h_symptom_tingling",
+        "text": "Tingling"
+      },
+      {
+        "id": "h_symptom_weakness",
+        "text": "Weakness"
+      },
+      {
+        "id": "h_symptom_fever",
+        "text": "Fever"
+      },
+      {
+        "id": "h_symptom_weight_loss",
+        "text": "Weight loss"
+      },
+      {
+        "id": "h_symptom_fatigue",
+        "text": "Fatigue"
+      },
+      {
+        "id": "h_patient_concern",
+        "text": "Concern"
+      }
+    ],
+    "physical": [
+      {
+        "id": "p_exam_general_inspect",
+        "text": "General appearance",
+        "maneuver": "general_inspect",
+        "components": []
+      },
+      {
+        "id": "p_exam_msk_inspect",
+        "text": "Inspect the affected area",
+        "maneuver": "msk_inspect",
+        "components": [
+          "swelling",
+          "deformity",
+          "erythema"
+        ]
+      },
+      {
+        "id": "p_exam_msk_palpate",
+        "text": "Palpate the affected area",
+        "maneuver": "msk_palpate",
+        "components": [
+          "point tenderness"
+        ]
+      },
+      {
+        "id": "p_exam_msk_rom",
+        "text": "Range of motion",
+        "maneuver": "msk_rom",
+        "components": [
+          "flexion",
+          "rotation"
+        ]
+      },
+      {
+        "id": "p_exam_msk_strength",
+        "text": "Muscle strength testing",
+        "maneuver": "msk_strength",
+        "components": [
+          "upper extremity"
+        ]
+      },
+      {
+        "id": "p_exam_neck_rom",
+        "text": "Neck range of motion / meningeal signs",
+        "maneuver": "neck_rom",
+        "components": [
+          "rotation"
+        ]
+      },
+      {
+        "id": "p_exam_neuro_sensory",
+        "text": "Sensory examination",
+        "maneuver": "neuro_sensory",
+        "components": [
+          "light touch"
+        ]
+      },
+      {
+        "id": "p_exam_heart_auscultate",
+        "text": "Auscultate heart",
+        "maneuver": "heart_auscultate",
+        "components": [
+          "aortic",
+          "pulmonic",
+          "tricuspid",
+          "mitral",
+          "on skin"
+        ]
+      },
+      {
+        "id": "p_exam_lungs_auscultate",
+        "text": "Auscultate lungs",
+        "maneuver": "lungs_auscultate",
+        "components": [
+          "posterior",
+          "on skin",
+          "compare side to side",
+          "mouth open"
+        ]
+      },
+      {
+        "id": "p_exam_osteo_screen",
+        "text": "Osteopathic structural screen",
+        "maneuver": "osteo_screen",
+        "components": [
+          "cervical"
+        ]
+      },
+      {
+        "id": "p_introduce",
+        "text": "Introduce yourself and verify identity",
+        "courtesy": "introduce"
+      },
+      {
+        "id": "p_hand_hygiene",
+        "text": "Clean hands before examination",
+        "courtesy": "hand_hygiene"
+      },
+      {
+        "id": "p_drape",
+        "text": "Provide appropriate draping",
+        "courtesy": "drape"
+      }
+    ]
+  },
+  "model_note": {
+    "S": "CC: My right shoulder hurts when I reach overhead.\n\nHPI: 46-year-old female. Five weeks of right shoulder pain after ceiling painting. Lateral shoulder and proximal upper-arm pain. Shoulder ache remains proximal to elbow; occasional thumb tingling with neck stiffness. Aching with pain during elevation. 5/10; limits overhead reach and hair washing. Worse with overhead use and lying on right side. Morning stiffness approximately 10 minutes. No fall or sudden injury. Neck rotation can reproduce thumb tingling, not the principal shoulder pain. Relief with rest and warmth. Partial relief with acetaminophen 500 mg once or twice on workdays. No previous shoulder episode; intermittent neck ache for 1 year.\n\nPMH: Type 2 diabetes for 8 years; reported A1c 7.2% 3 months ago.\n\nPSH: Cesarean delivery 18 years ago.\n\nMeds: Metformin 1000 mg twice daily; acetaminophen as above.\n\nSH: Never smoked. One or two glasses of wine monthly. No recreational drugs. House painter; temporary modified duties available. Lives with teenage son; lifting help available.\n\nFH: Mother: rheumatoid arthritis in her 50s. Father: hypertension; sister: no known major illness.\n\nAllergies: Naproxen: hives and lip swelling; avoids NSAIDs.\n\nROS: Musculoskeletal: Joint pain limited to the right shoulder. No reported joint swelling. No generalized myalgia. Neurologic: No persistent numbness. Intermittent brief thumb paresthesia. No grip weakness; elevation pain-limited. General: No fever. No weight loss. No unusual fatigue.",
+    "O": "Vitals: BP 128/78 mmHg, P 72 bpm, R 16 rpm, T 98.4 F oral, Pulse Ox 99% on room air, Ht 5' 6\", Wt 172 lbs\n\nGeneral: Alert and comfortable at rest.\nMusculoskeletal: No shoulder deformity, erythema or visible swelling. Tenderness over the right greater tuberosity and lateral shoulder; no acromioclavicular point tenderness. Right active shoulder elevation painful from 70 to 120 degrees; passive flexion nearly full with mild end-range discomfort. External rotation mildly limited by discomfort; left shoulder motion full. Right shoulder elevation and external rotation 4+/5 with pain; elbow, wrist and grip strength 5/5 bilaterally.\nNeck: Mildly reduced cervical rotation to the right with neck discomfort.\nNeurologic: Light touch intact in both upper limbs, including thumbs.\nHeart: Regular rate and rhythm without murmur.\nLungs: Clear bilateral breath sounds.\nOsteopathic: C5 right paraspinal tissue texture change and tenderness.",
+    "A": [
+      "1. Rotator cuff tendinopathy from overuse",
+      "2. Cervical degenerative radiculopathy",
+      "3. Early adhesive capsulitis"
+    ],
+    "P": [
+      "1. Use temporary modified overhead duties and a physical-therapy/home mobility program; acetaminophen is an option after safe-dose review. Avoid NSAIDs pending allergy assessment because of hives/lip swelling. Reassess in 3 weeks; consider radiograph or ultrasound for persistent pain or objective weakness. New weakness, fever or a hot swollen joint needs earlier assessment.",
+      "2. If neck/arm symptoms persist, repeat focused neurologic assessment and consider cervical imaging/referral if deficits or progression develop. Explain safe work posture and gentle mobility.",
+      "3. If passive stiffness progresses, reassess for capsulitis and discuss stretching/physical therapy; consider specialist-guided injection with glucose counseling if indicated. Review diabetes management and explain how to monitor progressive stiffness."
+    ]
+  },
+  "print_additional_exams": {
+    "osteo_screen": "Include when practicing the course structural screen; it does not establish the cause of the complaint."
+  },
+  "ideal_encounter_extras": [
+    "Compare active and passive motion while checking neurologic symptoms and medication safety."
+  ],
+  "supersedes_core": [
+    "tobacco_use",
+    "alcohol_use",
+    "drug_use",
+    "allergies",
+    "medications",
+    "family_history",
+    "past_medical",
+    "past_surgical",
+    "joint_pain",
+    "joint_swelling",
+    "myalgia",
+    "numbness",
+    "tingling",
+    "weakness",
+    "fever",
+    "weight_loss",
+    "fatigue"
+  ],
+  "review_status": "Source-checked fictional practice; not faculty or clinician approved.",
+  "clinical_review": {
+    "status": "source_checked_not_clinician_approved",
+    "date": "2026-09-14",
+    "method": "Individual presentation, differential, safety and plan review against named primary clinical references plus course documentation constraints.",
+    "limits": "Fictional details deliberately authored. Mnemonic category placement is instructional and is not proof of etiology. Generic 3D appearance is not a diagnostic visual.",
+    "sources": [
+      "https://www.orthoinfo.org/diseases--conditions/shoulder-pain-and-common-shoulder-problems/",
+      "https://www.orthoinfo.org/diseases--conditions/rotator-cuff-tears"
+    ]
+  },
+  "sources": [
+    {
+      "title": "2026 FALL M2 ILG Student Manual",
+      "path": "claude builds/PCM/2026 FALL M2 ILG - STUDENT MANUAL update.docx",
+      "locator": "SOAP rubric and physical examination requirements",
+      "kind": "course"
+    },
+    {
+      "title": "Shoulder pain and common shoulder problems",
+      "url": "https://www.orthoinfo.org/diseases--conditions/shoulder-pain-and-common-shoulder-problems/",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+    },
+    {
+      "title": "Rotator cuff tears",
+      "url": "https://www.orthoinfo.org/diseases--conditions/rotator-cuff-tears",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+    }
+  ],
+  "teaching": {
+    "goals": [
+      "Compare active and passive motion while checking neurologic symptoms and medication safety.",
+      "Document only supplied, asked or examined information."
+    ],
+    "skills": [
+      "history-sequencing",
+      "focused-examination",
+      "clinical-reasoning",
+      "evidence-based-soap",
+      "musculoskeletal"
+    ],
+    "common_omissions": [
+      "Distinguishing history from examination evidence.",
+      "Explaining uncertainty and the practical follow-up plan."
+    ],
+    "lesson_plan": {
+      "notice": "Compare active and passive motion while checking neurologic symptoms and medication safety.",
+      "anchor": "Shoulder pain with overhead work",
+      "pivot": "Is movement limited by pain, by weakness, or even when someone else moves the arm?",
+      "exam": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
+      "avoid": "Treating an unperformed examination or a possible diagnosis as obtained fact."
+    },
+    "closing_dialogue": [
+      "We will reduce overhead strain and start a gentle rehabilitation plan. Because naproxen caused hives and lip swelling, I will not assume another anti-inflammatory pill is safe. We will reassess in three weeks."
+    ],
+    "concern_response": "Modified work can help protect your income while the shoulder recovers. Persistent weakness or increasing stiffness would change the next steps.",
+    "reasoning_steps": [
+      {
+        "id": "orient",
+        "phase": "history",
+        "purpose": "Hear the presenting concern",
+        "question": "What brings you in today?",
+        "fact_ids": [
+          "opening_complaint"
+        ],
+        "why": "Compare active and passive motion while checking neurologic symptoms and medication safety."
+      },
+      {
+        "id": "pattern",
+        "phase": "history",
+        "purpose": "Clarify the pattern",
+        "question": "Is movement limited by pain, by weakness, or even when someone else moves the arm?",
+        "fact_ids": [
+          "hpi_onset"
+        ],
+        "why": "Compare active and passive motion while checking neurologic symptoms and medication safety."
+      },
+      {
+        "id": "examine",
+        "phase": "exam",
+        "purpose": "Perform relevant examinations",
+        "question": "May I examine you?",
+        "fact_ids": [],
+        "why": "Findings require performed actions."
+      }
+    ],
+    "reasoning_map": [
+      {
+        "id": "msk-shoulder-overuse-decision",
+        "question": "Is movement limited by pain, by weakness, or even when someone else moves the arm?",
+        "why": "Compare active and passive motion while checking neurologic symptoms and medication safety.",
+        "if_present": "Use the reported pattern to select the relevant examinations and assess urgency.",
+        "if_absent": "Keep alternatives open and ask a focused follow-up.",
+        "next_action": "Perform the relevant case-specific examination.",
+        "document": "Separate reported symptoms, observed signs, assessment and proposed care."
+      }
+    ],
+    "classification_note": "Categories reflect the explicitly proposed mechanism; e.g., irritant exposure is I2. They are a course organizing aid, not confirmation of mechanism."
+  },
+  "content_revisions": {
+    "library_expansion_20260914": "New independently authored presentation. Single core path; no renamed cosmetic variants."
+  }
+}

@@ -1,0 +1,3299 @@
+{
+  "case_id": "heent-ear-pain",
+  "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
+  "walkthroughs": [
+    {
+      "case_id": "heent-ear-pain",
+      "variant_id": "base",
+      "variant_label": "Core presentation",
+      "title": "Ear pain after swimming",
+      "patient": {
+        "name": "Jordan Park",
+        "age": 24,
+        "sex": "male"
+      },
+      "system": "HEENT",
+      "doorway": {
+        "doorway": [
+          "Jordan Park, 24-year-old male.",
+          "My left ear hurts and feels blocked.",
+          "Vital signs are available on the chart.",
+          "Perform a focused history and physical examination, discuss your plan, and document only what you obtain.",
+          "Use the time limit stated for your selected practice mode."
+        ],
+        "vitals": {
+          "BP": "118/74 mmHg",
+          "P": "72 bpm",
+          "R": "14 rpm",
+          "T": "98.4 F oral",
+          "Pulse Ox": "99% on room air",
+          "Ht": "5' 10\"",
+          "Wt": "166 lbs"
+        },
+        "supplied_results": []
+      },
+      "plan": {
+        "notice": "Distinguish canal disease from referred ear pain and choose safe topical therapy.",
+        "anchor": "Ear pain after swimming",
+        "pivot": "Does touching the outer ear hurt, and is there discharge or jaw-related pain?",
+        "exam": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
+        "avoid": "Treating an unperformed examination or a possible diagnosis as obtained fact."
+      },
+      "goals": [
+        "Distinguish canal disease from referred ear pain and choose safe topical therapy.",
+        "Document only supplied, asked or examined information."
+      ],
+      "variant_guidance": "Use this core presentation to learn the sequence before transferring to a variation.",
+      "differences": [],
+      "timeline": [
+        {
+          "kind": "dialogue",
+          "section": "Connect",
+          "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
+          "why": "",
+          "event_ids": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "dialogue",
+          "section": "Listen to the opening",
+          "student": "What brings you in today?",
+          "patient": "My left ear hurts and feels blocked.",
+          "why": "Distinguish canal disease from referred ear pain and choose safe topical therapy.",
+          "event_ids": [
+            8,
+            9
+          ],
+          "fact_ids": [
+            "opening_complaint"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "When did the ear pain begin?",
+          "patient": "Two days ago.",
+          "why": "Does touching the outer ear hurt, and is there discharge or jaw-related pain?",
+          "event_ids": [
+            10,
+            11
+          ],
+          "fact_ids": [
+            "hpi_onset"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "How has it changed?",
+          "patient": "The itching started first, then it became sore and muffled.",
+          "why": "Change over time can change urgency even when the symptom is familiar.",
+          "event_ids": [
+            12,
+            13
+          ],
+          "fact_ids": [
+            "hpi_chronology"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "Which ear hurts?",
+          "patient": "The left one, near the opening.",
+          "why": "",
+          "event_ids": [
+            14,
+            15
+          ],
+          "fact_ids": [
+            "hpi_location"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "What does the ear pain feel like?",
+          "patient": "A steady sore ache with itching.",
+          "why": "Use the patient\u2019s words before translating them into a clinical description.",
+          "event_ids": [
+            16,
+            17
+          ],
+          "fact_ids": [
+            "hpi_quality"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "How bad is the pain?",
+          "patient": "About 5 out of 10.",
+          "why": "Intensity and functional effect are distinct; record only the dimension answered.",
+          "event_ids": [
+            18,
+            19
+          ],
+          "fact_ids": [
+            "hpi_severity"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "Is it constant or intermittent?",
+          "patient": "It is there most of the day.",
+          "why": "Separate time since onset from duration of one episode and from continuity.",
+          "event_ids": [
+            20,
+            21
+          ],
+          "fact_ids": [
+            "hpi_timing"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "Have you been swimming or put anything new in your ear?",
+          "patient": "I swam all weekend and started using new in-ear earbuds last week.",
+          "why": "",
+          "event_ids": [
+            22,
+            23
+          ],
+          "fact_ids": [
+            "hpi_setting"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "What helps?",
+          "patient": "Leaving the earbud out helps a little.",
+          "why": "Relief changes probability, but is not proof that a serious cause is excluded.",
+          "event_ids": [
+            24,
+            25
+          ],
+          "fact_ids": [
+            "hpi_alleviating"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "What makes the pain worse?",
+          "patient": "Touching the ear and putting the earbud in hurt. Chewing aches a little near my jaw.",
+          "why": "Compare triggers with the chronology; one trigger does not establish a diagnosis.",
+          "event_ids": [
+            26,
+            27
+          ],
+          "fact_ids": [
+            "hpi_aggravating"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "Have you used drops or pain medicine?",
+          "patient": "I took acetaminophen 500 milligrams last night. No ear drops.",
+          "why": "",
+          "event_ids": [
+            28,
+            29
+          ],
+          "fact_ids": [
+            "hpi_treatment"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "Have you had this before?",
+          "patient": "Not ear pain, but earbuds have made my skin itchy before.",
+          "why": "",
+          "event_ids": [
+            30,
+            31
+          ],
+          "fact_ids": [
+            "hpi_past_occurrence"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had hearing loss?",
+          "patient": "Sounds are muffled on the left.",
+          "why": "Use this answer to weigh the possibilities described in the reasoning section.",
+          "event_ids": [
+            32,
+            33
+          ],
+          "fact_ids": [
+            "symptom_hearing_loss"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had ear discharge?",
+          "patient": "There was a little clear fluid on my pillow.",
+          "why": "Use this answer to weigh the possibilities described in the reasoning section.",
+          "event_ids": [
+            34,
+            35
+          ],
+          "fact_ids": [
+            "symptom_ear_discharge"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had a sore throat?",
+          "patient": "No sore throat.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            36,
+            37
+          ],
+          "fact_ids": [
+            "symptom_sore_throat"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had a fever?",
+          "patient": "No fever.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            38,
+            39
+          ],
+          "fact_ids": [
+            "symptom_fever"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had chills?",
+          "patient": "No chills.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            40,
+            41
+          ],
+          "fact_ids": [
+            "symptom_chills"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had fatigue?",
+          "patient": "I feel well apart from the ear.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            42,
+            43
+          ],
+          "fact_ids": [
+            "symptom_fatigue"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had dizziness?",
+          "patient": "No spinning or dizziness.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            44,
+            45
+          ],
+          "fact_ids": [
+            "symptom_dizziness"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had headache?",
+          "patient": "No headache.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            46,
+            47
+          ],
+          "fact_ids": [
+            "symptom_headache"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you noticed weakness?",
+          "patient": "No weakness in my face.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            48,
+            49
+          ],
+          "fact_ids": [
+            "symptom_weakness"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Relevant background",
+          "student": "Do you have chronic illnesses?",
+          "patient": "No chronic illness. I grind my teeth at night.",
+          "why": "",
+          "event_ids": [
+            50,
+            51
+          ],
+          "fact_ids": [
+            "history_medical_history"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Relevant background",
+          "student": "Have you had ear surgery or a perforated eardrum?",
+          "patient": "No tubes, ear surgery or known hole in my eardrum.",
+          "why": "",
+          "event_ids": [
+            52,
+            53
+          ],
+          "fact_ids": [
+            "history_ear_procedures"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Medicines and reactions",
+          "student": "What medicines do you usually take?",
+          "patient": "No regular medicine.",
+          "why": "Name, dose and frequency matter; do not fill in missing details.",
+          "event_ids": [
+            54,
+            55
+          ],
+          "fact_ids": [
+            "history_medication"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Medicines and reactions",
+          "student": "Are you allergic to medicines?",
+          "patient": "Neomycin ointment made my skin red and itchy.",
+          "why": "Distinguish the substance and reaction from a blanket allergy label.",
+          "event_ids": [
+            56,
+            57
+          ],
+          "fact_ids": [
+            "history_drug_reactions"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "Do you smoke or vape?",
+          "patient": "I have never smoked or vaped.",
+          "why": "",
+          "event_ids": [
+            58,
+            59
+          ],
+          "fact_ids": [
+            "history_smoking"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "How much alcohol do you drink?",
+          "patient": "One or two beers on a weekend.",
+          "why": "",
+          "event_ids": [
+            60,
+            61
+          ],
+          "fact_ids": [
+            "history_alcohol"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "Do you use recreational drugs?",
+          "patient": "No.",
+          "why": "",
+          "event_ids": [
+            62,
+            63
+          ],
+          "fact_ids": [
+            "history_drugs"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "What do you do for work?",
+          "patient": "I am a lifeguard and wear earbuds during my commute.",
+          "why": "",
+          "event_ids": [
+            64,
+            65
+          ],
+          "fact_ids": [
+            "history_work"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "Who lives with you?",
+          "patient": "I live with my brother.",
+          "why": "",
+          "event_ids": [
+            66,
+            67
+          ],
+          "fact_ids": [
+            "history_home"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "Is there hearing loss in your family?",
+          "patient": "My father needed hearing aids in his sixties.",
+          "why": "Record which relative and the condition; do not infer a family history from patient worry.",
+          "event_ids": [
+            68,
+            69
+          ],
+          "fact_ids": [
+            "history_family_history"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "What about your mother and siblings?",
+          "patient": "My mother has high blood pressure. My brother has no major illness.",
+          "why": "Record which relative and the condition; do not infer a family history from patient worry.",
+          "event_ids": [
+            70,
+            71
+          ],
+          "fact_ids": [
+            "history_other_family"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "The patient\u2019s perspective",
+          "student": "What worries you most?",
+          "patient": "I want to know what is causing this and how to get back to my usual activities.",
+          "why": "",
+          "event_ids": [
+            72,
+            73
+          ],
+          "fact_ids": [
+            "patient_concern"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Acknowledge",
+          "student": "Thank you for explaining that. I can understand why this is concerning.",
+          "patient": "I want to know what is causing this and how to get back to my usual activities. Hmm... I don't know how to answer that.",
+          "why": "",
+          "event_ids": [
+            74,
+            75
+          ],
+          "fact_ids": [
+            "patient_concern"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Explain and ask permission",
+          "student": "May I have your permission to examine you?",
+          "patient": "Yes, that's fine. Go ahead.",
+          "why": "",
+          "event_ids": [
+            76,
+            77,
+            78
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "action",
+          "section": "Prepare the examination",
+          "action": "Clean hands, provide privacy and appropriate draping, explain the selected examination and help the patient into a comfortable position.",
+          "why": "These are stated actions in this written example. A visual avatar does not verify hand hygiene, consent or hands-on technique.",
+          "event_ids": []
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "General appearance",
+          "finding": "Alert, well appearing.",
+          "why": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
+          "event_ids": [
+            79,
+            80
+          ],
+          "maneuver_id": "general_inspect",
+          "duration_s": 10
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Auscultate heart \u2014 aortic, pulmonic, tricuspid, mitral, on skin",
+          "finding": "Regular rate and rhythm without murmur.",
+          "why": "The course expects at least four listening posts, on skin.",
+          "event_ids": [
+            81,
+            82
+          ],
+          "maneuver_id": "heart_auscultate",
+          "duration_s": 40
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Auscultate lungs \u2014 posterior, on skin, compare side to side, mouth open",
+          "finding": "Clear bilateral breath sounds.",
+          "why": "The course expects six posterior fields, mouth open, on skin, comparing sides.",
+          "event_ids": [
+            83,
+            84
+          ],
+          "maneuver_id": "lungs_auscultate",
+          "duration_s": 41
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Otoscopic exam of ears \u2014 right ear, left ear",
+          "finding": "Left tragal/pinna manipulation tender; canal erythematous and edematous with scant debris. Left tympanic membrane visualized and intact without bulging. Right canal without erythema or edema; right membrane intact and nonbulging; no mastoid tenderness.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            85,
+            86
+          ],
+          "maneuver_id": "heent_ears",
+          "duration_s": 30
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Palpate the affected area \u2014 point tenderness",
+          "finding": "Mild left temporomandibular joint tenderness with jaw opening; no facial swelling.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            87,
+            88
+          ],
+          "maneuver_id": "msk_palpate",
+          "duration_s": 16
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Palpate lymph nodes \u2014 cervical",
+          "finding": "No enlarged or tender cervical nodes.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            89,
+            90
+          ],
+          "maneuver_id": "lymph_nodes",
+          "duration_s": 18
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Inspect mouth and throat with light \u2014 oropharynx",
+          "finding": "Oropharynx without erythema or exudate.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            91,
+            92
+          ],
+          "maneuver_id": "heent_throat",
+          "duration_s": 16
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Osteopathic structural screen \u2014 cervical",
+          "finding": "C2 left paraspinal tissue texture change and tenderness.",
+          "why": "Name the level examined; findings are released by region.",
+          "event_ids": [
+            93,
+            94
+          ],
+          "maneuver_id": "osteo_screen",
+          "duration_s": 25
+        },
+        {
+          "kind": "dialogue",
+          "section": "Explain next steps",
+          "student": "The ear examination will guide treatment. If canal infection is confirmed, drops and keeping the ear dry usually help. We will avoid neomycin because of your reaction. Come back if it is not improving within two to three days.",
+          "patient": "Thank you. I understand that the next steps depend on the examination and tests.",
+          "why": "Proposed care, not a record of tests or treatment already completed.",
+          "event_ids": [
+            95,
+            96,
+            97
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "dialogue",
+          "section": "Close and check understanding",
+          "student": "What questions do you have about the next steps?",
+          "patient": "I want to know what is causing this and how to get back to my usual activities.",
+          "why": "",
+          "event_ids": [
+            98,
+            99
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "dialogue",
+          "section": "Address the patient\u2019s question",
+          "student": "We can discuss temporary dry duties at the pool so the ear can recover without unnecessary time off.",
+          "patient": "That would help. Thank you.",
+          "why": "Answer the concern that was just expressed. Give a defensible recommendation and explain uncertainty; do not promise a diagnosis or recovery before the evidence supports it.",
+          "event_ids": [
+            100,
+            101,
+            102
+          ],
+          "fact_ids": []
+        }
+      ],
+      "note": {
+        "S": "CC: My left ear hurts and feels blocked.\n\nHPI: 24-year-old male. Left otalgia for 2 days. Pain at left canal opening. Aching and pruritus. Pain 5/10. Persistent daily discomfort. Pruritus preceded pain and muffled hearing. Recent swimming and new in-ear earbuds. Pain with ear contact/earbud insertion; mild chewing-related jaw ache. Partial relief without earbud. Acetaminophen 500 mg once; no ear drops. Prior earbud-related itching, no prior otalgia.\n\nPMH: No chronic illness; nocturnal bruxism.\n\nPSH: No ear surgery, tympanostomy or known perforation.\n\nMeds: No regular medication.\n\nSH: Never smoked or vaped. One or two beers weekly. No recreational drugs. Lifeguard; earbud use during commute. Lives with brother.\n\nFH: Father: hearing loss requiring aids in his 60s. Mother: hypertension; brother: no known major illness.\n\nAllergies: Neomycin: pruritic erythematous skin reaction.\n\nROS: Heent: Muffled left hearing. Small clear left ear discharge. No sore throat. General: No fever. No chills. No systemic malaise. Neurologic: No vertigo. No headache. No facial weakness.",
+        "O": "Vitals: BP 118/74 mmHg, P 72 bpm, R 14 rpm, T 98.4 F oral, Pulse Ox 99% on room air, Ht 5' 10\", Wt 166 lbs\n\nGeneral: Alert, well appearing.\nHeart: Regular rate and rhythm without murmur.\nLungs: Clear bilateral breath sounds.\nHEENT: Left tragal/pinna manipulation tender; canal erythematous and edematous with scant debris. Left tympanic membrane visualized and intact without bulging. Right canal without erythema or edema; right membrane intact and nonbulging; no mastoid tenderness.\nMusculoskeletal: Mild left temporomandibular joint tenderness with jaw opening; no facial swelling.\nHEENT: No enlarged or tender cervical nodes.\nHEENT: Oropharynx without erythema or exudate.\nOsteopathic: C2 left paraspinal tissue texture change and tenderness.",
+        "A": [
+          "1. Acute otitis externa",
+          "2. Allergic contact dermatitis of the ear canal",
+          "3. Temporomandibular disorder with referred ear pain"
+        ],
+        "P": [
+          "1. Treat with appropriate topical otic therapy and analgesia after membrane review; avoid neomycin given the skin reaction. Teach drop administration and keep the ear dry, avoiding earbuds and swabs. Reassess if not improving within 48\u201372 hours. Fever, spreading swelling, severe worsening pain or new facial weakness needs prompt evaluation.",
+          "2. Remove the new earbud exposure and avoid unnecessary topical sensitizers. If dermatitis persists after infection treatment, consider ENT/dermatology assessment and guided topical anti-inflammatory treatment; explain that contact allergy is not confirmed by itching alone.",
+          "3. Reduce gum chewing and clenching; discuss gentle jaw care and dental assessment for persistent symptoms. Use safe analgesia if needed and explain that jaw treatment does not replace treatment of the inflamed canal."
+        ]
+      },
+      "note_links": [
+        {
+          "section": "S",
+          "statement": "My left ear hurts and feels blocked.",
+          "event_ids": [
+            9
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "24-year-old male.",
+          "event_ids": [
+            2
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Left otalgia for 2 days.",
+          "event_ids": [
+            11
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Pain at left canal opening.",
+          "event_ids": [
+            15
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Aching and pruritus.",
+          "event_ids": [
+            17
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Pain 5/10.",
+          "event_ids": [
+            19
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Persistent daily discomfort.",
+          "event_ids": [
+            21
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Pruritus preceded pain and muffled hearing.",
+          "event_ids": [
+            13,
+            33
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Recent swimming and new in-ear earbuds.",
+          "event_ids": [
+            23
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Pain with ear contact/earbud insertion;",
+          "event_ids": [
+            27,
+            31
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "mild chewing-related jaw ache.",
+          "event_ids": [
+            27,
+            88
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Partial relief without earbud.",
+          "event_ids": [
+            25
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Acetaminophen 500 mg once;",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "no ear drops.",
+          "event_ids": [
+            29
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Prior earbud-related itching, no prior otalgia.",
+          "event_ids": [
+            31
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No chronic illness;",
+          "event_ids": [
+            51
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "nocturnal bruxism.",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "No ear surgery, tympanostomy or known perforation.",
+          "event_ids": [
+            53
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No regular medication.",
+          "event_ids": [
+            55
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Never smoked or vaped.",
+          "event_ids": [
+            59
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "One or two beers weekly.",
+          "event_ids": [
+            61
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No recreational drugs.",
+          "event_ids": [
+            63
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Lifeguard;",
+          "event_ids": [
+            65
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "earbud use during commute.",
+          "event_ids": [
+            65
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Lives with brother.",
+          "event_ids": [
+            67
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Father: hearing loss requiring aids in his 60s.",
+          "event_ids": [
+            69,
+            33
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Mother: hypertension;",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "brother: no known major illness.",
+          "event_ids": [
+            71
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Neomycin: pruritic erythematous skin reaction.",
+          "event_ids": [
+            57
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Heent: Muffled left hearing.",
+          "event_ids": [
+            33
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Small clear left ear discharge.",
+          "event_ids": [
+            35
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No sore throat.",
+          "event_ids": [
+            37
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "General: No fever.",
+          "event_ids": [
+            39
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No chills.",
+          "event_ids": [
+            41
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No systemic malaise.",
+          "event_ids": [
+            43
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Neurologic: No vertigo.",
+          "event_ids": [
+            45
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No headache.",
+          "event_ids": [
+            47
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No facial weakness.",
+          "event_ids": [
+            49
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "BP 118/74 mmHg",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "P 72 bpm",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "R 14 rpm",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "T 98.4 F oral",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "Pulse Ox 99% on room air",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "Ht 5' 10\"",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "Wt 166 lbs",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "Alert, well appearing.",
+          "event_ids": [
+            80
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Regular rate and rhythm without murmur.",
+          "event_ids": [
+            82
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Clear bilateral breath sounds.",
+          "event_ids": [
+            84
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Left tragal/pinna manipulation tender;",
+          "event_ids": [
+            86
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "canal erythematous and edematous with scant debris.",
+          "event_ids": [
+            86
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Left tympanic membrane visualized and intact without bulging.",
+          "event_ids": [
+            86
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Right canal without erythema or edema;",
+          "event_ids": [
+            86
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "right membrane intact and nonbulging;",
+          "event_ids": [
+            86
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "no mastoid tenderness.",
+          "event_ids": [
+            86
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Mild left temporomandibular joint tenderness with jaw opening;",
+          "event_ids": [
+            88
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "no facial swelling.",
+          "event_ids": [
+            88
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "No enlarged or tender cervical nodes.",
+          "event_ids": [
+            90
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Oropharynx without erythema or exudate.",
+          "event_ids": [
+            92
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "C2 left paraspinal tissue texture change and tenderness.",
+          "event_ids": [
+            94
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        }
+      ],
+      "ledger": [
+        {
+          "seq": 1,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "system",
+          "text": "Encounter started.",
+          "meta": {
+            "event": "phase_start"
+          }
+        },
+        {
+          "seq": 2,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "station_info",
+          "text": "Jordan Park, 24-year-old male. My left ear hurts and feels blocked. Vital signs are available on the chart. Perform a focused history and physical examination, discuss your plan, and document only what you obtain. Use the time limit stated for your selected practice mode.",
+          "meta": {
+            "doorway": true
+          }
+        },
+        {
+          "seq": 3,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "station_info",
+          "text": "Vital signs supplied on the chart: BP 118/74 mmHg, Ht 5' 10\", P 72 bpm, Pulse Ox 99% on room air, R 14 rpm, T 98.4 F oral, Wt 166 lbs",
+          "meta": {
+            "vitals": true,
+            "concepts": {
+              "vitals": {
+                "polarity": "positive",
+                "value": "{\"BP\": \"118/74 mmHg\", \"Ht\": \"5' 10\\\"\", \"P\": \"72 bpm\", \"Pulse Ox\": \"99% on room air\", \"R\": \"14 rpm\", \"T\": \"98.4 F oral\", \"Wt\": \"166 lbs\"}"
+              }
+            }
+          }
+        },
+        {
+          "seq": 4,
+          "t_ms": 1,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "plan_talk": true,
+            "mode": "type"
+          }
+        },
+        {
+          "seq": 5,
+          "t_ms": 1,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
+          }
+        },
+        {
+          "seq": 6,
+          "t_ms": 1,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "courtesy_id": "consent_exam",
+            "label": "Explain the exam and ask permission",
+            "components": []
+          }
+        },
+        {
+          "seq": 7,
+          "t_ms": 7,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
+          }
+        },
+        {
+          "seq": 8,
+          "t_ms": 7,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What brings you in today?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 9,
+          "t_ms": 10,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My left ear hurts and feels blocked.",
+          "meta": {
+            "facts_released": [
+              "opening_complaint"
+            ],
+            "concepts": {
+              "opening_complaint": {
+                "polarity": "positive",
+                "value": "My left ear hurts and feels blocked."
+              }
+            },
+            "volunteered": false,
+            "kind": "opening",
+            "checklist_hits": [
+              "h_opening_complaint"
+            ],
+            "categories": [
+              "chief_complaint"
+            ]
+          }
+        },
+        {
+          "seq": 10,
+          "t_ms": 11,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "When did the ear pain begin?",
+          "meta": {
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 11,
+          "t_ms": 12,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Two days ago.",
+          "meta": {
+            "facts_released": [
+              "hpi_onset"
+            ],
+            "concepts": {
+              "hpi_onset": {
+                "polarity": "positive",
+                "value": "Two days ago."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_onset"
+            ],
+            "categories": [
+              "onset"
+            ]
+          }
+        },
+        {
+          "seq": 12,
+          "t_ms": 13,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "How has it changed?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 13,
+          "t_ms": 14,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "The itching started first, then it became sore and muffled.",
+          "meta": {
+            "facts_released": [
+              "hpi_chronology"
+            ],
+            "concepts": {
+              "hpi_chronology": {
+                "polarity": "positive",
+                "value": "The itching started first, then it became sore and muffled."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_chronology"
+            ],
+            "categories": [
+              "chronology"
+            ]
+          }
+        },
+        {
+          "seq": 14,
+          "t_ms": 15,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Which ear hurts?",
+          "meta": {
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 15,
+          "t_ms": 16,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "The left one, near the opening.",
+          "meta": {
+            "facts_released": [
+              "hpi_location"
+            ],
+            "concepts": {
+              "hpi_location": {
+                "polarity": "positive",
+                "value": "The left one, near the opening."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_location"
+            ],
+            "categories": [
+              "location"
+            ]
+          }
+        },
+        {
+          "seq": 16,
+          "t_ms": 16,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What does the ear pain feel like?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 17,
+          "t_ms": 18,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "A steady sore ache with itching.",
+          "meta": {
+            "facts_released": [
+              "hpi_quality"
+            ],
+            "concepts": {
+              "hpi_quality": {
+                "polarity": "positive",
+                "value": "A steady sore ache with itching."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_quality"
+            ],
+            "categories": [
+              "quality"
+            ]
+          }
+        },
+        {
+          "seq": 18,
+          "t_ms": 18,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "How bad is the pain?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 19,
+          "t_ms": 20,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "About 5 out of 10.",
+          "meta": {
+            "facts_released": [
+              "hpi_severity"
+            ],
+            "concepts": {
+              "hpi_severity": {
+                "polarity": "positive",
+                "value": "About 5 out of 10."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_severity"
+            ],
+            "categories": [
+              "severity"
+            ]
+          }
+        },
+        {
+          "seq": 20,
+          "t_ms": 20,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Is it constant or intermittent?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 21,
+          "t_ms": 21,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "It is there most of the day.",
+          "meta": {
+            "facts_released": [
+              "hpi_timing"
+            ],
+            "concepts": {
+              "hpi_timing": {
+                "polarity": "positive",
+                "value": "It is there most of the day."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_timing"
+            ],
+            "categories": [
+              "timing"
+            ]
+          }
+        },
+        {
+          "seq": 22,
+          "t_ms": 22,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you been swimming or put anything new in your ear?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 23,
+          "t_ms": 23,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I swam all weekend and started using new in-ear earbuds last week.",
+          "meta": {
+            "facts_released": [
+              "hpi_setting"
+            ],
+            "concepts": {
+              "hpi_setting": {
+                "polarity": "positive",
+                "value": "I swam all weekend and started using new in-ear earbuds last week."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_setting"
+            ],
+            "categories": [
+              "setting"
+            ]
+          }
+        },
+        {
+          "seq": 24,
+          "t_ms": 24,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What helps?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 25,
+          "t_ms": 25,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Leaving the earbud out helps a little.",
+          "meta": {
+            "facts_released": [
+              "hpi_alleviating"
+            ],
+            "concepts": {
+              "hpi_alleviating": {
+                "polarity": "positive",
+                "value": "Leaving the earbud out helps a little."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_alleviating"
+            ],
+            "categories": [
+              "alleviating"
+            ]
+          }
+        },
+        {
+          "seq": 26,
+          "t_ms": 25,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What makes the pain worse?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 27,
+          "t_ms": 27,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Touching the ear and putting the earbud in hurt. Chewing aches a little near my jaw.",
+          "meta": {
+            "facts_released": [
+              "hpi_aggravating"
+            ],
+            "concepts": {
+              "hpi_aggravating": {
+                "polarity": "positive",
+                "value": "Touching the ear and putting the earbud in hurt. Chewing aches a little near my jaw."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_aggravating"
+            ],
+            "categories": [
+              "aggravating"
+            ]
+          }
+        },
+        {
+          "seq": 28,
+          "t_ms": 27,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you used drops or pain medicine?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 29,
+          "t_ms": 29,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I took acetaminophen 500 milligrams last night. No ear drops.",
+          "meta": {
+            "facts_released": [
+              "hpi_treatment"
+            ],
+            "concepts": {
+              "hpi_treatment": {
+                "polarity": "positive",
+                "value": "I took acetaminophen 500 milligrams last night. No ear drops."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_treatment"
+            ],
+            "categories": [
+              "treatment"
+            ]
+          }
+        },
+        {
+          "seq": 30,
+          "t_ms": 29,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had this before?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 31,
+          "t_ms": 30,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Not ear pain, but earbuds have made my skin itchy before.",
+          "meta": {
+            "facts_released": [
+              "hpi_past_occurrence"
+            ],
+            "concepts": {
+              "hpi_past_occurrence": {
+                "polarity": "positive",
+                "value": "Not ear pain, but earbuds have made my skin itchy before."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_past_occurrence"
+            ],
+            "categories": [
+              "past_occurrence"
+            ]
+          }
+        },
+        {
+          "seq": 32,
+          "t_ms": 31,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had hearing loss?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 33,
+          "t_ms": 32,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Sounds are muffled on the left.",
+          "meta": {
+            "facts_released": [
+              "symptom_hearing_loss"
+            ],
+            "concepts": {
+              "symptom_hearing_loss": {
+                "polarity": "positive",
+                "value": "Sounds are muffled on the left."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_hearing_loss"
+            ],
+            "categories": [
+              "associated"
+            ]
+          }
+        },
+        {
+          "seq": 34,
+          "t_ms": 33,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had ear discharge?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 35,
+          "t_ms": 35,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "There was a little clear fluid on my pillow.",
+          "meta": {
+            "facts_released": [
+              "symptom_ear_discharge"
+            ],
+            "concepts": {
+              "symptom_ear_discharge": {
+                "polarity": "positive",
+                "value": "There was a little clear fluid on my pillow."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_ear_discharge"
+            ],
+            "categories": [
+              "associated"
+            ]
+          }
+        },
+        {
+          "seq": 36,
+          "t_ms": 35,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had a sore throat?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 37,
+          "t_ms": 36,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No sore throat.",
+          "meta": {
+            "facts_released": [
+              "symptom_sore_throat"
+            ],
+            "concepts": {
+              "symptom_sore_throat": {
+                "polarity": "negative",
+                "value": "No sore throat."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_sore_throat"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 38,
+          "t_ms": 37,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had a fever?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 39,
+          "t_ms": 38,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No fever.",
+          "meta": {
+            "facts_released": [
+              "symptom_fever"
+            ],
+            "concepts": {
+              "symptom_fever": {
+                "polarity": "negative",
+                "value": "No fever."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_fever"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 40,
+          "t_ms": 39,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had chills?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 41,
+          "t_ms": 40,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No chills.",
+          "meta": {
+            "facts_released": [
+              "symptom_chills"
+            ],
+            "concepts": {
+              "symptom_chills": {
+                "polarity": "negative",
+                "value": "No chills."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_chills"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 42,
+          "t_ms": 40,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had fatigue?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 43,
+          "t_ms": 42,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I feel well apart from the ear.",
+          "meta": {
+            "facts_released": [
+              "symptom_fatigue"
+            ],
+            "concepts": {
+              "symptom_fatigue": {
+                "polarity": "negative",
+                "value": "I feel well apart from the ear."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_fatigue"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 44,
+          "t_ms": 42,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had dizziness?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 45,
+          "t_ms": 43,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No spinning or dizziness.",
+          "meta": {
+            "facts_released": [
+              "symptom_dizziness"
+            ],
+            "concepts": {
+              "symptom_dizziness": {
+                "polarity": "negative",
+                "value": "No spinning or dizziness."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_dizziness"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 46,
+          "t_ms": 44,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had headache?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 47,
+          "t_ms": 45,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No headache.",
+          "meta": {
+            "facts_released": [
+              "symptom_headache"
+            ],
+            "concepts": {
+              "symptom_headache": {
+                "polarity": "negative",
+                "value": "No headache."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_headache"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 48,
+          "t_ms": 46,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you noticed weakness?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 49,
+          "t_ms": 47,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No weakness in my face.",
+          "meta": {
+            "facts_released": [
+              "symptom_weakness"
+            ],
+            "concepts": {
+              "symptom_weakness": {
+                "polarity": "negative",
+                "value": "No weakness in my face."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_weakness"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 50,
+          "t_ms": 48,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Do you have chronic illnesses?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 51,
+          "t_ms": 49,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No chronic illness. I grind my teeth at night.",
+          "meta": {
+            "facts_released": [
+              "history_medical_history"
+            ],
+            "concepts": {
+              "history_medical_history": {
+                "polarity": "positive",
+                "value": "No chronic illness. I grind my teeth at night."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_medical_history"
+            ],
+            "categories": [
+              "pmh"
+            ]
+          }
+        },
+        {
+          "seq": 52,
+          "t_ms": 49,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had ear surgery or a perforated eardrum?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 53,
+          "t_ms": 51,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No tubes, ear surgery or known hole in my eardrum.",
+          "meta": {
+            "facts_released": [
+              "history_ear_procedures"
+            ],
+            "concepts": {
+              "history_ear_procedures": {
+                "polarity": "positive",
+                "value": "No tubes, ear surgery or known hole in my eardrum."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_ear_procedures"
+            ],
+            "categories": [
+              "psh"
+            ]
+          }
+        },
+        {
+          "seq": 54,
+          "t_ms": 51,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What medicines do you usually take?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 55,
+          "t_ms": 53,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No regular medicine.",
+          "meta": {
+            "facts_released": [
+              "history_medication"
+            ],
+            "concepts": {
+              "history_medication": {
+                "polarity": "positive",
+                "value": "No regular medicine."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_medication"
+            ],
+            "categories": [
+              "medications"
+            ]
+          }
+        },
+        {
+          "seq": 56,
+          "t_ms": 53,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Are you allergic to medicines?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 57,
+          "t_ms": 55,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Neomycin ointment made my skin red and itchy.",
+          "meta": {
+            "facts_released": [
+              "history_drug_reactions"
+            ],
+            "concepts": {
+              "history_drug_reactions": {
+                "polarity": "positive",
+                "value": "Neomycin ointment made my skin red and itchy."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_drug_reactions"
+            ],
+            "categories": [
+              "allergies"
+            ]
+          }
+        },
+        {
+          "seq": 58,
+          "t_ms": 55,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Do you smoke or vape?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 59,
+          "t_ms": 57,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I have never smoked or vaped.",
+          "meta": {
+            "facts_released": [
+              "history_smoking"
+            ],
+            "concepts": {
+              "history_smoking": {
+                "polarity": "positive",
+                "value": "I have never smoked or vaped."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_smoking"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 60,
+          "t_ms": 57,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "How much alcohol do you drink?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 61,
+          "t_ms": 58,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "One or two beers on a weekend.",
+          "meta": {
+            "facts_released": [
+              "history_alcohol"
+            ],
+            "concepts": {
+              "history_alcohol": {
+                "polarity": "positive",
+                "value": "One or two beers on a weekend."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_alcohol"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 62,
+          "t_ms": 59,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Do you use recreational drugs?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 63,
+          "t_ms": 60,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No.",
+          "meta": {
+            "facts_released": [
+              "history_drugs"
+            ],
+            "concepts": {
+              "history_drugs": {
+                "polarity": "positive",
+                "value": "No."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_drugs"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 64,
+          "t_ms": 61,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What do you do for work?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 65,
+          "t_ms": 62,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I am a lifeguard and wear earbuds during my commute.",
+          "meta": {
+            "facts_released": [
+              "history_work"
+            ],
+            "concepts": {
+              "history_work": {
+                "polarity": "positive",
+                "value": "I am a lifeguard and wear earbuds during my commute."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_work"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 66,
+          "t_ms": 63,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Who lives with you?",
+          "meta": {
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 67,
+          "t_ms": 64,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I live with my brother.",
+          "meta": {
+            "facts_released": [
+              "history_home"
+            ],
+            "concepts": {
+              "history_home": {
+                "polarity": "positive",
+                "value": "I live with my brother."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_home"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 68,
+          "t_ms": 64,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Is there hearing loss in your family?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 69,
+          "t_ms": 66,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My father needed hearing aids in his sixties.",
+          "meta": {
+            "facts_released": [
+              "history_family_history"
+            ],
+            "concepts": {
+              "history_family_history": {
+                "polarity": "positive",
+                "value": "My father needed hearing aids in his sixties."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_family_history"
+            ],
+            "categories": [
+              "family"
+            ]
+          }
+        },
+        {
+          "seq": 70,
+          "t_ms": 66,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What about your mother and siblings?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 71,
+          "t_ms": 68,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My mother has high blood pressure. My brother has no major illness.",
+          "meta": {
+            "facts_released": [
+              "history_other_family"
+            ],
+            "concepts": {
+              "history_other_family": {
+                "polarity": "positive",
+                "value": "My mother has high blood pressure. My brother has no major illness."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_other_family"
+            ],
+            "categories": [
+              "family"
+            ]
+          }
+        },
+        {
+          "seq": 72,
+          "t_ms": 68,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What worries you most?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 73,
+          "t_ms": 69,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I want to know what is causing this and how to get back to my usual activities.",
+          "meta": {
+            "facts_released": [
+              "patient_concern"
+            ],
+            "concepts": {
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "I want to know what is causing this and how to get back to my usual activities."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_patient_concern"
+            ],
+            "categories": [
+              "concern"
+            ]
+          }
+        },
+        {
+          "seq": 74,
+          "t_ms": 70,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Thank you for explaining that. I can understand why this is concerning.",
+          "meta": {
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 75,
+          "t_ms": 86,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I want to know what is causing this and how to get back to my usual activities. Hmm... I don't know how to answer that.",
+          "meta": {
+            "facts_released": [
+              "patient_concern"
+            ],
+            "concepts": {
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "I want to know what is causing this and how to get back to my usual activities."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_patient_concern"
+            ],
+            "composed_asks": 1,
+            "unanswered_asks": [
+              "I can understand why this is concerning"
+            ],
+            "categories": [
+              "concern"
+            ]
+          }
+        },
+        {
+          "seq": 76,
+          "t_ms": 87,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "May I have your permission to examine you?",
+          "meta": {
+            "mode": "type",
+            "intent": "consent"
+          }
+        },
+        {
+          "seq": 77,
+          "t_ms": 89,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Yes, that's fine. Go ahead.",
+          "meta": {
+            "kind": "consent"
+          }
+        },
+        {
+          "seq": 78,
+          "t_ms": 87,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "May I have your permission to examine you?",
+          "meta": {
+            "status": "consented",
+            "maneuver": null,
+            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+          }
+        },
+        {
+          "seq": 79,
+          "t_ms": 10090,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "General appearance",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "general_inspect",
+            "label": "General appearance",
+            "method": "inspect",
+            "region": "General",
+            "components": [],
+            "scopes": [
+              "general"
+            ],
+            "duration_s": 10,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 80,
+          "t_ms": 10090,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Alert, well appearing.",
+          "meta": {
+            "maneuver_id": "general_inspect",
+            "finding_ids": [
+              "exam_general_inspect"
+            ],
+            "concepts": {
+              "exam_general_inspect": {
+                "polarity": "positive",
+                "value": "Alert, well appearing."
+              }
+            },
+            "scopes": [
+              "general"
+            ]
+          }
+        },
+        {
+          "seq": 81,
+          "t_ms": 50090,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Auscultate heart",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "heart_auscultate",
+            "label": "Auscultate heart",
+            "method": "auscultate",
+            "region": "Heart",
+            "components": [
+              "aortic",
+              "pulmonic",
+              "tricuspid",
+              "mitral",
+              "on skin"
+            ],
+            "scopes": [
+              "heart"
+            ],
+            "duration_s": 40,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 82,
+          "t_ms": 50090,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Regular rate and rhythm without murmur.",
+          "meta": {
+            "maneuver_id": "heart_auscultate",
+            "finding_ids": [
+              "exam_heart_auscultate"
+            ],
+            "concepts": {
+              "exam_heart_auscultate": {
+                "polarity": "positive",
+                "value": "Regular rate and rhythm without murmur."
+              }
+            },
+            "scopes": [
+              "heart"
+            ]
+          }
+        },
+        {
+          "seq": 83,
+          "t_ms": 91090,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Auscultate lungs",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "lungs_auscultate",
+            "label": "Auscultate lungs",
+            "method": "auscultate",
+            "region": "Lungs",
+            "components": [
+              "posterior",
+              "on skin",
+              "compare side to side",
+              "mouth open"
+            ],
+            "scopes": [
+              "lungs"
+            ],
+            "duration_s": 41,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 84,
+          "t_ms": 91090,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Clear bilateral breath sounds.",
+          "meta": {
+            "maneuver_id": "lungs_auscultate",
+            "finding_ids": [
+              "exam_lungs_auscultate"
+            ],
+            "concepts": {
+              "exam_lungs_auscultate": {
+                "polarity": "positive",
+                "value": "Clear bilateral breath sounds."
+              }
+            },
+            "scopes": [
+              "lungs"
+            ]
+          }
+        },
+        {
+          "seq": 85,
+          "t_ms": 121090,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Otoscopic exam of ears",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "heent_ears",
+            "label": "Otoscopic exam of ears",
+            "method": "inspect",
+            "region": "HEENT",
+            "components": [
+              "right ear",
+              "left ear"
+            ],
+            "scopes": [
+              "heent.ears"
+            ],
+            "duration_s": 30,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 86,
+          "t_ms": 121090,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Left tragal/pinna manipulation tender; canal erythematous and edematous with scant debris. Left tympanic membrane visualized and intact without bulging. Right canal without erythema or edema; right membrane intact and nonbulging; no mastoid tenderness.",
+          "meta": {
+            "maneuver_id": "heent_ears",
+            "finding_ids": [
+              "exam_heent_ears"
+            ],
+            "concepts": {
+              "exam_heent_ears": {
+                "polarity": "positive",
+                "value": "Left tragal/pinna manipulation tender; canal erythematous and edematous with scant debris. Left tympanic membrane visualized and intact without bulging. Right canal without erythema or edema; right membrane intact and nonbulging; no mastoid tenderness."
+              }
+            },
+            "scopes": [
+              "heent.ears"
+            ]
+          }
+        },
+        {
+          "seq": 87,
+          "t_ms": 137090,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Palpate the affected area",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "msk_palpate",
+            "label": "Palpate the affected area",
+            "method": "palpate",
+            "region": "Musculoskeletal",
+            "components": [
+              "point tenderness"
+            ],
+            "scopes": [
+              "msk.palpation"
+            ],
+            "duration_s": 16,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 88,
+          "t_ms": 137090,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Mild left temporomandibular joint tenderness with jaw opening; no facial swelling.",
+          "meta": {
+            "maneuver_id": "msk_palpate",
+            "finding_ids": [
+              "exam_msk_palpate"
+            ],
+            "concepts": {
+              "exam_msk_palpate": {
+                "polarity": "positive",
+                "value": "Mild left temporomandibular joint tenderness with jaw opening; no facial swelling."
+              }
+            },
+            "scopes": [
+              "msk.palpation"
+            ]
+          }
+        },
+        {
+          "seq": 89,
+          "t_ms": 155090,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Palpate lymph nodes",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "lymph_nodes",
+            "label": "Palpate lymph nodes",
+            "method": "palpate",
+            "region": "HEENT",
+            "components": [
+              "cervical"
+            ],
+            "scopes": [
+              "lymph"
+            ],
+            "duration_s": 18,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 90,
+          "t_ms": 155090,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "No enlarged or tender cervical nodes.",
+          "meta": {
+            "maneuver_id": "lymph_nodes",
+            "finding_ids": [
+              "exam_lymph_nodes"
+            ],
+            "concepts": {
+              "exam_lymph_nodes": {
+                "polarity": "positive",
+                "value": "No enlarged or tender cervical nodes."
+              }
+            },
+            "scopes": [
+              "lymph"
+            ]
+          }
+        },
+        {
+          "seq": 91,
+          "t_ms": 171090,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Inspect mouth and throat with light",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "heent_throat",
+            "label": "Inspect mouth and throat with light",
+            "method": "inspect",
+            "region": "HEENT",
+            "components": [
+              "oropharynx"
+            ],
+            "scopes": [
+              "heent.throat"
+            ],
+            "duration_s": 16,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 92,
+          "t_ms": 171090,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Oropharynx without erythema or exudate.",
+          "meta": {
+            "maneuver_id": "heent_throat",
+            "finding_ids": [
+              "exam_heent_throat"
+            ],
+            "concepts": {
+              "exam_heent_throat": {
+                "polarity": "positive",
+                "value": "Oropharynx without erythema or exudate."
+              }
+            },
+            "scopes": [
+              "heent.throat"
+            ]
+          }
+        },
+        {
+          "seq": 93,
+          "t_ms": 196090,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Osteopathic structural screen",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "osteo_screen",
+            "label": "Osteopathic structural screen",
+            "method": "palpate",
+            "region": "Osteopathic",
+            "components": [
+              "cervical"
+            ],
+            "scopes": [
+              "osteopathic"
+            ],
+            "duration_s": 25,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 94,
+          "t_ms": 196090,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "C2 left paraspinal tissue texture change and tenderness.",
+          "meta": {
+            "maneuver_id": "osteo_screen",
+            "finding_ids": [
+              "exam_osteo_screen"
+            ],
+            "concepts": {
+              "exam_osteo_screen": {
+                "polarity": "positive",
+                "value": "C2 left paraspinal tissue texture change and tenderness."
+              }
+            },
+            "scopes": [
+              "osteopathic"
+            ]
+          }
+        },
+        {
+          "seq": 95,
+          "t_ms": 196090,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "The ear examination will guide treatment. If canal infection is confirmed, drops and keeping the ear dry usually help. We will avoid neomycin because of your reaction. Come back if it is not improving within two to three days.",
+          "meta": {
+            "plan_talk": true,
+            "mode": "type",
+            "counseling_turn": true
+          }
+        },
+        {
+          "seq": 96,
+          "t_ms": 196090,
+          "phase": "encounter",
+          "kind": "counseling",
+          "text": "The ear examination will guide treatment. If canal infection is confirmed, drops and keeping the ear dry usually help. We will avoid neomycin because of your reaction. Come back if it is not improving within two to three days.",
+          "meta": {
+            "topics": [
+              "return precaution",
+              "diet"
+            ]
+          }
+        },
+        {
+          "seq": 97,
+          "t_ms": 196090,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Thank you. I understand that the next steps depend on the examination and tests.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "education_response"
+          }
+        },
+        {
+          "seq": 98,
+          "t_ms": 196090,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What questions do you have about the next steps?",
+          "meta": {
+            "open_question": true,
+            "closure": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 99,
+          "t_ms": 196090,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I want to know what is causing this and how to get back to my usual activities.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "closure_response",
+            "ips_signal": "closure_invited",
+            "categories": []
+          }
+        },
+        {
+          "seq": 100,
+          "t_ms": 196090,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "We can discuss temporary dry duties at the pool so the ear can recover without unnecessary time off.",
+          "meta": {
+            "plan_talk": true,
+            "mode": "type",
+            "counseling_turn": true
+          }
+        },
+        {
+          "seq": 101,
+          "t_ms": 196090,
+          "phase": "encounter",
+          "kind": "counseling",
+          "text": "We can discuss temporary dry duties at the pool so the ear can recover without unnecessary time off.",
+          "meta": {
+            "topics": [
+              "plan discussion"
+            ]
+          }
+        },
+        {
+          "seq": 102,
+          "t_ms": 196090,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "That would help. Thank you.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "education_response"
+          }
+        }
+      ],
+      "note_words": 405,
+      "estimated_encounter_s": 489,
+      "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
+      "missing_example_facts": [],
+      "documentation_audit": {
+        "unsupported": [],
+        "unresolved_count": 9
+      },
+      "reasoning": [
+        {
+          "id": "heent-ear-pain-decision",
+          "question": "Does touching the outer ear hurt, and is there discharge or jaw-related pain?",
+          "why": "Distinguish canal disease from referred ear pain and choose safe topical therapy.",
+          "if_present": "Use the reported pattern to select the relevant examinations and assess urgency.",
+          "if_absent": "Keep alternatives open and ask a focused follow-up.",
+          "next_action": "Perform the relevant case-specific examination.",
+          "document": "Separate reported symptoms, observed signs, assessment and proposed care."
+        }
+      ],
+      "differentials": [
+        {
+          "rank": 1,
+          "name": "Acute otitis externa",
+          "vindicate": "I",
+          "aliases": [
+            "Acute otitis externa"
+          ],
+          "supported_by": [
+            "hpi_setting",
+            "exam_heent_ears"
+          ],
+          "teaching_context": "Water exposure, tragal tenderness and inflamed canal support otitis externa."
+        },
+        {
+          "rank": 2,
+          "name": "Allergic contact dermatitis of the ear canal",
+          "vindicate": "A",
+          "aliases": [
+            "Allergic contact dermatitis of the ear canal"
+          ],
+          "supported_by": [
+            "hpi_setting",
+            "hpi_past_occurrence",
+            "history_drug_reactions"
+          ],
+          "teaching_context": "New earbuds, prior contact itching and skin allergy support a contact contributor; marked canal pain/debris favor infection."
+        },
+        {
+          "rank": 3,
+          "name": "Temporomandibular disorder with referred ear pain",
+          "vindicate": "T",
+          "aliases": [
+            "Temporomandibular disorder with referred ear pain"
+          ],
+          "supported_by": [
+            "history_medical_history",
+            "hpi_aggravating",
+            "exam_msk_palpate"
+          ],
+          "teaching_context": "Bruxism and jaw tenderness support a coexisting referred component but do not explain canal inflammation."
+        }
+      ],
+      "omissions": [
+        "Distinguishing history from examination evidence.",
+        "Explaining uncertainty and the practical follow-up plan."
+      ],
+      "recall": [
+        {
+          "prompt": "Before naming a diagnosis, what is the key distinction in this presentation?",
+          "answer": "Does touching the outer ear hurt, and is there discharge or jaw-related pain?"
+        },
+        {
+          "prompt": "Which specific examination or safety step changes what you can document?",
+          "answer": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model."
+        },
+        {
+          "prompt": "Name one tempting documentation or reasoning error and how you will prevent it.",
+          "answer": "Treating an unperformed examination or a possible diagnosis as obtained fact."
+        }
+      ],
+      "course_sources": [
+        {
+          "label": "PCM syllabus: 14-minute encounter / 9-minute SOAP; invasive SP examinations refused",
+          "locator": "PCM syllabus.pdf pp. 4\u20135"
+        },
+        {
+          "label": "SOAP rubric: S 28 / O 30 / A 15 / P 25 / style 2",
+          "locator": "2026 FALL M2 ILG - STUDENT MANUAL update.docx, SOAP evaluation table"
+        },
+        {
+          "label": "FIFE and patient perspective; purposeful transitions",
+          "locator": "PCM syllabus.pdf p. 13; Interpersonal Skills lecture"
+        }
+      ],
+      "sources": [
+        {
+          "title": "2026 FALL M2 ILG Student Manual",
+          "path": "claude builds/PCM/2026 FALL M2 ILG - STUDENT MANUAL update.docx",
+          "locator": "SOAP rubric and physical examination requirements",
+          "kind": "course"
+        },
+        {
+          "title": "Acute otitis externa clinical practice guideline",
+          "url": "https://www.entnet.org/quality-practice/quality-products/clinical-practice-guidelines/aoe/",
+          "kind": "supplementary_clinical",
+          "reviewed": "2026-09-14",
+          "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+        },
+        {
+          "title": "Temporomandibular disorders",
+          "url": "https://www.nidcr.nih.gov/health-info/tmd",
+          "kind": "supplementary_clinical",
+          "reviewed": "2026-09-14",
+          "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+        }
+      ],
+      "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
+      "case_hash": "a5eb14bf3530b717be506e66f5858c9badfd066931718c43b43d91ee0222223b",
+      "engine_version": "4.1.0"
+    }
+  ]
+}

@@ -34,7 +34,7 @@
     "age": 26,
     "sex": "female",
     "pronouns": "she/her",
-    "persona": "Medical student; lives with husband; regular periods, last period 2 weeks ago; pregnancy not suspected. Communication style: expresses concern. Gives consistent answers without diagnostic labels.",
+    "persona": "Medical student whose late study disrupts meals and sleep; lives with a roommate who can help with transport. Communication style: expresses concern. Gives consistent answers without diagnostic labels.",
     "affect": "Do I need a brain scan every time this happens?",
     "communication_style": "expresses concern",
     "opening": "I have another throbbing headache, and the lights are making it worse.",
@@ -264,11 +264,10 @@
     ],
     "alcohol_use": [
       "alcohol",
-      "alcoholic",
+      "drink alcohol",
       "beer",
       "wine",
-      "drinks",
-      "One alcoholic drink monthly."
+      "I do not drink alcohol."
     ],
     "drug_use": [
       "recreational drugs",
@@ -279,18 +278,25 @@
       "No recreational drugs."
     ],
     "history_context_1": [
-      "I am a medical student."
+      "occupation",
+      "work duties",
+      "job",
+      "do for a living",
+      "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep."
     ],
     "history_family_1": [
-      "My mom is fifty-two and she gets migraines.", "Mother has migraine",
+      "My mom is fifty-two and she gets migraines.",
+      "Mother has migraine",
       "mother"
     ],
     "history_family_2": [
-      "My dad is fifty-five and he has high blood pressure.", "father hypertension",
+      "My dad is fifty-five and he has high blood pressure.",
+      "father hypertension",
       "father"
     ],
     "history_family_3": [
-      "I have one brother, he's twenty-nine and he's healthy.", "brother healthy.",
+      "I have one brother, he's twenty-nine and he's healthy.",
+      "brother healthy.",
       "brother"
     ],
     "patient_concern": [
@@ -330,7 +336,11 @@
       "No visible rash on the inspected arms."
     ],
     "history_household": [
-      "I live with my husband."
+      "live with",
+      "living situation",
+      "household",
+      "support at home",
+      "I live with a roommate. She can drive me home and check on me later."
     ],
     "history_cycle_regularity": [
       "My periods are regular."
@@ -1581,9 +1591,9 @@
       "id": "alcohol_use",
       "category": "social",
       "checklist": "h_alcohol_use",
-      "value": "One alcoholic drink monthly.",
+      "value": "I do not drink alcohol.",
       "sp_says": [
-        "One alcoholic drink monthly."
+        "I do not drink alcohol."
       ],
       "triggers": {
         "any": [
@@ -1597,7 +1607,7 @@
       "concepts": {
         "alcohol_use": {
           "polarity": "positive",
-          "value": "One alcoholic drink monthly."
+          "value": "I do not drink alcohol."
         }
       },
       "example_questions": [
@@ -1606,11 +1616,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "One alcoholic drink monthly.",
+            "text": "I do not drink alcohol.",
             "concepts": {
               "alcohol_use": {
                 "polarity": "positive",
-                "value": "One alcoholic drink monthly."
+                "value": "I do not drink alcohol."
               }
             },
             "complete_fact": true
@@ -1664,25 +1674,23 @@
       "id": "history_context_1",
       "category": "social",
       "checklist": "h_history_context_1",
-      "value": "I am a medical student.",
+      "value": "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep.",
       "sp_says": [
-        "I am a medical student."
+        "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep."
       ],
       "triggers": {
         "any": [
           "What do you do for work?",
-          "what do you do for work",
-          "what do you do for a living",
           "occupation",
-          "your job",
-          "do you work",
-          "are you a student"
+          "work duties",
+          "job",
+          "do for a living"
         ]
       },
       "concepts": {
         "history_context_1": {
           "polarity": "positive",
-          "value": "I am a medical student."
+          "value": "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep."
         }
       },
       "history_topic": "occupation",
@@ -1692,11 +1700,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "I am a medical student.",
+            "text": "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep.",
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a medical student."
+                "value": "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep."
               }
             },
             "complete_fact": true
@@ -1885,23 +1893,23 @@
       "id": "history_household",
       "category": "social",
       "checklist": "h_history_household",
-      "value": "I live with my husband.",
+      "value": "I live with a roommate. She can drive me home and check on me later.",
       "sp_says": [
-        "I live with my husband."
+        "I live with a roommate. She can drive me home and check on me later."
       ],
       "triggers": {
         "any": [
           "Who do you live with?",
-          "who do you live with",
-          "live with my husband",
+          "live with",
           "living situation",
-          "live with"
+          "household",
+          "support at home"
         ]
       },
       "concepts": {
         "history_household": {
           "polarity": "positive",
-          "value": "I live with my husband."
+          "value": "I live with a roommate. She can drive me home and check on me later."
         }
       },
       "history_topic": "household",
@@ -1911,11 +1919,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "I live with my husband.",
+            "text": "I live with a roommate. She can drive me home and check on me later.",
             "concepts": {
               "history_household": {
                 "polarity": "positive",
-                "value": "I live with my husband."
+                "value": "I live with a roommate. She can drive me home and check on me later."
               }
             },
             "complete_fact": true
@@ -2521,7 +2529,7 @@
       },
       {
         "id": "h_alcohol_use",
-        "text": "One alcoholic drink monthly."
+        "text": "I do not drink alcohol."
       },
       {
         "id": "h_drug_use",
@@ -2529,7 +2537,7 @@
       },
       {
         "id": "h_history_context_1",
-        "text": "I am a medical student."
+        "text": "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep."
       },
       {
         "id": "h_history_family_1",
@@ -2549,7 +2557,7 @@
       },
       {
         "id": "h_history_household",
-        "text": "I live with my husband."
+        "text": "I live with a roommate. She can drive me home and check on me later."
       },
       {
         "id": "h_history_cycle_regularity",
@@ -2682,7 +2690,7 @@
     ]
   },
   "model_note": {
-    "S": "cc: Recurrent one-sided headache with light sensitivity\n\nHPI: 26 yo f. Patient reports: This episode began gradually 6 hours ago. It is on the left side of my head. It does not spread down my neck. It is throbbing. It is 7/10. Similar attacks last 12\u201324 hours, about twice a month. It began after I missed lunch and slept poorly. A dark quiet room helps. Light, sound and walking worsen it. Acetaminophen 500 mg helped a little. I have had the same pattern since age 19. It is the same left-sided throbbing pattern as before. Light hurts my eyes. I feel nauseated.\n\nPatient perspective: Do I need a brain scan every time this happens?\n\nPMH: Previously diagnosed migraine; no malignancy or immunosuppression.\n\nPSH: No surgeries or hospitalizations.\n\nMeds: Acetaminophen on 2\u20133 days per month; no daily medication.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink monthly. No recreational drugs. Medical student; lives with husband; regular periods, last period 2 weeks ago; pregnancy not suspected.\n\nFH: My mom is fifty-two and she gets migraines.; My dad is fifty-five and he has high blood pressure.; I have one brother, he's twenty-nine and he's healthy.\n\nROS: Neurologic - Reports headache. Reports photophobia. Denies focal weakness. Denies thunderclap. Gastrointestinal - Reports nausea. Denies vomiting. Denies abdominal pain. General - Denies fever. Denies chills. Denies weight loss.",
+    "S": "cc: Recurrent one-sided headache with light sensitivity\n\nHPI: 26 yo f. Patient reports: This episode began gradually 6 hours ago. It is on the left side of my head. It does not spread down my neck. It is throbbing. It is 7/10. Similar attacks last 12\u201324 hours, about twice a month. It began after I missed lunch and slept poorly. A dark quiet room helps. Light, sound and walking worsen it. Acetaminophen 500 mg helped a little. I have had the same pattern since age 19. It is the same left-sided throbbing pattern as before. Light hurts my eyes. I feel nauseated.\n\nPatient perspective: Do I need a brain scan every time this happens?\n\nPMH: Previously diagnosed migraine; no malignancy or immunosuppression.\n\nPSH: No surgeries or hospitalizations.\n\nMeds: Acetaminophen on 2\u20133 days per month; no daily medication.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked; no alcohol or recreational drugs. Medical student; late study sometimes disrupts meals and sleep. Lives with a roommate who can drive her home and check on her. Regular periods, last period 2 weeks ago; pregnancy not suspected.\n\nFH: My mom is fifty-two and she gets migraines.; My dad is fifty-five and he has high blood pressure.; I have one brother, he's twenty-nine and he's healthy.\n\nROS: Neurologic - Reports headache. Reports photophobia. Denies focal weakness. Denies thunderclap. Gastrointestinal - Reports nausea. Denies vomiting. Denies abdominal pain. General - Denies fever. Denies chills. Denies weight loss.",
     "O": "Vitals: T 98.4 F oral, P 78 bpm, BP 114/72 mmHg, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Prefers dim light, not toxic appearing.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nHEENT: Pupils equal and reactive; extraocular movements intact.\n\nNeuro: Face symmetric; tongue midline; speech clear. Strength 5/5 in arms and legs bilaterally. Light touch symmetric in arms and legs. Neck flexion is comfortable without stiffness.\n\nOsteopathic: C1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
     "A": [
       "1. Migraine without aura",
@@ -2773,7 +2781,8 @@
       "https://www.ninds.nih.gov/health-information/disorders/migraine"
     ],
     "round3_plan_review": "Made vague alternative plans actionable with conditional evaluation, safety counseling and follow-up. Specific outpatient review intervals are authored teaching examples, not confirmed course mandates. No new findings or clinician approval.",
-    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional."
+    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional.",
+    "background_revision": "2026-09-14: New synthetic background facts reviewed for internal consistency and relevance against primary clinical sources; source references support clinical plausibility, not the existence of a real patient. No clinician approval."
   },
   "sources": [
     {
@@ -2926,7 +2935,8 @@
     "young_female_cohort": "New female adult18\u201330 authoring; old saved snapshots remain outside this generator.",
     "experience_review2_language": "Reviewed vomiting tense forms; unsupported progression is not invented; timing cues reference obtainable dimensions; target maneuver removed from public doorway.",
     "demeanor": "demeanor-axes-v1: independently authored communication style and emotional state; legacy pace/gesture style retained; no physical finding credit.",
-    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+    "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
   },
   "cohort": {
     "id": "young-adult-female-v1",
@@ -2948,7 +2958,7 @@
           "age": 26,
           "sex": "female",
           "pronouns": "she/her",
-          "persona": "Medical student; lives with husband; regular periods, last period 2 weeks ago; pregnancy not suspected. Communication style: expresses concern. Gives consistent answers without diagnostic labels.",
+          "persona": "Medical student whose late study disrupts meals and sleep; lives with a roommate who can help with transport. Communication style: expresses concern. Gives consistent answers without diagnostic labels.",
           "affect": "Do I need a brain scan every time this happens?",
           "communication_style": "expresses concern",
           "opening": "I have another throbbing headache, and the lights are making it worse.",
@@ -3178,11 +3188,10 @@
           ],
           "alcohol_use": [
             "alcohol",
-            "alcoholic",
+            "drink alcohol",
             "beer",
             "wine",
-            "drinks",
-            "One alcoholic drink monthly."
+            "I do not drink alcohol."
           ],
           "drug_use": [
             "recreational drugs",
@@ -3193,18 +3202,25 @@
             "No recreational drugs."
           ],
           "history_context_1": [
-            "I am a medical student."
+            "occupation",
+            "work duties",
+            "job",
+            "do for a living",
+            "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep."
           ],
           "history_family_1": [
-            "My mom is fifty-two and she gets migraines.", "Mother has migraine",
+            "My mom is fifty-two and she gets migraines.",
+            "Mother has migraine",
             "mother"
           ],
           "history_family_2": [
-            "My dad is fifty-five and he has high blood pressure.", "father hypertension",
+            "My dad is fifty-five and he has high blood pressure.",
+            "father hypertension",
             "father"
           ],
           "history_family_3": [
-            "I have one brother, he's twenty-nine and he's healthy.", "brother healthy.",
+            "I have one brother, he's twenty-nine and he's healthy.",
+            "brother healthy.",
             "brother"
           ],
           "patient_concern": [
@@ -3244,7 +3260,11 @@
             "No visible rash on the inspected arms."
           ],
           "history_household": [
-            "I live with my husband."
+            "live with",
+            "living situation",
+            "household",
+            "support at home",
+            "I live with a roommate. She can drive me home and check on me later."
           ],
           "history_cycle_regularity": [
             "My periods are regular."
@@ -4495,9 +4515,9 @@
             "id": "alcohol_use",
             "category": "social",
             "checklist": "h_alcohol_use",
-            "value": "One alcoholic drink monthly.",
+            "value": "I do not drink alcohol.",
             "sp_says": [
-              "One alcoholic drink monthly."
+              "I do not drink alcohol."
             ],
             "triggers": {
               "any": [
@@ -4511,7 +4531,7 @@
             "concepts": {
               "alcohol_use": {
                 "polarity": "positive",
-                "value": "One alcoholic drink monthly."
+                "value": "I do not drink alcohol."
               }
             },
             "example_questions": [
@@ -4520,11 +4540,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "One alcoholic drink monthly.",
+                  "text": "I do not drink alcohol.",
                   "concepts": {
                     "alcohol_use": {
                       "polarity": "positive",
-                      "value": "One alcoholic drink monthly."
+                      "value": "I do not drink alcohol."
                     }
                   },
                   "complete_fact": true
@@ -4578,25 +4598,23 @@
             "id": "history_context_1",
             "category": "social",
             "checklist": "h_history_context_1",
-            "value": "I am a medical student.",
+            "value": "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep.",
             "sp_says": [
-              "I am a medical student."
+              "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep."
             ],
             "triggers": {
               "any": [
                 "What do you do for work?",
-                "what do you do for work",
-                "what do you do for a living",
                 "occupation",
-                "your job",
-                "do you work",
-                "are you a student"
+                "work duties",
+                "job",
+                "do for a living"
               ]
             },
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a medical student."
+                "value": "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep."
               }
             },
             "history_topic": "occupation",
@@ -4606,11 +4624,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I am a medical student.",
+                  "text": "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep.",
                   "concepts": {
                     "history_context_1": {
                       "polarity": "positive",
-                      "value": "I am a medical student."
+                      "value": "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep."
                     }
                   },
                   "complete_fact": true
@@ -4799,23 +4817,23 @@
             "id": "history_household",
             "category": "social",
             "checklist": "h_history_household",
-            "value": "I live with my husband.",
+            "value": "I live with a roommate. She can drive me home and check on me later.",
             "sp_says": [
-              "I live with my husband."
+              "I live with a roommate. She can drive me home and check on me later."
             ],
             "triggers": {
               "any": [
                 "Who do you live with?",
-                "who do you live with",
-                "live with my husband",
+                "live with",
                 "living situation",
-                "live with"
+                "household",
+                "support at home"
               ]
             },
             "concepts": {
               "history_household": {
                 "polarity": "positive",
-                "value": "I live with my husband."
+                "value": "I live with a roommate. She can drive me home and check on me later."
               }
             },
             "history_topic": "household",
@@ -4825,11 +4843,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I live with my husband.",
+                  "text": "I live with a roommate. She can drive me home and check on me later.",
                   "concepts": {
                     "history_household": {
                       "polarity": "positive",
-                      "value": "I live with my husband."
+                      "value": "I live with a roommate. She can drive me home and check on me later."
                     }
                   },
                   "complete_fact": true
@@ -5139,7 +5157,7 @@
             },
             {
               "id": "h_alcohol_use",
-              "text": "One alcoholic drink monthly."
+              "text": "I do not drink alcohol."
             },
             {
               "id": "h_drug_use",
@@ -5147,7 +5165,7 @@
             },
             {
               "id": "h_history_context_1",
-              "text": "I am a medical student."
+              "text": "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep."
             },
             {
               "id": "h_history_family_1",
@@ -5167,7 +5185,7 @@
             },
             {
               "id": "h_history_household",
-              "text": "I live with my husband."
+              "text": "I live with a roommate. She can drive me home and check on me later."
             },
             {
               "id": "h_history_cycle_regularity",
@@ -5299,7 +5317,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Recurrent one-sided headache with light sensitivity\n\nHPI: 26 yo f. Patient reports: This episode began gradually 10 hours ago. It is on the left side of my head. It does not spread down my neck. It is throbbing. It is 7/10. Similar attacks last 12\u201324 hours, about twice a month. It began after I missed lunch and slept poorly. A dark quiet room helps. Light, sound and walking worsen it. Acetaminophen 500 mg helped a little. I have had the same pattern since age 19. It is the same left-sided throbbing pattern as before. Light hurts my eyes. I feel nauseated.\n\nPatient perspective: Do I need a brain scan every time this happens?\n\nPMH: Previously diagnosed migraine; no malignancy or immunosuppression.\n\nPSH: No surgeries or hospitalizations.\n\nMeds: Acetaminophen on 2\u20133 days per month; no daily medication.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink monthly. No recreational drugs. Medical student; lives with husband; regular periods, last period 2 weeks ago; pregnancy not suspected.\n\nFH: My mom is fifty-two and she gets migraines.; My dad is fifty-five and he has high blood pressure.; I have one brother, he's twenty-nine and he's healthy.\n\nROS: Neurologic - Reports headache. Reports photophobia. Denies focal weakness. Denies thunderclap. Gastrointestinal - Reports nausea. Denies vomiting. Denies abdominal pain. General - Denies fever. Denies chills. Denies weight loss.",
+          "S": "cc: Recurrent one-sided headache with light sensitivity\n\nHPI: 26 yo f. Patient reports: This episode began gradually 10 hours ago. It is on the left side of my head. It does not spread down my neck. It is throbbing. It is 7/10. Similar attacks last 12\u201324 hours, about twice a month. It began after I missed lunch and slept poorly. A dark quiet room helps. Light, sound and walking worsen it. Acetaminophen 500 mg helped a little. I have had the same pattern since age 19. It is the same left-sided throbbing pattern as before. Light hurts my eyes. I feel nauseated.\n\nPatient perspective: Do I need a brain scan every time this happens?\n\nPMH: Previously diagnosed migraine; no malignancy or immunosuppression.\n\nPSH: No surgeries or hospitalizations.\n\nMeds: Acetaminophen on 2\u20133 days per month; no daily medication.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked; no alcohol or recreational drugs. Medical student; late study sometimes disrupts meals and sleep. Lives with a roommate who can drive her home and check on her. Regular periods, last period 2 weeks ago; pregnancy not suspected.\n\nFH: My mom is fifty-two and she gets migraines.; My dad is fifty-five and he has high blood pressure.; I have one brother, he's twenty-nine and he's healthy.\n\nROS: Neurologic - Reports headache. Reports photophobia. Denies focal weakness. Denies thunderclap. Gastrointestinal - Reports nausea. Denies vomiting. Denies abdominal pain. General - Denies fever. Denies chills. Denies weight loss.",
           "O": "Vitals: T 98.4 F oral, P 78 bpm, BP 114/72 mmHg, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Prefers dim light, not toxic appearing.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nHEENT: Pupils equal and reactive; extraocular movements intact.\n\nNeuro: Face symmetric; tongue midline; speech clear. Strength 5/5 in arms and legs bilaterally. Light touch symmetric in arms and legs. Neck flexion is comfortable without stiffness.\n\nOsteopathic: C1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Migraine without aura",
@@ -5313,7 +5331,8 @@
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"
@@ -5328,7 +5347,7 @@
           "age": 26,
           "sex": "female",
           "pronouns": "she/her",
-          "persona": "Medical student; lives with husband; regular periods, last period 2 weeks ago; pregnancy not suspected. Communication style: expresses concern. Gives consistent answers without diagnostic labels. I skip meals and sleep to study, but I do not think I can change that.",
+          "persona": "Medical student whose late study disrupts meals and sleep; lives with a roommate who can help with transport. Communication style: expresses concern. Gives consistent answers without diagnostic labels. I skip meals and sleep to study, but I do not think I can change that.",
           "affect": "Do I need a brain scan every time this happens?",
           "communication_style": "expresses concern",
           "opening": "I have another throbbing headache, and the lights are making it worse.",
@@ -5559,11 +5578,10 @@
           ],
           "alcohol_use": [
             "alcohol",
-            "alcoholic",
+            "drink alcohol",
             "beer",
             "wine",
-            "drinks",
-            "One alcoholic drink monthly."
+            "I do not drink alcohol."
           ],
           "drug_use": [
             "recreational drugs",
@@ -5574,18 +5592,25 @@
             "No recreational drugs."
           ],
           "history_context_1": [
-            "I am a medical student."
+            "occupation",
+            "work duties",
+            "job",
+            "do for a living",
+            "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep."
           ],
           "history_family_1": [
-            "My mom is fifty-two and she gets migraines.", "Mother has migraine",
+            "My mom is fifty-two and she gets migraines.",
+            "Mother has migraine",
             "mother"
           ],
           "history_family_2": [
-            "My dad is fifty-five and he has high blood pressure.", "father hypertension",
+            "My dad is fifty-five and he has high blood pressure.",
+            "father hypertension",
             "father"
           ],
           "history_family_3": [
-            "I have one brother, he's twenty-nine and he's healthy.", "brother healthy.",
+            "I have one brother, he's twenty-nine and he's healthy.",
+            "brother healthy.",
             "brother"
           ],
           "patient_concern": [
@@ -5625,7 +5650,11 @@
             "No visible rash on the inspected arms."
           ],
           "history_household": [
-            "I live with my husband."
+            "live with",
+            "living situation",
+            "household",
+            "support at home",
+            "I live with a roommate. She can drive me home and check on me later."
           ],
           "history_cycle_regularity": [
             "My periods are regular."
@@ -6879,9 +6908,9 @@
             "id": "alcohol_use",
             "category": "social",
             "checklist": "h_alcohol_use",
-            "value": "One alcoholic drink monthly.",
+            "value": "I do not drink alcohol.",
             "sp_says": [
-              "One alcoholic drink monthly."
+              "I do not drink alcohol."
             ],
             "triggers": {
               "any": [
@@ -6895,7 +6924,7 @@
             "concepts": {
               "alcohol_use": {
                 "polarity": "positive",
-                "value": "One alcoholic drink monthly."
+                "value": "I do not drink alcohol."
               }
             },
             "example_questions": [
@@ -6904,11 +6933,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "One alcoholic drink monthly.",
+                  "text": "I do not drink alcohol.",
                   "concepts": {
                     "alcohol_use": {
                       "polarity": "positive",
-                      "value": "One alcoholic drink monthly."
+                      "value": "I do not drink alcohol."
                     }
                   },
                   "complete_fact": true
@@ -6962,25 +6991,23 @@
             "id": "history_context_1",
             "category": "social",
             "checklist": "h_history_context_1",
-            "value": "I am a medical student.",
+            "value": "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep.",
             "sp_says": [
-              "I am a medical student."
+              "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep."
             ],
             "triggers": {
               "any": [
                 "What do you do for work?",
-                "what do you do for work",
-                "what do you do for a living",
                 "occupation",
-                "your job",
-                "do you work",
-                "are you a student"
+                "work duties",
+                "job",
+                "do for a living"
               ]
             },
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a medical student."
+                "value": "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep."
               }
             },
             "history_topic": "occupation",
@@ -6990,11 +7017,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I am a medical student.",
+                  "text": "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep.",
                   "concepts": {
                     "history_context_1": {
                       "polarity": "positive",
-                      "value": "I am a medical student."
+                      "value": "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep."
                     }
                   },
                   "complete_fact": true
@@ -7228,23 +7255,23 @@
             "id": "history_household",
             "category": "social",
             "checklist": "h_history_household",
-            "value": "I live with my husband.",
+            "value": "I live with a roommate. She can drive me home and check on me later.",
             "sp_says": [
-              "I live with my husband."
+              "I live with a roommate. She can drive me home and check on me later."
             ],
             "triggers": {
               "any": [
                 "Who do you live with?",
-                "who do you live with",
-                "live with my husband",
+                "live with",
                 "living situation",
-                "live with"
+                "household",
+                "support at home"
               ]
             },
             "concepts": {
               "history_household": {
                 "polarity": "positive",
-                "value": "I live with my husband."
+                "value": "I live with a roommate. She can drive me home and check on me later."
               }
             },
             "history_topic": "household",
@@ -7254,11 +7281,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I live with my husband.",
+                  "text": "I live with a roommate. She can drive me home and check on me later.",
                   "concepts": {
                     "history_household": {
                       "polarity": "positive",
-                      "value": "I live with my husband."
+                      "value": "I live with a roommate. She can drive me home and check on me later."
                     }
                   },
                   "complete_fact": true
@@ -7568,7 +7595,7 @@
             },
             {
               "id": "h_alcohol_use",
-              "text": "One alcoholic drink monthly."
+              "text": "I do not drink alcohol."
             },
             {
               "id": "h_drug_use",
@@ -7576,7 +7603,7 @@
             },
             {
               "id": "h_history_context_1",
-              "text": "I am a medical student."
+              "text": "I am a medical student. When I study late, I sometimes miss meals and cut back on sleep."
             },
             {
               "id": "h_history_family_1",
@@ -7600,7 +7627,7 @@
             },
             {
               "id": "h_history_household",
-              "text": "I live with my husband."
+              "text": "I live with a roommate. She can drive me home and check on me later."
             },
             {
               "id": "h_history_cycle_regularity",
@@ -7732,7 +7759,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Recurrent one-sided headache with light sensitivity\n\nHPI: 26 yo f. Patient reports: This episode began gradually 6 hours ago. It is on the left side of my head. It does not spread down my neck. It is throbbing. It is 7/10. Similar attacks last 12\u201324 hours, about twice a month. It began after I missed lunch and slept poorly. A dark quiet room helps. Light, sound and walking worsen it. Acetaminophen 500 mg helped a little. I have had the same pattern since age 19. It is the same left-sided throbbing pattern as before. Light hurts my eyes. I feel nauseated.\n\nPatient perspective: Do I need a brain scan every time this happens?\n\nPMH: Previously diagnosed migraine; no malignancy or immunosuppression.\n\nPSH: No surgeries or hospitalizations.\n\nMeds: Acetaminophen on 2\u20133 days per month; no daily medication.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink monthly. No recreational drugs. Medical student; lives with husband; regular periods, last period 2 weeks ago; pregnancy not suspected.\n\nFH: My mom is fifty-two and she gets migraines.; My dad is fifty-five and he has high blood pressure.; I have one brother, he's twenty-nine and he's healthy.\n\nROS: Neurologic - Reports headache. Reports photophobia. Denies focal weakness. Denies thunderclap. Gastrointestinal - Reports nausea. Denies vomiting. Denies abdominal pain. General - Denies fever. Denies chills. Denies weight loss.\n\nPatient concern: I skip meals and sleep to study, but I do not think I can change that.",
+          "S": "cc: Recurrent one-sided headache with light sensitivity\n\nHPI: 26 yo f. Patient reports: This episode began gradually 6 hours ago. It is on the left side of my head. It does not spread down my neck. It is throbbing. It is 7/10. Similar attacks last 12\u201324 hours, about twice a month. It began after I missed lunch and slept poorly. A dark quiet room helps. Light, sound and walking worsen it. Acetaminophen 500 mg helped a little. I have had the same pattern since age 19. It is the same left-sided throbbing pattern as before. Light hurts my eyes. I feel nauseated.\n\nPatient perspective: Do I need a brain scan every time this happens?\n\nPMH: Previously diagnosed migraine; no malignancy or immunosuppression.\n\nPSH: No surgeries or hospitalizations.\n\nMeds: Acetaminophen on 2\u20133 days per month; no daily medication.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked; no alcohol or recreational drugs. Medical student; late study sometimes disrupts meals and sleep. Lives with a roommate who can drive her home and check on her. Regular periods, last period 2 weeks ago; pregnancy not suspected.\n\nFH: My mom is fifty-two and she gets migraines.; My dad is fifty-five and he has high blood pressure.; I have one brother, he's twenty-nine and he's healthy.\n\nROS: Neurologic - Reports headache. Reports photophobia. Denies focal weakness. Denies thunderclap. Gastrointestinal - Reports nausea. Denies vomiting. Denies abdominal pain. General - Denies fever. Denies chills. Denies weight loss.\n\nPatient concern: I skip meals and sleep to study, but I do not think I can change that.",
           "O": "Vitals: T 98.4 F oral, P 78 bpm, BP 114/72 mmHg, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Prefers dim light, not toxic appearing.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nHEENT: Pupils equal and reactive; extraocular movements intact.\n\nNeuro: Face symmetric; tongue midline; speech clear. Strength 5/5 in arms and legs bilaterally. Light touch symmetric in arms and legs. Neck flexion is comfortable without stiffness.\n\nOsteopathic: C1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Migraine without aura",
@@ -7746,7 +7773,8 @@
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"

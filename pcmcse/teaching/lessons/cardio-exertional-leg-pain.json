@@ -1,0 +1,3619 @@
+{
+  "case_id": "cardio-exertional-leg-pain",
+  "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
+  "walkthroughs": [
+    {
+      "case_id": "cardio-exertional-leg-pain",
+      "variant_id": "base",
+      "variant_label": "Core presentation",
+      "title": "Calf pain with walking",
+      "patient": {
+        "name": "Daniel Brooks",
+        "age": 59,
+        "sex": "male"
+      },
+      "system": "Cardiovascular",
+      "doorway": {
+        "doorway": [
+          "Daniel Brooks, 59-year-old male.",
+          "My left calf cramps whenever I walk a couple of blocks.",
+          "Vital signs are available on the chart.",
+          "Perform a focused history and physical examination, discuss your plan, and document only what you obtain.",
+          "Use the time limit stated for your selected practice mode."
+        ],
+        "vitals": {
+          "BP": "148/86 mmHg",
+          "P": "78 bpm",
+          "R": "16 rpm",
+          "T": "98.4 F oral",
+          "Pulse Ox": "98% on room air",
+          "Ht": "5' 10\"",
+          "Wt": "194 lbs"
+        },
+        "supplied_results": []
+      },
+      "plan": {
+        "notice": "Distinguish vascular walking pain from posture-dependent or muscular pain.",
+        "anchor": "Calf pain with walking",
+        "pivot": "Does standing still relieve it, or must you sit and bend forward?",
+        "exam": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
+        "avoid": "Treating an unperformed examination or a possible diagnosis as obtained fact."
+      },
+      "goals": [
+        "Distinguish vascular walking pain from posture-dependent or muscular pain.",
+        "Document only supplied, asked or examined information."
+      ],
+      "variant_guidance": "Use this core presentation to learn the sequence before transferring to a variation.",
+      "differences": [],
+      "timeline": [
+        {
+          "kind": "dialogue",
+          "section": "Connect",
+          "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
+          "why": "",
+          "event_ids": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "dialogue",
+          "section": "Listen to the opening",
+          "student": "What brings you in today?",
+          "patient": "My left calf cramps whenever I walk a couple of blocks.",
+          "why": "Distinguish vascular walking pain from posture-dependent or muscular pain.",
+          "event_ids": [
+            8,
+            9
+          ],
+          "fact_ids": [
+            "opening_complaint"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "When did the calf pain start?",
+          "patient": "It started about 3 months ago.",
+          "why": "Does standing still relieve it, or must you sit and bend forward?",
+          "event_ids": [
+            10,
+            11
+          ],
+          "fact_ids": [
+            "hpi_onset"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "How has your walking distance changed?",
+          "patient": "At first I could walk six blocks. Now it starts after about two.",
+          "why": "Change over time can change urgency even when the symptom is familiar.",
+          "event_ids": [
+            12,
+            13
+          ],
+          "fact_ids": [
+            "hpi_chronology"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "Where is the pain?",
+          "patient": "It is in the back of my left calf.",
+          "why": "",
+          "event_ids": [
+            14,
+            15
+          ],
+          "fact_ids": [
+            "hpi_location"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "Does the calf pain spread?",
+          "patient": "It stays in the calf.",
+          "why": "Spread of discomfort can connect an apparent local complaint with another system.",
+          "event_ids": [
+            16,
+            17
+          ],
+          "fact_ids": [
+            "hpi_radiation"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "What does the calf pain feel like?",
+          "patient": "A tight cramp, as if the muscle is squeezing.",
+          "why": "Use the patient\u2019s words before translating them into a clinical description.",
+          "event_ids": [
+            18,
+            19
+          ],
+          "fact_ids": [
+            "hpi_quality"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "How severe is the calf pain?",
+          "patient": "About 6 out of 10. I have to stop walking.",
+          "why": "Intensity and functional effect are distinct; record only the dimension answered.",
+          "event_ids": [
+            20,
+            21
+          ],
+          "fact_ids": [
+            "hpi_severity"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "How long does each cramp last?",
+          "patient": "It settles within about 3 minutes after I stop.",
+          "why": "Separate time since onset from duration of one episode and from continuity.",
+          "event_ids": [
+            22,
+            23
+          ],
+          "fact_ids": [
+            "hpi_timing"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "What activity brings on the calf pain?",
+          "patient": "Walking fast or uphill brings it on sooner.",
+          "why": "",
+          "event_ids": [
+            24,
+            25
+          ],
+          "fact_ids": [
+            "hpi_setting"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "Do you have to sit or bend forward to relieve it?",
+          "patient": "No. Just standing still is enough.",
+          "why": "Relief changes probability, but is not proof that a serious cause is excluded.",
+          "event_ids": [
+            26,
+            27
+          ],
+          "fact_ids": [
+            "hpi_alleviating"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "Does standing still bring on pain?",
+          "patient": "No, standing still does not cause it.",
+          "why": "Compare triggers with the chronology; one trigger does not establish a diagnosis.",
+          "event_ids": [
+            28,
+            29
+          ],
+          "fact_ids": [
+            "hpi_aggravating"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "What have you tried for the calf pain?",
+          "patient": "I tried stretching, but it did not help.",
+          "why": "",
+          "event_ids": [
+            30,
+            31
+          ],
+          "fact_ids": [
+            "hpi_treatment"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "Have you had this before these three months?",
+          "patient": "No, this is new for me.",
+          "why": "",
+          "event_ids": [
+            32,
+            33
+          ],
+          "fact_ids": [
+            "hpi_past_occurrence"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had back pain?",
+          "patient": "My lower back sometimes aches after a long shift, but it does not spread down my leg.",
+          "why": "Use this answer to weigh the possibilities described in the reasoning section.",
+          "event_ids": [
+            34,
+            35
+          ],
+          "fact_ids": [
+            "symptom_back_pain"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had myalgia?",
+          "patient": "Only that left calf cramps with walking.",
+          "why": "Use this answer to weigh the possibilities described in the reasoning section.",
+          "event_ids": [
+            36,
+            37
+          ],
+          "fact_ids": [
+            "symptom_myalgia"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Do you have foot pain at rest or sores that will not heal?",
+          "patient": "No pain at rest and no sores.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            38,
+            39
+          ],
+          "fact_ids": [
+            "history_rest_pain_and_wounds"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had chest pain?",
+          "patient": "I have not had chest pain.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            40,
+            41
+          ],
+          "fact_ids": [
+            "symptom_chest_pain"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had dyspnea?",
+          "patient": "I am not short of breath.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            42,
+            43
+          ],
+          "fact_ids": [
+            "symptom_dyspnea"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had edema?",
+          "patient": "Neither leg has been swollen.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            44,
+            45
+          ],
+          "fact_ids": [
+            "symptom_edema"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Any other joint pain?",
+          "patient": "My hip and knee do not hurt.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            46,
+            47
+          ],
+          "fact_ids": [
+            "symptom_joint_pain"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had numbness?",
+          "patient": "My feet do not feel numb.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            48,
+            49
+          ],
+          "fact_ids": [
+            "symptom_numbness"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had tingling?",
+          "patient": "I have not had pins and needles.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            50,
+            51
+          ],
+          "fact_ids": [
+            "symptom_tingling"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you noticed weakness?",
+          "patient": "My leg is not weak; I stop because of the cramp.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            52,
+            53
+          ],
+          "fact_ids": [
+            "symptom_weakness"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Relevant background",
+          "student": "What medical conditions do you have?",
+          "patient": "I have high blood pressure and high cholesterol.",
+          "why": "",
+          "event_ids": [
+            54,
+            55
+          ],
+          "fact_ids": [
+            "history_hypertension_and_lipids"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Relevant background",
+          "student": "Have you been diagnosed with diabetes?",
+          "patient": "No, I have not been diagnosed with diabetes.",
+          "why": "",
+          "event_ids": [
+            56,
+            57
+          ],
+          "fact_ids": [
+            "history_diabetes"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Relevant background",
+          "student": "What operations have you had?",
+          "patient": "My appendix was removed when I was 19.",
+          "why": "",
+          "event_ids": [
+            58,
+            59
+          ],
+          "fact_ids": [
+            "history_surgery"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Medicines and reactions",
+          "student": "What medicines do you take?",
+          "patient": "Lisinopril 20 milligrams every morning. I stopped atorvastatin 20 milligrams 6 months ago because the refill was expensive.",
+          "why": "Name, dose and frequency matter; do not fill in missing details.",
+          "event_ids": [
+            60,
+            61
+          ],
+          "fact_ids": [
+            "history_daily_medication"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Medicines and reactions",
+          "student": "Do you have medication allergies?",
+          "patient": "Penicillin gave me hives when I was a teenager. I did not have breathing trouble.",
+          "why": "Distinguish the substance and reaction from a blanket allergy label.",
+          "event_ids": [
+            62,
+            63
+          ],
+          "fact_ids": [
+            "history_drug_reactions"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "Do you smoke?",
+          "patient": "I smoke a pack a day and have for 35 years.",
+          "why": "",
+          "event_ids": [
+            64,
+            65
+          ],
+          "fact_ids": [
+            "history_smoking"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "How much alcohol do you drink?",
+          "patient": "One beer on most Saturday evenings.",
+          "why": "",
+          "event_ids": [
+            66,
+            67
+          ],
+          "fact_ids": [
+            "history_alcohol"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "Do you use recreational drugs?",
+          "patient": "No.",
+          "why": "",
+          "event_ids": [
+            68,
+            69
+          ],
+          "fact_ids": [
+            "history_drugs"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "What do you do for work?",
+          "patient": "I supervise a warehouse. Walking the floor has become difficult.",
+          "why": "",
+          "event_ids": [
+            70,
+            71
+          ],
+          "fact_ids": [
+            "history_work"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "Who lives with you?",
+          "patient": "My husband lives with me and can drive me to appointments.",
+          "why": "",
+          "event_ids": [
+            72,
+            73
+          ],
+          "fact_ids": [
+            "history_home_and_support"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "What health problems did your father have?",
+          "patient": "My father had a heart attack at 54.",
+          "why": "Record which relative and the condition; do not infer a family history from patient worry.",
+          "event_ids": [
+            74,
+            75
+          ],
+          "fact_ids": [
+            "history_father"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "What health problems does your mother have?",
+          "patient": "My mother has type 2 diabetes.",
+          "why": "Record which relative and the condition; do not infer a family history from patient worry.",
+          "event_ids": [
+            76,
+            77
+          ],
+          "fact_ids": [
+            "history_mother"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "Do you have siblings and are they healthy?",
+          "patient": "My younger sister has high blood pressure.",
+          "why": "Record which relative and the condition; do not infer a family history from patient worry.",
+          "event_ids": [
+            78,
+            79
+          ],
+          "fact_ids": [
+            "history_sibling"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "The patient\u2019s perspective",
+          "student": "What worries you most?",
+          "patient": "I want to know what is causing this and how to get back to my usual activities.",
+          "why": "",
+          "event_ids": [
+            80,
+            81
+          ],
+          "fact_ids": [
+            "patient_concern"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Acknowledge",
+          "student": "Thank you for explaining that. I can understand why this is concerning.",
+          "patient": "As I mentioned, I want to know what is causing this and how to get back to my usual activities. Could you say that another way?",
+          "why": "",
+          "event_ids": [
+            82,
+            83
+          ],
+          "fact_ids": [
+            "patient_concern"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Explain and ask permission",
+          "student": "May I have your permission to examine you?",
+          "patient": "Yes, that's fine. Go ahead.",
+          "why": "",
+          "event_ids": [
+            84,
+            85,
+            86
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "action",
+          "section": "Prepare the examination",
+          "action": "Clean hands, provide privacy and appropriate draping, explain the selected examination and help the patient into a comfortable position.",
+          "why": "These are stated actions in this written example. A visual avatar does not verify hand hygiene, consent or hands-on technique.",
+          "event_ids": []
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "General appearance",
+          "finding": "Alert, comfortable at rest, without respiratory distress.",
+          "why": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
+          "event_ids": [
+            87,
+            88
+          ],
+          "maneuver_id": "general_inspect",
+          "duration_s": 10
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Auscultate heart \u2014 aortic, pulmonic, tricuspid, mitral, on skin",
+          "finding": "Regular rate and rhythm without murmur.",
+          "why": "The course expects at least four listening posts, on skin.",
+          "event_ids": [
+            89,
+            90
+          ],
+          "maneuver_id": "heart_auscultate",
+          "duration_s": 40
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Auscultate lungs \u2014 posterior, on skin, compare side to side, mouth open",
+          "finding": "Breath sounds clear bilaterally.",
+          "why": "The course expects six posterior fields, mouth open, on skin, comparing sides.",
+          "event_ids": [
+            91,
+            92
+          ],
+          "maneuver_id": "lungs_auscultate",
+          "duration_s": 41
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Palpate peripheral pulses \u2014 dorsalis pedis, posterior tibial",
+          "finding": "Left dorsalis pedis and posterior tibial pulses 1+; right pedal pulses 2+.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            93,
+            94
+          ],
+          "maneuver_id": "peripheral_pulses",
+          "duration_s": 18
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Inspect / palpate extremities \u2014 capillary refill, edema, calf symmetry",
+          "finding": "Left foot slightly cooler than right; capillary refill 3 seconds left and 2 seconds right. No edema or calf asymmetry.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            95,
+            96
+          ],
+          "maneuver_id": "extremities",
+          "duration_s": 17
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Inspect skin \u2014 legs, soles",
+          "finding": "Reduced hair over the left lower leg; no ulcer or tissue loss on inspected legs and feet.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            97,
+            98
+          ],
+          "maneuver_id": "skin_inspect",
+          "duration_s": 22
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Palpate the affected area \u2014 point tenderness, paraspinal musculature",
+          "finding": "No focal calf or knee tenderness. Mild bilateral lumbar paraspinal tenderness.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            99,
+            100
+          ],
+          "maneuver_id": "msk_palpate",
+          "duration_s": 20
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Sensory examination \u2014 light touch",
+          "finding": "Light touch intact in both feet.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            101,
+            102
+          ],
+          "maneuver_id": "neuro_sensory",
+          "duration_s": 21
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Muscle strength testing \u2014 lower extremity",
+          "finding": "Ankle dorsiflexion and plantarflexion 5/5 bilaterally.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            103,
+            104
+          ],
+          "maneuver_id": "msk_strength",
+          "duration_s": 19
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Osteopathic structural screen \u2014 lumbar",
+          "finding": "L3 bilateral lumbar paraspinal tissue texture change and tenderness.",
+          "why": "Name the level examined; findings are released by region.",
+          "event_ids": [
+            105,
+            106
+          ],
+          "maneuver_id": "osteo_screen",
+          "duration_s": 25
+        },
+        {
+          "kind": "dialogue",
+          "section": "Explain next steps",
+          "student": "I will check the circulation in your legs and arrange a pressure comparison at your ankles. We will also work on affordable medicines and stopping smoking. Sudden pain that does not stop, or a cold or weak foot, needs emergency help.",
+          "patient": "Thank you. I understand that the next steps depend on the examination and tests.",
+          "why": "Proposed care, not a record of tests or treatment already completed.",
+          "event_ids": [
+            107,
+            108
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "dialogue",
+          "section": "Close and check understanding",
+          "student": "What questions do you have about the next steps?",
+          "patient": "I want to know what is causing this and how to get back to my usual activities.",
+          "why": "",
+          "event_ids": [
+            109,
+            110
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "dialogue",
+          "section": "Address the patient\u2019s question",
+          "student": "I can look for an affordable refill and arrange a follow-up in two weeks. Your husband can join the discussion if you want.",
+          "patient": "That would help. Thank you.",
+          "why": "Answer the concern that was just expressed. Give a defensible recommendation and explain uncertainty; do not promise a diagnosis or recovery before the evidence supports it.",
+          "event_ids": [
+            111,
+            112
+          ],
+          "fact_ids": []
+        }
+      ],
+      "note": {
+        "S": "CC: My left calf cramps whenever I walk a couple of blocks.\n\nHPI: 59-year-old male. Three months of exertional left calf pain. Pain is localized to the left calf. No radiation. Cramping tightness. 6/10 and limits walking. Resolves within 3 minutes of rest. Walking threshold decreased from six to two blocks. Provoked earlier by brisk walking or hills. Standing rest suffices without lumbar flexion. Not provoked by standing alone. Stretching ineffective. No earlier episodes.\n\nPMH: Hypertension and hyperlipidemia. No known diabetes.\n\nPSH: Appendectomy at 19.\n\nMeds: Lisinopril 20 mg daily; stopped atorvastatin 20 mg 6 months ago because of cost.\n\nSH: Current tobacco: 35 pack-years. Approximately one beer weekly. No recreational drugs. Warehouse supervisor; walking duties limited. Lives with husband; transport available.\n\nFH: Father: myocardial infarction at 54. Mother: type 2 diabetes. Younger sister: hypertension.\n\nAllergies: Penicillin: hives, no respiratory reaction.\n\nROS: Cardiovascular: No chest pain. No dyspnea. No edema. Musculoskeletal: Occasional nonradiating low-back ache after work. No hip or knee pain. Exertional left calf cramping. Neurologic: No numbness. No paresthesias. No focal weakness. No rest pain or nonhealing wounds.",
+        "O": "Vitals: BP 148/86 mmHg, P 78 bpm, R 16 rpm, T 98.4 F oral, Pulse Ox 98% on room air, Ht 5' 10\", Wt 194 lbs\n\nGeneral: Alert, comfortable at rest, without respiratory distress.\nHeart: Regular rate and rhythm without murmur.\nLungs: Breath sounds clear bilaterally.\nHeart: Left dorsalis pedis and posterior tibial pulses 1+; right pedal pulses 2+.\nExtremities: Left foot slightly cooler than right; capillary refill 3 seconds left and 2 seconds right. No edema or calf asymmetry.\nSkin: Reduced hair over the left lower leg; no ulcer or tissue loss on inspected legs and feet.\nMusculoskeletal: No focal calf or knee tenderness. Mild bilateral lumbar paraspinal tenderness.\nNeurologic: Light touch intact in both feet.\nMusculoskeletal: Ankle dorsiflexion and plantarflexion 5/5 bilaterally.\nOsteopathic: L3 bilateral lumbar paraspinal tissue texture change and tenderness.",
+        "A": [
+          "1. Peripheral artery disease with intermittent claudication",
+          "2. Lumbar spinal stenosis with neurogenic claudication",
+          "3. Calf muscle overuse or strain"
+        ],
+        "P": [
+          "1. Obtain resting ankle-brachial indices and assess cardiovascular risk; use exercise ABI if resting results are nondiagnostic. If PAD is confirmed, discuss single antiplatelet and high-intensity statin therapy after contraindication review, structured walking, smoking cessation and daily foot care. Address refill cost; review in 2 weeks. Sudden persistent pain, pallor, coldness or weakness needs emergency care.",
+          "2. If vascular testing does not explain symptoms, reassess posture dependence and neurologic findings; pursue lumbar evaluation as indicated. Encourage tolerable activity and explain emergency bladder, saddle-sensation or weakness symptoms.",
+          "3. If a muscular cause remains likely after vascular assessment, use relative rest, gentle rehabilitation and safe analgesia rather than forcing painful exercise. Explain a gradual return to work and activity after vascular causes have been assessed."
+        ]
+      },
+      "note_links": [
+        {
+          "section": "S",
+          "statement": "My left calf cramps whenever I walk a couple of blocks.",
+          "event_ids": [
+            9
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "59-year-old male.",
+          "event_ids": [
+            2
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Three months of exertional left calf pain.",
+          "event_ids": [
+            11
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Pain is localized to the left calf.",
+          "event_ids": [
+            15
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No radiation.",
+          "event_ids": [
+            17
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Cramping tightness.",
+          "event_ids": [
+            19
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "6/10 and limits walking.",
+          "event_ids": [
+            21
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Resolves within 3 minutes of rest.",
+          "event_ids": [
+            23
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Walking threshold decreased from six to two blocks.",
+          "event_ids": [
+            13
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Provoked earlier by brisk walking or hills.",
+          "event_ids": [
+            25
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Standing rest suffices without lumbar flexion.",
+          "event_ids": [
+            27
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Not provoked by standing alone.",
+          "event_ids": [
+            29
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Stretching ineffective.",
+          "event_ids": [
+            31
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No earlier episodes.",
+          "event_ids": [
+            33
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Hypertension and hyperlipidemia.",
+          "event_ids": [
+            55
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No known diabetes.",
+          "event_ids": [
+            57
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Appendectomy at 19.",
+          "event_ids": [
+            59
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Lisinopril 20 mg daily;",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "stopped atorvastatin 20 mg 6 months ago because of cost.",
+          "event_ids": [
+            11,
+            61
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Current tobacco: 35 pack-years.",
+          "event_ids": [
+            65
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Approximately one beer weekly.",
+          "event_ids": [
+            67
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No recreational drugs.",
+          "event_ids": [
+            69
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Warehouse supervisor;",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "walking duties limited.",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Lives with husband;",
+          "event_ids": [
+            73
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "transport available.",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Father: myocardial infarction at 54.",
+          "event_ids": [
+            75
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Mother: type 2 diabetes.",
+          "event_ids": [
+            77
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Younger sister: hypertension.",
+          "event_ids": [
+            79
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Penicillin: hives, no respiratory reaction.",
+          "event_ids": [
+            63
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Cardiovascular: No chest pain.",
+          "event_ids": [
+            41
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No dyspnea.",
+          "event_ids": [
+            43
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No edema.",
+          "event_ids": [
+            45
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Musculoskeletal: Occasional nonradiating low-back ache after work.",
+          "event_ids": [
+            35
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No hip or knee pain.",
+          "event_ids": [
+            47
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Exertional left calf cramping.",
+          "event_ids": [
+            37
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Neurologic: No numbness.",
+          "event_ids": [
+            49
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No paresthesias.",
+          "event_ids": [
+            51
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No focal weakness.",
+          "event_ids": [
+            53
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No rest pain or nonhealing wounds.",
+          "event_ids": [
+            39
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "BP 148/86 mmHg",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "P 78 bpm",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "R 16 rpm",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "T 98.4 F oral",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "Pulse Ox 98% on room air",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "Ht 5' 10\"",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "Wt 194 lbs",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "Alert, comfortable at rest, without respiratory distress.",
+          "event_ids": [
+            88
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Regular rate and rhythm without murmur.",
+          "event_ids": [
+            90
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Breath sounds clear bilaterally.",
+          "event_ids": [
+            92
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Left dorsalis pedis and posterior tibial pulses 1+;",
+          "event_ids": [
+            94
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "right pedal pulses 2+.",
+          "event_ids": [
+            94
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Left foot slightly cooler than right;",
+          "event_ids": [
+            96
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "capillary refill 3 seconds left and 2 seconds right.",
+          "event_ids": [
+            96
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "No edema or calf asymmetry.",
+          "event_ids": [
+            96
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Reduced hair over the left lower leg;",
+          "event_ids": [
+            98
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "no ulcer or tissue loss on inspected legs and feet.",
+          "event_ids": [
+            98
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "No focal calf or knee tenderness.",
+          "event_ids": [
+            100
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Mild bilateral lumbar paraspinal tenderness.",
+          "event_ids": [
+            100
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Light touch intact in both feet.",
+          "event_ids": [
+            102
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Ankle dorsiflexion and plantarflexion 5/5 bilaterally.",
+          "event_ids": [
+            104
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "L3 bilateral lumbar paraspinal tissue texture change and tenderness.",
+          "event_ids": [
+            106
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        }
+      ],
+      "ledger": [
+        {
+          "seq": 1,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "system",
+          "text": "Encounter started.",
+          "meta": {
+            "event": "phase_start"
+          }
+        },
+        {
+          "seq": 2,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "station_info",
+          "text": "Daniel Brooks, 59-year-old male. My left calf cramps whenever I walk a couple of blocks. Vital signs are available on the chart. Perform a focused history and physical examination, discuss your plan, and document only what you obtain. Use the time limit stated for your selected practice mode.",
+          "meta": {
+            "doorway": true
+          }
+        },
+        {
+          "seq": 3,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "station_info",
+          "text": "Vital signs supplied on the chart: BP 148/86 mmHg, Ht 5' 10\", P 78 bpm, Pulse Ox 98% on room air, R 16 rpm, T 98.4 F oral, Wt 194 lbs",
+          "meta": {
+            "vitals": true,
+            "concepts": {
+              "vitals": {
+                "polarity": "positive",
+                "value": "{\"BP\": \"148/86 mmHg\", \"Ht\": \"5' 10\\\"\", \"P\": \"78 bpm\", \"Pulse Ox\": \"98% on room air\", \"R\": \"16 rpm\", \"T\": \"98.4 F oral\", \"Wt\": \"194 lbs\"}"
+              }
+            }
+          }
+        },
+        {
+          "seq": 4,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "plan_talk": true,
+            "mode": "type"
+          }
+        },
+        {
+          "seq": 5,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
+          }
+        },
+        {
+          "seq": 6,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "courtesy_id": "consent_exam",
+            "label": "Explain the exam and ask permission",
+            "components": []
+          }
+        },
+        {
+          "seq": 7,
+          "t_ms": 3,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
+          }
+        },
+        {
+          "seq": 8,
+          "t_ms": 3,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What brings you in today?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 9,
+          "t_ms": 5,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My left calf cramps whenever I walk a couple of blocks.",
+          "meta": {
+            "facts_released": [
+              "opening_complaint"
+            ],
+            "concepts": {
+              "opening_complaint": {
+                "polarity": "positive",
+                "value": "My left calf cramps whenever I walk a couple of blocks."
+              }
+            },
+            "volunteered": false,
+            "kind": "opening",
+            "checklist_hits": [
+              "h_opening_complaint"
+            ],
+            "categories": [
+              "chief_complaint"
+            ]
+          }
+        },
+        {
+          "seq": 10,
+          "t_ms": 5,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "When did the calf pain start?",
+          "meta": {
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 11,
+          "t_ms": 7,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "It started about 3 months ago.",
+          "meta": {
+            "facts_released": [
+              "hpi_onset"
+            ],
+            "concepts": {
+              "hpi_onset": {
+                "polarity": "positive",
+                "value": "It started about 3 months ago."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_onset"
+            ],
+            "categories": [
+              "onset"
+            ]
+          }
+        },
+        {
+          "seq": 12,
+          "t_ms": 8,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "How has your walking distance changed?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 13,
+          "t_ms": 9,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "At first I could walk six blocks. Now it starts after about two.",
+          "meta": {
+            "facts_released": [
+              "hpi_chronology"
+            ],
+            "concepts": {
+              "hpi_chronology": {
+                "polarity": "positive",
+                "value": "At first I could walk six blocks. Now it starts after about two."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_chronology"
+            ],
+            "categories": [
+              "chronology"
+            ]
+          }
+        },
+        {
+          "seq": 14,
+          "t_ms": 9,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Where is the pain?",
+          "meta": {
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 15,
+          "t_ms": 11,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "It is in the back of my left calf.",
+          "meta": {
+            "facts_released": [
+              "hpi_location"
+            ],
+            "concepts": {
+              "hpi_location": {
+                "polarity": "positive",
+                "value": "It is in the back of my left calf."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_location"
+            ],
+            "categories": [
+              "location"
+            ]
+          }
+        },
+        {
+          "seq": 16,
+          "t_ms": 11,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Does the calf pain spread?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 17,
+          "t_ms": 12,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "It stays in the calf.",
+          "meta": {
+            "facts_released": [
+              "hpi_radiation"
+            ],
+            "concepts": {
+              "hpi_radiation": {
+                "polarity": "positive",
+                "value": "It stays in the calf."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_radiation"
+            ],
+            "categories": [
+              "radiation"
+            ]
+          }
+        },
+        {
+          "seq": 18,
+          "t_ms": 13,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What does the calf pain feel like?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 19,
+          "t_ms": 14,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "A tight cramp, as if the muscle is squeezing.",
+          "meta": {
+            "facts_released": [
+              "hpi_quality"
+            ],
+            "concepts": {
+              "hpi_quality": {
+                "polarity": "positive",
+                "value": "A tight cramp, as if the muscle is squeezing."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_quality"
+            ],
+            "categories": [
+              "quality"
+            ]
+          }
+        },
+        {
+          "seq": 20,
+          "t_ms": 15,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "How severe is the calf pain?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 21,
+          "t_ms": 16,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "About 6 out of 10. I have to stop walking.",
+          "meta": {
+            "facts_released": [
+              "hpi_severity"
+            ],
+            "concepts": {
+              "hpi_severity": {
+                "polarity": "positive",
+                "value": "About 6 out of 10. I have to stop walking."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_severity"
+            ],
+            "categories": [
+              "severity"
+            ]
+          }
+        },
+        {
+          "seq": 22,
+          "t_ms": 17,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "How long does each cramp last?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 23,
+          "t_ms": 18,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "It settles within about 3 minutes after I stop.",
+          "meta": {
+            "facts_released": [
+              "hpi_timing"
+            ],
+            "concepts": {
+              "hpi_timing": {
+                "polarity": "positive",
+                "value": "It settles within about 3 minutes after I stop."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_timing"
+            ],
+            "categories": [
+              "timing"
+            ]
+          }
+        },
+        {
+          "seq": 24,
+          "t_ms": 18,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What activity brings on the calf pain?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 25,
+          "t_ms": 20,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Walking fast or uphill brings it on sooner.",
+          "meta": {
+            "facts_released": [
+              "hpi_setting"
+            ],
+            "concepts": {
+              "hpi_setting": {
+                "polarity": "positive",
+                "value": "Walking fast or uphill brings it on sooner."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_setting"
+            ],
+            "categories": [
+              "setting"
+            ]
+          }
+        },
+        {
+          "seq": 26,
+          "t_ms": 20,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Do you have to sit or bend forward to relieve it?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 27,
+          "t_ms": 22,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No. Just standing still is enough.",
+          "meta": {
+            "facts_released": [
+              "hpi_alleviating"
+            ],
+            "concepts": {
+              "hpi_alleviating": {
+                "polarity": "positive",
+                "value": "No. Just standing still is enough."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_alleviating"
+            ],
+            "categories": [
+              "alleviating"
+            ]
+          }
+        },
+        {
+          "seq": 28,
+          "t_ms": 22,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Does standing still bring on pain?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 29,
+          "t_ms": 23,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No, standing still does not cause it.",
+          "meta": {
+            "facts_released": [
+              "hpi_aggravating"
+            ],
+            "concepts": {
+              "hpi_aggravating": {
+                "polarity": "positive",
+                "value": "No, standing still does not cause it."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_aggravating"
+            ],
+            "categories": [
+              "aggravating"
+            ]
+          }
+        },
+        {
+          "seq": 30,
+          "t_ms": 24,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What have you tried for the calf pain?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 31,
+          "t_ms": 25,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I tried stretching, but it did not help.",
+          "meta": {
+            "facts_released": [
+              "hpi_treatment"
+            ],
+            "concepts": {
+              "hpi_treatment": {
+                "polarity": "positive",
+                "value": "I tried stretching, but it did not help."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_treatment"
+            ],
+            "categories": [
+              "treatment"
+            ]
+          }
+        },
+        {
+          "seq": 32,
+          "t_ms": 26,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had this before these three months?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 33,
+          "t_ms": 27,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No, this is new for me.",
+          "meta": {
+            "facts_released": [
+              "hpi_past_occurrence"
+            ],
+            "concepts": {
+              "hpi_past_occurrence": {
+                "polarity": "positive",
+                "value": "No, this is new for me."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_past_occurrence"
+            ],
+            "categories": [
+              "past_occurrence"
+            ]
+          }
+        },
+        {
+          "seq": 34,
+          "t_ms": 28,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had back pain?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 35,
+          "t_ms": 29,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My lower back sometimes aches after a long shift, but it does not spread down my leg.",
+          "meta": {
+            "facts_released": [
+              "symptom_back_pain"
+            ],
+            "concepts": {
+              "symptom_back_pain": {
+                "polarity": "positive",
+                "value": "My lower back sometimes aches after a long shift, but it does not spread down my leg."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_back_pain"
+            ],
+            "categories": [
+              "associated"
+            ]
+          }
+        },
+        {
+          "seq": 36,
+          "t_ms": 29,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had myalgia?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 37,
+          "t_ms": 31,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Only that left calf cramps with walking.",
+          "meta": {
+            "facts_released": [
+              "symptom_myalgia"
+            ],
+            "concepts": {
+              "symptom_myalgia": {
+                "polarity": "positive",
+                "value": "Only that left calf cramps with walking."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_myalgia"
+            ],
+            "categories": [
+              "associated"
+            ]
+          }
+        },
+        {
+          "seq": 38,
+          "t_ms": 31,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Do you have foot pain at rest or sores that will not heal?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 39,
+          "t_ms": 33,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No pain at rest and no sores.",
+          "meta": {
+            "facts_released": [
+              "history_rest_pain_and_wounds"
+            ],
+            "concepts": {
+              "history_rest_pain_and_wounds": {
+                "polarity": "positive",
+                "value": "No pain at rest and no sores."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_rest_pain_and_wounds"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 40,
+          "t_ms": 33,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had chest pain?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 41,
+          "t_ms": 35,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I have not had chest pain.",
+          "meta": {
+            "facts_released": [
+              "symptom_chest_pain"
+            ],
+            "concepts": {
+              "symptom_chest_pain": {
+                "polarity": "negative",
+                "value": "I have not had chest pain."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_chest_pain"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 42,
+          "t_ms": 35,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had dyspnea?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 43,
+          "t_ms": 36,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I am not short of breath.",
+          "meta": {
+            "facts_released": [
+              "symptom_dyspnea"
+            ],
+            "concepts": {
+              "symptom_dyspnea": {
+                "polarity": "negative",
+                "value": "I am not short of breath."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_dyspnea"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 44,
+          "t_ms": 37,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had edema?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 45,
+          "t_ms": 38,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Neither leg has been swollen.",
+          "meta": {
+            "facts_released": [
+              "symptom_edema"
+            ],
+            "concepts": {
+              "symptom_edema": {
+                "polarity": "negative",
+                "value": "Neither leg has been swollen."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_edema"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 46,
+          "t_ms": 39,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Any other joint pain?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 47,
+          "t_ms": 40,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My hip and knee do not hurt.",
+          "meta": {
+            "facts_released": [
+              "symptom_joint_pain"
+            ],
+            "concepts": {
+              "symptom_joint_pain": {
+                "polarity": "negative",
+                "value": "My hip and knee do not hurt."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_joint_pain"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 48,
+          "t_ms": 41,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had numbness?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 49,
+          "t_ms": 42,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My feet do not feel numb.",
+          "meta": {
+            "facts_released": [
+              "symptom_numbness"
+            ],
+            "concepts": {
+              "symptom_numbness": {
+                "polarity": "negative",
+                "value": "My feet do not feel numb."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_numbness"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 50,
+          "t_ms": 43,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had tingling?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 51,
+          "t_ms": 44,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I have not had pins and needles.",
+          "meta": {
+            "facts_released": [
+              "symptom_tingling"
+            ],
+            "concepts": {
+              "symptom_tingling": {
+                "polarity": "negative",
+                "value": "I have not had pins and needles."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_tingling"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 52,
+          "t_ms": 44,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you noticed weakness?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 53,
+          "t_ms": 46,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My leg is not weak; I stop because of the cramp.",
+          "meta": {
+            "facts_released": [
+              "symptom_weakness"
+            ],
+            "concepts": {
+              "symptom_weakness": {
+                "polarity": "negative",
+                "value": "My leg is not weak; I stop because of the cramp."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_weakness"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 54,
+          "t_ms": 46,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What medical conditions do you have?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 55,
+          "t_ms": 48,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I have high blood pressure and high cholesterol.",
+          "meta": {
+            "facts_released": [
+              "history_hypertension_and_lipids"
+            ],
+            "concepts": {
+              "history_hypertension_and_lipids": {
+                "polarity": "positive",
+                "value": "I have high blood pressure and high cholesterol."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_hypertension_and_lipids"
+            ],
+            "categories": [
+              "pmh"
+            ]
+          }
+        },
+        {
+          "seq": 56,
+          "t_ms": 48,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you been diagnosed with diabetes?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 57,
+          "t_ms": 49,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No, I have not been diagnosed with diabetes.",
+          "meta": {
+            "facts_released": [
+              "history_diabetes"
+            ],
+            "concepts": {
+              "history_diabetes": {
+                "polarity": "positive",
+                "value": "No, I have not been diagnosed with diabetes."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_diabetes"
+            ],
+            "categories": [
+              "pmh"
+            ]
+          }
+        },
+        {
+          "seq": 58,
+          "t_ms": 50,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What operations have you had?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 59,
+          "t_ms": 51,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My appendix was removed when I was 19.",
+          "meta": {
+            "facts_released": [
+              "history_surgery"
+            ],
+            "concepts": {
+              "history_surgery": {
+                "polarity": "positive",
+                "value": "My appendix was removed when I was 19."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_surgery"
+            ],
+            "categories": [
+              "psh"
+            ]
+          }
+        },
+        {
+          "seq": 60,
+          "t_ms": 52,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What medicines do you take?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 61,
+          "t_ms": 53,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Lisinopril 20 milligrams every morning. I stopped atorvastatin 20 milligrams 6 months ago because the refill was expensive.",
+          "meta": {
+            "facts_released": [
+              "history_daily_medication"
+            ],
+            "concepts": {
+              "history_daily_medication": {
+                "polarity": "positive",
+                "value": "Lisinopril 20 milligrams every morning. I stopped atorvastatin 20 milligrams 6 months ago because the refill was expensive."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_daily_medication"
+            ],
+            "categories": [
+              "medications"
+            ]
+          }
+        },
+        {
+          "seq": 62,
+          "t_ms": 54,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Do you have medication allergies?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 63,
+          "t_ms": 55,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Penicillin gave me hives when I was a teenager. I did not have breathing trouble.",
+          "meta": {
+            "facts_released": [
+              "history_drug_reactions"
+            ],
+            "concepts": {
+              "history_drug_reactions": {
+                "polarity": "positive",
+                "value": "Penicillin gave me hives when I was a teenager. I did not have breathing trouble."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_drug_reactions"
+            ],
+            "categories": [
+              "allergies"
+            ]
+          }
+        },
+        {
+          "seq": 64,
+          "t_ms": 55,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Do you smoke?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 65,
+          "t_ms": 57,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I smoke a pack a day and have for 35 years.",
+          "meta": {
+            "facts_released": [
+              "history_smoking"
+            ],
+            "concepts": {
+              "history_smoking": {
+                "polarity": "positive",
+                "value": "I smoke a pack a day and have for 35 years."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_smoking"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 66,
+          "t_ms": 57,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "How much alcohol do you drink?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 67,
+          "t_ms": 59,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "One beer on most Saturday evenings.",
+          "meta": {
+            "facts_released": [
+              "history_alcohol"
+            ],
+            "concepts": {
+              "history_alcohol": {
+                "polarity": "positive",
+                "value": "One beer on most Saturday evenings."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_alcohol"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 68,
+          "t_ms": 59,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Do you use recreational drugs?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 69,
+          "t_ms": 60,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No.",
+          "meta": {
+            "facts_released": [
+              "history_drugs"
+            ],
+            "concepts": {
+              "history_drugs": {
+                "polarity": "positive",
+                "value": "No."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_drugs"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 70,
+          "t_ms": 61,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What do you do for work?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 71,
+          "t_ms": 62,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I supervise a warehouse. Walking the floor has become difficult.",
+          "meta": {
+            "facts_released": [
+              "history_work"
+            ],
+            "concepts": {
+              "history_work": {
+                "polarity": "positive",
+                "value": "I supervise a warehouse. Walking the floor has become difficult."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_work"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 72,
+          "t_ms": 63,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Who lives with you?",
+          "meta": {
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 73,
+          "t_ms": 64,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My husband lives with me and can drive me to appointments.",
+          "meta": {
+            "facts_released": [
+              "history_home_and_support"
+            ],
+            "concepts": {
+              "history_home_and_support": {
+                "polarity": "positive",
+                "value": "My husband lives with me and can drive me to appointments."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_home_and_support"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 74,
+          "t_ms": 65,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What health problems did your father have?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 75,
+          "t_ms": 66,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My father had a heart attack at 54.",
+          "meta": {
+            "facts_released": [
+              "history_father"
+            ],
+            "concepts": {
+              "history_father": {
+                "polarity": "positive",
+                "value": "My father had a heart attack at 54."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_father"
+            ],
+            "categories": [
+              "family"
+            ]
+          }
+        },
+        {
+          "seq": 76,
+          "t_ms": 66,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What health problems does your mother have?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 77,
+          "t_ms": 68,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My mother has type 2 diabetes.",
+          "meta": {
+            "facts_released": [
+              "history_mother"
+            ],
+            "concepts": {
+              "history_mother": {
+                "polarity": "positive",
+                "value": "My mother has type 2 diabetes."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_mother"
+            ],
+            "categories": [
+              "family"
+            ]
+          }
+        },
+        {
+          "seq": 78,
+          "t_ms": 68,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Do you have siblings and are they healthy?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 79,
+          "t_ms": 70,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My younger sister has high blood pressure.",
+          "meta": {
+            "facts_released": [
+              "history_sibling"
+            ],
+            "concepts": {
+              "history_sibling": {
+                "polarity": "positive",
+                "value": "My younger sister has high blood pressure."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_sibling"
+            ],
+            "categories": [
+              "family"
+            ]
+          }
+        },
+        {
+          "seq": 80,
+          "t_ms": 70,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What worries you most?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 81,
+          "t_ms": 71,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I want to know what is causing this and how to get back to my usual activities.",
+          "meta": {
+            "facts_released": [
+              "patient_concern"
+            ],
+            "concepts": {
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "I want to know what is causing this and how to get back to my usual activities."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_patient_concern"
+            ],
+            "categories": [
+              "concern"
+            ]
+          }
+        },
+        {
+          "seq": 82,
+          "t_ms": 72,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Thank you for explaining that. I can understand why this is concerning.",
+          "meta": {
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 83,
+          "t_ms": 88,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "As I mentioned, I want to know what is causing this and how to get back to my usual activities. Could you say that another way?",
+          "meta": {
+            "facts_released": [
+              "patient_concern"
+            ],
+            "concepts": {
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "I want to know what is causing this and how to get back to my usual activities."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_patient_concern"
+            ],
+            "composed_asks": 1,
+            "unanswered_asks": [
+              "I can understand why this is concerning"
+            ],
+            "categories": [
+              "concern"
+            ]
+          }
+        },
+        {
+          "seq": 84,
+          "t_ms": 89,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "May I have your permission to examine you?",
+          "meta": {
+            "mode": "type",
+            "intent": "consent"
+          }
+        },
+        {
+          "seq": 85,
+          "t_ms": 90,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Yes, that's fine. Go ahead.",
+          "meta": {
+            "kind": "consent"
+          }
+        },
+        {
+          "seq": 86,
+          "t_ms": 89,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "May I have your permission to examine you?",
+          "meta": {
+            "status": "consented",
+            "maneuver": null,
+            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+          }
+        },
+        {
+          "seq": 87,
+          "t_ms": 10091,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "General appearance",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "general_inspect",
+            "label": "General appearance",
+            "method": "inspect",
+            "region": "General",
+            "components": [],
+            "scopes": [
+              "general"
+            ],
+            "duration_s": 10,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 88,
+          "t_ms": 10091,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Alert, comfortable at rest, without respiratory distress.",
+          "meta": {
+            "maneuver_id": "general_inspect",
+            "finding_ids": [
+              "exam_general_inspect"
+            ],
+            "concepts": {
+              "exam_general_inspect": {
+                "polarity": "positive",
+                "value": "Alert, comfortable at rest, without respiratory distress."
+              }
+            },
+            "scopes": [
+              "general"
+            ]
+          }
+        },
+        {
+          "seq": 89,
+          "t_ms": 50091,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Auscultate heart",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "heart_auscultate",
+            "label": "Auscultate heart",
+            "method": "auscultate",
+            "region": "Heart",
+            "components": [
+              "aortic",
+              "pulmonic",
+              "tricuspid",
+              "mitral",
+              "on skin"
+            ],
+            "scopes": [
+              "heart"
+            ],
+            "duration_s": 40,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 90,
+          "t_ms": 50091,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Regular rate and rhythm without murmur.",
+          "meta": {
+            "maneuver_id": "heart_auscultate",
+            "finding_ids": [
+              "exam_heart_auscultate"
+            ],
+            "concepts": {
+              "exam_heart_auscultate": {
+                "polarity": "positive",
+                "value": "Regular rate and rhythm without murmur."
+              }
+            },
+            "scopes": [
+              "heart"
+            ]
+          }
+        },
+        {
+          "seq": 91,
+          "t_ms": 91091,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Auscultate lungs",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "lungs_auscultate",
+            "label": "Auscultate lungs",
+            "method": "auscultate",
+            "region": "Lungs",
+            "components": [
+              "posterior",
+              "on skin",
+              "compare side to side",
+              "mouth open"
+            ],
+            "scopes": [
+              "lungs"
+            ],
+            "duration_s": 41,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 92,
+          "t_ms": 91091,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Breath sounds clear bilaterally.",
+          "meta": {
+            "maneuver_id": "lungs_auscultate",
+            "finding_ids": [
+              "exam_lungs_auscultate"
+            ],
+            "concepts": {
+              "exam_lungs_auscultate": {
+                "polarity": "positive",
+                "value": "Breath sounds clear bilaterally."
+              }
+            },
+            "scopes": [
+              "lungs"
+            ]
+          }
+        },
+        {
+          "seq": 93,
+          "t_ms": 109091,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Palpate peripheral pulses",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "peripheral_pulses",
+            "label": "Palpate peripheral pulses",
+            "method": "palpate",
+            "region": "Heart",
+            "components": [
+              "dorsalis pedis",
+              "posterior tibial"
+            ],
+            "scopes": [
+              "extremities.pulses"
+            ],
+            "duration_s": 18,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 94,
+          "t_ms": 109091,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Left dorsalis pedis and posterior tibial pulses 1+; right pedal pulses 2+.",
+          "meta": {
+            "maneuver_id": "peripheral_pulses",
+            "finding_ids": [
+              "exam_peripheral_pulses"
+            ],
+            "concepts": {
+              "exam_peripheral_pulses": {
+                "polarity": "positive",
+                "value": "Left dorsalis pedis and posterior tibial pulses 1+; right pedal pulses 2+."
+              }
+            },
+            "scopes": [
+              "extremities.pulses"
+            ]
+          }
+        },
+        {
+          "seq": 95,
+          "t_ms": 126091,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Inspect / palpate extremities",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "extremities",
+            "label": "Inspect / palpate extremities",
+            "method": "inspect",
+            "region": "Extremities",
+            "components": [
+              "capillary refill",
+              "edema",
+              "calf symmetry"
+            ],
+            "scopes": [
+              "extremities"
+            ],
+            "duration_s": 17,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 96,
+          "t_ms": 126091,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Left foot slightly cooler than right; capillary refill 3 seconds left and 2 seconds right. No edema or calf asymmetry.",
+          "meta": {
+            "maneuver_id": "extremities",
+            "finding_ids": [
+              "exam_extremities"
+            ],
+            "concepts": {
+              "exam_extremities": {
+                "polarity": "positive",
+                "value": "Left foot slightly cooler than right; capillary refill 3 seconds left and 2 seconds right. No edema or calf asymmetry."
+              }
+            },
+            "scopes": [
+              "extremities"
+            ]
+          }
+        },
+        {
+          "seq": 97,
+          "t_ms": 148091,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Inspect skin",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "skin_inspect",
+            "label": "Inspect skin",
+            "method": "inspect",
+            "region": "Skin",
+            "components": [
+              "legs",
+              "soles"
+            ],
+            "scopes": [
+              "skin"
+            ],
+            "duration_s": 22,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 98,
+          "t_ms": 148091,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Reduced hair over the left lower leg; no ulcer or tissue loss on inspected legs and feet.",
+          "meta": {
+            "maneuver_id": "skin_inspect",
+            "finding_ids": [
+              "exam_skin_inspect"
+            ],
+            "concepts": {
+              "exam_skin_inspect": {
+                "polarity": "positive",
+                "value": "Reduced hair over the left lower leg; no ulcer or tissue loss on inspected legs and feet."
+              }
+            },
+            "scopes": [
+              "skin"
+            ]
+          }
+        },
+        {
+          "seq": 99,
+          "t_ms": 168091,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Palpate the affected area",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "msk_palpate",
+            "label": "Palpate the affected area",
+            "method": "palpate",
+            "region": "Musculoskeletal",
+            "components": [
+              "point tenderness",
+              "paraspinal musculature"
+            ],
+            "scopes": [
+              "msk.palpation"
+            ],
+            "duration_s": 20,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 100,
+          "t_ms": 168091,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "No focal calf or knee tenderness. Mild bilateral lumbar paraspinal tenderness.",
+          "meta": {
+            "maneuver_id": "msk_palpate",
+            "finding_ids": [
+              "exam_msk_palpate"
+            ],
+            "concepts": {
+              "exam_msk_palpate": {
+                "polarity": "positive",
+                "value": "No focal calf or knee tenderness. Mild bilateral lumbar paraspinal tenderness."
+              }
+            },
+            "scopes": [
+              "msk.palpation"
+            ]
+          }
+        },
+        {
+          "seq": 101,
+          "t_ms": 189091,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Sensory examination",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "neuro_sensory",
+            "label": "Sensory examination",
+            "method": "special",
+            "region": "Neurologic",
+            "components": [
+              "light touch"
+            ],
+            "scopes": [
+              "neuro.sensory"
+            ],
+            "duration_s": 21,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 102,
+          "t_ms": 189091,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Light touch intact in both feet.",
+          "meta": {
+            "maneuver_id": "neuro_sensory",
+            "finding_ids": [
+              "exam_neuro_sensory"
+            ],
+            "concepts": {
+              "exam_neuro_sensory": {
+                "polarity": "positive",
+                "value": "Light touch intact in both feet."
+              }
+            },
+            "scopes": [
+              "neuro.sensory"
+            ]
+          }
+        },
+        {
+          "seq": 103,
+          "t_ms": 208091,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Muscle strength testing",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "msk_strength",
+            "label": "Muscle strength testing",
+            "method": "special",
+            "region": "Musculoskeletal",
+            "components": [
+              "lower extremity"
+            ],
+            "scopes": [
+              "neuro.motor"
+            ],
+            "duration_s": 19,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 104,
+          "t_ms": 208091,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Ankle dorsiflexion and plantarflexion 5/5 bilaterally.",
+          "meta": {
+            "maneuver_id": "msk_strength",
+            "finding_ids": [
+              "exam_msk_strength"
+            ],
+            "concepts": {
+              "exam_msk_strength": {
+                "polarity": "positive",
+                "value": "Ankle dorsiflexion and plantarflexion 5/5 bilaterally."
+              }
+            },
+            "scopes": [
+              "neuro.motor"
+            ]
+          }
+        },
+        {
+          "seq": 105,
+          "t_ms": 233091,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Osteopathic structural screen",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "osteo_screen",
+            "label": "Osteopathic structural screen",
+            "method": "palpate",
+            "region": "Osteopathic",
+            "components": [
+              "lumbar"
+            ],
+            "scopes": [
+              "osteopathic"
+            ],
+            "duration_s": 25,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 106,
+          "t_ms": 233091,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "L3 bilateral lumbar paraspinal tissue texture change and tenderness.",
+          "meta": {
+            "maneuver_id": "osteo_screen",
+            "finding_ids": [
+              "exam_osteo_screen"
+            ],
+            "concepts": {
+              "exam_osteo_screen": {
+                "polarity": "positive",
+                "value": "L3 bilateral lumbar paraspinal tissue texture change and tenderness."
+              }
+            },
+            "scopes": [
+              "osteopathic"
+            ]
+          }
+        },
+        {
+          "seq": 107,
+          "t_ms": 233091,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "I will check the circulation in your legs and arrange a pressure comparison at your ankles. We will also work on affordable medicines and stopping smoking. Sudden pain that does not stop, or a cold or weak foot, needs emergency help.",
+          "meta": {
+            "mode": "type"
+          }
+        },
+        {
+          "seq": 108,
+          "t_ms": 233091,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Thank you. I understand that the next steps depend on the examination and tests.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "education_response"
+          }
+        },
+        {
+          "seq": 109,
+          "t_ms": 233091,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What questions do you have about the next steps?",
+          "meta": {
+            "open_question": true,
+            "closure": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 110,
+          "t_ms": 233091,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I want to know what is causing this and how to get back to my usual activities.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "closure_response",
+            "ips_signal": "closure_invited",
+            "categories": []
+          }
+        },
+        {
+          "seq": 111,
+          "t_ms": 233091,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "I can look for an affordable refill and arrange a follow-up in two weeks. Your husband can join the discussion if you want.",
+          "meta": {
+            "mode": "type"
+          }
+        },
+        {
+          "seq": 112,
+          "t_ms": 233091,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "That would help. Thank you.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "education_response"
+          }
+        }
+      ],
+      "note_words": 457,
+      "estimated_encounter_s": 578,
+      "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
+      "missing_example_facts": [],
+      "documentation_audit": {
+        "unsupported": [],
+        "unresolved_count": 7
+      },
+      "reasoning": [
+        {
+          "id": "cardio-exertional-leg-pain-decision",
+          "question": "Does standing still relieve it, or must you sit and bend forward?",
+          "why": "Distinguish vascular walking pain from posture-dependent or muscular pain.",
+          "if_present": "Use the reported pattern to select the relevant examinations and assess urgency.",
+          "if_absent": "Keep alternatives open and ask a focused follow-up.",
+          "next_action": "Perform the relevant case-specific examination.",
+          "document": "Separate reported symptoms, observed signs, assessment and proposed care."
+        }
+      ],
+      "differentials": [
+        {
+          "rank": 1,
+          "name": "Peripheral artery disease with intermittent claudication",
+          "vindicate": "V",
+          "aliases": [
+            "Peripheral artery disease with intermittent claudication"
+          ],
+          "supported_by": [
+            "hpi_timing",
+            "hpi_chronology",
+            "history_smoking",
+            "exam_peripheral_pulses"
+          ],
+          "teaching_context": "Reproducible exertional calf pain, rapid standing-rest relief and asymmetric pedal pulses support arterial disease."
+        },
+        {
+          "rank": 2,
+          "name": "Lumbar spinal stenosis with neurogenic claudication",
+          "vindicate": "D",
+          "aliases": [
+            "Lumbar spinal stenosis with neurogenic claudication"
+          ],
+          "supported_by": [
+            "symptom_back_pain",
+            "hpi_setting"
+          ],
+          "teaching_context": "Exertional leg symptoms and back discomfort warrant consideration; lack of posture dependence and pulse asymmetry argue against it as the main cause."
+        },
+        {
+          "rank": 3,
+          "name": "Calf muscle overuse or strain",
+          "vindicate": "T",
+          "aliases": [
+            "Calf muscle overuse or strain"
+          ],
+          "supported_by": [
+            "hpi_quality",
+            "history_work"
+          ],
+          "teaching_context": "Walking-related muscular pain is possible, but progression and vascular findings favor arterial disease."
+        }
+      ],
+      "omissions": [
+        "Distinguishing history from examination evidence.",
+        "Explaining uncertainty and the practical follow-up plan."
+      ],
+      "recall": [
+        {
+          "prompt": "Before naming a diagnosis, what is the key distinction in this presentation?",
+          "answer": "Does standing still relieve it, or must you sit and bend forward?"
+        },
+        {
+          "prompt": "Which specific examination or safety step changes what you can document?",
+          "answer": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model."
+        },
+        {
+          "prompt": "Name one tempting documentation or reasoning error and how you will prevent it.",
+          "answer": "Treating an unperformed examination or a possible diagnosis as obtained fact."
+        }
+      ],
+      "course_sources": [
+        {
+          "label": "PCM syllabus: 14-minute encounter / 9-minute SOAP; invasive SP examinations refused",
+          "locator": "PCM syllabus.pdf pp. 4\u20135"
+        },
+        {
+          "label": "SOAP rubric: S 28 / O 30 / A 15 / P 25 / style 2",
+          "locator": "2026 FALL M2 ILG - STUDENT MANUAL update.docx, SOAP evaluation table"
+        },
+        {
+          "label": "FIFE and patient perspective; purposeful transitions",
+          "locator": "PCM syllabus.pdf p. 13; Interpersonal Skills lecture"
+        }
+      ],
+      "sources": [
+        {
+          "title": "2026 FALL M2 ILG Student Manual",
+          "path": "claude builds/PCM/2026 FALL M2 ILG - STUDENT MANUAL update.docx",
+          "locator": "SOAP rubric and physical examination requirements",
+          "kind": "course"
+        },
+        {
+          "title": "2024 PAD guideline implementation",
+          "url": "https://www.acc.org/Latest-in-Cardiology/Articles/2024/09/01/01/42/Peripheral-Matters-PAD-Putting-the-2024-Guideline-Into-Practice",
+          "kind": "supplementary_clinical",
+          "reviewed": "2026-09-14",
+          "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+        },
+        {
+          "title": "Lumbar spinal stenosis",
+          "url": "https://orthoinfo.aaos.org/en/diseases--conditions/lumbar-spinal-stenosis/",
+          "kind": "supplementary_clinical",
+          "reviewed": "2026-09-14",
+          "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+        }
+      ],
+      "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
+      "case_hash": "647cfd4f06413fadacf06631eff14a4bdf01f4c56c0a42896df10d49b933c23f",
+      "engine_version": "4.1.0"
+    }
+  ]
+}

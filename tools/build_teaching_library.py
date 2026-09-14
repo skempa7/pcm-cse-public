@@ -19,7 +19,9 @@ OMIT_EXAMS={'cardio-chest-pressure':{'osteo_screen','skin_inspect','heent_eyes',
 COURSE=[{'label':'PCM syllabus: 14-minute encounter / 9-minute SOAP; invasive SP examinations refused','locator':'PCM syllabus.pdf pp. 4–5'},{'label':'SOAP rubric: S 28 / O 30 / A 15 / P 25 / style 2','locator':'2026 FALL M2 ILG - STUDENT MANUAL update.docx, SOAP evaluation table'},{'label':'FIFE and patient perspective; purposeful transitions','locator':'PCM syllabus.pdf p. 13; Interpersonal Skills lecture'}]
 
 def build(c,variantmeta):
-    plan=PLANS[c['id']];settings=config.load_settings();settings.update(learning_mode='guided',simulation_runtime='written-example')
+    plan=PLANS.get(c['id']) or c.get('teaching',{}).get('lesson_plan')
+    if not plan:raise ValueError('Missing authored lesson plan for '+c['id'])
+    settings=config.load_settings();settings.update(learning_mode='guided',simulation_runtime='written-example')
     settings['scoring']=dict(settings['scoring'],realtime_exam_durations=True,exam_time_scale=1)
     sid=db.create_session(c['id'],config.DEFAULT_PRESET,'type',True,settings,case=c);s=engine.load(sid);s.start_encounter()
     timeline=[];spoken=0
@@ -83,15 +85,18 @@ def build(c,variantmeta):
     if barrier and c['id'] in COMPACT:
         selected_note['S']+='\nCare needs: '+barrier['value']
         selected_note['P'][0]+=' Use one step at a time with teach-back.' if 'clarification' in c['variant_id'] else ' Confirm transport and a practical contact for deterioration.'
-    for i,p in enumerate(CLOSINGS[c['id']][:1]):
+    closings=CLOSINGS.get(c['id']) or c.get('teaching',{}).get('closing_dialogue')
+    if not closings:raise ValueError('Missing authored closing dialogue for '+c['id'])
+    for i,p in enumerate(closings[:1]):
         say(re.sub(r'^\d+[.)]\s*','',p),'Explain next steps','Proposed care, not a record of tests or treatment already completed.' if i==0 else '')
     say('What questions do you have about the next steps?','Close and check understanding')
-    response=(BARRIERS.get(c['id']) or ('I will explain one step at a time and ask you to tell me what is clear and what needs another explanation.' if 'clarification' in c['variant_id'] else 'I recommend telling the care team about this practical barrier so we can arrange a safe transport and contact plan with you.')) if barrier else CONCERNS[c['id']]
+    response=(BARRIERS.get(c['id']) or ('I will explain one step at a time and ask you to tell me what is clear and what needs another explanation.' if 'clarification' in c['variant_id'] else 'I recommend telling the care team about this practical barrier so we can arrange a safe transport and contact plan with you.')) if barrier else (CONCERNS.get(c['id']) or c.get('teaching',{}).get('concern_response'))
+    if not response:raise ValueError('Missing authored concern response for '+c['id'])
     say(response,'Address the patient’s question','Answer the concern that was just expressed. Give a defensible recommendation and explain uncertainty; do not promise a diagnosis or recovery before the evidence supports it.')
     # O is assembled only from actual released findings, never copied from a hidden full-case O.
     vitals=c['station']['vitals'];note=selected_note
     findings=s.ledger.by_kind(evidence.EXAM_FINDING)
-    note['O']='Vitals: '+', '.join(k+' '+v for k,v in vitals.items())+'\n\n'+'\n'.join(physexam.CATALOG_BY_ID[e['meta']['maneuver_id']]['region']+': '+e['text'] for e in findings)
+    note['O']='Vitals: '+', '.join(k+' '+v for k,v in vitals.items())+'\n\n'+'\n'.join(c.get('print_exam_systems',{}).get(e['meta']['maneuver_id'],physexam.CATALOG_BY_ID[e['meta']['maneuver_id']]['region'])+': '+e['text'] for e in findings)
     for r in c['station'].get('supplied_results',[]):note['O']+='\nSupplied '+r['label']+': '+r['value']
     note['S']=note['S'].replace('Patient reports: ','').replace('Patient perspective:','Perspective:').replace('Cesarean delivery5','Cesarean delivery 5')
     links=[]
@@ -115,6 +120,7 @@ def main():
     import argparse
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--report', type=Path, help='Optional local verification report path.')
+    parser.add_argument('--case', action='append', dest='case_ids', help='Build selected cases only; repeat for a controlled subset.')
     args = parser.parse_args()
     out=ROOT/'pcmcse/teaching/lessons'
     original=db.DB_PATH
@@ -123,6 +129,7 @@ def main():
         with tempfile.TemporaryDirectory() as tmp:
             db.DB_PATH=str(Path(tmp)/'examples.sqlite');db.init()
             for cid,base in cases.all_cases().items():
+                if args.case_ids and cid not in args.case_ids:continue
                 lessons=[build(cases.resolve(cid,v.get('id','base')),v) for v in [{}]+base.get('variants',[])]
                 built[cid]={'case_id':cid,'review_status':lessons[0]['review_status'],'walkthroughs':lessons}
                 report.extend({k:l[k] for k in ('case_id','variant_id','note_words','estimated_encounter_s','missing_example_facts','case_hash','engine_version')} for l in lessons)

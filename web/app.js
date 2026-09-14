@@ -300,6 +300,7 @@ function portalContext(){return {boot:BOOT,view,api,onData:data=>Object.assign(B
 async function route(){
   const epoch=++routeEpoch,id=location.hash.replace(/^#\/?/, '');
   window.pcmPortal?.invalidate();
+  if (/^cases(?:\/|$)/.test(id)) {if(!await leaveForWorkspace('cases')||epoch!==routeEpoch)return;document.body.dataset.workspace='cases';window.pcmStudy.renderMaterials(id);return;}
   if (/^learn(?:\/|$)/.test(id)) {document.body.dataset.workspace='learn';window.pcmStudy.render(id);return;}
   const kind=!id||id==='home'?'home':['practice','progress','scoring'].includes(id)?id:null;
   if(kind){
@@ -3044,7 +3045,7 @@ window.pcmEnterWorkbench=async kind=>{
   if(poll)clearInterval(poll);if(tick)clearInterval(tick);S=null;lastPhase=null;document.body.dataset.phase=kind;positionRoomFrame();clockEl.classList.add('hidden');chipEl.classList.add('hidden');homeBtn.classList.add('hidden');window.scrollTo(0,0);return true;
 };
 window.pcmNavigate=destination=>{
-  const target=['home','practice','learn','progress','scoring','voice'].includes(destination)?destination:'home';
+  const target=['home','practice','cases','learn','progress','scoring','voice'].includes(destination)?destination:'home';
   if(location.hash==='#'+target)route();else location.hash='#'+target;
 };
 window.pcmPortalCases=()=>BOOT?.cases||[];

@@ -16,6 +16,17 @@ class Handler:
         p = url.path
         if not p.startswith('/api/'):
             return self._static(p)
+        if p == '/api/printables' or p.startswith('/api/printables/'):
+            from pcmcse.teaching import printables
+            if p == '/api/printables':
+                return self._json({'cases': printables.index()})
+            parts = p.split('/')
+            if len(parts) != 4:
+                return self._json({'error': 'Unknown printable case'}, 404)
+            try:
+                return self._json({'material': printables.doorway(parts[3], parse_qs(url.query).get('variant', ['base'])[0])})
+            except (ValueError, KeyError):
+                return self._json({'error': 'Unknown printable case or variation'}, 404)
         if p.startswith('/api/teaching'):
             with _LOCK:
                 pending = teaching.blockers()

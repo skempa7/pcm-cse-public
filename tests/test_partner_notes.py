@@ -26,7 +26,7 @@ def section(note, group, heading):
 class PartnerNotesTests(unittest.TestCase):
     def test_all_paths_preserve_source_and_course_subjective_order(self):
         lessons = all_lessons()
-        self.assertEqual(len(lessons), 72)
+        self.assertEqual(len(lessons), 82)
         for lesson in lessons:
             with self.subTest(case=lesson['case_id'], variant=lesson['variant_id']):
                 case = cases.resolve(lesson['case_id'], lesson['variant_id'])
@@ -55,7 +55,7 @@ class PartnerNotesTests(unittest.TestCase):
                     value = label[len('Supplied '):] + ': ' + value.strip()
                 expected.append(value.strip())
             self.assertEqual(sorted(expected), sorted(p for x in result['objective'] for p in x['paragraphs']))
-        self.assertEqual(total, 678)
+        self.assertEqual(total, 762)  # 678 established findings + 84 reviewed new-case examinations.
 
     def test_unspoken_drug_specificity_and_subjective_pallor_are_removed(self):
         for variant in ('base', 'neuro-thunderclap-headache--clarification', 'neuro-thunderclap-headache--support'):
@@ -85,8 +85,7 @@ class PartnerNotesTests(unittest.TestCase):
             self.assertNotIn(text, section(note, 'subjective', 'Medications'))
 
     def test_specific_unsupported_third_causes_are_gaps_not_forced_diagnoses(self):
-        gaps = {'gi-diarrhea-dehydration', 'gi-right-upper-pain', 'neuro-distal-neuropathy',
-                'neuro-recurrent-headache', 'renal-acute-retention', 'renal-luts-nocturia'}
+        gaps = {'gi-diarrhea-dehydration', 'neuro-distal-neuropathy', 'neuro-recurrent-headache'}
         count = 0
         for lesson in all_lessons():
             note = build_example_note(cases.resolve(lesson['case_id'], lesson['variant_id']), lesson)
@@ -99,7 +98,20 @@ class PartnerNotesTests(unittest.TestCase):
             else:
                 self.assertEqual([x['rank'] for x in note['assessment']], [1, 2, 3])
                 self.assertEqual([x['rank'] for x in note['plan']], [1, 2, 3])
-        self.assertEqual(count, 18)
+        self.assertEqual(count, 9)
+
+    def test_supported_replacements_preserve_honest_course_category_gaps(self):
+        names = {'gi-right-upper-pain': 'Peptic ulcer disease',
+                 'renal-acute-retention': 'Nonrelaxing pelvic-floor voiding dysfunction',
+                 'renal-luts-nocturia': 'Overactive bladder'}
+        for cid, name in names.items():
+            note = example(cid)
+            self.assertEqual(note['assessment'][2]['text'], name)
+            self.assertTrue(note['assessment'][2]['fact_ids'])
+            self.assertEqual(note['omitted_authored_alternatives'], [])
+            self.assertTrue(any('Course category review needed' in x['text'] for x in note['outside_note']))
+        for cid in ['cardio-palpitations', 'renal-colicky-flank']:
+            self.assertFalse(any(x['kind'] == 'authoring_gap' for x in example(cid)['outside_note']))
 
     def test_existing_recommended_and_conditional_plan_words_are_preserved(self):
         for lesson in all_lessons():
@@ -144,9 +156,10 @@ class PartnerNotesTests(unittest.TestCase):
         self.assertIn('husband', social)
         self.assertIn('One male sexual partner', social)
         self.assertNotIn('boyfriend', social)
-        self.assertTrue(any(x['kind'] == 'source_conflict' for x in note['outside_note']))
+        self.assertFalse(any(x['kind'] == 'source_conflict' for x in note['outside_note']))
         note = example('gi-progressive-dysphagia')
-        self.assertIn('frequency not established', section(note, 'subjective', 'Medications'))
+        self.assertIn('Hydrocortisone 1% cream', section(note, 'subjective', 'Medications'))
+        self.assertIn('once daily for up to 1 week', section(note, 'subjective', 'Medications'))
         note = example('neuro-distal-neuropathy')
         self.assertIn('value not recalled', section(note, 'subjective', 'Past medical and surgical history'))
 

@@ -1,0 +1,2365 @@
+{
+  "id": "msk-knee-injury",
+  "presentation_id": "msk-knee-injury",
+  "title": "Knee pain after twisting",
+  "hidden_label": "Station 29",
+  "system": "Musculoskeletal",
+  "complaint_family": "Musculoskeletal",
+  "level": "M2",
+  "difficulty": "intermediate",
+  "blurb": "My right knee has been sore and swollen since I twisted it.",
+  "curriculum_note": "Supplementary fictional practice for the course history, physical examination and SOAP skills; not an official or predicted station.",
+  "scope_status": "supplementary_cross_system",
+  "station": {
+    "doorway": [
+      "Graham Wilson, 54-year-old male.",
+      "My right knee has been sore and swollen since I twisted it.",
+      "Vital signs are available on the chart.",
+      "Perform a focused history and physical examination, discuss your plan, and document only what you obtain.",
+      "Use the time limit stated for your selected practice mode."
+    ],
+    "vitals": {
+      "BP": "138/84 mmHg",
+      "P": "78 bpm",
+      "R": "16 rpm",
+      "T": "98.5 F oral",
+      "Pulse Ox": "98% on room air",
+      "Ht": "5' 11\"",
+      "Wt": "206 lbs"
+    },
+    "supplied_results": []
+  },
+  "patient": {
+    "name": "Graham Wilson",
+    "age": 54,
+    "sex": "male",
+    "pronouns": "he/him",
+    "persona": "I move stock in a grocery store, including lifting and squatting. My wife can help. We have one flight of stairs at home.",
+    "opening": "My right knee has been sore and swollen since I twisted it.",
+    "opening_facts": [
+      "opening_complaint"
+    ],
+    "opening_contract": {
+      "text": "My right knee has been sore and swollen since I twisted it.",
+      "fact_ids": [
+        "opening_complaint"
+      ],
+      "review": "Exact opening only."
+    },
+    "volunteer_budget": 1,
+    "volunteer_order": [
+      "patient_concern"
+    ],
+    "affect": "I want to know what is causing this and how to get back to my usual activities.",
+    "communication_style": "concise",
+    "empathy_replies": [
+      "Thank you for listening.",
+      "I appreciate you explaining that."
+    ],
+    "closing_questions": [
+      "I want to know what is causing this and how to get back to my usual activities."
+    ],
+    "appearance": {
+      "presentation": "male",
+      "model": "mpfb-public-patient",
+      "skinTone": 1,
+      "eyeColor": "brown",
+      "hairColor": "brunette",
+      "hairStyle": "bald",
+      "outfit": "fitted-casual",
+      "bodyBuild": "standard"
+    },
+    "voice": {
+      "rate": 1,
+      "pitch": 1,
+      "gender": "male",
+      "adult": true
+    },
+    "education_responses": [
+      {
+        "student": "We will protect the knee, assess stability and decide whether imaging is needed. I want to review it in one week. If it becomes hot and very swollen, you develop fever, or it locks, seek urgent assessment.",
+        "patient": "Thank you. I understand that the next steps depend on the examination and tests."
+      },
+      {
+        "student": "We can document temporary lifting and squatting limits and discuss how you will manage stairs at home.",
+        "patient": "That would help. Thank you."
+      }
+    ]
+  },
+  "facts": [
+    {
+      "id": "opening_complaint",
+      "category": "chief_complaint",
+      "print_label": "Opening complaint",
+      "checklist": "h_opening_complaint",
+      "value": "My right knee has been sore and swollen since I twisted it.",
+      "sp_says": [
+        "My right knee has been sore and swollen since I twisted it."
+      ],
+      "triggers": {
+        "any": [
+          "What brings you in today?"
+        ]
+      },
+      "concepts": {
+        "opening_complaint": {
+          "polarity": "positive",
+          "value": "My right knee has been sore and swollen since I twisted it."
+        }
+      },
+      "example_questions": [
+        "What brings you in today?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My right knee has been sore and swollen since I twisted it.",
+            "concepts": {
+              "opening_complaint": {
+                "polarity": "positive",
+                "value": "My right knee has been sore and swollen since I twisted it."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "My right knee has been sore and swollen since I twisted it."
+    },
+    {
+      "id": "hpi_onset",
+      "category": "onset",
+      "print_label": "Onset",
+      "checklist": "h_hpi_onset",
+      "value": "Three days ago.",
+      "sp_says": [
+        "Three days ago."
+      ],
+      "triggers": {
+        "any": [
+          "When did the knee pain start?",
+          "when did",
+          "started",
+          "began"
+        ]
+      },
+      "concepts": {
+        "hpi_onset": {
+          "polarity": "positive",
+          "value": "Three days ago."
+        }
+      },
+      "example_questions": [
+        "When did the knee pain start?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Three days ago.",
+            "concepts": {
+              "hpi_onset": {
+                "polarity": "positive",
+                "value": "Three days ago."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Right knee pain for 3 days.",
+      "temporal_role": "first_episode_onset"
+    },
+    {
+      "id": "hpi_setting",
+      "category": "setting",
+      "print_label": "Mechanism",
+      "checklist": "h_hpi_setting",
+      "value": "I turned while carrying a box, with my right foot planted. I did not fall.",
+      "sp_says": [
+        "I turned while carrying a box, with my right foot planted. I did not fall."
+      ],
+      "triggers": {
+        "any": [
+          "How did you hurt the knee?",
+          "trigger",
+          "doing when"
+        ]
+      },
+      "concepts": {
+        "hpi_setting": {
+          "polarity": "positive",
+          "value": "I turned while carrying a box, with my right foot planted. I did not fall."
+        }
+      },
+      "example_questions": [
+        "How did you hurt the knee?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I turned while carrying a box, with my right foot planted. I did not fall.",
+            "concepts": {
+              "hpi_setting": {
+                "polarity": "positive",
+                "value": "I turned while carrying a box, with my right foot planted. I did not fall."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Twisting injury on a planted foot while carrying a box; no fall.",
+      "onset_activity": true
+    },
+    {
+      "id": "hpi_location",
+      "category": "location",
+      "print_label": "Location",
+      "checklist": "h_hpi_location",
+      "value": "Along the inside of my right knee.",
+      "sp_says": [
+        "Along the inside of my right knee."
+      ],
+      "triggers": {
+        "any": [
+          "Where is the pain?",
+          "where",
+          "which side"
+        ]
+      },
+      "concepts": {
+        "hpi_location": {
+          "polarity": "positive",
+          "value": "Along the inside of my right knee."
+        }
+      },
+      "example_questions": [
+        "Where is the pain?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Along the inside of my right knee.",
+            "concepts": {
+              "hpi_location": {
+                "polarity": "positive",
+                "value": "Along the inside of my right knee."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Medial right knee pain."
+    },
+    {
+      "id": "hpi_radiation",
+      "category": "radiation",
+      "print_label": "Spread",
+      "checklist": "h_hpi_radiation",
+      "value": "No, it stays around the knee.",
+      "sp_says": [
+        "No, it stays around the knee."
+      ],
+      "triggers": {
+        "any": [
+          "Does the pain spread?",
+          "spread",
+          "radiate"
+        ]
+      },
+      "concepts": {
+        "hpi_radiation": {
+          "polarity": "positive",
+          "value": "No, it stays around the knee."
+        }
+      },
+      "example_questions": [
+        "Does the pain spread?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No, it stays around the knee.",
+            "concepts": {
+              "hpi_radiation": {
+                "polarity": "positive",
+                "value": "No, it stays around the knee."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No radiation."
+    },
+    {
+      "id": "hpi_quality",
+      "category": "quality",
+      "print_label": "Character",
+      "checklist": "h_hpi_quality",
+      "value": "An ache with a sharp catch if I turn.",
+      "sp_says": [
+        "An ache with a sharp catch if I turn."
+      ],
+      "triggers": {
+        "any": [
+          "What does it feel like?",
+          "feel like",
+          "describe"
+        ]
+      },
+      "concepts": {
+        "hpi_quality": {
+          "polarity": "positive",
+          "value": "An ache with a sharp catch if I turn."
+        }
+      },
+      "example_questions": [
+        "What does it feel like?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "An ache with a sharp catch if I turn.",
+            "concepts": {
+              "hpi_quality": {
+                "polarity": "positive",
+                "value": "An ache with a sharp catch if I turn."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Aching with catching pain during rotation."
+    },
+    {
+      "id": "hpi_severity",
+      "category": "severity",
+      "print_label": "Weight bearing",
+      "checklist": "h_hpi_severity",
+      "value": "I can walk with a limp. The pain is 6 out of 10.",
+      "sp_says": [
+        "I can walk with a limp. The pain is 6 out of 10."
+      ],
+      "triggers": {
+        "any": [
+          "Can you walk on it?",
+          "how bad",
+          "out of ten",
+          "severity"
+        ]
+      },
+      "concepts": {
+        "hpi_severity": {
+          "polarity": "positive",
+          "value": "I can walk with a limp. The pain is 6 out of 10."
+        }
+      },
+      "example_questions": [
+        "Can you walk on it?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I can walk with a limp. The pain is 6 out of 10.",
+            "concepts": {
+              "hpi_severity": {
+                "polarity": "positive",
+                "value": "I can walk with a limp. The pain is 6 out of 10."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Weight bearing with limp; pain 6/10."
+    },
+    {
+      "id": "hpi_chronology",
+      "category": "chronology",
+      "print_label": "Swelling",
+      "checklist": "h_hpi_chronology",
+      "value": "It swelled gradually that evening, not immediately.",
+      "sp_says": [
+        "It swelled gradually that evening, not immediately."
+      ],
+      "triggers": {
+        "any": [
+          "When did the swelling develop?",
+          "changed",
+          "progressed"
+        ]
+      },
+      "concepts": {
+        "hpi_chronology": {
+          "polarity": "positive",
+          "value": "It swelled gradually that evening, not immediately."
+        }
+      },
+      "example_questions": [
+        "When did the swelling develop?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "It swelled gradually that evening, not immediately.",
+            "concepts": {
+              "hpi_chronology": {
+                "polarity": "positive",
+                "value": "It swelled gradually that evening, not immediately."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Delayed swelling over the first evening.",
+      "question_dimensions": [
+        "progression"
+      ],
+      "temporal_role": "pattern_or_progression"
+    },
+    {
+      "id": "hpi_timing",
+      "category": "timing",
+      "print_label": "Catching, locking or giving way",
+      "checklist": "h_hpi_timing",
+      "value": "It catches, but I can straighten it. It has not given way.",
+      "sp_says": [
+        "It catches, but I can straighten it. It has not given way."
+      ],
+      "triggers": {
+        "any": [
+          "Does the knee lock or give way?",
+          "how long each",
+          "how often"
+        ]
+      },
+      "concepts": {
+        "hpi_timing": {
+          "polarity": "positive",
+          "value": "It catches, but I can straighten it. It has not given way."
+        }
+      },
+      "example_questions": [
+        "Does the knee lock or give way?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "It catches, but I can straighten it. It has not given way.",
+            "concepts": {
+              "hpi_timing": {
+                "polarity": "positive",
+                "value": "It catches, but I can straighten it. It has not given way."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Catching without true locking or giving way."
+    },
+    {
+      "id": "hpi_aggravating",
+      "category": "aggravating",
+      "print_label": "Triggers",
+      "checklist": "h_hpi_aggravating",
+      "value": "Turning, stairs and deep bending.",
+      "sp_says": [
+        "Turning, stairs and deep bending."
+      ],
+      "triggers": {
+        "any": [
+          "What makes it worse?",
+          "makes worse"
+        ]
+      },
+      "concepts": {
+        "hpi_aggravating": {
+          "polarity": "positive",
+          "value": "Turning, stairs and deep bending."
+        }
+      },
+      "example_questions": [
+        "What makes it worse?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Turning, stairs and deep bending.",
+            "concepts": {
+              "hpi_aggravating": {
+                "polarity": "positive",
+                "value": "Turning, stairs and deep bending."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Worse with twisting, stairs and deep flexion."
+    },
+    {
+      "id": "hpi_alleviating",
+      "category": "alleviating",
+      "print_label": "Relief",
+      "checklist": "h_hpi_alleviating",
+      "value": "Rest, ice wrapped in a towel, and elevating it.",
+      "sp_says": [
+        "Rest, ice wrapped in a towel, and elevating it."
+      ],
+      "triggers": {
+        "any": [
+          "What helps?",
+          "helps",
+          "relieves"
+        ]
+      },
+      "concepts": {
+        "hpi_alleviating": {
+          "polarity": "positive",
+          "value": "Rest, ice wrapped in a towel, and elevating it."
+        }
+      },
+      "example_questions": [
+        "What helps?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Rest, ice wrapped in a towel, and elevating it.",
+            "concepts": {
+              "hpi_alleviating": {
+                "polarity": "positive",
+                "value": "Rest, ice wrapped in a towel, and elevating it."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Relief with rest, protected ice and elevation."
+    },
+    {
+      "id": "hpi_treatment",
+      "category": "treatment",
+      "print_label": "Medication",
+      "checklist": "h_hpi_treatment",
+      "value": "Acetaminophen 650 milligrams twice yesterday.",
+      "sp_says": [
+        "Acetaminophen 650 milligrams twice yesterday."
+      ],
+      "triggers": {
+        "any": [
+          "What have you taken for the knee?",
+          "tried for",
+          "taken for"
+        ]
+      },
+      "concepts": {
+        "hpi_treatment": {
+          "polarity": "positive",
+          "value": "Acetaminophen 650 milligrams twice yesterday."
+        }
+      },
+      "example_questions": [
+        "What have you taken for the knee?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Acetaminophen 650 milligrams twice yesterday.",
+            "concepts": {
+              "hpi_treatment": {
+                "polarity": "positive",
+                "value": "Acetaminophen 650 milligrams twice yesterday."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Acetaminophen 650 mg twice yesterday."
+    },
+    {
+      "id": "hpi_past_occurrence",
+      "category": "past_occurrence",
+      "print_label": "Prior joint trouble",
+      "checklist": "h_hpi_past_occurrence",
+      "value": "It sometimes ached after work and felt stiff for about 5 minutes in the morning.",
+      "sp_says": [
+        "It sometimes ached after work and felt stiff for about 5 minutes in the morning."
+      ],
+      "triggers": {
+        "any": [
+          "Did the knee bother you before this injury?",
+          "had before"
+        ]
+      },
+      "concepts": {
+        "hpi_past_occurrence": {
+          "polarity": "positive",
+          "value": "It sometimes ached after work and felt stiff for about 5 minutes in the morning."
+        }
+      },
+      "example_questions": [
+        "Did the knee bother you before this injury?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "It sometimes ached after work and felt stiff for about 5 minutes in the morning.",
+            "concepts": {
+              "hpi_past_occurrence": {
+                "polarity": "positive",
+                "value": "It sometimes ached after work and felt stiff for about 5 minutes in the morning."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Prior activity-related ache and brief morning stiffness."
+    },
+    {
+      "id": "history_medical_history",
+      "category": "pmh",
+      "print_label": "Medical history",
+      "checklist": "h_history_medical_history",
+      "value": "High blood pressure and gout. I had one red, swollen big toe last year, confirmed with fluid testing.",
+      "sp_says": [
+        "High blood pressure and gout. I had one red, swollen big toe last year, confirmed with fluid testing."
+      ],
+      "triggers": {
+        "any": [
+          "What medical conditions do you have?",
+          "What illnesses have you had?",
+          "Any medical conditions?"
+        ]
+      },
+      "concepts": {
+        "history_medical_history": {
+          "polarity": "positive",
+          "value": "High blood pressure and gout. I had one red, swollen big toe last year, confirmed with fluid testing."
+        }
+      },
+      "example_questions": [
+        "What medical conditions do you have?",
+        "What illnesses have you had?",
+        "Any medical conditions?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "High blood pressure and gout. I had one red, swollen big toe last year, confirmed with fluid testing.",
+            "concepts": {
+              "history_medical_history": {
+                "polarity": "positive",
+                "value": "High blood pressure and gout. I had one red, swollen big toe last year, confirmed with fluid testing."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Hypertension; crystal-confirmed gout episode last year."
+    },
+    {
+      "id": "history_surgery",
+      "category": "psh",
+      "print_label": "Surgery",
+      "checklist": "h_history_surgery",
+      "value": "No knee surgery. I had a hernia repaired at 30.",
+      "sp_says": [
+        "No knee surgery. I had a hernia repaired at 30."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had knee surgery or other operations?",
+          "Have you had any operations?"
+        ]
+      },
+      "concepts": {
+        "history_surgery": {
+          "polarity": "positive",
+          "value": "No knee surgery. I had a hernia repaired at 30."
+        }
+      },
+      "example_questions": [
+        "Have you had knee surgery or other operations?",
+        "Have you had any operations?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No knee surgery. I had a hernia repaired at 30.",
+            "concepts": {
+              "history_surgery": {
+                "polarity": "positive",
+                "value": "No knee surgery. I had a hernia repaired at 30."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Hernia repair at 30; no knee surgery."
+    },
+    {
+      "id": "history_daily_medicines",
+      "category": "medications",
+      "print_label": "Daily medicines",
+      "checklist": "h_history_daily_medicines",
+      "value": "Hydrochlorothiazide 25 milligrams daily. No regular gout medicine.",
+      "sp_says": [
+        "Hydrochlorothiazide 25 milligrams daily. No regular gout medicine."
+      ],
+      "triggers": {
+        "any": [
+          "What daily medicines do you take?",
+          "What medications are you taking?"
+        ]
+      },
+      "concepts": {
+        "history_daily_medicines": {
+          "polarity": "positive",
+          "value": "Hydrochlorothiazide 25 milligrams daily. No regular gout medicine."
+        }
+      },
+      "example_questions": [
+        "What daily medicines do you take?",
+        "What medications are you taking?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Hydrochlorothiazide 25 milligrams daily. No regular gout medicine.",
+            "concepts": {
+              "history_daily_medicines": {
+                "polarity": "positive",
+                "value": "Hydrochlorothiazide 25 milligrams daily. No regular gout medicine."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Hydrochlorothiazide 25 mg daily; no urate-lowering therapy."
+    },
+    {
+      "id": "history_drug_reactions",
+      "category": "allergies",
+      "print_label": "Drug reactions",
+      "checklist": "h_history_drug_reactions",
+      "value": "No known drug allergies.",
+      "sp_says": [
+        "No known drug allergies."
+      ],
+      "triggers": {
+        "any": [
+          "Are you allergic to any medicines?",
+          "Any medication allergies?"
+        ]
+      },
+      "concepts": {
+        "history_drug_reactions": {
+          "polarity": "positive",
+          "value": "No known drug allergies."
+        }
+      },
+      "example_questions": [
+        "Are you allergic to any medicines?",
+        "Any medication allergies?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No known drug allergies.",
+            "concepts": {
+              "history_drug_reactions": {
+                "polarity": "positive",
+                "value": "No known drug allergies."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No known drug allergies."
+    },
+    {
+      "id": "history_smoking",
+      "category": "social",
+      "print_label": "Smoking",
+      "checklist": "h_history_smoking",
+      "value": "I smoked half a pack daily for 10 years and quit 15 years ago.",
+      "sp_says": [
+        "I smoked half a pack daily for 10 years and quit 15 years ago."
+      ],
+      "triggers": {
+        "any": [
+          "Do you smoke?"
+        ]
+      },
+      "concepts": {
+        "history_smoking": {
+          "polarity": "positive",
+          "value": "I smoked half a pack daily for 10 years and quit 15 years ago."
+        }
+      },
+      "example_questions": [
+        "Do you smoke?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I smoked half a pack daily for 10 years and quit 15 years ago.",
+            "concepts": {
+              "history_smoking": {
+                "polarity": "positive",
+                "value": "I smoked half a pack daily for 10 years and quit 15 years ago."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Former smoker: 5 pack-years, quit 15 years ago.",
+      "history_topic": "tobacco"
+    },
+    {
+      "id": "history_alcohol",
+      "category": "social",
+      "print_label": "Alcohol",
+      "checklist": "h_history_alcohol",
+      "value": "Usually three beers on Friday and three on Saturday.",
+      "sp_says": [
+        "Usually three beers on Friday and three on Saturday."
+      ],
+      "triggers": {
+        "any": [
+          "How much alcohol do you drink?"
+        ]
+      },
+      "concepts": {
+        "history_alcohol": {
+          "polarity": "positive",
+          "value": "Usually three beers on Friday and three on Saturday."
+        }
+      },
+      "example_questions": [
+        "How much alcohol do you drink?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Usually three beers on Friday and three on Saturday.",
+            "concepts": {
+              "history_alcohol": {
+                "polarity": "positive",
+                "value": "Usually three beers on Friday and three on Saturday."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Approximately six beers weekly.",
+      "history_topic": "alcohol"
+    },
+    {
+      "id": "history_drugs",
+      "category": "social",
+      "print_label": "Drugs",
+      "checklist": "h_history_drugs",
+      "value": "No.",
+      "sp_says": [
+        "No."
+      ],
+      "triggers": {
+        "any": [
+          "Do you use recreational drugs?"
+        ]
+      },
+      "concepts": {
+        "history_drugs": {
+          "polarity": "positive",
+          "value": "No."
+        }
+      },
+      "example_questions": [
+        "Do you use recreational drugs?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No.",
+            "concepts": {
+              "history_drugs": {
+                "polarity": "positive",
+                "value": "No."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No recreational drugs.",
+      "history_topic": "drugs"
+    },
+    {
+      "id": "history_work",
+      "category": "social",
+      "print_label": "Work",
+      "checklist": "h_history_work",
+      "value": "I move stock in a grocery store, including lifting and squatting.",
+      "sp_says": [
+        "I move stock in a grocery store, including lifting and squatting."
+      ],
+      "triggers": {
+        "any": [
+          "What does your work involve?"
+        ]
+      },
+      "concepts": {
+        "history_work": {
+          "polarity": "positive",
+          "value": "I move stock in a grocery store, including lifting and squatting."
+        }
+      },
+      "example_questions": [
+        "What does your work involve?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I move stock in a grocery store, including lifting and squatting.",
+            "concepts": {
+              "history_work": {
+                "polarity": "positive",
+                "value": "I move stock in a grocery store, including lifting and squatting."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Grocery stocker; frequent lifting and squatting.",
+      "history_topic": "occupation"
+    },
+    {
+      "id": "history_home",
+      "category": "social",
+      "print_label": "Home",
+      "checklist": "h_history_home",
+      "value": "My wife can help. We have one flight of stairs at home.",
+      "sp_says": [
+        "My wife can help. We have one flight of stairs at home."
+      ],
+      "triggers": {
+        "any": [
+          "Who is available to help you?"
+        ]
+      },
+      "concepts": {
+        "history_home": {
+          "polarity": "positive",
+          "value": "My wife can help. We have one flight of stairs at home."
+        }
+      },
+      "example_questions": [
+        "Who is available to help you?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My wife can help. We have one flight of stairs at home.",
+            "concepts": {
+              "history_home": {
+                "polarity": "positive",
+                "value": "My wife can help. We have one flight of stairs at home."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Lives with wife; one flight of home stairs.",
+      "history_topic": "social_context"
+    },
+    {
+      "id": "history_family_history",
+      "category": "family",
+      "print_label": "Family history",
+      "checklist": "h_history_family_history",
+      "value": "My mother had knee replacements for wear-and-tear arthritis.",
+      "sp_says": [
+        "My mother had knee replacements for wear-and-tear arthritis."
+      ],
+      "triggers": {
+        "any": [
+          "Does joint disease run in the family?"
+        ]
+      },
+      "concepts": {
+        "history_family_history": {
+          "polarity": "positive",
+          "value": "My mother had knee replacements for wear-and-tear arthritis."
+        }
+      },
+      "example_questions": [
+        "Does joint disease run in the family?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My mother had knee replacements for wear-and-tear arthritis.",
+            "concepts": {
+              "history_family_history": {
+                "polarity": "positive",
+                "value": "My mother had knee replacements for wear-and-tear arthritis."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Mother: knee osteoarthritis requiring replacement."
+    },
+    {
+      "id": "history_other_family",
+      "category": "family",
+      "print_label": "Other family",
+      "checklist": "h_history_other_family",
+      "value": "My father has high blood pressure. My brother has gout.",
+      "sp_says": [
+        "My father has high blood pressure. My brother has gout."
+      ],
+      "triggers": {
+        "any": [
+          "What about your father and siblings?"
+        ]
+      },
+      "concepts": {
+        "history_other_family": {
+          "polarity": "positive",
+          "value": "My father has high blood pressure. My brother has gout."
+        }
+      },
+      "example_questions": [
+        "What about your father and siblings?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My father has high blood pressure. My brother has gout.",
+            "concepts": {
+              "history_other_family": {
+                "polarity": "positive",
+                "value": "My father has high blood pressure. My brother has gout."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Father: hypertension; brother: gout."
+    },
+    {
+      "id": "symptom_joint_swelling",
+      "category": "associated",
+      "print_label": "Joint swelling",
+      "checklist": "h_symptom_joint_swelling",
+      "value": "The right knee is swollen.",
+      "sp_says": [
+        "The right knee is swollen."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had joint swelling?",
+          "swollen joints"
+        ]
+      },
+      "concepts": {
+        "symptom_joint_swelling": {
+          "polarity": "positive",
+          "value": "The right knee is swollen."
+        }
+      },
+      "example_questions": [
+        "Have you had joint swelling?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "The right knee is swollen.",
+            "concepts": {
+              "symptom_joint_swelling": {
+                "polarity": "positive",
+                "value": "The right knee is swollen."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Right knee swelling.",
+      "ros_system": "musculoskeletal"
+    },
+    {
+      "id": "symptom_joint_pain",
+      "category": "associated",
+      "print_label": "Joint pain",
+      "checklist": "h_symptom_joint_pain",
+      "value": "The right knee hurts; no other joint hurts right now.",
+      "sp_says": [
+        "The right knee hurts; no other joint hurts right now."
+      ],
+      "triggers": {
+        "any": [
+          "Any other joint pain?",
+          "joint pain"
+        ]
+      },
+      "concepts": {
+        "symptom_joint_pain": {
+          "polarity": "positive",
+          "value": "The right knee hurts; no other joint hurts right now."
+        }
+      },
+      "example_questions": [
+        "Any other joint pain?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "The right knee hurts; no other joint hurts right now.",
+            "concepts": {
+              "symptom_joint_pain": {
+                "polarity": "positive",
+                "value": "The right knee hurts; no other joint hurts right now."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No other current joint pain.",
+      "ros_system": "musculoskeletal"
+    },
+    {
+      "id": "symptom_myalgia",
+      "category": "pertinent_negative",
+      "print_label": "Myalgia",
+      "checklist": "h_symptom_myalgia",
+      "value": "No muscle aches elsewhere.",
+      "sp_says": [
+        "No muscle aches elsewhere."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had myalgia?",
+          "muscle aches",
+          "body aches"
+        ]
+      },
+      "concepts": {
+        "symptom_myalgia": {
+          "polarity": "negative",
+          "value": "No muscle aches elsewhere."
+        }
+      },
+      "example_questions": [
+        "Have you had myalgia?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No muscle aches elsewhere.",
+            "concepts": {
+              "symptom_myalgia": {
+                "polarity": "negative",
+                "value": "No muscle aches elsewhere."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No generalized myalgia.",
+      "ros_system": "musculoskeletal"
+    },
+    {
+      "id": "symptom_fever",
+      "category": "pertinent_negative",
+      "print_label": "Fever",
+      "checklist": "h_symptom_fever",
+      "value": "No fever.",
+      "sp_says": [
+        "No fever."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had a fever?",
+          "fever"
+        ]
+      },
+      "concepts": {
+        "symptom_fever": {
+          "polarity": "negative",
+          "value": "No fever."
+        }
+      },
+      "example_questions": [
+        "Have you had a fever?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No fever.",
+            "concepts": {
+              "symptom_fever": {
+                "polarity": "negative",
+                "value": "No fever."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No fever.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_chills",
+      "category": "pertinent_negative",
+      "print_label": "Chills",
+      "checklist": "h_symptom_chills",
+      "value": "No chills.",
+      "sp_says": [
+        "No chills."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had chills?",
+          "chills"
+        ]
+      },
+      "concepts": {
+        "symptom_chills": {
+          "polarity": "negative",
+          "value": "No chills."
+        }
+      },
+      "example_questions": [
+        "Have you had chills?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No chills.",
+            "concepts": {
+              "symptom_chills": {
+                "polarity": "negative",
+                "value": "No chills."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No chills.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_fatigue",
+      "category": "pertinent_negative",
+      "print_label": "Fatigue",
+      "checklist": "h_symptom_fatigue",
+      "value": "I do not feel ill or unusually tired.",
+      "sp_says": [
+        "I do not feel ill or unusually tired."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had fatigue?",
+          "fatigue"
+        ]
+      },
+      "concepts": {
+        "symptom_fatigue": {
+          "polarity": "negative",
+          "value": "I do not feel ill or unusually tired."
+        }
+      },
+      "example_questions": [
+        "Have you had fatigue?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I do not feel ill or unusually tired.",
+            "concepts": {
+              "symptom_fatigue": {
+                "polarity": "negative",
+                "value": "I do not feel ill or unusually tired."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No systemic malaise.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_numbness",
+      "category": "pertinent_negative",
+      "print_label": "Numbness",
+      "checklist": "h_symptom_numbness",
+      "value": "My foot is not numb.",
+      "sp_says": [
+        "My foot is not numb."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had numbness?",
+          "numbness",
+          "numb"
+        ]
+      },
+      "concepts": {
+        "symptom_numbness": {
+          "polarity": "negative",
+          "value": "My foot is not numb."
+        }
+      },
+      "example_questions": [
+        "Have you had numbness?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My foot is not numb.",
+            "concepts": {
+              "symptom_numbness": {
+                "polarity": "negative",
+                "value": "My foot is not numb."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No distal numbness.",
+      "ros_system": "neurologic"
+    },
+    {
+      "id": "symptom_tingling",
+      "category": "pertinent_negative",
+      "print_label": "Tingling",
+      "checklist": "h_symptom_tingling",
+      "value": "No pins and needles.",
+      "sp_says": [
+        "No pins and needles."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had tingling?",
+          "pins and needles",
+          "tingling"
+        ]
+      },
+      "concepts": {
+        "symptom_tingling": {
+          "polarity": "negative",
+          "value": "No pins and needles."
+        }
+      },
+      "example_questions": [
+        "Have you had tingling?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No pins and needles.",
+            "concepts": {
+              "symptom_tingling": {
+                "polarity": "negative",
+                "value": "No pins and needles."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No paresthesias.",
+      "ros_system": "neurologic"
+    },
+    {
+      "id": "symptom_weakness",
+      "category": "pertinent_negative",
+      "print_label": "Weakness",
+      "checklist": "h_symptom_weakness",
+      "value": "The ankle and foot feel normally strong.",
+      "sp_says": [
+        "The ankle and foot feel normally strong."
+      ],
+      "triggers": {
+        "any": [
+          "Have you noticed weakness?",
+          "weak",
+          "weakness"
+        ]
+      },
+      "concepts": {
+        "symptom_weakness": {
+          "polarity": "negative",
+          "value": "The ankle and foot feel normally strong."
+        }
+      },
+      "example_questions": [
+        "Have you noticed weakness?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "The ankle and foot feel normally strong.",
+            "concepts": {
+              "symptom_weakness": {
+                "polarity": "negative",
+                "value": "The ankle and foot feel normally strong."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No distal weakness.",
+      "ros_system": "neurologic"
+    },
+    {
+      "id": "patient_concern",
+      "category": "concern",
+      "print_label": "Concern",
+      "checklist": "h_patient_concern",
+      "value": "I want to know what is causing this and how to get back to my usual activities.",
+      "sp_says": [
+        "I want to know what is causing this and how to get back to my usual activities."
+      ],
+      "triggers": {
+        "any": [
+          "What worries you most?"
+        ]
+      },
+      "concepts": {
+        "patient_concern": {
+          "polarity": "positive",
+          "value": "I want to know what is causing this and how to get back to my usual activities."
+        }
+      },
+      "example_questions": [
+        "What worries you most?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I want to know what is causing this and how to get back to my usual activities.",
+            "concepts": {
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "I want to know what is causing this and how to get back to my usual activities."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Wants explanation and return to usual activities."
+    }
+  ],
+  "concept_lexicon": {
+    "opening_complaint": [
+      "My right knee has been sore and swollen since I twisted it."
+    ],
+    "hpi_onset": [
+      "Three days ago.",
+      "Right knee pain for 3 days."
+    ],
+    "hpi_setting": [
+      "I turned while carrying a box, with my right foot planted. I did not fall.",
+      "Twisting injury on a planted foot while carrying a box; no fall."
+    ],
+    "hpi_location": [
+      "Along the inside of my right knee.",
+      "Medial right knee pain."
+    ],
+    "hpi_radiation": [
+      "No, it stays around the knee.",
+      "No radiation."
+    ],
+    "hpi_quality": [
+      "An ache with a sharp catch if I turn.",
+      "Aching with catching pain during rotation."
+    ],
+    "hpi_severity": [
+      "I can walk with a limp. The pain is 6 out of 10.",
+      "Weight bearing with limp; pain 6/10."
+    ],
+    "hpi_chronology": [
+      "It swelled gradually that evening, not immediately.",
+      "Delayed swelling over the first evening."
+    ],
+    "hpi_timing": [
+      "It catches, but I can straighten it. It has not given way.",
+      "Catching without true locking or giving way."
+    ],
+    "hpi_aggravating": [
+      "Turning, stairs and deep bending.",
+      "Worse with twisting, stairs and deep flexion."
+    ],
+    "hpi_alleviating": [
+      "Rest, ice wrapped in a towel, and elevating it.",
+      "Relief with rest, protected ice and elevation."
+    ],
+    "hpi_treatment": [
+      "Acetaminophen 650 milligrams twice yesterday.",
+      "Acetaminophen 650 mg twice yesterday."
+    ],
+    "hpi_past_occurrence": [
+      "It sometimes ached after work and felt stiff for about 5 minutes in the morning.",
+      "Prior activity-related ache and brief morning stiffness."
+    ],
+    "history_medical_history": [
+      "High blood pressure and gout. I had one red, swollen big toe last year, confirmed with fluid testing.",
+      "Hypertension; crystal-confirmed gout episode last year."
+    ],
+    "history_surgery": [
+      "No knee surgery. I had a hernia repaired at 30.",
+      "Hernia repair at 30; no knee surgery."
+    ],
+    "history_daily_medicines": [
+      "Hydrochlorothiazide 25 milligrams daily. No regular gout medicine.",
+      "Hydrochlorothiazide 25 mg daily; no urate-lowering therapy."
+    ],
+    "history_drug_reactions": [
+      "No known drug allergies."
+    ],
+    "history_smoking": [
+      "I smoked half a pack daily for 10 years and quit 15 years ago.",
+      "Former smoker: 5 pack-years, quit 15 years ago."
+    ],
+    "history_alcohol": [
+      "Usually three beers on Friday and three on Saturday.",
+      "Approximately six beers weekly."
+    ],
+    "history_drugs": [
+      "No.",
+      "No recreational drugs."
+    ],
+    "history_work": [
+      "I move stock in a grocery store, including lifting and squatting.",
+      "Grocery stocker; frequent lifting and squatting."
+    ],
+    "history_home": [
+      "My wife can help. We have one flight of stairs at home.",
+      "Lives with wife; one flight of home stairs."
+    ],
+    "history_family_history": [
+      "My mother had knee replacements for wear-and-tear arthritis.",
+      "Mother: knee osteoarthritis requiring replacement."
+    ],
+    "history_other_family": [
+      "My father has high blood pressure. My brother has gout.",
+      "Father: hypertension; brother: gout."
+    ],
+    "symptom_joint_swelling": [
+      "The right knee is swollen.",
+      "Right knee swelling.",
+      "swollen joints"
+    ],
+    "symptom_joint_pain": [
+      "The right knee hurts; no other joint hurts right now.",
+      "No other current joint pain.",
+      "joint pain"
+    ],
+    "symptom_myalgia": [
+      "No muscle aches elsewhere.",
+      "No generalized myalgia.",
+      "muscle aches",
+      "body aches"
+    ],
+    "symptom_fever": [
+      "No fever.",
+      "fever"
+    ],
+    "symptom_chills": [
+      "No chills.",
+      "chills"
+    ],
+    "symptom_fatigue": [
+      "I do not feel ill or unusually tired.",
+      "No systemic malaise.",
+      "fatigue"
+    ],
+    "symptom_numbness": [
+      "My foot is not numb.",
+      "No distal numbness.",
+      "numbness",
+      "numb"
+    ],
+    "symptom_tingling": [
+      "No pins and needles.",
+      "No paresthesias.",
+      "pins and needles",
+      "tingling"
+    ],
+    "symptom_weakness": [
+      "The ankle and foot feel normally strong.",
+      "No distal weakness.",
+      "weak",
+      "weakness"
+    ],
+    "patient_concern": [
+      "I want to know what is causing this and how to get back to my usual activities.",
+      "Wants explanation and return to usual activities."
+    ],
+    "exam_general_inspect": [
+      "Alert, comfortable at rest."
+    ],
+    "exam_msk_inspect": [
+      "Small right knee effusion without erythema or deformity."
+    ],
+    "exam_msk_palpate": [
+      "Medial joint-line tenderness and mild warmth; no patellar or fibular-head tenderness."
+    ],
+    "exam_msk_rom": [
+      "Right knee extends to 0 degrees and flexes to 110 degrees with pain near end flexion; mild crepitus."
+    ],
+    "exam_msk_strength": [
+      "Knee extension 4+/5 limited by pain; ankle dorsiflexion and plantarflexion 5/5."
+    ],
+    "exam_gait": [
+      "Antalgic gait; able to take four steps."
+    ],
+    "exam_peripheral_pulses": [
+      "Dorsalis pedis and posterior tibial pulses 2+ bilaterally."
+    ],
+    "exam_heart_auscultate": [
+      "Regular rate and rhythm without murmur."
+    ],
+    "exam_lungs_auscultate": [
+      "Clear bilateral breath sounds."
+    ],
+    "exam_osteo_screen": [
+      "L4 right lumbar paraspinal tissue texture change and tenderness."
+    ]
+  },
+  "exam_findings": {
+    "general_inspect": [
+      {
+        "id": "exam_general_inspect",
+        "text": "Alert, comfortable at rest.",
+        "concepts": {
+          "exam_general_inspect": {
+            "polarity": "positive",
+            "value": "Alert, comfortable at rest."
+          }
+        },
+        "scopes": [
+          "general"
+        ],
+        "checklist": "p_exam_general_inspect",
+        "requires_components": [],
+        "key_finding": true
+      }
+    ],
+    "msk_inspect": [
+      {
+        "id": "exam_msk_inspect",
+        "text": "Small right knee effusion without erythema or deformity.",
+        "concepts": {
+          "exam_msk_inspect": {
+            "polarity": "positive",
+            "value": "Small right knee effusion without erythema or deformity."
+          }
+        },
+        "scopes": [
+          "msk.inspection"
+        ],
+        "checklist": "p_exam_msk_inspect",
+        "requires_components": [
+          "swelling",
+          "erythema",
+          "deformity"
+        ],
+        "key_finding": true
+      }
+    ],
+    "msk_palpate": [
+      {
+        "id": "exam_msk_palpate",
+        "text": "Medial joint-line tenderness and mild warmth; no patellar or fibular-head tenderness.",
+        "concepts": {
+          "exam_msk_palpate": {
+            "polarity": "positive",
+            "value": "Medial joint-line tenderness and mild warmth; no patellar or fibular-head tenderness."
+          }
+        },
+        "scopes": [
+          "msk.palpation"
+        ],
+        "checklist": "p_exam_msk_palpate",
+        "requires_components": [
+          "point tenderness"
+        ],
+        "key_finding": true
+      }
+    ],
+    "msk_rom": [
+      {
+        "id": "exam_msk_rom",
+        "text": "Right knee extends to 0 degrees and flexes to 110 degrees with pain near end flexion; mild crepitus.",
+        "concepts": {
+          "exam_msk_rom": {
+            "polarity": "positive",
+            "value": "Right knee extends to 0 degrees and flexes to 110 degrees with pain near end flexion; mild crepitus."
+          }
+        },
+        "scopes": [
+          "msk.rom"
+        ],
+        "checklist": "p_exam_msk_rom",
+        "requires_components": [
+          "flexion",
+          "extension"
+        ],
+        "key_finding": true
+      }
+    ],
+    "msk_strength": [
+      {
+        "id": "exam_msk_strength",
+        "text": "Knee extension 4+/5 limited by pain; ankle dorsiflexion and plantarflexion 5/5.",
+        "concepts": {
+          "exam_msk_strength": {
+            "polarity": "positive",
+            "value": "Knee extension 4+/5 limited by pain; ankle dorsiflexion and plantarflexion 5/5."
+          }
+        },
+        "scopes": [
+          "neuro.motor"
+        ],
+        "checklist": "p_exam_msk_strength",
+        "requires_components": [
+          "lower extremity"
+        ],
+        "key_finding": true
+      }
+    ],
+    "gait": [
+      {
+        "id": "exam_gait",
+        "text": "Antalgic gait; able to take four steps.",
+        "concepts": {
+          "exam_gait": {
+            "polarity": "positive",
+            "value": "Antalgic gait; able to take four steps."
+          }
+        },
+        "scopes": [
+          "neuro.gait"
+        ],
+        "checklist": "p_exam_gait",
+        "requires_components": [],
+        "key_finding": true
+      }
+    ],
+    "peripheral_pulses": [
+      {
+        "id": "exam_peripheral_pulses",
+        "text": "Dorsalis pedis and posterior tibial pulses 2+ bilaterally.",
+        "concepts": {
+          "exam_peripheral_pulses": {
+            "polarity": "positive",
+            "value": "Dorsalis pedis and posterior tibial pulses 2+ bilaterally."
+          }
+        },
+        "scopes": [
+          "extremities.pulses"
+        ],
+        "checklist": "p_exam_peripheral_pulses",
+        "requires_components": [
+          "dorsalis pedis",
+          "posterior tibial"
+        ],
+        "key_finding": true
+      }
+    ],
+    "heart_auscultate": [
+      {
+        "id": "exam_heart_auscultate",
+        "text": "Regular rate and rhythm without murmur.",
+        "concepts": {
+          "exam_heart_auscultate": {
+            "polarity": "positive",
+            "value": "Regular rate and rhythm without murmur."
+          }
+        },
+        "scopes": [
+          "heart"
+        ],
+        "checklist": "p_exam_heart_auscultate",
+        "requires_components": [
+          "aortic",
+          "pulmonic",
+          "tricuspid",
+          "mitral",
+          "on skin"
+        ],
+        "key_finding": true
+      }
+    ],
+    "lungs_auscultate": [
+      {
+        "id": "exam_lungs_auscultate",
+        "text": "Clear bilateral breath sounds.",
+        "concepts": {
+          "exam_lungs_auscultate": {
+            "polarity": "positive",
+            "value": "Clear bilateral breath sounds."
+          }
+        },
+        "scopes": [
+          "lungs"
+        ],
+        "checklist": "p_exam_lungs_auscultate",
+        "requires_components": [
+          "posterior",
+          "on skin",
+          "compare side to side",
+          "mouth open"
+        ],
+        "key_finding": true
+      }
+    ],
+    "osteo_screen": [
+      {
+        "id": "exam_osteo_screen",
+        "text": "L4 right lumbar paraspinal tissue texture change and tenderness.",
+        "concepts": {
+          "exam_osteo_screen": {
+            "polarity": "positive",
+            "value": "L4 right lumbar paraspinal tissue texture change and tenderness."
+          }
+        },
+        "scopes": [
+          "osteopathic"
+        ],
+        "checklist": "p_exam_osteo_screen",
+        "requires_components": [
+          "lumbar"
+        ],
+        "key_finding": false
+      }
+    ]
+  },
+  "refusals": [],
+  "refusal_expectation": {},
+  "area_of_concern": {
+    "system": "Musculoskeletal",
+    "required_methods": [
+      "inspect",
+      "palpate"
+    ],
+    "special_tests": [],
+    "note": "Use mechanism and mechanical symptoms while retaining crystal and infection safety checks."
+  },
+  "osteopathic": {
+    "expected_documentation": "Document the supplied level and palpatory descriptor only after the structural screen; treatment is not implied."
+  },
+  "ros_pertinent_systems": [
+    "musculoskeletal",
+    "general",
+    "neurologic"
+  ],
+  "differentials": [
+    {
+      "rank": 1,
+      "name": "Medial meniscal injury",
+      "vindicate": "T",
+      "aliases": [
+        "Medial meniscal injury"
+      ],
+      "supported_by": [
+        "hpi_setting",
+        "hpi_timing",
+        "exam_msk_palpate"
+      ],
+      "teaching_context": "Twisting mechanism, delayed effusion, medial joint-line tenderness and catching favor a meniscal injury."
+    },
+    {
+      "rank": 2,
+      "name": "Knee osteoarthritis with an acute flare",
+      "vindicate": "D",
+      "aliases": [
+        "Knee osteoarthritis with an acute flare"
+      ],
+      "supported_by": [
+        "hpi_past_occurrence",
+        "history_family_history",
+        "exam_msk_rom"
+      ],
+      "teaching_context": "Prior activity-related ache, brief stiffness and crepitus support underlying osteoarthritis."
+    },
+    {
+      "rank": 3,
+      "name": "Acute gouty arthritis",
+      "vindicate": "E",
+      "aliases": [
+        "Acute gouty arthritis"
+      ],
+      "supported_by": [
+        "history_medical_history",
+        "history_daily_medicines",
+        "exam_msk_palpate"
+      ],
+      "teaching_context": "Prior crystal-proven gout, diuretic exposure and a warm effusion make crystal arthritis plausible, although this episode followed mechanical injury."
+    }
+  ],
+  "implausible_differentials": [],
+  "plan_expectations": {
+    "tests": [],
+    "medications": [],
+    "omt": [],
+    "education": [],
+    "referral": [],
+    "follow_up": []
+  },
+  "checklist": {
+    "history": [
+      {
+        "id": "h_opening_complaint",
+        "text": "Opening complaint"
+      },
+      {
+        "id": "h_hpi_onset",
+        "text": "Onset"
+      },
+      {
+        "id": "h_hpi_setting",
+        "text": "Mechanism"
+      },
+      {
+        "id": "h_hpi_location",
+        "text": "Location"
+      },
+      {
+        "id": "h_hpi_radiation",
+        "text": "Spread"
+      },
+      {
+        "id": "h_hpi_quality",
+        "text": "Character"
+      },
+      {
+        "id": "h_hpi_severity",
+        "text": "Weight bearing"
+      },
+      {
+        "id": "h_hpi_chronology",
+        "text": "Swelling"
+      },
+      {
+        "id": "h_hpi_timing",
+        "text": "Catching, locking or giving way"
+      },
+      {
+        "id": "h_hpi_aggravating",
+        "text": "Triggers"
+      },
+      {
+        "id": "h_hpi_alleviating",
+        "text": "Relief"
+      },
+      {
+        "id": "h_hpi_treatment",
+        "text": "Medication"
+      },
+      {
+        "id": "h_hpi_past_occurrence",
+        "text": "Prior joint trouble"
+      },
+      {
+        "id": "h_history_medical_history",
+        "text": "Medical history"
+      },
+      {
+        "id": "h_history_surgery",
+        "text": "Surgery"
+      },
+      {
+        "id": "h_history_daily_medicines",
+        "text": "Daily medicines"
+      },
+      {
+        "id": "h_history_drug_reactions",
+        "text": "Drug reactions"
+      },
+      {
+        "id": "h_history_smoking",
+        "text": "Smoking"
+      },
+      {
+        "id": "h_history_alcohol",
+        "text": "Alcohol"
+      },
+      {
+        "id": "h_history_drugs",
+        "text": "Drugs"
+      },
+      {
+        "id": "h_history_work",
+        "text": "Work"
+      },
+      {
+        "id": "h_history_home",
+        "text": "Home"
+      },
+      {
+        "id": "h_history_family_history",
+        "text": "Family history"
+      },
+      {
+        "id": "h_history_other_family",
+        "text": "Other family"
+      },
+      {
+        "id": "h_symptom_joint_swelling",
+        "text": "Joint swelling"
+      },
+      {
+        "id": "h_symptom_joint_pain",
+        "text": "Joint pain"
+      },
+      {
+        "id": "h_symptom_myalgia",
+        "text": "Myalgia"
+      },
+      {
+        "id": "h_symptom_fever",
+        "text": "Fever"
+      },
+      {
+        "id": "h_symptom_chills",
+        "text": "Chills"
+      },
+      {
+        "id": "h_symptom_fatigue",
+        "text": "Fatigue"
+      },
+      {
+        "id": "h_symptom_numbness",
+        "text": "Numbness"
+      },
+      {
+        "id": "h_symptom_tingling",
+        "text": "Tingling"
+      },
+      {
+        "id": "h_symptom_weakness",
+        "text": "Weakness"
+      },
+      {
+        "id": "h_patient_concern",
+        "text": "Concern"
+      }
+    ],
+    "physical": [
+      {
+        "id": "p_exam_general_inspect",
+        "text": "General appearance",
+        "maneuver": "general_inspect",
+        "components": []
+      },
+      {
+        "id": "p_exam_msk_inspect",
+        "text": "Inspect the affected area",
+        "maneuver": "msk_inspect",
+        "components": [
+          "swelling",
+          "erythema",
+          "deformity"
+        ]
+      },
+      {
+        "id": "p_exam_msk_palpate",
+        "text": "Palpate the affected area",
+        "maneuver": "msk_palpate",
+        "components": [
+          "point tenderness"
+        ]
+      },
+      {
+        "id": "p_exam_msk_rom",
+        "text": "Range of motion",
+        "maneuver": "msk_rom",
+        "components": [
+          "flexion",
+          "extension"
+        ]
+      },
+      {
+        "id": "p_exam_msk_strength",
+        "text": "Muscle strength testing",
+        "maneuver": "msk_strength",
+        "components": [
+          "lower extremity"
+        ]
+      },
+      {
+        "id": "p_exam_gait",
+        "text": "Observe gait",
+        "maneuver": "gait",
+        "components": []
+      },
+      {
+        "id": "p_exam_peripheral_pulses",
+        "text": "Palpate peripheral pulses",
+        "maneuver": "peripheral_pulses",
+        "components": [
+          "dorsalis pedis",
+          "posterior tibial"
+        ]
+      },
+      {
+        "id": "p_exam_heart_auscultate",
+        "text": "Auscultate heart",
+        "maneuver": "heart_auscultate",
+        "components": [
+          "aortic",
+          "pulmonic",
+          "tricuspid",
+          "mitral",
+          "on skin"
+        ]
+      },
+      {
+        "id": "p_exam_lungs_auscultate",
+        "text": "Auscultate lungs",
+        "maneuver": "lungs_auscultate",
+        "components": [
+          "posterior",
+          "on skin",
+          "compare side to side",
+          "mouth open"
+        ]
+      },
+      {
+        "id": "p_exam_osteo_screen",
+        "text": "Osteopathic structural screen",
+        "maneuver": "osteo_screen",
+        "components": [
+          "lumbar"
+        ]
+      },
+      {
+        "id": "p_introduce",
+        "text": "Introduce yourself and verify identity",
+        "courtesy": "introduce"
+      },
+      {
+        "id": "p_hand_hygiene",
+        "text": "Clean hands before examination",
+        "courtesy": "hand_hygiene"
+      },
+      {
+        "id": "p_drape",
+        "text": "Provide appropriate draping",
+        "courtesy": "drape"
+      }
+    ]
+  },
+  "model_note": {
+    "S": "CC: My right knee has been sore and swollen since I twisted it.\n\nHPI: 54-year-old male. Right knee pain for 3 days. Twisting injury on a planted foot while carrying a box; no fall. Medial right knee pain. No radiation. Aching with catching pain during rotation. Weight bearing with limp; pain 6/10. Delayed swelling over the first evening. Catching without true locking or giving way. Worse with twisting, stairs and deep flexion. Relief with rest, protected ice and elevation. Acetaminophen 650 mg twice yesterday. Prior activity-related ache and brief morning stiffness.\n\nPMH: Hypertension; crystal-confirmed gout episode last year.\n\nPSH: Hernia repair at 30; no knee surgery.\n\nMeds: Hydrochlorothiazide 25 mg daily; no urate-lowering therapy.\n\nSH: Former smoker: 5 pack-years, quit 15 years ago. Approximately six beers weekly. No recreational drugs. Grocery stocker; frequent lifting and squatting. Lives with wife; one flight of home stairs.\n\nFH: Mother: knee osteoarthritis requiring replacement. Father: hypertension; brother: gout.\n\nAllergies: No known drug allergies.\n\nROS: Musculoskeletal: Right knee swelling. No other current joint pain. No generalized myalgia. General: No fever. No chills. No systemic malaise. Neurologic: No distal numbness. No paresthesias. No distal weakness.",
+    "O": "Vitals: BP 138/84 mmHg, P 78 bpm, R 16 rpm, T 98.5 F oral, Pulse Ox 98% on room air, Ht 5' 11\", Wt 206 lbs\n\nGeneral: Alert, comfortable at rest.\nMusculoskeletal: Small right knee effusion without erythema or deformity. Medial joint-line tenderness and mild warmth; no patellar or fibular-head tenderness. Right knee extends to 0 degrees and flexes to 110 degrees with pain near end flexion; mild crepitus. Knee extension 4+/5 limited by pain; ankle dorsiflexion and plantarflexion 5/5. Antalgic gait; able to take four steps.\nHeart: Dorsalis pedis and posterior tibial pulses 2+ bilaterally. Regular rate and rhythm without murmur.\nLungs: Clear bilateral breath sounds.\nOsteopathic: L4 right lumbar paraspinal tissue texture change and tenderness.",
+    "A": [
+      "1. Medial meniscal injury",
+      "2. Knee osteoarthritis with an acute flare",
+      "3. Acute gouty arthritis"
+    ],
+    "P": [
+      "1. Protect weight bearing as needed, avoid twisting/squatting and use ice, compression and elevation with safe analgesia. Assess fracture-imaging criteria and ligament stability; consider right knee MRI or orthopedics for persistent catching or true locking. Arrange modified work and review in 1 week. Fever, marked warmth, inability to bear weight or a locked knee warrants urgent reassessment.",
+      "2. If chronic symptoms persist, obtain weight-bearing radiographs when indicated and discuss strengthening/physical therapy and activity modification. Explain that degenerative changes may coexist with injury.",
+      "3. If crystal or septic arthritis remains possible with increasing warmth/effusion, arrange aspiration for crystals, cell count and culture before assuming gout. Review diuretic and gout management and safe anti-inflammatory options; explain that crystals do not exclude infection, with same-day evaluation for a hot swollen joint or fever."
+    ]
+  },
+  "print_additional_exams": {
+    "osteo_screen": "Include when practicing the course structural screen; it does not establish the cause of the complaint."
+  },
+  "ideal_encounter_extras": [
+    "Use mechanism and mechanical symptoms while retaining crystal and infection safety checks."
+  ],
+  "supersedes_core": [
+    "tobacco_use",
+    "alcohol_use",
+    "drug_use",
+    "allergies",
+    "medications",
+    "family_history",
+    "past_medical",
+    "past_surgical",
+    "joint_swelling",
+    "joint_pain",
+    "myalgia",
+    "fever",
+    "chills",
+    "fatigue",
+    "numbness",
+    "tingling",
+    "weakness"
+  ],
+  "review_status": "Source-checked fictional practice; not faculty or clinician approved.",
+  "clinical_review": {
+    "status": "source_checked_not_clinician_approved",
+    "date": "2026-09-14",
+    "method": "Individual presentation, differential, safety and plan review against named primary clinical references plus course documentation constraints.",
+    "limits": "Fictional details deliberately authored. Mnemonic category placement is instructional and is not proof of etiology. Generic 3D appearance is not a diagnostic visual.",
+    "sources": [
+      "https://www.orthoinfo.org/diseases--conditions/meniscus-tears",
+      "https://www.niams.nih.gov/health-topics/gout/diagnosis-treatment-and-steps-to-take"
+    ]
+  },
+  "sources": [
+    {
+      "title": "2026 FALL M2 ILG Student Manual",
+      "path": "claude builds/PCM/2026 FALL M2 ILG - STUDENT MANUAL update.docx",
+      "locator": "SOAP rubric and physical examination requirements",
+      "kind": "course"
+    },
+    {
+      "title": "Meniscus tears",
+      "url": "https://www.orthoinfo.org/diseases--conditions/meniscus-tears",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+    },
+    {
+      "title": "Gout diagnosis and treatment",
+      "url": "https://www.niams.nih.gov/health-topics/gout/diagnosis-treatment-and-steps-to-take",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+    }
+  ],
+  "teaching": {
+    "goals": [
+      "Use mechanism and mechanical symptoms while retaining crystal and infection safety checks.",
+      "Document only supplied, asked or examined information."
+    ],
+    "skills": [
+      "history-sequencing",
+      "focused-examination",
+      "clinical-reasoning",
+      "evidence-based-soap",
+      "musculoskeletal"
+    ],
+    "common_omissions": [
+      "Distinguishing history from examination evidence.",
+      "Explaining uncertainty and the practical follow-up plan."
+    ],
+    "lesson_plan": {
+      "notice": "Use mechanism and mechanical symptoms while retaining crystal and infection safety checks.",
+      "anchor": "Knee pain after twisting",
+      "pivot": "Was swelling immediate or delayed, and is the knee truly locked?",
+      "exam": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
+      "avoid": "Treating an unperformed examination or a possible diagnosis as obtained fact."
+    },
+    "closing_dialogue": [
+      "We will protect the knee, assess stability and decide whether imaging is needed. I want to review it in one week. If it becomes hot and very swollen, you develop fever, or it locks, seek urgent assessment."
+    ],
+    "concern_response": "We can document temporary lifting and squatting limits and discuss how you will manage stairs at home.",
+    "reasoning_steps": [
+      {
+        "id": "orient",
+        "phase": "history",
+        "purpose": "Hear the presenting concern",
+        "question": "What brings you in today?",
+        "fact_ids": [
+          "opening_complaint"
+        ],
+        "why": "Use mechanism and mechanical symptoms while retaining crystal and infection safety checks."
+      },
+      {
+        "id": "pattern",
+        "phase": "history",
+        "purpose": "Clarify the pattern",
+        "question": "Was swelling immediate or delayed, and is the knee truly locked?",
+        "fact_ids": [
+          "hpi_onset"
+        ],
+        "why": "Use mechanism and mechanical symptoms while retaining crystal and infection safety checks."
+      },
+      {
+        "id": "examine",
+        "phase": "exam",
+        "purpose": "Perform relevant examinations",
+        "question": "May I examine you?",
+        "fact_ids": [],
+        "why": "Findings require performed actions."
+      }
+    ],
+    "reasoning_map": [
+      {
+        "id": "msk-knee-injury-decision",
+        "question": "Was swelling immediate or delayed, and is the knee truly locked?",
+        "why": "Use mechanism and mechanical symptoms while retaining crystal and infection safety checks.",
+        "if_present": "Use the reported pattern to select the relevant examinations and assess urgency.",
+        "if_absent": "Keep alternatives open and ask a focused follow-up.",
+        "next_action": "Perform the relevant case-specific examination.",
+        "document": "Separate reported symptoms, observed signs, assessment and proposed care."
+      }
+    ],
+    "classification_note": "Categories reflect the explicitly proposed mechanism; e.g., irritant exposure is I2. They are a course organizing aid, not confirmation of mechanism."
+  },
+  "content_revisions": {
+    "library_expansion_20260914": "New independently authored presentation. Single core path; no renamed cosmetic variants."
+  }
+}

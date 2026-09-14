@@ -1101,6 +1101,8 @@ def _relevant_regions(aoc):
         regions += ["Musculoskeletal"]
     if any(w in text for w in ["skin", "derm"]):
         regions += ["Skin"]
+    if re.search(r"\b(?:heent|ent|eyes?|ears?|nose|throat)\b", text):
+        regions += ["HEENT"]
     return regions or ["Abdomen"]
 
 
@@ -1244,6 +1246,8 @@ def _vindicate_of(text, case):
         if n > best_len:
             best, best_len = d, n
     if best is not None:
+        if best.get("vindicate") not in config.VINDICATE:
+            return None, None  # Unassigned etiology cannot earn a guessed category.
         return best["vindicate"], best
     hits = []
     for letter, spec in config.VINDICATE.items():

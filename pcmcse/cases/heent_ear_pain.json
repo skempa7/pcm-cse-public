@@ -1,0 +1,2248 @@
+{
+  "id": "heent-ear-pain",
+  "presentation_id": "heent-ear-pain",
+  "title": "Ear pain after swimming",
+  "hidden_label": "Station 31",
+  "system": "HEENT",
+  "complaint_family": "HEENT",
+  "level": "M2",
+  "difficulty": "intermediate",
+  "blurb": "My left ear hurts and feels blocked.",
+  "curriculum_note": "Supplementary fictional practice for the course history, physical examination and SOAP skills; not an official or predicted station.",
+  "scope_status": "supplementary_cross_system",
+  "station": {
+    "doorway": [
+      "Jordan Park, 24-year-old male.",
+      "My left ear hurts and feels blocked.",
+      "Vital signs are available on the chart.",
+      "Perform a focused history and physical examination, discuss your plan, and document only what you obtain.",
+      "Use the time limit stated for your selected practice mode."
+    ],
+    "vitals": {
+      "BP": "118/74 mmHg",
+      "P": "72 bpm",
+      "R": "14 rpm",
+      "T": "98.4 F oral",
+      "Pulse Ox": "99% on room air",
+      "Ht": "5' 10\"",
+      "Wt": "166 lbs"
+    },
+    "supplied_results": []
+  },
+  "patient": {
+    "name": "Jordan Park",
+    "age": 24,
+    "sex": "male",
+    "pronouns": "he/him",
+    "persona": "I am a lifeguard and wear earbuds during my commute. I live with my brother.",
+    "opening": "My left ear hurts and feels blocked.",
+    "opening_facts": [
+      "opening_complaint"
+    ],
+    "opening_contract": {
+      "text": "My left ear hurts and feels blocked.",
+      "fact_ids": [
+        "opening_complaint"
+      ],
+      "review": "Exact opening only."
+    },
+    "volunteer_budget": 1,
+    "volunteer_order": [
+      "patient_concern"
+    ],
+    "affect": "I want to know what is causing this and how to get back to my usual activities.",
+    "communication_style": "concise",
+    "empathy_replies": [
+      "Thank you for listening.",
+      "I appreciate you explaining that."
+    ],
+    "closing_questions": [
+      "I want to know what is causing this and how to get back to my usual activities."
+    ],
+    "appearance": {
+      "presentation": "male",
+      "model": "mpfb-public-patient",
+      "skinTone": 1,
+      "eyeColor": "brown",
+      "hairColor": "brunette",
+      "hairStyle": "bald",
+      "outfit": "fitted-casual",
+      "bodyBuild": "standard"
+    },
+    "voice": {
+      "rate": 1,
+      "pitch": 1,
+      "gender": "male",
+      "adult": true
+    },
+    "education_responses": [
+      {
+        "student": "The ear examination will guide treatment. If canal infection is confirmed, drops and keeping the ear dry usually help. We will avoid neomycin because of your reaction. Come back if it is not improving within two to three days.",
+        "patient": "Thank you. I understand that the next steps depend on the examination and tests."
+      },
+      {
+        "student": "We can discuss temporary dry duties at the pool so the ear can recover without unnecessary time off.",
+        "patient": "That would help. Thank you."
+      }
+    ]
+  },
+  "facts": [
+    {
+      "id": "opening_complaint",
+      "category": "chief_complaint",
+      "print_label": "Opening complaint",
+      "checklist": "h_opening_complaint",
+      "value": "My left ear hurts and feels blocked.",
+      "sp_says": [
+        "My left ear hurts and feels blocked."
+      ],
+      "triggers": {
+        "any": [
+          "What brings you in today?"
+        ]
+      },
+      "concepts": {
+        "opening_complaint": {
+          "polarity": "positive",
+          "value": "My left ear hurts and feels blocked."
+        }
+      },
+      "example_questions": [
+        "What brings you in today?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My left ear hurts and feels blocked.",
+            "concepts": {
+              "opening_complaint": {
+                "polarity": "positive",
+                "value": "My left ear hurts and feels blocked."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "My left ear hurts and feels blocked."
+    },
+    {
+      "id": "hpi_onset",
+      "category": "onset",
+      "print_label": "Onset",
+      "checklist": "h_hpi_onset",
+      "value": "Two days ago.",
+      "sp_says": [
+        "Two days ago."
+      ],
+      "triggers": {
+        "any": [
+          "When did the ear pain begin?",
+          "when did",
+          "started",
+          "began"
+        ]
+      },
+      "concepts": {
+        "hpi_onset": {
+          "polarity": "positive",
+          "value": "Two days ago."
+        }
+      },
+      "example_questions": [
+        "When did the ear pain begin?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Two days ago.",
+            "concepts": {
+              "hpi_onset": {
+                "polarity": "positive",
+                "value": "Two days ago."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Left otalgia for 2 days.",
+      "temporal_role": "first_episode_onset"
+    },
+    {
+      "id": "hpi_location",
+      "category": "location",
+      "print_label": "Side",
+      "checklist": "h_hpi_location",
+      "value": "The left one, near the opening.",
+      "sp_says": [
+        "The left one, near the opening."
+      ],
+      "triggers": {
+        "any": [
+          "Which ear hurts?",
+          "where",
+          "which side"
+        ]
+      },
+      "concepts": {
+        "hpi_location": {
+          "polarity": "positive",
+          "value": "The left one, near the opening."
+        }
+      },
+      "example_questions": [
+        "Which ear hurts?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "The left one, near the opening.",
+            "concepts": {
+              "hpi_location": {
+                "polarity": "positive",
+                "value": "The left one, near the opening."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Pain at left canal opening."
+    },
+    {
+      "id": "hpi_quality",
+      "category": "quality",
+      "print_label": "Character",
+      "checklist": "h_hpi_quality",
+      "value": "A steady sore ache with itching.",
+      "sp_says": [
+        "A steady sore ache with itching."
+      ],
+      "triggers": {
+        "any": [
+          "What does the ear pain feel like?",
+          "feel like",
+          "describe"
+        ]
+      },
+      "concepts": {
+        "hpi_quality": {
+          "polarity": "positive",
+          "value": "A steady sore ache with itching."
+        }
+      },
+      "example_questions": [
+        "What does the ear pain feel like?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "A steady sore ache with itching.",
+            "concepts": {
+              "hpi_quality": {
+                "polarity": "positive",
+                "value": "A steady sore ache with itching."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Aching and pruritus."
+    },
+    {
+      "id": "hpi_severity",
+      "category": "severity",
+      "print_label": "Severity",
+      "checklist": "h_hpi_severity",
+      "value": "About 5 out of 10.",
+      "sp_says": [
+        "About 5 out of 10."
+      ],
+      "triggers": {
+        "any": [
+          "How bad is the pain?",
+          "how bad",
+          "out of ten",
+          "severity"
+        ]
+      },
+      "concepts": {
+        "hpi_severity": {
+          "polarity": "positive",
+          "value": "About 5 out of 10."
+        }
+      },
+      "example_questions": [
+        "How bad is the pain?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "About 5 out of 10.",
+            "concepts": {
+              "hpi_severity": {
+                "polarity": "positive",
+                "value": "About 5 out of 10."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Pain 5/10."
+    },
+    {
+      "id": "hpi_timing",
+      "category": "timing",
+      "print_label": "Pattern",
+      "checklist": "h_hpi_timing",
+      "value": "It is there most of the day.",
+      "sp_says": [
+        "It is there most of the day."
+      ],
+      "triggers": {
+        "any": [
+          "Is it constant or intermittent?",
+          "how long each",
+          "how often"
+        ]
+      },
+      "concepts": {
+        "hpi_timing": {
+          "polarity": "positive",
+          "value": "It is there most of the day."
+        }
+      },
+      "example_questions": [
+        "Is it constant or intermittent?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "It is there most of the day.",
+            "concepts": {
+              "hpi_timing": {
+                "polarity": "positive",
+                "value": "It is there most of the day."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Persistent daily discomfort.",
+      "question_dimensions": [
+        "frequency"
+      ]
+    },
+    {
+      "id": "hpi_chronology",
+      "category": "chronology",
+      "print_label": "Change",
+      "checklist": "h_hpi_chronology",
+      "value": "The itching started first, then it became sore and muffled.",
+      "sp_says": [
+        "The itching started first, then it became sore and muffled."
+      ],
+      "triggers": {
+        "any": [
+          "How has it changed?",
+          "changed",
+          "progressed"
+        ]
+      },
+      "concepts": {
+        "hpi_chronology": {
+          "polarity": "positive",
+          "value": "The itching started first, then it became sore and muffled."
+        }
+      },
+      "example_questions": [
+        "How has it changed?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "The itching started first, then it became sore and muffled.",
+            "concepts": {
+              "hpi_chronology": {
+                "polarity": "positive",
+                "value": "The itching started first, then it became sore and muffled."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Pruritus preceded pain and muffled hearing.",
+      "question_dimensions": [
+        "progression"
+      ],
+      "temporal_role": "pattern_or_progression"
+    },
+    {
+      "id": "hpi_setting",
+      "category": "setting",
+      "print_label": "Water and ear products",
+      "checklist": "h_hpi_setting",
+      "value": "I swam all weekend and started using new in-ear earbuds last week.",
+      "sp_says": [
+        "I swam all weekend and started using new in-ear earbuds last week."
+      ],
+      "triggers": {
+        "any": [
+          "Have you been swimming or put anything new in your ear?",
+          "trigger",
+          "doing when"
+        ]
+      },
+      "concepts": {
+        "hpi_setting": {
+          "polarity": "positive",
+          "value": "I swam all weekend and started using new in-ear earbuds last week."
+        }
+      },
+      "example_questions": [
+        "Have you been swimming or put anything new in your ear?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I swam all weekend and started using new in-ear earbuds last week.",
+            "concepts": {
+              "hpi_setting": {
+                "polarity": "positive",
+                "value": "I swam all weekend and started using new in-ear earbuds last week."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Recent swimming and new in-ear earbuds."
+    },
+    {
+      "id": "hpi_aggravating",
+      "category": "aggravating",
+      "print_label": "Triggers",
+      "checklist": "h_hpi_aggravating",
+      "value": "Touching the ear and putting the earbud in hurt. Chewing aches a little near my jaw.",
+      "sp_says": [
+        "Touching the ear and putting the earbud in hurt. Chewing aches a little near my jaw."
+      ],
+      "triggers": {
+        "any": [
+          "What makes the pain worse?",
+          "makes worse"
+        ]
+      },
+      "concepts": {
+        "hpi_aggravating": {
+          "polarity": "positive",
+          "value": "Touching the ear and putting the earbud in hurt. Chewing aches a little near my jaw."
+        }
+      },
+      "example_questions": [
+        "What makes the pain worse?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Touching the ear and putting the earbud in hurt. Chewing aches a little near my jaw.",
+            "concepts": {
+              "hpi_aggravating": {
+                "polarity": "positive",
+                "value": "Touching the ear and putting the earbud in hurt. Chewing aches a little near my jaw."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Pain with ear contact/earbud insertion; mild chewing-related jaw ache."
+    },
+    {
+      "id": "hpi_alleviating",
+      "category": "alleviating",
+      "print_label": "Relief",
+      "checklist": "h_hpi_alleviating",
+      "value": "Leaving the earbud out helps a little.",
+      "sp_says": [
+        "Leaving the earbud out helps a little."
+      ],
+      "triggers": {
+        "any": [
+          "What helps?",
+          "helps",
+          "relieves"
+        ]
+      },
+      "concepts": {
+        "hpi_alleviating": {
+          "polarity": "positive",
+          "value": "Leaving the earbud out helps a little."
+        }
+      },
+      "example_questions": [
+        "What helps?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Leaving the earbud out helps a little.",
+            "concepts": {
+              "hpi_alleviating": {
+                "polarity": "positive",
+                "value": "Leaving the earbud out helps a little."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Partial relief without earbud."
+    },
+    {
+      "id": "hpi_treatment",
+      "category": "treatment",
+      "print_label": "Self-treatment",
+      "checklist": "h_hpi_treatment",
+      "value": "I took acetaminophen 500 milligrams last night. No ear drops.",
+      "sp_says": [
+        "I took acetaminophen 500 milligrams last night. No ear drops."
+      ],
+      "triggers": {
+        "any": [
+          "Have you used drops or pain medicine?",
+          "tried for",
+          "taken for"
+        ]
+      },
+      "concepts": {
+        "hpi_treatment": {
+          "polarity": "positive",
+          "value": "I took acetaminophen 500 milligrams last night. No ear drops."
+        }
+      },
+      "example_questions": [
+        "Have you used drops or pain medicine?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I took acetaminophen 500 milligrams last night. No ear drops.",
+            "concepts": {
+              "hpi_treatment": {
+                "polarity": "positive",
+                "value": "I took acetaminophen 500 milligrams last night. No ear drops."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Acetaminophen 500 mg once; no ear drops."
+    },
+    {
+      "id": "hpi_past_occurrence",
+      "category": "past_occurrence",
+      "print_label": "Prior ear trouble",
+      "checklist": "h_hpi_past_occurrence",
+      "value": "Not ear pain, but earbuds have made my skin itchy before.",
+      "sp_says": [
+        "Not ear pain, but earbuds have made my skin itchy before."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had this before?",
+          "had before"
+        ]
+      },
+      "concepts": {
+        "hpi_past_occurrence": {
+          "polarity": "positive",
+          "value": "Not ear pain, but earbuds have made my skin itchy before."
+        }
+      },
+      "example_questions": [
+        "Have you had this before?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Not ear pain, but earbuds have made my skin itchy before.",
+            "concepts": {
+              "hpi_past_occurrence": {
+                "polarity": "positive",
+                "value": "Not ear pain, but earbuds have made my skin itchy before."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Prior earbud-related itching, no prior otalgia."
+    },
+    {
+      "id": "history_medical_history",
+      "category": "pmh",
+      "print_label": "Medical history",
+      "checklist": "h_history_medical_history",
+      "value": "No chronic illness. I grind my teeth at night.",
+      "sp_says": [
+        "No chronic illness. I grind my teeth at night."
+      ],
+      "triggers": {
+        "any": [
+          "Do you have chronic illnesses?",
+          "What illnesses have you had?",
+          "Any medical conditions?"
+        ]
+      },
+      "concepts": {
+        "history_medical_history": {
+          "polarity": "positive",
+          "value": "No chronic illness. I grind my teeth at night."
+        }
+      },
+      "example_questions": [
+        "Do you have chronic illnesses?",
+        "What illnesses have you had?",
+        "Any medical conditions?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No chronic illness. I grind my teeth at night.",
+            "concepts": {
+              "history_medical_history": {
+                "polarity": "positive",
+                "value": "No chronic illness. I grind my teeth at night."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No chronic illness; nocturnal bruxism."
+    },
+    {
+      "id": "history_ear_procedures",
+      "category": "psh",
+      "print_label": "Ear procedures",
+      "checklist": "h_history_ear_procedures",
+      "value": "No tubes, ear surgery or known hole in my eardrum.",
+      "sp_says": [
+        "No tubes, ear surgery or known hole in my eardrum."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had ear surgery or a perforated eardrum?",
+          "Have you had any operations?"
+        ]
+      },
+      "concepts": {
+        "history_ear_procedures": {
+          "polarity": "positive",
+          "value": "No tubes, ear surgery or known hole in my eardrum."
+        }
+      },
+      "example_questions": [
+        "Have you had ear surgery or a perforated eardrum?",
+        "Have you had any operations?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No tubes, ear surgery or known hole in my eardrum.",
+            "concepts": {
+              "history_ear_procedures": {
+                "polarity": "positive",
+                "value": "No tubes, ear surgery or known hole in my eardrum."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No ear surgery, tympanostomy or known perforation."
+    },
+    {
+      "id": "history_medication",
+      "category": "medications",
+      "print_label": "Medication",
+      "checklist": "h_history_medication",
+      "value": "No regular medicine.",
+      "sp_says": [
+        "No regular medicine."
+      ],
+      "triggers": {
+        "any": [
+          "What medicines do you usually take?",
+          "What medications are you taking?"
+        ]
+      },
+      "concepts": {
+        "history_medication": {
+          "polarity": "positive",
+          "value": "No regular medicine."
+        }
+      },
+      "example_questions": [
+        "What medicines do you usually take?",
+        "What medications are you taking?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No regular medicine.",
+            "concepts": {
+              "history_medication": {
+                "polarity": "positive",
+                "value": "No regular medicine."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No regular medication."
+    },
+    {
+      "id": "history_drug_reactions",
+      "category": "allergies",
+      "print_label": "Drug reactions",
+      "checklist": "h_history_drug_reactions",
+      "value": "Neomycin ointment made my skin red and itchy.",
+      "sp_says": [
+        "Neomycin ointment made my skin red and itchy."
+      ],
+      "triggers": {
+        "any": [
+          "Are you allergic to medicines?",
+          "Any medication allergies?"
+        ]
+      },
+      "concepts": {
+        "history_drug_reactions": {
+          "polarity": "positive",
+          "value": "Neomycin ointment made my skin red and itchy."
+        }
+      },
+      "example_questions": [
+        "Are you allergic to medicines?",
+        "Any medication allergies?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Neomycin ointment made my skin red and itchy.",
+            "concepts": {
+              "history_drug_reactions": {
+                "polarity": "positive",
+                "value": "Neomycin ointment made my skin red and itchy."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Neomycin: pruritic erythematous skin reaction."
+    },
+    {
+      "id": "history_smoking",
+      "category": "social",
+      "print_label": "Smoking",
+      "checklist": "h_history_smoking",
+      "value": "I have never smoked or vaped.",
+      "sp_says": [
+        "I have never smoked or vaped."
+      ],
+      "triggers": {
+        "any": [
+          "Do you smoke or vape?"
+        ]
+      },
+      "concepts": {
+        "history_smoking": {
+          "polarity": "positive",
+          "value": "I have never smoked or vaped."
+        }
+      },
+      "example_questions": [
+        "Do you smoke or vape?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have never smoked or vaped.",
+            "concepts": {
+              "history_smoking": {
+                "polarity": "positive",
+                "value": "I have never smoked or vaped."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Never smoked or vaped.",
+      "history_topic": "tobacco"
+    },
+    {
+      "id": "history_alcohol",
+      "category": "social",
+      "print_label": "Alcohol",
+      "checklist": "h_history_alcohol",
+      "value": "One or two beers on a weekend.",
+      "sp_says": [
+        "One or two beers on a weekend."
+      ],
+      "triggers": {
+        "any": [
+          "How much alcohol do you drink?"
+        ]
+      },
+      "concepts": {
+        "history_alcohol": {
+          "polarity": "positive",
+          "value": "One or two beers on a weekend."
+        }
+      },
+      "example_questions": [
+        "How much alcohol do you drink?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "One or two beers on a weekend.",
+            "concepts": {
+              "history_alcohol": {
+                "polarity": "positive",
+                "value": "One or two beers on a weekend."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "One or two beers weekly.",
+      "history_topic": "alcohol"
+    },
+    {
+      "id": "history_drugs",
+      "category": "social",
+      "print_label": "Drugs",
+      "checklist": "h_history_drugs",
+      "value": "No.",
+      "sp_says": [
+        "No."
+      ],
+      "triggers": {
+        "any": [
+          "Do you use recreational drugs?"
+        ]
+      },
+      "concepts": {
+        "history_drugs": {
+          "polarity": "positive",
+          "value": "No."
+        }
+      },
+      "example_questions": [
+        "Do you use recreational drugs?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No.",
+            "concepts": {
+              "history_drugs": {
+                "polarity": "positive",
+                "value": "No."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No recreational drugs.",
+      "history_topic": "drugs"
+    },
+    {
+      "id": "history_work",
+      "category": "social",
+      "print_label": "Work",
+      "checklist": "h_history_work",
+      "value": "I am a lifeguard and wear earbuds during my commute.",
+      "sp_says": [
+        "I am a lifeguard and wear earbuds during my commute."
+      ],
+      "triggers": {
+        "any": [
+          "What do you do for work?"
+        ]
+      },
+      "concepts": {
+        "history_work": {
+          "polarity": "positive",
+          "value": "I am a lifeguard and wear earbuds during my commute."
+        }
+      },
+      "example_questions": [
+        "What do you do for work?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I am a lifeguard and wear earbuds during my commute.",
+            "concepts": {
+              "history_work": {
+                "polarity": "positive",
+                "value": "I am a lifeguard and wear earbuds during my commute."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Lifeguard; earbud use during commute.",
+      "history_topic": "occupation"
+    },
+    {
+      "id": "history_home",
+      "category": "social",
+      "print_label": "Home",
+      "checklist": "h_history_home",
+      "value": "I live with my brother.",
+      "sp_says": [
+        "I live with my brother."
+      ],
+      "triggers": {
+        "any": [
+          "Who lives with you?"
+        ]
+      },
+      "concepts": {
+        "history_home": {
+          "polarity": "positive",
+          "value": "I live with my brother."
+        }
+      },
+      "example_questions": [
+        "Who lives with you?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I live with my brother.",
+            "concepts": {
+              "history_home": {
+                "polarity": "positive",
+                "value": "I live with my brother."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Lives with brother.",
+      "history_topic": "social_context"
+    },
+    {
+      "id": "history_family_history",
+      "category": "family",
+      "print_label": "Family history",
+      "checklist": "h_history_family_history",
+      "value": "My father needed hearing aids in his sixties.",
+      "sp_says": [
+        "My father needed hearing aids in his sixties."
+      ],
+      "triggers": {
+        "any": [
+          "Is there hearing loss in your family?"
+        ]
+      },
+      "concepts": {
+        "history_family_history": {
+          "polarity": "positive",
+          "value": "My father needed hearing aids in his sixties."
+        }
+      },
+      "example_questions": [
+        "Is there hearing loss in your family?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My father needed hearing aids in his sixties.",
+            "concepts": {
+              "history_family_history": {
+                "polarity": "positive",
+                "value": "My father needed hearing aids in his sixties."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Father: hearing loss requiring aids in his 60s."
+    },
+    {
+      "id": "history_other_family",
+      "category": "family",
+      "print_label": "Other family",
+      "checklist": "h_history_other_family",
+      "value": "My mother has high blood pressure. My brother has no major illness.",
+      "sp_says": [
+        "My mother has high blood pressure. My brother has no major illness."
+      ],
+      "triggers": {
+        "any": [
+          "What about your mother and siblings?"
+        ]
+      },
+      "concepts": {
+        "history_other_family": {
+          "polarity": "positive",
+          "value": "My mother has high blood pressure. My brother has no major illness."
+        }
+      },
+      "example_questions": [
+        "What about your mother and siblings?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My mother has high blood pressure. My brother has no major illness.",
+            "concepts": {
+              "history_other_family": {
+                "polarity": "positive",
+                "value": "My mother has high blood pressure. My brother has no major illness."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Mother: hypertension; brother: no known major illness."
+    },
+    {
+      "id": "symptom_hearing_loss",
+      "category": "associated",
+      "print_label": "Hearing loss",
+      "checklist": "h_symptom_hearing_loss",
+      "value": "Sounds are muffled on the left.",
+      "sp_says": [
+        "Sounds are muffled on the left."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had hearing loss?",
+          "hearing",
+          "muffled"
+        ]
+      },
+      "concepts": {
+        "symptom_hearing_loss": {
+          "polarity": "positive",
+          "value": "Sounds are muffled on the left."
+        }
+      },
+      "example_questions": [
+        "Have you had hearing loss?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Sounds are muffled on the left.",
+            "concepts": {
+              "symptom_hearing_loss": {
+                "polarity": "positive",
+                "value": "Sounds are muffled on the left."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Muffled left hearing.",
+      "ros_system": "heent"
+    },
+    {
+      "id": "symptom_ear_discharge",
+      "category": "associated",
+      "print_label": "Ear discharge",
+      "checklist": "h_symptom_ear_discharge",
+      "value": "There was a little clear fluid on my pillow.",
+      "sp_says": [
+        "There was a little clear fluid on my pillow."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had ear discharge?",
+          "ear drainage"
+        ]
+      },
+      "concepts": {
+        "symptom_ear_discharge": {
+          "polarity": "positive",
+          "value": "There was a little clear fluid on my pillow."
+        }
+      },
+      "example_questions": [
+        "Have you had ear discharge?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "There was a little clear fluid on my pillow.",
+            "concepts": {
+              "symptom_ear_discharge": {
+                "polarity": "positive",
+                "value": "There was a little clear fluid on my pillow."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Small clear left ear discharge.",
+      "ros_system": "heent"
+    },
+    {
+      "id": "symptom_sore_throat",
+      "category": "pertinent_negative",
+      "print_label": "Sore throat",
+      "checklist": "h_symptom_sore_throat",
+      "value": "No sore throat.",
+      "sp_says": [
+        "No sore throat."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had a sore throat?",
+          "sore throat"
+        ]
+      },
+      "concepts": {
+        "symptom_sore_throat": {
+          "polarity": "negative",
+          "value": "No sore throat."
+        }
+      },
+      "example_questions": [
+        "Have you had a sore throat?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No sore throat.",
+            "concepts": {
+              "symptom_sore_throat": {
+                "polarity": "negative",
+                "value": "No sore throat."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No sore throat.",
+      "ros_system": "heent"
+    },
+    {
+      "id": "symptom_fever",
+      "category": "pertinent_negative",
+      "print_label": "Fever",
+      "checklist": "h_symptom_fever",
+      "value": "No fever.",
+      "sp_says": [
+        "No fever."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had a fever?",
+          "fever"
+        ]
+      },
+      "concepts": {
+        "symptom_fever": {
+          "polarity": "negative",
+          "value": "No fever."
+        }
+      },
+      "example_questions": [
+        "Have you had a fever?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No fever.",
+            "concepts": {
+              "symptom_fever": {
+                "polarity": "negative",
+                "value": "No fever."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No fever.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_chills",
+      "category": "pertinent_negative",
+      "print_label": "Chills",
+      "checklist": "h_symptom_chills",
+      "value": "No chills.",
+      "sp_says": [
+        "No chills."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had chills?",
+          "chills"
+        ]
+      },
+      "concepts": {
+        "symptom_chills": {
+          "polarity": "negative",
+          "value": "No chills."
+        }
+      },
+      "example_questions": [
+        "Have you had chills?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No chills.",
+            "concepts": {
+              "symptom_chills": {
+                "polarity": "negative",
+                "value": "No chills."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No chills.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_fatigue",
+      "category": "pertinent_negative",
+      "print_label": "Fatigue",
+      "checklist": "h_symptom_fatigue",
+      "value": "I feel well apart from the ear.",
+      "sp_says": [
+        "I feel well apart from the ear."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had fatigue?",
+          "fatigue"
+        ]
+      },
+      "concepts": {
+        "symptom_fatigue": {
+          "polarity": "negative",
+          "value": "I feel well apart from the ear."
+        }
+      },
+      "example_questions": [
+        "Have you had fatigue?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I feel well apart from the ear.",
+            "concepts": {
+              "symptom_fatigue": {
+                "polarity": "negative",
+                "value": "I feel well apart from the ear."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No systemic malaise.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_dizziness",
+      "category": "pertinent_negative",
+      "print_label": "Dizziness",
+      "checklist": "h_symptom_dizziness",
+      "value": "No spinning or dizziness.",
+      "sp_says": [
+        "No spinning or dizziness."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had dizziness?",
+          "dizziness"
+        ]
+      },
+      "concepts": {
+        "symptom_dizziness": {
+          "polarity": "negative",
+          "value": "No spinning or dizziness."
+        }
+      },
+      "example_questions": [
+        "Have you had dizziness?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No spinning or dizziness.",
+            "concepts": {
+              "symptom_dizziness": {
+                "polarity": "negative",
+                "value": "No spinning or dizziness."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No vertigo.",
+      "ros_system": "neurologic"
+    },
+    {
+      "id": "symptom_headache",
+      "category": "pertinent_negative",
+      "print_label": "Headache",
+      "checklist": "h_symptom_headache",
+      "value": "No headache.",
+      "sp_says": [
+        "No headache."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had headache?",
+          "headache"
+        ]
+      },
+      "concepts": {
+        "symptom_headache": {
+          "polarity": "negative",
+          "value": "No headache."
+        }
+      },
+      "example_questions": [
+        "Have you had headache?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No headache.",
+            "concepts": {
+              "symptom_headache": {
+                "polarity": "negative",
+                "value": "No headache."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No headache.",
+      "ros_system": "neurologic"
+    },
+    {
+      "id": "symptom_weakness",
+      "category": "pertinent_negative",
+      "print_label": "Weakness",
+      "checklist": "h_symptom_weakness",
+      "value": "No weakness in my face.",
+      "sp_says": [
+        "No weakness in my face."
+      ],
+      "triggers": {
+        "any": [
+          "Have you noticed weakness?",
+          "weak",
+          "weakness"
+        ]
+      },
+      "concepts": {
+        "symptom_weakness": {
+          "polarity": "negative",
+          "value": "No weakness in my face."
+        }
+      },
+      "example_questions": [
+        "Have you noticed weakness?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No weakness in my face.",
+            "concepts": {
+              "symptom_weakness": {
+                "polarity": "negative",
+                "value": "No weakness in my face."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No facial weakness.",
+      "ros_system": "neurologic"
+    },
+    {
+      "id": "patient_concern",
+      "category": "concern",
+      "print_label": "Concern",
+      "checklist": "h_patient_concern",
+      "value": "I want to know what is causing this and how to get back to my usual activities.",
+      "sp_says": [
+        "I want to know what is causing this and how to get back to my usual activities."
+      ],
+      "triggers": {
+        "any": [
+          "What worries you most?"
+        ]
+      },
+      "concepts": {
+        "patient_concern": {
+          "polarity": "positive",
+          "value": "I want to know what is causing this and how to get back to my usual activities."
+        }
+      },
+      "example_questions": [
+        "What worries you most?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I want to know what is causing this and how to get back to my usual activities.",
+            "concepts": {
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "I want to know what is causing this and how to get back to my usual activities."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Wants explanation and return to usual activities."
+    }
+  ],
+  "concept_lexicon": {
+    "opening_complaint": [
+      "My left ear hurts and feels blocked."
+    ],
+    "hpi_onset": [
+      "Two days ago.",
+      "Left otalgia for 2 days."
+    ],
+    "hpi_location": [
+      "The left one, near the opening.",
+      "Pain at left canal opening."
+    ],
+    "hpi_quality": [
+      "A steady sore ache with itching.",
+      "Aching and pruritus."
+    ],
+    "hpi_severity": [
+      "About 5 out of 10.",
+      "Pain 5/10."
+    ],
+    "hpi_timing": [
+      "It is there most of the day.",
+      "Persistent daily discomfort."
+    ],
+    "hpi_chronology": [
+      "The itching started first, then it became sore and muffled.",
+      "Pruritus preceded pain and muffled hearing."
+    ],
+    "hpi_setting": [
+      "I swam all weekend and started using new in-ear earbuds last week.",
+      "Recent swimming and new in-ear earbuds."
+    ],
+    "hpi_aggravating": [
+      "Touching the ear and putting the earbud in hurt. Chewing aches a little near my jaw.",
+      "Pain with ear contact/earbud insertion; mild chewing-related jaw ache."
+    ],
+    "hpi_alleviating": [
+      "Leaving the earbud out helps a little.",
+      "Partial relief without earbud."
+    ],
+    "hpi_treatment": [
+      "I took acetaminophen 500 milligrams last night. No ear drops.",
+      "Acetaminophen 500 mg once; no ear drops."
+    ],
+    "hpi_past_occurrence": [
+      "Not ear pain, but earbuds have made my skin itchy before.",
+      "Prior earbud-related itching, no prior otalgia."
+    ],
+    "history_medical_history": [
+      "No chronic illness. I grind my teeth at night.",
+      "No chronic illness; nocturnal bruxism."
+    ],
+    "history_ear_procedures": [
+      "No tubes, ear surgery or known hole in my eardrum.",
+      "No ear surgery, tympanostomy or known perforation."
+    ],
+    "history_medication": [
+      "No regular medicine.",
+      "No regular medication."
+    ],
+    "history_drug_reactions": [
+      "Neomycin ointment made my skin red and itchy.",
+      "Neomycin: pruritic erythematous skin reaction."
+    ],
+    "history_smoking": [
+      "I have never smoked or vaped.",
+      "Never smoked or vaped."
+    ],
+    "history_alcohol": [
+      "One or two beers on a weekend.",
+      "One or two beers weekly."
+    ],
+    "history_drugs": [
+      "No.",
+      "No recreational drugs."
+    ],
+    "history_work": [
+      "I am a lifeguard and wear earbuds during my commute.",
+      "Lifeguard; earbud use during commute."
+    ],
+    "history_home": [
+      "I live with my brother.",
+      "Lives with brother."
+    ],
+    "history_family_history": [
+      "My father needed hearing aids in his sixties.",
+      "Father: hearing loss requiring aids in his 60s."
+    ],
+    "history_other_family": [
+      "My mother has high blood pressure. My brother has no major illness.",
+      "Mother: hypertension; brother: no known major illness."
+    ],
+    "symptom_hearing_loss": [
+      "Sounds are muffled on the left.",
+      "Muffled left hearing.",
+      "hearing",
+      "muffled"
+    ],
+    "symptom_ear_discharge": [
+      "There was a little clear fluid on my pillow.",
+      "Small clear left ear discharge.",
+      "ear drainage"
+    ],
+    "symptom_sore_throat": [
+      "No sore throat.",
+      "sore throat"
+    ],
+    "symptom_fever": [
+      "No fever.",
+      "fever"
+    ],
+    "symptom_chills": [
+      "No chills.",
+      "chills"
+    ],
+    "symptom_fatigue": [
+      "I feel well apart from the ear.",
+      "No systemic malaise.",
+      "fatigue"
+    ],
+    "symptom_dizziness": [
+      "No spinning or dizziness.",
+      "No vertigo.",
+      "dizziness"
+    ],
+    "symptom_headache": [
+      "No headache.",
+      "headache"
+    ],
+    "symptom_weakness": [
+      "No weakness in my face.",
+      "No facial weakness.",
+      "weak",
+      "weakness"
+    ],
+    "patient_concern": [
+      "I want to know what is causing this and how to get back to my usual activities.",
+      "Wants explanation and return to usual activities."
+    ],
+    "exam_general_inspect": [
+      "Alert, well appearing."
+    ],
+    "exam_heent_ears": [
+      "Left tragal/pinna manipulation tender; canal erythematous and edematous with scant debris. Left tympanic membrane visualized and intact without bulging. Right canal without erythema or edema; right membrane intact and nonbulging; no mastoid tenderness."
+    ],
+    "exam_msk_palpate": [
+      "Mild left temporomandibular joint tenderness with jaw opening; no facial swelling."
+    ],
+    "exam_lymph_nodes": [
+      "No enlarged or tender cervical nodes."
+    ],
+    "exam_heent_throat": [
+      "Oropharynx without erythema or exudate."
+    ],
+    "exam_heart_auscultate": [
+      "Regular rate and rhythm without murmur."
+    ],
+    "exam_lungs_auscultate": [
+      "Clear bilateral breath sounds."
+    ],
+    "exam_osteo_screen": [
+      "C2 left paraspinal tissue texture change and tenderness."
+    ]
+  },
+  "exam_findings": {
+    "general_inspect": [
+      {
+        "id": "exam_general_inspect",
+        "text": "Alert, well appearing.",
+        "concepts": {
+          "exam_general_inspect": {
+            "polarity": "positive",
+            "value": "Alert, well appearing."
+          }
+        },
+        "scopes": [
+          "general"
+        ],
+        "checklist": "p_exam_general_inspect",
+        "requires_components": [],
+        "key_finding": true
+      }
+    ],
+    "heent_ears": [
+      {
+        "id": "exam_heent_ears",
+        "text": "Left tragal/pinna manipulation tender; canal erythematous and edematous with scant debris. Left tympanic membrane visualized and intact without bulging. Right canal without erythema or edema; right membrane intact and nonbulging; no mastoid tenderness.",
+        "concepts": {
+          "exam_heent_ears": {
+            "polarity": "positive",
+            "value": "Left tragal/pinna manipulation tender; canal erythematous and edematous with scant debris. Left tympanic membrane visualized and intact without bulging. Right canal without erythema or edema; right membrane intact and nonbulging; no mastoid tenderness."
+          }
+        },
+        "scopes": [
+          "heent.ears"
+        ],
+        "checklist": "p_exam_heent_ears",
+        "requires_components": [
+          "right ear",
+          "left ear"
+        ],
+        "key_finding": true
+      }
+    ],
+    "msk_palpate": [
+      {
+        "id": "exam_msk_palpate",
+        "text": "Mild left temporomandibular joint tenderness with jaw opening; no facial swelling.",
+        "concepts": {
+          "exam_msk_palpate": {
+            "polarity": "positive",
+            "value": "Mild left temporomandibular joint tenderness with jaw opening; no facial swelling."
+          }
+        },
+        "scopes": [
+          "msk.palpation"
+        ],
+        "checklist": "p_exam_msk_palpate",
+        "requires_components": [
+          "point tenderness"
+        ],
+        "key_finding": true
+      }
+    ],
+    "lymph_nodes": [
+      {
+        "id": "exam_lymph_nodes",
+        "text": "No enlarged or tender cervical nodes.",
+        "concepts": {
+          "exam_lymph_nodes": {
+            "polarity": "positive",
+            "value": "No enlarged or tender cervical nodes."
+          }
+        },
+        "scopes": [
+          "lymph"
+        ],
+        "checklist": "p_exam_lymph_nodes",
+        "requires_components": [
+          "cervical"
+        ],
+        "key_finding": true
+      }
+    ],
+    "heent_throat": [
+      {
+        "id": "exam_heent_throat",
+        "text": "Oropharynx without erythema or exudate.",
+        "concepts": {
+          "exam_heent_throat": {
+            "polarity": "positive",
+            "value": "Oropharynx without erythema or exudate."
+          }
+        },
+        "scopes": [
+          "heent.throat"
+        ],
+        "checklist": "p_exam_heent_throat",
+        "requires_components": [
+          "oropharynx"
+        ],
+        "key_finding": true
+      }
+    ],
+    "heart_auscultate": [
+      {
+        "id": "exam_heart_auscultate",
+        "text": "Regular rate and rhythm without murmur.",
+        "concepts": {
+          "exam_heart_auscultate": {
+            "polarity": "positive",
+            "value": "Regular rate and rhythm without murmur."
+          }
+        },
+        "scopes": [
+          "heart"
+        ],
+        "checklist": "p_exam_heart_auscultate",
+        "requires_components": [
+          "aortic",
+          "pulmonic",
+          "tricuspid",
+          "mitral",
+          "on skin"
+        ],
+        "key_finding": true
+      }
+    ],
+    "lungs_auscultate": [
+      {
+        "id": "exam_lungs_auscultate",
+        "text": "Clear bilateral breath sounds.",
+        "concepts": {
+          "exam_lungs_auscultate": {
+            "polarity": "positive",
+            "value": "Clear bilateral breath sounds."
+          }
+        },
+        "scopes": [
+          "lungs"
+        ],
+        "checklist": "p_exam_lungs_auscultate",
+        "requires_components": [
+          "posterior",
+          "on skin",
+          "compare side to side",
+          "mouth open"
+        ],
+        "key_finding": true
+      }
+    ],
+    "osteo_screen": [
+      {
+        "id": "exam_osteo_screen",
+        "text": "C2 left paraspinal tissue texture change and tenderness.",
+        "concepts": {
+          "exam_osteo_screen": {
+            "polarity": "positive",
+            "value": "C2 left paraspinal tissue texture change and tenderness."
+          }
+        },
+        "scopes": [
+          "osteopathic"
+        ],
+        "checklist": "p_exam_osteo_screen",
+        "requires_components": [
+          "cervical"
+        ],
+        "key_finding": false
+      }
+    ]
+  },
+  "refusals": [],
+  "refusal_expectation": {},
+  "area_of_concern": {
+    "system": "HEENT",
+    "required_methods": [
+      "inspect",
+      "palpate"
+    ],
+    "special_tests": [],
+    "note": "Distinguish canal disease from referred ear pain and choose safe topical therapy."
+  },
+  "osteopathic": {
+    "expected_documentation": "Document the supplied level and palpatory descriptor only after the structural screen; treatment is not implied."
+  },
+  "ros_pertinent_systems": [
+    "heent",
+    "general",
+    "neurologic"
+  ],
+  "differentials": [
+    {
+      "rank": 1,
+      "name": "Acute otitis externa",
+      "vindicate": "I",
+      "aliases": [
+        "Acute otitis externa"
+      ],
+      "supported_by": [
+        "hpi_setting",
+        "exam_heent_ears"
+      ],
+      "teaching_context": "Water exposure, tragal tenderness and inflamed canal support otitis externa."
+    },
+    {
+      "rank": 2,
+      "name": "Allergic contact dermatitis of the ear canal",
+      "vindicate": "A",
+      "aliases": [
+        "Allergic contact dermatitis of the ear canal"
+      ],
+      "supported_by": [
+        "hpi_setting",
+        "hpi_past_occurrence",
+        "history_drug_reactions"
+      ],
+      "teaching_context": "New earbuds, prior contact itching and skin allergy support a contact contributor; marked canal pain/debris favor infection."
+    },
+    {
+      "rank": 3,
+      "name": "Temporomandibular disorder with referred ear pain",
+      "vindicate": "T",
+      "aliases": [
+        "Temporomandibular disorder with referred ear pain"
+      ],
+      "supported_by": [
+        "history_medical_history",
+        "hpi_aggravating",
+        "exam_msk_palpate"
+      ],
+      "teaching_context": "Bruxism and jaw tenderness support a coexisting referred component but do not explain canal inflammation."
+    }
+  ],
+  "implausible_differentials": [],
+  "plan_expectations": {
+    "tests": [],
+    "medications": [],
+    "omt": [],
+    "education": [],
+    "referral": [],
+    "follow_up": []
+  },
+  "checklist": {
+    "history": [
+      {
+        "id": "h_opening_complaint",
+        "text": "Opening complaint"
+      },
+      {
+        "id": "h_hpi_onset",
+        "text": "Onset"
+      },
+      {
+        "id": "h_hpi_location",
+        "text": "Side"
+      },
+      {
+        "id": "h_hpi_quality",
+        "text": "Character"
+      },
+      {
+        "id": "h_hpi_severity",
+        "text": "Severity"
+      },
+      {
+        "id": "h_hpi_timing",
+        "text": "Pattern"
+      },
+      {
+        "id": "h_hpi_chronology",
+        "text": "Change"
+      },
+      {
+        "id": "h_hpi_setting",
+        "text": "Water and ear products"
+      },
+      {
+        "id": "h_hpi_aggravating",
+        "text": "Triggers"
+      },
+      {
+        "id": "h_hpi_alleviating",
+        "text": "Relief"
+      },
+      {
+        "id": "h_hpi_treatment",
+        "text": "Self-treatment"
+      },
+      {
+        "id": "h_hpi_past_occurrence",
+        "text": "Prior ear trouble"
+      },
+      {
+        "id": "h_history_medical_history",
+        "text": "Medical history"
+      },
+      {
+        "id": "h_history_ear_procedures",
+        "text": "Ear procedures"
+      },
+      {
+        "id": "h_history_medication",
+        "text": "Medication"
+      },
+      {
+        "id": "h_history_drug_reactions",
+        "text": "Drug reactions"
+      },
+      {
+        "id": "h_history_smoking",
+        "text": "Smoking"
+      },
+      {
+        "id": "h_history_alcohol",
+        "text": "Alcohol"
+      },
+      {
+        "id": "h_history_drugs",
+        "text": "Drugs"
+      },
+      {
+        "id": "h_history_work",
+        "text": "Work"
+      },
+      {
+        "id": "h_history_home",
+        "text": "Home"
+      },
+      {
+        "id": "h_history_family_history",
+        "text": "Family history"
+      },
+      {
+        "id": "h_history_other_family",
+        "text": "Other family"
+      },
+      {
+        "id": "h_symptom_hearing_loss",
+        "text": "Hearing loss"
+      },
+      {
+        "id": "h_symptom_ear_discharge",
+        "text": "Ear discharge"
+      },
+      {
+        "id": "h_symptom_sore_throat",
+        "text": "Sore throat"
+      },
+      {
+        "id": "h_symptom_fever",
+        "text": "Fever"
+      },
+      {
+        "id": "h_symptom_chills",
+        "text": "Chills"
+      },
+      {
+        "id": "h_symptom_fatigue",
+        "text": "Fatigue"
+      },
+      {
+        "id": "h_symptom_dizziness",
+        "text": "Dizziness"
+      },
+      {
+        "id": "h_symptom_headache",
+        "text": "Headache"
+      },
+      {
+        "id": "h_symptom_weakness",
+        "text": "Weakness"
+      },
+      {
+        "id": "h_patient_concern",
+        "text": "Concern"
+      }
+    ],
+    "physical": [
+      {
+        "id": "p_exam_general_inspect",
+        "text": "General appearance",
+        "maneuver": "general_inspect",
+        "components": []
+      },
+      {
+        "id": "p_exam_heent_ears",
+        "text": "Otoscopic exam of ears",
+        "maneuver": "heent_ears",
+        "components": [
+          "right ear",
+          "left ear"
+        ]
+      },
+      {
+        "id": "p_exam_msk_palpate",
+        "text": "Palpate the affected area",
+        "maneuver": "msk_palpate",
+        "components": [
+          "point tenderness"
+        ]
+      },
+      {
+        "id": "p_exam_lymph_nodes",
+        "text": "Palpate lymph nodes",
+        "maneuver": "lymph_nodes",
+        "components": [
+          "cervical"
+        ]
+      },
+      {
+        "id": "p_exam_heent_throat",
+        "text": "Inspect mouth and throat with light",
+        "maneuver": "heent_throat",
+        "components": [
+          "oropharynx"
+        ]
+      },
+      {
+        "id": "p_exam_heart_auscultate",
+        "text": "Auscultate heart",
+        "maneuver": "heart_auscultate",
+        "components": [
+          "aortic",
+          "pulmonic",
+          "tricuspid",
+          "mitral",
+          "on skin"
+        ]
+      },
+      {
+        "id": "p_exam_lungs_auscultate",
+        "text": "Auscultate lungs",
+        "maneuver": "lungs_auscultate",
+        "components": [
+          "posterior",
+          "on skin",
+          "compare side to side",
+          "mouth open"
+        ]
+      },
+      {
+        "id": "p_exam_osteo_screen",
+        "text": "Osteopathic structural screen",
+        "maneuver": "osteo_screen",
+        "components": [
+          "cervical"
+        ]
+      },
+      {
+        "id": "p_introduce",
+        "text": "Introduce yourself and verify identity",
+        "courtesy": "introduce"
+      },
+      {
+        "id": "p_hand_hygiene",
+        "text": "Clean hands before examination",
+        "courtesy": "hand_hygiene"
+      },
+      {
+        "id": "p_drape",
+        "text": "Provide appropriate draping",
+        "courtesy": "drape"
+      }
+    ]
+  },
+  "model_note": {
+    "S": "CC: My left ear hurts and feels blocked.\n\nHPI: 24-year-old male. Left otalgia for 2 days. Pain at left canal opening. Aching and pruritus. Pain 5/10. Persistent daily discomfort. Pruritus preceded pain and muffled hearing. Recent swimming and new in-ear earbuds. Pain with ear contact/earbud insertion; mild chewing-related jaw ache. Partial relief without earbud. Acetaminophen 500 mg once; no ear drops. Prior earbud-related itching, no prior otalgia.\n\nPMH: No chronic illness; nocturnal bruxism.\n\nPSH: No ear surgery, tympanostomy or known perforation.\n\nMeds: No regular medication.\n\nSH: Never smoked or vaped. One or two beers weekly. No recreational drugs. Lifeguard; earbud use during commute. Lives with brother.\n\nFH: Father: hearing loss requiring aids in his 60s. Mother: hypertension; brother: no known major illness.\n\nAllergies: Neomycin: pruritic erythematous skin reaction.\n\nROS: Heent: Muffled left hearing. Small clear left ear discharge. No sore throat. General: No fever. No chills. No systemic malaise. Neurologic: No vertigo. No headache. No facial weakness.",
+    "O": "Vitals: BP 118/74 mmHg, P 72 bpm, R 14 rpm, T 98.4 F oral, Pulse Ox 99% on room air, Ht 5' 10\", Wt 166 lbs\n\nGeneral: Alert, well appearing.\nHEENT: Left tragal/pinna manipulation tender; canal erythematous and edematous with scant debris. Left tympanic membrane visualized and intact without bulging. Right canal without erythema or edema; right membrane intact and nonbulging; no mastoid tenderness. No enlarged or tender cervical nodes. Oropharynx without erythema or exudate.\nMusculoskeletal: Mild left temporomandibular joint tenderness with jaw opening; no facial swelling.\nHeart: Regular rate and rhythm without murmur.\nLungs: Clear bilateral breath sounds.\nOsteopathic: C2 left paraspinal tissue texture change and tenderness.",
+    "A": [
+      "1. Acute otitis externa",
+      "2. Allergic contact dermatitis of the ear canal",
+      "3. Temporomandibular disorder with referred ear pain"
+    ],
+    "P": [
+      "1. Treat with appropriate topical otic therapy and analgesia after membrane review; avoid neomycin given the skin reaction. Teach drop administration and keep the ear dry, avoiding earbuds and swabs. Reassess if not improving within 48–72 hours. Fever, spreading swelling, severe worsening pain or new facial weakness needs prompt evaluation.",
+      "2. Remove the new earbud exposure and avoid unnecessary topical sensitizers. If dermatitis persists after infection treatment, consider ENT/dermatology assessment and guided topical anti-inflammatory treatment; explain that contact allergy is not confirmed by itching alone.",
+      "3. Reduce gum chewing and clenching; discuss gentle jaw care and dental assessment for persistent symptoms. Use safe analgesia if needed and explain that jaw treatment does not replace treatment of the inflamed canal."
+    ]
+  },
+  "print_additional_exams": {
+    "osteo_screen": "Include when practicing the course structural screen; it does not establish the cause of the complaint."
+  },
+  "ideal_encounter_extras": [
+    "Distinguish canal disease from referred ear pain and choose safe topical therapy."
+  ],
+  "supersedes_core": [
+    "tobacco_use",
+    "alcohol_use",
+    "drug_use",
+    "allergies",
+    "medications",
+    "family_history",
+    "past_medical",
+    "past_surgical",
+    "hearing_loss",
+    "ear_discharge",
+    "sore_throat",
+    "fever",
+    "chills",
+    "fatigue",
+    "dizziness",
+    "headache",
+    "weakness"
+  ],
+  "review_status": "Source-checked fictional practice; not faculty or clinician approved.",
+  "clinical_review": {
+    "status": "source_checked_not_clinician_approved",
+    "date": "2026-09-14",
+    "method": "Individual presentation, differential, safety and plan review against named primary clinical references plus course documentation constraints.",
+    "limits": "Fictional details deliberately authored. Mnemonic category placement is instructional and is not proof of etiology. Generic 3D appearance is not a diagnostic visual.",
+    "sources": [
+      "https://www.entnet.org/quality-practice/quality-products/clinical-practice-guidelines/aoe/",
+      "https://www.nidcr.nih.gov/health-info/tmd"
+    ]
+  },
+  "sources": [
+    {
+      "title": "2026 FALL M2 ILG Student Manual",
+      "path": "claude builds/PCM/2026 FALL M2 ILG - STUDENT MANUAL update.docx",
+      "locator": "SOAP rubric and physical examination requirements",
+      "kind": "course"
+    },
+    {
+      "title": "Acute otitis externa clinical practice guideline",
+      "url": "https://www.entnet.org/quality-practice/quality-products/clinical-practice-guidelines/aoe/",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+    },
+    {
+      "title": "Temporomandibular disorders",
+      "url": "https://www.nidcr.nih.gov/health-info/tmd",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+    }
+  ],
+  "teaching": {
+    "goals": [
+      "Distinguish canal disease from referred ear pain and choose safe topical therapy.",
+      "Document only supplied, asked or examined information."
+    ],
+    "skills": [
+      "history-sequencing",
+      "focused-examination",
+      "clinical-reasoning",
+      "evidence-based-soap",
+      "heent"
+    ],
+    "common_omissions": [
+      "Distinguishing history from examination evidence.",
+      "Explaining uncertainty and the practical follow-up plan."
+    ],
+    "lesson_plan": {
+      "notice": "Distinguish canal disease from referred ear pain and choose safe topical therapy.",
+      "anchor": "Ear pain after swimming",
+      "pivot": "Does touching the outer ear hurt, and is there discharge or jaw-related pain?",
+      "exam": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
+      "avoid": "Treating an unperformed examination or a possible diagnosis as obtained fact."
+    },
+    "closing_dialogue": [
+      "The ear examination will guide treatment. If canal infection is confirmed, drops and keeping the ear dry usually help. We will avoid neomycin because of your reaction. Come back if it is not improving within two to three days."
+    ],
+    "concern_response": "We can discuss temporary dry duties at the pool so the ear can recover without unnecessary time off.",
+    "reasoning_steps": [
+      {
+        "id": "orient",
+        "phase": "history",
+        "purpose": "Hear the presenting concern",
+        "question": "What brings you in today?",
+        "fact_ids": [
+          "opening_complaint"
+        ],
+        "why": "Distinguish canal disease from referred ear pain and choose safe topical therapy."
+      },
+      {
+        "id": "pattern",
+        "phase": "history",
+        "purpose": "Clarify the pattern",
+        "question": "Does touching the outer ear hurt, and is there discharge or jaw-related pain?",
+        "fact_ids": [
+          "hpi_onset"
+        ],
+        "why": "Distinguish canal disease from referred ear pain and choose safe topical therapy."
+      },
+      {
+        "id": "examine",
+        "phase": "exam",
+        "purpose": "Perform relevant examinations",
+        "question": "May I examine you?",
+        "fact_ids": [],
+        "why": "Findings require performed actions."
+      }
+    ],
+    "reasoning_map": [
+      {
+        "id": "heent-ear-pain-decision",
+        "question": "Does touching the outer ear hurt, and is there discharge or jaw-related pain?",
+        "why": "Distinguish canal disease from referred ear pain and choose safe topical therapy.",
+        "if_present": "Use the reported pattern to select the relevant examinations and assess urgency.",
+        "if_absent": "Keep alternatives open and ask a focused follow-up.",
+        "next_action": "Perform the relevant case-specific examination.",
+        "document": "Separate reported symptoms, observed signs, assessment and proposed care."
+      }
+    ],
+    "classification_note": "Categories reflect the explicitly proposed mechanism; e.g., irritant exposure is I2. They are a course organizing aid, not confirmation of mechanism."
+  },
+  "content_revisions": {
+    "library_expansion_20260914": "New independently authored presentation. Single core path; no renamed cosmetic variants."
+  },
+  "examination_display_note": "The case-specific skin, ear, nose and throat appearance is supplied in the labeled examination result; the generic patient model does not reliably display these findings."
+}

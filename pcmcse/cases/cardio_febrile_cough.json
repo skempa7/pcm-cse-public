@@ -3,8 +3,8 @@
   "presentation_id": "cardio-febrile-cough",
   "title": "Fever, cough and pain on deep breathing",
   "hidden_label": "Station 9",
-  "system": "Cardiopulmonary",
-  "complaint_family": "Cardiopulmonary",
+  "system": "Respiratory",
+  "complaint_family": "respiratory",
   "level": "M2",
   "difficulty": "intermediate",
   "blurb": "I have had fever and a bad cough, and now it hurts when I breathe deeply.",
@@ -34,7 +34,7 @@
     "age": 25,
     "sex": "male",
     "pronouns": "he/him",
-    "persona": "Bus dispatcher; lives with wife; no recent travel, immobilization or surgery. Communication style: concise. Gives consistent answers without diagnostic labels.",
+    "persona": "Bus dispatcher working at an indoor counter; shares an apartment with a roommate; no recent travel, immobilization or surgery. Communication style: concise. Gives consistent answers without diagnostic labels.",
     "affect": "Could I give this to the people at home?",
     "communication_style": "concise",
     "opening": "I have had fever and a bad cough, and now it hurts when I breathe deeply.",
@@ -253,12 +253,12 @@
       "I do not take daily prescription medications."
     ],
     "history_allergies_1": [
-      "No known drug allergies.",
-      "No known drug allergies",
-      "drug allergies",
-      "NKDA",
-      "No medication allergies",
-      "No allergies to medications"
+      "allergies",
+      "allergic",
+      "reaction",
+      "amoxicillin",
+      "hives",
+      "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing."
     ],
     "tobacco_use": [
       "tobacco",
@@ -270,11 +270,10 @@
     ],
     "alcohol_use": [
       "alcohol",
-      "alcoholic",
+      "drink alcohol",
       "beer",
       "wine",
-      "drinks",
-      "Two alcoholic drinks weekly."
+      "I do not drink alcohol."
     ],
     "drug_use": [
       "recreational drugs",
@@ -285,18 +284,25 @@
       "No recreational drugs."
     ],
     "history_context_1": [
-      "I am a bus dispatcher."
+      "occupation",
+      "work duties",
+      "job",
+      "do for a living",
+      "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift."
     ],
     "history_family_1": [
-      "My mother is fifty-two and she has asthma.", "Mother has asthma",
+      "My mother is fifty-two and she has asthma.",
+      "Mother has asthma",
       "mother"
     ],
     "history_family_2": [
-      "My father is fifty-five and he has high blood pressure.", "father hypertension",
+      "My father is fifty-five and he has high blood pressure.",
+      "father hypertension",
       "father"
     ],
     "history_family_3": [
-      "I have one sister, she's twenty-seven and she's healthy.", "one healthy sister.",
+      "I have one sister, she's twenty-seven and she's healthy.",
+      "one healthy sister.",
       "sister"
     ],
     "patient_concern": [
@@ -324,7 +330,11 @@
       "No visible rash on the inspected arms."
     ],
     "history_household": [
-      "I live with my wife."
+      "live with",
+      "living situation",
+      "household",
+      "support at home",
+      "I share an apartment with a roommate."
     ],
     "history_travel": [
       "I have not traveled recently."
@@ -1433,22 +1443,24 @@
       "id": "history_allergies_1",
       "category": "allergies",
       "checklist": "h_history_allergies_1",
-      "value": "No known drug allergies.",
+      "value": "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing.",
       "sp_says": [
-        "No known drug allergies."
+        "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing."
       ],
       "triggers": {
         "any": [
           "Do you have any medication allergies, and what reaction do you have?",
           "allergies",
           "allergic",
-          "reaction"
+          "reaction",
+          "amoxicillin",
+          "hives"
         ]
       },
       "concepts": {
         "history_allergies_1": {
           "polarity": "positive",
-          "value": "No known drug allergies."
+          "value": "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing."
         }
       },
       "example_questions": [
@@ -1457,11 +1469,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "No known drug allergies.",
+            "text": "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing.",
             "concepts": {
               "history_allergies_1": {
                 "polarity": "positive",
-                "value": "No known drug allergies."
+                "value": "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing."
               }
             },
             "complete_fact": true
@@ -1515,9 +1527,9 @@
       "id": "alcohol_use",
       "category": "social",
       "checklist": "h_alcohol_use",
-      "value": "Two alcoholic drinks weekly.",
+      "value": "I do not drink alcohol.",
       "sp_says": [
-        "Two alcoholic drinks weekly."
+        "I do not drink alcohol."
       ],
       "triggers": {
         "any": [
@@ -1531,7 +1543,7 @@
       "concepts": {
         "alcohol_use": {
           "polarity": "positive",
-          "value": "Two alcoholic drinks weekly."
+          "value": "I do not drink alcohol."
         }
       },
       "example_questions": [
@@ -1540,11 +1552,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "Two alcoholic drinks weekly.",
+            "text": "I do not drink alcohol.",
             "concepts": {
               "alcohol_use": {
                 "polarity": "positive",
-                "value": "Two alcoholic drinks weekly."
+                "value": "I do not drink alcohol."
               }
             },
             "complete_fact": true
@@ -1598,25 +1610,23 @@
       "id": "history_context_1",
       "category": "social",
       "checklist": "h_history_context_1",
-      "value": "I am a bus dispatcher.",
+      "value": "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift.",
       "sp_says": [
-        "I am a bus dispatcher."
+        "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift."
       ],
       "triggers": {
         "any": [
           "What do you do for work?",
-          "what do you do for work",
-          "what do you do for a living",
           "occupation",
-          "your job",
-          "do you work",
-          "are you a student"
+          "work duties",
+          "job",
+          "do for a living"
         ]
       },
       "concepts": {
         "history_context_1": {
           "polarity": "positive",
-          "value": "I am a bus dispatcher."
+          "value": "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift."
         }
       },
       "history_topic": "occupation",
@@ -1626,11 +1636,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "I am a bus dispatcher.",
+            "text": "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift.",
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a bus dispatcher."
+                "value": "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift."
               }
             },
             "complete_fact": true
@@ -1819,23 +1829,23 @@
       "id": "history_household",
       "category": "social",
       "checklist": "h_history_household",
-      "value": "I live with my wife.",
+      "value": "I share an apartment with a roommate.",
       "sp_says": [
-        "I live with my wife."
+        "I share an apartment with a roommate."
       ],
       "triggers": {
         "any": [
           "Who do you live with?",
-          "who do you live with",
-          "live with my wife",
+          "live with",
           "living situation",
-          "live with"
+          "household",
+          "support at home"
         ]
       },
       "concepts": {
         "history_household": {
           "polarity": "positive",
-          "value": "I live with my wife."
+          "value": "I share an apartment with a roommate."
         }
       },
       "history_topic": "household",
@@ -1845,11 +1855,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "I live with my wife.",
+            "text": "I share an apartment with a roommate.",
             "concepts": {
               "history_household": {
                 "polarity": "positive",
-                "value": "I live with my wife."
+                "value": "I share an apartment with a roommate."
               }
             },
             "complete_fact": true
@@ -2311,7 +2321,7 @@
       },
       {
         "id": "h_history_allergies_1",
-        "text": "No known drug allergies."
+        "text": "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing."
       },
       {
         "id": "h_tobacco_use",
@@ -2319,7 +2329,7 @@
       },
       {
         "id": "h_alcohol_use",
-        "text": "Two alcoholic drinks weekly."
+        "text": "I do not drink alcohol."
       },
       {
         "id": "h_drug_use",
@@ -2327,7 +2337,7 @@
       },
       {
         "id": "h_history_context_1",
-        "text": "I am a bus dispatcher."
+        "text": "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift."
       },
       {
         "id": "h_history_family_1",
@@ -2347,7 +2357,7 @@
       },
       {
         "id": "h_history_household",
-        "text": "I live with my wife."
+        "text": "I share an apartment with a roommate."
       },
       {
         "id": "h_history_travel",
@@ -2443,7 +2453,7 @@
     ]
   },
   "model_note": {
-    "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25 yo m. Patient reports: The cough began 4 days ago. The discomfort is in my right lower chest. The pain stays there. It is a sharp pain when I cough or breathe deeply. The pain is 5/10. The fever began the next day and the cough is getting worse. My coworker had a respiratory illness last week. Acetaminophen lowers the fever for a few hours. Coughing and deep breathing worsen the pain. I took acetaminophen 500 mg twice yesterday. I have not had an episode like this before. I cough up yellow sputum. I am short of breath on stairs. I measured 101.5 at home. I had shaking chills last night. I feel wiped out. The right chest pain is worse with a deep breath.\n\nPatient perspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: My mother is fifty-two and she has asthma.; My father is fifty-five and he has high blood pressure.; I have one sister, she's twenty-seven and she's healthy.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n",
+    "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25 yo m. Patient reports: The cough began 4 days ago. The discomfort is in my right lower chest. The pain stays there. It is a sharp pain when I cough or breathe deeply. The pain is 5/10. The fever began the next day and the cough is getting worse. My coworker had a respiratory illness last week. Acetaminophen lowers the fever for a few hours. Coughing and deep breathing worsen the pain. I took acetaminophen 500 mg twice yesterday. I have not had an episode like this before. I cough up yellow sputum. I am short of breath on stairs. I measured 101.5 at home. I had shaking chills last night. I feel wiped out. The right chest pain is worse with a deep breath.\n\nPatient perspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: Amoxicillin caused pruritic hives at age 17; no swelling or breathing difficulty.\n\nSH: Smokes 5 cigarettes daily for 5 years. No alcohol or recreational drugs. Bus dispatcher at an indoor counter with frequent driver contact; shares an apartment with a roommate. No recent travel, immobilization or surgery.\n\nFH: My mother is fifty-two and she has asthma.; My father is fifty-five and he has high blood pressure.; I have one sister, she's twenty-seven and she's healthy.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n",
     "O": "Vitals: T 101.3 F oral, P 102 bpm, BP 122/76 mmHg, R 22 rpm, Pulse Ox 95% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Tired appearing, alert and oriented, speaking full sentences.\n\nHeart: Regular tachycardia without murmur.\n\nLungs: Focal inspiratory crackles and bronchial breath sounds at the right posterior base. Dullness over the right posterior base compared with the left. Tactile fremitus is increased at the right posterior base.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
     "A": [
       "1. Community-acquired pneumonia",
@@ -2451,7 +2461,7 @@
       "3. Lung malignancy with post-obstructive symptoms"
     ],
     "P": [
-      "1. Obtain chest x-ray and assess oxygenation, respiratory rate and severity to decide disposition; consider guideline-directed antibiotics after confirming the working diagnosis and allergy/comorbidity review; explain hydration and warning signs; reassess within 48\u201372 hours, sooner for worsening dyspnea, confusion or inability to drink.",
+      "1. Obtain chest x-ray and assess oxygenation, respiratory rate and severity to decide disposition; consider guideline-directed antibiotics after confirming the working diagnosis and review of the amoxicillin-hives history and comorbidities; explain hydration and warning signs; reassess within 48\u201372 hours, sooner for worsening dyspnea, confusion or inability to drink.",
       "2. Assess thromboembolic risk and use a validated diagnostic pathway if suspicion remains; obtain appropriate imaging rather than dismissing PE because fever is present; arrange urgent evaluation for clinical deterioration. If pulmonary embolism remains a concern, arrange emergency-department assessment; explain that fever does not rule out a clot and that increasing breathlessness or fainting requires immediate help.",
       "3. Review smoking and persistent symptoms; ensure follow-up imaging or specialist evaluation if symptoms or consolidation do not resolve; offer smoking-cessation support and explain that cancer is a differential, not an established diagnosis."
     ]
@@ -2535,7 +2545,8 @@
       "https://www.nhlbi.nih.gov/health/pneumonia/diagnosis"
     ],
     "round3_plan_review": "Made vague alternative plans actionable with conditional evaluation, safety counseling and follow-up. Specific outpatient review intervals are authored teaching examples, not confirmed course mandates. No new findings or clinician approval.",
-    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional."
+    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional.",
+    "background_revision": "2026-09-14: New synthetic background facts reviewed for internal consistency and relevance against primary clinical sources; source references support clinical plausibility, not the existence of a real patient. No clinician approval."
   },
   "sources": [
     {
@@ -2563,6 +2574,20 @@
       "kind": "supplementary_clinical",
       "reviewed": "2026-09-08",
       "review_scope": "Presentation pattern, key danger signs, and diagnostic/management direction; local prescribing protocols are not specified."
+    },
+    {
+      "title": "Adult community-acquired pneumonia guideline",
+      "url": "https://www.idsociety.org/practice-guideline/community-acquired-pneumonia-cap-in-adults",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Respiratory presentation and severity-directed evaluation; antibiotic choice accounts for allergy history."
+    },
+    {
+      "title": "Clinical features of penicillin allergy",
+      "url": "https://www.cdc.gov/antibiotic-use/hcp/clinical-signs/index.html",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Document the specific agent, reaction and severity; a historical label is not a confirmed current allergy test."
     }
   ],
   "teaching": {
@@ -2580,7 +2605,7 @@
       "focused-examination",
       "clinical-reasoning",
       "evidence-based-soap",
-      "cardiopulmonary"
+      "respiratory"
     ],
     "reasoning_steps": [
       {
@@ -2682,7 +2707,8 @@
     "young_female_cohort": "New male adult18\u201330 authoring; old saved snapshots remain outside this generator.",
     "experience_review2_language": "Reviewed vomiting tense forms; unsupported progression is not invented; timing cues reference obtainable dimensions; target maneuver removed from public doorway.",
     "demeanor": "demeanor-axes-v1: independently authored communication style and emotional state; legacy pace/gesture style retained; no physical finding credit.",
-    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+    "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
   },
   "cohort": {
     "id": "young-adult-male-v1",
@@ -2704,7 +2730,7 @@
           "age": 25,
           "sex": "male",
           "pronouns": "he/him",
-          "persona": "Bus dispatcher; lives with wife; no recent travel, immobilization or surgery. Communication style: concise. Gives consistent answers without diagnostic labels.",
+          "persona": "Bus dispatcher working at an indoor counter; shares an apartment with a roommate; no recent travel, immobilization or surgery. Communication style: concise. Gives consistent answers without diagnostic labels.",
           "affect": "Could I give this to the people at home?",
           "communication_style": "concise",
           "opening": "I have had fever and a bad cough, and now it hurts when I breathe deeply.",
@@ -2923,12 +2949,12 @@
             "I do not take daily prescription medications."
           ],
           "history_allergies_1": [
-            "No known drug allergies.",
-            "No known drug allergies",
-            "drug allergies",
-            "NKDA",
-            "No medication allergies",
-            "No allergies to medications"
+            "allergies",
+            "allergic",
+            "reaction",
+            "amoxicillin",
+            "hives",
+            "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing."
           ],
           "tobacco_use": [
             "tobacco",
@@ -2940,11 +2966,10 @@
           ],
           "alcohol_use": [
             "alcohol",
-            "alcoholic",
+            "drink alcohol",
             "beer",
             "wine",
-            "drinks",
-            "Two alcoholic drinks weekly."
+            "I do not drink alcohol."
           ],
           "drug_use": [
             "recreational drugs",
@@ -2955,18 +2980,25 @@
             "No recreational drugs."
           ],
           "history_context_1": [
-            "I am a bus dispatcher."
+            "occupation",
+            "work duties",
+            "job",
+            "do for a living",
+            "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift."
           ],
           "history_family_1": [
-            "My mother is fifty-two and she has asthma.", "Mother has asthma",
+            "My mother is fifty-two and she has asthma.",
+            "Mother has asthma",
             "mother"
           ],
           "history_family_2": [
-            "My father is fifty-five and he has high blood pressure.", "father hypertension",
+            "My father is fifty-five and he has high blood pressure.",
+            "father hypertension",
             "father"
           ],
           "history_family_3": [
-            "I have one sister, she's twenty-seven and she's healthy.", "one healthy sister.",
+            "I have one sister, she's twenty-seven and she's healthy.",
+            "one healthy sister.",
             "sister"
           ],
           "patient_concern": [
@@ -2994,7 +3026,11 @@
             "No visible rash on the inspected arms."
           ],
           "history_household": [
-            "I live with my wife."
+            "live with",
+            "living situation",
+            "household",
+            "support at home",
+            "I share an apartment with a roommate."
           ],
           "history_travel": [
             "I have not traveled recently."
@@ -4103,22 +4139,24 @@
             "id": "history_allergies_1",
             "category": "allergies",
             "checklist": "h_history_allergies_1",
-            "value": "No known drug allergies.",
+            "value": "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing.",
             "sp_says": [
-              "No known drug allergies."
+              "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing."
             ],
             "triggers": {
               "any": [
                 "Do you have any medication allergies, and what reaction do you have?",
                 "allergies",
                 "allergic",
-                "reaction"
+                "reaction",
+                "amoxicillin",
+                "hives"
               ]
             },
             "concepts": {
               "history_allergies_1": {
                 "polarity": "positive",
-                "value": "No known drug allergies."
+                "value": "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing."
               }
             },
             "example_questions": [
@@ -4127,11 +4165,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "No known drug allergies.",
+                  "text": "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing.",
                   "concepts": {
                     "history_allergies_1": {
                       "polarity": "positive",
-                      "value": "No known drug allergies."
+                      "value": "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing."
                     }
                   },
                   "complete_fact": true
@@ -4185,9 +4223,9 @@
             "id": "alcohol_use",
             "category": "social",
             "checklist": "h_alcohol_use",
-            "value": "Two alcoholic drinks weekly.",
+            "value": "I do not drink alcohol.",
             "sp_says": [
-              "Two alcoholic drinks weekly."
+              "I do not drink alcohol."
             ],
             "triggers": {
               "any": [
@@ -4201,7 +4239,7 @@
             "concepts": {
               "alcohol_use": {
                 "polarity": "positive",
-                "value": "Two alcoholic drinks weekly."
+                "value": "I do not drink alcohol."
               }
             },
             "example_questions": [
@@ -4210,11 +4248,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Two alcoholic drinks weekly.",
+                  "text": "I do not drink alcohol.",
                   "concepts": {
                     "alcohol_use": {
                       "polarity": "positive",
-                      "value": "Two alcoholic drinks weekly."
+                      "value": "I do not drink alcohol."
                     }
                   },
                   "complete_fact": true
@@ -4268,25 +4306,23 @@
             "id": "history_context_1",
             "category": "social",
             "checklist": "h_history_context_1",
-            "value": "I am a bus dispatcher.",
+            "value": "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift.",
             "sp_says": [
-              "I am a bus dispatcher."
+              "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift."
             ],
             "triggers": {
               "any": [
                 "What do you do for work?",
-                "what do you do for work",
-                "what do you do for a living",
                 "occupation",
-                "your job",
-                "do you work",
-                "are you a student"
+                "work duties",
+                "job",
+                "do for a living"
               ]
             },
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a bus dispatcher."
+                "value": "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift."
               }
             },
             "history_topic": "occupation",
@@ -4296,11 +4332,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I am a bus dispatcher.",
+                  "text": "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift.",
                   "concepts": {
                     "history_context_1": {
                       "polarity": "positive",
-                      "value": "I am a bus dispatcher."
+                      "value": "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift."
                     }
                   },
                   "complete_fact": true
@@ -4489,23 +4525,23 @@
             "id": "history_household",
             "category": "social",
             "checklist": "h_history_household",
-            "value": "I live with my wife.",
+            "value": "I share an apartment with a roommate.",
             "sp_says": [
-              "I live with my wife."
+              "I share an apartment with a roommate."
             ],
             "triggers": {
               "any": [
                 "Who do you live with?",
-                "who do you live with",
-                "live with my wife",
+                "live with",
                 "living situation",
-                "live with"
+                "household",
+                "support at home"
               ]
             },
             "concepts": {
               "history_household": {
                 "polarity": "positive",
-                "value": "I live with my wife."
+                "value": "I share an apartment with a roommate."
               }
             },
             "history_topic": "household",
@@ -4515,11 +4551,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I live with my wife.",
+                  "text": "I share an apartment with a roommate.",
                   "concepts": {
                     "history_household": {
                       "polarity": "positive",
-                      "value": "I live with my wife."
+                      "value": "I share an apartment with a roommate."
                     }
                   },
                   "complete_fact": true
@@ -4764,7 +4800,7 @@
             },
             {
               "id": "h_history_allergies_1",
-              "text": "No known drug allergies."
+              "text": "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing."
             },
             {
               "id": "h_tobacco_use",
@@ -4772,7 +4808,7 @@
             },
             {
               "id": "h_alcohol_use",
-              "text": "Two alcoholic drinks weekly."
+              "text": "I do not drink alcohol."
             },
             {
               "id": "h_drug_use",
@@ -4780,7 +4816,7 @@
             },
             {
               "id": "h_history_context_1",
-              "text": "I am a bus dispatcher."
+              "text": "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift."
             },
             {
               "id": "h_history_family_1",
@@ -4800,7 +4836,7 @@
             },
             {
               "id": "h_history_household",
-              "text": "I live with my wife."
+              "text": "I share an apartment with a roommate."
             },
             {
               "id": "h_history_travel",
@@ -4895,7 +4931,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25 yo m. Patient reports: The cough began 7 days ago. The discomfort is in my right lower chest. The pain stays there. It is a sharp pain when I cough or breathe deeply. The pain is 5/10. The fever began the next day and the cough is getting worse. My coworker had a respiratory illness last week. Acetaminophen lowers the fever for a few hours. Coughing and deep breathing worsen the pain. I took acetaminophen 500 mg twice yesterday. I have not had an episode like this before. I cough up yellow sputum. I am short of breath on stairs. I measured 101.5 at home. I had shaking chills last night. I feel wiped out. The right chest pain is worse with a deep breath.\n\nPatient perspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: My mother is fifty-two and she has asthma.; My father is fifty-five and he has high blood pressure.; I have one sister, she's twenty-seven and she's healthy.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n",
+          "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25 yo m. Patient reports: The cough began 7 days ago. The discomfort is in my right lower chest. The pain stays there. It is a sharp pain when I cough or breathe deeply. The pain is 5/10. The fever began the next day and the cough is getting worse. My coworker had a respiratory illness last week. Acetaminophen lowers the fever for a few hours. Coughing and deep breathing worsen the pain. I took acetaminophen 500 mg twice yesterday. I have not had an episode like this before. I cough up yellow sputum. I am short of breath on stairs. I measured 101.5 at home. I had shaking chills last night. I feel wiped out. The right chest pain is worse with a deep breath.\n\nPatient perspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: Amoxicillin caused pruritic hives at age 17; no swelling or breathing difficulty.\n\nSH: Smokes 5 cigarettes daily for 5 years. No alcohol or recreational drugs. Bus dispatcher at an indoor counter with frequent driver contact; shares an apartment with a roommate. No recent travel, immobilization or surgery.\n\nFH: My mother is fifty-two and she has asthma.; My father is fifty-five and he has high blood pressure.; I have one sister, she's twenty-seven and she's healthy.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n",
           "O": "Vitals: T 101.3 F oral, P 102 bpm, BP 122/76 mmHg, R 22 rpm, Pulse Ox 95% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Tired appearing, alert and oriented, speaking full sentences.\n\nHeart: Regular tachycardia without murmur.\n\nLungs: Focal inspiratory crackles and bronchial breath sounds at the right posterior base. Dullness over the right posterior base compared with the left. Tactile fremitus is increased at the right posterior base.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Community-acquired pneumonia",
@@ -4903,13 +4939,14 @@
             "3. Lung malignancy with post-obstructive symptoms"
           ],
           "P": [
-            "1. Obtain chest x-ray and assess oxygenation, respiratory rate and severity to decide disposition; consider guideline-directed antibiotics after confirming the working diagnosis and allergy/comorbidity review; explain hydration and warning signs; reassess within 48\u201372 hours, sooner for worsening dyspnea, confusion or inability to drink.",
+            "1. Obtain chest x-ray and assess oxygenation, respiratory rate and severity to decide disposition; consider guideline-directed antibiotics after confirming the working diagnosis and review of the amoxicillin-hives history and comorbidities; explain hydration and warning signs; reassess within 48\u201372 hours, sooner for worsening dyspnea, confusion or inability to drink.",
             "2. Assess thromboembolic risk and use a validated diagnostic pathway if suspicion remains; obtain appropriate imaging rather than dismissing PE because fever is present; arrange urgent evaluation for clinical deterioration. If pulmonary embolism remains a concern, arrange emergency-department assessment; explain that fever does not rule out a clot and that increasing breathlessness or fainting requires immediate help.",
             "3. Review smoking and persistent symptoms; ensure follow-up imaging or specialist evaluation if symptoms or consolidation do not resolve; offer smoking-cessation support and explain that cancer is a differential, not an established diagnosis."
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"
@@ -4924,7 +4961,7 @@
           "age": 25,
           "sex": "male",
           "pronouns": "he/him",
-          "persona": "Bus dispatcher; lives with wife; no recent travel, immobilization or surgery. Communication style: concise. Gives consistent answers without diagnostic labels. I cannot read small print on medicine bottles without my glasses.",
+          "persona": "Bus dispatcher working at an indoor counter; shares an apartment with a roommate; no recent travel, immobilization or surgery. Communication style: concise. Gives consistent answers without diagnostic labels. I cannot read small print on medicine bottles without my glasses.",
           "affect": "Could I give this to the people at home?",
           "communication_style": "concise",
           "opening": "I have had fever and a bad cough, and now it hurts when I breathe deeply.",
@@ -5144,12 +5181,12 @@
             "I do not take daily prescription medications."
           ],
           "history_allergies_1": [
-            "No known drug allergies.",
-            "No known drug allergies",
-            "drug allergies",
-            "NKDA",
-            "No medication allergies",
-            "No allergies to medications"
+            "allergies",
+            "allergic",
+            "reaction",
+            "amoxicillin",
+            "hives",
+            "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing."
           ],
           "tobacco_use": [
             "tobacco",
@@ -5161,11 +5198,10 @@
           ],
           "alcohol_use": [
             "alcohol",
-            "alcoholic",
+            "drink alcohol",
             "beer",
             "wine",
-            "drinks",
-            "Two alcoholic drinks weekly."
+            "I do not drink alcohol."
           ],
           "drug_use": [
             "recreational drugs",
@@ -5176,18 +5212,25 @@
             "No recreational drugs."
           ],
           "history_context_1": [
-            "I am a bus dispatcher."
+            "occupation",
+            "work duties",
+            "job",
+            "do for a living",
+            "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift."
           ],
           "history_family_1": [
-            "My mother is fifty-two and she has asthma.", "Mother has asthma",
+            "My mother is fifty-two and she has asthma.",
+            "Mother has asthma",
             "mother"
           ],
           "history_family_2": [
-            "My father is fifty-five and he has high blood pressure.", "father hypertension",
+            "My father is fifty-five and he has high blood pressure.",
+            "father hypertension",
             "father"
           ],
           "history_family_3": [
-            "I have one sister, she's twenty-seven and she's healthy.", "one healthy sister.",
+            "I have one sister, she's twenty-seven and she's healthy.",
+            "one healthy sister.",
             "sister"
           ],
           "patient_concern": [
@@ -5215,7 +5258,11 @@
             "No visible rash on the inspected arms."
           ],
           "history_household": [
-            "I live with my wife."
+            "live with",
+            "living situation",
+            "household",
+            "support at home",
+            "I share an apartment with a roommate."
           ],
           "history_travel": [
             "I have not traveled recently."
@@ -6327,22 +6374,24 @@
             "id": "history_allergies_1",
             "category": "allergies",
             "checklist": "h_history_allergies_1",
-            "value": "No known drug allergies.",
+            "value": "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing.",
             "sp_says": [
-              "No known drug allergies."
+              "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing."
             ],
             "triggers": {
               "any": [
                 "Do you have any medication allergies, and what reaction do you have?",
                 "allergies",
                 "allergic",
-                "reaction"
+                "reaction",
+                "amoxicillin",
+                "hives"
               ]
             },
             "concepts": {
               "history_allergies_1": {
                 "polarity": "positive",
-                "value": "No known drug allergies."
+                "value": "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing."
               }
             },
             "example_questions": [
@@ -6351,11 +6400,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "No known drug allergies.",
+                  "text": "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing.",
                   "concepts": {
                     "history_allergies_1": {
                       "polarity": "positive",
-                      "value": "No known drug allergies."
+                      "value": "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing."
                     }
                   },
                   "complete_fact": true
@@ -6409,9 +6458,9 @@
             "id": "alcohol_use",
             "category": "social",
             "checklist": "h_alcohol_use",
-            "value": "Two alcoholic drinks weekly.",
+            "value": "I do not drink alcohol.",
             "sp_says": [
-              "Two alcoholic drinks weekly."
+              "I do not drink alcohol."
             ],
             "triggers": {
               "any": [
@@ -6425,7 +6474,7 @@
             "concepts": {
               "alcohol_use": {
                 "polarity": "positive",
-                "value": "Two alcoholic drinks weekly."
+                "value": "I do not drink alcohol."
               }
             },
             "example_questions": [
@@ -6434,11 +6483,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Two alcoholic drinks weekly.",
+                  "text": "I do not drink alcohol.",
                   "concepts": {
                     "alcohol_use": {
                       "polarity": "positive",
-                      "value": "Two alcoholic drinks weekly."
+                      "value": "I do not drink alcohol."
                     }
                   },
                   "complete_fact": true
@@ -6492,25 +6541,23 @@
             "id": "history_context_1",
             "category": "social",
             "checklist": "h_history_context_1",
-            "value": "I am a bus dispatcher.",
+            "value": "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift.",
             "sp_says": [
-              "I am a bus dispatcher."
+              "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift."
             ],
             "triggers": {
               "any": [
                 "What do you do for work?",
-                "what do you do for work",
-                "what do you do for a living",
                 "occupation",
-                "your job",
-                "do you work",
-                "are you a student"
+                "work duties",
+                "job",
+                "do for a living"
               ]
             },
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a bus dispatcher."
+                "value": "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift."
               }
             },
             "history_topic": "occupation",
@@ -6520,11 +6567,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I am a bus dispatcher.",
+                  "text": "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift.",
                   "concepts": {
                     "history_context_1": {
                       "polarity": "positive",
-                      "value": "I am a bus dispatcher."
+                      "value": "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift."
                     }
                   },
                   "complete_fact": true
@@ -6758,23 +6805,23 @@
             "id": "history_household",
             "category": "social",
             "checklist": "h_history_household",
-            "value": "I live with my wife.",
+            "value": "I share an apartment with a roommate.",
             "sp_says": [
-              "I live with my wife."
+              "I share an apartment with a roommate."
             ],
             "triggers": {
               "any": [
                 "Who do you live with?",
-                "who do you live with",
-                "live with my wife",
+                "live with",
                 "living situation",
-                "live with"
+                "household",
+                "support at home"
               ]
             },
             "concepts": {
               "history_household": {
                 "polarity": "positive",
-                "value": "I live with my wife."
+                "value": "I share an apartment with a roommate."
               }
             },
             "history_topic": "household",
@@ -6784,11 +6831,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I live with my wife.",
+                  "text": "I share an apartment with a roommate.",
                   "concepts": {
                     "history_household": {
                       "polarity": "positive",
-                      "value": "I live with my wife."
+                      "value": "I share an apartment with a roommate."
                     }
                   },
                   "complete_fact": true
@@ -7033,7 +7080,7 @@
             },
             {
               "id": "h_history_allergies_1",
-              "text": "No known drug allergies."
+              "text": "Amoxicillin gave me itchy hives when I was 17. I did not have swelling or trouble breathing."
             },
             {
               "id": "h_tobacco_use",
@@ -7041,7 +7088,7 @@
             },
             {
               "id": "h_alcohol_use",
-              "text": "Two alcoholic drinks weekly."
+              "text": "I do not drink alcohol."
             },
             {
               "id": "h_drug_use",
@@ -7049,7 +7096,7 @@
             },
             {
               "id": "h_history_context_1",
-              "text": "I am a bus dispatcher."
+              "text": "I am a bus dispatcher. I work at an indoor counter and talk with drivers throughout the shift."
             },
             {
               "id": "h_history_family_1",
@@ -7073,7 +7120,7 @@
             },
             {
               "id": "h_history_household",
-              "text": "I live with my wife."
+              "text": "I share an apartment with a roommate."
             },
             {
               "id": "h_history_travel",
@@ -7168,7 +7215,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25 yo m. Patient reports: The cough began 4 days ago. The discomfort is in my right lower chest. The pain stays there. It is a sharp pain when I cough or breathe deeply. The pain is 5/10. The fever began the next day and the cough is getting worse. My coworker had a respiratory illness last week. Acetaminophen lowers the fever for a few hours. Coughing and deep breathing worsen the pain. I took acetaminophen 500 mg twice yesterday. I have not had an episode like this before. I cough up yellow sputum. I am short of breath on stairs. I measured 101.5 at home. I had shaking chills last night. I feel wiped out. The right chest pain is worse with a deep breath.\n\nPatient perspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: No known drug allergies.\n\nSH: Smokes 5 cigarettes daily for 5 years. Two alcoholic drinks weekly. No recreational drugs. Bus dispatcher; lives with wife; no recent travel, immobilization or surgery.\n\nFH: My mother is fifty-two and she has asthma.; My father is fifty-five and he has high blood pressure.; I have one sister, she's twenty-seven and she's healthy.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n\nPatient concern: I cannot read small print on medicine bottles without my glasses.\n",
+          "S": "cc: Fever, cough and pain on deep breathing\n\nHPI: 25 yo m. Patient reports: The cough began 4 days ago. The discomfort is in my right lower chest. The pain stays there. It is a sharp pain when I cough or breathe deeply. The pain is 5/10. The fever began the next day and the cough is getting worse. My coworker had a respiratory illness last week. Acetaminophen lowers the fever for a few hours. Coughing and deep breathing worsen the pain. I took acetaminophen 500 mg twice yesterday. I have not had an episode like this before. I cough up yellow sputum. I am short of breath on stairs. I measured 101.5 at home. I had shaking chills last night. I feel wiped out. The right chest pain is worse with a deep breath.\n\nPatient perspective: Could I give this to the people at home?\n\nPMH: No chronic lung or heart disease; vaccines not reviewed recently.\n\nPSH: Hernia repair at age 20.\n\nMeds: Acetaminophen as above; no daily prescription medications.\n\nAllergies: Amoxicillin caused pruritic hives at age 17; no swelling or breathing difficulty.\n\nSH: Smokes 5 cigarettes daily for 5 years. No alcohol or recreational drugs. Bus dispatcher at an indoor counter with frequent driver contact; shares an apartment with a roommate. No recent travel, immobilization or surgery.\n\nFH: My mother is fifty-two and she has asthma.; My father is fifty-five and he has high blood pressure.; I have one sister, she's twenty-seven and she's healthy.\n\nROS: Respiratory - Reports cough. Reports dyspnea. Denies hemoptysis. General - Reports fever. Reports chills. Reports fatigue. Cardiovascular - Reports chest pain. Denies edema. Denies syncope.\n\nPatient concern: I cannot read small print on medicine bottles without my glasses.\n",
           "O": "Vitals: T 101.3 F oral, P 102 bpm, BP 122/76 mmHg, R 22 rpm, Pulse Ox 95% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Tired appearing, alert and oriented, speaking full sentences.\n\nHeart: Regular tachycardia without murmur.\n\nLungs: Focal inspiratory crackles and bronchial breath sounds at the right posterior base. Dullness over the right posterior base compared with the left. Tactile fremitus is increased at the right posterior base.\n\nOsteopathic: T1 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Community-acquired pneumonia",
@@ -7176,13 +7223,14 @@
             "3. Lung malignancy with post-obstructive symptoms"
           ],
           "P": [
-            "1. Obtain chest x-ray and assess oxygenation, respiratory rate and severity to decide disposition; consider guideline-directed antibiotics after confirming the working diagnosis and allergy/comorbidity review; explain hydration and warning signs; reassess within 48\u201372 hours, sooner for worsening dyspnea, confusion or inability to drink. Use large-print instructions and ask the patient to explain the medication and safety plan back.",
+            "1. Obtain chest x-ray and assess oxygenation, respiratory rate and severity to decide disposition; consider guideline-directed antibiotics after confirming the working diagnosis and review of the amoxicillin-hives history and comorbidities; explain hydration and warning signs; reassess within 48\u201372 hours, sooner for worsening dyspnea, confusion or inability to drink. Use large-print instructions and ask the patient to explain the medication and safety plan back.",
             "2. Assess thromboembolic risk and use a validated diagnostic pathway if suspicion remains; obtain appropriate imaging rather than dismissing PE because fever is present; arrange urgent evaluation for clinical deterioration. If pulmonary embolism remains a concern, arrange emergency-department assessment; explain that fever does not rule out a clot and that increasing breathlessness or fainting requires immediate help.",
             "3. Review smoking and persistent symptoms; ensure follow-up imaging or specialist evaluation if symptoms or consolidation do not resolve; offer smoking-cessation support and explain that cancer is a differential, not an established diagnosis."
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"

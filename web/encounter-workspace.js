@@ -297,6 +297,9 @@ function relevantRegions(s){
  const text=[s?.station_chart?.doorway,s?.station?.doorway,...(s?.transcript||[]).filter(e=>e.kind==='patient_reply'&&!e.meta?.no_information).map(e=>e.text)].filter(Boolean).join(' ').toLowerCase();
  const regions=new Set(['General']);let matched=false;
  const add=(pattern,names)=>{if(pattern.test(text)){matched=true;names.forEach(n=>regions.add(n));}};
+ // A skin complaint deserves its own concise route, including peripheral and
+ // lymph-node checks. Match the visible symptom words, not a hidden diagnosis.
+ add(/\b(?:rash(?:es)?|itch(?:y|ing|iness|es)?|redness|skin)\b|\bred\b[^.!?\n]{0,50}\bpatch\b/,['Skin','Extremities','HEENT']);
  add(/cough|chest|breath|wheez|palpitation|edema|swelling|faint|syncope/,['Heart','Lungs','Extremities','HEENT']);
  add(/abdom|stomach|flank|urina|urine|urinary|dysuria|hematuria|kidney|bowel|vomit|nausea|diarrh|stool|constipat|swallow/,['Abdomen','Heart','Lungs','HEENT']);
  add(/headache|dizz|vertigo|weak|numb|tingl|balance|confus|seizure|speech|vision/,['Neurologic','HEENT','Neck','Heart','Musculoskeletal']);

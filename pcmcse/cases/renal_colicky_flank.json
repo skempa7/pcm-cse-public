@@ -58,7 +58,7 @@
       "pitch": 1,
       "gender": "female",
       "adult": true,
-      "age_range": "18\u201330"
+      "age_range": "18–30"
     },
     "comfort_response": {
       "reply": "At its worst it is 9/10.",
@@ -160,10 +160,12 @@
       "did it help"
     ],
     "hpi_past_occurrence": [
-      "I passed a kidney stone 5 years ago.",
-      "I passed a kidney stone 5 years ago",
+      "happened before",
+      "prior stone",
       "previous episode",
-      "happened before"
+      "I had a kidney stone 5 years ago. It needed a procedure to remove it.",
+      "Have you had a stone before?",
+      "Have you had kidney stones before?"
     ],
     "symptom_flank_pain": [
       "flank pain",
@@ -232,9 +234,11 @@
       "past medical"
     ],
     "history_psh_1": [
-      "No surgery or admissions except the prior stone visit.",
-      "No surgery or admissions except the prior stone visit",
-      "past surgical"
+      "past surgery",
+      "operations",
+      "procedures",
+      "hospital stays",
+      "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations."
     ],
     "history_medications_1": [
       "No daily medicines",
@@ -287,15 +291,18 @@
       "I am a construction estimator."
     ],
     "history_family_1": [
-      "My dad is fifty-six and he's had kidney stones over and over.", "Father has recurrent kidney stones",
+      "My dad is fifty-six and he's had kidney stones over and over.",
+      "Father has recurrent kidney stones",
       "father"
     ],
     "history_family_2": [
-      "My mom is fifty-four and she has high blood pressure.", "mother has hypertension",
+      "My mom is fifty-four and she has high blood pressure.",
+      "mother has hypertension",
       "mother"
     ],
     "history_family_3": [
-      "I have one sister and she's healthy.", "sister healthy.",
+      "I have one sister and she's healthy.",
+      "sister healthy.",
       "sister"
     ],
     "patient_concern": [
@@ -834,35 +841,39 @@
       "id": "hpi_past_occurrence",
       "category": "past_occurrence",
       "checklist": "h_hpi_past_occurrence",
-      "value": "I passed a kidney stone 5 years ago.",
+      "value": "I had a kidney stone 5 years ago. It needed a procedure to remove it.",
       "sp_says": [
-        "I passed a kidney stone 5 years ago."
+        "I had a kidney stone 5 years ago. It needed a procedure to remove it."
       ],
       "triggers": {
         "any": [
           "Have you had anything like this before?",
-          "before",
+          "happened before",
+          "prior stone",
           "previous episode",
-          "happened before"
+          "Have you had a stone before?",
+          "Have you had kidney stones before?"
         ]
       },
       "concepts": {
         "hpi_past_occurrence": {
           "polarity": "positive",
-          "value": "I passed a kidney stone 5 years ago."
+          "value": "I had a kidney stone 5 years ago. It needed a procedure to remove it."
         }
       },
       "example_questions": [
-        "Have you had anything like this before?"
+        "Have you had anything like this before?",
+        "Have you had a stone before?",
+        "Have you had kidney stones before?"
       ],
       "delivery_contract": {
         "versions": [
           {
-            "text": "I passed a kidney stone 5 years ago.",
+            "text": "I had a kidney stone 5 years ago. It needed a procedure to remove it.",
             "concepts": {
               "hpi_past_occurrence": {
                 "polarity": "positive",
-                "value": "I passed a kidney stone 5 years ago."
+                "value": "I had a kidney stone 5 years ago. It needed a procedure to remove it."
               }
             },
             "complete_fact": true
@@ -1378,23 +1389,23 @@
       "id": "history_psh_1",
       "category": "psh",
       "checklist": "h_history_psh_1",
-      "value": "No surgery or admissions except the prior stone visit.",
+      "value": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations.",
       "sp_says": [
-        "No surgery or admissions except the prior stone visit."
+        "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations."
       ],
       "triggers": {
         "any": [
           "Have you had any surgeries or hospital admissions?",
-          "surgery",
+          "past surgery",
           "operations",
-          "hospitalized",
-          "past surgical"
+          "procedures",
+          "hospital stays"
         ]
       },
       "concepts": {
         "history_psh_1": {
           "polarity": "positive",
-          "value": "No surgery or admissions except the prior stone visit."
+          "value": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations."
         }
       },
       "example_questions": [
@@ -1403,11 +1414,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "No surgery or admissions except the prior stone visit.",
+            "text": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations.",
             "concepts": {
               "history_psh_1": {
                 "polarity": "positive",
-                "value": "No surgery or admissions except the prior stone visit."
+                "value": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations."
               }
             },
             "complete_fact": true
@@ -2522,7 +2533,7 @@
       },
       {
         "id": "h_hpi_past_occurrence",
-        "text": "I passed a kidney stone 5 years ago."
+        "text": "I had a kidney stone 5 years ago. It needed a procedure to remove it."
       },
       {
         "id": "h_symptom_flank_pain",
@@ -2574,7 +2585,7 @@
       },
       {
         "id": "h_history_psh_1",
-        "text": "No surgery or admissions except the prior stone visit."
+        "text": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations."
       },
       {
         "id": "h_history_medications_1",
@@ -2648,19 +2659,19 @@
     "physical": [
       {
         "id": "p_exam_1",
-        "text": "Alert \u2014 obtain with general inspect",
+        "text": "Alert — obtain with general inspect",
         "maneuver": "general_inspect",
         "components": []
       },
       {
         "id": "p_exam_2",
-        "text": "Restless, frequently changing position \u2014 obtain with general inspect",
+        "text": "Restless, frequently changing position — obtain with general inspect",
         "maneuver": "general_inspect",
         "components": []
       },
       {
         "id": "p_exam_3",
-        "text": "Regular rhythm without murmur \u2014 obtain with heart auscultate",
+        "text": "Regular rhythm without murmur — obtain with heart auscultate",
         "maneuver": "heart_auscultate",
         "components": [
           "aortic",
@@ -2672,7 +2683,7 @@
       },
       {
         "id": "p_exam_4",
-        "text": "Clear breath sounds bilaterally \u2014 obtain with lungs auscultate",
+        "text": "Clear breath sounds bilaterally — obtain with lungs auscultate",
         "maneuver": "lungs_auscultate",
         "components": [
           "posterior",
@@ -2683,7 +2694,7 @@
       },
       {
         "id": "p_exam_5",
-        "text": "Abdomen not distended \u2014 obtain with abd inspect",
+        "text": "Abdomen not distended — obtain with abd inspect",
         "maneuver": "abd_inspect",
         "components": [
           "contour"
@@ -2691,7 +2702,7 @@
       },
       {
         "id": "p_exam_6",
-        "text": "Bowel sounds present \u2014 obtain with abd auscultate",
+        "text": "Bowel sounds present — obtain with abd auscultate",
         "maneuver": "abd_auscultate",
         "components": [
           "all four quadrants"
@@ -2699,7 +2710,7 @@
       },
       {
         "id": "p_exam_7",
-        "text": "Mild left lateral abdominal tenderness \u2014 obtain with abd palpate",
+        "text": "Mild left lateral abdominal tenderness — obtain with abd palpate",
         "maneuver": "abd_palpate",
         "components": [
           "light",
@@ -2708,7 +2719,7 @@
       },
       {
         "id": "p_exam_8",
-        "text": "No involuntary guarding \u2014 obtain with abd palpate",
+        "text": "No involuntary guarding — obtain with abd palpate",
         "maneuver": "abd_palpate",
         "components": [
           "guarding"
@@ -2716,7 +2727,7 @@
       },
       {
         "id": "p_exam_9",
-        "text": "Tympanic over examined quadrants \u2014 obtain with abd percuss",
+        "text": "Tympanic over examined quadrants — obtain with abd percuss",
         "maneuver": "abd_percuss",
         "components": [
           "four quadrants"
@@ -2724,7 +2735,7 @@
       },
       {
         "id": "p_exam_10",
-        "text": "Left costovertebral angle tenderness; right side nontender \u2014 obtain with abd special",
+        "text": "Left costovertebral angle tenderness; right side nontender — obtain with abd special",
         "maneuver": "abd_special",
         "components": [
           "cva tenderness"
@@ -2732,7 +2743,7 @@
       },
       {
         "id": "p_exam_11",
-        "text": "T10 paraspinal tissue texture change with mild tenderness on the right \u2014 obtain with osteo screen",
+        "text": "T10 paraspinal tissue texture change with mild tenderness on the right — obtain with osteo screen",
         "maneuver": "osteo_screen",
         "components": [
           "lumbar"
@@ -2740,7 +2751,7 @@
       },
       {
         "id": "p_exam_12",
-        "text": "No visible rash on the inspected arms \u2014 obtain with skin inspect",
+        "text": "No visible rash on the inspected arms — obtain with skin inspect",
         "maneuver": "skin_inspect",
         "components": [
           "arms"
@@ -2764,7 +2775,7 @@
     ]
   },
   "model_note": {
-    "S": "cc: Severe flank pain that comes in waves\n\nHPI: 27 yo f. Patient reports: It started suddenly 4 hours ago. It is in my left flank. It travels toward my left groin. It is sharp and cramping in waves. At its worst it is 9/10. Each wave lasts several minutes with partial easing between. It started while I was at work, without trauma. Nothing reliably relieves it. There is no clear movement trigger. I tried acetaminophen 500 mg without relief. I passed a kidney stone 5 years ago. The left flank hurts in waves. My urine looked pink once. I feel nauseated with the pain. I vomited once. The pain is exhausting.\n\nPatient perspective: Will this damage my kidney?\n\nPMH: One prior calcium kidney stone; has two kidneys; no kidney disease.\n\nPSH: No surgery or admissions except the prior stone visit.\n\nMeds: No daily medicines; acetaminophen once today.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. Two alcoholic drinks weekly. No recreational drugs. Construction estimator; often cannot take water breaks; lives with husband.\n\nFH: My dad is fifty-six and he's had kidney stones over and over.; My mom is fifty-four and she has high blood pressure.; I have one sister and she's healthy.\n\nROS: Urinary - Reports flank pain. Reports hematuria. Denies dysuria. Gastrointestinal - Reports nausea. Reports vomiting. Denies diarrhea. General - Denies fever. Denies chills. Reports fatigue.\nUrinary history: I am still able to pass urine.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+    "S": "cc: Severe flank pain that comes in waves\n\nHPI: 27 yo f. Patient reports: It started suddenly 4 hours ago. It is in my left flank. It travels toward my left groin. It is sharp and cramping in waves. At its worst it is 9/10. Each wave lasts several minutes with partial easing between. It started while I was at work, without trauma. Nothing reliably relieves it. There is no clear movement trigger. I tried acetaminophen 500 mg without relief. I had a kidney stone 5 years ago. It needed a procedure to remove it. The left flank hurts in waves. My urine looked pink once. I feel nauseated with the pain. I vomited once. The pain is exhausting.\n\nPatient perspective: Will this damage my kidney?\n\nPMH: One prior calcium kidney stone; has two kidneys; no kidney disease.\n\nPSH: Ureteroscopy for stone removal at age 22; temporary stent removed 1 week later. No other operations.\n\nMeds: No daily medicines; acetaminophen once today.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. Two alcoholic drinks weekly. No recreational drugs. Construction estimator; often cannot take water breaks; lives with husband.\n\nFH: My dad is fifty-six and he's had kidney stones over and over.; My mom is fifty-four and she has high blood pressure.; I have one sister and she's healthy.\n\nROS: Urinary - Reports flank pain. Reports hematuria. Denies dysuria. Gastrointestinal - Reports nausea. Reports vomiting. Denies diarrhea. General - Denies fever. Denies chills. Reports fatigue.\nUrinary history: I am still able to pass urine.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
     "O": "Vitals: T 98.7 F oral, P 98 bpm, BP 142/86 mmHg, R 20 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Restless, frequently changing position.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nAbd: Abdomen not distended. Bowel sounds present. Mild left lateral abdominal tenderness. No involuntary guarding. Tympanic over examined quadrants. Left costovertebral angle tenderness; right side nontender.\n\nOsteopathic: T10 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
     "A": [
       "1. Ureteral calculus",
@@ -2772,9 +2783,9 @@
       "3. Musculoskeletal flank strain"
     ],
     "P": [
-      "1. Assess pain control, hydration, urine output, solitary kidney and infection risk; obtain urinalysis, creatinine and appropriate renal imaging; provide clinician-directed analgesia and antiemetic, with urgent urology for infected obstruction or renal compromise; explain urine straining if discharged and arrange prompt follow-up, with emergency return for fever or inability to urinate.",
+      "1. Assess pain control, hydration, urine output, solitary kidney and infection risk; obtain urinalysis, creatinine and appropriate renal imaging; provide clinician-directed analgesia and antiemetic, with urgent urology for infected obstruction or renal compromise; explain urine straining if discharged and arrange a symptom and result review within 48–72 hours after acute assessment if stable for outpatient care, with emergency return for fever or inability to urinate.",
       "2. Obtain urine culture if infection is suspected and monitor systemic features; an obstructed infected urinary system needs urgent drainage evaluation rather than antibiotics alone; explain the fever/rigor emergency precaution.",
-      "3. Ask about mechanical triggers and assess focal musculature after urgent renal causes; consider conservative treatment only if supported; advise reassessment for new urinary or systemic features. If urgent renal causes are excluded and a muscular cause is supported, advise continued gentle daily activity as tolerated and avoidance of prolonged bed rest."
+      "3. Ask about mechanical triggers and assess focal musculature after urgent renal causes; consider conservative treatment only if supported; advise reassessment for new urinary or systemic features. If urgent renal causes are excluded and a muscular cause is supported, advise continued gentle daily activity as tolerated and avoidance of prolonged bed rest. If a focal muscle strain is supported, consider acetaminophen after reviewing contraindications and the response to the earlier dose."
     ]
   },
   "ideal_encounter_extras": [
@@ -2853,17 +2864,20 @@
     "limits": "No official faculty validation. Treatment choices require local protocol and patient-specific assessment. Synthetic physical findings and mnemonic placement are educational assumptions.",
     "sources": [
       "https://www.niddk.nih.gov/health-information/urologic-diseases/kidney-stones/symptoms-causes",
-      "https://www.niddk.nih.gov/health-information/urologic-diseases/kidney-stones/treatment"
+      "https://www.niddk.nih.gov/health-information/urologic-diseases/kidney-stones/treatment",
+      "https://www.acponline.org/acp-newsroom/acp-aafp-release-new-guideline-for-treatment-of-non-low-back-pain-from-musculoskeletal-injuries-in"
     ],
     "round2_addendum": "Added patient-reported ability to pass urine as synthetic scenario content. Passing urine does not rule out unilateral ureteral obstruction; no volume, creatinine or imaging result is supplied.",
     "round3_plan_review": "Made vague alternative plans actionable with conditional evaluation, safety counseling and follow-up. Specific outpatient review intervals are authored teaching examples, not confirmed course mandates. No new findings or clinician approval.",
-    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional."
+    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional.",
+    "background_revision": "2026-09-14: New synthetic background facts reviewed for internal consistency and relevance against primary clinical sources; source references support clinical plausibility, not the existence of a real patient. No clinician approval.",
+    "print_case_revision": "2026-09-14: Deliberate source-checked authoring revision for new attempts. Existing saved snapshots and archived versions remain unchanged. Not clinician or faculty approved."
   },
   "sources": [
     {
       "title": "PCM I syllabus, fall 2026",
       "path": "claude builds/PCM/PCM syllabus.pdf",
-      "locator": "pp. 14\u201315: cardiovascular, GI, renal and neurologic complaint/case objectives",
+      "locator": "pp. 14–15: cardiovascular, GI, renal and neurologic complaint/case objectives",
       "kind": "course"
     },
     {
@@ -2892,6 +2906,20 @@
       "kind": "supplementary_clinical",
       "reviewed": "2026-09-09",
       "review_scope": "Conditional alternative-plan counseling/testing; no new patient history or course requirement."
+    },
+    {
+      "title": "Treatment for kidney stones",
+      "url": "https://www.niddk.nih.gov/health-information/urologic-diseases/kidney-stones/treatment",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Ureteroscopy and temporary stents are established stone procedures; treatment and prevention depend on the patient and stone history."
+    },
+    {
+      "title": "ACP/AAFP: Acute non-low-back musculoskeletal injury treatment",
+      "url": "https://www.acponline.org/acp-newsroom/acp-aafp-release-new-guideline-for-treatment-of-non-low-back-pain-from-musculoskeletal-injuries-in",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Conditional analgesic option only if a focal muscle strain is supported after urgent renal causes are excluded. The 48–72-hour stable outpatient review is an authored teaching disposition, not a cited mandatory interval."
     }
   ],
   "teaching": {
@@ -3007,10 +3035,12 @@
     "round2": "Atomic history disclosures; onset versus episode duration; coherent position/comfort responses; authored voiding clarification. Natural-question router validation remains separate.",
     "round3": "Question dimensions restricted to authored temporal content; complete medication sentences retain original scope, doses and timing; causal assessment aliases require the stated etiology. No new case findings; author-reviewed, not clinician approved.",
     "round4": "Exact opening and per-speech-version disclosure contracts; removed borrowed opening atoms; split previously unspoken negative-history qualifiers; explicit current status and last-known-well routes. Existing clinical facts and IDs preserved; no clinician approval.",
-    "young_female_cohort": "New female adult18\u201330 authoring; old saved snapshots remain outside this generator.",
+    "young_female_cohort": "New female adult18–30 authoring; old saved snapshots remain outside this generator.",
     "experience_review2_language": "Reviewed vomiting tense forms; unsupported progression is not invented; timing cues reference obtainable dimensions; target maneuver removed from public doorway.",
     "demeanor": "demeanor-axes-v1: independently authored communication style and emotional state; legacy pace/gesture style retained; no physical finding credit.",
-    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+    "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved.",
+    "print_case_plan_20260914": "Reviewed conditional differential/plan clarity; original attempts retain their frozen source. Course VINDICATE uncertainty remains explicit where unresolved."
   },
   "cohort": {
     "id": "young-adult-female-v1",
@@ -3056,7 +3086,7 @@
             "pitch": 1,
             "gender": "female",
             "adult": true,
-            "age_range": "18\u201330"
+            "age_range": "18–30"
           },
           "comfort_response": {
             "reply": "At its worst it is 9/10.",
@@ -3158,10 +3188,12 @@
             "did it help"
           ],
           "hpi_past_occurrence": [
-            "I passed a kidney stone 5 years ago.",
-            "I passed a kidney stone 5 years ago",
+            "happened before",
+            "prior stone",
             "previous episode",
-            "happened before"
+            "I had a kidney stone 5 years ago. It needed a procedure to remove it.",
+            "Have you had a stone before?",
+            "Have you had kidney stones before?"
           ],
           "symptom_flank_pain": [
             "flank pain",
@@ -3230,9 +3262,11 @@
             "past medical"
           ],
           "history_psh_1": [
-            "No surgery or admissions except the prior stone visit.",
-            "No surgery or admissions except the prior stone visit",
-            "past surgical"
+            "past surgery",
+            "operations",
+            "procedures",
+            "hospital stays",
+            "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations."
           ],
           "history_medications_1": [
             "No daily medicines",
@@ -3285,15 +3319,18 @@
             "I am a construction estimator."
           ],
           "history_family_1": [
-            "My dad is fifty-six and he's had kidney stones over and over.", "Father has recurrent kidney stones",
+            "My dad is fifty-six and he's had kidney stones over and over.",
+            "Father has recurrent kidney stones",
             "father"
           ],
           "history_family_2": [
-            "My mom is fifty-four and she has high blood pressure.", "mother has hypertension",
+            "My mom is fifty-four and she has high blood pressure.",
+            "mother has hypertension",
             "mother"
           ],
           "history_family_3": [
-            "I have one sister and she's healthy.", "sister healthy.",
+            "I have one sister and she's healthy.",
+            "sister healthy.",
             "sister"
           ],
           "patient_concern": [
@@ -3832,35 +3869,39 @@
             "id": "hpi_past_occurrence",
             "category": "past_occurrence",
             "checklist": "h_hpi_past_occurrence",
-            "value": "I passed a kidney stone 5 years ago.",
+            "value": "I had a kidney stone 5 years ago. It needed a procedure to remove it.",
             "sp_says": [
-              "I passed a kidney stone 5 years ago."
+              "I had a kidney stone 5 years ago. It needed a procedure to remove it."
             ],
             "triggers": {
               "any": [
                 "Have you had anything like this before?",
-                "before",
+                "happened before",
+                "prior stone",
                 "previous episode",
-                "happened before"
+                "Have you had a stone before?",
+                "Have you had kidney stones before?"
               ]
             },
             "concepts": {
               "hpi_past_occurrence": {
                 "polarity": "positive",
-                "value": "I passed a kidney stone 5 years ago."
+                "value": "I had a kidney stone 5 years ago. It needed a procedure to remove it."
               }
             },
             "example_questions": [
-              "Have you had anything like this before?"
+              "Have you had anything like this before?",
+              "Have you had a stone before?",
+              "Have you had kidney stones before?"
             ],
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I passed a kidney stone 5 years ago.",
+                  "text": "I had a kidney stone 5 years ago. It needed a procedure to remove it.",
                   "concepts": {
                     "hpi_past_occurrence": {
                       "polarity": "positive",
-                      "value": "I passed a kidney stone 5 years ago."
+                      "value": "I had a kidney stone 5 years ago. It needed a procedure to remove it."
                     }
                   },
                   "complete_fact": true
@@ -4376,23 +4417,23 @@
             "id": "history_psh_1",
             "category": "psh",
             "checklist": "h_history_psh_1",
-            "value": "No surgery or admissions except the prior stone visit.",
+            "value": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations.",
             "sp_says": [
-              "No surgery or admissions except the prior stone visit."
+              "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations."
             ],
             "triggers": {
               "any": [
                 "Have you had any surgeries or hospital admissions?",
-                "surgery",
+                "past surgery",
                 "operations",
-                "hospitalized",
-                "past surgical"
+                "procedures",
+                "hospital stays"
               ]
             },
             "concepts": {
               "history_psh_1": {
                 "polarity": "positive",
-                "value": "No surgery or admissions except the prior stone visit."
+                "value": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations."
               }
             },
             "example_questions": [
@@ -4401,11 +4442,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "No surgery or admissions except the prior stone visit.",
+                  "text": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations.",
                   "concepts": {
                     "history_psh_1": {
                       "polarity": "positive",
-                      "value": "No surgery or admissions except the prior stone visit."
+                      "value": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations."
                     }
                   },
                   "complete_fact": true
@@ -5205,7 +5246,7 @@
             },
             {
               "id": "h_hpi_past_occurrence",
-              "text": "I passed a kidney stone 5 years ago."
+              "text": "I had a kidney stone 5 years ago. It needed a procedure to remove it."
             },
             {
               "id": "h_symptom_flank_pain",
@@ -5257,7 +5298,7 @@
             },
             {
               "id": "h_history_psh_1",
-              "text": "No surgery or admissions except the prior stone visit."
+              "text": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations."
             },
             {
               "id": "h_history_medications_1",
@@ -5331,19 +5372,19 @@
           "physical": [
             {
               "id": "p_exam_1",
-              "text": "Alert \u2014 obtain with general inspect",
+              "text": "Alert — obtain with general inspect",
               "maneuver": "general_inspect",
               "components": []
             },
             {
               "id": "p_exam_2",
-              "text": "Restless, frequently changing position \u2014 obtain with general inspect",
+              "text": "Restless, frequently changing position — obtain with general inspect",
               "maneuver": "general_inspect",
               "components": []
             },
             {
               "id": "p_exam_3",
-              "text": "Regular rhythm without murmur \u2014 obtain with heart auscultate",
+              "text": "Regular rhythm without murmur — obtain with heart auscultate",
               "maneuver": "heart_auscultate",
               "components": [
                 "aortic",
@@ -5355,7 +5396,7 @@
             },
             {
               "id": "p_exam_4",
-              "text": "Clear breath sounds bilaterally \u2014 obtain with lungs auscultate",
+              "text": "Clear breath sounds bilaterally — obtain with lungs auscultate",
               "maneuver": "lungs_auscultate",
               "components": [
                 "posterior",
@@ -5365,7 +5406,7 @@
             },
             {
               "id": "p_exam_5",
-              "text": "Abdomen not distended \u2014 obtain with abd inspect",
+              "text": "Abdomen not distended — obtain with abd inspect",
               "maneuver": "abd_inspect",
               "components": [
                 "contour"
@@ -5373,7 +5414,7 @@
             },
             {
               "id": "p_exam_6",
-              "text": "Bowel sounds present \u2014 obtain with abd auscultate",
+              "text": "Bowel sounds present — obtain with abd auscultate",
               "maneuver": "abd_auscultate",
               "components": [
                 "all four quadrants"
@@ -5381,7 +5422,7 @@
             },
             {
               "id": "p_exam_7",
-              "text": "Mild left lateral abdominal tenderness \u2014 obtain with abd palpate",
+              "text": "Mild left lateral abdominal tenderness — obtain with abd palpate",
               "maneuver": "abd_palpate",
               "components": [
                 "light",
@@ -5390,7 +5431,7 @@
             },
             {
               "id": "p_exam_8",
-              "text": "No involuntary guarding \u2014 obtain with abd palpate",
+              "text": "No involuntary guarding — obtain with abd palpate",
               "maneuver": "abd_palpate",
               "components": [
                 "guarding"
@@ -5398,7 +5439,7 @@
             },
             {
               "id": "p_exam_9",
-              "text": "Tympanic over examined quadrants \u2014 obtain with abd percuss",
+              "text": "Tympanic over examined quadrants — obtain with abd percuss",
               "maneuver": "abd_percuss",
               "components": [
                 "four quadrants"
@@ -5406,7 +5447,7 @@
             },
             {
               "id": "p_exam_10",
-              "text": "Left costovertebral angle tenderness; right side nontender \u2014 obtain with abd special",
+              "text": "Left costovertebral angle tenderness; right side nontender — obtain with abd special",
               "maneuver": "abd_special",
               "components": [
                 "cva tenderness"
@@ -5414,7 +5455,7 @@
             },
             {
               "id": "p_exam_11",
-              "text": "T10 paraspinal tissue texture change with mild tenderness on the right \u2014 obtain with osteo screen",
+              "text": "T10 paraspinal tissue texture change with mild tenderness on the right — obtain with osteo screen",
               "maneuver": "osteo_screen",
               "components": [
                 "lumbar"
@@ -5422,7 +5463,7 @@
             },
             {
               "id": "p_exam_12",
-              "text": "No visible rash on the inspected arms \u2014 obtain with skin inspect",
+              "text": "No visible rash on the inspected arms — obtain with skin inspect",
               "maneuver": "skin_inspect",
               "components": [
                 "arms"
@@ -5446,7 +5487,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Severe flank pain that comes in waves\n\nHPI: 27 yo f. Patient reports: It started suddenly 9 hours ago. It is in my left flank. It travels toward my left groin. It is sharp and cramping in waves. At its worst it is 9/10. Each wave lasts several minutes with partial easing between. It started while I was at work, without trauma. Nothing reliably relieves it. There is no clear movement trigger. I tried acetaminophen 500 mg without relief. I passed a kidney stone 5 years ago. The left flank hurts in waves. My urine looked pink once. I feel nauseated with the pain. I vomited once. The pain is exhausting.\n\nPatient perspective: Will this damage my kidney?\n\nPMH: One prior calcium kidney stone; has two kidneys; no kidney disease.\n\nPSH: No surgery or admissions except the prior stone visit.\n\nMeds: No daily medicines; acetaminophen once today.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. Two alcoholic drinks weekly. No recreational drugs. Construction estimator; often cannot take water breaks; lives with husband.\n\nFH: My dad is fifty-six and he's had kidney stones over and over.; My mom is fifty-four and she has high blood pressure.; I have one sister and she's healthy.\n\nROS: Urinary - Reports flank pain. Reports hematuria. Denies dysuria. Gastrointestinal - Reports nausea. Reports vomiting. Denies diarrhea. General - Denies fever. Denies chills. Reports fatigue.\nUrinary history: I am still able to pass urine.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+          "S": "cc: Severe flank pain that comes in waves\n\nHPI: 27 yo f. Patient reports: It started suddenly 9 hours ago. It is in my left flank. It travels toward my left groin. It is sharp and cramping in waves. At its worst it is 9/10. Each wave lasts several minutes with partial easing between. It started while I was at work, without trauma. Nothing reliably relieves it. There is no clear movement trigger. I tried acetaminophen 500 mg without relief. I had a kidney stone 5 years ago. It needed a procedure to remove it. The left flank hurts in waves. My urine looked pink once. I feel nauseated with the pain. I vomited once. The pain is exhausting.\n\nPatient perspective: Will this damage my kidney?\n\nPMH: One prior calcium kidney stone; has two kidneys; no kidney disease.\n\nPSH: Ureteroscopy for stone removal at age 22; temporary stent removed 1 week later. No other operations.\n\nMeds: No daily medicines; acetaminophen once today.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. Two alcoholic drinks weekly. No recreational drugs. Construction estimator; often cannot take water breaks; lives with husband.\n\nFH: My dad is fifty-six and he's had kidney stones over and over.; My mom is fifty-four and she has high blood pressure.; I have one sister and she's healthy.\n\nROS: Urinary - Reports flank pain. Reports hematuria. Denies dysuria. Gastrointestinal - Reports nausea. Reports vomiting. Denies diarrhea. General - Denies fever. Denies chills. Reports fatigue.\nUrinary history: I am still able to pass urine.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
           "O": "Vitals: T 98.7 F oral, P 98 bpm, BP 142/86 mmHg, R 20 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Restless, frequently changing position.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nAbd: Abdomen not distended. Bowel sounds present. Mild left lateral abdominal tenderness. No involuntary guarding. Tympanic over examined quadrants. Left costovertebral angle tenderness; right side nontender.\n\nOsteopathic: T10 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Ureteral calculus",
@@ -5454,13 +5495,15 @@
             "3. Musculoskeletal flank strain"
           ],
           "P": [
-            "1. Assess pain control, hydration, urine output, solitary kidney and infection risk; obtain urinalysis, creatinine and appropriate renal imaging; provide clinician-directed analgesia and antiemetic, with urgent urology for infected obstruction or renal compromise; explain urine straining if discharged and arrange prompt follow-up, with emergency return for fever or inability to urinate.",
+            "1. Assess pain control, hydration, urine output, solitary kidney and infection risk; obtain urinalysis, creatinine and appropriate renal imaging; provide clinician-directed analgesia and antiemetic, with urgent urology for infected obstruction or renal compromise; explain urine straining if discharged and arrange a symptom and result review within 48–72 hours after acute assessment if stable for outpatient care, with emergency return for fever or inability to urinate.",
             "2. Obtain urine culture if infection is suspected and monitor systemic features; an obstructed infected urinary system needs urgent drainage evaluation rather than antibiotics alone; explain the fever/rigor emergency precaution.",
-            "3. Ask about mechanical triggers and assess focal musculature after urgent renal causes; consider conservative treatment only if supported; advise reassessment for new urinary or systemic features. If urgent renal causes are excluded and a muscular cause is supported, advise continued gentle daily activity as tolerated and avoidance of prolonged bed rest."
+            "3. Ask about mechanical triggers and assess focal musculature after urgent renal causes; consider conservative treatment only if supported; advise reassessment for new urinary or systemic features. If urgent renal causes are excluded and a muscular cause is supported, advise continued gentle daily activity as tolerated and avoidance of prolonged bed rest. If a focal muscle strain is supported, consider acetaminophen after reviewing contraindications and the response to the earlier dose."
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved.",
+          "print_case_plan_20260914": "Reviewed conditional differential/plan clarity; original attempts retain their frozen source. Course VINDICATE uncertainty remains explicit where unresolved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"
@@ -5500,7 +5543,7 @@
             "pitch": 1,
             "gender": "female",
             "adult": true,
-            "age_range": "18\u201330"
+            "age_range": "18–30"
           },
           "comfort_response": {
             "reply": "At its worst it is 9/10.",
@@ -5602,10 +5645,12 @@
             "did it help"
           ],
           "hpi_past_occurrence": [
-            "I passed a kidney stone 5 years ago.",
-            "I passed a kidney stone 5 years ago",
+            "happened before",
+            "prior stone",
             "previous episode",
-            "happened before"
+            "I had a kidney stone 5 years ago. It needed a procedure to remove it.",
+            "Have you had a stone before?",
+            "Have you had kidney stones before?"
           ],
           "symptom_flank_pain": [
             "flank pain",
@@ -5674,9 +5719,11 @@
             "past medical"
           ],
           "history_psh_1": [
-            "No surgery or admissions except the prior stone visit.",
-            "No surgery or admissions except the prior stone visit",
-            "past surgical"
+            "past surgery",
+            "operations",
+            "procedures",
+            "hospital stays",
+            "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations."
           ],
           "history_medications_1": [
             "No daily medicines",
@@ -5729,15 +5776,18 @@
             "I am a construction estimator."
           ],
           "history_family_1": [
-            "My dad is fifty-six and he's had kidney stones over and over.", "Father has recurrent kidney stones",
+            "My dad is fifty-six and he's had kidney stones over and over.",
+            "Father has recurrent kidney stones",
             "father"
           ],
           "history_family_2": [
-            "My mom is fifty-four and she has high blood pressure.", "mother has hypertension",
+            "My mom is fifty-four and she has high blood pressure.",
+            "mother has hypertension",
             "mother"
           ],
           "history_family_3": [
-            "I have one sister and she's healthy.", "sister healthy.",
+            "I have one sister and she's healthy.",
+            "sister healthy.",
             "sister"
           ],
           "patient_concern": [
@@ -6279,35 +6329,39 @@
             "id": "hpi_past_occurrence",
             "category": "past_occurrence",
             "checklist": "h_hpi_past_occurrence",
-            "value": "I passed a kidney stone 5 years ago.",
+            "value": "I had a kidney stone 5 years ago. It needed a procedure to remove it.",
             "sp_says": [
-              "I passed a kidney stone 5 years ago."
+              "I had a kidney stone 5 years ago. It needed a procedure to remove it."
             ],
             "triggers": {
               "any": [
                 "Have you had anything like this before?",
-                "before",
+                "happened before",
+                "prior stone",
                 "previous episode",
-                "happened before"
+                "Have you had a stone before?",
+                "Have you had kidney stones before?"
               ]
             },
             "concepts": {
               "hpi_past_occurrence": {
                 "polarity": "positive",
-                "value": "I passed a kidney stone 5 years ago."
+                "value": "I had a kidney stone 5 years ago. It needed a procedure to remove it."
               }
             },
             "example_questions": [
-              "Have you had anything like this before?"
+              "Have you had anything like this before?",
+              "Have you had a stone before?",
+              "Have you had kidney stones before?"
             ],
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I passed a kidney stone 5 years ago.",
+                  "text": "I had a kidney stone 5 years ago. It needed a procedure to remove it.",
                   "concepts": {
                     "hpi_past_occurrence": {
                       "polarity": "positive",
-                      "value": "I passed a kidney stone 5 years ago."
+                      "value": "I had a kidney stone 5 years ago. It needed a procedure to remove it."
                     }
                   },
                   "complete_fact": true
@@ -6823,23 +6877,23 @@
             "id": "history_psh_1",
             "category": "psh",
             "checklist": "h_history_psh_1",
-            "value": "No surgery or admissions except the prior stone visit.",
+            "value": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations.",
             "sp_says": [
-              "No surgery or admissions except the prior stone visit."
+              "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations."
             ],
             "triggers": {
               "any": [
                 "Have you had any surgeries or hospital admissions?",
-                "surgery",
+                "past surgery",
                 "operations",
-                "hospitalized",
-                "past surgical"
+                "procedures",
+                "hospital stays"
               ]
             },
             "concepts": {
               "history_psh_1": {
                 "polarity": "positive",
-                "value": "No surgery or admissions except the prior stone visit."
+                "value": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations."
               }
             },
             "example_questions": [
@@ -6848,11 +6902,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "No surgery or admissions except the prior stone visit.",
+                  "text": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations.",
                   "concepts": {
                     "history_psh_1": {
                       "polarity": "positive",
-                      "value": "No surgery or admissions except the prior stone visit."
+                      "value": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations."
                     }
                   },
                   "complete_fact": true
@@ -7697,7 +7751,7 @@
             },
             {
               "id": "h_hpi_past_occurrence",
-              "text": "I passed a kidney stone 5 years ago."
+              "text": "I had a kidney stone 5 years ago. It needed a procedure to remove it."
             },
             {
               "id": "h_symptom_flank_pain",
@@ -7749,7 +7803,7 @@
             },
             {
               "id": "h_history_psh_1",
-              "text": "No surgery or admissions except the prior stone visit."
+              "text": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations."
             },
             {
               "id": "h_history_medications_1",
@@ -7827,19 +7881,19 @@
           "physical": [
             {
               "id": "p_exam_1",
-              "text": "Alert \u2014 obtain with general inspect",
+              "text": "Alert — obtain with general inspect",
               "maneuver": "general_inspect",
               "components": []
             },
             {
               "id": "p_exam_2",
-              "text": "Restless, frequently changing position \u2014 obtain with general inspect",
+              "text": "Restless, frequently changing position — obtain with general inspect",
               "maneuver": "general_inspect",
               "components": []
             },
             {
               "id": "p_exam_3",
-              "text": "Regular rhythm without murmur \u2014 obtain with heart auscultate",
+              "text": "Regular rhythm without murmur — obtain with heart auscultate",
               "maneuver": "heart_auscultate",
               "components": [
                 "aortic",
@@ -7851,7 +7905,7 @@
             },
             {
               "id": "p_exam_4",
-              "text": "Clear breath sounds bilaterally \u2014 obtain with lungs auscultate",
+              "text": "Clear breath sounds bilaterally — obtain with lungs auscultate",
               "maneuver": "lungs_auscultate",
               "components": [
                 "posterior",
@@ -7861,7 +7915,7 @@
             },
             {
               "id": "p_exam_5",
-              "text": "Abdomen not distended \u2014 obtain with abd inspect",
+              "text": "Abdomen not distended — obtain with abd inspect",
               "maneuver": "abd_inspect",
               "components": [
                 "contour"
@@ -7869,7 +7923,7 @@
             },
             {
               "id": "p_exam_6",
-              "text": "Bowel sounds present \u2014 obtain with abd auscultate",
+              "text": "Bowel sounds present — obtain with abd auscultate",
               "maneuver": "abd_auscultate",
               "components": [
                 "all four quadrants"
@@ -7877,7 +7931,7 @@
             },
             {
               "id": "p_exam_7",
-              "text": "Mild left lateral abdominal tenderness \u2014 obtain with abd palpate",
+              "text": "Mild left lateral abdominal tenderness — obtain with abd palpate",
               "maneuver": "abd_palpate",
               "components": [
                 "light",
@@ -7886,7 +7940,7 @@
             },
             {
               "id": "p_exam_8",
-              "text": "No involuntary guarding \u2014 obtain with abd palpate",
+              "text": "No involuntary guarding — obtain with abd palpate",
               "maneuver": "abd_palpate",
               "components": [
                 "guarding"
@@ -7894,7 +7948,7 @@
             },
             {
               "id": "p_exam_9",
-              "text": "Tympanic over examined quadrants \u2014 obtain with abd percuss",
+              "text": "Tympanic over examined quadrants — obtain with abd percuss",
               "maneuver": "abd_percuss",
               "components": [
                 "four quadrants"
@@ -7902,7 +7956,7 @@
             },
             {
               "id": "p_exam_10",
-              "text": "Left costovertebral angle tenderness; right side nontender \u2014 obtain with abd special",
+              "text": "Left costovertebral angle tenderness; right side nontender — obtain with abd special",
               "maneuver": "abd_special",
               "components": [
                 "cva tenderness"
@@ -7910,7 +7964,7 @@
             },
             {
               "id": "p_exam_11",
-              "text": "T10 paraspinal tissue texture change with mild tenderness on the right \u2014 obtain with osteo screen",
+              "text": "T10 paraspinal tissue texture change with mild tenderness on the right — obtain with osteo screen",
               "maneuver": "osteo_screen",
               "components": [
                 "lumbar"
@@ -7918,7 +7972,7 @@
             },
             {
               "id": "p_exam_12",
-              "text": "No visible rash on the inspected arms \u2014 obtain with skin inspect",
+              "text": "No visible rash on the inspected arms — obtain with skin inspect",
               "maneuver": "skin_inspect",
               "components": [
                 "arms"
@@ -7942,7 +7996,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Severe flank pain that comes in waves\n\nHPI: 27 yo f. Patient reports: It started suddenly 4 hours ago. It is in my left flank. It travels toward my left groin. It is sharp and cramping in waves. At its worst it is 9/10. Each wave lasts several minutes with partial easing between. It started while I was at work, without trauma. Nothing reliably relieves it. There is no clear movement trigger. I tried acetaminophen 500 mg without relief. I passed a kidney stone 5 years ago. The left flank hurts in waves. My urine looked pink once. I feel nauseated with the pain. I vomited once. The pain is exhausting.\n\nPatient perspective: Will this damage my kidney?\n\nPMH: One prior calcium kidney stone; has two kidneys; no kidney disease.\n\nPSH: No surgery or admissions except the prior stone visit.\n\nMeds: No daily medicines; acetaminophen once today.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. Two alcoholic drinks weekly. No recreational drugs. Construction estimator; often cannot take water breaks; lives with husband.\n\nFH: My dad is fifty-six and he's had kidney stones over and over.; My mom is fifty-four and she has high blood pressure.; I have one sister and she's healthy.\n\nROS: Urinary - Reports flank pain. Reports hematuria. Denies dysuria. Gastrointestinal - Reports nausea. Reports vomiting. Denies diarrhea. General - Denies fever. Denies chills. Reports fatigue.\n\nPatient concern: I cannot easily leave work for follow-up because I am paid by the hour.\nUrinary history: I am still able to pass urine.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+          "S": "cc: Severe flank pain that comes in waves\n\nHPI: 27 yo f. Patient reports: It started suddenly 4 hours ago. It is in my left flank. It travels toward my left groin. It is sharp and cramping in waves. At its worst it is 9/10. Each wave lasts several minutes with partial easing between. It started while I was at work, without trauma. Nothing reliably relieves it. There is no clear movement trigger. I tried acetaminophen 500 mg without relief. I had a kidney stone 5 years ago. It needed a procedure to remove it. The left flank hurts in waves. My urine looked pink once. I feel nauseated with the pain. I vomited once. The pain is exhausting.\n\nPatient perspective: Will this damage my kidney?\n\nPMH: One prior calcium kidney stone; has two kidneys; no kidney disease.\n\nPSH: Ureteroscopy for stone removal at age 22; temporary stent removed 1 week later. No other operations.\n\nMeds: No daily medicines; acetaminophen once today.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. Two alcoholic drinks weekly. No recreational drugs. Construction estimator; often cannot take water breaks; lives with husband.\n\nFH: My dad is fifty-six and he's had kidney stones over and over.; My mom is fifty-four and she has high blood pressure.; I have one sister and she's healthy.\n\nROS: Urinary - Reports flank pain. Reports hematuria. Denies dysuria. Gastrointestinal - Reports nausea. Reports vomiting. Denies diarrhea. General - Denies fever. Denies chills. Reports fatigue.\n\nPatient concern: I cannot easily leave work for follow-up because I am paid by the hour.\nUrinary history: I am still able to pass urine.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
           "O": "Vitals: T 98.7 F oral, P 98 bpm, BP 142/86 mmHg, R 20 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Restless, frequently changing position.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nAbd: Abdomen not distended. Bowel sounds present. Mild left lateral abdominal tenderness. No involuntary guarding. Tympanic over examined quadrants. Left costovertebral angle tenderness; right side nontender.\n\nOsteopathic: T10 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Ureteral calculus",
@@ -7950,13 +8004,15 @@
             "3. Musculoskeletal flank strain"
           ],
           "P": [
-            "1. Assess pain control, hydration, urine output, solitary kidney and infection risk; obtain urinalysis, creatinine and appropriate renal imaging; provide clinician-directed analgesia and antiemetic, with urgent urology for infected obstruction or renal compromise; explain urine straining if discharged and arrange prompt follow-up, with emergency return for fever or inability to urinate. Discuss a concrete follow-up route and work documentation while explaining which warning signs cannot wait.",
+            "1. Assess pain control, hydration, urine output, solitary kidney and infection risk; obtain urinalysis, creatinine and appropriate renal imaging; provide clinician-directed analgesia and antiemetic, with urgent urology for infected obstruction or renal compromise; explain urine straining if discharged and arrange a symptom and result review within 48–72 hours after acute assessment if stable for outpatient care, with emergency return for fever or inability to urinate. Discuss a concrete follow-up route and work documentation while explaining which warning signs cannot wait.",
             "2. Obtain urine culture if infection is suspected and monitor systemic features; an obstructed infected urinary system needs urgent drainage evaluation rather than antibiotics alone; explain the fever/rigor emergency precaution.",
-            "3. Ask about mechanical triggers and assess focal musculature after urgent renal causes; consider conservative treatment only if supported; advise reassessment for new urinary or systemic features. If urgent renal causes are excluded and a muscular cause is supported, advise continued gentle daily activity as tolerated and avoidance of prolonged bed rest."
+            "3. Ask about mechanical triggers and assess focal musculature after urgent renal causes; consider conservative treatment only if supported; advise reassessment for new urinary or systemic features. If urgent renal causes are excluded and a muscular cause is supported, advise continued gentle daily activity as tolerated and avoidance of prolonged bed rest. If a focal muscle strain is supported, consider acetaminophen after reviewing contraindications and the response to the earlier dose."
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved.",
+          "print_case_plan_20260914": "Reviewed conditional differential/plan clarity; original attempts retain their frozen source. Course VINDICATE uncertainty remains explicit where unresolved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"

@@ -826,6 +826,42 @@ def _delivered_ledger(ledger, case=None):
         events.append(dict(ev,meta=meta))
     return evidence.Ledger(events)
 
+def _contact_subject_history(claim, case, ledger):
+    """2026-09-14: keep a contact's symptom distinct from the patient's ROS.
+
+    Bounded composition over delivered wording, never over hidden case values.
+    Unrecognized modifiers do not receive automatic credit.
+    """
+    if claim['section'] != 'S':
+        return None
+    text = nlp.normalize(claim.get('eval_text') or claim['text']).strip(' .')
+    target = re.fullmatch(r'(?:(preceding (?:mild|severe) respiratory illness) and )?(child|coworker|roommate) exposure with (slapped-cheek rash|rash|cough|fever)', text)
+    if not target:
+        return None
+    preceding, owner, symptom = target.groups()
+    eligible = []
+    for fact in case.get('facts', []):
+        if fact.get('category') not in ('setting', 'social', 'associated'):
+            continue
+        for event in ledger.by_kind(evidence.PATIENT):
+            concepts = set(fact.get('concepts', {})) & set(event['meta'].get('concepts', {}))
+            if fact['id'] not in event['meta'].get('facts_released', []) or not concepts:
+                continue
+            spoken = nlp.normalize(event['text'])
+            contact = re.search(r'\b' + re.escape(owner) + r'\b[^.!?]*\b(?:had|has)\b[^.!?]*' + re.escape(symptom) + r'\b', spoken)
+            if not contact or re.search(r'\b(?:no|not|never|without|might|may|maybe|perhaps|possibly|suspect)\b', contact.group()) or re.search(r'\b(?:not sure|uncertain)\b', spoken):
+                continue
+            eligible.append(event)
+            if preceding:
+                severity = 'severe' if 'severe' in preceding else 'mild'
+                if not re.search(r'\bi had a ' + severity + r' (?:cold|respiratory illness)\b[^.!?]*\bbefore\b', spoken):
+                    continue
+            return {'verdict': 'supported', 'concepts': sorted(concepts), 'evidence': [_ev(event)],
+                    'explanation': "The reported contact's symptom and preceding-illness qualifier match the delivered history. This does not document a rash in the patient or confirm a pathogen."}
+    return {'verdict': 'unsupported', 'concepts': [], 'evidence': [_ev(e) for e in eligible],
+            'explanation': "The contact, symptom or preceding-illness qualifier was not established by a matching delivered history. A patient's ROS cannot supply another person's history."}
+
+
 def _spoken_rating_values(ledger,case):
     ids={cid for f in case.get('facts',[]) if f.get('category')=='severity' for cid in f.get('concepts',{})}
     numbers={'zero':'0','one':'1','two':'2','three':'3','four':'4','five':'5','six':'6','seven':'7','eight':'8','nine':'9','ten':'10'}
@@ -833,6 +869,9 @@ def _spoken_rating_values(ledger,case):
     for ev in ledger.by_kind(evidence.PATIENT):
         if not ids.intersection(ev['meta'].get('concepts',{})):continue
         raw=nlp.normalize(ev['text'])
+        # 2026-09-14: numeric spoken ratings may use '6 out of 10', not only '6/10'.
+        # Only eligible delivered severity concepts enter this evidence set.
+        out.update(claims_mod.ratings(raw))
         for m in re.finditer(r'\b(?:'+ '|'.join(numbers)+r')\b',raw):
             if re.match(r'\s+(?:years?|months?|weeks?|days?|hours?|minutes?|tablets?|mg|times?)\b',raw[m.end():]):continue
             out.add(numbers[m.group()])
@@ -1197,6 +1236,13 @@ def audit_note(parsed, ledger, case):
             rec["evidence"] = [_ev(exact)]
             rec["explanation"] = "This complete statement matches information actually released during this encounter."
             documented_concepts.update(found)
+            findings.append(rec)
+            continue
+
+        contact = _contact_subject_history(claim, case, ledger)
+        if contact:
+            rec.update(contact)
+            if rec['verdict'] == 'supported':documented_concepts.update(rec['concepts'])
             findings.append(rec)
             continue
 

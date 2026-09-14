@@ -635,7 +635,10 @@
       "My periods are regular."
     ],
     "history_sexual_partners": [
-      "I have one male partner, my boyfriend, and no new partners."
+      "sexual partners",
+      "new partners",
+      "partner",
+      "I have one male partner, my husband, and no new partners."
     ],
     "condom_use": [
       "We use condoms sometimes, not always.",
@@ -2652,24 +2655,22 @@
       "id": "history_sexual_partners",
       "category": "social",
       "checklist": "h_history_sexual_partners",
-      "value": "I have one male partner, my boyfriend, and no new partners.",
+      "value": "I have one male partner, my husband, and no new partners.",
       "sp_says": [
-        "I have one male partner, my boyfriend, and no new partners."
+        "I have one male partner, my husband, and no new partners."
       ],
       "triggers": {
         "any": [
           "How many sexual partners do you have, and have you had a new partner?",
           "sexual partners",
-          "how many partners",
-          "one partner",
-          "new partner",
-          "sexual history"
+          "new partners",
+          "partner"
         ]
       },
       "concepts": {
         "history_sexual_partners": {
           "polarity": "positive",
-          "value": "I have one male partner, my boyfriend, and no new partners."
+          "value": "I have one male partner, my husband, and no new partners."
         }
       },
       "history_topic": "sexual_partners",
@@ -2679,11 +2680,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "I have one male partner, my boyfriend, and no new partners.",
+            "text": "I have one male partner, my husband, and no new partners.",
             "concepts": {
               "history_sexual_partners": {
                 "polarity": "positive",
-                "value": "I have one male partner, my boyfriend, and no new partners."
+                "value": "I have one male partner, my husband, and no new partners."
               }
             },
             "complete_fact": true
@@ -3875,7 +3876,7 @@
       },
       {
         "id": "h_history_sexual_partners",
-        "text": "I have one male partner, my boyfriend, and no new partners."
+        "text": "I have one male partner, my husband, and no new partners."
       },
       {
         "id": "h_history_contraception",
@@ -4035,7 +4036,8 @@
       }
     ],
     "limits": "Not faculty validated. Source checking is not independent clinical sign-off. Local protocols and patient-specific contraindications remain necessary.",
-    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional."
+    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional.",
+    "background_revision": "2026-09-14: New synthetic background facts reviewed for internal consistency and relevance against primary clinical sources; source references support clinical plausibility, not the existence of a real patient. No clinician approval."
   },
   "presentation_id": "renal-flank-pain",
   "complaint_family": "Renal / Genitourinary",
@@ -4122,7 +4124,8 @@
     "young_female_cohort": "New female adult18\u201330 authoring; old saved snapshots remain outside this generator.",
     "experience_review2_language": "Reviewed vomiting tense forms; unsupported progression is not invented; timing cues reference obtainable dimensions; target maneuver removed from public doorway.",
     "demeanor": "demeanor-axes-v1: independently authored communication style and emotional state; legacy pace/gesture style retained; no physical finding credit.",
-    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+    "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
   },
   "cohort": {
     "id": "young-adult-female-v1",
@@ -4733,7 +4736,10 @@
             "My periods are regular."
           ],
           "history_sexual_partners": [
-            "I have one male partner, my boyfriend, and no new partners."
+            "sexual partners",
+            "new partners",
+            "partner",
+            "I have one male partner, my husband, and no new partners."
           ],
           "condom_use": [
             "We use condoms sometimes, not always.",
@@ -6796,24 +6802,22 @@
             "id": "history_sexual_partners",
             "category": "social",
             "checklist": "h_history_sexual_partners",
-            "value": "I have one male partner, my boyfriend, and no new partners.",
+            "value": "I have one male partner, my husband, and no new partners.",
             "sp_says": [
-              "I have one male partner, my boyfriend, and no new partners."
+              "I have one male partner, my husband, and no new partners."
             ],
             "triggers": {
               "any": [
                 "How many sexual partners do you have, and have you had a new partner?",
                 "sexual partners",
-                "how many partners",
-                "one partner",
-                "new partner",
-                "sexual history"
+                "new partners",
+                "partner"
               ]
             },
             "concepts": {
               "history_sexual_partners": {
                 "polarity": "positive",
-                "value": "I have one male partner, my boyfriend, and no new partners."
+                "value": "I have one male partner, my husband, and no new partners."
               }
             },
             "history_topic": "sexual_partners",
@@ -6823,11 +6827,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I have one male partner, my boyfriend, and no new partners.",
+                  "text": "I have one male partner, my husband, and no new partners.",
                   "concepts": {
                     "history_sexual_partners": {
                       "polarity": "positive",
-                      "value": "I have one male partner, my boyfriend, and no new partners."
+                      "value": "I have one male partner, my husband, and no new partners."
                     }
                   },
                   "complete_fact": true
@@ -7152,7 +7156,7 @@
             },
             {
               "id": "h_history_sexual_partners",
-              "text": "I have one male partner, my boyfriend, and no new partners."
+              "text": "I have one male partner, my husband, and no new partners."
             },
             {
               "id": "h_history_contraception",
@@ -7277,7 +7281,8 @@
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"
@@ -7881,7 +7886,10 @@
             "My periods are regular."
           ],
           "history_sexual_partners": [
-            "I have one male partner, my boyfriend, and no new partners."
+            "sexual partners",
+            "new partners",
+            "partner",
+            "I have one male partner, my husband, and no new partners."
           ],
           "condom_use": [
             "We use condoms sometimes, not always.",
@@ -9944,24 +9952,22 @@
             "id": "history_sexual_partners",
             "category": "social",
             "checklist": "h_history_sexual_partners",
-            "value": "I have one male partner, my boyfriend, and no new partners.",
+            "value": "I have one male partner, my husband, and no new partners.",
             "sp_says": [
-              "I have one male partner, my boyfriend, and no new partners."
+              "I have one male partner, my husband, and no new partners."
             ],
             "triggers": {
               "any": [
                 "How many sexual partners do you have, and have you had a new partner?",
                 "sexual partners",
-                "how many partners",
-                "one partner",
-                "new partner",
-                "sexual history"
+                "new partners",
+                "partner"
               ]
             },
             "concepts": {
               "history_sexual_partners": {
                 "polarity": "positive",
-                "value": "I have one male partner, my boyfriend, and no new partners."
+                "value": "I have one male partner, my husband, and no new partners."
               }
             },
             "history_topic": "sexual_partners",
@@ -9971,11 +9977,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I have one male partner, my boyfriend, and no new partners.",
+                  "text": "I have one male partner, my husband, and no new partners.",
                   "concepts": {
                     "history_sexual_partners": {
                       "polarity": "positive",
-                      "value": "I have one male partner, my boyfriend, and no new partners."
+                      "value": "I have one male partner, my husband, and no new partners."
                     }
                   },
                   "complete_fact": true
@@ -10300,7 +10306,7 @@
             },
             {
               "id": "h_history_sexual_partners",
-              "text": "I have one male partner, my boyfriend, and no new partners."
+              "text": "I have one male partner, my husband, and no new partners."
             },
             {
               "id": "h_history_contraception",
@@ -10425,7 +10431,8 @@
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"

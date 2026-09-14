@@ -167,5 +167,163 @@ def canonical_prior(text):
     return t,False
 
 
+# 2026-09-14: Social-history qualifiers are independent assertions. An old
+# aggregate's positive/negative flag cannot distinguish never from former
+# smoking, or an existing partner from the absence of NEW partners.
+def _social_text(text):
+    # Preserve commas: they separate independent assertions in a combined note.
+    text = str(text).lower().replace('’', "'").strip(' .;,')
+    return re.sub(r'\s+', ' ', text.replace('–', '-').replace('—', '-'))
+
+
+def _tobacco_parts(text, source=False):
+    t = _social_text(text)
+    t = re.sub(r'^(?:patient |the patient |she |he )?(?:is |reports? )?', '', t)
+    t = re.sub(r'\b(' + '|'.join(NUMBERS) + r')(?=\s+years?\b)', lambda m: NUMBERS[m[0]], t)
+    if source:
+        # Require first-person or explicit tobacco wording. A relative's
+        # smoking, a conjecture, or metadata alone cannot establish this.
+        if re.search(r'\b(?:might|maybe|mother|father|husband|wife|roommate)\b', t):
+            return None
+        match = re.fullmatch(r'i smoked (\d+) cigarettes (?:a day|daily) from age (\d+) to (\d+)\. i quit (\d+) years? ago', t)
+        if match:
+            rate, start, end, quit = map(int, match.groups())
+            return {'status': 'former', 'daily_cigarettes': rate,
+                    'ages': (start, end), 'duration_years': end-start,
+                    'pack_years': rate / 20 * (end-start), 'quit_years': quit}
+        # Pack-years are arithmetic over an explicit rate AND duration, never
+        # inferred from a smoking label, current age, or the hidden case value.
+        rate = r'(half a|a|\d+(?:\.\d+)?) packs? (?:a day|daily) for (\d+) years?'
+        match = re.fullmatch(r'i (?:used to smoke|smoked) ' + rate + r'(?:\. i| and) quit (\d+) years? ago', t)
+        if not match:
+            reverse = re.fullmatch(r'i stopped smoking (\d+) years? ago\. before that, ' + rate, t)
+            if reverse:
+                packs, duration, quit = reverse[2], reverse[3], reverse[1]
+            else:
+                packs = None
+        else:
+            packs, duration, quit = match.groups()
+        if packs is not None:
+            packs = .5 if packs == 'half a' else 1 if packs == 'a' else float(packs)
+            return {'status': 'former', 'daily_cigarettes': packs * 20,
+                    'duration_years': int(duration), 'pack_years': packs * int(duration),
+                    'quit_years': int(quit)}
+        match = re.fullmatch(r'(?:i )?quit (?:tobacco|smoking) (\d+) years? ago after (\d+(?:\.\d+)?) pack-years?', t)
+        if match:
+            return {'status': 'former', 'quit_years': int(match[1]), 'pack_years': float(match[2])}
+        if re.fullmatch(r'(?:no, )?(?:i(?: have|\'ve)? )?(?:never smoked(?: tobacco)?(?: or vaped)?|have never smoked(?: tobacco)?(?: or vaped)?|am a never smoker)', t):
+            return {'status': 'never', **({'never_vaped': True} if 'or vaped' in t else {})}
+        match = re.fullmatch(r'(?:i )?smoke(?:s)? (\d+) cigarettes (?:daily|a day)(?: for (\d+) years?)?', t)
+        if match:
+            return {'status': 'current', 'daily_cigarettes': int(match[1]),
+                    **({'duration_years': int(match[2])} if match[2] else {})}
+        return None
+    match = re.fullmatch(r'former smoker(?:, (\d+) cigarettes(?:/day| a day| daily) from ages? (\d+)(?:-| to )(\d+))?', t)
+    if match:
+        return {'status': 'former', **({'daily_cigarettes': int(match[1]),
+                                      'ages': (int(match[2]), int(match[3]))} if match[1] else {})}
+    match = re.fullmatch(r'former smoker, (half a|\d+(?:\.\d+)?) pack(?:s)?/day for (\d+) years?', t)
+    if match:
+        packs = .5 if match[1] == 'half a' else float(match[1])
+        return {'status': 'former', 'daily_cigarettes': packs * 20, 'duration_years': int(match[2])}
+    match = re.fullmatch(r'former smoker[:,] (\d+(?:\.\d+)?) pack-years?(?:[,;] quit (\d+) years? ago)?', t)
+    if match:
+        return {'status': 'former', 'pack_years': float(match[1]),
+                **({'quit_years': int(match[2])} if match[2] else {})}
+    if re.fullmatch(r'never smoker|never smoked(?: tobacco)?(?: or vaped)?', t):
+        return {'status': 'never', **({'never_vaped': True} if 'or vaped' in t else {})}
+    if re.fullmatch(r'current smoker|smokes(?: tobacco)?', t):
+        return {'status': 'current'}
+    return None
+
+
+def tobacco_history(claim, case, ledger):
+    if claim['section'] != 'S' or claim.get('header') not in ('sh', None):
+        return None
+    text = claim.get('eval_text') or claim['text']
+    # Current-use/never-use statements already have ordinary polarity support;
+    # this proof also checks them when they use this exact bounded grammar.
+    target = _tobacco_parts(text)
+    if target is None and not re.search(r'\bformer smoker\b', _social_text(text)):
+        return None
+    ids = {f['id'] for f in case.get('facts', [])
+           if f.get('category') == 'social' and
+           (f.get('history_topic') in ('tobacco', 'smoking') or
+            'tobacco_use' in f.get('concepts', {}) or 'tobacco' in f['id'])}
+    sources = [ev for ev in ledger.by_kind(evidence.PATIENT)
+               if ids.intersection(ev['meta'].get('facts_released', []))]
+    if not sources:
+        return result('unsupported', [], [], 'No tobacco history was obtained. Current, former and never-smoking histories are not interchangeable.')
+    parsed = [(ev, _tobacco_parts(ev['text'], True)) for ev in sources]
+    if target is not None and target['status'] != 'former' and not any(parts for _, parts in parsed):
+        return None  # Keep existing current/never-use checks for other source phrasings.
+    if target is None or not any(parts for _, parts in parsed):
+        return result('not_evaluated', sources, [], 'The specific tobacco history or added qualifiers could not be fully verified. Compare the actual reply; no automatic credit is assigned.')
+    for ev, actual in parsed:
+        if actual and all(actual.get(key) == value for key, value in target.items()):
+            return result('supported', [ev], ev['meta'].get('concepts', {}),
+                          'The delivered reply supports the smoking status and each stated amount or age interval. A former smoking history is not treated as never smoking.')
+    missing = any(actual and any(key not in actual for key in target) for _, actual in parsed)
+    return result('unsupported' if missing else 'contradicts', sources, [],
+                  'The smoking status, amount or age interval is absent from or different from the history actually obtained.')
+
+
+def sexual_history_qualifiers(claim, case, ledger):
+    if claim['section'] != 'S' or claim.get('header') not in ('sh', None):
+        return None
+    text = _social_text(claim.get('eval_text') or claim['text'])
+    if not re.search(r'\bcondoms?\b|\bnew (?:sexual )?partners?\b', text):
+        return None
+    patterns = [(r'(?:inconsistent condoms?|inconsistent condom use|uses? condoms? sometimes)', 'condoms', 'sometimes'),
+                (r'(?:consistent condom use|always uses? condoms?)', 'condoms', 'always'),
+                (r'(?:no condom use|never uses? condoms?)', 'condoms', 'never'),
+                (r'no new (?:sexual )?partners?', 'new_partners', False),
+                (r'(?:a )?new (?:sexual )?partners?', 'new_partners', True)]
+    target = {}
+    complete = True
+    for piece in re.split(r',|;|\band\b', text):
+        piece = piece.strip()
+        matched = next(((key, value) for pattern, key, value in patterns if re.fullmatch(pattern, piece)), None)
+        if matched:
+            if matched[0] in target and target[matched[0]] != matched[1]:
+                return result('contradicts', [], [], 'The statement contains mutually inconsistent sexual-history qualifiers.')
+            target[matched[0]] = matched[1]
+        else:
+            complete = False
+    if not target:
+        return None
+    available, links = {}, {}
+    for ev, concepts in fact_events(case, ledger, 'social'):
+        spoken = _social_text(ev['text'])
+        if re.search(r'\b(?:might|maybe|unsure|not sure)\b', spoken):
+            continue
+        if re.search(r'\b(?:we|i) (?:use|uses) condoms? sometimes(?:, not always)?\b|\bnot always (?:use )?condoms?\b', spoken):
+            available['condoms'] = 'sometimes'; links['condoms'] = (ev, concepts)
+        elif re.search(r'\b(?:we|i) always use condoms?\b', spoken):
+            available['condoms'] = 'always'; links['condoms'] = (ev, concepts)
+        elif re.search(r'\b(?:we|i) (?:never use|do not use) condoms?\b', spoken):
+            available['condoms'] = 'never'; links['condoms'] = (ev, concepts)
+        personal = bool(re.match(r'^(?:i |no new (?:sexual )?partners?\b)', spoken))
+        if personal and re.search(r'\bno new (?:sexual )?partners?\b', spoken):
+            available['new_partners'] = False; links['new_partners'] = (ev, concepts)
+        elif re.search(r'\bi (?:have|have had) (?:a|one) new (?:sexual )?partner\b', spoken):
+            available['new_partners'] = True; links['new_partners'] = (ev, concepts)
+    bad = [key for key in target if key in available and target[key] != available[key]]
+    if bad:
+        return result('contradicts', [links[k][0] for k in bad], [],
+                      'The documented condom-use pattern or new-partner history differs from the actual reply.')
+    if not complete:
+        return result('not_evaluated', [ev for ev, _ in links.values()], [],
+                      'The matching sexual-history details do not establish the additional wording in this statement. Compare the actual replies; no automatic credit is assigned.')
+    missing = [key for key in target if key not in available]
+    if missing:
+        return result('unsupported', [ev for ev, _ in links.values()], [],
+                      'Each condom-use or new-partner statement needs its own delivered evidence; one history answer does not establish the other.')
+    return result('supported', [links[k][0] for k in target], [cid for k in target for cid in links[k][1]],
+                  'The condom-use pattern and new-partner qualifier are each supported by the actual replies, without inferring either from the other.')
+
+
 def evaluate(claim,case,ledger,summary_target):
-    return component_exam(claim,ledger) or headache_summary(claim,case,ledger,summary_target) or relief_history(claim,case,ledger)
+    return (component_exam(claim,ledger) or headache_summary(claim,case,ledger,summary_target)
+            or relief_history(claim,case,ledger) or tobacco_history(claim,case,ledger)
+            or sexual_history_qualifiers(claim,case,ledger))

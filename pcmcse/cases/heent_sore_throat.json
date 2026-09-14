@@ -1,0 +1,2308 @@
+{
+  "id": "heent-sore-throat",
+  "presentation_id": "heent-sore-throat",
+  "title": "Sore throat with nasal symptoms",
+  "hidden_label": "Station 32",
+  "system": "HEENT",
+  "complaint_family": "HEENT",
+  "level": "M2",
+  "difficulty": "intermediate",
+  "blurb": "My throat is scratchy and sore, and my nose keeps running.",
+  "curriculum_note": "Supplementary fictional practice for the course history, physical examination and SOAP skills; not an official or predicted station.",
+  "scope_status": "supplementary_cross_system",
+  "station": {
+    "doorway": [
+      "Priya Shah, 31-year-old female.",
+      "My throat is scratchy and sore, and my nose keeps running.",
+      "Vital signs are available on the chart.",
+      "Perform a focused history and physical examination, discuss your plan, and document only what you obtain.",
+      "Use the time limit stated for your selected practice mode."
+    ],
+    "vitals": {
+      "BP": "110/68 mmHg",
+      "P": "82 bpm",
+      "R": "16 rpm",
+      "T": "98.9 F oral",
+      "Pulse Ox": "99% on room air",
+      "Ht": "5' 3\"",
+      "Wt": "136 lbs"
+    },
+    "supplied_results": []
+  },
+  "patient": {
+    "name": "Priya Shah",
+    "age": 31,
+    "sex": "female",
+    "pronouns": "she/her",
+    "persona": "I clean offices. Some rooms have poor ventilation. My husband and our six-year-old daughter.",
+    "opening": "My throat is scratchy and sore, and my nose keeps running.",
+    "opening_facts": [
+      "opening_complaint"
+    ],
+    "opening_contract": {
+      "text": "My throat is scratchy and sore, and my nose keeps running.",
+      "fact_ids": [
+        "opening_complaint"
+      ],
+      "review": "Exact opening only."
+    },
+    "volunteer_budget": 1,
+    "volunteer_order": [
+      "patient_concern"
+    ],
+    "affect": "I want to know what is causing this and how to get back to my usual activities.",
+    "communication_style": "concise",
+    "empathy_replies": [
+      "Thank you for listening.",
+      "I appreciate you explaining that."
+    ],
+    "closing_questions": [
+      "I want to know what is causing this and how to get back to my usual activities."
+    ],
+    "appearance": {
+      "presentation": "female",
+      "model": "mpfb-public-patient",
+      "skinTone": 1,
+      "eyeColor": "brown",
+      "hairColor": "brunette",
+      "hairStyle": "long",
+      "outfit": "fitted-casual",
+      "bodyBuild": "standard"
+    },
+    "voice": {
+      "rate": 1,
+      "pitch": 1,
+      "gender": "female",
+      "adult": true
+    },
+    "education_responses": [
+      {
+        "student": "The history and examination can help distinguish a cold, allergy and irritation from the new spray. We can relieve the soreness and reduce exposures. If drinking or breathing becomes difficult, seek urgent care.",
+        "patient": "Thank you. I understand that the next steps depend on the examination and tests."
+      },
+      {
+        "student": "We can discuss ventilation and a safer cleaning method with your workplace, with your permission.",
+        "patient": "That would help. Thank you."
+      }
+    ]
+  },
+  "facts": [
+    {
+      "id": "opening_complaint",
+      "category": "chief_complaint",
+      "print_label": "Opening complaint",
+      "checklist": "h_opening_complaint",
+      "value": "My throat is scratchy and sore, and my nose keeps running.",
+      "sp_says": [
+        "My throat is scratchy and sore, and my nose keeps running."
+      ],
+      "triggers": {
+        "any": [
+          "What brings you in today?"
+        ]
+      },
+      "concepts": {
+        "opening_complaint": {
+          "polarity": "positive",
+          "value": "My throat is scratchy and sore, and my nose keeps running."
+        }
+      },
+      "example_questions": [
+        "What brings you in today?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My throat is scratchy and sore, and my nose keeps running.",
+            "concepts": {
+              "opening_complaint": {
+                "polarity": "positive",
+                "value": "My throat is scratchy and sore, and my nose keeps running."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "My throat is scratchy and sore, and my nose keeps running."
+    },
+    {
+      "id": "hpi_onset",
+      "category": "onset",
+      "print_label": "Onset",
+      "checklist": "h_hpi_onset",
+      "value": "Four days ago.",
+      "sp_says": [
+        "Four days ago."
+      ],
+      "triggers": {
+        "any": [
+          "When did the sore throat start?",
+          "when did",
+          "started",
+          "began"
+        ]
+      },
+      "concepts": {
+        "hpi_onset": {
+          "polarity": "positive",
+          "value": "Four days ago."
+        }
+      },
+      "example_questions": [
+        "When did the sore throat start?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Four days ago.",
+            "concepts": {
+              "hpi_onset": {
+                "polarity": "positive",
+                "value": "Four days ago."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Four days of sore throat; rhinorrhea began 1 day earlier.",
+      "temporal_role": "first_episode_onset"
+    },
+    {
+      "id": "hpi_location",
+      "category": "location",
+      "print_label": "Location",
+      "checklist": "h_hpi_location",
+      "value": "Across the back, on both sides.",
+      "sp_says": [
+        "Across the back, on both sides."
+      ],
+      "triggers": {
+        "any": [
+          "Where does the throat hurt?",
+          "where",
+          "which side"
+        ]
+      },
+      "concepts": {
+        "hpi_location": {
+          "polarity": "positive",
+          "value": "Across the back, on both sides."
+        }
+      },
+      "example_questions": [
+        "Where does the throat hurt?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Across the back, on both sides.",
+            "concepts": {
+              "hpi_location": {
+                "polarity": "positive",
+                "value": "Across the back, on both sides."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Bilateral posterior throat discomfort."
+    },
+    {
+      "id": "hpi_quality",
+      "category": "quality",
+      "print_label": "Character",
+      "checklist": "h_hpi_quality",
+      "value": "Scratchy and raw, not like something is stuck.",
+      "sp_says": [
+        "Scratchy and raw, not like something is stuck."
+      ],
+      "triggers": {
+        "any": [
+          "How does it feel?",
+          "feel like",
+          "describe"
+        ]
+      },
+      "concepts": {
+        "hpi_quality": {
+          "polarity": "positive",
+          "value": "Scratchy and raw, not like something is stuck."
+        }
+      },
+      "example_questions": [
+        "How does it feel?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Scratchy and raw, not like something is stuck.",
+            "concepts": {
+              "hpi_quality": {
+                "polarity": "positive",
+                "value": "Scratchy and raw, not like something is stuck."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Scratchy/raw sensation without foreign-body sensation."
+    },
+    {
+      "id": "hpi_severity",
+      "category": "severity",
+      "print_label": "Swallowing",
+      "checklist": "h_hpi_severity",
+      "value": "Yes. Swallowing stings about 4 out of 10, but I can drink normally.",
+      "sp_says": [
+        "Yes. Swallowing stings about 4 out of 10, but I can drink normally."
+      ],
+      "triggers": {
+        "any": [
+          "Can you eat and drink?",
+          "how bad",
+          "out of ten",
+          "severity"
+        ]
+      },
+      "concepts": {
+        "hpi_severity": {
+          "polarity": "positive",
+          "value": "Yes. Swallowing stings about 4 out of 10, but I can drink normally."
+        }
+      },
+      "example_questions": [
+        "Can you eat and drink?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Yes. Swallowing stings about 4 out of 10, but I can drink normally.",
+            "concepts": {
+              "hpi_severity": {
+                "polarity": "positive",
+                "value": "Yes. Swallowing stings about 4 out of 10, but I can drink normally."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Odynophagia 4/10; normal oral fluid intake."
+    },
+    {
+      "id": "hpi_timing",
+      "category": "timing",
+      "print_label": "Pattern",
+      "checklist": "h_hpi_timing",
+      "value": "In the morning and toward the end of a cleaning shift.",
+      "sp_says": [
+        "In the morning and toward the end of a cleaning shift."
+      ],
+      "triggers": {
+        "any": [
+          "When is the throat irritation worst?",
+          "how long each",
+          "how often"
+        ]
+      },
+      "concepts": {
+        "hpi_timing": {
+          "polarity": "positive",
+          "value": "In the morning and toward the end of a cleaning shift."
+        }
+      },
+      "example_questions": [
+        "When is the throat irritation worst?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "In the morning and toward the end of a cleaning shift.",
+            "concepts": {
+              "hpi_timing": {
+                "polarity": "positive",
+                "value": "In the morning and toward the end of a cleaning shift."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Worse in mornings and at end of cleaning shifts."
+    },
+    {
+      "id": "hpi_chronology",
+      "category": "chronology",
+      "print_label": "Change",
+      "checklist": "h_hpi_chronology",
+      "value": "It is about the same. My runny nose started a day earlier.",
+      "sp_says": [
+        "It is about the same. My runny nose started a day earlier."
+      ],
+      "triggers": {
+        "any": [
+          "Has it been getting worse?",
+          "changed",
+          "progressed"
+        ]
+      },
+      "concepts": {
+        "hpi_chronology": {
+          "polarity": "positive",
+          "value": "It is about the same. My runny nose started a day earlier."
+        }
+      },
+      "example_questions": [
+        "Has it been getting worse?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "It is about the same. My runny nose started a day earlier.",
+            "concepts": {
+              "hpi_chronology": {
+                "polarity": "positive",
+                "value": "It is about the same. My runny nose started a day earlier."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Stable sore throat; rhinorrhea preceded it by 1 day.",
+      "question_dimensions": [
+        "progression"
+      ],
+      "temporal_role": "pattern_or_progression"
+    },
+    {
+      "id": "hpi_setting",
+      "category": "setting",
+      "print_label": "Contacts and exposure",
+      "checklist": "h_hpi_setting",
+      "value": "My daughter had a cold. At work we switched to a strong spray cleaner last week, and it stings my throat.",
+      "sp_says": [
+        "My daughter had a cold. At work we switched to a strong spray cleaner last week, and it stings my throat."
+      ],
+      "triggers": {
+        "any": [
+          "Any sick contacts or new fumes?",
+          "trigger",
+          "doing when"
+        ]
+      },
+      "concepts": {
+        "hpi_setting": {
+          "polarity": "positive",
+          "value": "My daughter had a cold. At work we switched to a strong spray cleaner last week, and it stings my throat."
+        }
+      },
+      "example_questions": [
+        "Any sick contacts or new fumes?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My daughter had a cold. At work we switched to a strong spray cleaner last week, and it stings my throat.",
+            "concepts": {
+              "hpi_setting": {
+                "polarity": "positive",
+                "value": "My daughter had a cold. At work we switched to a strong spray cleaner last week, and it stings my throat."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Daughter with URI; new workplace spray cleaner temporally provokes irritation."
+    },
+    {
+      "id": "hpi_aggravating",
+      "category": "aggravating",
+      "print_label": "Other triggers",
+      "checklist": "h_hpi_aggravating",
+      "value": "Dust and pollen make me sneeze and make my eyes itch.",
+      "sp_says": [
+        "Dust and pollen make me sneeze and make my eyes itch."
+      ],
+      "triggers": {
+        "any": [
+          "Does anything else bother your nose or throat?",
+          "makes worse"
+        ]
+      },
+      "concepts": {
+        "hpi_aggravating": {
+          "polarity": "positive",
+          "value": "Dust and pollen make me sneeze and make my eyes itch."
+        }
+      },
+      "example_questions": [
+        "Does anything else bother your nose or throat?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Dust and pollen make me sneeze and make my eyes itch.",
+            "concepts": {
+              "hpi_aggravating": {
+                "polarity": "positive",
+                "value": "Dust and pollen make me sneeze and make my eyes itch."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Dust/pollen-associated sneezing and ocular itching."
+    },
+    {
+      "id": "hpi_alleviating",
+      "category": "alleviating",
+      "print_label": "Relief",
+      "checklist": "h_hpi_alleviating",
+      "value": "Warm tea and being away from the cleaning spray.",
+      "sp_says": [
+        "Warm tea and being away from the cleaning spray."
+      ],
+      "triggers": {
+        "any": [
+          "What helps?",
+          "helps",
+          "relieves"
+        ]
+      },
+      "concepts": {
+        "hpi_alleviating": {
+          "polarity": "positive",
+          "value": "Warm tea and being away from the cleaning spray."
+        }
+      },
+      "example_questions": [
+        "What helps?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Warm tea and being away from the cleaning spray.",
+            "concepts": {
+              "hpi_alleviating": {
+                "polarity": "positive",
+                "value": "Warm tea and being away from the cleaning spray."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Relief with warm fluids and avoiding spray."
+    },
+    {
+      "id": "hpi_treatment",
+      "category": "treatment",
+      "print_label": "Self-treatment",
+      "checklist": "h_hpi_treatment",
+      "value": "One acetaminophen 500-milligram tablet yesterday. I have not taken antibiotics.",
+      "sp_says": [
+        "One acetaminophen 500-milligram tablet yesterday. I have not taken antibiotics."
+      ],
+      "triggers": {
+        "any": [
+          "What have you taken for it?",
+          "tried for",
+          "taken for"
+        ]
+      },
+      "concepts": {
+        "hpi_treatment": {
+          "polarity": "positive",
+          "value": "One acetaminophen 500-milligram tablet yesterday. I have not taken antibiotics."
+        }
+      },
+      "example_questions": [
+        "What have you taken for it?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "One acetaminophen 500-milligram tablet yesterday. I have not taken antibiotics.",
+            "concepts": {
+              "hpi_treatment": {
+                "polarity": "positive",
+                "value": "One acetaminophen 500-milligram tablet yesterday. I have not taken antibiotics."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Acetaminophen 500 mg once; no antibiotics."
+    },
+    {
+      "id": "hpi_past_occurrence",
+      "category": "past_occurrence",
+      "print_label": "Past pattern",
+      "checklist": "h_hpi_past_occurrence",
+      "value": "I get seasonal sneezing, but the throat is sorer this time.",
+      "sp_says": [
+        "I get seasonal sneezing, but the throat is sorer this time."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had similar symptoms before?",
+          "had before"
+        ]
+      },
+      "concepts": {
+        "hpi_past_occurrence": {
+          "polarity": "positive",
+          "value": "I get seasonal sneezing, but the throat is sorer this time."
+        }
+      },
+      "example_questions": [
+        "Have you had similar symptoms before?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I get seasonal sneezing, but the throat is sorer this time.",
+            "concepts": {
+              "hpi_past_occurrence": {
+                "polarity": "positive",
+                "value": "I get seasonal sneezing, but the throat is sorer this time."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Seasonal rhinitis history; greater throat discomfort now."
+    },
+    {
+      "id": "history_medical_history",
+      "category": "pmh",
+      "print_label": "Medical history",
+      "checklist": "h_history_medical_history",
+      "value": "Seasonal allergies. No other chronic illness.",
+      "sp_says": [
+        "Seasonal allergies. No other chronic illness."
+      ],
+      "triggers": {
+        "any": [
+          "What medical conditions do you have?",
+          "What illnesses have you had?",
+          "Any medical conditions?"
+        ]
+      },
+      "concepts": {
+        "history_medical_history": {
+          "polarity": "positive",
+          "value": "Seasonal allergies. No other chronic illness."
+        }
+      },
+      "example_questions": [
+        "What medical conditions do you have?",
+        "What illnesses have you had?",
+        "Any medical conditions?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Seasonal allergies. No other chronic illness.",
+            "concepts": {
+              "history_medical_history": {
+                "polarity": "positive",
+                "value": "Seasonal allergies. No other chronic illness."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Seasonal allergic rhinitis; no other chronic illness."
+    },
+    {
+      "id": "history_surgery",
+      "category": "psh",
+      "print_label": "Surgery",
+      "checklist": "h_history_surgery",
+      "value": "No operations.",
+      "sp_says": [
+        "No operations."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had any operations?",
+          "Have you had any operations?"
+        ]
+      },
+      "concepts": {
+        "history_surgery": {
+          "polarity": "positive",
+          "value": "No operations."
+        }
+      },
+      "example_questions": [
+        "Have you had any operations?",
+        "Have you had any operations?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No operations.",
+            "concepts": {
+              "history_surgery": {
+                "polarity": "positive",
+                "value": "No operations."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No surgical history."
+    },
+    {
+      "id": "history_medicine",
+      "category": "medications",
+      "print_label": "Medicine",
+      "checklist": "h_history_medicine",
+      "value": "Loratadine 10 milligrams when allergies bother me, but none this week.",
+      "sp_says": [
+        "Loratadine 10 milligrams when allergies bother me, but none this week."
+      ],
+      "triggers": {
+        "any": [
+          "What medicines do you take?",
+          "What medications are you taking?"
+        ]
+      },
+      "concepts": {
+        "history_medicine": {
+          "polarity": "positive",
+          "value": "Loratadine 10 milligrams when allergies bother me, but none this week."
+        }
+      },
+      "example_questions": [
+        "What medicines do you take?",
+        "What medications are you taking?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Loratadine 10 milligrams when allergies bother me, but none this week.",
+            "concepts": {
+              "history_medicine": {
+                "polarity": "positive",
+                "value": "Loratadine 10 milligrams when allergies bother me, but none this week."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Loratadine 10 mg as needed; none this week."
+    },
+    {
+      "id": "history_drug_reactions",
+      "category": "allergies",
+      "print_label": "Drug reactions",
+      "checklist": "h_history_drug_reactions",
+      "value": "No known medication allergies.",
+      "sp_says": [
+        "No known medication allergies."
+      ],
+      "triggers": {
+        "any": [
+          "Do you have drug allergies?",
+          "Any medication allergies?"
+        ]
+      },
+      "concepts": {
+        "history_drug_reactions": {
+          "polarity": "positive",
+          "value": "No known medication allergies."
+        }
+      },
+      "example_questions": [
+        "Do you have drug allergies?",
+        "Any medication allergies?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No known medication allergies.",
+            "concepts": {
+              "history_drug_reactions": {
+                "polarity": "positive",
+                "value": "No known medication allergies."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No known drug allergies."
+    },
+    {
+      "id": "history_smoking",
+      "category": "social",
+      "print_label": "Smoking",
+      "checklist": "h_history_smoking",
+      "value": "I have never smoked or vaped.",
+      "sp_says": [
+        "I have never smoked or vaped."
+      ],
+      "triggers": {
+        "any": [
+          "Do you smoke or vape?"
+        ]
+      },
+      "concepts": {
+        "history_smoking": {
+          "polarity": "positive",
+          "value": "I have never smoked or vaped."
+        }
+      },
+      "example_questions": [
+        "Do you smoke or vape?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have never smoked or vaped.",
+            "concepts": {
+              "history_smoking": {
+                "polarity": "positive",
+                "value": "I have never smoked or vaped."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Never smoked or vaped.",
+      "history_topic": "tobacco"
+    },
+    {
+      "id": "history_alcohol",
+      "category": "social",
+      "print_label": "Alcohol",
+      "checklist": "h_history_alcohol",
+      "value": "No alcohol.",
+      "sp_says": [
+        "No alcohol."
+      ],
+      "triggers": {
+        "any": [
+          "Do you drink alcohol?"
+        ]
+      },
+      "concepts": {
+        "history_alcohol": {
+          "polarity": "positive",
+          "value": "No alcohol."
+        }
+      },
+      "example_questions": [
+        "Do you drink alcohol?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No alcohol.",
+            "concepts": {
+              "history_alcohol": {
+                "polarity": "positive",
+                "value": "No alcohol."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No alcohol.",
+      "history_topic": "alcohol"
+    },
+    {
+      "id": "history_drugs",
+      "category": "social",
+      "print_label": "Drugs",
+      "checklist": "h_history_drugs",
+      "value": "No.",
+      "sp_says": [
+        "No."
+      ],
+      "triggers": {
+        "any": [
+          "Do you use recreational drugs?"
+        ]
+      },
+      "concepts": {
+        "history_drugs": {
+          "polarity": "positive",
+          "value": "No."
+        }
+      },
+      "example_questions": [
+        "Do you use recreational drugs?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No.",
+            "concepts": {
+              "history_drugs": {
+                "polarity": "positive",
+                "value": "No."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No recreational drugs.",
+      "history_topic": "drugs"
+    },
+    {
+      "id": "history_work",
+      "category": "social",
+      "print_label": "Work",
+      "checklist": "h_history_work",
+      "value": "I clean offices. Some rooms have poor ventilation.",
+      "sp_says": [
+        "I clean offices. Some rooms have poor ventilation."
+      ],
+      "triggers": {
+        "any": [
+          "What work do you do?"
+        ]
+      },
+      "concepts": {
+        "history_work": {
+          "polarity": "positive",
+          "value": "I clean offices. Some rooms have poor ventilation."
+        }
+      },
+      "example_questions": [
+        "What work do you do?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I clean offices. Some rooms have poor ventilation.",
+            "concepts": {
+              "history_work": {
+                "polarity": "positive",
+                "value": "I clean offices. Some rooms have poor ventilation."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Office cleaner; variable ventilation.",
+      "history_topic": "occupation"
+    },
+    {
+      "id": "history_home",
+      "category": "social",
+      "print_label": "Home",
+      "checklist": "h_history_home",
+      "value": "My husband and our six-year-old daughter.",
+      "sp_says": [
+        "My husband and our six-year-old daughter."
+      ],
+      "triggers": {
+        "any": [
+          "Who lives with you?"
+        ]
+      },
+      "concepts": {
+        "history_home": {
+          "polarity": "positive",
+          "value": "My husband and our six-year-old daughter."
+        }
+      },
+      "example_questions": [
+        "Who lives with you?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My husband and our six-year-old daughter.",
+            "concepts": {
+              "history_home": {
+                "polarity": "positive",
+                "value": "My husband and our six-year-old daughter."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Lives with husband and 6-year-old daughter.",
+      "history_topic": "social_context"
+    },
+    {
+      "id": "history_family_history",
+      "category": "family",
+      "print_label": "Family history",
+      "checklist": "h_history_family_history",
+      "value": "My sister has hay fever and my father has asthma.",
+      "sp_says": [
+        "My sister has hay fever and my father has asthma."
+      ],
+      "triggers": {
+        "any": [
+          "Do allergies or asthma run in your family?"
+        ]
+      },
+      "concepts": {
+        "history_family_history": {
+          "polarity": "positive",
+          "value": "My sister has hay fever and my father has asthma."
+        }
+      },
+      "example_questions": [
+        "Do allergies or asthma run in your family?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My sister has hay fever and my father has asthma.",
+            "concepts": {
+              "history_family_history": {
+                "polarity": "positive",
+                "value": "My sister has hay fever and my father has asthma."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Sister: allergic rhinitis; father: asthma."
+    },
+    {
+      "id": "history_mother",
+      "category": "family",
+      "print_label": "Mother",
+      "checklist": "h_history_mother",
+      "value": "My mother has high blood pressure.",
+      "sp_says": [
+        "My mother has high blood pressure."
+      ],
+      "triggers": {
+        "any": [
+          "What health problems does your mother have?"
+        ]
+      },
+      "concepts": {
+        "history_mother": {
+          "polarity": "positive",
+          "value": "My mother has high blood pressure."
+        }
+      },
+      "example_questions": [
+        "What health problems does your mother have?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My mother has high blood pressure.",
+            "concepts": {
+              "history_mother": {
+                "polarity": "positive",
+                "value": "My mother has high blood pressure."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Mother: hypertension."
+    },
+    {
+      "id": "history_airway_warning_symptoms",
+      "category": "pertinent_negative",
+      "print_label": "Airway warning symptoms",
+      "checklist": "h_history_airway_warning_symptoms",
+      "value": "No. I can open my mouth and swallow liquids without drooling.",
+      "sp_says": [
+        "No. I can open my mouth and swallow liquids without drooling."
+      ],
+      "triggers": {
+        "any": [
+          "Are you drooling, unable to open your mouth, or unable to swallow liquids?"
+        ]
+      },
+      "concepts": {
+        "history_airway_warning_symptoms": {
+          "polarity": "positive",
+          "value": "No. I can open my mouth and swallow liquids without drooling."
+        }
+      },
+      "example_questions": [
+        "Are you drooling, unable to open your mouth, or unable to swallow liquids?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No. I can open my mouth and swallow liquids without drooling.",
+            "concepts": {
+              "history_airway_warning_symptoms": {
+                "polarity": "positive",
+                "value": "No. I can open my mouth and swallow liquids without drooling."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No drooling, trismus or inability to swallow liquids."
+    },
+    {
+      "id": "symptom_cough",
+      "category": "associated",
+      "print_label": "Cough",
+      "checklist": "h_symptom_cough",
+      "value": "I have a mild dry cough.",
+      "sp_says": [
+        "I have a mild dry cough."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had a cough?",
+          "cough"
+        ]
+      },
+      "concepts": {
+        "symptom_cough": {
+          "polarity": "positive",
+          "value": "I have a mild dry cough."
+        }
+      },
+      "example_questions": [
+        "Have you had a cough?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have a mild dry cough.",
+            "concepts": {
+              "symptom_cough": {
+                "polarity": "positive",
+                "value": "I have a mild dry cough."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Mild dry cough.",
+      "ros_system": "respiratory"
+    },
+    {
+      "id": "symptom_dyspnea",
+      "category": "pertinent_negative",
+      "print_label": "Dyspnea",
+      "checklist": "h_symptom_dyspnea",
+      "value": "No trouble breathing.",
+      "sp_says": [
+        "No trouble breathing."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had dyspnea?",
+          "short of breath",
+          "shortness of breath",
+          "breathless"
+        ]
+      },
+      "concepts": {
+        "symptom_dyspnea": {
+          "polarity": "negative",
+          "value": "No trouble breathing."
+        }
+      },
+      "example_questions": [
+        "Have you had dyspnea?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No trouble breathing.",
+            "concepts": {
+              "symptom_dyspnea": {
+                "polarity": "negative",
+                "value": "No trouble breathing."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No dyspnea.",
+      "ros_system": "respiratory"
+    },
+    {
+      "id": "symptom_wheezing",
+      "category": "pertinent_negative",
+      "print_label": "Wheezing",
+      "checklist": "h_symptom_wheezing",
+      "value": "No wheezing.",
+      "sp_says": [
+        "No wheezing."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had wheezing?",
+          "wheezing",
+          "wheeze"
+        ]
+      },
+      "concepts": {
+        "symptom_wheezing": {
+          "polarity": "negative",
+          "value": "No wheezing."
+        }
+      },
+      "example_questions": [
+        "Have you had wheezing?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No wheezing.",
+            "concepts": {
+              "symptom_wheezing": {
+                "polarity": "negative",
+                "value": "No wheezing."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No wheeze.",
+      "ros_system": "respiratory"
+    },
+    {
+      "id": "symptom_rhinorrhea",
+      "category": "associated",
+      "print_label": "Rhinorrhea",
+      "checklist": "h_symptom_rhinorrhea",
+      "value": "My nose runs clear fluid.",
+      "sp_says": [
+        "My nose runs clear fluid."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had rhinorrhea?",
+          "runny nose"
+        ]
+      },
+      "concepts": {
+        "symptom_rhinorrhea": {
+          "polarity": "positive",
+          "value": "My nose runs clear fluid."
+        }
+      },
+      "example_questions": [
+        "Have you had rhinorrhea?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My nose runs clear fluid.",
+            "concepts": {
+              "symptom_rhinorrhea": {
+                "polarity": "positive",
+                "value": "My nose runs clear fluid."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Clear rhinorrhea.",
+      "ros_system": "heent"
+    },
+    {
+      "id": "symptom_hoarseness",
+      "category": "associated",
+      "print_label": "Hoarseness",
+      "checklist": "h_symptom_hoarseness",
+      "value": "My voice is a little hoarse.",
+      "sp_says": [
+        "My voice is a little hoarse."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had hoarseness?",
+          "hoarseness"
+        ]
+      },
+      "concepts": {
+        "symptom_hoarseness": {
+          "polarity": "positive",
+          "value": "My voice is a little hoarse."
+        }
+      },
+      "example_questions": [
+        "Have you had hoarseness?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My voice is a little hoarse.",
+            "concepts": {
+              "symptom_hoarseness": {
+                "polarity": "positive",
+                "value": "My voice is a little hoarse."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Mild hoarseness.",
+      "ros_system": "heent"
+    },
+    {
+      "id": "symptom_ear_pain",
+      "category": "pertinent_negative",
+      "print_label": "Ear pain",
+      "checklist": "h_symptom_ear_pain",
+      "value": "My ears do not hurt.",
+      "sp_says": [
+        "My ears do not hurt."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had ear pain?",
+          "ear pain"
+        ]
+      },
+      "concepts": {
+        "symptom_ear_pain": {
+          "polarity": "negative",
+          "value": "My ears do not hurt."
+        }
+      },
+      "example_questions": [
+        "Have you had ear pain?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My ears do not hurt.",
+            "concepts": {
+              "symptom_ear_pain": {
+                "polarity": "negative",
+                "value": "My ears do not hurt."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No otalgia.",
+      "ros_system": "heent"
+    },
+    {
+      "id": "symptom_fever",
+      "category": "pertinent_negative",
+      "print_label": "Fever",
+      "checklist": "h_symptom_fever",
+      "value": "I have not measured a fever.",
+      "sp_says": [
+        "I have not measured a fever."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had a fever?",
+          "fever"
+        ]
+      },
+      "concepts": {
+        "symptom_fever": {
+          "polarity": "negative",
+          "value": "I have not measured a fever."
+        }
+      },
+      "example_questions": [
+        "Have you had a fever?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not measured a fever.",
+            "concepts": {
+              "symptom_fever": {
+                "polarity": "negative",
+                "value": "I have not measured a fever."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No reported fever.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_fatigue",
+      "category": "associated",
+      "print_label": "Fatigue",
+      "checklist": "h_symptom_fatigue",
+      "value": "I am a little tired.",
+      "sp_says": [
+        "I am a little tired."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had fatigue?",
+          "fatigue"
+        ]
+      },
+      "concepts": {
+        "symptom_fatigue": {
+          "polarity": "positive",
+          "value": "I am a little tired."
+        }
+      },
+      "example_questions": [
+        "Have you had fatigue?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I am a little tired.",
+            "concepts": {
+              "symptom_fatigue": {
+                "polarity": "positive",
+                "value": "I am a little tired."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Mild fatigue.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_chills",
+      "category": "pertinent_negative",
+      "print_label": "Chills",
+      "checklist": "h_symptom_chills",
+      "value": "No chills.",
+      "sp_says": [
+        "No chills."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had chills?",
+          "chills"
+        ]
+      },
+      "concepts": {
+        "symptom_chills": {
+          "polarity": "negative",
+          "value": "No chills."
+        }
+      },
+      "example_questions": [
+        "Have you had chills?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No chills.",
+            "concepts": {
+              "symptom_chills": {
+                "polarity": "negative",
+                "value": "No chills."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No chills.",
+      "ros_system": "general"
+    },
+    {
+      "id": "patient_concern",
+      "category": "concern",
+      "print_label": "Concern",
+      "checklist": "h_patient_concern",
+      "value": "I want to know what is causing this and how to get back to my usual activities.",
+      "sp_says": [
+        "I want to know what is causing this and how to get back to my usual activities."
+      ],
+      "triggers": {
+        "any": [
+          "What worries you most?"
+        ]
+      },
+      "concepts": {
+        "patient_concern": {
+          "polarity": "positive",
+          "value": "I want to know what is causing this and how to get back to my usual activities."
+        }
+      },
+      "example_questions": [
+        "What worries you most?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I want to know what is causing this and how to get back to my usual activities.",
+            "concepts": {
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "I want to know what is causing this and how to get back to my usual activities."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Wants explanation and return to usual activities."
+    }
+  ],
+  "concept_lexicon": {
+    "opening_complaint": [
+      "My throat is scratchy and sore, and my nose keeps running.",
+      "sore throat"
+    ],
+    "hpi_onset": [
+      "Four days ago.",
+      "Four days of sore throat; rhinorrhea began 1 day earlier."
+    ],
+    "hpi_location": [
+      "Across the back, on both sides.",
+      "Bilateral posterior throat discomfort."
+    ],
+    "hpi_quality": [
+      "Scratchy and raw, not like something is stuck.",
+      "Scratchy/raw sensation without foreign-body sensation."
+    ],
+    "hpi_severity": [
+      "Yes. Swallowing stings about 4 out of 10, but I can drink normally.",
+      "Odynophagia 4/10; normal oral fluid intake.",
+      "odynophagia"
+    ],
+    "hpi_timing": [
+      "In the morning and toward the end of a cleaning shift.",
+      "Worse in mornings and at end of cleaning shifts."
+    ],
+    "hpi_chronology": [
+      "It is about the same. My runny nose started a day earlier.",
+      "Stable sore throat; rhinorrhea preceded it by 1 day."
+    ],
+    "hpi_setting": [
+      "My daughter had a cold. At work we switched to a strong spray cleaner last week, and it stings my throat.",
+      "Daughter with URI; new workplace spray cleaner temporally provokes irritation."
+    ],
+    "hpi_aggravating": [
+      "Dust and pollen make me sneeze and make my eyes itch.",
+      "Dust/pollen-associated sneezing and ocular itching."
+    ],
+    "hpi_alleviating": [
+      "Warm tea and being away from the cleaning spray.",
+      "Relief with warm fluids and avoiding spray."
+    ],
+    "hpi_treatment": [
+      "One acetaminophen 500-milligram tablet yesterday. I have not taken antibiotics.",
+      "Acetaminophen 500 mg once; no antibiotics."
+    ],
+    "hpi_past_occurrence": [
+      "I get seasonal sneezing, but the throat is sorer this time.",
+      "Seasonal rhinitis history; greater throat discomfort now."
+    ],
+    "history_medical_history": [
+      "Seasonal allergies. No other chronic illness.",
+      "Seasonal allergic rhinitis; no other chronic illness."
+    ],
+    "history_surgery": [
+      "No operations.",
+      "No surgical history."
+    ],
+    "history_medicine": [
+      "Loratadine 10 milligrams when allergies bother me, but none this week.",
+      "Loratadine 10 mg as needed; none this week."
+    ],
+    "history_drug_reactions": [
+      "No known medication allergies.",
+      "No known drug allergies."
+    ],
+    "history_smoking": [
+      "I have never smoked or vaped.",
+      "Never smoked or vaped."
+    ],
+    "history_alcohol": [
+      "No alcohol."
+    ],
+    "history_drugs": [
+      "No.",
+      "No recreational drugs."
+    ],
+    "history_work": [
+      "I clean offices. Some rooms have poor ventilation.",
+      "Office cleaner; variable ventilation."
+    ],
+    "history_home": [
+      "My husband and our six-year-old daughter.",
+      "Lives with husband and 6-year-old daughter."
+    ],
+    "history_family_history": [
+      "My sister has hay fever and my father has asthma.",
+      "Sister: allergic rhinitis; father: asthma."
+    ],
+    "history_mother": [
+      "My mother has high blood pressure.",
+      "Mother: hypertension."
+    ],
+    "history_airway_warning_symptoms": [
+      "No. I can open my mouth and swallow liquids without drooling.",
+      "No drooling, trismus or inability to swallow liquids."
+    ],
+    "symptom_cough": [
+      "I have a mild dry cough.",
+      "Mild dry cough.",
+      "cough"
+    ],
+    "symptom_dyspnea": [
+      "No trouble breathing.",
+      "No dyspnea.",
+      "short of breath",
+      "shortness of breath",
+      "breathless"
+    ],
+    "symptom_wheezing": [
+      "No wheezing.",
+      "No wheeze.",
+      "wheezing",
+      "wheeze"
+    ],
+    "symptom_rhinorrhea": [
+      "My nose runs clear fluid.",
+      "Clear rhinorrhea.",
+      "runny nose"
+    ],
+    "symptom_hoarseness": [
+      "My voice is a little hoarse.",
+      "Mild hoarseness.",
+      "hoarseness"
+    ],
+    "symptom_ear_pain": [
+      "My ears do not hurt.",
+      "No otalgia.",
+      "ear pain"
+    ],
+    "symptom_fever": [
+      "I have not measured a fever.",
+      "No reported fever.",
+      "fever"
+    ],
+    "symptom_fatigue": [
+      "I am a little tired.",
+      "Mild fatigue.",
+      "fatigue"
+    ],
+    "symptom_chills": [
+      "No chills.",
+      "chills"
+    ],
+    "patient_concern": [
+      "I want to know what is causing this and how to get back to my usual activities.",
+      "Wants explanation and return to usual activities."
+    ],
+    "exam_general_inspect": [
+      "Well appearing, handling secretions and speaking comfortably."
+    ],
+    "exam_heent_throat": [
+      "Mild diffuse pharyngeal erythema with posterior cobblestoning; no tonsillar exudate, asymmetry or uvular deviation. Mouth opens normally."
+    ],
+    "exam_heent_nose": [
+      "Bilateral pale mildly edematous turbinates with clear secretions."
+    ],
+    "exam_lymph_nodes": [
+      "No tender anterior cervical lymphadenopathy."
+    ],
+    "exam_heent_ears": [
+      "Both tympanic membranes intact and nonbulging."
+    ],
+    "exam_heart_auscultate": [
+      "Regular rate and rhythm without murmur."
+    ],
+    "exam_lungs_auscultate": [
+      "Clear bilateral breath sounds without wheeze."
+    ],
+    "exam_osteo_screen": [
+      "C3 bilateral paraspinal tissue texture change and tenderness."
+    ]
+  },
+  "exam_findings": {
+    "general_inspect": [
+      {
+        "id": "exam_general_inspect",
+        "text": "Well appearing, handling secretions and speaking comfortably.",
+        "concepts": {
+          "exam_general_inspect": {
+            "polarity": "positive",
+            "value": "Well appearing, handling secretions and speaking comfortably."
+          }
+        },
+        "scopes": [
+          "general"
+        ],
+        "checklist": "p_exam_general_inspect",
+        "requires_components": [],
+        "key_finding": true
+      }
+    ],
+    "heent_throat": [
+      {
+        "id": "exam_heent_throat",
+        "text": "Mild diffuse pharyngeal erythema with posterior cobblestoning; no tonsillar exudate, asymmetry or uvular deviation. Mouth opens normally.",
+        "concepts": {
+          "exam_heent_throat": {
+            "polarity": "positive",
+            "value": "Mild diffuse pharyngeal erythema with posterior cobblestoning; no tonsillar exudate, asymmetry or uvular deviation. Mouth opens normally."
+          }
+        },
+        "scopes": [
+          "heent.throat"
+        ],
+        "checklist": "p_exam_heent_throat",
+        "requires_components": [
+          "tongue blade",
+          "oropharynx",
+          "tonsils"
+        ],
+        "key_finding": true
+      }
+    ],
+    "heent_nose": [
+      {
+        "id": "exam_heent_nose",
+        "text": "Bilateral pale mildly edematous turbinates with clear secretions.",
+        "concepts": {
+          "exam_heent_nose": {
+            "polarity": "positive",
+            "value": "Bilateral pale mildly edematous turbinates with clear secretions."
+          }
+        },
+        "scopes": [
+          "heent.nose"
+        ],
+        "checklist": "p_exam_heent_nose",
+        "requires_components": [
+          "right naris",
+          "left naris"
+        ],
+        "key_finding": true
+      }
+    ],
+    "lymph_nodes": [
+      {
+        "id": "exam_lymph_nodes",
+        "text": "No tender anterior cervical lymphadenopathy.",
+        "concepts": {
+          "exam_lymph_nodes": {
+            "polarity": "positive",
+            "value": "No tender anterior cervical lymphadenopathy."
+          }
+        },
+        "scopes": [
+          "lymph"
+        ],
+        "checklist": "p_exam_lymph_nodes",
+        "requires_components": [
+          "cervical"
+        ],
+        "key_finding": true
+      }
+    ],
+    "heent_ears": [
+      {
+        "id": "exam_heent_ears",
+        "text": "Both tympanic membranes intact and nonbulging.",
+        "concepts": {
+          "exam_heent_ears": {
+            "polarity": "positive",
+            "value": "Both tympanic membranes intact and nonbulging."
+          }
+        },
+        "scopes": [
+          "heent.ears"
+        ],
+        "checklist": "p_exam_heent_ears",
+        "requires_components": [
+          "right ear",
+          "left ear"
+        ],
+        "key_finding": true
+      }
+    ],
+    "heart_auscultate": [
+      {
+        "id": "exam_heart_auscultate",
+        "text": "Regular rate and rhythm without murmur.",
+        "concepts": {
+          "exam_heart_auscultate": {
+            "polarity": "positive",
+            "value": "Regular rate and rhythm without murmur."
+          }
+        },
+        "scopes": [
+          "heart"
+        ],
+        "checklist": "p_exam_heart_auscultate",
+        "requires_components": [
+          "aortic",
+          "pulmonic",
+          "tricuspid",
+          "mitral",
+          "on skin"
+        ],
+        "key_finding": true
+      }
+    ],
+    "lungs_auscultate": [
+      {
+        "id": "exam_lungs_auscultate",
+        "text": "Clear bilateral breath sounds without wheeze.",
+        "concepts": {
+          "exam_lungs_auscultate": {
+            "polarity": "positive",
+            "value": "Clear bilateral breath sounds without wheeze."
+          }
+        },
+        "scopes": [
+          "lungs"
+        ],
+        "checklist": "p_exam_lungs_auscultate",
+        "requires_components": [
+          "posterior",
+          "on skin",
+          "compare side to side",
+          "mouth open"
+        ],
+        "key_finding": true
+      }
+    ],
+    "osteo_screen": [
+      {
+        "id": "exam_osteo_screen",
+        "text": "C3 bilateral paraspinal tissue texture change and tenderness.",
+        "concepts": {
+          "exam_osteo_screen": {
+            "polarity": "positive",
+            "value": "C3 bilateral paraspinal tissue texture change and tenderness."
+          }
+        },
+        "scopes": [
+          "osteopathic"
+        ],
+        "checklist": "p_exam_osteo_screen",
+        "requires_components": [
+          "cervical"
+        ],
+        "key_finding": false
+      }
+    ]
+  },
+  "refusals": [],
+  "refusal_expectation": {},
+  "area_of_concern": {
+    "system": "HEENT",
+    "required_methods": [
+      "inspect",
+      "palpate"
+    ],
+    "special_tests": [],
+    "note": "Use viral, allergic and exposure clues without reflex antibiotic treatment."
+  },
+  "osteopathic": {
+    "expected_documentation": "Document the supplied level and palpatory descriptor only after the structural screen; treatment is not implied."
+  },
+  "ros_pertinent_systems": [
+    "respiratory",
+    "heent",
+    "general"
+  ],
+  "differentials": [
+    {
+      "rank": 1,
+      "name": "Viral pharyngitis",
+      "vindicate": "I",
+      "aliases": [
+        "Viral pharyngitis"
+      ],
+      "supported_by": [
+        "hpi_onset",
+        "hpi_setting",
+        "symptom_cough",
+        "symptom_hoarseness"
+      ],
+      "teaching_context": "Acute URI exposure, rhinorrhea, cough and nonexudative throat support a viral illness."
+    },
+    {
+      "rank": 2,
+      "name": "Allergic rhinitis with postnasal throat irritation",
+      "vindicate": "A",
+      "aliases": [
+        "Allergic rhinitis with postnasal throat irritation"
+      ],
+      "supported_by": [
+        "hpi_aggravating",
+        "history_medical_history",
+        "exam_heent_nose"
+      ],
+      "teaching_context": "Seasonal itching/sneezing, pale turbinates and cobblestoning support allergic contribution."
+    },
+    {
+      "rank": 3,
+      "name": "Inhalational irritant pharyngitis",
+      "vindicate": "I2",
+      "aliases": [
+        "Inhalational irritant pharyngitis"
+      ],
+      "supported_by": [
+        "hpi_setting",
+        "hpi_timing",
+        "hpi_alleviating"
+      ],
+      "teaching_context": "New spray exposure with work-related worsening and relief away supports irritant contribution."
+    }
+  ],
+  "implausible_differentials": [],
+  "plan_expectations": {
+    "tests": [],
+    "medications": [],
+    "omt": [],
+    "education": [],
+    "referral": [],
+    "follow_up": []
+  },
+  "checklist": {
+    "history": [
+      {
+        "id": "h_opening_complaint",
+        "text": "Opening complaint"
+      },
+      {
+        "id": "h_hpi_onset",
+        "text": "Onset"
+      },
+      {
+        "id": "h_hpi_location",
+        "text": "Location"
+      },
+      {
+        "id": "h_hpi_quality",
+        "text": "Character"
+      },
+      {
+        "id": "h_hpi_severity",
+        "text": "Swallowing"
+      },
+      {
+        "id": "h_hpi_timing",
+        "text": "Pattern"
+      },
+      {
+        "id": "h_hpi_chronology",
+        "text": "Change"
+      },
+      {
+        "id": "h_hpi_setting",
+        "text": "Contacts and exposure"
+      },
+      {
+        "id": "h_hpi_aggravating",
+        "text": "Other triggers"
+      },
+      {
+        "id": "h_hpi_alleviating",
+        "text": "Relief"
+      },
+      {
+        "id": "h_hpi_treatment",
+        "text": "Self-treatment"
+      },
+      {
+        "id": "h_hpi_past_occurrence",
+        "text": "Past pattern"
+      },
+      {
+        "id": "h_history_medical_history",
+        "text": "Medical history"
+      },
+      {
+        "id": "h_history_surgery",
+        "text": "Surgery"
+      },
+      {
+        "id": "h_history_medicine",
+        "text": "Medicine"
+      },
+      {
+        "id": "h_history_drug_reactions",
+        "text": "Drug reactions"
+      },
+      {
+        "id": "h_history_smoking",
+        "text": "Smoking"
+      },
+      {
+        "id": "h_history_alcohol",
+        "text": "Alcohol"
+      },
+      {
+        "id": "h_history_drugs",
+        "text": "Drugs"
+      },
+      {
+        "id": "h_history_work",
+        "text": "Work"
+      },
+      {
+        "id": "h_history_home",
+        "text": "Home"
+      },
+      {
+        "id": "h_history_family_history",
+        "text": "Family history"
+      },
+      {
+        "id": "h_history_mother",
+        "text": "Mother"
+      },
+      {
+        "id": "h_history_airway_warning_symptoms",
+        "text": "Airway warning symptoms"
+      },
+      {
+        "id": "h_symptom_cough",
+        "text": "Cough"
+      },
+      {
+        "id": "h_symptom_dyspnea",
+        "text": "Dyspnea"
+      },
+      {
+        "id": "h_symptom_wheezing",
+        "text": "Wheezing"
+      },
+      {
+        "id": "h_symptom_rhinorrhea",
+        "text": "Rhinorrhea"
+      },
+      {
+        "id": "h_symptom_hoarseness",
+        "text": "Hoarseness"
+      },
+      {
+        "id": "h_symptom_ear_pain",
+        "text": "Ear pain"
+      },
+      {
+        "id": "h_symptom_fever",
+        "text": "Fever"
+      },
+      {
+        "id": "h_symptom_fatigue",
+        "text": "Fatigue"
+      },
+      {
+        "id": "h_symptom_chills",
+        "text": "Chills"
+      },
+      {
+        "id": "h_patient_concern",
+        "text": "Concern"
+      }
+    ],
+    "physical": [
+      {
+        "id": "p_exam_general_inspect",
+        "text": "General appearance",
+        "maneuver": "general_inspect",
+        "components": []
+      },
+      {
+        "id": "p_exam_heent_throat",
+        "text": "Inspect mouth and throat with light",
+        "maneuver": "heent_throat",
+        "components": [
+          "tongue blade",
+          "oropharynx",
+          "tonsils"
+        ]
+      },
+      {
+        "id": "p_exam_heent_nose",
+        "text": "Inspect nose with light source",
+        "maneuver": "heent_nose",
+        "components": [
+          "right naris",
+          "left naris"
+        ]
+      },
+      {
+        "id": "p_exam_lymph_nodes",
+        "text": "Palpate lymph nodes",
+        "maneuver": "lymph_nodes",
+        "components": [
+          "cervical"
+        ]
+      },
+      {
+        "id": "p_exam_heent_ears",
+        "text": "Otoscopic exam of ears",
+        "maneuver": "heent_ears",
+        "components": [
+          "right ear",
+          "left ear"
+        ]
+      },
+      {
+        "id": "p_exam_heart_auscultate",
+        "text": "Auscultate heart",
+        "maneuver": "heart_auscultate",
+        "components": [
+          "aortic",
+          "pulmonic",
+          "tricuspid",
+          "mitral",
+          "on skin"
+        ]
+      },
+      {
+        "id": "p_exam_lungs_auscultate",
+        "text": "Auscultate lungs",
+        "maneuver": "lungs_auscultate",
+        "components": [
+          "posterior",
+          "on skin",
+          "compare side to side",
+          "mouth open"
+        ]
+      },
+      {
+        "id": "p_exam_osteo_screen",
+        "text": "Osteopathic structural screen",
+        "maneuver": "osteo_screen",
+        "components": [
+          "cervical"
+        ]
+      },
+      {
+        "id": "p_introduce",
+        "text": "Introduce yourself and verify identity",
+        "courtesy": "introduce"
+      },
+      {
+        "id": "p_hand_hygiene",
+        "text": "Clean hands before examination",
+        "courtesy": "hand_hygiene"
+      },
+      {
+        "id": "p_drape",
+        "text": "Provide appropriate draping",
+        "courtesy": "drape"
+      }
+    ]
+  },
+  "model_note": {
+    "S": "CC: My throat is scratchy and sore, and my nose keeps running.\n\nHPI: 31-year-old female. Four days of sore throat; rhinorrhea began 1 day earlier. Bilateral posterior throat discomfort. Scratchy/raw sensation without foreign-body sensation. Odynophagia 4/10; normal oral fluid intake. Worse in mornings and at end of cleaning shifts. Stable sore throat; rhinorrhea preceded it by 1 day. Daughter with URI; new workplace spray cleaner temporally provokes irritation. Dust/pollen-associated sneezing and ocular itching. Relief with warm fluids and avoiding spray. Acetaminophen 500 mg once; no antibiotics. Seasonal rhinitis history; greater throat discomfort now.\n\nPMH: Seasonal allergic rhinitis; no other chronic illness.\n\nPSH: No surgical history.\n\nMeds: Loratadine 10 mg as needed; none this week.\n\nSH: Never smoked or vaped. No alcohol. No recreational drugs. Office cleaner; variable ventilation. Lives with husband and 6-year-old daughter.\n\nFH: Sister: allergic rhinitis; father: asthma. Mother: hypertension.\n\nAllergies: No known drug allergies.\n\nROS: Respiratory: Mild dry cough. No dyspnea. No wheeze. Heent: Clear rhinorrhea. Mild hoarseness. No otalgia. General: No reported fever. Mild fatigue. No chills. No drooling, trismus or inability to swallow liquids.",
+    "O": "Vitals: BP 110/68 mmHg, P 82 bpm, R 16 rpm, T 98.9 F oral, Pulse Ox 99% on room air, Ht 5' 3\", Wt 136 lbs\n\nGeneral: Well appearing, handling secretions and speaking comfortably.\nHEENT: Mild diffuse pharyngeal erythema with posterior cobblestoning; no tonsillar exudate, asymmetry or uvular deviation. Mouth opens normally. Bilateral pale mildly edematous turbinates with clear secretions. No tender anterior cervical lymphadenopathy. Both tympanic membranes intact and nonbulging.\nHeart: Regular rate and rhythm without murmur.\nLungs: Clear bilateral breath sounds without wheeze.\nOsteopathic: C3 bilateral paraspinal tissue texture change and tenderness.",
+    "A": [
+      "1. Viral pharyngitis",
+      "2. Allergic rhinitis with postnasal throat irritation",
+      "3. Inhalational irritant pharyngitis"
+    ],
+    "P": [
+      "1. Provide fluids and appropriate analgesia, and discuss infection-control measures. Clear viral features do not require routine streptococcal testing or antibiotics; test if the clinical pattern changes. Reassess if not improving within 5–7 days. Drooling, breathing difficulty, neck swelling or inability to swallow fluids needs urgent evaluation.",
+      "2. Resume appropriate rhinitis treatment, considering intranasal corticosteroid or a nonsedating antihistamine after review; teach spray technique and reduce identified allergen exposure. Explain that allergy may coexist with a cold and that antibiotics do not treat allergy.",
+      "3. Avoid direct aerosol inhalation, improve ventilation and review the product safety instructions with occupational health; do not mix cleaners. Consider safer work practices/products and explain prompt assessment for chest tightness or respiratory symptoms."
+    ]
+  },
+  "print_additional_exams": {
+    "osteo_screen": "Include when practicing the course structural screen; it does not establish the cause of the complaint."
+  },
+  "ideal_encounter_extras": [
+    "Use viral, allergic and exposure clues without reflex antibiotic treatment."
+  ],
+  "supersedes_core": [
+    "sore_throat",
+    "tobacco_use",
+    "alcohol_use",
+    "drug_use",
+    "allergies",
+    "medications",
+    "family_history",
+    "past_medical",
+    "past_surgical",
+    "cough",
+    "dyspnea",
+    "wheezing",
+    "rhinorrhea",
+    "hoarseness",
+    "ear_pain",
+    "fever",
+    "fatigue",
+    "chills"
+  ],
+  "review_status": "Source-checked fictional practice; not faculty or clinician approved.",
+  "clinical_review": {
+    "status": "source_checked_not_clinician_approved",
+    "date": "2026-09-14",
+    "method": "Individual presentation, differential, safety and plan review against named primary clinical references plus course documentation constraints.",
+    "limits": "Fictional details deliberately authored. Mnemonic category placement is instructional and is not proof of etiology. Generic 3D appearance is not a diagnostic visual.",
+    "sources": [
+      "https://www.cdc.gov/group-a-strep/hcp/clinical-guidance/strep-throat.html",
+      "https://www.entnet.org/resource/aao-hnsf-cpg-allergic-rhinitis-press-release-fact-sheet/"
+    ]
+  },
+  "sources": [
+    {
+      "title": "2026 FALL M2 ILG Student Manual",
+      "path": "claude builds/PCM/2026 FALL M2 ILG - STUDENT MANUAL update.docx",
+      "locator": "SOAP rubric and physical examination requirements",
+      "kind": "course"
+    },
+    {
+      "title": "CDC group A streptococcal pharyngitis guidance",
+      "url": "https://www.cdc.gov/group-a-strep/hcp/clinical-guidance/strep-throat.html",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+    },
+    {
+      "title": "Allergic rhinitis",
+      "url": "https://www.entnet.org/resource/aao-hnsf-cpg-allergic-rhinitis-press-release-fact-sheet/",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+    }
+  ],
+  "teaching": {
+    "goals": [
+      "Use viral, allergic and exposure clues without reflex antibiotic treatment.",
+      "Document only supplied, asked or examined information."
+    ],
+    "skills": [
+      "history-sequencing",
+      "focused-examination",
+      "clinical-reasoning",
+      "evidence-based-soap",
+      "heent"
+    ],
+    "common_omissions": [
+      "Distinguishing history from examination evidence.",
+      "Explaining uncertainty and the practical follow-up plan."
+    ],
+    "lesson_plan": {
+      "notice": "Use viral, allergic and exposure clues without reflex antibiotic treatment.",
+      "anchor": "Sore throat with nasal symptoms",
+      "pivot": "Are symptoms linked to a cold contact, itching/sneezing, or a workplace exposure?",
+      "exam": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
+      "avoid": "Treating an unperformed examination or a possible diagnosis as obtained fact."
+    },
+    "closing_dialogue": [
+      "The history and examination can help distinguish a cold, allergy and irritation from the new spray. We can relieve the soreness and reduce exposures. If drinking or breathing becomes difficult, seek urgent care."
+    ],
+    "concern_response": "We can discuss ventilation and a safer cleaning method with your workplace, with your permission.",
+    "reasoning_steps": [
+      {
+        "id": "orient",
+        "phase": "history",
+        "purpose": "Hear the presenting concern",
+        "question": "What brings you in today?",
+        "fact_ids": [
+          "opening_complaint"
+        ],
+        "why": "Use viral, allergic and exposure clues without reflex antibiotic treatment."
+      },
+      {
+        "id": "pattern",
+        "phase": "history",
+        "purpose": "Clarify the pattern",
+        "question": "Are symptoms linked to a cold contact, itching/sneezing, or a workplace exposure?",
+        "fact_ids": [
+          "hpi_onset"
+        ],
+        "why": "Use viral, allergic and exposure clues without reflex antibiotic treatment."
+      },
+      {
+        "id": "examine",
+        "phase": "exam",
+        "purpose": "Perform relevant examinations",
+        "question": "May I examine you?",
+        "fact_ids": [],
+        "why": "Findings require performed actions."
+      }
+    ],
+    "reasoning_map": [
+      {
+        "id": "heent-sore-throat-decision",
+        "question": "Are symptoms linked to a cold contact, itching/sneezing, or a workplace exposure?",
+        "why": "Use viral, allergic and exposure clues without reflex antibiotic treatment.",
+        "if_present": "Use the reported pattern to select the relevant examinations and assess urgency.",
+        "if_absent": "Keep alternatives open and ask a focused follow-up.",
+        "next_action": "Perform the relevant case-specific examination.",
+        "document": "Separate reported symptoms, observed signs, assessment and proposed care."
+      }
+    ],
+    "classification_note": "Categories reflect the explicitly proposed mechanism; e.g., irritant exposure is I2. They are a course organizing aid, not confirmation of mechanism."
+  },
+  "content_revisions": {
+    "library_expansion_20260914": "New independently authored presentation. Single core path; no renamed cosmetic variants."
+  },
+  "examination_display_note": "The case-specific skin, ear, nose and throat appearance is supplied in the labeled examination result; the generic patient model does not reliably display these findings."
+}

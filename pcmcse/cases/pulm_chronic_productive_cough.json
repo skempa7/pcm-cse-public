@@ -1,0 +1,2241 @@
+{
+  "id": "pulm-chronic-productive-cough",
+  "presentation_id": "pulm-chronic-productive-cough",
+  "title": "Persistent morning cough and exertional breathlessness",
+  "hidden_label": "Station 27",
+  "system": "Respiratory",
+  "complaint_family": "Respiratory",
+  "level": "M2",
+  "difficulty": "intermediate",
+  "blurb": "I cough up mucus every morning and get winded more easily.",
+  "curriculum_note": "Supplementary fictional practice for the course history, physical examination and SOAP skills; not an official or predicted station.",
+  "scope_status": "supplementary_cross_system",
+  "station": {
+    "doorway": [
+      "Marcus Hill, 56-year-old male.",
+      "I cough up mucus every morning and get winded more easily.",
+      "Vital signs are available on the chart.",
+      "Perform a focused history and physical examination, discuss your plan, and document only what you obtain.",
+      "Use the time limit stated for your selected practice mode."
+    ],
+    "vitals": {
+      "BP": "132/80 mmHg",
+      "P": "82 bpm",
+      "R": "18 rpm",
+      "T": "98.1 F oral",
+      "Pulse Ox": "95% on room air",
+      "Ht": "5' 9\"",
+      "Wt": "178 lbs"
+    },
+    "supplied_results": []
+  },
+  "patient": {
+    "name": "Marcus Hill",
+    "age": 56,
+    "sex": "male",
+    "pronouns": "he/him",
+    "persona": "I drive a delivery van. Unloading boxes is getting difficult.",
+    "opening": "I cough up mucus every morning and get winded more easily.",
+    "opening_facts": [
+      "opening_complaint"
+    ],
+    "opening_contract": {
+      "text": "I cough up mucus every morning and get winded more easily.",
+      "fact_ids": [
+        "opening_complaint"
+      ],
+      "review": "Exact opening only."
+    },
+    "volunteer_budget": 1,
+    "volunteer_order": [
+      "patient_concern"
+    ],
+    "affect": "My father had lung cancer. I am afraid I have it too.",
+    "communication_style": "concise",
+    "empathy_replies": [
+      "Thank you for listening.",
+      "I appreciate you explaining that."
+    ],
+    "closing_questions": [
+      "My father had lung cancer. I am afraid I have it too."
+    ],
+    "appearance": {
+      "presentation": "male",
+      "model": "mpfb-public-patient",
+      "skinTone": 1,
+      "eyeColor": "brown",
+      "hairColor": "brunette",
+      "hairStyle": "bald",
+      "outfit": "fitted-casual",
+      "bodyBuild": "standard"
+    },
+    "voice": {
+      "rate": 1,
+      "pitch": 1,
+      "gender": "male",
+      "adult": true
+    },
+    "education_responses": [
+      {
+        "student": "I will arrange breathing tests and a chest image rather than assuming the cough is just from past smoking. We will review the results in two weeks. Sudden severe breathing trouble or coughing blood needs earlier help.",
+        "patient": "Thank you. I understand that the next steps depend on the examination and tests."
+      },
+      {
+        "student": "We can look for an appointment that limits lost work time and coordinate transport with your daughter if you wish.",
+        "patient": "That would help. Thank you."
+      }
+    ]
+  },
+  "facts": [
+    {
+      "id": "opening_complaint",
+      "category": "chief_complaint",
+      "print_label": "Opening complaint",
+      "checklist": "h_opening_complaint",
+      "value": "I cough up mucus every morning and get winded more easily.",
+      "sp_says": [
+        "I cough up mucus every morning and get winded more easily."
+      ],
+      "triggers": {
+        "any": [
+          "What brings you in today?"
+        ]
+      },
+      "concepts": {
+        "opening_complaint": {
+          "polarity": "positive",
+          "value": "I cough up mucus every morning and get winded more easily."
+        }
+      },
+      "example_questions": [
+        "What brings you in today?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I cough up mucus every morning and get winded more easily.",
+            "concepts": {
+              "opening_complaint": {
+                "polarity": "positive",
+                "value": "I cough up mucus every morning and get winded more easily."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "I cough up mucus every morning and get winded more easily."
+    },
+    {
+      "id": "hpi_onset",
+      "category": "onset",
+      "print_label": "Onset",
+      "checklist": "h_hpi_onset",
+      "value": "For about two years.",
+      "sp_says": [
+        "For about two years."
+      ],
+      "triggers": {
+        "any": [
+          "How long have you had the cough?",
+          "when did",
+          "started",
+          "began"
+        ]
+      },
+      "concepts": {
+        "hpi_onset": {
+          "polarity": "positive",
+          "value": "For about two years."
+        }
+      },
+      "example_questions": [
+        "How long have you had the cough?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "For about two years.",
+            "concepts": {
+              "hpi_onset": {
+                "polarity": "positive",
+                "value": "For about two years."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Productive cough for 2 years.",
+      "temporal_role": "first_episode_onset"
+    },
+    {
+      "id": "hpi_quality",
+      "category": "quality",
+      "print_label": "Sputum",
+      "checklist": "h_hpi_quality",
+      "value": "A few tablespoons of white mucus most mornings.",
+      "sp_says": [
+        "A few tablespoons of white mucus most mornings."
+      ],
+      "triggers": {
+        "any": [
+          "What do you cough up?",
+          "feel like",
+          "describe"
+        ]
+      },
+      "concepts": {
+        "hpi_quality": {
+          "polarity": "positive",
+          "value": "A few tablespoons of white mucus most mornings."
+        }
+      },
+      "example_questions": [
+        "What do you cough up?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "A few tablespoons of white mucus most mornings.",
+            "concepts": {
+              "hpi_quality": {
+                "polarity": "positive",
+                "value": "A few tablespoons of white mucus most mornings."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Several tablespoons of white morning sputum."
+    },
+    {
+      "id": "hpi_timing",
+      "category": "timing",
+      "print_label": "Pattern",
+      "checklist": "h_hpi_timing",
+      "value": "Most days, including through both winters and summers.",
+      "sp_says": [
+        "Most days, including through both winters and summers."
+      ],
+      "triggers": {
+        "any": [
+          "Is the cough present every day?",
+          "how long each",
+          "how often"
+        ]
+      },
+      "concepts": {
+        "hpi_timing": {
+          "polarity": "positive",
+          "value": "Most days, including through both winters and summers."
+        }
+      },
+      "example_questions": [
+        "Is the cough present every day?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Most days, including through both winters and summers.",
+            "concepts": {
+              "hpi_timing": {
+                "polarity": "positive",
+                "value": "Most days, including through both winters and summers."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Symptoms most days year-round.",
+      "question_dimensions": [
+        "frequency"
+      ]
+    },
+    {
+      "id": "hpi_chronology",
+      "category": "chronology",
+      "print_label": "Progression",
+      "checklist": "h_hpi_chronology",
+      "value": "Over 6 months I have gone from climbing two flights easily to stopping after one.",
+      "sp_says": [
+        "Over 6 months I have gone from climbing two flights easily to stopping after one."
+      ],
+      "triggers": {
+        "any": [
+          "How has your breathing changed?",
+          "changed",
+          "progressed"
+        ]
+      },
+      "concepts": {
+        "hpi_chronology": {
+          "polarity": "positive",
+          "value": "Over 6 months I have gone from climbing two flights easily to stopping after one."
+        }
+      },
+      "example_questions": [
+        "How has your breathing changed?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Over 6 months I have gone from climbing two flights easily to stopping after one.",
+            "concepts": {
+              "hpi_chronology": {
+                "polarity": "positive",
+                "value": "Over 6 months I have gone from climbing two flights easily to stopping after one."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Progressive exertional dyspnea over 6 months; now stops after one flight.",
+      "question_dimensions": [
+        "progression"
+      ],
+      "temporal_role": "pattern_or_progression"
+    },
+    {
+      "id": "hpi_severity",
+      "category": "severity",
+      "print_label": "Current function",
+      "checklist": "h_hpi_severity",
+      "value": "No, I am comfortable sitting and talking.",
+      "sp_says": [
+        "No, I am comfortable sitting and talking."
+      ],
+      "triggers": {
+        "any": [
+          "Are you breathless while resting or talking?",
+          "how bad",
+          "out of ten",
+          "severity"
+        ]
+      },
+      "concepts": {
+        "hpi_severity": {
+          "polarity": "positive",
+          "value": "No, I am comfortable sitting and talking."
+        }
+      },
+      "example_questions": [
+        "Are you breathless while resting or talking?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No, I am comfortable sitting and talking.",
+            "concepts": {
+              "hpi_severity": {
+                "polarity": "positive",
+                "value": "No, I am comfortable sitting and talking."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No resting or conversational dyspnea."
+    },
+    {
+      "id": "hpi_location",
+      "category": "location",
+      "print_label": "Chest symptoms",
+      "checklist": "h_hpi_location",
+      "value": "Across my chest when I am exerting myself.",
+      "sp_says": [
+        "Across my chest when I am exerting myself."
+      ],
+      "triggers": {
+        "any": [
+          "Where do you feel the breathing discomfort?",
+          "where",
+          "which side"
+        ]
+      },
+      "concepts": {
+        "hpi_location": {
+          "polarity": "positive",
+          "value": "Across my chest when I am exerting myself."
+        }
+      },
+      "example_questions": [
+        "Where do you feel the breathing discomfort?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Across my chest when I am exerting myself.",
+            "concepts": {
+              "hpi_location": {
+                "polarity": "positive",
+                "value": "Across my chest when I am exerting myself."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Diffuse exertional breathing discomfort."
+    },
+    {
+      "id": "hpi_setting",
+      "category": "setting",
+      "print_label": "Exposure",
+      "checklist": "h_hpi_setting",
+      "value": "I worked around diesel exhaust at a loading dock for 25 years.",
+      "sp_says": [
+        "I worked around diesel exhaust at a loading dock for 25 years."
+      ],
+      "triggers": {
+        "any": [
+          "What exposures have you had at work?",
+          "trigger",
+          "doing when"
+        ]
+      },
+      "concepts": {
+        "hpi_setting": {
+          "polarity": "positive",
+          "value": "I worked around diesel exhaust at a loading dock for 25 years."
+        }
+      },
+      "example_questions": [
+        "What exposures have you had at work?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I worked around diesel exhaust at a loading dock for 25 years.",
+            "concepts": {
+              "hpi_setting": {
+                "polarity": "positive",
+                "value": "I worked around diesel exhaust at a loading dock for 25 years."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "25 years of loading-dock diesel exposure."
+    },
+    {
+      "id": "hpi_aggravating",
+      "category": "aggravating",
+      "print_label": "Triggers",
+      "checklist": "h_hpi_aggravating",
+      "value": "Stairs, smoke and cold mornings.",
+      "sp_says": [
+        "Stairs, smoke and cold mornings."
+      ],
+      "triggers": {
+        "any": [
+          "What makes the cough or breathing worse?",
+          "makes worse"
+        ]
+      },
+      "concepts": {
+        "hpi_aggravating": {
+          "polarity": "positive",
+          "value": "Stairs, smoke and cold mornings."
+        }
+      },
+      "example_questions": [
+        "What makes the cough or breathing worse?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Stairs, smoke and cold mornings.",
+            "concepts": {
+              "hpi_aggravating": {
+                "polarity": "positive",
+                "value": "Stairs, smoke and cold mornings."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Worse with exertion, smoke and cold air."
+    },
+    {
+      "id": "hpi_alleviating",
+      "category": "alleviating",
+      "print_label": "Relief",
+      "checklist": "h_hpi_alleviating",
+      "value": "Rest helps my breathing, and coughing clears the mucus for a while.",
+      "sp_says": [
+        "Rest helps my breathing, and coughing clears the mucus for a while."
+      ],
+      "triggers": {
+        "any": [
+          "What helps?",
+          "helps",
+          "relieves"
+        ]
+      },
+      "concepts": {
+        "hpi_alleviating": {
+          "polarity": "positive",
+          "value": "Rest helps my breathing, and coughing clears the mucus for a while."
+        }
+      },
+      "example_questions": [
+        "What helps?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Rest helps my breathing, and coughing clears the mucus for a while.",
+            "concepts": {
+              "hpi_alleviating": {
+                "polarity": "positive",
+                "value": "Rest helps my breathing, and coughing clears the mucus for a while."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Rest relieves dyspnea; expectoration temporarily clears mucus."
+    },
+    {
+      "id": "hpi_treatment",
+      "category": "treatment",
+      "print_label": "Self-treatment",
+      "checklist": "h_hpi_treatment",
+      "value": "A cough syrup did not help. I have never used an inhaler.",
+      "sp_says": [
+        "A cough syrup did not help. I have never used an inhaler."
+      ],
+      "triggers": {
+        "any": [
+          "What have you tried for the cough?",
+          "tried for",
+          "taken for"
+        ]
+      },
+      "concepts": {
+        "hpi_treatment": {
+          "polarity": "positive",
+          "value": "A cough syrup did not help. I have never used an inhaler."
+        }
+      },
+      "example_questions": [
+        "What have you tried for the cough?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "A cough syrup did not help. I have never used an inhaler.",
+            "concepts": {
+              "hpi_treatment": {
+                "polarity": "positive",
+                "value": "A cough syrup did not help. I have never used an inhaler."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Cough syrup ineffective; no inhaler use."
+    },
+    {
+      "id": "hpi_past_occurrence",
+      "category": "past_occurrence",
+      "print_label": "Respiratory infections",
+      "checklist": "h_hpi_past_occurrence",
+      "value": "I was treated for two chest infections in the past three years.",
+      "sp_says": [
+        "I was treated for two chest infections in the past three years."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had chest infections before?",
+          "had before"
+        ]
+      },
+      "concepts": {
+        "hpi_past_occurrence": {
+          "polarity": "positive",
+          "value": "I was treated for two chest infections in the past three years."
+        }
+      },
+      "example_questions": [
+        "Have you had chest infections before?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I was treated for two chest infections in the past three years.",
+            "concepts": {
+              "hpi_past_occurrence": {
+                "polarity": "positive",
+                "value": "I was treated for two chest infections in the past three years."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Two treated chest infections in 3 years."
+    },
+    {
+      "id": "history_medical_conditions",
+      "category": "pmh",
+      "print_label": "Medical conditions",
+      "checklist": "h_history_medical_conditions",
+      "value": "High blood pressure. Nobody has diagnosed a lung condition.",
+      "sp_says": [
+        "High blood pressure. Nobody has diagnosed a lung condition."
+      ],
+      "triggers": {
+        "any": [
+          "What medical conditions have you been diagnosed with?",
+          "What illnesses have you had?",
+          "Any medical conditions?"
+        ]
+      },
+      "concepts": {
+        "history_medical_conditions": {
+          "polarity": "positive",
+          "value": "High blood pressure. Nobody has diagnosed a lung condition."
+        }
+      },
+      "example_questions": [
+        "What medical conditions have you been diagnosed with?",
+        "What illnesses have you had?",
+        "Any medical conditions?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "High blood pressure. Nobody has diagnosed a lung condition.",
+            "concepts": {
+              "history_medical_conditions": {
+                "polarity": "positive",
+                "value": "High blood pressure. Nobody has diagnosed a lung condition."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Hypertension; no established lung diagnosis."
+    },
+    {
+      "id": "history_surgery",
+      "category": "psh",
+      "print_label": "Surgery",
+      "checklist": "h_history_surgery",
+      "value": "My gallbladder was removed at 42.",
+      "sp_says": [
+        "My gallbladder was removed at 42."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had surgery?",
+          "Have you had any operations?"
+        ]
+      },
+      "concepts": {
+        "history_surgery": {
+          "polarity": "positive",
+          "value": "My gallbladder was removed at 42."
+        }
+      },
+      "example_questions": [
+        "Have you had surgery?",
+        "Have you had any operations?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My gallbladder was removed at 42.",
+            "concepts": {
+              "history_surgery": {
+                "polarity": "positive",
+                "value": "My gallbladder was removed at 42."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Cholecystectomy at 42."
+    },
+    {
+      "id": "history_medication",
+      "category": "medications",
+      "print_label": "Medication",
+      "checklist": "h_history_medication",
+      "value": "Amlodipine 5 milligrams each morning.",
+      "sp_says": [
+        "Amlodipine 5 milligrams each morning."
+      ],
+      "triggers": {
+        "any": [
+          "What medicines do you take?",
+          "What medications are you taking?"
+        ]
+      },
+      "concepts": {
+        "history_medication": {
+          "polarity": "positive",
+          "value": "Amlodipine 5 milligrams each morning."
+        }
+      },
+      "example_questions": [
+        "What medicines do you take?",
+        "What medications are you taking?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Amlodipine 5 milligrams each morning.",
+            "concepts": {
+              "history_medication": {
+                "polarity": "positive",
+                "value": "Amlodipine 5 milligrams each morning."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Amlodipine 5 mg daily."
+    },
+    {
+      "id": "history_allergies",
+      "category": "allergies",
+      "print_label": "Allergies",
+      "checklist": "h_history_allergies",
+      "value": "No known medicine allergies.",
+      "sp_says": [
+        "No known medicine allergies."
+      ],
+      "triggers": {
+        "any": [
+          "Do you have any medication allergies?",
+          "Any medication allergies?"
+        ]
+      },
+      "concepts": {
+        "history_allergies": {
+          "polarity": "positive",
+          "value": "No known medicine allergies."
+        }
+      },
+      "example_questions": [
+        "Do you have any medication allergies?",
+        "Any medication allergies?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No known medicine allergies.",
+            "concepts": {
+              "history_allergies": {
+                "polarity": "positive",
+                "value": "No known medicine allergies."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No known drug allergies."
+    },
+    {
+      "id": "history_smoking",
+      "category": "social",
+      "print_label": "Smoking",
+      "checklist": "h_history_smoking",
+      "value": "I smoked a pack a day for 32 years. I quit two years ago.",
+      "sp_says": [
+        "I smoked a pack a day for 32 years. I quit two years ago."
+      ],
+      "triggers": {
+        "any": [
+          "Do you smoke?"
+        ]
+      },
+      "concepts": {
+        "history_smoking": {
+          "polarity": "positive",
+          "value": "I smoked a pack a day for 32 years. I quit two years ago."
+        }
+      },
+      "example_questions": [
+        "Do you smoke?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I smoked a pack a day for 32 years. I quit two years ago.",
+            "concepts": {
+              "history_smoking": {
+                "polarity": "positive",
+                "value": "I smoked a pack a day for 32 years. I quit two years ago."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Former smoker: 32 pack-years, quit 2 years ago.",
+      "history_topic": "tobacco"
+    },
+    {
+      "id": "history_alcohol",
+      "category": "social",
+      "print_label": "Alcohol",
+      "checklist": "h_history_alcohol",
+      "value": "Two beers with dinner on Friday and Saturday.",
+      "sp_says": [
+        "Two beers with dinner on Friday and Saturday."
+      ],
+      "triggers": {
+        "any": [
+          "How much alcohol do you drink?"
+        ]
+      },
+      "concepts": {
+        "history_alcohol": {
+          "polarity": "positive",
+          "value": "Two beers with dinner on Friday and Saturday."
+        }
+      },
+      "example_questions": [
+        "How much alcohol do you drink?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Two beers with dinner on Friday and Saturday.",
+            "concepts": {
+              "history_alcohol": {
+                "polarity": "positive",
+                "value": "Two beers with dinner on Friday and Saturday."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Four beers weekly.",
+      "history_topic": "alcohol"
+    },
+    {
+      "id": "history_drugs",
+      "category": "social",
+      "print_label": "Drugs",
+      "checklist": "h_history_drugs",
+      "value": "No.",
+      "sp_says": [
+        "No."
+      ],
+      "triggers": {
+        "any": [
+          "Do you use recreational drugs?"
+        ]
+      },
+      "concepts": {
+        "history_drugs": {
+          "polarity": "positive",
+          "value": "No."
+        }
+      },
+      "example_questions": [
+        "Do you use recreational drugs?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No.",
+            "concepts": {
+              "history_drugs": {
+                "polarity": "positive",
+                "value": "No."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No recreational drugs.",
+      "history_topic": "drugs"
+    },
+    {
+      "id": "history_work",
+      "category": "social",
+      "print_label": "Work",
+      "checklist": "h_history_work",
+      "value": "I drive a delivery van. Unloading boxes is getting difficult.",
+      "sp_says": [
+        "I drive a delivery van. Unloading boxes is getting difficult."
+      ],
+      "triggers": {
+        "any": [
+          "What do you do now for work?"
+        ]
+      },
+      "concepts": {
+        "history_work": {
+          "polarity": "positive",
+          "value": "I drive a delivery van. Unloading boxes is getting difficult."
+        }
+      },
+      "example_questions": [
+        "What do you do now for work?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I drive a delivery van. Unloading boxes is getting difficult.",
+            "concepts": {
+              "history_work": {
+                "polarity": "positive",
+                "value": "I drive a delivery van. Unloading boxes is getting difficult."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Delivery driver; limited during unloading.",
+      "history_topic": "occupation"
+    },
+    {
+      "id": "history_home_and_access",
+      "category": "social",
+      "print_label": "Home and access",
+      "checklist": "h_history_home_and_access",
+      "value": "I live alone. My daughter can drive me, but I lose pay for weekday visits.",
+      "sp_says": [
+        "I live alone. My daughter can drive me, but I lose pay for weekday visits."
+      ],
+      "triggers": {
+        "any": [
+          "Who lives with you and can help with appointments?"
+        ]
+      },
+      "concepts": {
+        "history_home_and_access": {
+          "polarity": "positive",
+          "value": "I live alone. My daughter can drive me, but I lose pay for weekday visits."
+        }
+      },
+      "example_questions": [
+        "Who lives with you and can help with appointments?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I live alone. My daughter can drive me, but I lose pay for weekday visits.",
+            "concepts": {
+              "history_home_and_access": {
+                "polarity": "positive",
+                "value": "I live alone. My daughter can drive me, but I lose pay for weekday visits."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Lives alone; daughter can transport; visits cause lost pay.",
+      "history_topic": "social_context"
+    },
+    {
+      "id": "history_family_history",
+      "category": "family",
+      "print_label": "Family history",
+      "checklist": "h_history_family_history",
+      "value": "My father died of lung cancer at 68. He smoked too.",
+      "sp_says": [
+        "My father died of lung cancer at 68. He smoked too."
+      ],
+      "triggers": {
+        "any": [
+          "What serious illnesses run in your family?"
+        ]
+      },
+      "concepts": {
+        "history_family_history": {
+          "polarity": "positive",
+          "value": "My father died of lung cancer at 68. He smoked too."
+        }
+      },
+      "example_questions": [
+        "What serious illnesses run in your family?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My father died of lung cancer at 68. He smoked too.",
+            "concepts": {
+              "history_family_history": {
+                "polarity": "positive",
+                "value": "My father died of lung cancer at 68. He smoked too."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Father: lung cancer at 68; father smoked."
+    },
+    {
+      "id": "history_other_family",
+      "category": "family",
+      "print_label": "Other family",
+      "checklist": "h_history_other_family",
+      "value": "My mother has high blood pressure. My brother has no major illness that I know of.",
+      "sp_says": [
+        "My mother has high blood pressure. My brother has no major illness that I know of."
+      ],
+      "triggers": {
+        "any": [
+          "What about your mother and siblings?"
+        ]
+      },
+      "concepts": {
+        "history_other_family": {
+          "polarity": "positive",
+          "value": "My mother has high blood pressure. My brother has no major illness that I know of."
+        }
+      },
+      "example_questions": [
+        "What about your mother and siblings?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My mother has high blood pressure. My brother has no major illness that I know of.",
+            "concepts": {
+              "history_other_family": {
+                "polarity": "positive",
+                "value": "My mother has high blood pressure. My brother has no major illness that I know of."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Mother: hypertension; brother: no known major illness."
+    },
+    {
+      "id": "patient_concern",
+      "category": "concern",
+      "print_label": "Patient concern",
+      "checklist": "h_patient_concern",
+      "value": "My father had lung cancer. I am afraid I have it too.",
+      "sp_says": [
+        "My father had lung cancer. I am afraid I have it too."
+      ],
+      "triggers": {
+        "any": [
+          "What worries you about the cough?"
+        ]
+      },
+      "concepts": {
+        "patient_concern": {
+          "polarity": "positive",
+          "value": "My father had lung cancer. I am afraid I have it too."
+        }
+      },
+      "example_questions": [
+        "What worries you about the cough?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My father had lung cancer. I am afraid I have it too.",
+            "concepts": {
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "My father had lung cancer. I am afraid I have it too."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Concerned about lung cancer."
+    },
+    {
+      "id": "symptom_wheezing",
+      "category": "associated",
+      "print_label": "Wheezing",
+      "checklist": "h_symptom_wheezing",
+      "value": "Sometimes I hear a whistle when I breathe out.",
+      "sp_says": [
+        "Sometimes I hear a whistle when I breathe out."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had wheezing?",
+          "wheezing",
+          "wheeze"
+        ]
+      },
+      "concepts": {
+        "symptom_wheezing": {
+          "polarity": "positive",
+          "value": "Sometimes I hear a whistle when I breathe out."
+        }
+      },
+      "example_questions": [
+        "Have you had wheezing?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Sometimes I hear a whistle when I breathe out.",
+            "concepts": {
+              "symptom_wheezing": {
+                "polarity": "positive",
+                "value": "Sometimes I hear a whistle when I breathe out."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Intermittent expiratory wheeze.",
+      "ros_system": "respiratory"
+    },
+    {
+      "id": "symptom_hemoptysis",
+      "category": "pertinent_negative",
+      "print_label": "Hemoptysis",
+      "checklist": "h_symptom_hemoptysis",
+      "value": "There has never been blood in the mucus.",
+      "sp_says": [
+        "There has never been blood in the mucus."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had hemoptysis?",
+          "coughing blood",
+          "blood in sputum"
+        ]
+      },
+      "concepts": {
+        "symptom_hemoptysis": {
+          "polarity": "negative",
+          "value": "There has never been blood in the mucus."
+        }
+      },
+      "example_questions": [
+        "Have you had hemoptysis?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "There has never been blood in the mucus.",
+            "concepts": {
+              "symptom_hemoptysis": {
+                "polarity": "negative",
+                "value": "There has never been blood in the mucus."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No hemoptysis.",
+      "ros_system": "respiratory"
+    },
+    {
+      "id": "symptom_sputum",
+      "category": "associated",
+      "print_label": "Sputum",
+      "checklist": "h_symptom_sputum",
+      "value": "The amount and white color have not changed recently.",
+      "sp_says": [
+        "The amount and white color have not changed recently."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had sputum?",
+          "sputum"
+        ]
+      },
+      "concepts": {
+        "symptom_sputum": {
+          "polarity": "positive",
+          "value": "The amount and white color have not changed recently."
+        }
+      },
+      "example_questions": [
+        "Have you had sputum?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "The amount and white color have not changed recently.",
+            "concepts": {
+              "symptom_sputum": {
+                "polarity": "positive",
+                "value": "The amount and white color have not changed recently."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No recent sputum volume or color change.",
+      "ros_system": "respiratory"
+    },
+    {
+      "id": "symptom_fever",
+      "category": "pertinent_negative",
+      "print_label": "Fever",
+      "checklist": "h_symptom_fever",
+      "value": "I have not had fever.",
+      "sp_says": [
+        "I have not had fever."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had a fever?",
+          "fever"
+        ]
+      },
+      "concepts": {
+        "symptom_fever": {
+          "polarity": "negative",
+          "value": "I have not had fever."
+        }
+      },
+      "example_questions": [
+        "Have you had a fever?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not had fever.",
+            "concepts": {
+              "symptom_fever": {
+                "polarity": "negative",
+                "value": "I have not had fever."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No fever.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_weight_loss",
+      "category": "pertinent_negative",
+      "print_label": "Weight loss",
+      "checklist": "h_symptom_weight_loss",
+      "value": "I have not lost weight.",
+      "sp_says": [
+        "I have not lost weight."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had weight loss?",
+          "weight loss"
+        ]
+      },
+      "concepts": {
+        "symptom_weight_loss": {
+          "polarity": "negative",
+          "value": "I have not lost weight."
+        }
+      },
+      "example_questions": [
+        "Have you had weight loss?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not lost weight.",
+            "concepts": {
+              "symptom_weight_loss": {
+                "polarity": "negative",
+                "value": "I have not lost weight."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No weight loss.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_night_sweats",
+      "category": "pertinent_negative",
+      "print_label": "Night sweats",
+      "checklist": "h_symptom_night_sweats",
+      "value": "No drenching night sweats.",
+      "sp_says": [
+        "No drenching night sweats."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had night sweats?",
+          "night sweats"
+        ]
+      },
+      "concepts": {
+        "symptom_night_sweats": {
+          "polarity": "negative",
+          "value": "No drenching night sweats."
+        }
+      },
+      "example_questions": [
+        "Have you had night sweats?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No drenching night sweats.",
+            "concepts": {
+              "symptom_night_sweats": {
+                "polarity": "negative",
+                "value": "No drenching night sweats."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No night sweats.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_chest_pain",
+      "category": "pertinent_negative",
+      "print_label": "Chest pain",
+      "checklist": "h_symptom_chest_pain",
+      "value": "No chest pain.",
+      "sp_says": [
+        "No chest pain."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had chest pain?",
+          "chest pain",
+          "chest pressure"
+        ]
+      },
+      "concepts": {
+        "symptom_chest_pain": {
+          "polarity": "negative",
+          "value": "No chest pain."
+        }
+      },
+      "example_questions": [
+        "Have you had chest pain?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No chest pain.",
+            "concepts": {
+              "symptom_chest_pain": {
+                "polarity": "negative",
+                "value": "No chest pain."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No chest pain.",
+      "ros_system": "cardiovascular"
+    },
+    {
+      "id": "symptom_orthopnea",
+      "category": "pertinent_negative",
+      "print_label": "Orthopnea",
+      "checklist": "h_symptom_orthopnea",
+      "value": "I lie flat without getting breathless.",
+      "sp_says": [
+        "I lie flat without getting breathless."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had orthopnea?",
+          "lie flat",
+          "lying flat"
+        ]
+      },
+      "concepts": {
+        "symptom_orthopnea": {
+          "polarity": "negative",
+          "value": "I lie flat without getting breathless."
+        }
+      },
+      "example_questions": [
+        "Have you had orthopnea?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I lie flat without getting breathless.",
+            "concepts": {
+              "symptom_orthopnea": {
+                "polarity": "negative",
+                "value": "I lie flat without getting breathless."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No orthopnea.",
+      "ros_system": "cardiovascular"
+    },
+    {
+      "id": "symptom_edema",
+      "category": "pertinent_negative",
+      "print_label": "Edema",
+      "checklist": "h_symptom_edema",
+      "value": "My ankles do not swell.",
+      "sp_says": [
+        "My ankles do not swell."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had edema?",
+          "swelling",
+          "swollen ankles"
+        ]
+      },
+      "concepts": {
+        "symptom_edema": {
+          "polarity": "negative",
+          "value": "My ankles do not swell."
+        }
+      },
+      "example_questions": [
+        "Have you had edema?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My ankles do not swell.",
+            "concepts": {
+              "symptom_edema": {
+                "polarity": "negative",
+                "value": "My ankles do not swell."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No edema.",
+      "ros_system": "cardiovascular"
+    }
+  ],
+  "concept_lexicon": {
+    "opening_complaint": [
+      "I cough up mucus every morning and get winded more easily."
+    ],
+    "hpi_onset": [
+      "For about two years.",
+      "Productive cough for 2 years."
+    ],
+    "hpi_quality": [
+      "A few tablespoons of white mucus most mornings.",
+      "Several tablespoons of white morning sputum."
+    ],
+    "hpi_timing": [
+      "Most days, including through both winters and summers.",
+      "Symptoms most days year-round."
+    ],
+    "hpi_chronology": [
+      "Over 6 months I have gone from climbing two flights easily to stopping after one.",
+      "Progressive exertional dyspnea over 6 months; now stops after one flight."
+    ],
+    "hpi_severity": [
+      "No, I am comfortable sitting and talking.",
+      "No resting or conversational dyspnea."
+    ],
+    "hpi_location": [
+      "Across my chest when I am exerting myself.",
+      "Diffuse exertional breathing discomfort."
+    ],
+    "hpi_setting": [
+      "I worked around diesel exhaust at a loading dock for 25 years.",
+      "25 years of loading-dock diesel exposure."
+    ],
+    "hpi_aggravating": [
+      "Stairs, smoke and cold mornings.",
+      "Worse with exertion, smoke and cold air."
+    ],
+    "hpi_alleviating": [
+      "Rest helps my breathing, and coughing clears the mucus for a while.",
+      "Rest relieves dyspnea; expectoration temporarily clears mucus."
+    ],
+    "hpi_treatment": [
+      "A cough syrup did not help. I have never used an inhaler.",
+      "Cough syrup ineffective; no inhaler use."
+    ],
+    "hpi_past_occurrence": [
+      "I was treated for two chest infections in the past three years.",
+      "Two treated chest infections in 3 years."
+    ],
+    "history_medical_conditions": [
+      "High blood pressure. Nobody has diagnosed a lung condition.",
+      "Hypertension; no established lung diagnosis."
+    ],
+    "history_surgery": [
+      "My gallbladder was removed at 42.",
+      "Cholecystectomy at 42."
+    ],
+    "history_medication": [
+      "Amlodipine 5 milligrams each morning.",
+      "Amlodipine 5 mg daily."
+    ],
+    "history_allergies": [
+      "No known medicine allergies.",
+      "No known drug allergies."
+    ],
+    "history_smoking": [
+      "I smoked a pack a day for 32 years. I quit two years ago.",
+      "Former smoker: 32 pack-years, quit 2 years ago."
+    ],
+    "history_alcohol": [
+      "Two beers with dinner on Friday and Saturday.",
+      "Four beers weekly."
+    ],
+    "history_drugs": [
+      "No.",
+      "No recreational drugs."
+    ],
+    "history_work": [
+      "I drive a delivery van. Unloading boxes is getting difficult.",
+      "Delivery driver; limited during unloading."
+    ],
+    "history_home_and_access": [
+      "I live alone. My daughter can drive me, but I lose pay for weekday visits.",
+      "Lives alone; daughter can transport; visits cause lost pay."
+    ],
+    "history_family_history": [
+      "My father died of lung cancer at 68. He smoked too.",
+      "Father: lung cancer at 68; father smoked."
+    ],
+    "history_other_family": [
+      "My mother has high blood pressure. My brother has no major illness that I know of.",
+      "Mother: hypertension; brother: no known major illness."
+    ],
+    "patient_concern": [
+      "My father had lung cancer. I am afraid I have it too.",
+      "Concerned about lung cancer."
+    ],
+    "symptom_wheezing": [
+      "Sometimes I hear a whistle when I breathe out.",
+      "Intermittent expiratory wheeze.",
+      "wheezing",
+      "wheeze"
+    ],
+    "symptom_hemoptysis": [
+      "There has never been blood in the mucus.",
+      "No hemoptysis.",
+      "coughing blood",
+      "blood in sputum"
+    ],
+    "symptom_sputum": [
+      "The amount and white color have not changed recently.",
+      "No recent sputum volume or color change.",
+      "sputum"
+    ],
+    "symptom_fever": [
+      "I have not had fever.",
+      "No fever.",
+      "fever"
+    ],
+    "symptom_weight_loss": [
+      "I have not lost weight.",
+      "No weight loss.",
+      "weight loss"
+    ],
+    "symptom_night_sweats": [
+      "No drenching night sweats.",
+      "No night sweats.",
+      "night sweats"
+    ],
+    "symptom_chest_pain": [
+      "No chest pain.",
+      "chest pain",
+      "chest pressure"
+    ],
+    "symptom_orthopnea": [
+      "I lie flat without getting breathless.",
+      "No orthopnea.",
+      "lie flat",
+      "lying flat"
+    ],
+    "symptom_edema": [
+      "My ankles do not swell.",
+      "No edema.",
+      "swelling",
+      "swollen ankles"
+    ],
+    "exam_general_inspect": [
+      "Comfortable at rest, speaking full sentences."
+    ],
+    "exam_chest_inspect": [
+      "Symmetric chest expansion; no accessory muscle use at rest."
+    ],
+    "exam_lungs_auscultate": [
+      "Breath sounds mildly reduced bilaterally with prolonged expiration and scattered expiratory wheezes; no focal crackles."
+    ],
+    "exam_lungs_percuss": [
+      "Mildly increased resonance symmetrically over posterior fields."
+    ],
+    "exam_heart_auscultate": [
+      "Regular rate and rhythm without murmur."
+    ],
+    "exam_extremities": [
+      "No peripheral edema, digital clubbing or cyanosis."
+    ],
+    "exam_osteo_screen": [
+      "T4 bilateral thoracic paraspinal tissue texture change and tenderness."
+    ]
+  },
+  "exam_findings": {
+    "general_inspect": [
+      {
+        "id": "exam_general_inspect",
+        "text": "Comfortable at rest, speaking full sentences.",
+        "concepts": {
+          "exam_general_inspect": {
+            "polarity": "positive",
+            "value": "Comfortable at rest, speaking full sentences."
+          }
+        },
+        "scopes": [
+          "general"
+        ],
+        "checklist": "p_exam_general_inspect",
+        "requires_components": [],
+        "key_finding": true
+      }
+    ],
+    "chest_inspect": [
+      {
+        "id": "exam_chest_inspect",
+        "text": "Symmetric chest expansion; no accessory muscle use at rest.",
+        "concepts": {
+          "exam_chest_inspect": {
+            "polarity": "positive",
+            "value": "Symmetric chest expansion; no accessory muscle use at rest."
+          }
+        },
+        "scopes": [
+          "lungs.inspection"
+        ],
+        "checklist": "p_exam_chest_inspect",
+        "requires_components": [
+          "symmetry",
+          "accessory muscle use"
+        ],
+        "key_finding": true
+      }
+    ],
+    "lungs_auscultate": [
+      {
+        "id": "exam_lungs_auscultate",
+        "text": "Breath sounds mildly reduced bilaterally with prolonged expiration and scattered expiratory wheezes; no focal crackles.",
+        "concepts": {
+          "exam_lungs_auscultate": {
+            "polarity": "positive",
+            "value": "Breath sounds mildly reduced bilaterally with prolonged expiration and scattered expiratory wheezes; no focal crackles."
+          }
+        },
+        "scopes": [
+          "lungs"
+        ],
+        "checklist": "p_exam_lungs_auscultate",
+        "requires_components": [
+          "posterior",
+          "on skin",
+          "compare side to side",
+          "mouth open"
+        ],
+        "key_finding": true
+      }
+    ],
+    "lungs_percuss": [
+      {
+        "id": "exam_lungs_percuss",
+        "text": "Mildly increased resonance symmetrically over posterior fields.",
+        "concepts": {
+          "exam_lungs_percuss": {
+            "polarity": "positive",
+            "value": "Mildly increased resonance symmetrically over posterior fields."
+          }
+        },
+        "scopes": [
+          "lungs.percussion"
+        ],
+        "checklist": "p_exam_lungs_percuss",
+        "requires_components": [
+          "posterior",
+          "compare side to side"
+        ],
+        "key_finding": true
+      }
+    ],
+    "heart_auscultate": [
+      {
+        "id": "exam_heart_auscultate",
+        "text": "Regular rate and rhythm without murmur.",
+        "concepts": {
+          "exam_heart_auscultate": {
+            "polarity": "positive",
+            "value": "Regular rate and rhythm without murmur."
+          }
+        },
+        "scopes": [
+          "heart"
+        ],
+        "checklist": "p_exam_heart_auscultate",
+        "requires_components": [
+          "aortic",
+          "pulmonic",
+          "tricuspid",
+          "mitral",
+          "on skin"
+        ],
+        "key_finding": true
+      }
+    ],
+    "extremities": [
+      {
+        "id": "exam_extremities",
+        "text": "No peripheral edema, digital clubbing or cyanosis.",
+        "concepts": {
+          "exam_extremities": {
+            "polarity": "positive",
+            "value": "No peripheral edema, digital clubbing or cyanosis."
+          }
+        },
+        "scopes": [
+          "extremities"
+        ],
+        "checklist": "p_exam_extremities",
+        "requires_components": [
+          "edema",
+          "clubbing",
+          "cyanosis"
+        ],
+        "key_finding": true
+      }
+    ],
+    "osteo_screen": [
+      {
+        "id": "exam_osteo_screen",
+        "text": "T4 bilateral thoracic paraspinal tissue texture change and tenderness.",
+        "concepts": {
+          "exam_osteo_screen": {
+            "polarity": "positive",
+            "value": "T4 bilateral thoracic paraspinal tissue texture change and tenderness."
+          }
+        },
+        "scopes": [
+          "osteopathic"
+        ],
+        "checklist": "p_exam_osteo_screen",
+        "requires_components": [
+          "thoracic"
+        ],
+        "key_finding": false
+      }
+    ]
+  },
+  "refusals": [],
+  "refusal_expectation": {},
+  "area_of_concern": {
+    "system": "Respiratory",
+    "required_methods": [
+      "inspect",
+      "auscultate",
+      "percuss"
+    ],
+    "special_tests": [],
+    "note": "Distinguish chronic airflow limitation from recurrent suppurative disease and malignancy."
+  },
+  "osteopathic": {
+    "expected_documentation": "Document the supplied level and palpatory descriptor only after the structural screen; treatment is not implied."
+  },
+  "ros_pertinent_systems": [
+    "respiratory",
+    "general",
+    "cardiovascular"
+  ],
+  "differentials": [
+    {
+      "rank": 1,
+      "name": "Chronic obstructive pulmonary disease",
+      "vindicate": "D",
+      "aliases": [
+        "Chronic obstructive pulmonary disease"
+      ],
+      "supported_by": [
+        "hpi_onset",
+        "hpi_chronology",
+        "history_smoking",
+        "exam_lungs_auscultate"
+      ],
+      "teaching_context": "Chronic productive cough, progressive exertional dyspnea and smoke exposure support COPD; spirometry is needed."
+    },
+    {
+      "rank": 2,
+      "name": "Bronchiectasis",
+      "vindicate": "I",
+      "aliases": [
+        "Bronchiectasis"
+      ],
+      "supported_by": [
+        "hpi_quality",
+        "hpi_past_occurrence"
+      ],
+      "teaching_context": "Daily sputum and recurrent infections support this alternative; imaging is required and infection history is not proof of cause."
+    },
+    {
+      "rank": 3,
+      "name": "Lung malignancy",
+      "vindicate": "N",
+      "aliases": [
+        "Lung malignancy"
+      ],
+      "supported_by": [
+        "hpi_onset",
+        "history_smoking",
+        "history_family_history"
+      ],
+      "teaching_context": "Persistent symptoms, age and smoking exposure warrant exclusion despite no hemoptysis or weight loss."
+    }
+  ],
+  "implausible_differentials": [],
+  "plan_expectations": {
+    "tests": [],
+    "medications": [],
+    "omt": [],
+    "education": [],
+    "referral": [],
+    "follow_up": []
+  },
+  "checklist": {
+    "history": [
+      {
+        "id": "h_opening_complaint",
+        "text": "Opening complaint"
+      },
+      {
+        "id": "h_hpi_onset",
+        "text": "Onset"
+      },
+      {
+        "id": "h_hpi_quality",
+        "text": "Sputum"
+      },
+      {
+        "id": "h_hpi_timing",
+        "text": "Pattern"
+      },
+      {
+        "id": "h_hpi_chronology",
+        "text": "Progression"
+      },
+      {
+        "id": "h_hpi_severity",
+        "text": "Current function"
+      },
+      {
+        "id": "h_hpi_location",
+        "text": "Chest symptoms"
+      },
+      {
+        "id": "h_hpi_setting",
+        "text": "Exposure"
+      },
+      {
+        "id": "h_hpi_aggravating",
+        "text": "Triggers"
+      },
+      {
+        "id": "h_hpi_alleviating",
+        "text": "Relief"
+      },
+      {
+        "id": "h_hpi_treatment",
+        "text": "Self-treatment"
+      },
+      {
+        "id": "h_hpi_past_occurrence",
+        "text": "Respiratory infections"
+      },
+      {
+        "id": "h_history_medical_conditions",
+        "text": "Medical conditions"
+      },
+      {
+        "id": "h_history_surgery",
+        "text": "Surgery"
+      },
+      {
+        "id": "h_history_medication",
+        "text": "Medication"
+      },
+      {
+        "id": "h_history_allergies",
+        "text": "Allergies"
+      },
+      {
+        "id": "h_history_smoking",
+        "text": "Smoking"
+      },
+      {
+        "id": "h_history_alcohol",
+        "text": "Alcohol"
+      },
+      {
+        "id": "h_history_drugs",
+        "text": "Drugs"
+      },
+      {
+        "id": "h_history_work",
+        "text": "Work"
+      },
+      {
+        "id": "h_history_home_and_access",
+        "text": "Home and access"
+      },
+      {
+        "id": "h_history_family_history",
+        "text": "Family history"
+      },
+      {
+        "id": "h_history_other_family",
+        "text": "Other family"
+      },
+      {
+        "id": "h_patient_concern",
+        "text": "Patient concern"
+      },
+      {
+        "id": "h_symptom_wheezing",
+        "text": "Wheezing"
+      },
+      {
+        "id": "h_symptom_hemoptysis",
+        "text": "Hemoptysis"
+      },
+      {
+        "id": "h_symptom_sputum",
+        "text": "Sputum"
+      },
+      {
+        "id": "h_symptom_fever",
+        "text": "Fever"
+      },
+      {
+        "id": "h_symptom_weight_loss",
+        "text": "Weight loss"
+      },
+      {
+        "id": "h_symptom_night_sweats",
+        "text": "Night sweats"
+      },
+      {
+        "id": "h_symptom_chest_pain",
+        "text": "Chest pain"
+      },
+      {
+        "id": "h_symptom_orthopnea",
+        "text": "Orthopnea"
+      },
+      {
+        "id": "h_symptom_edema",
+        "text": "Edema"
+      }
+    ],
+    "physical": [
+      {
+        "id": "p_exam_general_inspect",
+        "text": "General appearance",
+        "maneuver": "general_inspect",
+        "components": []
+      },
+      {
+        "id": "p_exam_chest_inspect",
+        "text": "Inspect chest wall",
+        "maneuver": "chest_inspect",
+        "components": [
+          "symmetry",
+          "accessory muscle use"
+        ]
+      },
+      {
+        "id": "p_exam_lungs_auscultate",
+        "text": "Auscultate lungs",
+        "maneuver": "lungs_auscultate",
+        "components": [
+          "posterior",
+          "on skin",
+          "compare side to side",
+          "mouth open"
+        ]
+      },
+      {
+        "id": "p_exam_lungs_percuss",
+        "text": "Percuss lung fields",
+        "maneuver": "lungs_percuss",
+        "components": [
+          "posterior",
+          "compare side to side"
+        ]
+      },
+      {
+        "id": "p_exam_heart_auscultate",
+        "text": "Auscultate heart",
+        "maneuver": "heart_auscultate",
+        "components": [
+          "aortic",
+          "pulmonic",
+          "tricuspid",
+          "mitral",
+          "on skin"
+        ]
+      },
+      {
+        "id": "p_exam_extremities",
+        "text": "Inspect / palpate extremities",
+        "maneuver": "extremities",
+        "components": [
+          "edema",
+          "clubbing",
+          "cyanosis"
+        ]
+      },
+      {
+        "id": "p_exam_osteo_screen",
+        "text": "Osteopathic structural screen",
+        "maneuver": "osteo_screen",
+        "components": [
+          "thoracic"
+        ]
+      },
+      {
+        "id": "p_introduce",
+        "text": "Introduce yourself and verify identity",
+        "courtesy": "introduce"
+      },
+      {
+        "id": "p_hand_hygiene",
+        "text": "Clean hands before examination",
+        "courtesy": "hand_hygiene"
+      },
+      {
+        "id": "p_drape",
+        "text": "Provide appropriate draping",
+        "courtesy": "drape"
+      }
+    ]
+  },
+  "model_note": {
+    "S": "CC: I cough up mucus every morning and get winded more easily.\n\nHPI: 56-year-old male. Productive cough for 2 years. Several tablespoons of white morning sputum. Symptoms most days year-round. Progressive exertional dyspnea over 6 months; now stops after one flight. No resting or conversational dyspnea. Diffuse exertional breathing discomfort. 25 years of loading-dock diesel exposure. Worse with exertion, smoke and cold air. Rest relieves dyspnea; expectoration temporarily clears mucus. Cough syrup ineffective; no inhaler use. Two treated chest infections in 3 years.\n\nPMH: Hypertension; no established lung diagnosis.\n\nPSH: Cholecystectomy at 42.\n\nMeds: Amlodipine 5 mg daily.\n\nSH: Former smoker: 32 pack-years, quit 2 years ago. Four beers weekly. No recreational drugs. Delivery driver; limited during unloading. Lives alone; daughter can transport; visits cause lost pay.\n\nFH: Father: lung cancer at 68; father smoked. Mother: hypertension; brother: no known major illness.\n\nAllergies: No known drug allergies.\n\nROS: Respiratory: Intermittent expiratory wheeze. No hemoptysis. No recent sputum volume or color change. General: No fever. No weight loss. No night sweats. Cardiovascular: No chest pain. No orthopnea. No edema.",
+    "O": "Vitals: BP 132/80 mmHg, P 82 bpm, R 18 rpm, T 98.1 F oral, Pulse Ox 95% on room air, Ht 5' 9\", Wt 178 lbs\n\nGeneral: Comfortable at rest, speaking full sentences.\nLungs: Symmetric chest expansion; no accessory muscle use at rest. Breath sounds mildly reduced bilaterally with prolonged expiration and scattered expiratory wheezes; no focal crackles. Mildly increased resonance symmetrically over posterior fields.\nHeart: Regular rate and rhythm without murmur.\nExtremities: No peripheral edema, digital clubbing or cyanosis.\nOsteopathic: T4 bilateral thoracic paraspinal tissue texture change and tenderness.",
+    "A": [
+      "1. Chronic obstructive pulmonary disease",
+      "2. Bronchiectasis",
+      "3. Lung malignancy"
+    ],
+    "P": [
+      "1. Obtain post-bronchodilator spirometry and chest radiograph; assess symptoms and exacerbation history. If COPD is confirmed, select inhaled bronchodilator therapy and teach technique; review vaccination and continued smoking abstinence. Arrange review in 2 weeks around work. Acute breathlessness, confusion or blue lips needs emergency care.",
+      "2. If sputum/infection history or initial imaging remains concerning, arrange thin-section chest CT and sputum studies when indicated; respiratory referral can guide airway clearance. Explain infection warning signs and avoid empiric long-term antibiotics.",
+      "3. Investigate persistent cough with diagnostic chest imaging and escalate suspicious findings to a lung specialist promptly. Discuss that risk is not a diagnosis and reinforce smoking abstinence."
+    ]
+  },
+  "print_additional_exams": {
+    "osteo_screen": "Include when practicing the course structural screen; it does not establish the cause of the complaint."
+  },
+  "ideal_encounter_extras": [
+    "Distinguish chronic airflow limitation from recurrent suppurative disease and malignancy."
+  ],
+  "supersedes_core": [
+    "tobacco_use",
+    "alcohol_use",
+    "drug_use",
+    "allergies",
+    "medications",
+    "family_history",
+    "past_medical",
+    "past_surgical",
+    "wheezing",
+    "hemoptysis",
+    "sputum",
+    "fever",
+    "weight_loss",
+    "night_sweats",
+    "chest_pain",
+    "orthopnea",
+    "edema"
+  ],
+  "review_status": "Source-checked fictional practice; not faculty or clinician approved.",
+  "clinical_review": {
+    "status": "source_checked_not_clinician_approved",
+    "date": "2026-09-14",
+    "method": "Individual presentation, differential, safety and plan review against named primary clinical references plus course documentation constraints.",
+    "limits": "Fictional details deliberately authored. Mnemonic category placement is instructional and is not proof of etiology. Generic 3D appearance is not a diagnostic visual.",
+    "sources": [
+      "https://www.nhlbi.nih.gov/health/copd/diagnosis",
+      "https://www.nhlbi.nih.gov/health/copd/symptoms",
+      "https://www.nhlbi.nih.gov/health/bronchiectasis/symptoms"
+    ]
+  },
+  "sources": [
+    {
+      "title": "2026 FALL M2 ILG Student Manual",
+      "path": "claude builds/PCM/2026 FALL M2 ILG - STUDENT MANUAL update.docx",
+      "locator": "SOAP rubric and physical examination requirements",
+      "kind": "course"
+    },
+    {
+      "title": "COPD diagnosis",
+      "url": "https://www.nhlbi.nih.gov/health/copd/diagnosis",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+    },
+    {
+      "title": "COPD symptoms",
+      "url": "https://www.nhlbi.nih.gov/health/copd/symptoms",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+    },
+    {
+      "title": "Bronchiectasis symptoms",
+      "url": "https://www.nhlbi.nih.gov/health/bronchiectasis/symptoms",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+    }
+  ],
+  "teaching": {
+    "goals": [
+      "Distinguish chronic airflow limitation from recurrent suppurative disease and malignancy.",
+      "Document only supplied, asked or examined information."
+    ],
+    "skills": [
+      "history-sequencing",
+      "focused-examination",
+      "clinical-reasoning",
+      "evidence-based-soap",
+      "respiratory"
+    ],
+    "common_omissions": [
+      "Distinguishing history from examination evidence.",
+      "Explaining uncertainty and the practical follow-up plan."
+    ],
+    "lesson_plan": {
+      "notice": "Distinguish chronic airflow limitation from recurrent suppurative disease and malignancy.",
+      "anchor": "Persistent morning cough and exertional breathlessness",
+      "pivot": "Has breathlessness or sputum changed suddenly, or gradually over months?",
+      "exam": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
+      "avoid": "Treating an unperformed examination or a possible diagnosis as obtained fact."
+    },
+    "closing_dialogue": [
+      "I will arrange breathing tests and a chest image rather than assuming the cough is just from past smoking. We will review the results in two weeks. Sudden severe breathing trouble or coughing blood needs earlier help."
+    ],
+    "concern_response": "We can look for an appointment that limits lost work time and coordinate transport with your daughter if you wish.",
+    "reasoning_steps": [
+      {
+        "id": "orient",
+        "phase": "history",
+        "purpose": "Hear the presenting concern",
+        "question": "What brings you in today?",
+        "fact_ids": [
+          "opening_complaint"
+        ],
+        "why": "Distinguish chronic airflow limitation from recurrent suppurative disease and malignancy."
+      },
+      {
+        "id": "pattern",
+        "phase": "history",
+        "purpose": "Clarify the pattern",
+        "question": "Has breathlessness or sputum changed suddenly, or gradually over months?",
+        "fact_ids": [
+          "hpi_onset"
+        ],
+        "why": "Distinguish chronic airflow limitation from recurrent suppurative disease and malignancy."
+      },
+      {
+        "id": "examine",
+        "phase": "exam",
+        "purpose": "Perform relevant examinations",
+        "question": "May I examine you?",
+        "fact_ids": [],
+        "why": "Findings require performed actions."
+      }
+    ],
+    "reasoning_map": [
+      {
+        "id": "pulm-chronic-productive-cough-decision",
+        "question": "Has breathlessness or sputum changed suddenly, or gradually over months?",
+        "why": "Distinguish chronic airflow limitation from recurrent suppurative disease and malignancy.",
+        "if_present": "Use the reported pattern to select the relevant examinations and assess urgency.",
+        "if_absent": "Keep alternatives open and ask a focused follow-up.",
+        "next_action": "Perform the relevant case-specific examination.",
+        "document": "Separate reported symptoms, observed signs, assessment and proposed care."
+      }
+    ],
+    "classification_note": "Categories reflect the explicitly proposed mechanism; e.g., irritant exposure is I2. They are a course organizing aid, not confirmation of mechanism."
+  },
+  "content_revisions": {
+    "library_expansion_20260914": "New independently authored presentation. Single core path; no renamed cosmetic variants."
+  }
+}

@@ -103,7 +103,7 @@ class PatientPositionTests(unittest.TestCase):
                         self.assertEqual(events, [])
                     self.assertFalse(s.ledger.by_kind(evidence.EXAM_FINDING))
                     count += 1
-        self.assertEqual(count, 72)
+        self.assertEqual(count, 82)
 
     def test_prone_uses_existing_flat_refusal_and_exact_authored_fact_only(self):
         s = self.session('cardio-orthopnea-edema')

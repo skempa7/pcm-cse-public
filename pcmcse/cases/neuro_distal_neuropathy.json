@@ -218,13 +218,15 @@
       "I have not noticed an open sore on my feet."
     ],
     "history_pmh_1": [
-      "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago", "Type 2 diabetes diagnosed at age 18,10 years ago",
+      "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago",
+      "Type 2 diabetes diagnosed at age 18,10 years ago",
       "medical history",
       "medical problems",
       "past medical"
     ],
     "history_pmh_2": [
-      "and my last A1c was high, though I don't remember the number.", "last A1c was high but does not recall the number.",
+      "and my last A1c was high, though I don't remember the number.",
+      "last A1c was high but does not recall the number.",
       "last A1c was high but does not recall the number",
       "medical history",
       "medical problems",
@@ -243,11 +245,10 @@
       "I take metformin 1000 mg twice daily."
     ],
     "history_medications_2": [
-      "sometimes misses the evening dose.",
-      "sometimes misses the evening dose",
-      "take daily",
-      "over the counter",
-      "I sometimes miss the evening dose of metformin."
+      "missed doses",
+      "forget medicine",
+      "taking as prescribed",
+      "I sometimes miss the evening metformin dose when my shift runs late."
     ],
     "history_allergies_1": [
       "No known drug allergies.",
@@ -282,22 +283,30 @@
       "No recreational drugs."
     ],
     "history_context_1": [
-      "I am a cashier."
+      "occupation",
+      "work duties",
+      "job",
+      "do for a living",
+      "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day."
     ],
     "history_family_1": [
-      "My mother is fifty-two and she has diabetes.", "Mother had diabetes",
+      "My mother is fifty-two and she has diabetes.",
+      "Mother had diabetes",
       "mother"
     ],
     "history_family_2": [
-      "My father's fifty-five and he has high blood pressure.", "father hypertension",
+      "My father's fifty-five and he has high blood pressure.",
+      "father hypertension",
       "father"
     ],
     "history_family_3": [
-      "I have a brother who's thirty-one, and he's healthy.", "brother healthy",
+      "I have a brother who's thirty-one, and he's healthy.",
+      "brother healthy",
       "brother"
     ],
     "history_family_4": [
-      "As far as I know, nerve problems like this don't run in my family.", "no hereditary neuropathy known."
+      "As far as I know, nerve problems like this don't run in my family.",
+      "no hereditary neuropathy known."
     ],
     "patient_concern": [
       "Will I lose my feet like someone I know?"
@@ -1430,25 +1439,22 @@
       "id": "history_medications_2",
       "category": "medications",
       "checklist": "h_history_medications_2",
-      "value": "I sometimes miss the evening dose of metformin.",
+      "value": "I sometimes miss the evening metformin dose when my shift runs late.",
       "sp_says": [
-        "I sometimes miss the evening dose of metformin."
+        "I sometimes miss the evening metformin dose when my shift runs late."
       ],
       "triggers": {
         "any": [
           "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
-          "medications",
-          "medicines",
-          "pills",
-          "prescription",
-          "take daily",
-          "over the counter"
+          "missed doses",
+          "forget medicine",
+          "taking as prescribed"
         ]
       },
       "concepts": {
         "history_medications_2": {
           "polarity": "positive",
-          "value": "I sometimes miss the evening dose of metformin."
+          "value": "I sometimes miss the evening metformin dose when my shift runs late."
         }
       },
       "example_questions": [
@@ -1457,11 +1463,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "I sometimes miss the evening dose of metformin.",
+            "text": "I sometimes miss the evening metformin dose when my shift runs late.",
             "concepts": {
               "history_medications_2": {
                 "polarity": "positive",
-                "value": "I sometimes miss the evening dose of metformin."
+                "value": "I sometimes miss the evening metformin dose when my shift runs late."
               }
             },
             "complete_fact": true
@@ -1639,25 +1645,23 @@
       "id": "history_context_1",
       "category": "social",
       "checklist": "h_history_context_1",
-      "value": "I am a cashier.",
+      "value": "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day.",
       "sp_says": [
-        "I am a cashier."
+        "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day."
       ],
       "triggers": {
         "any": [
           "What do you do for work?",
-          "what do you do for work",
-          "what do you do for a living",
           "occupation",
-          "your job",
-          "do you work",
-          "are you a student"
+          "work duties",
+          "job",
+          "do for a living"
         ]
       },
       "concepts": {
         "history_context_1": {
           "polarity": "positive",
-          "value": "I am a cashier."
+          "value": "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day."
         }
       },
       "history_topic": "occupation",
@@ -1667,11 +1671,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "I am a cashier.",
+            "text": "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day.",
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a cashier."
+                "value": "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day."
               }
             },
             "complete_fact": true
@@ -2356,7 +2360,7 @@
       },
       {
         "id": "h_history_medications_2",
-        "text": "I sometimes miss the evening dose of metformin."
+        "text": "I sometimes miss the evening metformin dose when my shift runs late."
       },
       {
         "id": "h_history_allergies_1",
@@ -2376,7 +2380,7 @@
       },
       {
         "id": "h_history_context_1",
-        "text": "I am a cashier."
+        "text": "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day."
       },
       {
         "id": "h_history_family_1",
@@ -2506,7 +2510,7 @@
     ]
   },
   "model_note": {
-    "S": "cc: Gradual tingling and numbness in both feet\n\nHPI: 28 yo m. Patient reports: It started 4 months ago. It began in the toes of both feet. It has spread up to the ankles, not into my hands. It is tingling, burning and reduced feeling. Burning is 5/10 at night. It has gradually spread and is now present daily. There was no injury. Taking the bedsheet off my feet helps. The bedsheet touching my feet and nighttime worsen it. I tried a foot cream without benefit. I have not had this before. Both feet feel numb. They tingle and burn at night. I have been more thirsty lately.\n\nPatient perspective: Will I lose my feet like someone I know?\n\nPMH: Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago; and my last A1c was high, though I don't remember the number.\n\nPSH: No surgery or admissions.\n\nMeds: Metformin 1000 mg twice daily; sometimes misses the evening dose.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink monthly. No recreational drugs. Cashier; lives with wife; eats an unrestricted diet.\n\nFH: My mother is fifty-two and she has diabetes.; My father's fifty-five and he has high blood pressure.; I have a brother who's thirty-one, and he's healthy.; As far as I know, nerve problems like this don't run in my family.\n\nROS: Neurologic - Reports numbness. Reports paresthesia. Denies weakness. General - Reports polydipsia. Denies weight loss. Denies fever. Gastrointestinal - Denies diarrhea. Denies constipation. Denies nausea.\n",
+    "S": "cc: Gradual tingling and numbness in both feet\n\nHPI: 28 yo m. Patient reports: It started 4 months ago. It began in the toes of both feet. It has spread up to the ankles, not into my hands. It is tingling, burning and reduced feeling. Burning is 5/10 at night. It has gradually spread and is now present daily. There was no injury. Taking the bedsheet off my feet helps. The bedsheet touching my feet and nighttime worsen it. I tried a foot cream without benefit. I have not had this before. Both feet feel numb. They tingle and burn at night. I have been more thirsty lately.\n\nPatient perspective: Will I lose my feet like someone I know?\n\nPMH: Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago; and my last A1c was high, though I don't remember the number.\n\nPSH: No surgery or admissions.\n\nMeds: Metformin 1000 mg twice daily; sometimes misses evening dose when work runs late.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked. One alcoholic drink monthly; no recreational drugs. Cashier standing most of an 8-hour shift in close-fitting work shoes. Lives with wife; unrestricted diet.\n\nFH: My mother is fifty-two and she has diabetes.; My father's fifty-five and he has high blood pressure.; I have a brother who's thirty-one, and he's healthy.; As far as I know, nerve problems like this don't run in my family.\n\nROS: Neurologic - Reports numbness. Reports paresthesia. Denies weakness. General - Reports polydipsia. Denies weight loss. Denies fever. Gastrointestinal - Denies diarrhea. Denies constipation. Denies nausea.\n",
     "O": "Vitals: T 98.2 F oral, P 78 bpm, BP 136/82 mmHg, R 16 rpm, Pulse Ox 98% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert and comfortable at rest.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nNeuro: Reduced light touch and vibration symmetrically from toes to ankles. Achilles reflexes reduced bilaterally; patellar reflexes 2+. Lower extremity strength 5/5 bilaterally.\n\nSkin: Skin of feet intact, without visible ulceration.\n\nExt: Dorsalis pedis pulses palpable and symmetric.\n\nOsteopathic: C1 paraspinal tissue texture change with mild tenderness on the right.",
     "A": [
       "1. Diabetic distal symmetric polyneuropathy",
@@ -2514,7 +2518,7 @@
       "3. Medication-associated neuropathy"
     ],
     "P": [
-      "1. Assess symmetric sensory loss, foot integrity and gait; obtain A1c and review diabetes management and renal function; discuss individualized neuropathic-pain treatment with clinician review, daily foot checks and protective footwear; follow up in 2\u20134 weeks and seek prompt care for wounds, rapidly progressive weakness or falls.",
+      "1. Assess symmetric sensory loss, foot integrity and gait; obtain A1c and review diabetes management and renal function; discuss individualized neuropathic-pain treatment with clinician review, daily foot checks and protective footwear; follow up in 2\u20134 weeks and seek prompt care for wounds, rapidly progressive weakness or falls. Review shoe fit and plan the evening dose around work with the patient.",
       "2. Check B12 and CBC, particularly with long-term metformin use; replace a confirmed deficiency and investigate its cause; explain that more than one contributor may coexist.",
       "3. Review neurotoxic drugs, supplements and alcohol exposure; do not stop necessary medication without prescriber review; arrange further neurologic testing if the pattern is atypical or progresses. Refer to neurology for atypical or progressive deficits and consider nerve conduction studies when needed to clarify the pattern; educate the patient to review supplements and drug exposures with the prescribing clinician rather than stopping necessary treatment independently."
     ]
@@ -2598,7 +2602,8 @@
       "https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/nerve-damage-diabetic-neuropathies"
     ],
     "round3_plan_review": "Made vague alternative plans actionable with conditional evaluation, safety counseling and follow-up. Specific outpatient review intervals are authored teaching examples, not confirmed course mandates. No new findings or clinician approval.",
-    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional."
+    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional.",
+    "background_revision": "2026-09-14: New synthetic background facts reviewed for internal consistency and relevance against primary clinical sources; source references support clinical plausibility, not the existence of a real patient. No clinician approval."
   },
   "sources": [
     {
@@ -2633,6 +2638,13 @@
       "kind": "supplementary_clinical",
       "reviewed": "2026-09-09",
       "review_scope": "Age/anatomy-dependent cohort adaptation; does not establish course scoring or a patient diagnosis."
+    },
+    {
+      "title": "Diabetes and foot problems",
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/foot-problems",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Foot inspection, footwear and daily checks are relevant to diabetic sensory loss; occupational standing is not asserted to cause the neuropathy."
     }
   ],
   "teaching": {
@@ -2752,7 +2764,8 @@
     "young_female_cohort": "New male adult18\u201330 authoring; old saved snapshots remain outside this generator.",
     "experience_review2_language": "Reviewed vomiting tense forms; unsupported progression is not invented; timing cues reference obtainable dimensions; target maneuver removed from public doorway.",
     "demeanor": "demeanor-axes-v1: independently authored communication style and emotional state; legacy pace/gesture style retained; no physical finding credit.",
-    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+    "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
   },
   "cohort": {
     "id": "young-adult-male-v1",
@@ -2958,13 +2971,15 @@
             "I have not noticed an open sore on my feet."
           ],
           "history_pmh_1": [
-            "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago", "Type 2 diabetes diagnosed at age 18,10 years ago",
+            "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago",
+            "Type 2 diabetes diagnosed at age 18,10 years ago",
             "medical history",
             "medical problems",
             "past medical"
           ],
           "history_pmh_2": [
-            "and my last A1c was high, though I don't remember the number.", "last A1c was high but does not recall the number.",
+            "and my last A1c was high, though I don't remember the number.",
+            "last A1c was high but does not recall the number.",
             "last A1c was high but does not recall the number",
             "medical history",
             "medical problems",
@@ -2983,11 +2998,10 @@
             "I take metformin 1000 mg twice daily."
           ],
           "history_medications_2": [
-            "sometimes misses the evening dose.",
-            "sometimes misses the evening dose",
-            "take daily",
-            "over the counter",
-            "I sometimes miss the evening dose of metformin."
+            "missed doses",
+            "forget medicine",
+            "taking as prescribed",
+            "I sometimes miss the evening metformin dose when my shift runs late."
           ],
           "history_allergies_1": [
             "No known drug allergies.",
@@ -3022,22 +3036,30 @@
             "No recreational drugs."
           ],
           "history_context_1": [
-            "I am a cashier."
+            "occupation",
+            "work duties",
+            "job",
+            "do for a living",
+            "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day."
           ],
           "history_family_1": [
-            "My mother is fifty-two and she has diabetes.", "Mother had diabetes",
+            "My mother is fifty-two and she has diabetes.",
+            "Mother had diabetes",
             "mother"
           ],
           "history_family_2": [
-            "My father's fifty-five and he has high blood pressure.", "father hypertension",
+            "My father's fifty-five and he has high blood pressure.",
+            "father hypertension",
             "father"
           ],
           "history_family_3": [
-            "I have a brother who's thirty-one, and he's healthy.", "brother healthy",
+            "I have a brother who's thirty-one, and he's healthy.",
+            "brother healthy",
             "brother"
           ],
           "history_family_4": [
-            "As far as I know, nerve problems like this don't run in my family.", "no hereditary neuropathy known."
+            "As far as I know, nerve problems like this don't run in my family.",
+            "no hereditary neuropathy known."
           ],
           "patient_concern": [
             "Will I lose my feet like someone I know?"
@@ -4170,25 +4192,22 @@
             "id": "history_medications_2",
             "category": "medications",
             "checklist": "h_history_medications_2",
-            "value": "I sometimes miss the evening dose of metformin.",
+            "value": "I sometimes miss the evening metformin dose when my shift runs late.",
             "sp_says": [
-              "I sometimes miss the evening dose of metformin."
+              "I sometimes miss the evening metformin dose when my shift runs late."
             ],
             "triggers": {
               "any": [
                 "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
-                "medications",
-                "medicines",
-                "pills",
-                "prescription",
-                "take daily",
-                "over the counter"
+                "missed doses",
+                "forget medicine",
+                "taking as prescribed"
               ]
             },
             "concepts": {
               "history_medications_2": {
                 "polarity": "positive",
-                "value": "I sometimes miss the evening dose of metformin."
+                "value": "I sometimes miss the evening metformin dose when my shift runs late."
               }
             },
             "example_questions": [
@@ -4197,11 +4216,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I sometimes miss the evening dose of metformin.",
+                  "text": "I sometimes miss the evening metformin dose when my shift runs late.",
                   "concepts": {
                     "history_medications_2": {
                       "polarity": "positive",
-                      "value": "I sometimes miss the evening dose of metformin."
+                      "value": "I sometimes miss the evening metformin dose when my shift runs late."
                     }
                   },
                   "complete_fact": true
@@ -4379,25 +4398,23 @@
             "id": "history_context_1",
             "category": "social",
             "checklist": "h_history_context_1",
-            "value": "I am a cashier.",
+            "value": "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day.",
             "sp_says": [
-              "I am a cashier."
+              "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day."
             ],
             "triggers": {
               "any": [
                 "What do you do for work?",
-                "what do you do for work",
-                "what do you do for a living",
                 "occupation",
-                "your job",
-                "do you work",
-                "are you a student"
+                "work duties",
+                "job",
+                "do for a living"
               ]
             },
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a cashier."
+                "value": "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day."
               }
             },
             "history_topic": "occupation",
@@ -4407,11 +4424,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I am a cashier.",
+                  "text": "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day.",
                   "concepts": {
                     "history_context_1": {
                       "polarity": "positive",
-                      "value": "I am a cashier."
+                      "value": "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day."
                     }
                   },
                   "complete_fact": true
@@ -4836,7 +4853,7 @@
             },
             {
               "id": "h_history_medications_2",
-              "text": "I sometimes miss the evening dose of metformin."
+              "text": "I sometimes miss the evening metformin dose when my shift runs late."
             },
             {
               "id": "h_history_allergies_1",
@@ -4856,7 +4873,7 @@
             },
             {
               "id": "h_history_context_1",
-              "text": "I am a cashier."
+              "text": "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day."
             },
             {
               "id": "h_history_family_1",
@@ -4985,7 +5002,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Gradual tingling and numbness in both feet\n\nHPI: 28 yo m. Patient reports: It started 7 months ago. It began in the toes of both feet. It has spread up to the ankles, not into my hands. It is tingling, burning and reduced feeling. Burning is 5/10 at night. It has gradually spread and is now present daily. There was no injury. Taking the bedsheet off my feet helps. The bedsheet touching my feet and nighttime worsen it. I tried a foot cream without benefit. I have not had this before. Both feet feel numb. They tingle and burn at night. I have been more thirsty lately.\n\nPatient perspective: Will I lose my feet like someone I know?\n\nPMH: Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago; and my last A1c was high, though I don't remember the number.\n\nPSH: No surgery or admissions.\n\nMeds: Metformin 1000 mg twice daily; sometimes misses the evening dose.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink monthly. No recreational drugs. Cashier; lives with wife; eats an unrestricted diet.\n\nFH: My mother is fifty-two and she has diabetes.; My father's fifty-five and he has high blood pressure.; I have a brother who's thirty-one, and he's healthy.; As far as I know, nerve problems like this don't run in my family.\n\nROS: Neurologic - Reports numbness. Reports paresthesia. Denies weakness. General - Reports polydipsia. Denies weight loss. Denies fever. Gastrointestinal - Denies diarrhea. Denies constipation. Denies nausea.\n",
+          "S": "cc: Gradual tingling and numbness in both feet\n\nHPI: 28 yo m. Patient reports: It started 7 months ago. It began in the toes of both feet. It has spread up to the ankles, not into my hands. It is tingling, burning and reduced feeling. Burning is 5/10 at night. It has gradually spread and is now present daily. There was no injury. Taking the bedsheet off my feet helps. The bedsheet touching my feet and nighttime worsen it. I tried a foot cream without benefit. I have not had this before. Both feet feel numb. They tingle and burn at night. I have been more thirsty lately.\n\nPatient perspective: Will I lose my feet like someone I know?\n\nPMH: Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago; and my last A1c was high, though I don't remember the number.\n\nPSH: No surgery or admissions.\n\nMeds: Metformin 1000 mg twice daily; sometimes misses evening dose when work runs late.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked. One alcoholic drink monthly; no recreational drugs. Cashier standing most of an 8-hour shift in close-fitting work shoes. Lives with wife; unrestricted diet.\n\nFH: My mother is fifty-two and she has diabetes.; My father's fifty-five and he has high blood pressure.; I have a brother who's thirty-one, and he's healthy.; As far as I know, nerve problems like this don't run in my family.\n\nROS: Neurologic - Reports numbness. Reports paresthesia. Denies weakness. General - Reports polydipsia. Denies weight loss. Denies fever. Gastrointestinal - Denies diarrhea. Denies constipation. Denies nausea.\n",
           "O": "Vitals: T 98.2 F oral, P 78 bpm, BP 136/82 mmHg, R 16 rpm, Pulse Ox 98% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert and comfortable at rest.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nNeuro: Reduced light touch and vibration symmetrically from toes to ankles. Achilles reflexes reduced bilaterally; patellar reflexes 2+. Lower extremity strength 5/5 bilaterally.\n\nSkin: Skin of feet intact, without visible ulceration.\n\nExt: Dorsalis pedis pulses palpable and symmetric.\n\nOsteopathic: C1 paraspinal tissue texture change with mild tenderness on the right.",
           "A": [
             "1. Diabetic distal symmetric polyneuropathy",
@@ -4993,13 +5010,14 @@
             "3. Medication-associated neuropathy"
           ],
           "P": [
-            "1. Assess symmetric sensory loss, foot integrity and gait; obtain A1c and review diabetes management and renal function; discuss individualized neuropathic-pain treatment with clinician review, daily foot checks and protective footwear; follow up in 2\u20134 weeks and seek prompt care for wounds, rapidly progressive weakness or falls.",
+            "1. Assess symmetric sensory loss, foot integrity and gait; obtain A1c and review diabetes management and renal function; discuss individualized neuropathic-pain treatment with clinician review, daily foot checks and protective footwear; follow up in 2\u20134 weeks and seek prompt care for wounds, rapidly progressive weakness or falls. Review shoe fit and plan the evening dose around work with the patient.",
             "2. Check B12 and CBC, particularly with long-term metformin use; replace a confirmed deficiency and investigate its cause; explain that more than one contributor may coexist.",
             "3. Review neurotoxic drugs, supplements and alcohol exposure; do not stop necessary medication without prescriber review; arrange further neurologic testing if the pattern is atypical or progresses. Refer to neurology for atypical or progressive deficits and consider nerve conduction studies when needed to clarify the pattern; educate the patient to review supplements and drug exposures with the prescribing clinician rather than stopping necessary treatment independently."
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"
@@ -5199,13 +5217,15 @@
             "I have not noticed an open sore on my feet."
           ],
           "history_pmh_1": [
-            "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago", "Type 2 diabetes diagnosed at age 18,10 years ago",
+            "Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago",
+            "Type 2 diabetes diagnosed at age 18,10 years ago",
             "medical history",
             "medical problems",
             "past medical"
           ],
           "history_pmh_2": [
-            "and my last A1c was high, though I don't remember the number.", "last A1c was high but does not recall the number.",
+            "and my last A1c was high, though I don't remember the number.",
+            "last A1c was high but does not recall the number.",
             "last A1c was high but does not recall the number",
             "medical history",
             "medical problems",
@@ -5224,11 +5244,10 @@
             "I take metformin 1000 mg twice daily."
           ],
           "history_medications_2": [
-            "sometimes misses the evening dose.",
-            "sometimes misses the evening dose",
-            "take daily",
-            "over the counter",
-            "I sometimes miss the evening dose of metformin."
+            "missed doses",
+            "forget medicine",
+            "taking as prescribed",
+            "I sometimes miss the evening metformin dose when my shift runs late."
           ],
           "history_allergies_1": [
             "No known drug allergies.",
@@ -5263,22 +5282,30 @@
             "No recreational drugs."
           ],
           "history_context_1": [
-            "I am a cashier."
+            "occupation",
+            "work duties",
+            "job",
+            "do for a living",
+            "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day."
           ],
           "history_family_1": [
-            "My mother is fifty-two and she has diabetes.", "Mother had diabetes",
+            "My mother is fifty-two and she has diabetes.",
+            "Mother had diabetes",
             "mother"
           ],
           "history_family_2": [
-            "My father's fifty-five and he has high blood pressure.", "father hypertension",
+            "My father's fifty-five and he has high blood pressure.",
+            "father hypertension",
             "father"
           ],
           "history_family_3": [
-            "I have a brother who's thirty-one, and he's healthy.", "brother healthy",
+            "I have a brother who's thirty-one, and he's healthy.",
+            "brother healthy",
             "brother"
           ],
           "history_family_4": [
-            "As far as I know, nerve problems like this don't run in my family.", "no hereditary neuropathy known."
+            "As far as I know, nerve problems like this don't run in my family.",
+            "no hereditary neuropathy known."
           ],
           "patient_concern": [
             "Will I lose my feet like someone I know?"
@@ -6414,25 +6441,22 @@
             "id": "history_medications_2",
             "category": "medications",
             "checklist": "h_history_medications_2",
-            "value": "I sometimes miss the evening dose of metformin.",
+            "value": "I sometimes miss the evening metformin dose when my shift runs late.",
             "sp_says": [
-              "I sometimes miss the evening dose of metformin."
+              "I sometimes miss the evening metformin dose when my shift runs late."
             ],
             "triggers": {
               "any": [
                 "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
-                "medications",
-                "medicines",
-                "pills",
-                "prescription",
-                "take daily",
-                "over the counter"
+                "missed doses",
+                "forget medicine",
+                "taking as prescribed"
               ]
             },
             "concepts": {
               "history_medications_2": {
                 "polarity": "positive",
-                "value": "I sometimes miss the evening dose of metformin."
+                "value": "I sometimes miss the evening metformin dose when my shift runs late."
               }
             },
             "example_questions": [
@@ -6441,11 +6465,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I sometimes miss the evening dose of metformin.",
+                  "text": "I sometimes miss the evening metformin dose when my shift runs late.",
                   "concepts": {
                     "history_medications_2": {
                       "polarity": "positive",
-                      "value": "I sometimes miss the evening dose of metformin."
+                      "value": "I sometimes miss the evening metformin dose when my shift runs late."
                     }
                   },
                   "complete_fact": true
@@ -6623,25 +6647,23 @@
             "id": "history_context_1",
             "category": "social",
             "checklist": "h_history_context_1",
-            "value": "I am a cashier.",
+            "value": "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day.",
             "sp_says": [
-              "I am a cashier."
+              "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day."
             ],
             "triggers": {
               "any": [
                 "What do you do for work?",
-                "what do you do for work",
-                "what do you do for a living",
                 "occupation",
-                "your job",
-                "do you work",
-                "are you a student"
+                "work duties",
+                "job",
+                "do for a living"
               ]
             },
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a cashier."
+                "value": "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day."
               }
             },
             "history_topic": "occupation",
@@ -6651,11 +6673,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I am a cashier.",
+                  "text": "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day.",
                   "concepts": {
                     "history_context_1": {
                       "polarity": "positive",
-                      "value": "I am a cashier."
+                      "value": "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day."
                     }
                   },
                   "complete_fact": true
@@ -7125,7 +7147,7 @@
             },
             {
               "id": "h_history_medications_2",
-              "text": "I sometimes miss the evening dose of metformin."
+              "text": "I sometimes miss the evening metformin dose when my shift runs late."
             },
             {
               "id": "h_history_allergies_1",
@@ -7145,7 +7167,7 @@
             },
             {
               "id": "h_history_context_1",
-              "text": "I am a cashier."
+              "text": "I am a cashier. I stand for most of an 8-hour shift and wear the same close-fitting work shoes each day."
             },
             {
               "id": "h_history_family_1",
@@ -7278,7 +7300,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Gradual tingling and numbness in both feet\n\nHPI: 28 yo m. Patient reports: It started 4 months ago. It began in the toes of both feet. It has spread up to the ankles, not into my hands. It is tingling, burning and reduced feeling. Burning is 5/10 at night. It has gradually spread and is now present daily. There was no injury. Taking the bedsheet off my feet helps. The bedsheet touching my feet and nighttime worsen it. I tried a foot cream without benefit. I have not had this before. Both feet feel numb. They tingle and burn at night. I have been more thirsty lately.\n\nPatient perspective: Will I lose my feet like someone I know?\n\nPMH: Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago; and my last A1c was high, though I don't remember the number.\n\nPSH: No surgery or admissions.\n\nMeds: Metformin 1000 mg twice daily; sometimes misses the evening dose.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink monthly. No recreational drugs. Cashier; lives with wife; eats an unrestricted diet.\n\nFH: My mother is fifty-two and she has diabetes.; My father's fifty-five and he has high blood pressure.; I have a brother who's thirty-one, and he's healthy.; As far as I know, nerve problems like this don't run in my family.\n\nROS: Neurologic - Reports numbness. Reports paresthesia. Denies weakness. General - Reports polydipsia. Denies weight loss. Denies fever. Gastrointestinal - Denies diarrhea. Denies constipation. Denies nausea.\n\nPatient concern: I cannot see the bottoms of my feet clearly.\n",
+          "S": "cc: Gradual tingling and numbness in both feet\n\nHPI: 28 yo m. Patient reports: It started 4 months ago. It began in the toes of both feet. It has spread up to the ankles, not into my hands. It is tingling, burning and reduced feeling. Burning is 5/10 at night. It has gradually spread and is now present daily. There was no injury. Taking the bedsheet off my feet helps. The bedsheet touching my feet and nighttime worsen it. I tried a foot cream without benefit. I have not had this before. Both feet feel numb. They tingle and burn at night. I have been more thirsty lately.\n\nPatient perspective: Will I lose my feet like someone I know?\n\nPMH: Type 2 diabetes \u2014 they diagnosed me at 18, about ten years ago; and my last A1c was high, though I don't remember the number.\n\nPSH: No surgery or admissions.\n\nMeds: Metformin 1000 mg twice daily; sometimes misses evening dose when work runs late.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked. One alcoholic drink monthly; no recreational drugs. Cashier standing most of an 8-hour shift in close-fitting work shoes. Lives with wife; unrestricted diet.\n\nFH: My mother is fifty-two and she has diabetes.; My father's fifty-five and he has high blood pressure.; I have a brother who's thirty-one, and he's healthy.; As far as I know, nerve problems like this don't run in my family.\n\nROS: Neurologic - Reports numbness. Reports paresthesia. Denies weakness. General - Reports polydipsia. Denies weight loss. Denies fever. Gastrointestinal - Denies diarrhea. Denies constipation. Denies nausea.\n\nPatient concern: I cannot see the bottoms of my feet clearly.\n",
           "O": "Vitals: T 98.2 F oral, P 78 bpm, BP 136/82 mmHg, R 16 rpm, Pulse Ox 98% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert and comfortable at rest.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nNeuro: Reduced light touch and vibration symmetrically from toes to ankles. Achilles reflexes reduced bilaterally; patellar reflexes 2+. Lower extremity strength 5/5 bilaterally.\n\nSkin: Skin of feet intact, without visible ulceration.\n\nExt: Dorsalis pedis pulses palpable and symmetric.\n\nOsteopathic: C1 paraspinal tissue texture change with mild tenderness on the right.",
           "A": [
             "1. Diabetic distal symmetric polyneuropathy",
@@ -7286,13 +7308,14 @@
             "3. Medication-associated neuropathy"
           ],
           "P": [
-            "1. Assess symmetric sensory loss, foot integrity and gait; obtain A1c and review diabetes management and renal function; discuss individualized neuropathic-pain treatment with clinician review, daily foot checks and protective footwear; follow up in 2\u20134 weeks and seek prompt care for wounds, rapidly progressive weakness or falls. Demonstrate using a mirror or a trusted helper with consent and have the patient choose a daily inspection routine.",
+            "1. Assess symmetric sensory loss, foot integrity and gait; obtain A1c and review diabetes management and renal function; discuss individualized neuropathic-pain treatment with clinician review, daily foot checks and protective footwear; follow up in 2\u20134 weeks and seek prompt care for wounds, rapidly progressive weakness or falls. Demonstrate using a mirror or a trusted helper with consent and have the patient choose a daily inspection routine. Review shoe fit and plan the evening dose around work with the patient.",
             "2. Check B12 and CBC, particularly with long-term metformin use; replace a confirmed deficiency and investigate its cause; explain that more than one contributor may coexist.",
             "3. Review neurotoxic drugs, supplements and alcohol exposure; do not stop necessary medication without prescriber review; arrange further neurologic testing if the pattern is atypical or progresses. Refer to neurology for atypical or progressive deficits and consider nerve conduction studies when needed to clarify the pattern; educate the patient to review supplements and drug exposures with the prescribing clinician rather than stopping necessary treatment independently."
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"

@@ -58,7 +58,7 @@
       "pitch": 1,
       "gender": "female",
       "adult": true,
-      "age_range": "18\u201330"
+      "age_range": "18–30"
     },
     "comfort_response": {
       "reply": "This episode makes ordinary walking uncomfortable.",
@@ -282,19 +282,23 @@
       "I am a software analyst."
     ],
     "history_family_1": [
-      "My mother is fifty-four and she has high blood pressure.", "Mother has hypertension",
+      "My mother is fifty-four and she has high blood pressure.",
+      "Mother has hypertension",
       "mother"
     ],
     "history_family_2": [
-      "My father is fifty-seven and he has atrial fibrillation.", "father has atrial fibrillation",
+      "My father is fifty-seven and he has atrial fibrillation.",
+      "father has atrial fibrillation",
       "father"
     ],
     "history_family_3": [
-      "My sister is twenty-four and she's healthy.", "sister is healthy",
+      "My sister is twenty-four and she's healthy.",
+      "sister is healthy",
       "sister"
     ],
     "history_family_4": [
-      "Nobody in my family has died suddenly before the age of fifty, as far as I know.", "no sudden death before age 50."
+      "Nobody in my family has died suddenly before the age of fifty, as far as I know.",
+      "no sudden death before age 50."
     ],
     "patient_concern": [
       "Does this mean I am having a heart attack?"
@@ -2544,19 +2548,19 @@
     "physical": [
       {
         "id": "p_exam_1",
-        "text": "Alert \u2014 obtain with general inspect",
+        "text": "Alert — obtain with general inspect",
         "maneuver": "general_inspect",
         "components": []
       },
       {
         "id": "p_exam_2",
-        "text": "Speaking comfortably at rest \u2014 obtain with general inspect",
+        "text": "Speaking comfortably at rest — obtain with general inspect",
         "maneuver": "general_inspect",
         "components": []
       },
       {
         "id": "p_exam_3",
-        "text": "Tachycardic and irregularly irregular rhythm; no murmur heard \u2014 obtain with heart auscultate",
+        "text": "Tachycardic and irregularly irregular rhythm; no murmur heard — obtain with heart auscultate",
         "maneuver": "heart_auscultate",
         "components": [
           "aortic",
@@ -2568,7 +2572,7 @@
       },
       {
         "id": "p_exam_4",
-        "text": "Radial pulse is rapid and irregular \u2014 obtain with peripheral pulses",
+        "text": "Radial pulse is rapid and irregular — obtain with peripheral pulses",
         "maneuver": "peripheral_pulses",
         "components": [
           "radial"
@@ -2576,7 +2580,7 @@
       },
       {
         "id": "p_exam_5",
-        "text": "Bilateral breath sounds without crackles or wheeze \u2014 obtain with lungs auscultate",
+        "text": "Bilateral breath sounds without crackles or wheeze — obtain with lungs auscultate",
         "maneuver": "lungs_auscultate",
         "components": [
           "posterior",
@@ -2587,7 +2591,7 @@
       },
       {
         "id": "p_exam_6",
-        "text": "Thyroid not enlarged and nontender \u2014 obtain with thyroid",
+        "text": "Thyroid not enlarged and nontender — obtain with thyroid",
         "maneuver": "thyroid",
         "components": [
           "ask patient to swallow"
@@ -2595,7 +2599,7 @@
       },
       {
         "id": "p_exam_7",
-        "text": "T1 paraspinal tissue texture change with mild tenderness on the right \u2014 obtain with osteo screen",
+        "text": "T1 paraspinal tissue texture change with mild tenderness on the right — obtain with osteo screen",
         "maneuver": "osteo_screen",
         "components": [
           "thoracic"
@@ -2603,7 +2607,7 @@
       },
       {
         "id": "p_exam_8",
-        "text": "No visible rash on the inspected arms \u2014 obtain with skin inspect",
+        "text": "No visible rash on the inspected arms — obtain with skin inspect",
         "maneuver": "skin_inspect",
         "components": [
           "arms"
@@ -2636,8 +2640,8 @@
     ],
     "P": [
       "1. Obtain a 12-lead ECG now and assess hemodynamic stability; check BMP, magnesium, CBC and thyroid tests; arrange same-day emergency department evaluation for rate/rhythm and stroke-risk assessment; explain uncertainty until ECG confirmation and seek emergency help for chest pain, syncope or worsening dyspnea.",
-      "2. Review energy drinks, alcohol and sympathomimetic exposure; advise stopping energy drinks and discuss reducing alcohol; arrange symptom/rhythm follow-up rather than assuming all episodes are benign.",
-      "3. Obtain TSH with reflex thyroid hormones; examine for thyroid signs and review weight/heat intolerance; refer for targeted treatment if results support thyroid disease."
+      "2. Review the ECG/rhythm findings alongside the energy-drink, alcohol and sympathomimetic history; advise stopping energy drinks and discuss reducing alcohol; explain that stimulants may trigger a fast rhythm but do not make a persistent episode benign.",
+      "3. Obtain TSH with reflex thyroid hormones; examine for thyroid signs and review weight/heat intolerance; refer for targeted treatment if results support thyroid disease. Explain that excess thyroid hormone can accelerate the heartbeat and that treatment depends on confirming the cause."
     ]
   },
   "ideal_encounter_extras": [
@@ -2716,15 +2720,17 @@
     "limits": "No official faculty validation. Treatment choices require local protocol and patient-specific assessment. Synthetic physical findings and mnemonic placement are educational assumptions.",
     "sources": [
       "https://www.nhlbi.nih.gov/health/arrhythmias/diagnosis",
-      "https://www.nhlbi.nih.gov/health/atrial-fibrillation/diagnosis"
+      "https://www.nhlbi.nih.gov/health/atrial-fibrillation/diagnosis",
+      "https://www.niddk.nih.gov/health-information/endocrine-diseases/hyperthyroidism"
     ],
-    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional."
+    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional.",
+    "print_case_revision": "2026-09-14: Deliberate source-checked authoring revision for new attempts. Existing saved snapshots and archived versions remain unchanged. Not clinician or faculty approved."
   },
   "sources": [
     {
       "title": "PCM I syllabus, fall 2026",
       "path": "claude builds/PCM/PCM syllabus.pdf",
-      "locator": "pp. 14\u201315: cardiovascular, GI, renal and neurologic complaint/case objectives",
+      "locator": "pp. 14–15: cardiovascular, GI, renal and neurologic complaint/case objectives",
       "kind": "course"
     },
     {
@@ -2746,6 +2752,13 @@
       "kind": "supplementary_clinical",
       "reviewed": "2026-09-08",
       "review_scope": "Presentation pattern, key danger signs, and diagnostic/management direction; local prescribing protocols are not specified."
+    },
+    {
+      "title": "NIDDK: Hyperthyroidism",
+      "url": "https://www.niddk.nih.gov/health-information/endocrine-diseases/hyperthyroidism",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Thyroid education without presumed diagnosis."
     }
   ],
   "teaching": {
@@ -2861,10 +2874,11 @@
     "round2": "Atomic history disclosures; onset versus episode duration; coherent position/comfort responses; authored voiding clarification. Natural-question router validation remains separate.",
     "round3": "Question dimensions restricted to authored temporal content; complete medication sentences retain original scope, doses and timing; causal assessment aliases require the stated etiology. No new case findings; author-reviewed, not clinician approved.",
     "round4": "Exact opening and per-speech-version disclosure contracts; removed borrowed opening atoms; split previously unspoken negative-history qualifiers; explicit current status and last-known-well routes. Existing clinical facts and IDs preserved; no clinician approval.",
-    "young_female_cohort": "New female adult18\u201330 authoring; old saved snapshots remain outside this generator.",
+    "young_female_cohort": "New female adult18–30 authoring; old saved snapshots remain outside this generator.",
     "experience_review2_language": "Reviewed vomiting tense forms; unsupported progression is not invented; timing cues reference obtainable dimensions; target maneuver removed from public doorway.",
     "demeanor": "demeanor-axes-v1: independently authored communication style and emotional state; legacy pace/gesture style retained; no physical finding credit.",
-    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+    "print_case_plan_20260914": "Reviewed conditional differential/plan clarity; original attempts retain their frozen source. Course VINDICATE uncertainty remains explicit where unresolved."
   },
   "cohort": {
     "id": "young-adult-female-v1",
@@ -2910,7 +2924,7 @@
             "pitch": 1,
             "gender": "female",
             "adult": true,
-            "age_range": "18\u201330"
+            "age_range": "18–30"
           },
           "comfort_response": {
             "reply": "This episode makes ordinary walking uncomfortable.",
@@ -3134,19 +3148,23 @@
             "I am a software analyst."
           ],
           "history_family_1": [
-            "My mother is fifty-four and she has high blood pressure.", "Mother has hypertension",
+            "My mother is fifty-four and she has high blood pressure.",
+            "Mother has hypertension",
             "mother"
           ],
           "history_family_2": [
-            "My father is fifty-seven and he has atrial fibrillation.", "father has atrial fibrillation",
+            "My father is fifty-seven and he has atrial fibrillation.",
+            "father has atrial fibrillation",
             "father"
           ],
           "history_family_3": [
-            "My sister is twenty-four and she's healthy.", "sister is healthy",
+            "My sister is twenty-four and she's healthy.",
+            "sister is healthy",
             "sister"
           ],
           "history_family_4": [
-            "Nobody in my family has died suddenly before the age of fifty, as far as I know.", "no sudden death before age 50."
+            "Nobody in my family has died suddenly before the age of fifty, as far as I know.",
+            "no sudden death before age 50."
           ],
           "patient_concern": [
             "Does this mean I am having a heart attack?"
@@ -5162,19 +5180,19 @@
           "physical": [
             {
               "id": "p_exam_1",
-              "text": "Alert \u2014 obtain with general inspect",
+              "text": "Alert — obtain with general inspect",
               "maneuver": "general_inspect",
               "components": []
             },
             {
               "id": "p_exam_2",
-              "text": "Speaking comfortably at rest \u2014 obtain with general inspect",
+              "text": "Speaking comfortably at rest — obtain with general inspect",
               "maneuver": "general_inspect",
               "components": []
             },
             {
               "id": "p_exam_3",
-              "text": "Tachycardic and irregularly irregular rhythm; no murmur heard \u2014 obtain with heart auscultate",
+              "text": "Tachycardic and irregularly irregular rhythm; no murmur heard — obtain with heart auscultate",
               "maneuver": "heart_auscultate",
               "components": [
                 "aortic",
@@ -5186,7 +5204,7 @@
             },
             {
               "id": "p_exam_4",
-              "text": "Radial pulse is rapid and irregular \u2014 obtain with peripheral pulses",
+              "text": "Radial pulse is rapid and irregular — obtain with peripheral pulses",
               "maneuver": "peripheral_pulses",
               "components": [
                 "radial"
@@ -5194,7 +5212,7 @@
             },
             {
               "id": "p_exam_5",
-              "text": "Bilateral breath sounds without crackles or wheeze \u2014 obtain with lungs auscultate",
+              "text": "Bilateral breath sounds without crackles or wheeze — obtain with lungs auscultate",
               "maneuver": "lungs_auscultate",
               "components": [
                 "posterior",
@@ -5204,7 +5222,7 @@
             },
             {
               "id": "p_exam_6",
-              "text": "Thyroid not enlarged and nontender \u2014 obtain with thyroid",
+              "text": "Thyroid not enlarged and nontender — obtain with thyroid",
               "maneuver": "thyroid",
               "components": [
                 "ask patient to swallow"
@@ -5212,7 +5230,7 @@
             },
             {
               "id": "p_exam_7",
-              "text": "T1 paraspinal tissue texture change with mild tenderness on the right \u2014 obtain with osteo screen",
+              "text": "T1 paraspinal tissue texture change with mild tenderness on the right — obtain with osteo screen",
               "maneuver": "osteo_screen",
               "components": [
                 "thoracic"
@@ -5220,7 +5238,7 @@
             },
             {
               "id": "p_exam_8",
-              "text": "No visible rash on the inspected arms \u2014 obtain with skin inspect",
+              "text": "No visible rash on the inspected arms — obtain with skin inspect",
               "maneuver": "skin_inspect",
               "components": [
                 "arms"
@@ -5253,12 +5271,13 @@
           ],
           "P": [
             "1. Obtain a 12-lead ECG now and assess hemodynamic stability; check BMP, magnesium, CBC and thyroid tests; arrange same-day emergency department evaluation for rate/rhythm and stroke-risk assessment; explain uncertainty until ECG confirmation and seek emergency help for chest pain, syncope or worsening dyspnea.",
-            "2. Review energy drinks, alcohol and sympathomimetic exposure; advise stopping energy drinks and discuss reducing alcohol; arrange symptom/rhythm follow-up rather than assuming all episodes are benign.",
-            "3. Obtain TSH with reflex thyroid hormones; examine for thyroid signs and review weight/heat intolerance; refer for targeted treatment if results support thyroid disease."
+            "2. Review the ECG/rhythm findings alongside the energy-drink, alcohol and sympathomimetic history; advise stopping energy drinks and discuss reducing alcohol; explain that stimulants may trigger a fast rhythm but do not make a persistent episode benign.",
+            "3. Obtain TSH with reflex thyroid hormones; examine for thyroid signs and review weight/heat intolerance; refer for targeted treatment if results support thyroid disease. Explain that excess thyroid hormone can accelerate the heartbeat and that treatment depends on confirming the cause."
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "print_case_plan_20260914": "Reviewed conditional differential/plan clarity; original attempts retain their frozen source. Course VINDICATE uncertainty remains explicit where unresolved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"
@@ -5298,7 +5317,7 @@
             "pitch": 1,
             "gender": "female",
             "adult": true,
-            "age_range": "18\u201330"
+            "age_range": "18–30"
           },
           "comfort_response": {
             "reply": "This episode makes ordinary walking uncomfortable.",
@@ -5522,19 +5541,23 @@
             "I am a software analyst."
           ],
           "history_family_1": [
-            "My mother is fifty-four and she has high blood pressure.", "Mother has hypertension",
+            "My mother is fifty-four and she has high blood pressure.",
+            "Mother has hypertension",
             "mother"
           ],
           "history_family_2": [
-            "My father is fifty-seven and he has atrial fibrillation.", "father has atrial fibrillation",
+            "My father is fifty-seven and he has atrial fibrillation.",
+            "father has atrial fibrillation",
             "father"
           ],
           "history_family_3": [
-            "My sister is twenty-four and she's healthy.", "sister is healthy",
+            "My sister is twenty-four and she's healthy.",
+            "sister is healthy",
             "sister"
           ],
           "history_family_4": [
-            "Nobody in my family has died suddenly before the age of fifty, as far as I know.", "no sudden death before age 50."
+            "Nobody in my family has died suddenly before the age of fifty, as far as I know.",
+            "no sudden death before age 50."
           ],
           "patient_concern": [
             "Does this mean I am having a heart attack?"
@@ -7602,19 +7625,19 @@
           "physical": [
             {
               "id": "p_exam_1",
-              "text": "Alert \u2014 obtain with general inspect",
+              "text": "Alert — obtain with general inspect",
               "maneuver": "general_inspect",
               "components": []
             },
             {
               "id": "p_exam_2",
-              "text": "Speaking comfortably at rest \u2014 obtain with general inspect",
+              "text": "Speaking comfortably at rest — obtain with general inspect",
               "maneuver": "general_inspect",
               "components": []
             },
             {
               "id": "p_exam_3",
-              "text": "Tachycardic and irregularly irregular rhythm; no murmur heard \u2014 obtain with heart auscultate",
+              "text": "Tachycardic and irregularly irregular rhythm; no murmur heard — obtain with heart auscultate",
               "maneuver": "heart_auscultate",
               "components": [
                 "aortic",
@@ -7626,7 +7649,7 @@
             },
             {
               "id": "p_exam_4",
-              "text": "Radial pulse is rapid and irregular \u2014 obtain with peripheral pulses",
+              "text": "Radial pulse is rapid and irregular — obtain with peripheral pulses",
               "maneuver": "peripheral_pulses",
               "components": [
                 "radial"
@@ -7634,7 +7657,7 @@
             },
             {
               "id": "p_exam_5",
-              "text": "Bilateral breath sounds without crackles or wheeze \u2014 obtain with lungs auscultate",
+              "text": "Bilateral breath sounds without crackles or wheeze — obtain with lungs auscultate",
               "maneuver": "lungs_auscultate",
               "components": [
                 "posterior",
@@ -7644,7 +7667,7 @@
             },
             {
               "id": "p_exam_6",
-              "text": "Thyroid not enlarged and nontender \u2014 obtain with thyroid",
+              "text": "Thyroid not enlarged and nontender — obtain with thyroid",
               "maneuver": "thyroid",
               "components": [
                 "ask patient to swallow"
@@ -7652,7 +7675,7 @@
             },
             {
               "id": "p_exam_7",
-              "text": "T1 paraspinal tissue texture change with mild tenderness on the right \u2014 obtain with osteo screen",
+              "text": "T1 paraspinal tissue texture change with mild tenderness on the right — obtain with osteo screen",
               "maneuver": "osteo_screen",
               "components": [
                 "thoracic"
@@ -7660,7 +7683,7 @@
             },
             {
               "id": "p_exam_8",
-              "text": "No visible rash on the inspected arms \u2014 obtain with skin inspect",
+              "text": "No visible rash on the inspected arms — obtain with skin inspect",
               "maneuver": "skin_inspect",
               "components": [
                 "arms"
@@ -7693,12 +7716,13 @@
           ],
           "P": [
             "1. Obtain a 12-lead ECG now and assess hemodynamic stability; check BMP, magnesium, CBC and thyroid tests; arrange same-day emergency department evaluation for rate/rhythm and stroke-risk assessment; explain uncertainty until ECG confirmation and seek emergency help for chest pain, syncope or worsening dyspnea. Explore sleep scheduling and realistic caffeine reduction; agree on a sustainable alternative instead of a generic stop-caffeine instruction.",
-            "2. Review energy drinks, alcohol and sympathomimetic exposure; advise stopping energy drinks and discuss reducing alcohol; arrange symptom/rhythm follow-up rather than assuming all episodes are benign.",
-            "3. Obtain TSH with reflex thyroid hormones; examine for thyroid signs and review weight/heat intolerance; refer for targeted treatment if results support thyroid disease."
+            "2. Review the ECG/rhythm findings alongside the energy-drink, alcohol and sympathomimetic history; advise stopping energy drinks and discuss reducing alcohol; explain that stimulants may trigger a fast rhythm but do not make a persistent episode benign.",
+            "3. Obtain TSH with reflex thyroid hormones; examine for thyroid signs and review weight/heat intolerance; refer for targeted treatment if results support thyroid disease. Explain that excess thyroid hormone can accelerate the heartbeat and that treatment depends on confirming the cause."
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "print_case_plan_20260914": "Reviewed conditional differential/plan clarity; original attempts retain their frozen source. Course VINDICATE uncertainty remains explicit where unresolved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"

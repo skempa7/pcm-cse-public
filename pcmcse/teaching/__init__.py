@@ -44,6 +44,8 @@ def read(cid,variant='base'):
         resolved = cases.resolve(cid, variant)
         current['partner_script'] = build_patient_script(resolved, current)
         current['partner_note'] = build_example_note(resolved, current)
+        from .printables import examinations
+        current['partner_examinations'] = examinations(resolved, current)
     return current
 
 def progress():

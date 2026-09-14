@@ -50,8 +50,8 @@ class PartnerScriptTests(unittest.TestCase):
                         self.assertLessEqual(len(topic['questions']), 3)
                 count += 1
                 fact_count += len(expected)
-        self.assertEqual(count, 72)
-        self.assertEqual(fact_count, 2827)
+        self.assertEqual(count, 82)
+        self.assertEqual(fact_count, 3168)  # 2827 existing facts plus 341 authored expansion facts.
 
     def test_clinical_variation_uses_resolved_patient_answers(self):
         _, _, base = fixture('cardio-palpitations')
@@ -105,7 +105,11 @@ class PartnerScriptTests(unittest.TestCase):
         self.assertNotIn('acute decompensated', json.dumps(script).lower())
 
     def test_unresolved_relationship_label_is_not_invented(self):
-        _, _, script = fixture('renal-flank-pain')
+        case, lesson, _ = fixture('renal-flank-pain')
+        # Preserve the old-source safeguard after the new authored relationship is clarified.
+        old = next(f for f in case['facts'] if f['id'] == 'history_sexual_partners')
+        old['value'] = old['sp_says'][0] = 'I have one male partner, my boyfriend, and no new partners.'
+        script = build_patient_script(case, lesson)
         home = topics(script)['history_household']
         partner = topics(script)['history_sexual_partners']
         self.assertEqual(home['answer'], 'I live off campus.')
@@ -113,6 +117,13 @@ class PartnerScriptTests(unittest.TestCase):
         self.assertTrue(script['audit']['known_conflicts'])
         self.assertIn('inconsistent', home['actor_note'])
         self.assertNotRegex(home['answer'] + partner['answer'], 'husband|boyfriend')
+
+
+    def test_current_authored_relationship_keeps_supplied_husband_label(self):
+        _, _, script = fixture('renal-flank-pain')
+        self.assertIn('husband', response(topics(script)['history_household']))
+        self.assertIn('husband', response(topics(script)['history_sexual_partners']))
+        self.assertFalse(script['audit']['known_conflicts'])
 
     def test_actor_script_does_not_add_observed_exam_findings_to_dialogue(self):
         case, _, script = fixture('renal-flank-pain')

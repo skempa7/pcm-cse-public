@@ -263,12 +263,12 @@
       "No allergies to medications"
     ],
     "tobacco_use": [
-      "tobacco",
-      "smoked",
+      "smoke",
       "smoking",
+      "tobacco",
       "cigarettes",
-      "smoker",
-      "Never smoked tobacco."
+      "quit smoking",
+      "I used to smoke half a pack a day for 6 years. I quit 2 years ago."
     ],
     "alcohol_use": [
       "alcohol",
@@ -287,22 +287,30 @@
       "No recreational drugs."
     ],
     "history_context_1": [
-      "I am a print-shop designer."
+      "occupation",
+      "work duties",
+      "job",
+      "do for a living",
+      "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names."
     ],
     "history_family_1": [
-      "My mother is sixty-two and she has high blood pressure.", "Mother had hypertension",
+      "My mother is sixty-two and she has high blood pressure.",
+      "Mother had hypertension",
       "mother"
     ],
     "history_family_2": [
-      "My father died of a stroke when he was seventy-six.", "father died of stroke at 76",
+      "My father died of a stroke when he was seventy-six.",
+      "father died of stroke at 76",
       "father"
     ],
     "history_family_3": [
-      "I have one sister, she's thirty-two and she's healthy.", "sister healthy",
+      "I have one sister, she's thirty-two and she's healthy.",
+      "sister healthy",
       "sister"
     ],
     "history_family_4": [
-      "Kidney disease doesn't run in my family as far as I know.", "no known hereditary kidney disease."
+      "Kidney disease doesn't run in my family as far as I know.",
+      "no known hereditary kidney disease."
     ],
     "patient_concern": [
       "It stopped, so could we just wait?"
@@ -1545,22 +1553,24 @@
       "id": "tobacco_use",
       "category": "social",
       "checklist": "h_tobacco_use",
-      "value": "Never smoked tobacco.",
+      "value": "I used to smoke half a pack a day for 6 years. I quit 2 years ago.",
       "sp_says": [
-        "Never smoked tobacco."
+        "I used to smoke half a pack a day for 6 years. I quit 2 years ago."
       ],
       "triggers": {
         "any": [
           "Do you use tobacco or smoke?",
-          "tobacco",
           "smoke",
-          "smoking"
+          "smoking",
+          "tobacco",
+          "cigarettes",
+          "quit smoking"
         ]
       },
       "concepts": {
         "tobacco_use": {
           "polarity": "positive",
-          "value": "Never smoked tobacco."
+          "value": "I used to smoke half a pack a day for 6 years. I quit 2 years ago."
         }
       },
       "example_questions": [
@@ -1569,11 +1579,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "Never smoked tobacco.",
+            "text": "I used to smoke half a pack a day for 6 years. I quit 2 years ago.",
             "concepts": {
               "tobacco_use": {
                 "polarity": "positive",
-                "value": "Never smoked tobacco."
+                "value": "I used to smoke half a pack a day for 6 years. I quit 2 years ago."
               }
             },
             "complete_fact": true
@@ -1669,25 +1679,23 @@
       "id": "history_context_1",
       "category": "social",
       "checklist": "h_history_context_1",
-      "value": "I am a print-shop designer.",
+      "value": "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names.",
       "sp_says": [
-        "I am a print-shop designer."
+        "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names."
       ],
       "triggers": {
         "any": [
           "What do you do for work?",
-          "what do you do for work",
-          "what do you do for a living",
           "occupation",
-          "your job",
-          "do you work",
-          "are you a student"
+          "work duties",
+          "job",
+          "do for a living"
         ]
       },
       "concepts": {
         "history_context_1": {
           "polarity": "positive",
-          "value": "I am a print-shop designer."
+          "value": "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names."
         }
       },
       "history_topic": "occupation",
@@ -1697,11 +1705,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "I am a print-shop designer.",
+            "text": "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names.",
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a print-shop designer."
+                "value": "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names."
               }
             },
             "complete_fact": true
@@ -2463,7 +2471,7 @@
       },
       {
         "id": "h_tobacco_use",
-        "text": "Never smoked tobacco."
+        "text": "I used to smoke half a pack a day for 6 years. I quit 2 years ago."
       },
       {
         "id": "h_alcohol_use",
@@ -2475,7 +2483,7 @@
       },
       {
         "id": "h_history_context_1",
-        "text": "I am a print-shop designer."
+        "text": "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names."
       },
       {
         "id": "h_history_family_1",
@@ -2622,7 +2630,7 @@
     ]
   },
   "model_note": {
-    "S": "cc: Visible blood in urine without pain\n\nHPI: 28 yo f. Patient reports: I first saw blood 5 days ago. The blood appears in the urine, not from the vagina. There is no flank or groin pain. The urine is pink-red without clots. It happened twice, throughout the stream. It stopped between episodes. I had a sore throat and a cold 2 days before the urine changed color; no strenuous exercise, trauma or procedure. It cleared on its own. There is no clear trigger. I have taken no treatment. This has never happened before. I saw pink-red urine twice.\n\nPatient perspective: It stopped, so could we just wait?\n\nPMH: Hypertension; no kidney stones or prior urinary disease.\n\nPSH: Appendectomy at age 18; no urinary procedures.\n\nMeds: Lisinopril 10 mg daily; no anticoagulants.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Print-shop designer; lives with husband.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of a stroke when he was seventy-six.; I have one sister, she's thirty-two and she's healthy.; Kidney disease doesn't run in my family as far as I know.\n\nROS: Urinary - Reports hematuria. Denies dysuria. Denies frequency. General - Denies fever. Denies weight loss. Denies fatigue. Gastrointestinal - Denies nausea. Denies vomiting. Denies abdominal pain.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+    "S": "cc: Visible blood in urine without pain\n\nHPI: 28 yo f. Patient reports: I first saw blood 5 days ago. The blood appears in the urine, not from the vagina. There is no flank or groin pain. The urine is pink-red without clots. It happened twice, throughout the stream. It stopped between episodes. I had a sore throat and a cold 2 days before the urine changed color; no strenuous exercise, trauma or procedure. It cleared on its own. There is no clear trigger. I have taken no treatment. This has never happened before. I saw pink-red urine twice.\n\nPatient perspective: It stopped, so could we just wait?\n\nPMH: Hypertension; no kidney stones or prior urinary disease.\n\nPSH: Appendectomy at age 18; no urinary procedures.\n\nMeds: Lisinopril 10 mg daily; no anticoagulants.\n\nAllergies: No known drug allergies.\n\nSH: Former smoker, half a pack/day for 6 years; quit 2 years ago. One alcoholic drink weekly; no recreational drugs. Print-shop designer; cleans printing equipment with solvents twice weekly while wearing gloves, chemical names unknown. Lives with husband.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of a stroke when he was seventy-six.; I have one sister, she's thirty-two and she's healthy.; Kidney disease doesn't run in my family as far as I know.\n\nROS: Urinary - Reports hematuria. Denies dysuria. Denies frequency. General - Denies fever. Denies weight loss. Denies fatigue. Gastrointestinal - Denies nausea. Denies vomiting. Denies abdominal pain.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
     "O": "Vitals: T 98.3 F oral, P 76 bpm, BP 132/80 mmHg, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Comfortable and well appearing.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nAbd: Abdomen not distended; healed lower abdominal scar. Bowel sounds present. No focal abdominal or suprapubic tenderness. Tympanic over examined quadrants. Neither costovertebral angle is tender.\n\nOsteopathic: T10 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
     "A": [
       "1. IgA nephropathy with visible hematuria",
@@ -2632,7 +2640,7 @@
     "P": [
       "1. Obtain urinalysis with microscopy, urine protein quantification and renal function; check blood pressure and pregnancy status; arrange prompt clinician review and nephrology referral if glomerular findings, proteinuria or impaired renal function are present; explain that the recent respiratory illness suggests a possibility but does not establish IgA nephropathy; review results within 1 week and seek urgent care for reduced urine, edema or heavy bleeding.",
       "2. Use culture when urine findings or symptoms suggest infection; treat only supported infection and reassess hematuria after treatment; explain that apparent infection cannot automatically account for recurrent visible blood.",
-      "3. Arrange risk-based urology assessment if visible hematuria remains unexplained or recurs, with imaging/cystoscopy as the clinician indicates; explain that malignancy is less common at this age but persistent blood still needs investigation; give urgent precautions for clots, inability to void or dizziness."
+      "3. Arrange risk-based urology assessment if visible hematuria remains unexplained or recurs, with imaging/cystoscopy as the clinician indicates; explain that malignancy is less common at this age but persistent blood still needs investigation; give urgent precautions for clots, inability to void or dizziness. Clarify the solvent products and exposure duration; occupational history alone does not establish the cause."
     ]
   },
   "ideal_encounter_extras": [
@@ -2713,7 +2721,8 @@
       "https://www.niddk.nih.gov/health-information/urologic-diseases/hematuria-blood-urine"
     ],
     "round3_plan_review": "Made vague alternative plans actionable with conditional evaluation, safety counseling and follow-up. Specific outpatient review intervals are authored teaching examples, not confirmed course mandates. No new findings or clinician approval.",
-    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional."
+    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional.",
+    "background_revision": "2026-09-14: New synthetic background facts reviewed for internal consistency and relevance against primary clinical sources; source references support clinical plausibility, not the existence of a real patient. No clinician approval."
   },
   "sources": [
     {
@@ -2741,6 +2750,13 @@
       "kind": "supplementary_clinical",
       "reviewed": "2026-09-09",
       "review_scope": "Age/anatomy-dependent cohort adaptation; does not establish course scoring or a patient diagnosis."
+    },
+    {
+      "title": "Blood in urine",
+      "url": "https://www.niddk.nih.gov/health-information/urologic-diseases/hematuria-blood-urine",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Hematuria workup is based on the full history and findings, not a presumed occupational cause."
     }
   ],
   "teaching": {
@@ -2857,7 +2873,8 @@
     "young_female_cohort": "New female adult18\u201330 authoring; old saved snapshots remain outside this generator.",
     "experience_review2_language": "Reviewed vomiting tense forms; unsupported progression is not invented; timing cues reference obtainable dimensions; target maneuver removed from public doorway.",
     "demeanor": "demeanor-axes-v1: independently authored communication style and emotional state; legacy pace/gesture style retained; no physical finding credit.",
-    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+    "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
   },
   "cohort": {
     "id": "young-adult-female-v1",
@@ -3108,12 +3125,12 @@
             "No allergies to medications"
           ],
           "tobacco_use": [
-            "tobacco",
-            "smoked",
+            "smoke",
             "smoking",
+            "tobacco",
             "cigarettes",
-            "smoker",
-            "Never smoked tobacco."
+            "quit smoking",
+            "I used to smoke half a pack a day for 6 years. I quit 2 years ago."
           ],
           "alcohol_use": [
             "alcohol",
@@ -3132,22 +3149,30 @@
             "No recreational drugs."
           ],
           "history_context_1": [
-            "I am a print-shop designer."
+            "occupation",
+            "work duties",
+            "job",
+            "do for a living",
+            "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names."
           ],
           "history_family_1": [
-            "My mother is sixty-two and she has high blood pressure.", "Mother had hypertension",
+            "My mother is sixty-two and she has high blood pressure.",
+            "Mother had hypertension",
             "mother"
           ],
           "history_family_2": [
-            "My father died of a stroke when he was seventy-six.", "father died of stroke at 76",
+            "My father died of a stroke when he was seventy-six.",
+            "father died of stroke at 76",
             "father"
           ],
           "history_family_3": [
-            "I have one sister, she's thirty-two and she's healthy.", "sister healthy",
+            "I have one sister, she's thirty-two and she's healthy.",
+            "sister healthy",
             "sister"
           ],
           "history_family_4": [
-            "Kidney disease doesn't run in my family as far as I know.", "no known hereditary kidney disease."
+            "Kidney disease doesn't run in my family as far as I know.",
+            "no known hereditary kidney disease."
           ],
           "patient_concern": [
             "It stopped, so could we just wait?"
@@ -4390,22 +4415,24 @@
             "id": "tobacco_use",
             "category": "social",
             "checklist": "h_tobacco_use",
-            "value": "Never smoked tobacco.",
+            "value": "I used to smoke half a pack a day for 6 years. I quit 2 years ago.",
             "sp_says": [
-              "Never smoked tobacco."
+              "I used to smoke half a pack a day for 6 years. I quit 2 years ago."
             ],
             "triggers": {
               "any": [
                 "Do you use tobacco or smoke?",
-                "tobacco",
                 "smoke",
-                "smoking"
+                "smoking",
+                "tobacco",
+                "cigarettes",
+                "quit smoking"
               ]
             },
             "concepts": {
               "tobacco_use": {
                 "polarity": "positive",
-                "value": "Never smoked tobacco."
+                "value": "I used to smoke half a pack a day for 6 years. I quit 2 years ago."
               }
             },
             "example_questions": [
@@ -4414,11 +4441,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Never smoked tobacco.",
+                  "text": "I used to smoke half a pack a day for 6 years. I quit 2 years ago.",
                   "concepts": {
                     "tobacco_use": {
                       "polarity": "positive",
-                      "value": "Never smoked tobacco."
+                      "value": "I used to smoke half a pack a day for 6 years. I quit 2 years ago."
                     }
                   },
                   "complete_fact": true
@@ -4514,25 +4541,23 @@
             "id": "history_context_1",
             "category": "social",
             "checklist": "h_history_context_1",
-            "value": "I am a print-shop designer.",
+            "value": "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names.",
             "sp_says": [
-              "I am a print-shop designer."
+              "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names."
             ],
             "triggers": {
               "any": [
                 "What do you do for work?",
-                "what do you do for work",
-                "what do you do for a living",
                 "occupation",
-                "your job",
-                "do you work",
-                "are you a student"
+                "work duties",
+                "job",
+                "do for a living"
               ]
             },
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a print-shop designer."
+                "value": "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names."
               }
             },
             "history_topic": "occupation",
@@ -4542,11 +4567,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I am a print-shop designer.",
+                  "text": "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names.",
                   "concepts": {
                     "history_context_1": {
                       "polarity": "positive",
-                      "value": "I am a print-shop designer."
+                      "value": "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names."
                     }
                   },
                   "complete_fact": true
@@ -5015,7 +5040,7 @@
             },
             {
               "id": "h_tobacco_use",
-              "text": "Never smoked tobacco."
+              "text": "I used to smoke half a pack a day for 6 years. I quit 2 years ago."
             },
             {
               "id": "h_alcohol_use",
@@ -5027,7 +5052,7 @@
             },
             {
               "id": "h_history_context_1",
-              "text": "I am a print-shop designer."
+              "text": "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names."
             },
             {
               "id": "h_history_family_1",
@@ -5173,7 +5198,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Visible blood in urine without pain\n\nHPI: 28 yo f. Patient reports: I first saw blood 2 weeks ago. The blood appears in the urine, not from the vagina. There is no flank or groin pain. The urine is pink-red without clots. It happened twice, throughout the stream. It stopped between episodes. I had a sore throat and a cold 2 days before the urine changed color; no strenuous exercise, trauma or procedure. It cleared on its own. There is no clear trigger. I have taken no treatment. This has never happened before. I saw pink-red urine twice.\n\nPatient perspective: It stopped, so could we just wait?\n\nPMH: Hypertension; no kidney stones or prior urinary disease.\n\nPSH: Appendectomy at age 18; no urinary procedures.\n\nMeds: Lisinopril 10 mg daily; no anticoagulants.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Print-shop designer; lives with husband.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of a stroke when he was seventy-six.; I have one sister, she's thirty-two and she's healthy.; Kidney disease doesn't run in my family as far as I know.\n\nROS: Urinary - Reports hematuria. Denies dysuria. Denies frequency. General - Denies fever. Denies weight loss. Denies fatigue. Gastrointestinal - Denies nausea. Denies vomiting. Denies abdominal pain.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+          "S": "cc: Visible blood in urine without pain\n\nHPI: 28 yo f. Patient reports: I first saw blood 2 weeks ago. The blood appears in the urine, not from the vagina. There is no flank or groin pain. The urine is pink-red without clots. It happened twice, throughout the stream. It stopped between episodes. I had a sore throat and a cold 2 days before the urine changed color; no strenuous exercise, trauma or procedure. It cleared on its own. There is no clear trigger. I have taken no treatment. This has never happened before. I saw pink-red urine twice.\n\nPatient perspective: It stopped, so could we just wait?\n\nPMH: Hypertension; no kidney stones or prior urinary disease.\n\nPSH: Appendectomy at age 18; no urinary procedures.\n\nMeds: Lisinopril 10 mg daily; no anticoagulants.\n\nAllergies: No known drug allergies.\n\nSH: Former smoker, half a pack/day for 6 years; quit 2 years ago. One alcoholic drink weekly; no recreational drugs. Print-shop designer; cleans printing equipment with solvents twice weekly while wearing gloves, chemical names unknown. Lives with husband.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of a stroke when he was seventy-six.; I have one sister, she's thirty-two and she's healthy.; Kidney disease doesn't run in my family as far as I know.\n\nROS: Urinary - Reports hematuria. Denies dysuria. Denies frequency. General - Denies fever. Denies weight loss. Denies fatigue. Gastrointestinal - Denies nausea. Denies vomiting. Denies abdominal pain.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
           "O": "Vitals: T 98.3 F oral, P 76 bpm, BP 132/80 mmHg, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Comfortable and well appearing.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nAbd: Abdomen not distended; healed lower abdominal scar. Bowel sounds present. No focal abdominal or suprapubic tenderness. Tympanic over examined quadrants. Neither costovertebral angle is tender.\n\nOsteopathic: T10 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. IgA nephropathy with visible hematuria",
@@ -5183,11 +5208,12 @@
           "P": [
             "1. Obtain urinalysis with microscopy, urine protein quantification and renal function; check blood pressure and pregnancy status; arrange prompt clinician review and nephrology referral if glomerular findings, proteinuria or impaired renal function are present; explain that the recent respiratory illness suggests a possibility but does not establish IgA nephropathy; review results within 1 week and seek urgent care for reduced urine, edema or heavy bleeding.",
             "2. Use culture when urine findings or symptoms suggest infection; treat only supported infection and reassess hematuria after treatment; explain that apparent infection cannot automatically account for recurrent visible blood.",
-            "3. Arrange risk-based urology assessment if visible hematuria remains unexplained or recurs, with imaging/cystoscopy as the clinician indicates; explain that malignancy is less common at this age but persistent blood still needs investigation; give urgent precautions for clots, inability to void or dizziness."
+            "3. Arrange risk-based urology assessment if visible hematuria remains unexplained or recurs, with imaging/cystoscopy as the clinician indicates; explain that malignancy is less common at this age but persistent blood still needs investigation; give urgent precautions for clots, inability to void or dizziness. Clarify the solvent products and exposure duration; occupational history alone does not establish the cause."
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"
@@ -5432,12 +5458,12 @@
             "No allergies to medications"
           ],
           "tobacco_use": [
-            "tobacco",
-            "smoked",
+            "smoke",
             "smoking",
+            "tobacco",
             "cigarettes",
-            "smoker",
-            "Never smoked tobacco."
+            "quit smoking",
+            "I used to smoke half a pack a day for 6 years. I quit 2 years ago."
           ],
           "alcohol_use": [
             "alcohol",
@@ -5456,22 +5482,30 @@
             "No recreational drugs."
           ],
           "history_context_1": [
-            "I am a print-shop designer."
+            "occupation",
+            "work duties",
+            "job",
+            "do for a living",
+            "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names."
           ],
           "history_family_1": [
-            "My mother is sixty-two and she has high blood pressure.", "Mother had hypertension",
+            "My mother is sixty-two and she has high blood pressure.",
+            "Mother had hypertension",
             "mother"
           ],
           "history_family_2": [
-            "My father died of a stroke when he was seventy-six.", "father died of stroke at 76",
+            "My father died of a stroke when he was seventy-six.",
+            "father died of stroke at 76",
             "father"
           ],
           "history_family_3": [
-            "I have one sister, she's thirty-two and she's healthy.", "sister healthy",
+            "I have one sister, she's thirty-two and she's healthy.",
+            "sister healthy",
             "sister"
           ],
           "history_family_4": [
-            "Kidney disease doesn't run in my family as far as I know.", "no known hereditary kidney disease."
+            "Kidney disease doesn't run in my family as far as I know.",
+            "no known hereditary kidney disease."
           ],
           "patient_concern": [
             "It stopped, so could we just wait?"
@@ -6717,22 +6751,24 @@
             "id": "tobacco_use",
             "category": "social",
             "checklist": "h_tobacco_use",
-            "value": "Never smoked tobacco.",
+            "value": "I used to smoke half a pack a day for 6 years. I quit 2 years ago.",
             "sp_says": [
-              "Never smoked tobacco."
+              "I used to smoke half a pack a day for 6 years. I quit 2 years ago."
             ],
             "triggers": {
               "any": [
                 "Do you use tobacco or smoke?",
-                "tobacco",
                 "smoke",
-                "smoking"
+                "smoking",
+                "tobacco",
+                "cigarettes",
+                "quit smoking"
               ]
             },
             "concepts": {
               "tobacco_use": {
                 "polarity": "positive",
-                "value": "Never smoked tobacco."
+                "value": "I used to smoke half a pack a day for 6 years. I quit 2 years ago."
               }
             },
             "example_questions": [
@@ -6741,11 +6777,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "Never smoked tobacco.",
+                  "text": "I used to smoke half a pack a day for 6 years. I quit 2 years ago.",
                   "concepts": {
                     "tobacco_use": {
                       "polarity": "positive",
-                      "value": "Never smoked tobacco."
+                      "value": "I used to smoke half a pack a day for 6 years. I quit 2 years ago."
                     }
                   },
                   "complete_fact": true
@@ -6841,25 +6877,23 @@
             "id": "history_context_1",
             "category": "social",
             "checklist": "h_history_context_1",
-            "value": "I am a print-shop designer.",
+            "value": "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names.",
             "sp_says": [
-              "I am a print-shop designer."
+              "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names."
             ],
             "triggers": {
               "any": [
                 "What do you do for work?",
-                "what do you do for work",
-                "what do you do for a living",
                 "occupation",
-                "your job",
-                "do you work",
-                "are you a student"
+                "work duties",
+                "job",
+                "do for a living"
               ]
             },
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a print-shop designer."
+                "value": "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names."
               }
             },
             "history_topic": "occupation",
@@ -6869,11 +6903,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I am a print-shop designer.",
+                  "text": "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names.",
                   "concepts": {
                     "history_context_1": {
                       "polarity": "positive",
-                      "value": "I am a print-shop designer."
+                      "value": "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names."
                     }
                   },
                   "complete_fact": true
@@ -7387,7 +7421,7 @@
             },
             {
               "id": "h_tobacco_use",
-              "text": "Never smoked tobacco."
+              "text": "I used to smoke half a pack a day for 6 years. I quit 2 years ago."
             },
             {
               "id": "h_alcohol_use",
@@ -7399,7 +7433,7 @@
             },
             {
               "id": "h_history_context_1",
-              "text": "I am a print-shop designer."
+              "text": "I design signs at a print shop. Twice a week I clean the printing equipment with solvents; I wear gloves, but I do not know the chemical names."
             },
             {
               "id": "h_history_family_1",
@@ -7549,7 +7583,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Visible blood in urine without pain\n\nHPI: 28 yo f. Patient reports: I first saw blood 5 days ago. The blood appears in the urine, not from the vagina. There is no flank or groin pain. The urine is pink-red without clots. It happened twice, throughout the stream. It stopped between episodes. I had a sore throat and a cold 2 days before the urine changed color; no strenuous exercise, trauma or procedure. It cleared on its own. There is no clear trigger. I have taken no treatment. This has never happened before. I saw pink-red urine twice.\n\nPatient perspective: It stopped, so could we just wait?\n\nPMH: Hypertension; no kidney stones or prior urinary disease.\n\nPSH: Appendectomy at age 18; no urinary procedures.\n\nMeds: Lisinopril 10 mg daily; no anticoagulants.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly. No recreational drugs. Print-shop designer; lives with husband.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of a stroke when he was seventy-six.; I have one sister, she's thirty-two and she's healthy.; Kidney disease doesn't run in my family as far as I know.\n\nROS: Urinary - Reports hematuria. Denies dysuria. Denies frequency. General - Denies fever. Denies weight loss. Denies fatigue. Gastrointestinal - Denies nausea. Denies vomiting. Denies abdominal pain.\n\nPatient concern: I am leaving town in 2 weeks and planned to deal with this afterward.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+          "S": "cc: Visible blood in urine without pain\n\nHPI: 28 yo f. Patient reports: I first saw blood 5 days ago. The blood appears in the urine, not from the vagina. There is no flank or groin pain. The urine is pink-red without clots. It happened twice, throughout the stream. It stopped between episodes. I had a sore throat and a cold 2 days before the urine changed color; no strenuous exercise, trauma or procedure. It cleared on its own. There is no clear trigger. I have taken no treatment. This has never happened before. I saw pink-red urine twice.\n\nPatient perspective: It stopped, so could we just wait?\n\nPMH: Hypertension; no kidney stones or prior urinary disease.\n\nPSH: Appendectomy at age 18; no urinary procedures.\n\nMeds: Lisinopril 10 mg daily; no anticoagulants.\n\nAllergies: No known drug allergies.\n\nSH: Former smoker, half a pack/day for 6 years; quit 2 years ago. One alcoholic drink weekly; no recreational drugs. Print-shop designer; cleans printing equipment with solvents twice weekly while wearing gloves, chemical names unknown. Lives with husband.\n\nFH: My mother is sixty-two and she has high blood pressure.; My father died of a stroke when he was seventy-six.; I have one sister, she's thirty-two and she's healthy.; Kidney disease doesn't run in my family as far as I know.\n\nROS: Urinary - Reports hematuria. Denies dysuria. Denies frequency. General - Denies fever. Denies weight loss. Denies fatigue. Gastrointestinal - Denies nausea. Denies vomiting. Denies abdominal pain.\n\nPatient concern: I am leaving town in 2 weeks and planned to deal with this afterward.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
           "O": "Vitals: T 98.3 F oral, P 76 bpm, BP 132/80 mmHg, R 16 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Comfortable and well appearing.\n\nHeart: Regular rhythm without murmur.\n\nLungs: Clear breath sounds bilaterally.\n\nAbd: Abdomen not distended; healed lower abdominal scar. Bowel sounds present. No focal abdominal or suprapubic tenderness. Tympanic over examined quadrants. Neither costovertebral angle is tender.\n\nOsteopathic: T10 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. IgA nephropathy with visible hematuria",
@@ -7559,11 +7593,12 @@
           "P": [
             "1. Obtain urinalysis with microscopy, urine protein quantification and renal function; check blood pressure and pregnancy status; arrange prompt clinician review and nephrology referral if glomerular findings, proteinuria or impaired renal function are present; explain that the recent respiratory illness suggests a possibility but does not establish IgA nephropathy; review results within 1 week and seek urgent care for reduced urine, edema or heavy bleeding. Agree on a named contact and testing plan before travel so results and persistent blood are not lost to follow-up.",
             "2. Use culture when urine findings or symptoms suggest infection; treat only supported infection and reassess hematuria after treatment; explain that apparent infection cannot automatically account for recurrent visible blood.",
-            "3. Arrange risk-based urology assessment if visible hematuria remains unexplained or recurs, with imaging/cystoscopy as the clinician indicates; explain that malignancy is less common at this age but persistent blood still needs investigation; give urgent precautions for clots, inability to void or dizziness."
+            "3. Arrange risk-based urology assessment if visible hematuria remains unexplained or recurs, with imaging/cystoscopy as the clinician indicates; explain that malignancy is less common at this age but persistent blood still needs investigation; give urgent precautions for clots, inability to void or dizziness. Clarify the solvent products and exposure duration; occupational history alone does not establish the cause."
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"

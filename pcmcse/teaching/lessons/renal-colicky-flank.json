@@ -233,7 +233,7 @@
           "kind": "dialogue",
           "section": "Build the symptom pattern",
           "student": "Have you had anything like this before?",
-          "patient": "I passed a kidney stone 5 years ago.",
+          "patient": "I had a kidney stone 5 years ago. It needed a procedure to remove it.",
           "why": "",
           "event_ids": [
             32,
@@ -403,7 +403,7 @@
           "kind": "dialogue",
           "section": "Relevant background",
           "student": "Have you had any surgeries or hospital admissions?",
-          "patient": "No surgery or admissions except the prior stone visit.",
+          "patient": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations.",
           "why": "",
           "event_ids": [
             56,
@@ -834,7 +834,7 @@
         }
       ],
       "note": {
-        "S": "cc: Severe flank pain that comes in waves\n\nHPI: 27-year-old woman with sudden left flank pain radiating to the left groin; onset 4 hours ago. Sharp cramping waves last several minutes with partial relief between; worst 9/10. Began at work without trauma or clear movement trigger. No reliable relief; acetaminophen 500 mg ineffective. One episode of pink urine, nausea, one emesis and fatigue from pain. Passed a kidney stone 5 years ago.\n\nPerspective: Will this damage my kidney?\n\nPMH: One prior calcium kidney stone; has two kidneys; no kidney disease.\n\nPSH: No surgery or admissions except the prior stone visit.\n\nMeds: No daily medicines; acetaminophen once today.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. Two alcoholic drinks weekly. No recreational drugs. Construction estimator; often cannot take water breaks; lives with husband.\n\nFH: My dad is fifty-six and he's had kidney stones over and over.; My mom is fifty-four and she has high blood pressure.; I have one sister and she's healthy.\n\nROS: Urinary - Reports flank pain. Reports hematuria. Denies dysuria. Gastrointestinal - Reports nausea. Reports vomiting. Denies diarrhea. General - Denies fever. Denies chills. Reports fatigue.\nUrinary history: I am still able to pass urine.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+        "S": "cc: Severe flank pain that comes in waves\n\nHPI: 27-year-old woman with sudden left flank pain radiating to the left groin; onset 4 hours ago. Sharp cramping waves last several minutes with partial relief between; worst 9/10. Began at work without trauma or clear movement trigger. No reliable relief; acetaminophen 500 mg ineffective. One episode of pink urine, nausea, one emesis and fatigue from pain. A kidney stone required removal 5 years ago.\n\nPerspective: Will this damage my kidney?\n\nPMH: One prior calcium kidney stone; has two kidneys; no kidney disease.\n\nPSH: Ureteroscopy for stone removal at age 22; temporary stent removed 1 week later. No other operations.\n\nMeds: No daily medicines; acetaminophen once today.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. Two alcoholic drinks weekly. No recreational drugs. Construction estimator; often cannot take water breaks; lives with husband.\n\nFH: My dad is fifty-six and he's had kidney stones over and over.; My mom is fifty-four and she has high blood pressure.; I have one sister and she's healthy.\n\nROS: Urinary - Reports flank pain. Reports hematuria. Denies dysuria. Gastrointestinal - Reports nausea. Reports vomiting. Denies diarrhea. General - Denies fever. Denies chills. Reports fatigue.\nUrinary history: I am still able to pass urine.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
         "O": "Vitals: T 98.7 F oral, P 98 bpm, BP 142/86 mmHg, R 20 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Restless, frequently changing position.\nHeart: Regular rhythm without murmur.\nLungs: In the examined posterior fields, clear breath sounds bilaterally.\nAbdomen: Abdomen not distended.\nAbdomen: Bowel sounds present.\nAbdomen: Tympanic over examined quadrants.\nAbdomen: Mild left lateral abdominal tenderness. No involuntary guarding.\nAbdomen: Left costovertebral angle tenderness; right side nontender.\nOsteopathic: T10 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Ureteral calculus",
@@ -842,9 +842,9 @@
           "3. Musculoskeletal flank strain"
         ],
         "P": [
-          "1. Assess pain control, hydration, urine output, solitary kidney and infection risk; obtain urinalysis, creatinine and appropriate renal imaging; provide clinician-directed analgesia and antiemetic, with urgent urology for infected obstruction or renal compromise; explain urine straining if discharged and arrange prompt follow-up, with emergency return for fever or inability to urinate.",
+          "1. Assess pain control, hydration, urine output, solitary kidney and infection risk; obtain urinalysis, creatinine and appropriate renal imaging; provide clinician-directed analgesia and antiemetic, with urgent urology for infected obstruction or renal compromise; explain urine straining if discharged and arrange a symptom and result review within 48\u201372 hours after acute assessment if stable for outpatient care, with emergency return for fever or inability to urinate.",
           "2. Obtain urine culture if infection is suspected and monitor systemic features; an obstructed infected urinary system needs urgent drainage evaluation rather than antibiotics alone; explain the fever/rigor emergency precaution.",
-          "3. Ask about mechanical triggers and assess focal musculature after urgent renal causes; consider conservative treatment only if supported; advise reassessment for new urinary or systemic features. If urgent renal causes are excluded and a muscular cause is supported, advise continued gentle daily activity as tolerated and avoidance of prolonged bed rest."
+          "3. Ask about mechanical triggers and assess focal musculature after urgent renal causes; consider conservative treatment only if supported; advise reassessment for new urinary or systemic features. If urgent renal causes are excluded and a muscular cause is supported, advise continued gentle daily activity as tolerated and avoidance of prolonged bed rest. If a focal muscle strain is supported, consider acetaminophen after reviewing contraindications and the response to the earlier dose."
         ]
       },
       "note_links": [
@@ -960,13 +960,14 @@
         },
         {
           "section": "S",
-          "statement": "Passed a kidney stone 5 years ago.",
+          "statement": "A kidney stone required removal 5 years ago.",
           "event_ids": [
-            33
+            33,
+            55
           ],
           "classification": "reported / supplied history",
-          "trace_method": "grader-linked delivered evidence",
-          "audit_verdict": "supported"
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
         },
         {
           "section": "S",
@@ -1010,7 +1011,27 @@
         },
         {
           "section": "S",
-          "statement": "No surgery or admissions except the prior stone visit.",
+          "statement": "Ureteroscopy for stone removal at age 22;",
+          "event_ids": [
+            57
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "temporary stent removed 1 week later.",
+          "event_ids": [
+            57
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "No other operations.",
           "event_ids": [
             57
           ],
@@ -1518,7 +1539,7 @@
         },
         {
           "seq": 4,
-          "t_ms": 0,
+          "t_ms": 1,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
@@ -1529,7 +1550,7 @@
         },
         {
           "seq": 5,
-          "t_ms": 0,
+          "t_ms": 1,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
@@ -1541,7 +1562,7 @@
         },
         {
           "seq": 6,
-          "t_ms": 0,
+          "t_ms": 1,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
@@ -1553,7 +1574,7 @@
         },
         {
           "seq": 7,
-          "t_ms": 3,
+          "t_ms": 8,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
@@ -1566,7 +1587,7 @@
         },
         {
           "seq": 8,
-          "t_ms": 4,
+          "t_ms": 9,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -1578,7 +1599,7 @@
         },
         {
           "seq": 9,
-          "t_ms": 5,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The pain in my side comes in terrible waves and I cannot get comfortable.",
@@ -1604,7 +1625,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 6,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your symptoms first begin?",
@@ -1615,7 +1636,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 7,
+          "t_ms": 14,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It started suddenly 4 hours ago.",
@@ -1641,7 +1662,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 8,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -1652,7 +1673,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 9,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is in my left flank.",
@@ -1678,7 +1699,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 9,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -1690,7 +1711,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 11,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It travels toward my left groin.",
@@ -1716,7 +1737,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 11,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -1728,7 +1749,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 13,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is sharp and cramping in waves.",
@@ -1754,7 +1775,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 13,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -1766,7 +1787,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 15,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "At its worst it is 9/10.",
@@ -1792,7 +1813,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 16,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the pain ease between the waves?",
@@ -1804,7 +1825,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 17,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "There is partial easing between the waves.",
@@ -1830,7 +1851,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 18,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How long does each episode last?",
@@ -1842,7 +1863,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 19,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Each wave lasts several minutes.",
@@ -1868,7 +1889,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 20,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What were you doing when this started?",
@@ -1879,7 +1900,7 @@
         },
         {
           "seq": 25,
-          "t_ms": 21,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It started while I was at work, without trauma.",
@@ -1902,7 +1923,7 @@
         },
         {
           "seq": 26,
-          "t_ms": 21,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -1914,7 +1935,7 @@
         },
         {
           "seq": 27,
-          "t_ms": 22,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Nothing reliably relieves it.",
@@ -1940,7 +1961,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 23,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -1952,7 +1973,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 24,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "There is no clear movement trigger.",
@@ -1978,7 +1999,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 25,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -1990,7 +2011,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 26,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I tried acetaminophen 500 mg without relief.",
@@ -2016,7 +2037,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 27,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -2028,10 +2049,10 @@
         },
         {
           "seq": 33,
-          "t_ms": 28,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "I passed a kidney stone 5 years ago.",
+          "text": "I had a kidney stone 5 years ago. It needed a procedure to remove it.",
           "meta": {
             "facts_released": [
               "hpi_past_occurrence"
@@ -2039,7 +2060,7 @@
             "concepts": {
               "hpi_past_occurrence": {
                 "polarity": "positive",
-                "value": "I passed a kidney stone 5 years ago."
+                "value": "I had a kidney stone 5 years ago. It needed a procedure to remove it."
               }
             },
             "volunteered": false,
@@ -2054,7 +2075,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 29,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had pain in your side or flank?",
@@ -2066,7 +2087,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 30,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The left flank hurts in waves.",
@@ -2092,7 +2113,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 31,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed blood in your urine?",
@@ -2104,7 +2125,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 32,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My urine looked pink once.",
@@ -2130,7 +2151,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 33,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt nauseated?",
@@ -2142,7 +2163,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 34,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I feel nauseated with the pain.",
@@ -2168,7 +2189,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 35,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you been vomiting?",
@@ -2180,7 +2201,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 36,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I vomited once.",
@@ -2206,7 +2227,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 36,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt unusually tired or low in energy?",
@@ -2218,7 +2239,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 38,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The pain is exhausting.",
@@ -2244,7 +2265,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 38,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are you still able to pass urine?",
@@ -2256,7 +2277,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 40,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am still able to pass urine.",
@@ -2282,7 +2303,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 40,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does it burn when you urinate?",
@@ -2294,7 +2315,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 41,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No burning when I urinate.",
@@ -2320,7 +2341,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 42,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had diarrhea?",
@@ -2332,7 +2353,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 43,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No diarrhea.",
@@ -2358,7 +2379,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 44,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -2370,7 +2391,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 45,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No fever.",
@@ -2396,7 +2417,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 46,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had chills?",
@@ -2408,7 +2429,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 47,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No chills.",
@@ -2434,7 +2455,7 @@
         },
         {
           "seq": 54,
-          "t_ms": 47,
+          "t_ms": 56,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -2446,7 +2467,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 53,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "One prior calcium kidney stone, has two kidneys, no kidney disease.",
@@ -2486,7 +2507,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 53,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -2498,10 +2519,10 @@
         },
         {
           "seq": 57,
-          "t_ms": 55,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "No surgery or admissions except the prior stone visit.",
+          "text": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations.",
           "meta": {
             "facts_released": [
               "history_psh_1"
@@ -2509,7 +2530,7 @@
             "concepts": {
               "history_psh_1": {
                 "polarity": "positive",
-                "value": "No surgery or admissions except the prior stone visit."
+                "value": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations."
               }
             },
             "volunteered": false,
@@ -2524,7 +2545,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 56,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -2536,7 +2557,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 59,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not take daily medicines. I took acetaminophen once today.",
@@ -2569,7 +2590,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 59,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -2581,7 +2602,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 61,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No known drug allergies.",
@@ -2607,7 +2628,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 61,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -2619,7 +2640,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 63,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Never smoked tobacco.",
@@ -2645,7 +2666,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 63,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -2657,7 +2678,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 65,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Two alcoholic drinks weekly.",
@@ -2683,7 +2704,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 65,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -2695,7 +2716,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 67,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -2721,7 +2742,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 67,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -2733,7 +2754,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 68,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a construction estimator.",
@@ -2759,7 +2780,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 69,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How much water do you drink, and can you take water breaks?",
@@ -2771,7 +2792,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 71,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I often cannot take water breaks.",
@@ -2797,7 +2818,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 71,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -2808,7 +2829,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 73,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband.",
@@ -2834,7 +2855,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 73,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your father had?",
@@ -2846,7 +2867,7 @@
         },
         {
           "seq": 75,
-          "t_ms": 74,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My dad is fifty-six and he's had kidney stones over and over.",
@@ -2872,7 +2893,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 75,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -2884,7 +2905,7 @@
         },
         {
           "seq": 77,
-          "t_ms": 76,
+          "t_ms": 89,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My mom is fifty-four and she has high blood pressure.",
@@ -2910,7 +2931,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 77,
+          "t_ms": 90,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -2922,7 +2943,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 78,
+          "t_ms": 91,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have one sister and she's healthy.",
@@ -2948,7 +2969,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 79,
+          "t_ms": 92,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -2960,7 +2981,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 80,
+          "t_ms": 93,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant, but I have not taken a pregnancy test.",
@@ -2986,7 +3007,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 81,
+          "t_ms": 94,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -2997,7 +3018,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 82,
+          "t_ms": 95,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 2 weeks ago.",
@@ -3023,7 +3044,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 82,
+          "t_ms": 96,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -3035,7 +3056,7 @@
         },
         {
           "seq": 85,
-          "t_ms": 84,
+          "t_ms": 97,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Will this damage my kidney?",
@@ -3061,7 +3082,7 @@
         },
         {
           "seq": 86,
-          "t_ms": 84,
+          "t_ms": 98,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -3072,7 +3093,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 94,
+          "t_ms": 108,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Will this damage my kidney?",
@@ -3098,7 +3119,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 95,
+          "t_ms": 109,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -3109,7 +3130,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 96,
+          "t_ms": 110,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Yes, that's fine. Go ahead.",
@@ -3119,7 +3140,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 95,
+          "t_ms": 109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -3131,7 +3152,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 10097,
+          "t_ms": 10111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -3152,7 +3173,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 10097,
+          "t_ms": 10111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert. Restless, frequently changing position.",
@@ -3180,7 +3201,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 50097,
+          "t_ms": 50111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -3206,7 +3227,7 @@
         },
         {
           "seq": 94,
-          "t_ms": 50097,
+          "t_ms": 50111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rhythm without murmur.",
@@ -3228,7 +3249,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 91097,
+          "t_ms": 91111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -3253,7 +3274,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 91097,
+          "t_ms": 91111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, clear breath sounds bilaterally.",
@@ -3275,7 +3296,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 91097,
+          "t_ms": 91111,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
@@ -3290,7 +3311,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 98097,
+          "t_ms": 98111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect abdomen",
@@ -3312,7 +3333,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 98097,
+          "t_ms": 98111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Abdomen not distended.",
@@ -3334,7 +3355,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 114097,
+          "t_ms": 114111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -3356,7 +3377,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 114097,
+          "t_ms": 114111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Bowel sounds present.",
@@ -3378,7 +3399,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 133097,
+          "t_ms": 133111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -3400,7 +3421,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 133097,
+          "t_ms": 133111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tympanic over examined quadrants.",
@@ -3422,7 +3443,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 164097,
+          "t_ms": 164111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -3447,7 +3468,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 164097,
+          "t_ms": 164111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Mild left lateral abdominal tenderness. No involuntary guarding.",
@@ -3475,7 +3496,7 @@
         },
         {
           "seq": 106,
-          "t_ms": 180097,
+          "t_ms": 180111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Abdominal special tests",
@@ -3497,7 +3518,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 180097,
+          "t_ms": 180111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Left costovertebral angle tenderness; right side nontender.",
@@ -3519,7 +3540,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 180097,
+          "t_ms": 180111,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
@@ -3534,7 +3555,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 205097,
+          "t_ms": 205111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -3556,7 +3577,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 205097,
+          "t_ms": 205111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T10 paraspinal tissue texture change with mild tenderness on the right.",
@@ -3578,7 +3599,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 224097,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -3600,7 +3621,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 224097,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -3622,7 +3643,7 @@
         },
         {
           "seq": 113,
-          "t_ms": 224097,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend checking for a stone or another cause of blockage, while looking carefully for infection. Wave-like pain can fit a stone, but fever with an obstructed kidney needs urgent treatment. Appropriate urine tests and imaging can help.",
@@ -3634,7 +3655,7 @@
         },
         {
           "seq": 114,
-          "t_ms": 224097,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend checking for a stone or another cause of blockage, while looking carefully for infection. Wave-like pain can fit a stone, but fever with an obstructed kidney needs urgent treatment. Appropriate urine tests and imaging can help.",
@@ -3647,7 +3668,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 224097,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -3657,7 +3678,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 224097,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -3670,7 +3691,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 224097,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Will this damage my kidney?",
@@ -3685,7 +3706,7 @@
         },
         {
           "seq": 118,
-          "t_ms": 224097,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Some obstructions can affect a kidney, especially with infection or reduced urine output, but pain alone does not establish damage. I recommend checking urine, kidney function and appropriate imaging. Fever, inability to urinate or worsening illness needs urgent reassessment.",
@@ -3697,7 +3718,7 @@
         },
         {
           "seq": 119,
-          "t_ms": 224097,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "counseling",
           "text": "Some obstructions can affect a kidney, especially with infection or reduced urine output, but pain alone does not establish damage. I recommend checking urine, kidney function and appropriate imaging. Fever, inability to urinate or worsening illness needs urgent reassessment.",
@@ -3709,7 +3730,7 @@
         },
         {
           "seq": 120,
-          "t_ms": 224097,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. Thank you for explaining that.",
@@ -3718,13 +3739,13 @@
           }
         }
       ],
-      "note_words": 464,
-      "estimated_encounter_s": 552,
+      "note_words": 505,
+      "estimated_encounter_s": 561,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 5
+        "unresolved_count": 8
       },
       "reasoning": [
         {
@@ -3843,11 +3864,25 @@
           "kind": "supplementary_clinical",
           "reviewed": "2026-09-09",
           "review_scope": "Conditional alternative-plan counseling/testing; no new patient history or course requirement."
+        },
+        {
+          "title": "Treatment for kidney stones",
+          "url": "https://www.niddk.nih.gov/health-information/urologic-diseases/kidney-stones/treatment",
+          "kind": "supplementary_clinical",
+          "reviewed": "2026-09-14",
+          "review_scope": "Ureteroscopy and temporary stents are established stone procedures; treatment and prevention depend on the patient and stone history."
+        },
+        {
+          "title": "ACP/AAFP: Acute non-low-back musculoskeletal injury treatment",
+          "url": "https://www.acponline.org/acp-newsroom/acp-aafp-release-new-guideline-for-treatment-of-non-low-back-pain-from-musculoskeletal-injuries-in",
+          "kind": "supplementary_clinical",
+          "reviewed": "2026-09-14",
+          "review_scope": "Conditional analgesic option only if a focal muscle strain is supported after urgent renal causes are excluded. The 48\u201372-hour stable outpatient review is an authored teaching disposition, not a cited mandatory interval."
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "aa1347fbe054248767ff64c3439084f53fdb720eb926a0d0e2261de9cc7c124d",
-      "engine_version": "4.0.4"
+      "case_hash": "37ed8760efd79d20be3f8a7ed0573bf5672707cafe7f987befe963b613080dfb",
+      "engine_version": "4.1.0"
     },
     {
       "case_id": "renal-colicky-flank",
@@ -4086,7 +4121,7 @@
           "kind": "dialogue",
           "section": "Build the symptom pattern",
           "student": "Have you had anything like this before?",
-          "patient": "I passed a kidney stone 5 years ago.",
+          "patient": "I had a kidney stone 5 years ago. It needed a procedure to remove it.",
           "why": "",
           "event_ids": [
             32,
@@ -4256,7 +4291,7 @@
           "kind": "dialogue",
           "section": "Relevant background",
           "student": "Have you had any surgeries or hospital admissions?",
-          "patient": "No surgery or admissions except the prior stone visit.",
+          "patient": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations.",
           "why": "",
           "event_ids": [
             56,
@@ -4687,7 +4722,7 @@
         }
       ],
       "note": {
-        "S": "cc: Severe flank pain that comes in waves\n\nHPI: 27-year-old woman with sudden left flank pain radiating to the left groin; onset 9 hours ago. Sharp cramping waves last several minutes with partial relief between; worst 9/10. Began at work without trauma or clear movement trigger. No reliable relief; acetaminophen 500 mg ineffective. One episode of pink urine, nausea, one emesis and fatigue from pain. Passed a kidney stone 5 years ago.\n\nPerspective: Will this damage my kidney?\n\nPMH: One prior calcium kidney stone; has two kidneys; no kidney disease.\n\nPSH: No surgery or admissions except the prior stone visit.\n\nMeds: No daily medicines; acetaminophen once today.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. Two alcoholic drinks weekly. No recreational drugs. Construction estimator; often cannot take water breaks; lives with husband.\n\nFH: My dad is fifty-six and he's had kidney stones over and over.; My mom is fifty-four and she has high blood pressure.; I have one sister and she's healthy.\n\nROS: Urinary - Reports flank pain. Reports hematuria. Denies dysuria. Gastrointestinal - Reports nausea. Reports vomiting. Denies diarrhea. General - Denies fever. Denies chills. Reports fatigue.\nUrinary history: I am still able to pass urine.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+        "S": "cc: Severe flank pain that comes in waves\n\nHPI: 27-year-old woman with sudden left flank pain radiating to the left groin; onset 9 hours ago. Sharp cramping waves last several minutes with partial relief between; worst 9/10. Began at work without trauma or clear movement trigger. No reliable relief; acetaminophen 500 mg ineffective. One episode of pink urine, nausea, one emesis and fatigue from pain. A kidney stone required removal 5 years ago.\n\nPerspective: Will this damage my kidney?\n\nPMH: One prior calcium kidney stone; has two kidneys; no kidney disease.\n\nPSH: Ureteroscopy for stone removal at age 22; temporary stent removed 1 week later. No other operations.\n\nMeds: No daily medicines; acetaminophen once today.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. Two alcoholic drinks weekly. No recreational drugs. Construction estimator; often cannot take water breaks; lives with husband.\n\nFH: My dad is fifty-six and he's had kidney stones over and over.; My mom is fifty-four and she has high blood pressure.; I have one sister and she's healthy.\n\nROS: Urinary - Reports flank pain. Reports hematuria. Denies dysuria. Gastrointestinal - Reports nausea. Reports vomiting. Denies diarrhea. General - Denies fever. Denies chills. Reports fatigue.\nUrinary history: I am still able to pass urine.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
         "O": "Vitals: T 98.7 F oral, P 98 bpm, BP 142/86 mmHg, R 20 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Restless, frequently changing position.\nHeart: Regular rhythm without murmur.\nLungs: In the examined posterior fields, clear breath sounds bilaterally.\nAbdomen: Abdomen not distended.\nAbdomen: Bowel sounds present.\nAbdomen: Tympanic over examined quadrants.\nAbdomen: Mild left lateral abdominal tenderness. No involuntary guarding.\nAbdomen: Left costovertebral angle tenderness; right side nontender.\nOsteopathic: T10 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Ureteral calculus",
@@ -4695,9 +4730,9 @@
           "3. Musculoskeletal flank strain"
         ],
         "P": [
-          "1. Assess pain control, hydration, urine output, solitary kidney and infection risk; obtain urinalysis, creatinine and appropriate renal imaging; provide clinician-directed analgesia and antiemetic, with urgent urology for infected obstruction or renal compromise; explain urine straining if discharged and arrange prompt follow-up, with emergency return for fever or inability to urinate.",
+          "1. Assess pain control, hydration, urine output, solitary kidney and infection risk; obtain urinalysis, creatinine and appropriate renal imaging; provide clinician-directed analgesia and antiemetic, with urgent urology for infected obstruction or renal compromise; explain urine straining if discharged and arrange a symptom and result review within 48\u201372 hours after acute assessment if stable for outpatient care, with emergency return for fever or inability to urinate.",
           "2. Obtain urine culture if infection is suspected and monitor systemic features; an obstructed infected urinary system needs urgent drainage evaluation rather than antibiotics alone; explain the fever/rigor emergency precaution.",
-          "3. Ask about mechanical triggers and assess focal musculature after urgent renal causes; consider conservative treatment only if supported; advise reassessment for new urinary or systemic features. If urgent renal causes are excluded and a muscular cause is supported, advise continued gentle daily activity as tolerated and avoidance of prolonged bed rest."
+          "3. Ask about mechanical triggers and assess focal musculature after urgent renal causes; consider conservative treatment only if supported; advise reassessment for new urinary or systemic features. If urgent renal causes are excluded and a muscular cause is supported, advise continued gentle daily activity as tolerated and avoidance of prolonged bed rest. If a focal muscle strain is supported, consider acetaminophen after reviewing contraindications and the response to the earlier dose."
         ]
       },
       "note_links": [
@@ -4813,13 +4848,14 @@
         },
         {
           "section": "S",
-          "statement": "Passed a kidney stone 5 years ago.",
+          "statement": "A kidney stone required removal 5 years ago.",
           "event_ids": [
-            33
+            33,
+            55
           ],
           "classification": "reported / supplied history",
-          "trace_method": "grader-linked delivered evidence",
-          "audit_verdict": "supported"
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
         },
         {
           "section": "S",
@@ -4863,7 +4899,27 @@
         },
         {
           "section": "S",
-          "statement": "No surgery or admissions except the prior stone visit.",
+          "statement": "Ureteroscopy for stone removal at age 22;",
+          "event_ids": [
+            57
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "temporary stent removed 1 week later.",
+          "event_ids": [
+            57
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "No other operations.",
           "event_ids": [
             57
           ],
@@ -5371,7 +5427,7 @@
         },
         {
           "seq": 4,
-          "t_ms": 0,
+          "t_ms": 1,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
@@ -5382,7 +5438,7 @@
         },
         {
           "seq": 5,
-          "t_ms": 0,
+          "t_ms": 1,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
@@ -5394,7 +5450,7 @@
         },
         {
           "seq": 6,
-          "t_ms": 0,
+          "t_ms": 1,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
@@ -5406,7 +5462,7 @@
         },
         {
           "seq": 7,
-          "t_ms": 7,
+          "t_ms": 8,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
@@ -5419,7 +5475,7 @@
         },
         {
           "seq": 8,
-          "t_ms": 8,
+          "t_ms": 9,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -5431,7 +5487,7 @@
         },
         {
           "seq": 9,
-          "t_ms": 11,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The pain in my side comes in terrible waves and I cannot get comfortable.",
@@ -5457,7 +5513,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 11,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your symptoms first begin?",
@@ -5468,7 +5524,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 13,
+          "t_ms": 14,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It started suddenly 9 hours ago.",
@@ -5494,7 +5550,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 13,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -5505,7 +5561,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 14,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is in my left flank.",
@@ -5531,7 +5587,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 15,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -5543,7 +5599,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 16,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It travels toward my left groin.",
@@ -5569,7 +5625,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 17,
+          "t_ms": 19,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -5581,7 +5637,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 18,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is sharp and cramping in waves.",
@@ -5607,7 +5663,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 18,
+          "t_ms": 21,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -5619,7 +5675,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 20,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "At its worst it is 9/10.",
@@ -5645,7 +5701,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 20,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the pain ease between the waves?",
@@ -5657,7 +5713,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 22,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "There is partial easing between the waves.",
@@ -5683,7 +5739,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 22,
+          "t_ms": 25,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How long does each episode last?",
@@ -5695,7 +5751,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 24,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Each wave lasts several minutes.",
@@ -5721,7 +5777,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 24,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What were you doing when this started?",
@@ -5732,7 +5788,7 @@
         },
         {
           "seq": 25,
-          "t_ms": 25,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It started while I was at work, without trauma.",
@@ -5755,7 +5811,7 @@
         },
         {
           "seq": 26,
-          "t_ms": 26,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -5767,7 +5823,7 @@
         },
         {
           "seq": 27,
-          "t_ms": 27,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Nothing reliably relieves it.",
@@ -5793,7 +5849,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 28,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -5805,7 +5861,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 29,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "There is no clear movement trigger.",
@@ -5831,7 +5887,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 29,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -5843,7 +5899,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 31,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I tried acetaminophen 500 mg without relief.",
@@ -5869,7 +5925,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 31,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -5881,10 +5937,10 @@
         },
         {
           "seq": 33,
-          "t_ms": 33,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "I passed a kidney stone 5 years ago.",
+          "text": "I had a kidney stone 5 years ago. It needed a procedure to remove it.",
           "meta": {
             "facts_released": [
               "hpi_past_occurrence"
@@ -5892,7 +5948,7 @@
             "concepts": {
               "hpi_past_occurrence": {
                 "polarity": "positive",
-                "value": "I passed a kidney stone 5 years ago."
+                "value": "I had a kidney stone 5 years ago. It needed a procedure to remove it."
               }
             },
             "volunteered": false,
@@ -5907,7 +5963,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 33,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had pain in your side or flank?",
@@ -5919,7 +5975,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 35,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The left flank hurts in waves.",
@@ -5945,7 +6001,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 35,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed blood in your urine?",
@@ -5957,7 +6013,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 37,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My urine looked pink once.",
@@ -5983,7 +6039,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 37,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt nauseated?",
@@ -5995,7 +6051,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 38,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I feel nauseated with the pain.",
@@ -6021,7 +6077,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 39,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you been vomiting?",
@@ -6033,7 +6089,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 40,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I vomited once.",
@@ -6059,7 +6115,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 41,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt unusually tired or low in energy?",
@@ -6071,7 +6127,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 42,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The pain is exhausting.",
@@ -6097,7 +6153,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 43,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are you still able to pass urine?",
@@ -6109,7 +6165,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 44,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am still able to pass urine.",
@@ -6135,7 +6191,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 44,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does it burn when you urinate?",
@@ -6147,7 +6203,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 46,
+          "t_ms": 50,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No burning when I urinate.",
@@ -6173,7 +6229,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 46,
+          "t_ms": 50,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had diarrhea?",
@@ -6185,7 +6241,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 48,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No diarrhea.",
@@ -6211,7 +6267,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 48,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -6223,7 +6279,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 49,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No fever.",
@@ -6249,7 +6305,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 50,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had chills?",
@@ -6261,7 +6317,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 51,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No chills.",
@@ -6287,7 +6343,7 @@
         },
         {
           "seq": 54,
-          "t_ms": 52,
+          "t_ms": 56,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -6299,7 +6355,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 59,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "One prior calcium kidney stone, has two kidneys, no kidney disease.",
@@ -6339,7 +6395,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 60,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -6351,10 +6407,10 @@
         },
         {
           "seq": 57,
-          "t_ms": 61,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "No surgery or admissions except the prior stone visit.",
+          "text": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations.",
           "meta": {
             "facts_released": [
               "history_psh_1"
@@ -6362,7 +6418,7 @@
             "concepts": {
               "history_psh_1": {
                 "polarity": "positive",
-                "value": "No surgery or admissions except the prior stone visit."
+                "value": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations."
               }
             },
             "volunteered": false,
@@ -6377,7 +6433,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 62,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -6389,7 +6445,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 65,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not take daily medicines. I took acetaminophen once today.",
@@ -6422,7 +6478,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 65,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -6434,7 +6490,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 67,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No known drug allergies.",
@@ -6460,7 +6516,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 68,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -6472,7 +6528,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 69,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Never smoked tobacco.",
@@ -6498,7 +6554,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 70,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -6510,7 +6566,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 71,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Two alcoholic drinks weekly.",
@@ -6536,7 +6592,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 72,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -6548,7 +6604,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 73,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -6574,7 +6630,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 74,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -6586,7 +6642,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 75,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a construction estimator.",
@@ -6612,7 +6668,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 76,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How much water do you drink, and can you take water breaks?",
@@ -6624,7 +6680,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 77,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I often cannot take water breaks.",
@@ -6650,7 +6706,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 78,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -6661,7 +6717,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 79,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband.",
@@ -6687,7 +6743,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 80,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your father had?",
@@ -6699,7 +6755,7 @@
         },
         {
           "seq": 75,
-          "t_ms": 81,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My dad is fifty-six and he's had kidney stones over and over.",
@@ -6725,7 +6781,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 82,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -6737,7 +6793,7 @@
         },
         {
           "seq": 77,
-          "t_ms": 83,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My mom is fifty-four and she has high blood pressure.",
@@ -6763,7 +6819,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 84,
+          "t_ms": 89,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -6775,7 +6831,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 85,
+          "t_ms": 90,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have one sister and she's healthy.",
@@ -6801,7 +6857,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 85,
+          "t_ms": 91,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -6813,7 +6869,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 87,
+          "t_ms": 92,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant, but I have not taken a pregnancy test.",
@@ -6839,7 +6895,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 87,
+          "t_ms": 93,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -6850,7 +6906,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 89,
+          "t_ms": 94,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 2 weeks ago.",
@@ -6876,7 +6932,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 89,
+          "t_ms": 94,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -6888,7 +6944,7 @@
         },
         {
           "seq": 85,
-          "t_ms": 90,
+          "t_ms": 96,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Will this damage my kidney?",
@@ -6914,7 +6970,7 @@
         },
         {
           "seq": 86,
-          "t_ms": 91,
+          "t_ms": 96,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -6925,7 +6981,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 101,
+          "t_ms": 107,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Will this damage my kidney?",
@@ -6951,7 +7007,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 102,
+          "t_ms": 107,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -6962,7 +7018,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 103,
+          "t_ms": 109,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Yes, that's fine. Go ahead.",
@@ -6972,7 +7028,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 102,
+          "t_ms": 107,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -6984,7 +7040,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 10103,
+          "t_ms": 10109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -7005,7 +7061,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 10103,
+          "t_ms": 10109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert. Restless, frequently changing position.",
@@ -7033,7 +7089,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 50103,
+          "t_ms": 50109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -7059,7 +7115,7 @@
         },
         {
           "seq": 94,
-          "t_ms": 50103,
+          "t_ms": 50109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rhythm without murmur.",
@@ -7081,7 +7137,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 91103,
+          "t_ms": 91109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -7106,7 +7162,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 91103,
+          "t_ms": 91109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, clear breath sounds bilaterally.",
@@ -7128,7 +7184,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 91103,
+          "t_ms": 91109,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
@@ -7143,7 +7199,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 98103,
+          "t_ms": 98109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect abdomen",
@@ -7165,7 +7221,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 98103,
+          "t_ms": 98109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Abdomen not distended.",
@@ -7187,7 +7243,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 114103,
+          "t_ms": 114109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -7209,7 +7265,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 114103,
+          "t_ms": 114109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Bowel sounds present.",
@@ -7231,7 +7287,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 133103,
+          "t_ms": 133109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -7253,7 +7309,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 133103,
+          "t_ms": 133109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tympanic over examined quadrants.",
@@ -7275,7 +7331,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 164103,
+          "t_ms": 164109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -7300,7 +7356,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 164103,
+          "t_ms": 164109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Mild left lateral abdominal tenderness. No involuntary guarding.",
@@ -7328,7 +7384,7 @@
         },
         {
           "seq": 106,
-          "t_ms": 180103,
+          "t_ms": 180109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Abdominal special tests",
@@ -7350,7 +7406,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 180103,
+          "t_ms": 180109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Left costovertebral angle tenderness; right side nontender.",
@@ -7372,7 +7428,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 180103,
+          "t_ms": 180109,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
@@ -7387,7 +7443,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 205103,
+          "t_ms": 205109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -7409,7 +7465,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 205103,
+          "t_ms": 205109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T10 paraspinal tissue texture change with mild tenderness on the right.",
@@ -7431,7 +7487,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 224103,
+          "t_ms": 224109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -7453,7 +7509,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 224103,
+          "t_ms": 224109,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -7475,7 +7531,7 @@
         },
         {
           "seq": 113,
-          "t_ms": 224103,
+          "t_ms": 224109,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend checking for a stone or another cause of blockage, while looking carefully for infection. Wave-like pain can fit a stone, but fever with an obstructed kidney needs urgent treatment. Appropriate urine tests and imaging can help.",
@@ -7487,7 +7543,7 @@
         },
         {
           "seq": 114,
-          "t_ms": 224103,
+          "t_ms": 224109,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend checking for a stone or another cause of blockage, while looking carefully for infection. Wave-like pain can fit a stone, but fever with an obstructed kidney needs urgent treatment. Appropriate urine tests and imaging can help.",
@@ -7500,7 +7556,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 224103,
+          "t_ms": 224109,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -7510,7 +7566,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 224103,
+          "t_ms": 224109,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -7523,7 +7579,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 224103,
+          "t_ms": 224109,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Will this damage my kidney?",
@@ -7538,7 +7594,7 @@
         },
         {
           "seq": 118,
-          "t_ms": 224103,
+          "t_ms": 224109,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Some obstructions can affect a kidney, especially with infection or reduced urine output, but pain alone does not establish damage. I recommend checking urine, kidney function and appropriate imaging. Fever, inability to urinate or worsening illness needs urgent reassessment.",
@@ -7550,7 +7606,7 @@
         },
         {
           "seq": 119,
-          "t_ms": 224103,
+          "t_ms": 224109,
           "phase": "encounter",
           "kind": "counseling",
           "text": "Some obstructions can affect a kidney, especially with infection or reduced urine output, but pain alone does not establish damage. I recommend checking urine, kidney function and appropriate imaging. Fever, inability to urinate or worsening illness needs urgent reassessment.",
@@ -7562,7 +7618,7 @@
         },
         {
           "seq": 120,
-          "t_ms": 224103,
+          "t_ms": 224109,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Alright. Thank you for explaining that.",
@@ -7571,13 +7627,13 @@
           }
         }
       ],
-      "note_words": 464,
-      "estimated_encounter_s": 552,
+      "note_words": 505,
+      "estimated_encounter_s": 561,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 5
+        "unresolved_count": 8
       },
       "reasoning": [
         {
@@ -7696,11 +7752,25 @@
           "kind": "supplementary_clinical",
           "reviewed": "2026-09-09",
           "review_scope": "Conditional alternative-plan counseling/testing; no new patient history or course requirement."
+        },
+        {
+          "title": "Treatment for kidney stones",
+          "url": "https://www.niddk.nih.gov/health-information/urologic-diseases/kidney-stones/treatment",
+          "kind": "supplementary_clinical",
+          "reviewed": "2026-09-14",
+          "review_scope": "Ureteroscopy and temporary stents are established stone procedures; treatment and prevention depend on the patient and stone history."
+        },
+        {
+          "title": "ACP/AAFP: Acute non-low-back musculoskeletal injury treatment",
+          "url": "https://www.acponline.org/acp-newsroom/acp-aafp-release-new-guideline-for-treatment-of-non-low-back-pain-from-musculoskeletal-injuries-in",
+          "kind": "supplementary_clinical",
+          "reviewed": "2026-09-14",
+          "review_scope": "Conditional analgesic option only if a focal muscle strain is supported after urgent renal causes are excluded. The 48\u201372-hour stable outpatient review is an authored teaching disposition, not a cited mandatory interval."
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "137cb61582af302eda9de70a5ccf4dd1bef88fc769f9ce16356e12ed24cb9afa",
-      "engine_version": "4.0.4"
+      "case_hash": "2a9e362726da362c868a3da2e54ab5275be23c8060d64dadb4eb02282f8f913d",
+      "engine_version": "4.1.0"
     },
     {
       "case_id": "renal-colicky-flank",
@@ -7939,7 +8009,7 @@
           "kind": "dialogue",
           "section": "Build the symptom pattern",
           "student": "Have you had anything like this before?",
-          "patient": "I passed a kidney stone 5 years ago.",
+          "patient": "I had a kidney stone 5 years ago. It needed a procedure to remove it.",
           "why": "",
           "event_ids": [
             32,
@@ -8109,7 +8179,7 @@
           "kind": "dialogue",
           "section": "Relevant background",
           "student": "Have you had any surgeries or hospital admissions?",
-          "patient": "No surgery or admissions except the prior stone visit.",
+          "patient": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations.",
           "why": "",
           "event_ids": [
             56,
@@ -8555,7 +8625,7 @@
         }
       ],
       "note": {
-        "S": "cc: Severe flank pain that comes in waves\n\nHPI: 27-year-old woman with sudden left flank pain radiating to the left groin; onset 4 hours ago. Sharp cramping waves last several minutes with partial relief between; worst 9/10. Began at work without trauma or clear movement trigger. No reliable relief; acetaminophen 500 mg ineffective. One episode of pink urine, nausea, one emesis and fatigue from pain. Passed a kidney stone 5 years ago.\n\nPerspective: Will this damage my kidney?\n\nPMH: One prior calcium kidney stone; has two kidneys; no kidney disease.\n\nPSH: No surgery or admissions except the prior stone visit.\n\nMeds: No daily medicines; acetaminophen once today.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. Two alcoholic drinks weekly. No recreational drugs. Construction estimator; often cannot take water breaks; lives with husband.\n\nFH: My dad is fifty-six and he's had kidney stones over and over.; My mom is fifty-four and she has high blood pressure.; I have one sister and she's healthy.\n\nROS: Urinary - Reports flank pain. Reports hematuria. Denies dysuria. Gastrointestinal - Reports nausea. Reports vomiting. Denies diarrhea. General - Denies fever. Denies chills. Reports fatigue.\n\nPatient concern: I cannot easily leave work for follow-up because I am paid by the hour.\nUrinary history: I am still able to pass urine.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
+        "S": "cc: Severe flank pain that comes in waves\n\nHPI: 27-year-old woman with sudden left flank pain radiating to the left groin; onset 4 hours ago. Sharp cramping waves last several minutes with partial relief between; worst 9/10. Began at work without trauma or clear movement trigger. No reliable relief; acetaminophen 500 mg ineffective. One episode of pink urine, nausea, one emesis and fatigue from pain. A kidney stone required removal 5 years ago.\n\nPerspective: Will this damage my kidney?\n\nPMH: One prior calcium kidney stone; has two kidneys; no kidney disease.\n\nPSH: Ureteroscopy for stone removal at age 22; temporary stent removed 1 week later. No other operations.\n\nMeds: No daily medicines; acetaminophen once today.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. Two alcoholic drinks weekly. No recreational drugs. Construction estimator; often cannot take water breaks; lives with husband.\n\nFH: My dad is fifty-six and he's had kidney stones over and over.; My mom is fifty-four and she has high blood pressure.; I have one sister and she's healthy.\n\nROS: Urinary - Reports flank pain. Reports hematuria. Denies dysuria. Gastrointestinal - Reports nausea. Reports vomiting. Denies diarrhea. General - Denies fever. Denies chills. Reports fatigue.\n\nPatient concern: I cannot easily leave work for follow-up because I am paid by the hour.\nUrinary history: I am still able to pass urine.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.\nReproductive history: My last period was 2 weeks ago.",
         "O": "Vitals: T 98.7 F oral, P 98 bpm, BP 142/86 mmHg, R 20 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Restless, frequently changing position.\nHeart: Regular rhythm without murmur.\nLungs: In the examined posterior fields, clear breath sounds bilaterally.\nAbdomen: Abdomen not distended.\nAbdomen: Bowel sounds present.\nAbdomen: Tympanic over examined quadrants.\nAbdomen: Mild left lateral abdominal tenderness. No involuntary guarding.\nAbdomen: Left costovertebral angle tenderness; right side nontender.\nOsteopathic: T10 paraspinal tissue texture change with mild tenderness on the right.\nSkin: No visible rash on the inspected arms.",
         "A": [
           "1. Ureteral calculus",
@@ -8563,9 +8633,9 @@
           "3. Musculoskeletal flank strain"
         ],
         "P": [
-          "1. Assess pain control, hydration, urine output, solitary kidney and infection risk; obtain urinalysis, creatinine and appropriate renal imaging; provide clinician-directed analgesia and antiemetic, with urgent urology for infected obstruction or renal compromise; explain urine straining if discharged and arrange prompt follow-up, with emergency return for fever or inability to urinate. Discuss a concrete follow-up route and work documentation while explaining which warning signs cannot wait.",
+          "1. Assess pain control, hydration, urine output, solitary kidney and infection risk; obtain urinalysis, creatinine and appropriate renal imaging; provide clinician-directed analgesia and antiemetic, with urgent urology for infected obstruction or renal compromise; explain urine straining if discharged and arrange a symptom and result review within 48\u201372 hours after acute assessment if stable for outpatient care, with emergency return for fever or inability to urinate. Discuss a concrete follow-up route and work documentation while explaining which warning signs cannot wait.",
           "2. Obtain urine culture if infection is suspected and monitor systemic features; an obstructed infected urinary system needs urgent drainage evaluation rather than antibiotics alone; explain the fever/rigor emergency precaution.",
-          "3. Ask about mechanical triggers and assess focal musculature after urgent renal causes; consider conservative treatment only if supported; advise reassessment for new urinary or systemic features. If urgent renal causes are excluded and a muscular cause is supported, advise continued gentle daily activity as tolerated and avoidance of prolonged bed rest."
+          "3. Ask about mechanical triggers and assess focal musculature after urgent renal causes; consider conservative treatment only if supported; advise reassessment for new urinary or systemic features. If urgent renal causes are excluded and a muscular cause is supported, advise continued gentle daily activity as tolerated and avoidance of prolonged bed rest. If a focal muscle strain is supported, consider acetaminophen after reviewing contraindications and the response to the earlier dose."
         ]
       },
       "note_links": [
@@ -8681,13 +8751,14 @@
         },
         {
           "section": "S",
-          "statement": "Passed a kidney stone 5 years ago.",
+          "statement": "A kidney stone required removal 5 years ago.",
           "event_ids": [
-            33
+            33,
+            55
           ],
           "classification": "reported / supplied history",
-          "trace_method": "grader-linked delivered evidence",
-          "audit_verdict": "supported"
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
         },
         {
           "section": "S",
@@ -8731,7 +8802,27 @@
         },
         {
           "section": "S",
-          "statement": "No surgery or admissions except the prior stone visit.",
+          "statement": "Ureteroscopy for stone removal at age 22;",
+          "event_ids": [
+            57
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "temporary stent removed 1 week later.",
+          "event_ids": [
+            57
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "No other operations.",
           "event_ids": [
             57
           ],
@@ -9249,7 +9340,7 @@
         },
         {
           "seq": 4,
-          "t_ms": 0,
+          "t_ms": 1,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
@@ -9260,7 +9351,7 @@
         },
         {
           "seq": 5,
-          "t_ms": 0,
+          "t_ms": 1,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
@@ -9272,7 +9363,7 @@
         },
         {
           "seq": 6,
-          "t_ms": 0,
+          "t_ms": 1,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
@@ -9284,7 +9375,7 @@
         },
         {
           "seq": 7,
-          "t_ms": 3,
+          "t_ms": 8,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
@@ -9297,7 +9388,7 @@
         },
         {
           "seq": 8,
-          "t_ms": 3,
+          "t_ms": 8,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -9309,7 +9400,7 @@
         },
         {
           "seq": 9,
-          "t_ms": 5,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The pain in my side comes in terrible waves and I cannot get comfortable.",
@@ -9335,7 +9426,7 @@
         },
         {
           "seq": 10,
-          "t_ms": 5,
+          "t_ms": 12,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your symptoms first begin?",
@@ -9346,7 +9437,7 @@
         },
         {
           "seq": 11,
-          "t_ms": 7,
+          "t_ms": 14,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It started suddenly 4 hours ago.",
@@ -9372,7 +9463,7 @@
         },
         {
           "seq": 12,
-          "t_ms": 7,
+          "t_ms": 15,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the symptoms?",
@@ -9383,7 +9474,7 @@
         },
         {
           "seq": 13,
-          "t_ms": 9,
+          "t_ms": 16,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is in my left flank.",
@@ -9409,7 +9500,7 @@
         },
         {
           "seq": 14,
-          "t_ms": 9,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the discomfort spread anywhere else?",
@@ -9421,7 +9512,7 @@
         },
         {
           "seq": 15,
-          "t_ms": 10,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It travels toward my left groin.",
@@ -9447,7 +9538,7 @@
         },
         {
           "seq": 16,
-          "t_ms": 11,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does it feel like?",
@@ -9459,7 +9550,7 @@
         },
         {
           "seq": 17,
-          "t_ms": 12,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is sharp and cramping in waves.",
@@ -9485,7 +9576,7 @@
         },
         {
           "seq": 18,
-          "t_ms": 13,
+          "t_ms": 20,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad are the symptoms, and how do they affect what you can do?",
@@ -9497,7 +9588,7 @@
         },
         {
           "seq": 19,
-          "t_ms": 14,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "At its worst it is 9/10.",
@@ -9523,7 +9614,7 @@
         },
         {
           "seq": 20,
-          "t_ms": 15,
+          "t_ms": 22,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the pain ease between the waves?",
@@ -9535,7 +9626,7 @@
         },
         {
           "seq": 21,
-          "t_ms": 16,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "There is partial easing between the waves.",
@@ -9561,7 +9652,7 @@
         },
         {
           "seq": 22,
-          "t_ms": 17,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How long does each episode last?",
@@ -9573,7 +9664,7 @@
         },
         {
           "seq": 23,
-          "t_ms": 18,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Each wave lasts several minutes.",
@@ -9599,7 +9690,7 @@
         },
         {
           "seq": 24,
-          "t_ms": 19,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What were you doing when this started?",
@@ -9610,7 +9701,7 @@
         },
         {
           "seq": 25,
-          "t_ms": 20,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It started while I was at work, without trauma.",
@@ -9633,7 +9724,7 @@
         },
         {
           "seq": 26,
-          "t_ms": 20,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it better?",
@@ -9645,7 +9736,7 @@
         },
         {
           "seq": 27,
-          "t_ms": 22,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Nothing reliably relieves it.",
@@ -9671,7 +9762,7 @@
         },
         {
           "seq": 28,
-          "t_ms": 22,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes it worse?",
@@ -9683,7 +9774,7 @@
         },
         {
           "seq": 29,
-          "t_ms": 23,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "There is no clear movement trigger.",
@@ -9709,7 +9800,7 @@
         },
         {
           "seq": 30,
-          "t_ms": 24,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you tried for this, and did it help?",
@@ -9721,7 +9812,7 @@
         },
         {
           "seq": 31,
-          "t_ms": 25,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I tried acetaminophen 500 mg without relief.",
@@ -9747,7 +9838,7 @@
         },
         {
           "seq": 32,
-          "t_ms": 26,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had anything like this before?",
@@ -9759,10 +9850,10 @@
         },
         {
           "seq": 33,
-          "t_ms": 27,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "I passed a kidney stone 5 years ago.",
+          "text": "I had a kidney stone 5 years ago. It needed a procedure to remove it.",
           "meta": {
             "facts_released": [
               "hpi_past_occurrence"
@@ -9770,7 +9861,7 @@
             "concepts": {
               "hpi_past_occurrence": {
                 "polarity": "positive",
-                "value": "I passed a kidney stone 5 years ago."
+                "value": "I had a kidney stone 5 years ago. It needed a procedure to remove it."
               }
             },
             "volunteered": false,
@@ -9785,7 +9876,7 @@
         },
         {
           "seq": 34,
-          "t_ms": 28,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had pain in your side or flank?",
@@ -9797,7 +9888,7 @@
         },
         {
           "seq": 35,
-          "t_ms": 29,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The left flank hurts in waves.",
@@ -9823,7 +9914,7 @@
         },
         {
           "seq": 36,
-          "t_ms": 30,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed blood in your urine?",
@@ -9835,7 +9926,7 @@
         },
         {
           "seq": 37,
-          "t_ms": 31,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My urine looked pink once.",
@@ -9861,7 +9952,7 @@
         },
         {
           "seq": 38,
-          "t_ms": 32,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt nauseated?",
@@ -9873,7 +9964,7 @@
         },
         {
           "seq": 39,
-          "t_ms": 33,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I feel nauseated with the pain.",
@@ -9899,7 +9990,7 @@
         },
         {
           "seq": 40,
-          "t_ms": 33,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you been vomiting?",
@@ -9911,7 +10002,7 @@
         },
         {
           "seq": 41,
-          "t_ms": 35,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I vomited once.",
@@ -9937,7 +10028,7 @@
         },
         {
           "seq": 42,
-          "t_ms": 35,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you felt unusually tired or low in energy?",
@@ -9949,7 +10040,7 @@
         },
         {
           "seq": 43,
-          "t_ms": 37,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The pain is exhausting.",
@@ -9975,7 +10066,7 @@
         },
         {
           "seq": 44,
-          "t_ms": 37,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are you still able to pass urine?",
@@ -9987,7 +10078,7 @@
         },
         {
           "seq": 45,
-          "t_ms": 38,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am still able to pass urine.",
@@ -10013,7 +10104,7 @@
         },
         {
           "seq": 46,
-          "t_ms": 39,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does it burn when you urinate?",
@@ -10025,7 +10116,7 @@
         },
         {
           "seq": 47,
-          "t_ms": 40,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No burning when I urinate.",
@@ -10051,7 +10142,7 @@
         },
         {
           "seq": 48,
-          "t_ms": 41,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had diarrhea?",
@@ -10063,7 +10154,7 @@
         },
         {
           "seq": 49,
-          "t_ms": 42,
+          "t_ms": 50,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No diarrhea.",
@@ -10089,7 +10180,7 @@
         },
         {
           "seq": 50,
-          "t_ms": 43,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -10101,7 +10192,7 @@
         },
         {
           "seq": 51,
-          "t_ms": 44,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No fever.",
@@ -10127,7 +10218,7 @@
         },
         {
           "seq": 52,
-          "t_ms": 44,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had chills?",
@@ -10139,7 +10230,7 @@
         },
         {
           "seq": 53,
-          "t_ms": 46,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No chills.",
@@ -10165,7 +10256,7 @@
         },
         {
           "seq": 54,
-          "t_ms": 46,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions have you been diagnosed with?",
@@ -10177,7 +10268,7 @@
         },
         {
           "seq": 55,
-          "t_ms": 51,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "One prior calcium kidney stone, has two kidneys, no kidney disease.",
@@ -10217,7 +10308,7 @@
         },
         {
           "seq": 56,
-          "t_ms": 51,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had any surgeries or hospital admissions?",
@@ -10229,10 +10320,10 @@
         },
         {
           "seq": 57,
-          "t_ms": 53,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "No surgery or admissions except the prior stone visit.",
+          "text": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations.",
           "meta": {
             "facts_released": [
               "history_psh_1"
@@ -10240,7 +10331,7 @@
             "concepts": {
               "history_psh_1": {
                 "polarity": "positive",
-                "value": "No surgery or admissions except the prior stone visit."
+                "value": "At 22, I had a ureteroscopy to remove a stone. They took the temporary stent out a week later. I have had no other operations."
               }
             },
             "volunteered": false,
@@ -10255,7 +10346,7 @@
         },
         {
           "seq": 58,
-          "t_ms": 53,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take, including prescriptions, over-the-counter products, and supplements?",
@@ -10267,7 +10358,7 @@
         },
         {
           "seq": 59,
-          "t_ms": 56,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not take daily medicines. I took acetaminophen once today.",
@@ -10300,7 +10391,7 @@
         },
         {
           "seq": 60,
-          "t_ms": 57,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have any medication allergies, and what reaction do you have?",
@@ -10312,7 +10403,7 @@
         },
         {
           "seq": 61,
-          "t_ms": 59,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No known drug allergies.",
@@ -10338,7 +10429,7 @@
         },
         {
           "seq": 62,
-          "t_ms": 59,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use tobacco or smoke?",
@@ -10350,7 +10441,7 @@
         },
         {
           "seq": 63,
-          "t_ms": 61,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Never smoked tobacco.",
@@ -10376,7 +10467,7 @@
         },
         {
           "seq": 64,
-          "t_ms": 61,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol, and how much?",
@@ -10388,7 +10479,7 @@
         },
         {
           "seq": 65,
-          "t_ms": 63,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Two alcoholic drinks weekly.",
@@ -10414,7 +10505,7 @@
         },
         {
           "seq": 66,
-          "t_ms": 63,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use any recreational drugs?",
@@ -10426,7 +10517,7 @@
         },
         {
           "seq": 67,
-          "t_ms": 65,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No recreational drugs.",
@@ -10452,7 +10543,7 @@
         },
         {
           "seq": 68,
-          "t_ms": 65,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -10464,7 +10555,7 @@
         },
         {
           "seq": 69,
-          "t_ms": 67,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a construction estimator.",
@@ -10490,7 +10581,7 @@
         },
         {
           "seq": 70,
-          "t_ms": 67,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How much water do you drink, and can you take water breaks?",
@@ -10502,7 +10593,7 @@
         },
         {
           "seq": 71,
-          "t_ms": 69,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I often cannot take water breaks.",
@@ -10528,7 +10619,7 @@
         },
         {
           "seq": 72,
-          "t_ms": 70,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -10539,7 +10630,7 @@
         },
         {
           "seq": 73,
-          "t_ms": 72,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my husband.",
@@ -10565,7 +10656,7 @@
         },
         {
           "seq": 74,
-          "t_ms": 72,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your father had?",
@@ -10577,7 +10668,7 @@
         },
         {
           "seq": 75,
-          "t_ms": 74,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My dad is fifty-six and he's had kidney stones over and over.",
@@ -10603,7 +10694,7 @@
         },
         {
           "seq": 76,
-          "t_ms": 74,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems has your mother had?",
@@ -10615,7 +10706,7 @@
         },
         {
           "seq": 77,
-          "t_ms": 76,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My mom is fifty-four and she has high blood pressure.",
@@ -10641,7 +10732,7 @@
         },
         {
           "seq": 78,
-          "t_ms": 76,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems have your siblings had?",
@@ -10653,7 +10744,7 @@
         },
         {
           "seq": 79,
-          "t_ms": 77,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have one sister and she's healthy.",
@@ -10679,7 +10770,7 @@
         },
         {
           "seq": 80,
-          "t_ms": 78,
+          "t_ms": 89,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there any chance you could be pregnant?",
@@ -10691,7 +10782,7 @@
         },
         {
           "seq": 81,
-          "t_ms": 79,
+          "t_ms": 90,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not think I am pregnant, but I have not taken a pregnancy test.",
@@ -10717,7 +10808,7 @@
         },
         {
           "seq": 82,
-          "t_ms": 80,
+          "t_ms": 91,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When was your last period?",
@@ -10728,7 +10819,7 @@
         },
         {
           "seq": 83,
-          "t_ms": 81,
+          "t_ms": 92,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My last period was 2 weeks ago.",
@@ -10754,7 +10845,7 @@
         },
         {
           "seq": 84,
-          "t_ms": 82,
+          "t_ms": 93,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most about these symptoms?",
@@ -10766,7 +10857,7 @@
         },
         {
           "seq": 85,
-          "t_ms": 83,
+          "t_ms": 94,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Will this damage my kidney?",
@@ -10792,7 +10883,7 @@
         },
         {
           "seq": 86,
-          "t_ms": 84,
+          "t_ms": 94,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What might make the care plan difficult for you to follow?",
@@ -10804,7 +10895,7 @@
         },
         {
           "seq": 87,
-          "t_ms": 85,
+          "t_ms": 96,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I cannot easily leave work for follow-up because I am paid by the hour.",
@@ -10830,7 +10921,7 @@
         },
         {
           "seq": 88,
-          "t_ms": 86,
+          "t_ms": 97,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -10841,7 +10932,7 @@
         },
         {
           "seq": 89,
-          "t_ms": 97,
+          "t_ms": 108,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I cannot easily leave work for follow-up because I am paid by the hour. Like I said, will this damage my kidney? Right, I cannot easily leave work for follow-up because I am paid by the hour.",
@@ -10876,7 +10967,7 @@
         },
         {
           "seq": 90,
-          "t_ms": 98,
+          "t_ms": 109,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -10887,7 +10978,7 @@
         },
         {
           "seq": 91,
-          "t_ms": 99,
+          "t_ms": 110,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Yes, that's fine. Go ahead.",
@@ -10897,7 +10988,7 @@
         },
         {
           "seq": 92,
-          "t_ms": 98,
+          "t_ms": 109,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -10909,7 +11000,7 @@
         },
         {
           "seq": 93,
-          "t_ms": 10100,
+          "t_ms": 10111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -10930,7 +11021,7 @@
         },
         {
           "seq": 94,
-          "t_ms": 10100,
+          "t_ms": 10111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert. Restless, frequently changing position.",
@@ -10958,7 +11049,7 @@
         },
         {
           "seq": 95,
-          "t_ms": 50100,
+          "t_ms": 50111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -10984,7 +11075,7 @@
         },
         {
           "seq": 96,
-          "t_ms": 50100,
+          "t_ms": 50111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rhythm without murmur.",
@@ -11006,7 +11097,7 @@
         },
         {
           "seq": 97,
-          "t_ms": 91100,
+          "t_ms": 91111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -11031,7 +11122,7 @@
         },
         {
           "seq": 98,
-          "t_ms": 91100,
+          "t_ms": 91111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "In the examined posterior fields, clear breath sounds bilaterally.",
@@ -11053,7 +11144,7 @@
         },
         {
           "seq": 99,
-          "t_ms": 91100,
+          "t_ms": 91111,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient supine.",
@@ -11068,7 +11159,7 @@
         },
         {
           "seq": 100,
-          "t_ms": 98100,
+          "t_ms": 98111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect abdomen",
@@ -11090,7 +11181,7 @@
         },
         {
           "seq": 101,
-          "t_ms": 98100,
+          "t_ms": 98111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Abdomen not distended.",
@@ -11112,7 +11203,7 @@
         },
         {
           "seq": 102,
-          "t_ms": 114100,
+          "t_ms": 114111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate abdomen",
@@ -11134,7 +11225,7 @@
         },
         {
           "seq": 103,
-          "t_ms": 114100,
+          "t_ms": 114111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Bowel sounds present.",
@@ -11156,7 +11247,7 @@
         },
         {
           "seq": 104,
-          "t_ms": 133100,
+          "t_ms": 133111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Percuss abdomen",
@@ -11178,7 +11269,7 @@
         },
         {
           "seq": 105,
-          "t_ms": 133100,
+          "t_ms": 133111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tympanic over examined quadrants.",
@@ -11200,7 +11291,7 @@
         },
         {
           "seq": 106,
-          "t_ms": 164100,
+          "t_ms": 164111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate abdomen",
@@ -11225,7 +11316,7 @@
         },
         {
           "seq": 107,
-          "t_ms": 164100,
+          "t_ms": 164111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Mild left lateral abdominal tenderness. No involuntary guarding.",
@@ -11253,7 +11344,7 @@
         },
         {
           "seq": 108,
-          "t_ms": 180100,
+          "t_ms": 180111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Abdominal special tests",
@@ -11275,7 +11366,7 @@
         },
         {
           "seq": 109,
-          "t_ms": 180100,
+          "t_ms": 180111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Left costovertebral angle tenderness; right side nontender.",
@@ -11297,7 +11388,7 @@
         },
         {
           "seq": 110,
-          "t_ms": 180100,
+          "t_ms": 180111,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Offered assistance positioning the patient seated.",
@@ -11312,7 +11403,7 @@
         },
         {
           "seq": 111,
-          "t_ms": 205100,
+          "t_ms": 205111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -11334,7 +11425,7 @@
         },
         {
           "seq": 112,
-          "t_ms": 205100,
+          "t_ms": 205111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T10 paraspinal tissue texture change with mild tenderness on the right.",
@@ -11356,7 +11447,7 @@
         },
         {
           "seq": 113,
-          "t_ms": 224100,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -11378,7 +11469,7 @@
         },
         {
           "seq": 114,
-          "t_ms": 224100,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No visible rash on the inspected arms.",
@@ -11400,7 +11491,7 @@
         },
         {
           "seq": 115,
-          "t_ms": 224100,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I recommend checking for a stone or another cause of blockage, while looking carefully for infection. Wave-like pain can fit a stone, but fever with an obstructed kidney needs urgent treatment. Appropriate urine tests and imaging can help.",
@@ -11412,7 +11503,7 @@
         },
         {
           "seq": 116,
-          "t_ms": 224100,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I recommend checking for a stone or another cause of blockage, while looking carefully for infection. Wave-like pain can fit a stone, but fever with an obstructed kidney needs urgent treatment. Appropriate urine tests and imaging can help.",
@@ -11425,7 +11516,7 @@
         },
         {
           "seq": 117,
-          "t_ms": 224100,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Okay, that makes sense.",
@@ -11435,7 +11526,7 @@
         },
         {
           "seq": 118,
-          "t_ms": 224100,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -11448,7 +11539,7 @@
         },
         {
           "seq": 119,
-          "t_ms": 224100,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I cannot easily leave work for follow-up because I am paid by the hour.",
@@ -11463,7 +11554,7 @@
         },
         {
           "seq": 120,
-          "t_ms": 224100,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Tell the care team that time away from work affects your income. We can discuss a practical follow-up arrangement and written instructions; fever, inability to drink or worsening illness still need urgent reassessment.",
@@ -11475,7 +11566,7 @@
         },
         {
           "seq": 121,
-          "t_ms": 224100,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "counseling",
           "text": "Tell the care team that time away from work affects your income. We can discuss a practical follow-up arrangement and written instructions; fever, inability to drink or worsening illness still need urgent reassessment.",
@@ -11487,7 +11578,7 @@
         },
         {
           "seq": 122,
-          "t_ms": 224100,
+          "t_ms": 224111,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I will explain the work problem to the team and discuss a follow-up plan. I understand that becoming more ill still needs urgent reassessment.",
@@ -11499,13 +11590,13 @@
           }
         }
       ],
-      "note_words": 495,
-      "estimated_encounter_s": 583,
+      "note_words": 536,
+      "estimated_encounter_s": 592,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 5
+        "unresolved_count": 8
       },
       "reasoning": [
         {
@@ -11624,11 +11715,25 @@
           "kind": "supplementary_clinical",
           "reviewed": "2026-09-09",
           "review_scope": "Conditional alternative-plan counseling/testing; no new patient history or course requirement."
+        },
+        {
+          "title": "Treatment for kidney stones",
+          "url": "https://www.niddk.nih.gov/health-information/urologic-diseases/kidney-stones/treatment",
+          "kind": "supplementary_clinical",
+          "reviewed": "2026-09-14",
+          "review_scope": "Ureteroscopy and temporary stents are established stone procedures; treatment and prevention depend on the patient and stone history."
+        },
+        {
+          "title": "ACP/AAFP: Acute non-low-back musculoskeletal injury treatment",
+          "url": "https://www.acponline.org/acp-newsroom/acp-aafp-release-new-guideline-for-treatment-of-non-low-back-pain-from-musculoskeletal-injuries-in",
+          "kind": "supplementary_clinical",
+          "reviewed": "2026-09-14",
+          "review_scope": "Conditional analgesic option only if a focal muscle strain is supported after urgent renal causes are excluded. The 48\u201372-hour stable outpatient review is an authored teaching disposition, not a cited mandatory interval."
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "d1779cb1cffa2d470e194b6b40ff3bc11ff8cb8ba3da5fa6fda251a87422c244",
-      "engine_version": "4.0.4"
+      "case_hash": "ed7a61966b552d5368a99dfff33e0aaf818f396f1a5d19ea5c3ed2dfda126112",
+      "engine_version": "4.1.0"
     }
   ]
 }

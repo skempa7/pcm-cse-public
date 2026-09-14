@@ -1,0 +1,3402 @@
+{
+  "case_id": "skin-localized-redness",
+  "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
+  "walkthroughs": [
+    {
+      "case_id": "skin-localized-redness",
+      "variant_id": "base",
+      "variant_label": "Core presentation",
+      "title": "Expanding painful redness on the leg",
+      "patient": {
+        "name": "Owen Price",
+        "age": 42,
+        "sex": "male"
+      },
+      "system": "Skin",
+      "doorway": {
+        "doorway": [
+          "Owen Price, 42-year-old male.",
+          "A red sore patch on my left shin is getting bigger.",
+          "Vital signs are available on the chart.",
+          "Perform a focused history and physical examination, discuss your plan, and document only what you obtain.",
+          "Use the time limit stated for your selected practice mode."
+        ],
+        "vitals": {
+          "BP": "126/78 mmHg",
+          "P": "84 bpm",
+          "R": "16 rpm",
+          "T": "99.0 F oral",
+          "Pulse Ox": "98% on room air",
+          "Ht": "6' 0\"",
+          "Wt": "190 lbs"
+        },
+        "supplied_results": []
+      },
+      "plan": {
+        "notice": "Describe a localized skin lesion and separate infection from inflammatory and venous mimics.",
+        "anchor": "Expanding painful redness on the leg",
+        "pivot": "Is the area spreading, is pain disproportionate, and is there pus or a venous cord?",
+        "exam": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
+        "avoid": "Treating an unperformed examination or a possible diagnosis as obtained fact."
+      },
+      "goals": [
+        "Describe a localized skin lesion and separate infection from inflammatory and venous mimics.",
+        "Document only supplied, asked or examined information."
+      ],
+      "variant_guidance": "Use this core presentation to learn the sequence before transferring to a variation.",
+      "differences": [],
+      "timeline": [
+        {
+          "kind": "dialogue",
+          "section": "Connect",
+          "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
+          "why": "",
+          "event_ids": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "dialogue",
+          "section": "Listen to the opening",
+          "student": "What brings you in today?",
+          "patient": "A red sore patch on my left shin is getting bigger.",
+          "why": "Describe a localized skin lesion and separate infection from inflammatory and venous mimics.",
+          "event_ids": [
+            8,
+            9
+          ],
+          "fact_ids": [
+            "opening_complaint"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "When did you notice the red area?",
+          "patient": "Two days ago.",
+          "why": "Is the area spreading, is pain disproportionate, and is there pus or a venous cord?",
+          "event_ids": [
+            10,
+            11
+          ],
+          "fact_ids": [
+            "hpi_onset"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "How has the patch changed?",
+          "patient": "It was coin-sized and is now about the size of my palm.",
+          "why": "Change over time can change urgency even when the symptom is familiar.",
+          "event_ids": [
+            12,
+            13
+          ],
+          "fact_ids": [
+            "hpi_chronology"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "Where did it begin?",
+          "patient": "Around a small scratch on the front of my left shin.",
+          "why": "",
+          "event_ids": [
+            14,
+            15
+          ],
+          "fact_ids": [
+            "hpi_location"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "What does it feel like?",
+          "patient": "Warm and sore, more painful than itchy.",
+          "why": "Use the patient\u2019s words before translating them into a clinical description.",
+          "event_ids": [
+            16,
+            17
+          ],
+          "fact_ids": [
+            "hpi_quality"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "How bad is the pain?",
+          "patient": "About 4 out of 10. I can walk normally.",
+          "why": "Intensity and functional effect are distinct; record only the dimension answered.",
+          "event_ids": [
+            18,
+            19
+          ],
+          "fact_ids": [
+            "hpi_severity"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "Is the pain constant?",
+          "patient": "It is a steady soreness.",
+          "why": "Separate time since onset from duration of one episode and from continuity.",
+          "event_ids": [
+            20,
+            21
+          ],
+          "fact_ids": [
+            "hpi_timing"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "How did you get the scratch?",
+          "patient": "A branch scraped me while gardening. Mosquitoes were around, but I did not see a bite there.",
+          "why": "",
+          "event_ids": [
+            22,
+            23
+          ],
+          "fact_ids": [
+            "hpi_setting"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "What helps?",
+          "patient": "Elevating the leg helps the ache.",
+          "why": "Relief changes probability, but is not proof that a serious cause is excluded.",
+          "event_ids": [
+            24,
+            25
+          ],
+          "fact_ids": [
+            "hpi_alleviating"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "What makes it worse?",
+          "patient": "Touching it and standing all day.",
+          "why": "Compare triggers with the chronology; one trigger does not establish a diagnosis.",
+          "event_ids": [
+            26,
+            27
+          ],
+          "fact_ids": [
+            "hpi_aggravating"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "What have you put on it?",
+          "patient": "I washed it with soap and water and used plain petroleum jelly.",
+          "why": "",
+          "event_ids": [
+            28,
+            29
+          ],
+          "fact_ids": [
+            "hpi_treatment"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "Have you had this before?",
+          "patient": "No infection like this before.",
+          "why": "",
+          "event_ids": [
+            30,
+            31
+          ],
+          "fact_ids": [
+            "hpi_past_occurrence"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had rash?",
+          "patient": "The red patch is only on the shin.",
+          "why": "Use this answer to weigh the possibilities described in the reasoning section.",
+          "event_ids": [
+            32,
+            33
+          ],
+          "fact_ids": [
+            "symptom_rash"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had pruritus?",
+          "patient": "A little itch at first, but now it is mostly sore.",
+          "why": "Use this answer to weigh the possibilities described in the reasoning section.",
+          "event_ids": [
+            34,
+            35
+          ],
+          "fact_ids": [
+            "symptom_pruritus"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had edema?",
+          "patient": "Only a little puffiness right around the red spot, not the whole calf.",
+          "why": "Use this answer to weigh the possibilities described in the reasoning section.",
+          "event_ids": [
+            36,
+            37
+          ],
+          "fact_ids": [
+            "symptom_edema"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had skin drainage?",
+          "patient": "No pus has come out.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            38,
+            39
+          ],
+          "fact_ids": [
+            "symptom_skin_drainage"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had a fever?",
+          "patient": "No fever.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            40,
+            41
+          ],
+          "fact_ids": [
+            "symptom_fever"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had chills?",
+          "patient": "No chills.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            42,
+            43
+          ],
+          "fact_ids": [
+            "symptom_chills"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had fatigue?",
+          "patient": "I do not feel ill.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            44,
+            45
+          ],
+          "fact_ids": [
+            "symptom_fatigue"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had chest pain?",
+          "patient": "No chest pain.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            46,
+            47
+          ],
+          "fact_ids": [
+            "symptom_chest_pain"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had dyspnea?",
+          "patient": "No trouble breathing.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            48,
+            49
+          ],
+          "fact_ids": [
+            "symptom_dyspnea"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Relevant background",
+          "student": "What health conditions do you have?",
+          "patient": "Varicose veins in both legs. No diabetes or immune condition.",
+          "why": "",
+          "event_ids": [
+            50,
+            51
+          ],
+          "fact_ids": [
+            "history_medical_history"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Relevant background",
+          "student": "When was your last tetanus shot?",
+          "patient": "Three years ago.",
+          "why": "",
+          "event_ids": [
+            52,
+            53
+          ],
+          "fact_ids": [
+            "history_tetanus"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Relevant background",
+          "student": "Have you had surgery or recent procedures?",
+          "patient": "No operations or recent procedures.",
+          "why": "",
+          "event_ids": [
+            54,
+            55
+          ],
+          "fact_ids": [
+            "history_surgery_and_procedures"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Medicines and reactions",
+          "student": "What medicines do you take?",
+          "patient": "No regular medicine or steroid pills.",
+          "why": "Name, dose and frequency matter; do not fill in missing details.",
+          "event_ids": [
+            56,
+            57
+          ],
+          "fact_ids": [
+            "history_medication"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Medicines and reactions",
+          "student": "Are you allergic to medicines?",
+          "patient": "No known medicine allergies.",
+          "why": "Distinguish the substance and reaction from a blanket allergy label.",
+          "event_ids": [
+            58,
+            59
+          ],
+          "fact_ids": [
+            "history_drug_reactions"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "Do you smoke?",
+          "patient": "I stopped smoking five years ago. Before that, half a pack daily for 12 years.",
+          "why": "",
+          "event_ids": [
+            60,
+            61
+          ],
+          "fact_ids": [
+            "history_smoking"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "How much alcohol do you drink?",
+          "patient": "I do not drink alcohol.",
+          "why": "",
+          "event_ids": [
+            62,
+            63
+          ],
+          "fact_ids": [
+            "history_alcohol"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "Do you use recreational drugs or inject anything?",
+          "patient": "No recreational or injected drugs.",
+          "why": "",
+          "event_ids": [
+            64,
+            65
+          ],
+          "fact_ids": [
+            "history_drugs"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "What does your work involve?",
+          "patient": "I am a barber, standing most of the day.",
+          "why": "",
+          "event_ids": [
+            66,
+            67
+          ],
+          "fact_ids": [
+            "history_work"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "Who can help you at home?",
+          "patient": "My partner can help check the edge of the redness.",
+          "why": "",
+          "event_ids": [
+            68,
+            69
+          ],
+          "fact_ids": [
+            "history_home_and_support"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "Does anyone in your family have blood clots?",
+          "patient": "My mother had a leg clot after hip surgery. No unprovoked family clots that I know of.",
+          "why": "Record which relative and the condition; do not infer a family history from patient worry.",
+          "event_ids": [
+            70,
+            71
+          ],
+          "fact_ids": [
+            "history_family_history"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "What about your father and siblings?",
+          "patient": "My father has high blood pressure. My sister has no major illness.",
+          "why": "Record which relative and the condition; do not infer a family history from patient worry.",
+          "event_ids": [
+            72,
+            73
+          ],
+          "fact_ids": [
+            "history_other_family"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "The patient\u2019s perspective",
+          "student": "What worries you most?",
+          "patient": "I want to know what is causing this and how to get back to my usual activities.",
+          "why": "",
+          "event_ids": [
+            74,
+            75
+          ],
+          "fact_ids": [
+            "patient_concern"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Acknowledge",
+          "student": "Thank you for explaining that. I can understand why this is concerning.",
+          "patient": "Like I said, I want to know what is causing this and how to get back to my usual activities. I'm sorry \u2014 I'm not sure what you mean.",
+          "why": "",
+          "event_ids": [
+            76,
+            77
+          ],
+          "fact_ids": [
+            "patient_concern"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Explain and ask permission",
+          "student": "May I have your permission to examine you?",
+          "patient": "Yes, that's fine. Go ahead.",
+          "why": "",
+          "event_ids": [
+            78,
+            79,
+            80
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "action",
+          "section": "Prepare the examination",
+          "action": "Clean hands, provide privacy and appropriate draping, explain the selected examination and help the patient into a comfortable position.",
+          "why": "These are stated actions in this written example. A visual avatar does not verify hand hygiene, consent or hands-on technique.",
+          "event_ids": []
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "General appearance",
+          "finding": "Well appearing and hemodynamically stable.",
+          "why": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
+          "event_ids": [
+            81,
+            82
+          ],
+          "maneuver_id": "general_inspect",
+          "duration_s": 10
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Auscultate heart \u2014 aortic, pulmonic, tricuspid, mitral, on skin",
+          "finding": "Regular rate and rhythm without murmur.",
+          "why": "The course expects at least four listening posts, on skin.",
+          "event_ids": [
+            83,
+            84
+          ],
+          "maneuver_id": "heart_auscultate",
+          "duration_s": 40
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Auscultate lungs \u2014 posterior, on skin, compare side to side, mouth open",
+          "finding": "Clear bilateral breath sounds.",
+          "why": "The course expects six posterior fields, mouth open, on skin, comparing sides.",
+          "event_ids": [
+            85,
+            86
+          ],
+          "maneuver_id": "lungs_auscultate",
+          "duration_s": 41
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Inspect skin \u2014 legs",
+          "finding": "Anterior left shin: 8 by 10 cm poorly demarcated erythema surrounding a superficial scratch, without vesicles, bullae, necrosis or purulent drainage. Visible superficial varicosities.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            87,
+            88
+          ],
+          "maneuver_id": "skin_inspect",
+          "duration_s": 19
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Palpate the skin concern \u2014 tenderness, warmth, induration, fluctuance",
+          "finding": "Skin warm and tender without fluctuance, crepitus, pain beyond visible margins or a palpable venous cord.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            89,
+            90
+          ],
+          "maneuver_id": "skin_palpate",
+          "duration_s": 25
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Inspect / palpate extremities \u2014 edema, calf symmetry, calf tenderness, capillary refill",
+          "finding": "Mild localized edema at lesion; calves symmetric and nontender; capillary refill under 2 seconds.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            91,
+            92
+          ],
+          "maneuver_id": "extremities",
+          "duration_s": 19
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Palpate peripheral pulses \u2014 dorsalis pedis, posterior tibial",
+          "finding": "Pedal pulses 2+ bilaterally.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            93,
+            94
+          ],
+          "maneuver_id": "peripheral_pulses",
+          "duration_s": 18
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Osteopathic structural screen \u2014 lumbar",
+          "finding": "L2 left lumbar paraspinal tissue texture change and tenderness.",
+          "why": "Name the level examined; findings are released by region.",
+          "event_ids": [
+            95,
+            96
+          ],
+          "maneuver_id": "osteo_screen",
+          "duration_s": 25
+        },
+        {
+          "kind": "dialogue",
+          "section": "Explain next steps",
+          "student": "I will examine the skin and circulation. If this is a skin infection, we can treat it and mark the edge to track it. Review is needed within two to three days, sooner for rapid spread, severe pain or fever.",
+          "patient": "Thank you. I understand that the next steps depend on the examination and tests.",
+          "why": "Proposed care, not a record of tests or treatment already completed.",
+          "event_ids": [
+            97,
+            98
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "dialogue",
+          "section": "Close and check understanding",
+          "student": "What questions do you have about the next steps?",
+          "patient": "I want to know what is causing this and how to get back to my usual activities.",
+          "why": "",
+          "event_ids": [
+            99,
+            100
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "dialogue",
+          "section": "Address the patient\u2019s question",
+          "student": "Your partner can help monitor the marked edge, and we can discuss breaks from standing at work.",
+          "patient": "That would help. Thank you.",
+          "why": "Answer the concern that was just expressed. Give a defensible recommendation and explain uncertainty; do not promise a diagnosis or recovery before the evidence supports it.",
+          "event_ids": [
+            101,
+            102,
+            103
+          ],
+          "fact_ids": []
+        }
+      ],
+      "note": {
+        "S": "CC: A red sore patch on my left shin is getting bigger.\n\nHPI: 42-year-old male. Expanding left shin erythema for 2 days. Began around anterior left shin scratch. Warmth and tenderness predominate over itch. 4/10; normal reported walking ability. Steady discomfort. Expanded from coin-sized to palm-sized. Gardening scratch; insect exposure without witnessed bite at site. Worse with touch and prolonged standing. Elevation relieves aching. Cleansed with soap/water; petrolatum only. No similar prior infection.\n\nPMH: Bilateral varicose veins; no known diabetes or immunocompromise. Reported tetanus immunization 3 years ago.\n\nPSH: No surgical/procedural history.\n\nMeds: No regular medication or systemic steroids.\n\nSH: Former smoker: 6 pack-years; quit 5 years ago. No alcohol. No recreational/injection drugs. Barber; prolonged standing. Partner can monitor skin changes.\n\nFH: Mother: postoperative DVT; no known unprovoked familial thrombosis. Father: hypertension; sister: no known major illness.\n\nAllergies: No known drug allergies.\n\nROS: Skin: Localized shin erythema. No drainage. Initial mild itch; pain now predominant. General: No fever. No chills. No malaise. Cardiovascular: No chest pain. No dyspnea. Localized swelling; no whole-calf swelling.",
+        "O": "Vitals: BP 126/78 mmHg, P 84 bpm, R 16 rpm, T 99.0 F oral, Pulse Ox 98% on room air, Ht 6' 0\", Wt 190 lbs\n\nGeneral: Well appearing and hemodynamically stable.\nHeart: Regular rate and rhythm without murmur.\nLungs: Clear bilateral breath sounds.\nSkin: Anterior left shin: 8 by 10 cm poorly demarcated erythema surrounding a superficial scratch, without vesicles, bullae, necrosis or purulent drainage. Visible superficial varicosities.\nSkin: Skin warm and tender without fluctuance, crepitus, pain beyond visible margins or a palpable venous cord.\nExtremities: Mild localized edema at lesion; calves symmetric and nontender; capillary refill under 2 seconds.\nHeart: Pedal pulses 2+ bilaterally.\nOsteopathic: L2 left lumbar paraspinal tissue texture change and tenderness.",
+        "A": [
+          "1. Nonpurulent cellulitis",
+          "2. Large local inflammatory reaction to an insect bite",
+          "3. Superficial thrombophlebitis"
+        ],
+        "P": [
+          "1. Mark the erythema margin and start an appropriate oral streptococcal-active antibiotic after clinician assessment; a 5-day course is reasonable if improving, adjusted to response/local guidance. Elevate, clean and protect the scratch; no routine culture or MRSA coverage without indication. Review in 48\u201372 hours. Rapid spread, disproportionate pain, fever or systemic illness needs urgent evaluation.",
+          "2. If reassessment supports a noninfectious bite reaction, emphasize cool compresses and appropriate antipruritic treatment rather than unnecessary antibiotics. Explain the difference between itch-predominant local inflammation and worsening infection; monitor the marked margin.",
+          "3. If cord-like tenderness, progression or DVT features appear, use venous ultrasound to define extent and assess deep involvement before selecting treatment. Discuss leg elevation and safe symptom relief; emergency evaluation is needed for new chest pain or breathlessness."
+        ]
+      },
+      "note_links": [
+        {
+          "section": "S",
+          "statement": "A red sore patch on my left shin is getting bigger.",
+          "event_ids": [
+            9
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "42-year-old male.",
+          "event_ids": [
+            2
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Expanding left shin erythema for 2 days.",
+          "event_ids": [
+            11
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Began around anterior left shin scratch.",
+          "event_ids": [
+            15
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Warmth and tenderness predominate over itch.",
+          "event_ids": [
+            17
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "4/10;",
+          "event_ids": [
+            19
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "normal reported walking ability.",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Steady discomfort.",
+          "event_ids": [
+            21
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Expanded from coin-sized to palm-sized.",
+          "event_ids": [
+            13
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Gardening scratch;",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "insect exposure without witnessed bite at site.",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Worse with touch and prolonged standing.",
+          "event_ids": [
+            27
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Elevation relieves aching.",
+          "event_ids": [
+            25
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Cleansed with soap/water;",
+          "event_ids": [
+            29
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "petrolatum only.",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "No similar prior infection.",
+          "event_ids": [
+            31
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Bilateral varicose veins;",
+          "event_ids": [
+            51
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "no known diabetes or immunocompromise.",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Reported tetanus immunization 3 years ago.",
+          "event_ids": [
+            53
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No surgical/procedural history.",
+          "event_ids": [
+            55
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No regular medication or systemic steroids.",
+          "event_ids": [
+            57
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Former smoker: 6 pack-years;",
+          "event_ids": [
+            61
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "quit 5 years ago.",
+          "event_ids": [
+            53,
+            61
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "No alcohol.",
+          "event_ids": [
+            63
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No recreational/injection drugs.",
+          "event_ids": [
+            65
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Barber;",
+          "event_ids": [
+            67
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "prolonged standing.",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Partner can monitor skin changes.",
+          "event_ids": [
+            69
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Mother: postoperative DVT;",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "no known unprovoked familial thrombosis.",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Father: hypertension;",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "sister: no known major illness.",
+          "event_ids": [
+            73
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "No known drug allergies.",
+          "event_ids": [
+            59
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Skin: Localized shin erythema.",
+          "event_ids": [
+            33
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No drainage.",
+          "event_ids": [
+            39
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Initial mild itch;",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "pain now predominant.",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "General: No fever.",
+          "event_ids": [
+            41
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No chills.",
+          "event_ids": [
+            43
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No malaise.",
+          "event_ids": [
+            45
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Cardiovascular: No chest pain.",
+          "event_ids": [
+            47
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No dyspnea.",
+          "event_ids": [
+            49
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Localized swelling;",
+          "event_ids": [
+            37
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "no whole-calf swelling.",
+          "event_ids": [
+            37
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "BP 126/78 mmHg",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "P 84 bpm",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "R 16 rpm",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "T 99.0 F oral",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "Pulse Ox 98% on room air",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "Ht 6' 0\"",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "Wt 190 lbs",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "Well appearing and hemodynamically stable.",
+          "event_ids": [
+            82
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Regular rate and rhythm without murmur.",
+          "event_ids": [
+            84
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Clear bilateral breath sounds.",
+          "event_ids": [
+            86
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Anterior left shin: 8 by 10 cm poorly demarcated erythema surrounding a superficial scratch",
+          "event_ids": [
+            88
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "without vesicles",
+          "event_ids": [
+            88
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "bullae",
+          "event_ids": [
+            88
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "O",
+          "statement": "necrosis or purulent drainage.",
+          "event_ids": [
+            39
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Visible superficial varicosities.",
+          "event_ids": [
+            88
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Skin warm and tender without fluctuance",
+          "event_ids": [
+            90
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "crepitus",
+          "event_ids": [
+            90
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "O",
+          "statement": "pain beyond visible margins or a palpable venous cord.",
+          "event_ids": [
+            90
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "O",
+          "statement": "Mild localized edema at lesion;",
+          "event_ids": [
+            92
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "calves symmetric and nontender;",
+          "event_ids": [
+            92
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "capillary refill under 2 seconds.",
+          "event_ids": [
+            92
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Pedal pulses 2+ bilaterally.",
+          "event_ids": [
+            94
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "L2 left lumbar paraspinal tissue texture change and tenderness.",
+          "event_ids": [
+            96
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        }
+      ],
+      "ledger": [
+        {
+          "seq": 1,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "system",
+          "text": "Encounter started.",
+          "meta": {
+            "event": "phase_start"
+          }
+        },
+        {
+          "seq": 2,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "station_info",
+          "text": "Owen Price, 42-year-old male. A red sore patch on my left shin is getting bigger. Vital signs are available on the chart. Perform a focused history and physical examination, discuss your plan, and document only what you obtain. Use the time limit stated for your selected practice mode.",
+          "meta": {
+            "doorway": true
+          }
+        },
+        {
+          "seq": 3,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "station_info",
+          "text": "Vital signs supplied on the chart: BP 126/78 mmHg, Ht 6' 0\", P 84 bpm, Pulse Ox 98% on room air, R 16 rpm, T 99.0 F oral, Wt 190 lbs",
+          "meta": {
+            "vitals": true,
+            "concepts": {
+              "vitals": {
+                "polarity": "positive",
+                "value": "{\"BP\": \"126/78 mmHg\", \"Ht\": \"6' 0\\\"\", \"P\": \"84 bpm\", \"Pulse Ox\": \"98% on room air\", \"R\": \"16 rpm\", \"T\": \"99.0 F oral\", \"Wt\": \"190 lbs\"}"
+              }
+            }
+          }
+        },
+        {
+          "seq": 4,
+          "t_ms": 1,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "plan_talk": true,
+            "mode": "type"
+          }
+        },
+        {
+          "seq": 5,
+          "t_ms": 1,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
+          }
+        },
+        {
+          "seq": 6,
+          "t_ms": 1,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "courtesy_id": "consent_exam",
+            "label": "Explain the exam and ask permission",
+            "components": []
+          }
+        },
+        {
+          "seq": 7,
+          "t_ms": 8,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
+          }
+        },
+        {
+          "seq": 8,
+          "t_ms": 9,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What brings you in today?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 9,
+          "t_ms": 26,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "A red sore patch on my left shin is getting bigger.",
+          "meta": {
+            "facts_released": [
+              "opening_complaint"
+            ],
+            "concepts": {
+              "opening_complaint": {
+                "polarity": "positive",
+                "value": "A red sore patch on my left shin is getting bigger."
+              }
+            },
+            "volunteered": false,
+            "kind": "opening",
+            "checklist_hits": [
+              "h_opening_complaint"
+            ],
+            "categories": [
+              "chief_complaint"
+            ]
+          }
+        },
+        {
+          "seq": 10,
+          "t_ms": 27,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "When did you notice the red area?",
+          "meta": {
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 11,
+          "t_ms": 28,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Two days ago.",
+          "meta": {
+            "facts_released": [
+              "hpi_onset"
+            ],
+            "concepts": {
+              "hpi_onset": {
+                "polarity": "positive",
+                "value": "Two days ago."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_onset"
+            ],
+            "categories": [
+              "onset"
+            ]
+          }
+        },
+        {
+          "seq": 12,
+          "t_ms": 29,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "How has the patch changed?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 13,
+          "t_ms": 30,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "It was coin-sized and is now about the size of my palm.",
+          "meta": {
+            "facts_released": [
+              "hpi_chronology"
+            ],
+            "concepts": {
+              "hpi_chronology": {
+                "polarity": "positive",
+                "value": "It was coin-sized and is now about the size of my palm."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_chronology"
+            ],
+            "categories": [
+              "chronology"
+            ]
+          }
+        },
+        {
+          "seq": 14,
+          "t_ms": 31,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Where did it begin?",
+          "meta": {
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 15,
+          "t_ms": 32,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Around a small scratch on the front of my left shin.",
+          "meta": {
+            "facts_released": [
+              "hpi_location"
+            ],
+            "concepts": {
+              "hpi_location": {
+                "polarity": "positive",
+                "value": "Around a small scratch on the front of my left shin."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_location"
+            ],
+            "categories": [
+              "location"
+            ]
+          }
+        },
+        {
+          "seq": 16,
+          "t_ms": 33,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What does it feel like?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 17,
+          "t_ms": 34,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Warm and sore, more painful than itchy.",
+          "meta": {
+            "facts_released": [
+              "hpi_quality"
+            ],
+            "concepts": {
+              "hpi_quality": {
+                "polarity": "positive",
+                "value": "Warm and sore, more painful than itchy."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_quality"
+            ],
+            "categories": [
+              "quality"
+            ]
+          }
+        },
+        {
+          "seq": 18,
+          "t_ms": 35,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "How bad is the pain?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 19,
+          "t_ms": 36,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "About 4 out of 10. I can walk normally.",
+          "meta": {
+            "facts_released": [
+              "hpi_severity"
+            ],
+            "concepts": {
+              "hpi_severity": {
+                "polarity": "positive",
+                "value": "About 4 out of 10. I can walk normally."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_severity"
+            ],
+            "categories": [
+              "severity"
+            ]
+          }
+        },
+        {
+          "seq": 20,
+          "t_ms": 37,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Is the pain constant?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 21,
+          "t_ms": 38,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "It is a steady soreness.",
+          "meta": {
+            "facts_released": [
+              "hpi_timing"
+            ],
+            "concepts": {
+              "hpi_timing": {
+                "polarity": "positive",
+                "value": "It is a steady soreness."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_timing"
+            ],
+            "categories": [
+              "timing"
+            ]
+          }
+        },
+        {
+          "seq": 22,
+          "t_ms": 38,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "How did you get the scratch?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 23,
+          "t_ms": 40,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "A branch scraped me while gardening. Mosquitoes were around, but I did not see a bite there.",
+          "meta": {
+            "facts_released": [
+              "hpi_setting"
+            ],
+            "concepts": {
+              "hpi_setting": {
+                "polarity": "positive",
+                "value": "A branch scraped me while gardening. Mosquitoes were around, but I did not see a bite there."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_setting"
+            ],
+            "categories": [
+              "setting"
+            ]
+          }
+        },
+        {
+          "seq": 24,
+          "t_ms": 40,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What helps?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 25,
+          "t_ms": 41,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Elevating the leg helps the ache.",
+          "meta": {
+            "facts_released": [
+              "hpi_alleviating"
+            ],
+            "concepts": {
+              "hpi_alleviating": {
+                "polarity": "positive",
+                "value": "Elevating the leg helps the ache."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_alleviating"
+            ],
+            "categories": [
+              "alleviating"
+            ]
+          }
+        },
+        {
+          "seq": 26,
+          "t_ms": 42,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What makes it worse?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 27,
+          "t_ms": 43,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Touching it and standing all day.",
+          "meta": {
+            "facts_released": [
+              "hpi_aggravating"
+            ],
+            "concepts": {
+              "hpi_aggravating": {
+                "polarity": "positive",
+                "value": "Touching it and standing all day."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_aggravating"
+            ],
+            "categories": [
+              "aggravating"
+            ]
+          }
+        },
+        {
+          "seq": 28,
+          "t_ms": 44,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What have you put on it?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 29,
+          "t_ms": 45,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I washed it with soap and water and used plain petroleum jelly.",
+          "meta": {
+            "facts_released": [
+              "hpi_treatment"
+            ],
+            "concepts": {
+              "hpi_treatment": {
+                "polarity": "positive",
+                "value": "I washed it with soap and water and used plain petroleum jelly."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_treatment"
+            ],
+            "categories": [
+              "treatment"
+            ]
+          }
+        },
+        {
+          "seq": 30,
+          "t_ms": 46,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had this before?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 31,
+          "t_ms": 47,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No infection like this before.",
+          "meta": {
+            "facts_released": [
+              "hpi_past_occurrence"
+            ],
+            "concepts": {
+              "hpi_past_occurrence": {
+                "polarity": "positive",
+                "value": "No infection like this before."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_past_occurrence"
+            ],
+            "categories": [
+              "past_occurrence"
+            ]
+          }
+        },
+        {
+          "seq": 32,
+          "t_ms": 47,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had rash?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 33,
+          "t_ms": 49,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "The red patch is only on the shin.",
+          "meta": {
+            "facts_released": [
+              "symptom_rash"
+            ],
+            "concepts": {
+              "symptom_rash": {
+                "polarity": "positive",
+                "value": "The red patch is only on the shin."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_rash"
+            ],
+            "categories": [
+              "associated"
+            ]
+          }
+        },
+        {
+          "seq": 34,
+          "t_ms": 50,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had pruritus?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 35,
+          "t_ms": 51,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "A little itch at first, but now it is mostly sore.",
+          "meta": {
+            "facts_released": [
+              "symptom_pruritus"
+            ],
+            "concepts": {
+              "symptom_pruritus": {
+                "polarity": "positive",
+                "value": "A little itch at first, but now it is mostly sore."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_pruritus"
+            ],
+            "categories": [
+              "associated"
+            ]
+          }
+        },
+        {
+          "seq": 36,
+          "t_ms": 51,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had edema?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 37,
+          "t_ms": 53,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Only a little puffiness right around the red spot, not the whole calf.",
+          "meta": {
+            "facts_released": [
+              "symptom_edema"
+            ],
+            "concepts": {
+              "symptom_edema": {
+                "polarity": "positive",
+                "value": "Only a little puffiness right around the red spot, not the whole calf."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_edema"
+            ],
+            "categories": [
+              "associated"
+            ]
+          }
+        },
+        {
+          "seq": 38,
+          "t_ms": 53,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had skin drainage?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 39,
+          "t_ms": 55,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No pus has come out.",
+          "meta": {
+            "facts_released": [
+              "symptom_skin_drainage"
+            ],
+            "concepts": {
+              "symptom_skin_drainage": {
+                "polarity": "negative",
+                "value": "No pus has come out."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_skin_drainage"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 40,
+          "t_ms": 55,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had a fever?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 41,
+          "t_ms": 56,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No fever.",
+          "meta": {
+            "facts_released": [
+              "symptom_fever"
+            ],
+            "concepts": {
+              "symptom_fever": {
+                "polarity": "negative",
+                "value": "No fever."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_fever"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 42,
+          "t_ms": 57,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had chills?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 43,
+          "t_ms": 58,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No chills.",
+          "meta": {
+            "facts_released": [
+              "symptom_chills"
+            ],
+            "concepts": {
+              "symptom_chills": {
+                "polarity": "negative",
+                "value": "No chills."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_chills"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 44,
+          "t_ms": 59,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had fatigue?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 45,
+          "t_ms": 60,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I do not feel ill.",
+          "meta": {
+            "facts_released": [
+              "symptom_fatigue"
+            ],
+            "concepts": {
+              "symptom_fatigue": {
+                "polarity": "negative",
+                "value": "I do not feel ill."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_fatigue"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 46,
+          "t_ms": 60,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had chest pain?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 47,
+          "t_ms": 62,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No chest pain.",
+          "meta": {
+            "facts_released": [
+              "symptom_chest_pain"
+            ],
+            "concepts": {
+              "symptom_chest_pain": {
+                "polarity": "negative",
+                "value": "No chest pain."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_chest_pain"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 48,
+          "t_ms": 62,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had dyspnea?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 49,
+          "t_ms": 64,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No trouble breathing.",
+          "meta": {
+            "facts_released": [
+              "symptom_dyspnea"
+            ],
+            "concepts": {
+              "symptom_dyspnea": {
+                "polarity": "negative",
+                "value": "No trouble breathing."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_dyspnea"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 50,
+          "t_ms": 64,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What health conditions do you have?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 51,
+          "t_ms": 66,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Varicose veins in both legs. No diabetes or immune condition.",
+          "meta": {
+            "facts_released": [
+              "history_medical_history"
+            ],
+            "concepts": {
+              "history_medical_history": {
+                "polarity": "positive",
+                "value": "Varicose veins in both legs. No diabetes or immune condition."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_medical_history"
+            ],
+            "categories": [
+              "pmh"
+            ]
+          }
+        },
+        {
+          "seq": 52,
+          "t_ms": 66,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "When was your last tetanus shot?",
+          "meta": {
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 53,
+          "t_ms": 67,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Three years ago.",
+          "meta": {
+            "facts_released": [
+              "history_tetanus"
+            ],
+            "concepts": {
+              "history_tetanus": {
+                "polarity": "positive",
+                "value": "Three years ago."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_tetanus"
+            ],
+            "categories": [
+              "pmh"
+            ]
+          }
+        },
+        {
+          "seq": 54,
+          "t_ms": 68,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had surgery or recent procedures?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 55,
+          "t_ms": 69,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No operations or recent procedures.",
+          "meta": {
+            "facts_released": [
+              "history_surgery_and_procedures"
+            ],
+            "concepts": {
+              "history_surgery_and_procedures": {
+                "polarity": "positive",
+                "value": "No operations or recent procedures."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_surgery_and_procedures"
+            ],
+            "categories": [
+              "psh"
+            ]
+          }
+        },
+        {
+          "seq": 56,
+          "t_ms": 70,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What medicines do you take?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 57,
+          "t_ms": 71,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No regular medicine or steroid pills.",
+          "meta": {
+            "facts_released": [
+              "history_medication"
+            ],
+            "concepts": {
+              "history_medication": {
+                "polarity": "positive",
+                "value": "No regular medicine or steroid pills."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_medication"
+            ],
+            "categories": [
+              "medications"
+            ]
+          }
+        },
+        {
+          "seq": 58,
+          "t_ms": 71,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Are you allergic to medicines?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 59,
+          "t_ms": 73,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No known medicine allergies.",
+          "meta": {
+            "facts_released": [
+              "history_drug_reactions"
+            ],
+            "concepts": {
+              "history_drug_reactions": {
+                "polarity": "positive",
+                "value": "No known medicine allergies."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_drug_reactions"
+            ],
+            "categories": [
+              "allergies"
+            ]
+          }
+        },
+        {
+          "seq": 60,
+          "t_ms": 73,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Do you smoke?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 61,
+          "t_ms": 75,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I stopped smoking five years ago. Before that, half a pack daily for 12 years.",
+          "meta": {
+            "facts_released": [
+              "history_smoking"
+            ],
+            "concepts": {
+              "history_smoking": {
+                "polarity": "positive",
+                "value": "I stopped smoking five years ago. Before that, half a pack daily for 12 years."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_smoking"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 62,
+          "t_ms": 75,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "How much alcohol do you drink?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 63,
+          "t_ms": 76,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I do not drink alcohol.",
+          "meta": {
+            "facts_released": [
+              "history_alcohol"
+            ],
+            "concepts": {
+              "history_alcohol": {
+                "polarity": "positive",
+                "value": "I do not drink alcohol."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_alcohol"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 64,
+          "t_ms": 77,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Do you use recreational drugs or inject anything?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 65,
+          "t_ms": 78,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No recreational or injected drugs.",
+          "meta": {
+            "facts_released": [
+              "history_drugs"
+            ],
+            "concepts": {
+              "history_drugs": {
+                "polarity": "positive",
+                "value": "No recreational or injected drugs."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_drugs"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 66,
+          "t_ms": 79,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What does your work involve?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 67,
+          "t_ms": 80,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I am a barber, standing most of the day.",
+          "meta": {
+            "facts_released": [
+              "history_work"
+            ],
+            "concepts": {
+              "history_work": {
+                "polarity": "positive",
+                "value": "I am a barber, standing most of the day."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_work"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 68,
+          "t_ms": 80,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Who can help you at home?",
+          "meta": {
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 69,
+          "t_ms": 82,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My partner can help check the edge of the redness.",
+          "meta": {
+            "facts_released": [
+              "history_home_and_support"
+            ],
+            "concepts": {
+              "history_home_and_support": {
+                "polarity": "positive",
+                "value": "My partner can help check the edge of the redness."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_home_and_support"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 70,
+          "t_ms": 82,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Does anyone in your family have blood clots?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 71,
+          "t_ms": 84,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My mother had a leg clot after hip surgery. No unprovoked family clots that I know of.",
+          "meta": {
+            "facts_released": [
+              "history_family_history"
+            ],
+            "concepts": {
+              "history_family_history": {
+                "polarity": "positive",
+                "value": "My mother had a leg clot after hip surgery. No unprovoked family clots that I know of."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_family_history"
+            ],
+            "categories": [
+              "family"
+            ]
+          }
+        },
+        {
+          "seq": 72,
+          "t_ms": 84,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What about your father and siblings?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 73,
+          "t_ms": 86,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My father has high blood pressure. My sister has no major illness.",
+          "meta": {
+            "facts_released": [
+              "history_other_family"
+            ],
+            "concepts": {
+              "history_other_family": {
+                "polarity": "positive",
+                "value": "My father has high blood pressure. My sister has no major illness."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_other_family"
+            ],
+            "categories": [
+              "family"
+            ]
+          }
+        },
+        {
+          "seq": 74,
+          "t_ms": 86,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What worries you most?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 75,
+          "t_ms": 88,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I want to know what is causing this and how to get back to my usual activities.",
+          "meta": {
+            "facts_released": [
+              "patient_concern"
+            ],
+            "concepts": {
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "I want to know what is causing this and how to get back to my usual activities."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_patient_concern"
+            ],
+            "categories": [
+              "concern"
+            ]
+          }
+        },
+        {
+          "seq": 76,
+          "t_ms": 88,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Thank you for explaining that. I can understand why this is concerning.",
+          "meta": {
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 77,
+          "t_ms": 103,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Like I said, I want to know what is causing this and how to get back to my usual activities. I'm sorry \u2014 I'm not sure what you mean.",
+          "meta": {
+            "facts_released": [
+              "patient_concern"
+            ],
+            "concepts": {
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "I want to know what is causing this and how to get back to my usual activities."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_patient_concern"
+            ],
+            "composed_asks": 1,
+            "unanswered_asks": [
+              "I can understand why this is concerning"
+            ],
+            "categories": [
+              "concern"
+            ]
+          }
+        },
+        {
+          "seq": 78,
+          "t_ms": 104,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "May I have your permission to examine you?",
+          "meta": {
+            "mode": "type",
+            "intent": "consent"
+          }
+        },
+        {
+          "seq": 79,
+          "t_ms": 105,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Yes, that's fine. Go ahead.",
+          "meta": {
+            "kind": "consent"
+          }
+        },
+        {
+          "seq": 80,
+          "t_ms": 104,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "May I have your permission to examine you?",
+          "meta": {
+            "status": "consented",
+            "maneuver": null,
+            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+          }
+        },
+        {
+          "seq": 81,
+          "t_ms": 10106,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "General appearance",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "general_inspect",
+            "label": "General appearance",
+            "method": "inspect",
+            "region": "General",
+            "components": [],
+            "scopes": [
+              "general"
+            ],
+            "duration_s": 10,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 82,
+          "t_ms": 10106,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Well appearing and hemodynamically stable.",
+          "meta": {
+            "maneuver_id": "general_inspect",
+            "finding_ids": [
+              "exam_general_inspect"
+            ],
+            "concepts": {
+              "exam_general_inspect": {
+                "polarity": "positive",
+                "value": "Well appearing and hemodynamically stable."
+              }
+            },
+            "scopes": [
+              "general"
+            ]
+          }
+        },
+        {
+          "seq": 83,
+          "t_ms": 50106,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Auscultate heart",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "heart_auscultate",
+            "label": "Auscultate heart",
+            "method": "auscultate",
+            "region": "Heart",
+            "components": [
+              "aortic",
+              "pulmonic",
+              "tricuspid",
+              "mitral",
+              "on skin"
+            ],
+            "scopes": [
+              "heart"
+            ],
+            "duration_s": 40,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 84,
+          "t_ms": 50106,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Regular rate and rhythm without murmur.",
+          "meta": {
+            "maneuver_id": "heart_auscultate",
+            "finding_ids": [
+              "exam_heart_auscultate"
+            ],
+            "concepts": {
+              "exam_heart_auscultate": {
+                "polarity": "positive",
+                "value": "Regular rate and rhythm without murmur."
+              }
+            },
+            "scopes": [
+              "heart"
+            ]
+          }
+        },
+        {
+          "seq": 85,
+          "t_ms": 91106,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Auscultate lungs",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "lungs_auscultate",
+            "label": "Auscultate lungs",
+            "method": "auscultate",
+            "region": "Lungs",
+            "components": [
+              "posterior",
+              "on skin",
+              "compare side to side",
+              "mouth open"
+            ],
+            "scopes": [
+              "lungs"
+            ],
+            "duration_s": 41,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 86,
+          "t_ms": 91106,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Clear bilateral breath sounds.",
+          "meta": {
+            "maneuver_id": "lungs_auscultate",
+            "finding_ids": [
+              "exam_lungs_auscultate"
+            ],
+            "concepts": {
+              "exam_lungs_auscultate": {
+                "polarity": "positive",
+                "value": "Clear bilateral breath sounds."
+              }
+            },
+            "scopes": [
+              "lungs"
+            ]
+          }
+        },
+        {
+          "seq": 87,
+          "t_ms": 110106,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Inspect skin",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "skin_inspect",
+            "label": "Inspect skin",
+            "method": "inspect",
+            "region": "Skin",
+            "components": [
+              "legs"
+            ],
+            "scopes": [
+              "skin"
+            ],
+            "duration_s": 19,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 88,
+          "t_ms": 110106,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Anterior left shin: 8 by 10 cm poorly demarcated erythema surrounding a superficial scratch, without vesicles, bullae, necrosis or purulent drainage. Visible superficial varicosities.",
+          "meta": {
+            "maneuver_id": "skin_inspect",
+            "finding_ids": [
+              "exam_skin_inspect"
+            ],
+            "concepts": {
+              "exam_skin_inspect": {
+                "polarity": "positive",
+                "value": "Anterior left shin: 8 by 10 cm poorly demarcated erythema surrounding a superficial scratch, without vesicles, bullae, necrosis or purulent drainage. Visible superficial varicosities."
+              }
+            },
+            "scopes": [
+              "skin"
+            ]
+          }
+        },
+        {
+          "seq": 89,
+          "t_ms": 135106,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Palpate the skin concern",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "skin_palpate",
+            "label": "Palpate the skin concern",
+            "method": "palpate",
+            "region": "Skin",
+            "components": [
+              "tenderness",
+              "warmth",
+              "induration",
+              "fluctuance"
+            ],
+            "scopes": [
+              "skin.palpation"
+            ],
+            "duration_s": 25,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 90,
+          "t_ms": 135106,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Skin warm and tender without fluctuance, crepitus, pain beyond visible margins or a palpable venous cord.",
+          "meta": {
+            "maneuver_id": "skin_palpate",
+            "finding_ids": [
+              "exam_skin_palpate"
+            ],
+            "concepts": {
+              "exam_skin_palpate": {
+                "polarity": "positive",
+                "value": "Skin warm and tender without fluctuance, crepitus, pain beyond visible margins or a palpable venous cord."
+              }
+            },
+            "scopes": [
+              "skin.palpation"
+            ]
+          }
+        },
+        {
+          "seq": 91,
+          "t_ms": 154106,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Inspect / palpate extremities",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "extremities",
+            "label": "Inspect / palpate extremities",
+            "method": "inspect",
+            "region": "Extremities",
+            "components": [
+              "edema",
+              "calf symmetry",
+              "calf tenderness",
+              "capillary refill"
+            ],
+            "scopes": [
+              "extremities"
+            ],
+            "duration_s": 19,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 92,
+          "t_ms": 154106,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Mild localized edema at lesion; calves symmetric and nontender; capillary refill under 2 seconds.",
+          "meta": {
+            "maneuver_id": "extremities",
+            "finding_ids": [
+              "exam_extremities"
+            ],
+            "concepts": {
+              "exam_extremities": {
+                "polarity": "positive",
+                "value": "Mild localized edema at lesion; calves symmetric and nontender; capillary refill under 2 seconds."
+              }
+            },
+            "scopes": [
+              "extremities"
+            ]
+          }
+        },
+        {
+          "seq": 93,
+          "t_ms": 172106,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Palpate peripheral pulses",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "peripheral_pulses",
+            "label": "Palpate peripheral pulses",
+            "method": "palpate",
+            "region": "Heart",
+            "components": [
+              "dorsalis pedis",
+              "posterior tibial"
+            ],
+            "scopes": [
+              "extremities.pulses"
+            ],
+            "duration_s": 18,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 94,
+          "t_ms": 172106,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Pedal pulses 2+ bilaterally.",
+          "meta": {
+            "maneuver_id": "peripheral_pulses",
+            "finding_ids": [
+              "exam_peripheral_pulses"
+            ],
+            "concepts": {
+              "exam_peripheral_pulses": {
+                "polarity": "positive",
+                "value": "Pedal pulses 2+ bilaterally."
+              }
+            },
+            "scopes": [
+              "extremities.pulses"
+            ]
+          }
+        },
+        {
+          "seq": 95,
+          "t_ms": 197106,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Osteopathic structural screen",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "osteo_screen",
+            "label": "Osteopathic structural screen",
+            "method": "palpate",
+            "region": "Osteopathic",
+            "components": [
+              "lumbar"
+            ],
+            "scopes": [
+              "osteopathic"
+            ],
+            "duration_s": 25,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 96,
+          "t_ms": 197106,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "L2 left lumbar paraspinal tissue texture change and tenderness.",
+          "meta": {
+            "maneuver_id": "osteo_screen",
+            "finding_ids": [
+              "exam_osteo_screen"
+            ],
+            "concepts": {
+              "exam_osteo_screen": {
+                "polarity": "positive",
+                "value": "L2 left lumbar paraspinal tissue texture change and tenderness."
+              }
+            },
+            "scopes": [
+              "osteopathic"
+            ]
+          }
+        },
+        {
+          "seq": 97,
+          "t_ms": 197106,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "I will examine the skin and circulation. If this is a skin infection, we can treat it and mark the edge to track it. Review is needed within two to three days, sooner for rapid spread, severe pain or fever.",
+          "meta": {
+            "mode": "type"
+          }
+        },
+        {
+          "seq": 98,
+          "t_ms": 197106,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Thank you. I understand that the next steps depend on the examination and tests.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "education_response"
+          }
+        },
+        {
+          "seq": 99,
+          "t_ms": 197106,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What questions do you have about the next steps?",
+          "meta": {
+            "open_question": true,
+            "closure": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 100,
+          "t_ms": 197106,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I want to know what is causing this and how to get back to my usual activities.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "closure_response",
+            "ips_signal": "closure_invited",
+            "categories": []
+          }
+        },
+        {
+          "seq": 101,
+          "t_ms": 197106,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Your partner can help monitor the marked edge, and we can discuss breaks from standing at work.",
+          "meta": {
+            "plan_talk": true,
+            "mode": "type",
+            "counseling_turn": true
+          }
+        },
+        {
+          "seq": 102,
+          "t_ms": 197106,
+          "phase": "encounter",
+          "kind": "counseling",
+          "text": "Your partner can help monitor the marked edge, and we can discuss breaks from standing at work.",
+          "meta": {
+            "topics": [
+              "plan discussion"
+            ]
+          }
+        },
+        {
+          "seq": 103,
+          "t_ms": 197106,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "That would help. Thank you.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "education_response"
+          }
+        }
+      ],
+      "note_words": 431,
+      "estimated_encounter_s": 506,
+      "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
+      "missing_example_facts": [],
+      "documentation_audit": {
+        "unsupported": [],
+        "unresolved_count": 20
+      },
+      "reasoning": [
+        {
+          "id": "skin-localized-redness-decision",
+          "question": "Is the area spreading, is pain disproportionate, and is there pus or a venous cord?",
+          "why": "Describe a localized skin lesion and separate infection from inflammatory and venous mimics.",
+          "if_present": "Use the reported pattern to select the relevant examinations and assess urgency.",
+          "if_absent": "Keep alternatives open and ask a focused follow-up.",
+          "next_action": "Perform the relevant case-specific examination.",
+          "document": "Separate reported symptoms, observed signs, assessment and proposed care."
+        }
+      ],
+      "differentials": [
+        {
+          "rank": 1,
+          "name": "Nonpurulent cellulitis",
+          "vindicate": "I",
+          "aliases": [
+            "Nonpurulent cellulitis"
+          ],
+          "supported_by": [
+            "hpi_location",
+            "hpi_chronology",
+            "exam_skin_inspect",
+            "exam_skin_palpate"
+          ],
+          "teaching_context": "Progressive warmth/tenderness around a skin break supports cellulitis without abscess or systemic illness."
+        },
+        {
+          "rank": 2,
+          "name": "Large local inflammatory reaction to an insect bite",
+          "vindicate": "A",
+          "aliases": [
+            "Large local inflammatory reaction to an insect bite"
+          ],
+          "supported_by": [
+            "hpi_setting",
+            "symptom_pruritus"
+          ],
+          "teaching_context": "Outdoor exposure and initial itching allow a bite reaction; progressive tenderness and a visible scratch favor cellulitis."
+        },
+        {
+          "rank": 3,
+          "name": "Superficial thrombophlebitis",
+          "vindicate": "V",
+          "aliases": [
+            "Superficial thrombophlebitis"
+          ],
+          "supported_by": [
+            "history_medical_history",
+            "hpi_aggravating",
+            "exam_skin_inspect"
+          ],
+          "teaching_context": "Varicosities and focal painful erythema support consideration; absence of a cord and diffuse contact-area inflammation make it less likely."
+        }
+      ],
+      "omissions": [
+        "Distinguishing history from examination evidence.",
+        "Explaining uncertainty and the practical follow-up plan."
+      ],
+      "recall": [
+        {
+          "prompt": "Before naming a diagnosis, what is the key distinction in this presentation?",
+          "answer": "Is the area spreading, is pain disproportionate, and is there pus or a venous cord?"
+        },
+        {
+          "prompt": "Which specific examination or safety step changes what you can document?",
+          "answer": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model."
+        },
+        {
+          "prompt": "Name one tempting documentation or reasoning error and how you will prevent it.",
+          "answer": "Treating an unperformed examination or a possible diagnosis as obtained fact."
+        }
+      ],
+      "course_sources": [
+        {
+          "label": "PCM syllabus: 14-minute encounter / 9-minute SOAP; invasive SP examinations refused",
+          "locator": "PCM syllabus.pdf pp. 4\u20135"
+        },
+        {
+          "label": "SOAP rubric: S 28 / O 30 / A 15 / P 25 / style 2",
+          "locator": "2026 FALL M2 ILG - STUDENT MANUAL update.docx, SOAP evaluation table"
+        },
+        {
+          "label": "FIFE and patient perspective; purposeful transitions",
+          "locator": "PCM syllabus.pdf p. 13; Interpersonal Skills lecture"
+        }
+      ],
+      "sources": [
+        {
+          "title": "2026 FALL M2 ILG Student Manual",
+          "path": "claude builds/PCM/2026 FALL M2 ILG - STUDENT MANUAL update.docx",
+          "locator": "SOAP rubric and physical examination requirements",
+          "kind": "course"
+        },
+        {
+          "title": "IDSA skin and soft tissue infection guideline",
+          "url": "https://www.idsociety.org/practice-guideline/skin-and-soft-tissue-infections/",
+          "kind": "supplementary_clinical",
+          "reviewed": "2026-09-14",
+          "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+        },
+        {
+          "title": "Cellulitis reassessment and alternatives",
+          "url": "https://www.nice.org.uk/guidance/ng141/chapter/Recommendations",
+          "kind": "supplementary_clinical",
+          "reviewed": "2026-09-14",
+          "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+        }
+      ],
+      "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
+      "case_hash": "4aa42f7b4cba85dc1848e7faf700a86a49cbde14e4b5dadbb9499ee49327524e",
+      "engine_version": "4.1.0"
+    }
+  ]
+}

@@ -89,7 +89,7 @@ class GuidedCoachTests(unittest.TestCase):
         self.assertNotEqual(guide.state(s)['recommended'],'connect.introduce')
         self.assertIsNone(s.row['phase_ends_at'])
 
-    def test_all_72_variants_have_real_authored_case_paths_without_answers_in_task_payload(self):
+    def test_all_82_variants_have_real_authored_case_paths_without_answers_in_task_payload(self):
         count=0;paths={}
         for base in cases.all_cases().values():
             for variant in ['base']+[v['id'] for v in base.get('variants',[])]:
@@ -105,7 +105,7 @@ class GuidedCoachTests(unittest.TestCase):
                 self.assertEqual(s.ledger.to_json(),before)
                 paths.setdefault(base['system'],set()).add(tuple(t['question']for t in tasks if t['group']=='pattern'))
                 count+=1
-        self.assertEqual(count,72)
+        self.assertEqual(count,82)
         self.assertGreaterEqual(len(paths),4)
         self.assertGreater(len(set(next(iter(v))for v in paths.values())),1)
 

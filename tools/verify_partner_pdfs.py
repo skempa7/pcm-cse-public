@@ -40,6 +40,23 @@ for item in manifest['results']:
                     if x0 < 15 or y0 < 15 or x1 > w-15 or y1 > h-15:
                         issues.append({'file':name,'page':i+1,'bounds':span['bbox'],'text':span['text']})
         assert page.get_text().strip(), (name, i, 'blank PDF page')
+    if item['edition'] == 'blank':
+        # Check the actual exported ruling, not a CSS gradient declaration.
+        # Two useful writing groups per page; quarter-inch-plus line spacing.
+        for i, page in enumerate(doc):
+            first_heading = page.search_for('Subjective' if i == 0 else 'Assessment')
+            assert len(first_heading) == 1, (name, i, 'missing writing heading')
+            ys = sorted({round(d['rect'].y0, 2) for d in page.get_drawings()
+                         if d['rect'].width > 480 and 0 < d['rect'].height <= 1.5
+                         and first_heading[0].y1 < d['rect'].y0 < 720})
+            groups = []
+            for y in ys:
+                if not groups or y - groups[-1][-1] > 25:
+                    groups.append([y])
+                else:
+                    groups[-1].append(y)
+            assert [len(g) for g in groups] == ([14, 9] if i == 0 else [9, 18]), (name, i, 'writing rules missing or clustered', groups)
+            assert all(19 <= b-a <= 21 for g in groups for a,b in zip(g,g[1:])), (name, i, 'uneven writing rules')
     if item['edition'] in ('patient', 'study'):
         script = l['partner_script']
         for answer in [script['briefing']['opening']] + [value for s in script['sections'] for t in s['topics'] for value in [t['answer']] + [f['answer'] for f in t['followups']]]:

@@ -47,7 +47,7 @@ def main():
             assert not lesson['documentation_audit']['unsupported'], context + ': stale or failing cached note audit'
             checked['unresolved_note_statements'] += unresolved
             checked['lessons'] += 1
-    assert checked['lessons'] == 72
+    assert checked['lessons'] == 82  # 72 existing paths plus 10 explicitly authored new cases.
     print(json.dumps({'result': 'PASS', **checked,
                       'limits': 'Current sources and delivered-event consistency; unresolved wording receives no automatic credit. Not clinical validation.'}, indent=2))
 

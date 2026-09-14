@@ -7,7 +7,7 @@ from offline_routes import request
 db.init()
 def call(path,body=None,status=200):
  r=json.loads(request(path,'GET' if body is None else 'POST',json.dumps(body or {})));assert r['status']==status,(path,r);return r['body']
-rows=call('/api/bootstrap')['cases'];assert len(rows)==24
+rows=call('/api/bootstrap')['cases'];assert len(rows)==34  # 24 existing presentations plus 10 new distinct cases.
 report=[]
 for index,row in enumerate(rows):
  for variant in ['base']+[v['id'] for v in row['variants']]:
@@ -26,7 +26,7 @@ for index,row in enumerate(rows):
   call('/api/session/'+sid+'/submit',{'note':original});result=call('/api/session/'+sid+'/results');assert result['results']
   frozen=engine.load(sid).row['original_note_json'];assert not call('/api/session/'+sid+'/note',{'note':{'S':'overwrite'}})['saved'];assert frozen==engine.load(sid).row['original_note_json']
   report.append({'case_id':row['id'],'variant_id':variant,'sex':sex,'flow':'doorway/start/say/reload-model/organization/note/submit/locked-original','walkthrough':True})
-assert sum(cases.get(x['id'])['patient']['sex']=='male' for x in rows)==6
+assert sum(cases.get(x['id'])['patient']['sex']=='male' for x in rows)==11
 # Ordinary UI solution gates survive the browser conversion.
 s=call('/api/session',{'case_id':rows[0]['id'],'learning_mode':'rehearsal'});sid=s['id'];call('/api/teaching',status=409);call('/api/session/'+sid+'/start',{});deadline=engine.load(sid).row['phase_ends_at'];call('/api/teaching/access',{'confirm':True,'attempt_ids':[sid]});assert engine.load(sid).row['phase_ends_at']==deadline;assert engine.load(sid).row['assisted'];call('/api/teaching')
 for path in ['/api/voice','/api/ai/status','/api/session/'+sid+'/ai-turn','/api/session/'+sid+'/transcribe']:
@@ -48,5 +48,5 @@ for p in (ROOT/'web/patient3d/assets').glob('public-*.glb'):
  assert not any(m.get('name')=='PCM_ClinicalManikin' for m in g['materials'])
  assets.append({'file':p.name,'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)})
 assert len(assets)==4
-out={'result':'PASS','playable_paths':len(report),'women':18,'men':6,'checks':report,'assets':assets,'limits':'Structural/route regression checks, not independent clinical validation. Symbolic SOAP grading is provisional; unrecognized wording receives no automatic credit.'}
+out={'result':'PASS','playable_paths':len(report),'women':23,'men':11,'checks':report,'assets':assets,'limits':'Structural/route regression checks, not independent clinical validation. Symbolic SOAP grading is provisional; unrecognized wording receives no automatic credit.'}
 (ROOT/'public-verification.json').write_text(json.dumps(out,indent=2));print(json.dumps({k:out[k]for k in ('result','playable_paths','women','men','limits')}))

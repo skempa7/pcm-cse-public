@@ -323,7 +323,8 @@ _ASPECTS = [
               "been in the hospital", "any procedures"]},
     {"id": "medications", "categories": ["medications"],
      "cues": ["medication", "medicine", "meds", "prescription", "pills",
-              "taking anything", "supplements", "vitamins"]},
+              "taking anything", "supplements", "vitamins",
+              "what do you take every day", "what do you take daily", "what do you take regularly"]},
     {"id": "allergies", "categories": ["allergies"],
      "cues": ["allerg", "nkda", "react to any"]},
     {"id": "family", "categories": ["family"],
@@ -1195,6 +1196,10 @@ class PatientEngine:
                 # lose the turn.
                 continue
             if self._informative(part, sub):
+                # Each informative clause becomes the local referent for the next
+                # clause. Otherwise 'allergies, and what happens?' inherits a
+                # previous turn's surgery history instead of the allergy just said.
+                self._remember(segment, seg_text, probe, sub, part)
                 released = [f for f in sub.get('facts_released', [])]
                 if released and set(released) <= spoken_ids:
                     continue  # already said in this same breath
@@ -1352,6 +1357,9 @@ class PatientEngine:
         # back at the complaint. A domain verb ("take", "smoke", "drink") keeps
         # the turn on the background topic whatever pronoun it uses.
         words = set(text.split())
+        complaint_return = re.search(r'\bthis (?:first )?(?:start|begin)\b|\b(?:each|every|individual|typical) (?:episode|spell|attack)\b', text)
+        if complaint_return and not words & _SUBJECT_VERBS:
+            return None
         points_at_symptom = bool(words & _SYMPTOM_REFERENTS) and not (
             words & _SUBJECT_VERBS)
         if points_at_symptom:
@@ -2484,6 +2492,16 @@ class PatientEngine:
                                           self._match_facts_inner(utterance, state))
 
     def _match_facts_inner(self, utterance, state):
+        # With no clinical referent established, an initial "How long?" asks
+        # how long the presenting complaint has been present. Use only a
+        # unique authored onset; multiple onsets retain clarification below.
+        # Background follow-ups are resolved earlier and must not borrow it.
+        initial_duration = re.fullmatch(r'how long[ ?.]*', nlp.normalize(utterance))
+        background = set(state.get('last_subjects') or []) & dialogue.ANCHORABLE_SUBJECTS
+        if initial_duration and not state.get('last_facts') and not background:
+            onsets = [f for f in self.facts.values() if f.get('category') == 'onset']
+            if len(onsets) == 1:
+                return [(onsets[0], 3.0)]
         precise = self._typed_question_hits(utterance)
         if precise is not None:
             return precise

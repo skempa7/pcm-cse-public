@@ -1,0 +1,3463 @@
+{
+  "case_id": "msk-knee-injury",
+  "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
+  "walkthroughs": [
+    {
+      "case_id": "msk-knee-injury",
+      "variant_id": "base",
+      "variant_label": "Core presentation",
+      "title": "Knee pain after twisting",
+      "patient": {
+        "name": "Graham Wilson",
+        "age": 54,
+        "sex": "male"
+      },
+      "system": "Musculoskeletal",
+      "doorway": {
+        "doorway": [
+          "Graham Wilson, 54-year-old male.",
+          "My right knee has been sore and swollen since I twisted it.",
+          "Vital signs are available on the chart.",
+          "Perform a focused history and physical examination, discuss your plan, and document only what you obtain.",
+          "Use the time limit stated for your selected practice mode."
+        ],
+        "vitals": {
+          "BP": "138/84 mmHg",
+          "P": "78 bpm",
+          "R": "16 rpm",
+          "T": "98.5 F oral",
+          "Pulse Ox": "98% on room air",
+          "Ht": "5' 11\"",
+          "Wt": "206 lbs"
+        },
+        "supplied_results": []
+      },
+      "plan": {
+        "notice": "Use mechanism and mechanical symptoms while retaining crystal and infection safety checks.",
+        "anchor": "Knee pain after twisting",
+        "pivot": "Was swelling immediate or delayed, and is the knee truly locked?",
+        "exam": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
+        "avoid": "Treating an unperformed examination or a possible diagnosis as obtained fact."
+      },
+      "goals": [
+        "Use mechanism and mechanical symptoms while retaining crystal and infection safety checks.",
+        "Document only supplied, asked or examined information."
+      ],
+      "variant_guidance": "Use this core presentation to learn the sequence before transferring to a variation.",
+      "differences": [],
+      "timeline": [
+        {
+          "kind": "dialogue",
+          "section": "Connect",
+          "student": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "patient": "Hello. Thank you for introducing yourself. I am ready to talk.",
+          "why": "",
+          "event_ids": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "dialogue",
+          "section": "Listen to the opening",
+          "student": "What brings you in today?",
+          "patient": "My right knee has been sore and swollen since I twisted it.",
+          "why": "Use mechanism and mechanical symptoms while retaining crystal and infection safety checks.",
+          "event_ids": [
+            8,
+            9
+          ],
+          "fact_ids": [
+            "opening_complaint"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "When did the knee pain start?",
+          "patient": "Three days ago.",
+          "why": "Was swelling immediate or delayed, and is the knee truly locked?",
+          "event_ids": [
+            10,
+            11
+          ],
+          "fact_ids": [
+            "hpi_onset"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "When did the swelling develop?",
+          "patient": "It swelled gradually that evening, not immediately.",
+          "why": "Change over time can change urgency even when the symptom is familiar.",
+          "event_ids": [
+            12,
+            13
+          ],
+          "fact_ids": [
+            "hpi_chronology"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "Where is the pain?",
+          "patient": "Along the inside of my right knee.",
+          "why": "",
+          "event_ids": [
+            14,
+            15
+          ],
+          "fact_ids": [
+            "hpi_location"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "Does the pain spread?",
+          "patient": "No, it stays around the knee.",
+          "why": "Spread of discomfort can connect an apparent local complaint with another system.",
+          "event_ids": [
+            16,
+            17
+          ],
+          "fact_ids": [
+            "hpi_radiation"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "What does it feel like?",
+          "patient": "An ache with a sharp catch if I turn.",
+          "why": "Use the patient\u2019s words before translating them into a clinical description.",
+          "event_ids": [
+            18,
+            19
+          ],
+          "fact_ids": [
+            "hpi_quality"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "Can you walk on it?",
+          "patient": "I can walk with a limp. The pain is 6 out of 10.",
+          "why": "Intensity and functional effect are distinct; record only the dimension answered.",
+          "event_ids": [
+            20,
+            21
+          ],
+          "fact_ids": [
+            "hpi_severity"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "Does the knee lock or give way?",
+          "patient": "It catches, but I can straighten it. It has not given way.",
+          "why": "Separate time since onset from duration of one episode and from continuity.",
+          "event_ids": [
+            22,
+            23
+          ],
+          "fact_ids": [
+            "hpi_timing"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "How did you hurt the knee?",
+          "patient": "I turned while carrying a box, with my right foot planted. I did not fall.",
+          "why": "",
+          "event_ids": [
+            24,
+            25
+          ],
+          "fact_ids": [
+            "hpi_setting"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "What helps?",
+          "patient": "Rest, ice wrapped in a towel, and elevating it.",
+          "why": "Relief changes probability, but is not proof that a serious cause is excluded.",
+          "event_ids": [
+            26,
+            27
+          ],
+          "fact_ids": [
+            "hpi_alleviating"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "What makes it worse?",
+          "patient": "Turning, stairs and deep bending.",
+          "why": "Compare triggers with the chronology; one trigger does not establish a diagnosis.",
+          "event_ids": [
+            28,
+            29
+          ],
+          "fact_ids": [
+            "hpi_aggravating"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "What have you taken for the knee?",
+          "patient": "Acetaminophen 650 milligrams twice yesterday.",
+          "why": "",
+          "event_ids": [
+            30,
+            31
+          ],
+          "fact_ids": [
+            "hpi_treatment"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Build the symptom pattern",
+          "student": "Did the knee bother you before this injury?",
+          "patient": "It sometimes ached after work and felt stiff for about 5 minutes in the morning.",
+          "why": "",
+          "event_ids": [
+            32,
+            33
+          ],
+          "fact_ids": [
+            "hpi_past_occurrence"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had joint swelling?",
+          "patient": "The right knee is swollen.",
+          "why": "Use this answer to weigh the possibilities described in the reasoning section.",
+          "event_ids": [
+            34,
+            35
+          ],
+          "fact_ids": [
+            "symptom_joint_swelling"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Any other joint pain?",
+          "patient": "The right knee hurts; no other joint hurts right now.",
+          "why": "Use this answer to weigh the possibilities described in the reasoning section.",
+          "event_ids": [
+            36,
+            37
+          ],
+          "fact_ids": [
+            "symptom_joint_pain"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had myalgia?",
+          "patient": "No muscle aches elsewhere.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            38,
+            39
+          ],
+          "fact_ids": [
+            "symptom_myalgia"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had a fever?",
+          "patient": "No fever.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            40,
+            41
+          ],
+          "fact_ids": [
+            "symptom_fever"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had chills?",
+          "patient": "No chills.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            42,
+            43
+          ],
+          "fact_ids": [
+            "symptom_chills"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had fatigue?",
+          "patient": "I do not feel ill or unusually tired.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            44,
+            45
+          ],
+          "fact_ids": [
+            "symptom_fatigue"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had numbness?",
+          "patient": "My foot is not numb.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            46,
+            47
+          ],
+          "fact_ids": [
+            "symptom_numbness"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you had tingling?",
+          "patient": "No pins and needles.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            48,
+            49
+          ],
+          "fact_ids": [
+            "symptom_tingling"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Discriminate the possibilities",
+          "student": "Have you noticed weakness?",
+          "patient": "The ankle and foot feel normally strong.",
+          "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
+          "event_ids": [
+            50,
+            51
+          ],
+          "fact_ids": [
+            "symptom_weakness"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Relevant background",
+          "student": "What medical conditions do you have?",
+          "patient": "High blood pressure and gout. I had one red, swollen big toe last year, confirmed with fluid testing.",
+          "why": "",
+          "event_ids": [
+            52,
+            53
+          ],
+          "fact_ids": [
+            "history_medical_history"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Relevant background",
+          "student": "Have you had knee surgery or other operations?",
+          "patient": "No knee surgery. I had a hernia repaired at 30.",
+          "why": "",
+          "event_ids": [
+            54,
+            55
+          ],
+          "fact_ids": [
+            "history_surgery"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Medicines and reactions",
+          "student": "What daily medicines do you take?",
+          "patient": "Hydrochlorothiazide 25 milligrams daily. No regular gout medicine.",
+          "why": "Name, dose and frequency matter; do not fill in missing details.",
+          "event_ids": [
+            56,
+            57
+          ],
+          "fact_ids": [
+            "history_daily_medicines"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Medicines and reactions",
+          "student": "Are you allergic to any medicines?",
+          "patient": "No known drug allergies.",
+          "why": "Distinguish the substance and reaction from a blanket allergy label.",
+          "event_ids": [
+            58,
+            59
+          ],
+          "fact_ids": [
+            "history_drug_reactions"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "Do you smoke?",
+          "patient": "I smoked half a pack daily for 10 years and quit 15 years ago.",
+          "why": "",
+          "event_ids": [
+            60,
+            61
+          ],
+          "fact_ids": [
+            "history_smoking"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "How much alcohol do you drink?",
+          "patient": "Usually three beers on Friday and three on Saturday.",
+          "why": "",
+          "event_ids": [
+            62,
+            63
+          ],
+          "fact_ids": [
+            "history_alcohol"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "Do you use recreational drugs?",
+          "patient": "No.",
+          "why": "",
+          "event_ids": [
+            64,
+            65
+          ],
+          "fact_ids": [
+            "history_drugs"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "What does your work involve?",
+          "patient": "I move stock in a grocery store, including lifting and squatting.",
+          "why": "",
+          "event_ids": [
+            66,
+            67
+          ],
+          "fact_ids": [
+            "history_work"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "Who is available to help you?",
+          "patient": "My wife can help. We have one flight of stairs at home.",
+          "why": "",
+          "event_ids": [
+            68,
+            69
+          ],
+          "fact_ids": [
+            "history_home"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "Does joint disease run in the family?",
+          "patient": "My mother had knee replacements for wear-and-tear arthritis.",
+          "why": "Record which relative and the condition; do not infer a family history from patient worry.",
+          "event_ids": [
+            70,
+            71
+          ],
+          "fact_ids": [
+            "history_family_history"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Life and context",
+          "student": "What about your father and siblings?",
+          "patient": "My father has high blood pressure. My brother has gout.",
+          "why": "Record which relative and the condition; do not infer a family history from patient worry.",
+          "event_ids": [
+            72,
+            73
+          ],
+          "fact_ids": [
+            "history_other_family"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "The patient\u2019s perspective",
+          "student": "What worries you most?",
+          "patient": "I want to know what is causing this and how to get back to my usual activities.",
+          "why": "",
+          "event_ids": [
+            74,
+            75
+          ],
+          "fact_ids": [
+            "patient_concern"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Acknowledge",
+          "student": "Thank you for explaining that. I can understand why this is concerning.",
+          "patient": "As I mentioned, I want to know what is causing this and how to get back to my usual activities. I'm not sure. What do you mean exactly?",
+          "why": "",
+          "event_ids": [
+            76,
+            77
+          ],
+          "fact_ids": [
+            "patient_concern"
+          ]
+        },
+        {
+          "kind": "dialogue",
+          "section": "Explain and ask permission",
+          "student": "May I have your permission to examine you?",
+          "patient": "Yes, that's fine. Go ahead.",
+          "why": "",
+          "event_ids": [
+            78,
+            79,
+            80
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "action",
+          "section": "Prepare the examination",
+          "action": "Clean hands, provide privacy and appropriate draping, explain the selected examination and help the patient into a comfortable position.",
+          "why": "These are stated actions in this written example. A visual avatar does not verify hand hygiene, consent or hands-on technique.",
+          "event_ids": []
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "General appearance",
+          "finding": "Alert, comfortable at rest.",
+          "why": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
+          "event_ids": [
+            81,
+            82
+          ],
+          "maneuver_id": "general_inspect",
+          "duration_s": 10
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Auscultate heart \u2014 aortic, pulmonic, tricuspid, mitral, on skin",
+          "finding": "Regular rate and rhythm without murmur.",
+          "why": "The course expects at least four listening posts, on skin.",
+          "event_ids": [
+            83,
+            84
+          ],
+          "maneuver_id": "heart_auscultate",
+          "duration_s": 40
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Auscultate lungs \u2014 posterior, on skin, compare side to side, mouth open",
+          "finding": "Clear bilateral breath sounds.",
+          "why": "The course expects six posterior fields, mouth open, on skin, comparing sides.",
+          "event_ids": [
+            85,
+            86
+          ],
+          "maneuver_id": "lungs_auscultate",
+          "duration_s": 41
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Inspect the affected area \u2014 swelling, erythema, deformity",
+          "finding": "Small right knee effusion without erythema or deformity.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            87,
+            88
+          ],
+          "maneuver_id": "msk_inspect",
+          "duration_s": 12
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Palpate the affected area \u2014 point tenderness",
+          "finding": "Medial joint-line tenderness and mild warmth; no patellar or fibular-head tenderness.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            89,
+            90
+          ],
+          "maneuver_id": "msk_palpate",
+          "duration_s": 16
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Range of motion \u2014 flexion, extension",
+          "finding": "Right knee extends to 0 degrees and flexes to 110 degrees with pain near end flexion; mild crepitus.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            91,
+            92
+          ],
+          "maneuver_id": "msk_rom",
+          "duration_s": 22
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Muscle strength testing \u2014 lower extremity",
+          "finding": "Knee extension 4+/5 limited by pain; ankle dorsiflexion and plantarflexion 5/5.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            93,
+            94
+          ],
+          "maneuver_id": "msk_strength",
+          "duration_s": 19
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Observe gait",
+          "finding": "Antalgic gait; able to take four steps.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            95,
+            96
+          ],
+          "maneuver_id": "gait",
+          "duration_s": 20
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Palpate peripheral pulses \u2014 dorsalis pedis, posterior tibial",
+          "finding": "Dorsalis pedis and posterior tibial pulses 2+ bilaterally.",
+          "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
+          "event_ids": [
+            97,
+            98
+          ],
+          "maneuver_id": "peripheral_pulses",
+          "duration_s": 18
+        },
+        {
+          "kind": "action",
+          "section": "Focused examination",
+          "action": "Osteopathic structural screen \u2014 lumbar",
+          "finding": "L4 right lumbar paraspinal tissue texture change and tenderness.",
+          "why": "Name the level examined; findings are released by region.",
+          "event_ids": [
+            99,
+            100
+          ],
+          "maneuver_id": "osteo_screen",
+          "duration_s": 25
+        },
+        {
+          "kind": "dialogue",
+          "section": "Explain next steps",
+          "student": "We will protect the knee, assess stability and decide whether imaging is needed. I want to review it in one week. If it becomes hot and very swollen, you develop fever, or it locks, seek urgent assessment.",
+          "patient": "Thank you. I understand that the next steps depend on the examination and tests.",
+          "why": "Proposed care, not a record of tests or treatment already completed.",
+          "event_ids": [
+            101,
+            102
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "dialogue",
+          "section": "Close and check understanding",
+          "student": "What questions do you have about the next steps?",
+          "patient": "I want to know what is causing this and how to get back to my usual activities.",
+          "why": "",
+          "event_ids": [
+            103,
+            104
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "dialogue",
+          "section": "Address the patient\u2019s question",
+          "student": "We can document temporary lifting and squatting limits and discuss how you will manage stairs at home.",
+          "patient": "That would help. Thank you.",
+          "why": "Answer the concern that was just expressed. Give a defensible recommendation and explain uncertainty; do not promise a diagnosis or recovery before the evidence supports it.",
+          "event_ids": [
+            105,
+            106
+          ],
+          "fact_ids": []
+        }
+      ],
+      "note": {
+        "S": "CC: My right knee has been sore and swollen since I twisted it.\n\nHPI: 54-year-old male. Right knee pain for 3 days. Twisting injury on a planted foot while carrying a box; no fall. Medial right knee pain. No radiation. Aching with catching pain during rotation. Weight bearing with limp; pain 6/10. Delayed swelling over the first evening. Catching without true locking or giving way. Worse with twisting, stairs and deep flexion. Relief with rest, protected ice and elevation. Acetaminophen 650 mg twice yesterday. Prior activity-related ache and brief morning stiffness.\n\nPMH: Hypertension; crystal-confirmed gout episode last year.\n\nPSH: Hernia repair at 30; no knee surgery.\n\nMeds: Hydrochlorothiazide 25 mg daily; no urate-lowering therapy.\n\nSH: Former smoker: 5 pack-years, quit 15 years ago. Approximately six beers weekly. No recreational drugs. Grocery stocker; frequent lifting and squatting. Lives with wife; one flight of home stairs.\n\nFH: Mother: knee osteoarthritis requiring replacement. Father: hypertension; brother: gout.\n\nAllergies: No known drug allergies.\n\nROS: Musculoskeletal: Right knee swelling. No other current joint pain. No generalized myalgia. General: No fever. No chills. No systemic malaise. Neurologic: No distal numbness. No paresthesias. No distal weakness.",
+        "O": "Vitals: BP 138/84 mmHg, P 78 bpm, R 16 rpm, T 98.5 F oral, Pulse Ox 98% on room air, Ht 5' 11\", Wt 206 lbs\n\nGeneral: Alert, comfortable at rest.\nHeart: Regular rate and rhythm without murmur.\nLungs: Clear bilateral breath sounds.\nMusculoskeletal: Small right knee effusion without erythema or deformity.\nMusculoskeletal: Medial joint-line tenderness and mild warmth; no patellar or fibular-head tenderness.\nMusculoskeletal: Right knee extends to 0 degrees and flexes to 110 degrees with pain near end flexion; mild crepitus.\nMusculoskeletal: Knee extension 4+/5 limited by pain; ankle dorsiflexion and plantarflexion 5/5.\nMusculoskeletal: Antalgic gait; able to take four steps.\nHeart: Dorsalis pedis and posterior tibial pulses 2+ bilaterally.\nOsteopathic: L4 right lumbar paraspinal tissue texture change and tenderness.",
+        "A": [
+          "1. Medial meniscal injury",
+          "2. Knee osteoarthritis with an acute flare",
+          "3. Acute gouty arthritis"
+        ],
+        "P": [
+          "1. Protect weight bearing as needed, avoid twisting/squatting and use ice, compression and elevation with safe analgesia. Assess fracture-imaging criteria and ligament stability; consider right knee MRI or orthopedics for persistent catching or true locking. Arrange modified work and review in 1 week. Fever, marked warmth, inability to bear weight or a locked knee warrants urgent reassessment.",
+          "2. If chronic symptoms persist, obtain weight-bearing radiographs when indicated and discuss strengthening/physical therapy and activity modification. Explain that degenerative changes may coexist with injury.",
+          "3. If crystal or septic arthritis remains possible with increasing warmth/effusion, arrange aspiration for crystals, cell count and culture before assuming gout. Review diuretic and gout management and safe anti-inflammatory options; explain that crystals do not exclude infection, with same-day evaluation for a hot swollen joint or fever."
+        ]
+      },
+      "note_links": [
+        {
+          "section": "S",
+          "statement": "My right knee has been sore and swollen since I twisted it.",
+          "event_ids": [
+            9
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "54-year-old male.",
+          "event_ids": [
+            2
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Right knee pain for 3 days.",
+          "event_ids": [
+            11
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Twisting injury on a planted foot while carrying a box;",
+          "event_ids": [
+            25
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "no fall.",
+          "event_ids": [
+            25
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Medial right knee pain.",
+          "event_ids": [
+            15
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No radiation.",
+          "event_ids": [
+            17
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Aching with catching pain during rotation.",
+          "event_ids": [
+            19
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Weight bearing with limp;",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "pain 6/10.",
+          "event_ids": [
+            21
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Delayed swelling over the first evening.",
+          "event_ids": [
+            13
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Catching without true locking or giving way.",
+          "event_ids": [
+            23
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Worse with twisting, stairs and deep flexion.",
+          "event_ids": [
+            29
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Relief with rest, protected ice and elevation.",
+          "event_ids": [
+            27
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Acetaminophen 650 mg twice yesterday.",
+          "event_ids": [
+            31
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Prior activity-related ache and brief morning stiffness.",
+          "event_ids": [
+            33
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Hypertension;",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "crystal-confirmed gout episode last year.",
+          "event_ids": [
+            53
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Hernia repair at 30;",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "no knee surgery.",
+          "event_ids": [
+            55
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Hydrochlorothiazide 25 mg daily;",
+          "event_ids": [
+            57
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "no urate-lowering therapy.",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Former smoker: 5 pack-years, quit 15 years ago.",
+          "event_ids": [
+            61
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Approximately six beers weekly.",
+          "event_ids": [
+            63
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No recreational drugs.",
+          "event_ids": [
+            65
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Grocery stocker;",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "frequent lifting and squatting.",
+          "event_ids": [
+            67
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Lives with wife;",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "one flight of home stairs.",
+          "event_ids": [
+            69
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "Mother: knee osteoarthritis requiring replacement.",
+          "event_ids": [
+            71
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Father: hypertension;",
+          "event_ids": [],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "brother: gout.",
+          "event_ids": [
+            73
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "related delivered quotations; not a semantic verification",
+          "audit_verdict": "not_evaluated"
+        },
+        {
+          "section": "S",
+          "statement": "No known drug allergies.",
+          "event_ids": [
+            59
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Musculoskeletal: Right knee swelling.",
+          "event_ids": [
+            35
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No other current joint pain.",
+          "event_ids": [
+            37
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No generalized myalgia.",
+          "event_ids": [
+            39
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "General: No fever.",
+          "event_ids": [
+            41
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No chills.",
+          "event_ids": [
+            43
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No systemic malaise.",
+          "event_ids": [
+            45
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "Neurologic: No distal numbness.",
+          "event_ids": [
+            47
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No paresthesias.",
+          "event_ids": [
+            49
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "S",
+          "statement": "No distal weakness.",
+          "event_ids": [
+            51
+          ],
+          "classification": "reported / supplied history",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "BP 138/84 mmHg",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "P 78 bpm",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "R 16 rpm",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "T 98.5 F oral",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "Pulse Ox 98% on room air",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "Ht 5' 11\"",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "Wt 206 lbs",
+          "event_ids": [
+            3
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported_supplied"
+        },
+        {
+          "section": "O",
+          "statement": "Alert, comfortable at rest.",
+          "event_ids": [
+            82
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Regular rate and rhythm without murmur.",
+          "event_ids": [
+            84
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Clear bilateral breath sounds.",
+          "event_ids": [
+            86
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Small right knee effusion without erythema or deformity.",
+          "event_ids": [
+            88
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Medial joint-line tenderness and mild warmth;",
+          "event_ids": [
+            90
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "no patellar or fibular-head tenderness.",
+          "event_ids": [
+            90
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Right knee extends to 0 degrees and flexes to 110 degrees with pain near end flexion;",
+          "event_ids": [
+            92
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "mild crepitus.",
+          "event_ids": [
+            92
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Knee extension 4+/5 limited by pain;",
+          "event_ids": [
+            94
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "ankle dorsiflexion and plantarflexion 5/5.",
+          "event_ids": [
+            94
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Antalgic gait;",
+          "event_ids": [
+            96
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "able to take four steps.",
+          "event_ids": [
+            96
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "Dorsalis pedis and posterior tibial pulses 2+ bilaterally.",
+          "event_ids": [
+            98
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        },
+        {
+          "section": "O",
+          "statement": "L4 right lumbar paraspinal tissue texture change and tenderness.",
+          "event_ids": [
+            100
+          ],
+          "classification": "supplied / examined finding",
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
+        }
+      ],
+      "ledger": [
+        {
+          "seq": 1,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "system",
+          "text": "Encounter started.",
+          "meta": {
+            "event": "phase_start"
+          }
+        },
+        {
+          "seq": 2,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "station_info",
+          "text": "Graham Wilson, 54-year-old male. My right knee has been sore and swollen since I twisted it. Vital signs are available on the chart. Perform a focused history and physical examination, discuss your plan, and document only what you obtain. Use the time limit stated for your selected practice mode.",
+          "meta": {
+            "doorway": true
+          }
+        },
+        {
+          "seq": 3,
+          "t_ms": 0,
+          "phase": "encounter",
+          "kind": "station_info",
+          "text": "Vital signs supplied on the chart: BP 138/84 mmHg, Ht 5' 11\", P 78 bpm, Pulse Ox 98% on room air, R 16 rpm, T 98.5 F oral, Wt 206 lbs",
+          "meta": {
+            "vitals": true,
+            "concepts": {
+              "vitals": {
+                "polarity": "positive",
+                "value": "{\"BP\": \"138/84 mmHg\", \"Ht\": \"5' 11\\\"\", \"P\": \"78 bpm\", \"Pulse Ox\": \"98% on room air\", \"R\": \"16 rpm\", \"T\": \"98.5 F oral\", \"Wt\": \"206 lbs\"}"
+              }
+            }
+          }
+        },
+        {
+          "seq": 4,
+          "t_ms": 1,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "plan_talk": true,
+            "mode": "type"
+          }
+        },
+        {
+          "seq": 5,
+          "t_ms": 1,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "courtesy_id": "introduce",
+            "label": "Introduce yourself as a student doctor",
+            "components": []
+          }
+        },
+        {
+          "seq": 6,
+          "t_ms": 1,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
+          "meta": {
+            "courtesy_id": "consent_exam",
+            "label": "Explain the exam and ask permission",
+            "components": []
+          }
+        },
+        {
+          "seq": 7,
+          "t_ms": 8,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "introduction_response"
+          }
+        },
+        {
+          "seq": 8,
+          "t_ms": 8,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What brings you in today?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 9,
+          "t_ms": 11,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My right knee has been sore and swollen since I twisted it.",
+          "meta": {
+            "facts_released": [
+              "opening_complaint"
+            ],
+            "concepts": {
+              "opening_complaint": {
+                "polarity": "positive",
+                "value": "My right knee has been sore and swollen since I twisted it."
+              }
+            },
+            "volunteered": false,
+            "kind": "opening",
+            "checklist_hits": [
+              "h_opening_complaint"
+            ],
+            "categories": [
+              "chief_complaint"
+            ]
+          }
+        },
+        {
+          "seq": 10,
+          "t_ms": 12,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "When did the knee pain start?",
+          "meta": {
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 11,
+          "t_ms": 13,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Three days ago.",
+          "meta": {
+            "facts_released": [
+              "hpi_onset"
+            ],
+            "concepts": {
+              "hpi_onset": {
+                "polarity": "positive",
+                "value": "Three days ago."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_onset"
+            ],
+            "categories": [
+              "onset"
+            ]
+          }
+        },
+        {
+          "seq": 12,
+          "t_ms": 14,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "When did the swelling develop?",
+          "meta": {
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 13,
+          "t_ms": 15,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "It swelled gradually that evening, not immediately.",
+          "meta": {
+            "facts_released": [
+              "hpi_chronology"
+            ],
+            "concepts": {
+              "hpi_chronology": {
+                "polarity": "positive",
+                "value": "It swelled gradually that evening, not immediately."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_chronology"
+            ],
+            "categories": [
+              "chronology"
+            ]
+          }
+        },
+        {
+          "seq": 14,
+          "t_ms": 15,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Where is the pain?",
+          "meta": {
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 15,
+          "t_ms": 17,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Along the inside of my right knee.",
+          "meta": {
+            "facts_released": [
+              "hpi_location"
+            ],
+            "concepts": {
+              "hpi_location": {
+                "polarity": "positive",
+                "value": "Along the inside of my right knee."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_location"
+            ],
+            "categories": [
+              "location"
+            ]
+          }
+        },
+        {
+          "seq": 16,
+          "t_ms": 18,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Does the pain spread?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 17,
+          "t_ms": 19,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No, it stays around the knee.",
+          "meta": {
+            "facts_released": [
+              "hpi_radiation"
+            ],
+            "concepts": {
+              "hpi_radiation": {
+                "polarity": "positive",
+                "value": "No, it stays around the knee."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_radiation"
+            ],
+            "categories": [
+              "radiation"
+            ]
+          }
+        },
+        {
+          "seq": 18,
+          "t_ms": 19,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What does it feel like?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 19,
+          "t_ms": 21,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "An ache with a sharp catch if I turn.",
+          "meta": {
+            "facts_released": [
+              "hpi_quality"
+            ],
+            "concepts": {
+              "hpi_quality": {
+                "polarity": "positive",
+                "value": "An ache with a sharp catch if I turn."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_quality"
+            ],
+            "categories": [
+              "quality"
+            ]
+          }
+        },
+        {
+          "seq": 20,
+          "t_ms": 21,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Can you walk on it?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 21,
+          "t_ms": 22,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I can walk with a limp. The pain is 6 out of 10.",
+          "meta": {
+            "facts_released": [
+              "hpi_severity"
+            ],
+            "concepts": {
+              "hpi_severity": {
+                "polarity": "positive",
+                "value": "I can walk with a limp. The pain is 6 out of 10."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_severity"
+            ],
+            "categories": [
+              "severity"
+            ]
+          }
+        },
+        {
+          "seq": 22,
+          "t_ms": 23,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Does the knee lock or give way?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 23,
+          "t_ms": 24,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "It catches, but I can straighten it. It has not given way.",
+          "meta": {
+            "facts_released": [
+              "hpi_timing"
+            ],
+            "concepts": {
+              "hpi_timing": {
+                "polarity": "positive",
+                "value": "It catches, but I can straighten it. It has not given way."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_timing"
+            ],
+            "categories": [
+              "timing"
+            ]
+          }
+        },
+        {
+          "seq": 24,
+          "t_ms": 25,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "How did you hurt the knee?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 25,
+          "t_ms": 26,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I turned while carrying a box, with my right foot planted. I did not fall.",
+          "meta": {
+            "facts_released": [
+              "hpi_setting"
+            ],
+            "concepts": {
+              "hpi_setting": {
+                "polarity": "positive",
+                "value": "I turned while carrying a box, with my right foot planted. I did not fall."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_setting"
+            ],
+            "categories": [
+              "setting"
+            ]
+          }
+        },
+        {
+          "seq": 26,
+          "t_ms": 27,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What helps?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 27,
+          "t_ms": 28,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Rest, ice wrapped in a towel, and elevating it.",
+          "meta": {
+            "facts_released": [
+              "hpi_alleviating"
+            ],
+            "concepts": {
+              "hpi_alleviating": {
+                "polarity": "positive",
+                "value": "Rest, ice wrapped in a towel, and elevating it."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_alleviating"
+            ],
+            "categories": [
+              "alleviating"
+            ]
+          }
+        },
+        {
+          "seq": 28,
+          "t_ms": 28,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What makes it worse?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 29,
+          "t_ms": 30,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Turning, stairs and deep bending.",
+          "meta": {
+            "facts_released": [
+              "hpi_aggravating"
+            ],
+            "concepts": {
+              "hpi_aggravating": {
+                "polarity": "positive",
+                "value": "Turning, stairs and deep bending."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_aggravating"
+            ],
+            "categories": [
+              "aggravating"
+            ]
+          }
+        },
+        {
+          "seq": 30,
+          "t_ms": 30,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What have you taken for the knee?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 31,
+          "t_ms": 31,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Acetaminophen 650 milligrams twice yesterday.",
+          "meta": {
+            "facts_released": [
+              "hpi_treatment"
+            ],
+            "concepts": {
+              "hpi_treatment": {
+                "polarity": "positive",
+                "value": "Acetaminophen 650 milligrams twice yesterday."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_treatment"
+            ],
+            "categories": [
+              "treatment"
+            ]
+          }
+        },
+        {
+          "seq": 32,
+          "t_ms": 32,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Did the knee bother you before this injury?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 33,
+          "t_ms": 33,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "It sometimes ached after work and felt stiff for about 5 minutes in the morning.",
+          "meta": {
+            "facts_released": [
+              "hpi_past_occurrence"
+            ],
+            "concepts": {
+              "hpi_past_occurrence": {
+                "polarity": "positive",
+                "value": "It sometimes ached after work and felt stiff for about 5 minutes in the morning."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_hpi_past_occurrence"
+            ],
+            "categories": [
+              "past_occurrence"
+            ]
+          }
+        },
+        {
+          "seq": 34,
+          "t_ms": 34,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had joint swelling?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 35,
+          "t_ms": 35,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "The right knee is swollen.",
+          "meta": {
+            "facts_released": [
+              "symptom_joint_swelling"
+            ],
+            "concepts": {
+              "symptom_joint_swelling": {
+                "polarity": "positive",
+                "value": "The right knee is swollen."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_joint_swelling"
+            ],
+            "categories": [
+              "associated"
+            ]
+          }
+        },
+        {
+          "seq": 36,
+          "t_ms": 36,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Any other joint pain?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 37,
+          "t_ms": 37,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "The right knee hurts; no other joint hurts right now.",
+          "meta": {
+            "facts_released": [
+              "symptom_joint_pain"
+            ],
+            "concepts": {
+              "symptom_joint_pain": {
+                "polarity": "positive",
+                "value": "The right knee hurts; no other joint hurts right now."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_joint_pain"
+            ],
+            "categories": [
+              "associated"
+            ]
+          }
+        },
+        {
+          "seq": 38,
+          "t_ms": 37,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had myalgia?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 39,
+          "t_ms": 39,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No muscle aches elsewhere.",
+          "meta": {
+            "facts_released": [
+              "symptom_myalgia"
+            ],
+            "concepts": {
+              "symptom_myalgia": {
+                "polarity": "negative",
+                "value": "No muscle aches elsewhere."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_myalgia"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 40,
+          "t_ms": 39,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had a fever?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 41,
+          "t_ms": 40,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No fever.",
+          "meta": {
+            "facts_released": [
+              "symptom_fever"
+            ],
+            "concepts": {
+              "symptom_fever": {
+                "polarity": "negative",
+                "value": "No fever."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_fever"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 42,
+          "t_ms": 41,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had chills?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 43,
+          "t_ms": 42,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No chills.",
+          "meta": {
+            "facts_released": [
+              "symptom_chills"
+            ],
+            "concepts": {
+              "symptom_chills": {
+                "polarity": "negative",
+                "value": "No chills."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_chills"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 44,
+          "t_ms": 43,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had fatigue?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 45,
+          "t_ms": 44,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I do not feel ill or unusually tired.",
+          "meta": {
+            "facts_released": [
+              "symptom_fatigue"
+            ],
+            "concepts": {
+              "symptom_fatigue": {
+                "polarity": "negative",
+                "value": "I do not feel ill or unusually tired."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_fatigue"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 46,
+          "t_ms": 44,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had numbness?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 47,
+          "t_ms": 45,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My foot is not numb.",
+          "meta": {
+            "facts_released": [
+              "symptom_numbness"
+            ],
+            "concepts": {
+              "symptom_numbness": {
+                "polarity": "negative",
+                "value": "My foot is not numb."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_numbness"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 48,
+          "t_ms": 46,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had tingling?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 49,
+          "t_ms": 47,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No pins and needles.",
+          "meta": {
+            "facts_released": [
+              "symptom_tingling"
+            ],
+            "concepts": {
+              "symptom_tingling": {
+                "polarity": "negative",
+                "value": "No pins and needles."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_tingling"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 50,
+          "t_ms": 48,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you noticed weakness?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 51,
+          "t_ms": 49,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "The ankle and foot feel normally strong.",
+          "meta": {
+            "facts_released": [
+              "symptom_weakness"
+            ],
+            "concepts": {
+              "symptom_weakness": {
+                "polarity": "negative",
+                "value": "The ankle and foot feel normally strong."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_symptom_weakness"
+            ],
+            "categories": [
+              "pertinent_negative"
+            ]
+          }
+        },
+        {
+          "seq": 52,
+          "t_ms": 50,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What medical conditions do you have?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 53,
+          "t_ms": 51,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "High blood pressure and gout. I had one red, swollen big toe last year, confirmed with fluid testing.",
+          "meta": {
+            "facts_released": [
+              "history_medical_history"
+            ],
+            "concepts": {
+              "history_medical_history": {
+                "polarity": "positive",
+                "value": "High blood pressure and gout. I had one red, swollen big toe last year, confirmed with fluid testing."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_medical_history"
+            ],
+            "categories": [
+              "pmh"
+            ]
+          }
+        },
+        {
+          "seq": 54,
+          "t_ms": 52,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Have you had knee surgery or other operations?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 55,
+          "t_ms": 53,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No knee surgery. I had a hernia repaired at 30.",
+          "meta": {
+            "facts_released": [
+              "history_surgery"
+            ],
+            "concepts": {
+              "history_surgery": {
+                "polarity": "positive",
+                "value": "No knee surgery. I had a hernia repaired at 30."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_surgery"
+            ],
+            "categories": [
+              "psh"
+            ]
+          }
+        },
+        {
+          "seq": 56,
+          "t_ms": 54,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What daily medicines do you take?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 57,
+          "t_ms": 55,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Hydrochlorothiazide 25 milligrams daily. No regular gout medicine.",
+          "meta": {
+            "facts_released": [
+              "history_daily_medicines"
+            ],
+            "concepts": {
+              "history_daily_medicines": {
+                "polarity": "positive",
+                "value": "Hydrochlorothiazide 25 milligrams daily. No regular gout medicine."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_daily_medicines"
+            ],
+            "categories": [
+              "medications"
+            ]
+          }
+        },
+        {
+          "seq": 58,
+          "t_ms": 56,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Are you allergic to any medicines?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 59,
+          "t_ms": 57,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No known drug allergies.",
+          "meta": {
+            "facts_released": [
+              "history_drug_reactions"
+            ],
+            "concepts": {
+              "history_drug_reactions": {
+                "polarity": "positive",
+                "value": "No known drug allergies."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_drug_reactions"
+            ],
+            "categories": [
+              "allergies"
+            ]
+          }
+        },
+        {
+          "seq": 60,
+          "t_ms": 57,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Do you smoke?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 61,
+          "t_ms": 59,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I smoked half a pack daily for 10 years and quit 15 years ago.",
+          "meta": {
+            "facts_released": [
+              "history_smoking"
+            ],
+            "concepts": {
+              "history_smoking": {
+                "polarity": "positive",
+                "value": "I smoked half a pack daily for 10 years and quit 15 years ago."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_smoking"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 62,
+          "t_ms": 59,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "How much alcohol do you drink?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 63,
+          "t_ms": 60,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Usually three beers on Friday and three on Saturday.",
+          "meta": {
+            "facts_released": [
+              "history_alcohol"
+            ],
+            "concepts": {
+              "history_alcohol": {
+                "polarity": "positive",
+                "value": "Usually three beers on Friday and three on Saturday."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_alcohol"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 64,
+          "t_ms": 61,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Do you use recreational drugs?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 65,
+          "t_ms": 62,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "No.",
+          "meta": {
+            "facts_released": [
+              "history_drugs"
+            ],
+            "concepts": {
+              "history_drugs": {
+                "polarity": "positive",
+                "value": "No."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_drugs"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 66,
+          "t_ms": 63,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What does your work involve?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 67,
+          "t_ms": 64,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I move stock in a grocery store, including lifting and squatting.",
+          "meta": {
+            "facts_released": [
+              "history_work"
+            ],
+            "concepts": {
+              "history_work": {
+                "polarity": "positive",
+                "value": "I move stock in a grocery store, including lifting and squatting."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_work"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 68,
+          "t_ms": 64,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Who is available to help you?",
+          "meta": {
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 69,
+          "t_ms": 66,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My wife can help. We have one flight of stairs at home.",
+          "meta": {
+            "facts_released": [
+              "history_home"
+            ],
+            "concepts": {
+              "history_home": {
+                "polarity": "positive",
+                "value": "My wife can help. We have one flight of stairs at home."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_home"
+            ],
+            "categories": [
+              "social"
+            ]
+          }
+        },
+        {
+          "seq": 70,
+          "t_ms": 67,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Does joint disease run in the family?",
+          "meta": {
+            "closed_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 71,
+          "t_ms": 68,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My mother had knee replacements for wear-and-tear arthritis.",
+          "meta": {
+            "facts_released": [
+              "history_family_history"
+            ],
+            "concepts": {
+              "history_family_history": {
+                "polarity": "positive",
+                "value": "My mother had knee replacements for wear-and-tear arthritis."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_family_history"
+            ],
+            "categories": [
+              "family"
+            ]
+          }
+        },
+        {
+          "seq": 72,
+          "t_ms": 69,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What about your father and siblings?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 73,
+          "t_ms": 70,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My father has high blood pressure. My brother has gout.",
+          "meta": {
+            "facts_released": [
+              "history_other_family"
+            ],
+            "concepts": {
+              "history_other_family": {
+                "polarity": "positive",
+                "value": "My father has high blood pressure. My brother has gout."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_history_other_family"
+            ],
+            "categories": [
+              "family"
+            ]
+          }
+        },
+        {
+          "seq": 74,
+          "t_ms": 71,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What worries you most?",
+          "meta": {
+            "open_question": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 75,
+          "t_ms": 72,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I want to know what is causing this and how to get back to my usual activities.",
+          "meta": {
+            "facts_released": [
+              "patient_concern"
+            ],
+            "concepts": {
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "I want to know what is causing this and how to get back to my usual activities."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_patient_concern"
+            ],
+            "categories": [
+              "concern"
+            ]
+          }
+        },
+        {
+          "seq": 76,
+          "t_ms": 72,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "Thank you for explaining that. I can understand why this is concerning.",
+          "meta": {
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 77,
+          "t_ms": 97,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "As I mentioned, I want to know what is causing this and how to get back to my usual activities. I'm not sure. What do you mean exactly?",
+          "meta": {
+            "facts_released": [
+              "patient_concern"
+            ],
+            "concepts": {
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "I want to know what is causing this and how to get back to my usual activities."
+              }
+            },
+            "volunteered": false,
+            "kind": "answer",
+            "checklist_hits": [
+              "h_patient_concern"
+            ],
+            "composed_asks": 1,
+            "unanswered_asks": [
+              "I can understand why this is concerning"
+            ],
+            "categories": [
+              "concern"
+            ]
+          }
+        },
+        {
+          "seq": 78,
+          "t_ms": 97,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "May I have your permission to examine you?",
+          "meta": {
+            "mode": "type",
+            "intent": "consent"
+          }
+        },
+        {
+          "seq": 79,
+          "t_ms": 106,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Yes, that's fine. Go ahead.",
+          "meta": {
+            "kind": "consent"
+          }
+        },
+        {
+          "seq": 80,
+          "t_ms": 97,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "May I have your permission to examine you?",
+          "meta": {
+            "status": "consented",
+            "maneuver": null,
+            "reason": "You asked permission. The patient answers; perform the examination when you are ready."
+          }
+        },
+        {
+          "seq": 81,
+          "t_ms": 10107,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "General appearance",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "general_inspect",
+            "label": "General appearance",
+            "method": "inspect",
+            "region": "General",
+            "components": [],
+            "scopes": [
+              "general"
+            ],
+            "duration_s": 10,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 82,
+          "t_ms": 10107,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Alert, comfortable at rest.",
+          "meta": {
+            "maneuver_id": "general_inspect",
+            "finding_ids": [
+              "exam_general_inspect"
+            ],
+            "concepts": {
+              "exam_general_inspect": {
+                "polarity": "positive",
+                "value": "Alert, comfortable at rest."
+              }
+            },
+            "scopes": [
+              "general"
+            ]
+          }
+        },
+        {
+          "seq": 83,
+          "t_ms": 50107,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Auscultate heart",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "heart_auscultate",
+            "label": "Auscultate heart",
+            "method": "auscultate",
+            "region": "Heart",
+            "components": [
+              "aortic",
+              "pulmonic",
+              "tricuspid",
+              "mitral",
+              "on skin"
+            ],
+            "scopes": [
+              "heart"
+            ],
+            "duration_s": 40,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 84,
+          "t_ms": 50107,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Regular rate and rhythm without murmur.",
+          "meta": {
+            "maneuver_id": "heart_auscultate",
+            "finding_ids": [
+              "exam_heart_auscultate"
+            ],
+            "concepts": {
+              "exam_heart_auscultate": {
+                "polarity": "positive",
+                "value": "Regular rate and rhythm without murmur."
+              }
+            },
+            "scopes": [
+              "heart"
+            ]
+          }
+        },
+        {
+          "seq": 85,
+          "t_ms": 91107,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Auscultate lungs",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "lungs_auscultate",
+            "label": "Auscultate lungs",
+            "method": "auscultate",
+            "region": "Lungs",
+            "components": [
+              "posterior",
+              "on skin",
+              "compare side to side",
+              "mouth open"
+            ],
+            "scopes": [
+              "lungs"
+            ],
+            "duration_s": 41,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 86,
+          "t_ms": 91107,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Clear bilateral breath sounds.",
+          "meta": {
+            "maneuver_id": "lungs_auscultate",
+            "finding_ids": [
+              "exam_lungs_auscultate"
+            ],
+            "concepts": {
+              "exam_lungs_auscultate": {
+                "polarity": "positive",
+                "value": "Clear bilateral breath sounds."
+              }
+            },
+            "scopes": [
+              "lungs"
+            ]
+          }
+        },
+        {
+          "seq": 87,
+          "t_ms": 103107,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Inspect the affected area",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "msk_inspect",
+            "label": "Inspect the affected area",
+            "method": "inspect",
+            "region": "Musculoskeletal",
+            "components": [
+              "swelling",
+              "erythema",
+              "deformity"
+            ],
+            "scopes": [
+              "msk.inspection"
+            ],
+            "duration_s": 12,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 88,
+          "t_ms": 103107,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Small right knee effusion without erythema or deformity.",
+          "meta": {
+            "maneuver_id": "msk_inspect",
+            "finding_ids": [
+              "exam_msk_inspect"
+            ],
+            "concepts": {
+              "exam_msk_inspect": {
+                "polarity": "positive",
+                "value": "Small right knee effusion without erythema or deformity."
+              }
+            },
+            "scopes": [
+              "msk.inspection"
+            ]
+          }
+        },
+        {
+          "seq": 89,
+          "t_ms": 119107,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Palpate the affected area",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "msk_palpate",
+            "label": "Palpate the affected area",
+            "method": "palpate",
+            "region": "Musculoskeletal",
+            "components": [
+              "point tenderness"
+            ],
+            "scopes": [
+              "msk.palpation"
+            ],
+            "duration_s": 16,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 90,
+          "t_ms": 119107,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Medial joint-line tenderness and mild warmth; no patellar or fibular-head tenderness.",
+          "meta": {
+            "maneuver_id": "msk_palpate",
+            "finding_ids": [
+              "exam_msk_palpate"
+            ],
+            "concepts": {
+              "exam_msk_palpate": {
+                "polarity": "positive",
+                "value": "Medial joint-line tenderness and mild warmth; no patellar or fibular-head tenderness."
+              }
+            },
+            "scopes": [
+              "msk.palpation"
+            ]
+          }
+        },
+        {
+          "seq": 91,
+          "t_ms": 141107,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Range of motion",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "msk_rom",
+            "label": "Range of motion",
+            "method": "special",
+            "region": "Musculoskeletal",
+            "components": [
+              "flexion",
+              "extension"
+            ],
+            "scopes": [
+              "msk.rom"
+            ],
+            "duration_s": 22,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 92,
+          "t_ms": 141107,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Right knee extends to 0 degrees and flexes to 110 degrees with pain near end flexion; mild crepitus.",
+          "meta": {
+            "maneuver_id": "msk_rom",
+            "finding_ids": [
+              "exam_msk_rom"
+            ],
+            "concepts": {
+              "exam_msk_rom": {
+                "polarity": "positive",
+                "value": "Right knee extends to 0 degrees and flexes to 110 degrees with pain near end flexion; mild crepitus."
+              }
+            },
+            "scopes": [
+              "msk.rom"
+            ]
+          }
+        },
+        {
+          "seq": 93,
+          "t_ms": 160107,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Muscle strength testing",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "msk_strength",
+            "label": "Muscle strength testing",
+            "method": "special",
+            "region": "Musculoskeletal",
+            "components": [
+              "lower extremity"
+            ],
+            "scopes": [
+              "neuro.motor"
+            ],
+            "duration_s": 19,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 94,
+          "t_ms": 160107,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Knee extension 4+/5 limited by pain; ankle dorsiflexion and plantarflexion 5/5.",
+          "meta": {
+            "maneuver_id": "msk_strength",
+            "finding_ids": [
+              "exam_msk_strength"
+            ],
+            "concepts": {
+              "exam_msk_strength": {
+                "polarity": "positive",
+                "value": "Knee extension 4+/5 limited by pain; ankle dorsiflexion and plantarflexion 5/5."
+              }
+            },
+            "scopes": [
+              "neuro.motor"
+            ]
+          }
+        },
+        {
+          "seq": 95,
+          "t_ms": 180107,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Observe gait",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "gait",
+            "label": "Observe gait",
+            "method": "special",
+            "region": "Musculoskeletal",
+            "components": [],
+            "scopes": [
+              "neuro.gait"
+            ],
+            "duration_s": 20,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 96,
+          "t_ms": 180107,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Antalgic gait; able to take four steps.",
+          "meta": {
+            "maneuver_id": "gait",
+            "finding_ids": [
+              "exam_gait"
+            ],
+            "concepts": {
+              "exam_gait": {
+                "polarity": "positive",
+                "value": "Antalgic gait; able to take four steps."
+              }
+            },
+            "scopes": [
+              "neuro.gait"
+            ]
+          }
+        },
+        {
+          "seq": 97,
+          "t_ms": 198107,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Palpate peripheral pulses",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "peripheral_pulses",
+            "label": "Palpate peripheral pulses",
+            "method": "palpate",
+            "region": "Heart",
+            "components": [
+              "dorsalis pedis",
+              "posterior tibial"
+            ],
+            "scopes": [
+              "extremities.pulses"
+            ],
+            "duration_s": 18,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 98,
+          "t_ms": 198107,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "Dorsalis pedis and posterior tibial pulses 2+ bilaterally.",
+          "meta": {
+            "maneuver_id": "peripheral_pulses",
+            "finding_ids": [
+              "exam_peripheral_pulses"
+            ],
+            "concepts": {
+              "exam_peripheral_pulses": {
+                "polarity": "positive",
+                "value": "Dorsalis pedis and posterior tibial pulses 2+ bilaterally."
+              }
+            },
+            "scopes": [
+              "extremities.pulses"
+            ]
+          }
+        },
+        {
+          "seq": 99,
+          "t_ms": 223107,
+          "phase": "encounter",
+          "kind": "exam_action",
+          "text": "Osteopathic structural screen",
+          "meta": {
+            "status": "completed",
+            "maneuver_id": "osteo_screen",
+            "label": "Osteopathic structural screen",
+            "method": "palpate",
+            "region": "Osteopathic",
+            "components": [
+              "lumbar"
+            ],
+            "scopes": [
+              "osteopathic"
+            ],
+            "duration_s": 25,
+            "withheld": []
+          }
+        },
+        {
+          "seq": 100,
+          "t_ms": 223107,
+          "phase": "encounter",
+          "kind": "exam_finding",
+          "text": "L4 right lumbar paraspinal tissue texture change and tenderness.",
+          "meta": {
+            "maneuver_id": "osteo_screen",
+            "finding_ids": [
+              "exam_osteo_screen"
+            ],
+            "concepts": {
+              "exam_osteo_screen": {
+                "polarity": "positive",
+                "value": "L4 right lumbar paraspinal tissue texture change and tenderness."
+              }
+            },
+            "scopes": [
+              "osteopathic"
+            ]
+          }
+        },
+        {
+          "seq": 101,
+          "t_ms": 223107,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "We will protect the knee, assess stability and decide whether imaging is needed. I want to review it in one week. If it becomes hot and very swollen, you develop fever, or it locks, seek urgent assessment.",
+          "meta": {
+            "mode": "type"
+          }
+        },
+        {
+          "seq": 102,
+          "t_ms": 223107,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "Thank you. I understand that the next steps depend on the examination and tests.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "education_response"
+          }
+        },
+        {
+          "seq": 103,
+          "t_ms": 223107,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "What questions do you have about the next steps?",
+          "meta": {
+            "open_question": true,
+            "closure": true,
+            "mode": "type",
+            "intent": "question"
+          }
+        },
+        {
+          "seq": 104,
+          "t_ms": 223107,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "I want to know what is causing this and how to get back to my usual activities.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "closure_response",
+            "ips_signal": "closure_invited",
+            "categories": []
+          }
+        },
+        {
+          "seq": 105,
+          "t_ms": 223107,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "We can document temporary lifting and squatting limits and discuss how you will manage stairs at home.",
+          "meta": {
+            "mode": "type"
+          }
+        },
+        {
+          "seq": 106,
+          "t_ms": 223107,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "That would help. Thank you.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "education_response"
+          }
+        }
+      ],
+      "note_words": 456,
+      "estimated_encounter_s": 536,
+      "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
+      "missing_example_facts": [],
+      "documentation_audit": {
+        "unsupported": [],
+        "unresolved_count": 15
+      },
+      "reasoning": [
+        {
+          "id": "msk-knee-injury-decision",
+          "question": "Was swelling immediate or delayed, and is the knee truly locked?",
+          "why": "Use mechanism and mechanical symptoms while retaining crystal and infection safety checks.",
+          "if_present": "Use the reported pattern to select the relevant examinations and assess urgency.",
+          "if_absent": "Keep alternatives open and ask a focused follow-up.",
+          "next_action": "Perform the relevant case-specific examination.",
+          "document": "Separate reported symptoms, observed signs, assessment and proposed care."
+        }
+      ],
+      "differentials": [
+        {
+          "rank": 1,
+          "name": "Medial meniscal injury",
+          "vindicate": "T",
+          "aliases": [
+            "Medial meniscal injury"
+          ],
+          "supported_by": [
+            "hpi_setting",
+            "hpi_timing",
+            "exam_msk_palpate"
+          ],
+          "teaching_context": "Twisting mechanism, delayed effusion, medial joint-line tenderness and catching favor a meniscal injury."
+        },
+        {
+          "rank": 2,
+          "name": "Knee osteoarthritis with an acute flare",
+          "vindicate": "D",
+          "aliases": [
+            "Knee osteoarthritis with an acute flare"
+          ],
+          "supported_by": [
+            "hpi_past_occurrence",
+            "history_family_history",
+            "exam_msk_rom"
+          ],
+          "teaching_context": "Prior activity-related ache, brief stiffness and crepitus support underlying osteoarthritis."
+        },
+        {
+          "rank": 3,
+          "name": "Acute gouty arthritis",
+          "vindicate": "E",
+          "aliases": [
+            "Acute gouty arthritis"
+          ],
+          "supported_by": [
+            "history_medical_history",
+            "history_daily_medicines",
+            "exam_msk_palpate"
+          ],
+          "teaching_context": "Prior crystal-proven gout, diuretic exposure and a warm effusion make crystal arthritis plausible, although this episode followed mechanical injury."
+        }
+      ],
+      "omissions": [
+        "Distinguishing history from examination evidence.",
+        "Explaining uncertainty and the practical follow-up plan."
+      ],
+      "recall": [
+        {
+          "prompt": "Before naming a diagnosis, what is the key distinction in this presentation?",
+          "answer": "Was swelling immediate or delayed, and is the knee truly locked?"
+        },
+        {
+          "prompt": "Which specific examination or safety step changes what you can document?",
+          "answer": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model."
+        },
+        {
+          "prompt": "Name one tempting documentation or reasoning error and how you will prevent it.",
+          "answer": "Treating an unperformed examination or a possible diagnosis as obtained fact."
+        }
+      ],
+      "course_sources": [
+        {
+          "label": "PCM syllabus: 14-minute encounter / 9-minute SOAP; invasive SP examinations refused",
+          "locator": "PCM syllabus.pdf pp. 4\u20135"
+        },
+        {
+          "label": "SOAP rubric: S 28 / O 30 / A 15 / P 25 / style 2",
+          "locator": "2026 FALL M2 ILG - STUDENT MANUAL update.docx, SOAP evaluation table"
+        },
+        {
+          "label": "FIFE and patient perspective; purposeful transitions",
+          "locator": "PCM syllabus.pdf p. 13; Interpersonal Skills lecture"
+        }
+      ],
+      "sources": [
+        {
+          "title": "2026 FALL M2 ILG Student Manual",
+          "path": "claude builds/PCM/2026 FALL M2 ILG - STUDENT MANUAL update.docx",
+          "locator": "SOAP rubric and physical examination requirements",
+          "kind": "course"
+        },
+        {
+          "title": "Meniscus tears",
+          "url": "https://www.orthoinfo.org/diseases--conditions/meniscus-tears",
+          "kind": "supplementary_clinical",
+          "reviewed": "2026-09-14",
+          "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+        },
+        {
+          "title": "Gout diagnosis and treatment",
+          "url": "https://www.niams.nih.gov/health-topics/gout/diagnosis-treatment-and-steps-to-take",
+          "kind": "supplementary_clinical",
+          "reviewed": "2026-09-14",
+          "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+        }
+      ],
+      "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
+      "case_hash": "3f2c437c2a533dcb40ad99b93d7b212c42d857d3656e797d51055514f73246a8",
+      "engine_version": "4.1.0"
+    }
+  ]
+}

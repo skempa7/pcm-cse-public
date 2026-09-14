@@ -1,30 +1,9 @@
 {
   "result": "PASS",
-  "playable_paths": 72,
-  "women": 18,
-  "men": 6,
+  "playable_paths": 82,
+  "women": 23,
+  "men": 11,
   "checks": [
-    {
-      "case_id": "cardio-febrile-cough",
-      "variant_id": "base",
-      "sex": "male",
-      "flow": "doorway/start/say/reload-model/organization/note/submit/locked-original",
-      "walkthrough": true
-    },
-    {
-      "case_id": "cardio-febrile-cough",
-      "variant_id": "cardio-febrile-cough--chronology",
-      "sex": "male",
-      "flow": "doorway/start/say/reload-model/organization/note/submit/locked-original",
-      "walkthrough": true
-    },
-    {
-      "case_id": "cardio-febrile-cough",
-      "variant_id": "cardio-febrile-cough--communication",
-      "sex": "male",
-      "flow": "doorway/start/say/reload-model/organization/note/submit/locked-original",
-      "walkthrough": true
-    },
     {
       "case_id": "cardio-orthopnea-edema",
       "variant_id": "base",
@@ -127,6 +106,13 @@
       "case_id": "cardio-chest-pressure",
       "variant_id": "cardio-chest-pressure--support",
       "sex": "female",
+      "flow": "doorway/start/say/reload-model/organization/note/submit/locked-original",
+      "walkthrough": true
+    },
+    {
+      "case_id": "cardio-exertional-leg-pain",
+      "variant_id": "base",
+      "sex": "male",
       "flow": "doorway/start/say/reload-model/organization/note/submit/locked-original",
       "walkthrough": true
     },
@@ -252,6 +238,41 @@
     {
       "case_id": "gi-right-upper-pain",
       "variant_id": "gi-right-upper-pain--communication",
+      "sex": "female",
+      "flow": "doorway/start/say/reload-model/organization/note/submit/locked-original",
+      "walkthrough": true
+    },
+    {
+      "case_id": "heent-ear-pain",
+      "variant_id": "base",
+      "sex": "male",
+      "flow": "doorway/start/say/reload-model/organization/note/submit/locked-original",
+      "walkthrough": true
+    },
+    {
+      "case_id": "heent-sore-throat",
+      "variant_id": "base",
+      "sex": "female",
+      "flow": "doorway/start/say/reload-model/organization/note/submit/locked-original",
+      "walkthrough": true
+    },
+    {
+      "case_id": "msk-hand-stiffness",
+      "variant_id": "base",
+      "sex": "female",
+      "flow": "doorway/start/say/reload-model/organization/note/submit/locked-original",
+      "walkthrough": true
+    },
+    {
+      "case_id": "msk-knee-injury",
+      "variant_id": "base",
+      "sex": "male",
+      "flow": "doorway/start/say/reload-model/organization/note/submit/locked-original",
+      "walkthrough": true
+    },
+    {
+      "case_id": "msk-shoulder-overuse",
+      "variant_id": "base",
       "sex": "female",
       "flow": "doorway/start/say/reload-model/organization/note/submit/locked-original",
       "walkthrough": true
@@ -505,6 +526,55 @@
       "case_id": "renal-painless-hematuria",
       "variant_id": "renal-painless-hematuria--communication",
       "sex": "female",
+      "flow": "doorway/start/say/reload-model/organization/note/submit/locked-original",
+      "walkthrough": true
+    },
+    {
+      "case_id": "cardio-febrile-cough",
+      "variant_id": "base",
+      "sex": "male",
+      "flow": "doorway/start/say/reload-model/organization/note/submit/locked-original",
+      "walkthrough": true
+    },
+    {
+      "case_id": "cardio-febrile-cough",
+      "variant_id": "cardio-febrile-cough--chronology",
+      "sex": "male",
+      "flow": "doorway/start/say/reload-model/organization/note/submit/locked-original",
+      "walkthrough": true
+    },
+    {
+      "case_id": "cardio-febrile-cough",
+      "variant_id": "cardio-febrile-cough--communication",
+      "sex": "male",
+      "flow": "doorway/start/say/reload-model/organization/note/submit/locked-original",
+      "walkthrough": true
+    },
+    {
+      "case_id": "pulm-chronic-productive-cough",
+      "variant_id": "base",
+      "sex": "male",
+      "flow": "doorway/start/say/reload-model/organization/note/submit/locked-original",
+      "walkthrough": true
+    },
+    {
+      "case_id": "pulm-episodic-wheeze",
+      "variant_id": "base",
+      "sex": "female",
+      "flow": "doorway/start/say/reload-model/organization/note/submit/locked-original",
+      "walkthrough": true
+    },
+    {
+      "case_id": "skin-contact-rash",
+      "variant_id": "base",
+      "sex": "female",
+      "flow": "doorway/start/say/reload-model/organization/note/submit/locked-original",
+      "walkthrough": true
+    },
+    {
+      "case_id": "skin-localized-redness",
+      "variant_id": "base",
+      "sex": "male",
       "flow": "doorway/start/say/reload-model/organization/note/submit/locked-original",
       "walkthrough": true
     }

@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import re
 from collections import OrderedDict
+from .partner import _relationship_conflict
 
 
 SUBJECTIVE_ORDER = (
@@ -358,11 +359,16 @@ def build_example_note(case, lesson):
     ]
     if omitted:
         outside.append({'kind': 'authoring_gap', 'text': 'This case needs additional authoring for a third supported differential. The unsupported entry has been left out of the clinical note rather than invented: ' + ' '.join(x['diagnosis'] + ' — ' + x['reason'] for x in omitted)})
-    if case['id'] == 'renal-colicky-flank':
+    if case['id'] == 'renal-colicky-flank' and ('48–72 hours' not in note['P'][0] or 'consider acetaminophen' not in note['P'][2]):
         outside.append({'kind': 'authoring_gap', 'text': 'Course-format limitation: the leading plan says prompt follow-up without a specific routine interval. The third plan also lacks a clearly distinct third MOTHERR element. Clarify these with the instructor; the print edition does not invent an interval or add unnecessary treatment to fill the rubric.'})
-    if case['id'] == 'cardio-palpitations':
+    if case['id'] == 'cardio-palpitations' and 'excess thyroid hormone can accelerate the heartbeat' not in note['P'][2]:
         outside.append({'kind': 'authoring_gap', 'text': 'Course-format limitation: the third plan supplies testing and referral but does not establish a third distinct MOTHERR element. The second plan also needs clarification of how its existing components are classified. The clinical alternatives are retained without adding unnecessary care to fill the rubric.'})
-    if case['id'] == 'renal-flank-pain':
+    category_gaps = [d for d in lesson.get('differentials', [])
+                     if d.get('rank', 99) <= 3 and d.get('classification_status') in
+                     ('shared_category_course_review_needed', 'unresolved_course_review_needed')]
+    if category_gaps:
+        outside.append({'kind': 'authoring_gap', 'text': 'Course category review needed: these three clinical possibilities do not establish three distinct VINDICATE elements. ' + ' '.join(d['name'] + (' shares the inflammatory category.' if d.get('vindicate') else ' has no established etiologic category in this case.') for d in category_gaps) + ' The clinical alternative is retained without inventing an etiology; the automated course score cannot credit a missing or duplicate category.'})
+    if _relationship_conflict(case):
         outside.append({'kind': 'source_conflict', 'text': 'The source dialogue alternates between husband and boyfriend. The example note preserves the obtained household history and the neutral phrase one male sexual partner without inventing an explanation for that relationship-label conflict.'})
     return {'schema_version': 1, 'label': 'Example for the complete demonstrated encounter',
             'encounter_definition': {'history_turns': sum(t.get('kind') == 'dialogue' for t in timeline),

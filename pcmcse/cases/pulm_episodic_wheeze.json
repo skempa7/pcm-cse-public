@@ -1,0 +1,2289 @@
+{
+  "id": "pulm-episodic-wheeze",
+  "presentation_id": "pulm-episodic-wheeze",
+  "title": "Episodes of wheezing and chest tightness",
+  "hidden_label": "Station 26",
+  "system": "Respiratory",
+  "complaint_family": "Respiratory",
+  "level": "M2",
+  "difficulty": "intermediate",
+  "blurb": "I keep getting spells of wheezing and a tight chest.",
+  "curriculum_note": "Supplementary fictional practice for the course history, physical examination and SOAP skills; not an official or predicted station.",
+  "scope_status": "supplementary_cross_system",
+  "station": {
+    "doorway": [
+      "Sofia Patel, 27-year-old female.",
+      "I keep getting spells of wheezing and a tight chest.",
+      "Vital signs are available on the chart.",
+      "Perform a focused history and physical examination, discuss your plan, and document only what you obtain.",
+      "Use the time limit stated for your selected practice mode."
+    ],
+    "vitals": {
+      "BP": "116/72 mmHg",
+      "P": "84 bpm",
+      "R": "18 rpm",
+      "T": "98.2 F oral",
+      "Pulse Ox": "98% on room air",
+      "Ht": "5' 4\"",
+      "Wt": "138 lbs"
+    },
+    "supplied_results": []
+  },
+  "patient": {
+    "name": "Sofia Patel",
+    "age": 27,
+    "sex": "female",
+    "pronouns": "she/her",
+    "persona": "I mix dough at a bakery. There is visible flour dust, and masks are not consistently available. Two roommates. There are no pets or smokers at home.",
+    "opening": "I keep getting spells of wheezing and a tight chest.",
+    "opening_facts": [
+      "opening_complaint"
+    ],
+    "opening_contract": {
+      "text": "I keep getting spells of wheezing and a tight chest.",
+      "fact_ids": [
+        "opening_complaint"
+      ],
+      "review": "Exact opening only."
+    },
+    "volunteer_budget": 1,
+    "volunteer_order": [
+      "patient_concern"
+    ],
+    "affect": "I am worried I will have to quit the bakery.",
+    "communication_style": "concise",
+    "empathy_replies": [
+      "Thank you for listening.",
+      "I appreciate you explaining that."
+    ],
+    "closing_questions": [
+      "I am worried I will have to quit the bakery."
+    ],
+    "appearance": {
+      "presentation": "female",
+      "model": "mpfb-public-patient",
+      "skinTone": 1,
+      "eyeColor": "brown",
+      "hairColor": "brunette",
+      "hairStyle": "long",
+      "outfit": "fitted-casual",
+      "bodyBuild": "standard"
+    },
+    "voice": {
+      "rate": 1,
+      "pitch": 1,
+      "gender": "female",
+      "adult": true
+    },
+    "education_responses": [
+      {
+        "student": "I will arrange breathing tests and review the work pattern. If we confirm asthma, we will choose an inhaler plan and practice using it. Severe trouble breathing or speaking means seek emergency help.",
+        "patient": "Thank you. I understand that the next steps depend on the examination and tests."
+      },
+      {
+        "student": "We can discuss safer flour handling and protection with occupational health, with your permission, rather than assuming you must leave your job.",
+        "patient": "That would help. Thank you."
+      }
+    ]
+  },
+  "facts": [
+    {
+      "id": "opening_complaint",
+      "category": "chief_complaint",
+      "print_label": "Opening complaint",
+      "checklist": "h_opening_complaint",
+      "value": "I keep getting spells of wheezing and a tight chest.",
+      "sp_says": [
+        "I keep getting spells of wheezing and a tight chest."
+      ],
+      "triggers": {
+        "any": [
+          "What brings you in today?"
+        ]
+      },
+      "concepts": {
+        "opening_complaint": {
+          "polarity": "positive",
+          "value": "I keep getting spells of wheezing and a tight chest."
+        }
+      },
+      "example_questions": [
+        "What brings you in today?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I keep getting spells of wheezing and a tight chest.",
+            "concepts": {
+              "opening_complaint": {
+                "polarity": "positive",
+                "value": "I keep getting spells of wheezing and a tight chest."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "I keep getting spells of wheezing and a tight chest."
+    },
+    {
+      "id": "hpi_onset",
+      "category": "onset",
+      "print_label": "Onset",
+      "checklist": "h_hpi_onset",
+      "value": "About 6 weeks ago.",
+      "sp_says": [
+        "About 6 weeks ago."
+      ],
+      "triggers": {
+        "any": [
+          "When did the wheezing begin?",
+          "when did",
+          "started",
+          "began"
+        ]
+      },
+      "concepts": {
+        "hpi_onset": {
+          "polarity": "positive",
+          "value": "About 6 weeks ago."
+        }
+      },
+      "example_questions": [
+        "When did the wheezing begin?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "About 6 weeks ago.",
+            "concepts": {
+              "hpi_onset": {
+                "polarity": "positive",
+                "value": "About 6 weeks ago."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Six weeks of intermittent wheezing and chest tightness.",
+      "temporal_role": "first_episode_onset"
+    },
+    {
+      "id": "hpi_location",
+      "category": "location",
+      "print_label": "Location",
+      "checklist": "h_hpi_location",
+      "value": "Across my chest, not in one spot.",
+      "sp_says": [
+        "Across my chest, not in one spot."
+      ],
+      "triggers": {
+        "any": [
+          "Where do you feel the tightness?",
+          "where",
+          "which side"
+        ]
+      },
+      "concepts": {
+        "hpi_location": {
+          "polarity": "positive",
+          "value": "Across my chest, not in one spot."
+        }
+      },
+      "example_questions": [
+        "Where do you feel the tightness?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Across my chest, not in one spot.",
+            "concepts": {
+              "hpi_location": {
+                "polarity": "positive",
+                "value": "Across my chest, not in one spot."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Diffuse chest tightness."
+    },
+    {
+      "id": "hpi_quality",
+      "category": "quality",
+      "print_label": "Character",
+      "checklist": "h_hpi_quality",
+      "value": "It whistles when I breathe out, and getting air out feels hard.",
+      "sp_says": [
+        "It whistles when I breathe out, and getting air out feels hard."
+      ],
+      "triggers": {
+        "any": [
+          "What is breathing like during a spell?",
+          "feel like",
+          "describe"
+        ]
+      },
+      "concepts": {
+        "hpi_quality": {
+          "polarity": "positive",
+          "value": "It whistles when I breathe out, and getting air out feels hard."
+        }
+      },
+      "example_questions": [
+        "What is breathing like during a spell?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "It whistles when I breathe out, and getting air out feels hard.",
+            "concepts": {
+              "hpi_quality": {
+                "polarity": "positive",
+                "value": "It whistles when I breathe out, and getting air out feels hard."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Expiratory wheeze and difficulty exhaling."
+    },
+    {
+      "id": "hpi_severity",
+      "category": "severity",
+      "print_label": "Function",
+      "checklist": "h_hpi_severity",
+      "value": "I stop jogging and wait. I can still speak in full sentences.",
+      "sp_says": [
+        "I stop jogging and wait. I can still speak in full sentences."
+      ],
+      "triggers": {
+        "any": [
+          "How much do the spells limit you?",
+          "how bad",
+          "out of ten",
+          "severity"
+        ]
+      },
+      "concepts": {
+        "hpi_severity": {
+          "polarity": "positive",
+          "value": "I stop jogging and wait. I can still speak in full sentences."
+        }
+      },
+      "example_questions": [
+        "How much do the spells limit you?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I stop jogging and wait. I can still speak in full sentences.",
+            "concepts": {
+              "hpi_severity": {
+                "polarity": "positive",
+                "value": "I stop jogging and wait. I can still speak in full sentences."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Interrupts jogging; speech maintained."
+    },
+    {
+      "id": "hpi_timing",
+      "category": "timing",
+      "print_label": "Duration and frequency",
+      "checklist": "h_hpi_timing",
+      "value": "Usually 10 to 20 minutes, about 3 days a week.",
+      "sp_says": [
+        "Usually 10 to 20 minutes, about 3 days a week."
+      ],
+      "triggers": {
+        "any": [
+          "How long do the spells last and how often do they happen?",
+          "how long each",
+          "how often"
+        ]
+      },
+      "concepts": {
+        "hpi_timing": {
+          "polarity": "positive",
+          "value": "Usually 10 to 20 minutes, about 3 days a week."
+        }
+      },
+      "example_questions": [
+        "How long do the spells last and how often do they happen?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Usually 10 to 20 minutes, about 3 days a week.",
+            "concepts": {
+              "hpi_timing": {
+                "polarity": "positive",
+                "value": "Usually 10 to 20 minutes, about 3 days a week."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Episodes 10–20 minutes, approximately 3 days weekly.",
+      "question_dimensions": [
+        "episode_duration",
+        "frequency"
+      ],
+      "temporal_role": "episode_duration"
+    },
+    {
+      "id": "hpi_chronology",
+      "category": "chronology",
+      "print_label": "Nighttime symptoms",
+      "checklist": "h_hpi_chronology",
+      "value": "A dry cough wakes me about once a week.",
+      "sp_says": [
+        "A dry cough wakes me about once a week."
+      ],
+      "triggers": {
+        "any": [
+          "Do symptoms wake you at night?",
+          "changed",
+          "progressed"
+        ]
+      },
+      "concepts": {
+        "hpi_chronology": {
+          "polarity": "positive",
+          "value": "A dry cough wakes me about once a week."
+        }
+      },
+      "example_questions": [
+        "Do symptoms wake you at night?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "A dry cough wakes me about once a week.",
+            "concepts": {
+              "hpi_chronology": {
+                "polarity": "positive",
+                "value": "A dry cough wakes me about once a week."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Weekly nocturnal cough.",
+      "question_dimensions": [
+        "progression"
+      ],
+      "temporal_role": "pattern_or_progression"
+    },
+    {
+      "id": "hpi_setting",
+      "category": "setting",
+      "print_label": "Work exposure",
+      "checklist": "h_hpi_setting",
+      "value": "Flour dust in the bakery sets it off. I was better during four days away.",
+      "sp_says": [
+        "Flour dust in the bakery sets it off. I was better during four days away."
+      ],
+      "triggers": {
+        "any": [
+          "Is there a pattern at work or away from work?",
+          "trigger",
+          "doing when"
+        ]
+      },
+      "concepts": {
+        "hpi_setting": {
+          "polarity": "positive",
+          "value": "Flour dust in the bakery sets it off. I was better during four days away."
+        }
+      },
+      "example_questions": [
+        "Is there a pattern at work or away from work?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Flour dust in the bakery sets it off. I was better during four days away.",
+            "concepts": {
+              "hpi_setting": {
+                "polarity": "positive",
+                "value": "Flour dust in the bakery sets it off. I was better during four days away."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Flour-dust exposure at bakery; improved during 4 days away."
+    },
+    {
+      "id": "hpi_aggravating",
+      "category": "aggravating",
+      "print_label": "Other triggers",
+      "checklist": "h_hpi_aggravating",
+      "value": "Cold-air jogging and strong cleaning sprays.",
+      "sp_says": [
+        "Cold-air jogging and strong cleaning sprays."
+      ],
+      "triggers": {
+        "any": [
+          "What else brings it on?",
+          "makes worse"
+        ]
+      },
+      "concepts": {
+        "hpi_aggravating": {
+          "polarity": "positive",
+          "value": "Cold-air jogging and strong cleaning sprays."
+        }
+      },
+      "example_questions": [
+        "What else brings it on?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Cold-air jogging and strong cleaning sprays.",
+            "concepts": {
+              "hpi_aggravating": {
+                "polarity": "positive",
+                "value": "Cold-air jogging and strong cleaning sprays."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Cold air and cleaning sprays also trigger symptoms."
+    },
+    {
+      "id": "hpi_alleviating",
+      "category": "alleviating",
+      "print_label": "Relief",
+      "checklist": "h_hpi_alleviating",
+      "value": "Stopping and getting away from the dust helps.",
+      "sp_says": [
+        "Stopping and getting away from the dust helps."
+      ],
+      "triggers": {
+        "any": [
+          "What helps the wheezing?",
+          "helps",
+          "relieves"
+        ]
+      },
+      "concepts": {
+        "hpi_alleviating": {
+          "polarity": "positive",
+          "value": "Stopping and getting away from the dust helps."
+        }
+      },
+      "example_questions": [
+        "What helps the wheezing?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Stopping and getting away from the dust helps.",
+            "concepts": {
+              "hpi_alleviating": {
+                "polarity": "positive",
+                "value": "Stopping and getting away from the dust helps."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Improves with rest and exposure avoidance."
+    },
+    {
+      "id": "hpi_treatment",
+      "category": "treatment",
+      "print_label": "Inhaler use",
+      "checklist": "h_hpi_treatment",
+      "value": "No, I have never had an inhaler.",
+      "sp_says": [
+        "No, I have never had an inhaler."
+      ],
+      "triggers": {
+        "any": [
+          "Have you tried an inhaler?",
+          "tried for",
+          "taken for"
+        ]
+      },
+      "concepts": {
+        "hpi_treatment": {
+          "polarity": "positive",
+          "value": "No, I have never had an inhaler."
+        }
+      },
+      "example_questions": [
+        "Have you tried an inhaler?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No, I have never had an inhaler.",
+            "concepts": {
+              "hpi_treatment": {
+                "polarity": "positive",
+                "value": "No, I have never had an inhaler."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No prior inhaler trial."
+    },
+    {
+      "id": "hpi_past_occurrence",
+      "category": "past_occurrence",
+      "print_label": "Past breathing trouble",
+      "checklist": "h_hpi_past_occurrence",
+      "value": "I had hay fever, but no diagnosed asthma.",
+      "sp_says": [
+        "I had hay fever, but no diagnosed asthma."
+      ],
+      "triggers": {
+        "any": [
+          "Did you have this as a child?",
+          "had before"
+        ]
+      },
+      "concepts": {
+        "hpi_past_occurrence": {
+          "polarity": "positive",
+          "value": "I had hay fever, but no diagnosed asthma."
+        }
+      },
+      "example_questions": [
+        "Did you have this as a child?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I had hay fever, but no diagnosed asthma.",
+            "concepts": {
+              "hpi_past_occurrence": {
+                "polarity": "positive",
+                "value": "I had hay fever, but no diagnosed asthma."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Childhood allergic rhinitis without prior asthma diagnosis."
+    },
+    {
+      "id": "history_medical_history",
+      "category": "pmh",
+      "print_label": "Medical history",
+      "checklist": "h_history_medical_history",
+      "value": "Seasonal hay fever and occasional heartburn.",
+      "sp_says": [
+        "Seasonal hay fever and occasional heartburn."
+      ],
+      "triggers": {
+        "any": [
+          "What medical conditions do you have?",
+          "What illnesses have you had?",
+          "Any medical conditions?"
+        ]
+      },
+      "concepts": {
+        "history_medical_history": {
+          "polarity": "positive",
+          "value": "Seasonal hay fever and occasional heartburn."
+        }
+      },
+      "example_questions": [
+        "What medical conditions do you have?",
+        "What illnesses have you had?",
+        "Any medical conditions?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Seasonal hay fever and occasional heartburn.",
+            "concepts": {
+              "history_medical_history": {
+                "polarity": "positive",
+                "value": "Seasonal hay fever and occasional heartburn."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Seasonal allergic rhinitis; occasional heartburn."
+    },
+    {
+      "id": "history_procedures",
+      "category": "psh",
+      "print_label": "Procedures",
+      "checklist": "h_history_procedures",
+      "value": "Only wisdom teeth removal at 20.",
+      "sp_says": [
+        "Only wisdom teeth removal at 20."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had surgery?",
+          "Have you had any operations?"
+        ]
+      },
+      "concepts": {
+        "history_procedures": {
+          "polarity": "positive",
+          "value": "Only wisdom teeth removal at 20."
+        }
+      },
+      "example_questions": [
+        "Have you had surgery?",
+        "Have you had any operations?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Only wisdom teeth removal at 20.",
+            "concepts": {
+              "history_procedures": {
+                "polarity": "positive",
+                "value": "Only wisdom teeth removal at 20."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Wisdom teeth removed at 20."
+    },
+    {
+      "id": "history_medication",
+      "category": "medications",
+      "print_label": "Medication",
+      "checklist": "h_history_medication",
+      "value": "Cetirizine 10 milligrams when pollen is bad, and a chewable antacid about once a week.",
+      "sp_says": [
+        "Cetirizine 10 milligrams when pollen is bad, and a chewable antacid about once a week."
+      ],
+      "triggers": {
+        "any": [
+          "What medicines do you take?",
+          "What medications are you taking?"
+        ]
+      },
+      "concepts": {
+        "history_medication": {
+          "polarity": "positive",
+          "value": "Cetirizine 10 milligrams when pollen is bad, and a chewable antacid about once a week."
+        }
+      },
+      "example_questions": [
+        "What medicines do you take?",
+        "What medications are you taking?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Cetirizine 10 milligrams when pollen is bad, and a chewable antacid about once a week.",
+            "concepts": {
+              "history_medication": {
+                "polarity": "positive",
+                "value": "Cetirizine 10 milligrams when pollen is bad, and a chewable antacid about once a week."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Cetirizine 10 mg as needed; antacid approximately weekly."
+    },
+    {
+      "id": "history_drug_reactions",
+      "category": "allergies",
+      "print_label": "Drug reactions",
+      "checklist": "h_history_drug_reactions",
+      "value": "Trimethoprim-sulfamethoxazole gave me a widespread rash when I was 17, without blisters or breathing trouble.",
+      "sp_says": [
+        "Trimethoprim-sulfamethoxazole gave me a widespread rash when I was 17, without blisters or breathing trouble."
+      ],
+      "triggers": {
+        "any": [
+          "Are you allergic to medicines?",
+          "Any medication allergies?"
+        ]
+      },
+      "concepts": {
+        "history_drug_reactions": {
+          "polarity": "positive",
+          "value": "Trimethoprim-sulfamethoxazole gave me a widespread rash when I was 17, without blisters or breathing trouble."
+        }
+      },
+      "example_questions": [
+        "Are you allergic to medicines?",
+        "Any medication allergies?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Trimethoprim-sulfamethoxazole gave me a widespread rash when I was 17, without blisters or breathing trouble.",
+            "concepts": {
+              "history_drug_reactions": {
+                "polarity": "positive",
+                "value": "Trimethoprim-sulfamethoxazole gave me a widespread rash when I was 17, without blisters or breathing trouble."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "TMP-SMX: nonblistering rash at 17, no respiratory symptoms."
+    },
+    {
+      "id": "history_smoking",
+      "category": "social",
+      "print_label": "Smoking",
+      "checklist": "h_history_smoking",
+      "value": "I have never smoked or vaped.",
+      "sp_says": [
+        "I have never smoked or vaped."
+      ],
+      "triggers": {
+        "any": [
+          "Do you smoke or vape?"
+        ]
+      },
+      "concepts": {
+        "history_smoking": {
+          "polarity": "positive",
+          "value": "I have never smoked or vaped."
+        }
+      },
+      "example_questions": [
+        "Do you smoke or vape?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have never smoked or vaped.",
+            "concepts": {
+              "history_smoking": {
+                "polarity": "positive",
+                "value": "I have never smoked or vaped."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Never smoked or vaped.",
+      "history_topic": "tobacco"
+    },
+    {
+      "id": "history_alcohol",
+      "category": "social",
+      "print_label": "Alcohol",
+      "checklist": "h_history_alcohol",
+      "value": "I do not drink alcohol.",
+      "sp_says": [
+        "I do not drink alcohol."
+      ],
+      "triggers": {
+        "any": [
+          "How much alcohol do you drink?"
+        ]
+      },
+      "concepts": {
+        "history_alcohol": {
+          "polarity": "positive",
+          "value": "I do not drink alcohol."
+        }
+      },
+      "example_questions": [
+        "How much alcohol do you drink?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I do not drink alcohol.",
+            "concepts": {
+              "history_alcohol": {
+                "polarity": "positive",
+                "value": "I do not drink alcohol."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No alcohol.",
+      "history_topic": "alcohol"
+    },
+    {
+      "id": "history_drugs",
+      "category": "social",
+      "print_label": "Drugs",
+      "checklist": "h_history_drugs",
+      "value": "No.",
+      "sp_says": [
+        "No."
+      ],
+      "triggers": {
+        "any": [
+          "Do you use recreational drugs?"
+        ]
+      },
+      "concepts": {
+        "history_drugs": {
+          "polarity": "positive",
+          "value": "No."
+        }
+      },
+      "example_questions": [
+        "Do you use recreational drugs?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No.",
+            "concepts": {
+              "history_drugs": {
+                "polarity": "positive",
+                "value": "No."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No recreational drugs.",
+      "history_topic": "drugs"
+    },
+    {
+      "id": "history_work",
+      "category": "social",
+      "print_label": "Work",
+      "checklist": "h_history_work",
+      "value": "I mix dough at a bakery. There is visible flour dust, and masks are not consistently available.",
+      "sp_says": [
+        "I mix dough at a bakery. There is visible flour dust, and masks are not consistently available."
+      ],
+      "triggers": {
+        "any": [
+          "What does your job involve?"
+        ]
+      },
+      "concepts": {
+        "history_work": {
+          "polarity": "positive",
+          "value": "I mix dough at a bakery. There is visible flour dust, and masks are not consistently available."
+        }
+      },
+      "example_questions": [
+        "What does your job involve?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I mix dough at a bakery. There is visible flour dust, and masks are not consistently available.",
+            "concepts": {
+              "history_work": {
+                "polarity": "positive",
+                "value": "I mix dough at a bakery. There is visible flour dust, and masks are not consistently available."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Bakery dough mixing with flour exposure; inconsistent respiratory protection.",
+      "history_topic": "occupation"
+    },
+    {
+      "id": "history_home",
+      "category": "social",
+      "print_label": "Home",
+      "checklist": "h_history_home",
+      "value": "Two roommates. There are no pets or smokers at home.",
+      "sp_says": [
+        "Two roommates. There are no pets or smokers at home."
+      ],
+      "triggers": {
+        "any": [
+          "Who do you live with?"
+        ]
+      },
+      "concepts": {
+        "history_home": {
+          "polarity": "positive",
+          "value": "Two roommates. There are no pets or smokers at home."
+        }
+      },
+      "example_questions": [
+        "Who do you live with?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Two roommates. There are no pets or smokers at home.",
+            "concepts": {
+              "history_home": {
+                "polarity": "positive",
+                "value": "Two roommates. There are no pets or smokers at home."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Lives with two roommates; no household pets or smoke.",
+      "history_topic": "social_context"
+    },
+    {
+      "id": "history_family_history",
+      "category": "family",
+      "print_label": "Family history",
+      "checklist": "h_history_family_history",
+      "value": "My mother has asthma and my brother has eczema.",
+      "sp_says": [
+        "My mother has asthma and my brother has eczema."
+      ],
+      "triggers": {
+        "any": [
+          "Does asthma or allergy run in your family?"
+        ]
+      },
+      "concepts": {
+        "history_family_history": {
+          "polarity": "positive",
+          "value": "My mother has asthma and my brother has eczema."
+        }
+      },
+      "example_questions": [
+        "Does asthma or allergy run in your family?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My mother has asthma and my brother has eczema.",
+            "concepts": {
+              "history_family_history": {
+                "polarity": "positive",
+                "value": "My mother has asthma and my brother has eczema."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Mother: asthma; brother: eczema."
+    },
+    {
+      "id": "history_pregnancy_possibility",
+      "category": "obgyn",
+      "print_label": "Pregnancy possibility",
+      "checklist": "h_history_pregnancy_possibility",
+      "value": "My period was two weeks ago. I use an IUD and do not think I am pregnant.",
+      "sp_says": [
+        "My period was two weeks ago. I use an IUD and do not think I am pregnant."
+      ],
+      "triggers": {
+        "any": [
+          "Could you be pregnant?"
+        ]
+      },
+      "concepts": {
+        "history_pregnancy_possibility": {
+          "polarity": "positive",
+          "value": "My period was two weeks ago. I use an IUD and do not think I am pregnant."
+        }
+      },
+      "example_questions": [
+        "Could you be pregnant?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My period was two weeks ago. I use an IUD and do not think I am pregnant.",
+            "concepts": {
+              "history_pregnancy_possibility": {
+                "polarity": "positive",
+                "value": "My period was two weeks ago. I use an IUD and do not think I am pregnant."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "LMP 2 weeks ago; IUD; pregnancy not suspected by patient."
+    },
+    {
+      "id": "history_father",
+      "category": "family",
+      "print_label": "Father",
+      "checklist": "h_history_father",
+      "value": "My father has no major illness that I know of.",
+      "sp_says": [
+        "My father has no major illness that I know of."
+      ],
+      "triggers": {
+        "any": [
+          "What health problems does your father have?"
+        ]
+      },
+      "concepts": {
+        "history_father": {
+          "polarity": "positive",
+          "value": "My father has no major illness that I know of."
+        }
+      },
+      "example_questions": [
+        "What health problems does your father have?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My father has no major illness that I know of.",
+            "concepts": {
+              "history_father": {
+                "polarity": "positive",
+                "value": "My father has no major illness that I know of."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Father: no known major illness."
+    },
+    {
+      "id": "patient_concern",
+      "category": "concern",
+      "print_label": "Patient concern",
+      "checklist": "h_patient_concern",
+      "value": "I am worried I will have to quit the bakery.",
+      "sp_says": [
+        "I am worried I will have to quit the bakery."
+      ],
+      "triggers": {
+        "any": [
+          "What worries you most?"
+        ]
+      },
+      "concepts": {
+        "patient_concern": {
+          "polarity": "positive",
+          "value": "I am worried I will have to quit the bakery."
+        }
+      },
+      "example_questions": [
+        "What worries you most?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I am worried I will have to quit the bakery.",
+            "concepts": {
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "I am worried I will have to quit the bakery."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Concerned about job loss."
+    },
+    {
+      "id": "symptom_cough",
+      "category": "associated",
+      "print_label": "Cough",
+      "checklist": "h_symptom_cough",
+      "value": "I get a dry cough, especially at night.",
+      "sp_says": [
+        "I get a dry cough, especially at night."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had a cough?",
+          "cough"
+        ]
+      },
+      "concepts": {
+        "symptom_cough": {
+          "polarity": "positive",
+          "value": "I get a dry cough, especially at night."
+        }
+      },
+      "example_questions": [
+        "Have you had a cough?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I get a dry cough, especially at night.",
+            "concepts": {
+              "symptom_cough": {
+                "polarity": "positive",
+                "value": "I get a dry cough, especially at night."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Dry nocturnal cough.",
+      "ros_system": "respiratory"
+    },
+    {
+      "id": "symptom_dyspnea",
+      "category": "associated",
+      "print_label": "Dyspnea",
+      "checklist": "h_symptom_dyspnea",
+      "value": "I am short of breath during the spells, not when resting now.",
+      "sp_says": [
+        "I am short of breath during the spells, not when resting now."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had dyspnea?",
+          "short of breath",
+          "shortness of breath",
+          "breathless"
+        ]
+      },
+      "concepts": {
+        "symptom_dyspnea": {
+          "polarity": "positive",
+          "value": "I am short of breath during the spells, not when resting now."
+        }
+      },
+      "example_questions": [
+        "Have you had dyspnea?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I am short of breath during the spells, not when resting now.",
+            "concepts": {
+              "symptom_dyspnea": {
+                "polarity": "positive",
+                "value": "I am short of breath during the spells, not when resting now."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Episodic dyspnea; none at rest now.",
+      "ros_system": "respiratory"
+    },
+    {
+      "id": "symptom_hemoptysis",
+      "category": "pertinent_negative",
+      "print_label": "Hemoptysis",
+      "checklist": "h_symptom_hemoptysis",
+      "value": "I have not coughed up blood.",
+      "sp_says": [
+        "I have not coughed up blood."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had hemoptysis?",
+          "coughing blood",
+          "blood in sputum"
+        ]
+      },
+      "concepts": {
+        "symptom_hemoptysis": {
+          "polarity": "negative",
+          "value": "I have not coughed up blood."
+        }
+      },
+      "example_questions": [
+        "Have you had hemoptysis?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not coughed up blood.",
+            "concepts": {
+              "symptom_hemoptysis": {
+                "polarity": "negative",
+                "value": "I have not coughed up blood."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No hemoptysis.",
+      "ros_system": "respiratory"
+    },
+    {
+      "id": "symptom_rhinorrhea",
+      "category": "associated",
+      "print_label": "Rhinorrhea",
+      "checklist": "h_symptom_rhinorrhea",
+      "value": "My nose runs when pollen is high.",
+      "sp_says": [
+        "My nose runs when pollen is high."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had rhinorrhea?",
+          "runny nose"
+        ]
+      },
+      "concepts": {
+        "symptom_rhinorrhea": {
+          "polarity": "positive",
+          "value": "My nose runs when pollen is high."
+        }
+      },
+      "example_questions": [
+        "Have you had rhinorrhea?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My nose runs when pollen is high.",
+            "concepts": {
+              "symptom_rhinorrhea": {
+                "polarity": "positive",
+                "value": "My nose runs when pollen is high."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Seasonal rhinorrhea.",
+      "ros_system": "heent"
+    },
+    {
+      "id": "symptom_sore_throat",
+      "category": "associated",
+      "print_label": "Sore throat",
+      "checklist": "h_symptom_sore_throat",
+      "value": "Sometimes my throat feels tight during a spell.",
+      "sp_says": [
+        "Sometimes my throat feels tight during a spell."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had a sore throat?",
+          "sore throat"
+        ]
+      },
+      "concepts": {
+        "symptom_sore_throat": {
+          "polarity": "positive",
+          "value": "Sometimes my throat feels tight during a spell."
+        }
+      },
+      "example_questions": [
+        "Have you had a sore throat?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Sometimes my throat feels tight during a spell.",
+            "concepts": {
+              "symptom_sore_throat": {
+                "polarity": "positive",
+                "value": "Sometimes my throat feels tight during a spell."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Occasional throat tightness with episodes.",
+      "ros_system": "heent"
+    },
+    {
+      "id": "symptom_hoarseness",
+      "category": "associated",
+      "print_label": "Hoarseness",
+      "checklist": "h_symptom_hoarseness",
+      "value": "My voice sometimes goes raspy after a spell.",
+      "sp_says": [
+        "My voice sometimes goes raspy after a spell."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had hoarseness?",
+          "hoarseness"
+        ]
+      },
+      "concepts": {
+        "symptom_hoarseness": {
+          "polarity": "positive",
+          "value": "My voice sometimes goes raspy after a spell."
+        }
+      },
+      "example_questions": [
+        "Have you had hoarseness?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My voice sometimes goes raspy after a spell.",
+            "concepts": {
+              "symptom_hoarseness": {
+                "polarity": "positive",
+                "value": "My voice sometimes goes raspy after a spell."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Transient postepisode hoarseness.",
+      "ros_system": "heent"
+    },
+    {
+      "id": "symptom_fever",
+      "category": "pertinent_negative",
+      "print_label": "Fever",
+      "checklist": "h_symptom_fever",
+      "value": "I have not had a fever.",
+      "sp_says": [
+        "I have not had a fever."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had a fever?",
+          "fever"
+        ]
+      },
+      "concepts": {
+        "symptom_fever": {
+          "polarity": "negative",
+          "value": "I have not had a fever."
+        }
+      },
+      "example_questions": [
+        "Have you had a fever?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not had a fever.",
+            "concepts": {
+              "symptom_fever": {
+                "polarity": "negative",
+                "value": "I have not had a fever."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No fever.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_fatigue",
+      "category": "associated",
+      "print_label": "Fatigue",
+      "checklist": "h_symptom_fatigue",
+      "value": "I am tired after a night of coughing.",
+      "sp_says": [
+        "I am tired after a night of coughing."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had fatigue?",
+          "fatigue"
+        ]
+      },
+      "concepts": {
+        "symptom_fatigue": {
+          "polarity": "positive",
+          "value": "I am tired after a night of coughing."
+        }
+      },
+      "example_questions": [
+        "Have you had fatigue?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I am tired after a night of coughing.",
+            "concepts": {
+              "symptom_fatigue": {
+                "polarity": "positive",
+                "value": "I am tired after a night of coughing."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Fatigue after disrupted sleep.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_weight_loss",
+      "category": "pertinent_negative",
+      "print_label": "Weight loss",
+      "checklist": "h_symptom_weight_loss",
+      "value": "My weight has stayed the same.",
+      "sp_says": [
+        "My weight has stayed the same."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had weight loss?",
+          "weight loss"
+        ]
+      },
+      "concepts": {
+        "symptom_weight_loss": {
+          "polarity": "negative",
+          "value": "My weight has stayed the same."
+        }
+      },
+      "example_questions": [
+        "Have you had weight loss?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My weight has stayed the same.",
+            "concepts": {
+              "symptom_weight_loss": {
+                "polarity": "negative",
+                "value": "My weight has stayed the same."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No weight loss.",
+      "ros_system": "general"
+    }
+  ],
+  "concept_lexicon": {
+    "opening_complaint": [
+      "I keep getting spells of wheezing and a tight chest."
+    ],
+    "hpi_onset": [
+      "About 6 weeks ago.",
+      "Six weeks of intermittent wheezing and chest tightness."
+    ],
+    "hpi_location": [
+      "Across my chest, not in one spot.",
+      "Diffuse chest tightness.",
+      "chest tightness",
+      "tight chest"
+    ],
+    "hpi_quality": [
+      "It whistles when I breathe out, and getting air out feels hard.",
+      "Expiratory wheeze and difficulty exhaling."
+    ],
+    "hpi_severity": [
+      "I stop jogging and wait. I can still speak in full sentences.",
+      "Interrupts jogging; speech maintained."
+    ],
+    "hpi_timing": [
+      "Usually 10 to 20 minutes, about 3 days a week.",
+      "Episodes 10–20 minutes, approximately 3 days weekly."
+    ],
+    "hpi_chronology": [
+      "A dry cough wakes me about once a week.",
+      "Weekly nocturnal cough."
+    ],
+    "hpi_setting": [
+      "Flour dust in the bakery sets it off. I was better during four days away.",
+      "Flour-dust exposure at bakery; improved during 4 days away."
+    ],
+    "hpi_aggravating": [
+      "Cold-air jogging and strong cleaning sprays.",
+      "Cold air and cleaning sprays also trigger symptoms."
+    ],
+    "hpi_alleviating": [
+      "Stopping and getting away from the dust helps.",
+      "Improves with rest and exposure avoidance."
+    ],
+    "hpi_treatment": [
+      "No, I have never had an inhaler.",
+      "No prior inhaler trial."
+    ],
+    "hpi_past_occurrence": [
+      "I had hay fever, but no diagnosed asthma.",
+      "Childhood allergic rhinitis without prior asthma diagnosis."
+    ],
+    "history_medical_history": [
+      "Seasonal hay fever and occasional heartburn.",
+      "Seasonal allergic rhinitis; occasional heartburn."
+    ],
+    "history_procedures": [
+      "Only wisdom teeth removal at 20.",
+      "Wisdom teeth removed at 20."
+    ],
+    "history_medication": [
+      "Cetirizine 10 milligrams when pollen is bad, and a chewable antacid about once a week.",
+      "Cetirizine 10 mg as needed; antacid approximately weekly."
+    ],
+    "history_drug_reactions": [
+      "Trimethoprim-sulfamethoxazole gave me a widespread rash when I was 17, without blisters or breathing trouble.",
+      "TMP-SMX: nonblistering rash at 17, no respiratory symptoms."
+    ],
+    "history_smoking": [
+      "I have never smoked or vaped.",
+      "Never smoked or vaped."
+    ],
+    "history_alcohol": [
+      "I do not drink alcohol.",
+      "No alcohol."
+    ],
+    "history_drugs": [
+      "No.",
+      "No recreational drugs."
+    ],
+    "history_work": [
+      "I mix dough at a bakery. There is visible flour dust, and masks are not consistently available.",
+      "Bakery dough mixing with flour exposure; inconsistent respiratory protection."
+    ],
+    "history_home": [
+      "Two roommates. There are no pets or smokers at home.",
+      "Lives with two roommates; no household pets or smoke."
+    ],
+    "history_family_history": [
+      "My mother has asthma and my brother has eczema.",
+      "Mother: asthma; brother: eczema."
+    ],
+    "history_pregnancy_possibility": [
+      "My period was two weeks ago. I use an IUD and do not think I am pregnant.",
+      "LMP 2 weeks ago; IUD; pregnancy not suspected by patient."
+    ],
+    "history_father": [
+      "My father has no major illness that I know of.",
+      "Father: no known major illness."
+    ],
+    "patient_concern": [
+      "I am worried I will have to quit the bakery.",
+      "Concerned about job loss."
+    ],
+    "symptom_cough": [
+      "I get a dry cough, especially at night.",
+      "Dry nocturnal cough.",
+      "cough"
+    ],
+    "symptom_dyspnea": [
+      "I am short of breath during the spells, not when resting now.",
+      "Episodic dyspnea; none at rest now.",
+      "short of breath",
+      "shortness of breath",
+      "breathless"
+    ],
+    "symptom_hemoptysis": [
+      "I have not coughed up blood.",
+      "No hemoptysis.",
+      "coughing blood",
+      "blood in sputum"
+    ],
+    "symptom_rhinorrhea": [
+      "My nose runs when pollen is high.",
+      "Seasonal rhinorrhea.",
+      "runny nose"
+    ],
+    "symptom_sore_throat": [
+      "Sometimes my throat feels tight during a spell.",
+      "Occasional throat tightness with episodes.",
+      "sore throat"
+    ],
+    "symptom_hoarseness": [
+      "My voice sometimes goes raspy after a spell.",
+      "Transient postepisode hoarseness.",
+      "hoarseness"
+    ],
+    "symptom_fever": [
+      "I have not had a fever.",
+      "No fever.",
+      "fever"
+    ],
+    "symptom_fatigue": [
+      "I am tired after a night of coughing.",
+      "Fatigue after disrupted sleep.",
+      "fatigue"
+    ],
+    "symptom_weight_loss": [
+      "My weight has stayed the same.",
+      "No weight loss.",
+      "weight loss"
+    ],
+    "exam_general_inspect": [
+      "Alert, speaking comfortably in full sentences; no respiratory distress."
+    ],
+    "exam_chest_inspect": [
+      "Symmetric chest movement without accessory muscle use."
+    ],
+    "exam_lungs_auscultate": [
+      "Mild bilateral expiratory wheezes with prolonged expiration; no focal crackles."
+    ],
+    "exam_heart_auscultate": [
+      "Regular rate and rhythm without murmur."
+    ],
+    "exam_heent_nose": [
+      "Pale edematous nasal mucosa with clear secretions bilaterally."
+    ],
+    "exam_heent_throat": [
+      "No tonsillar swelling or exudate; voice clear at rest."
+    ],
+    "exam_osteo_screen": [
+      "T3 right paraspinal tissue texture change and tenderness."
+    ]
+  },
+  "exam_findings": {
+    "general_inspect": [
+      {
+        "id": "exam_general_inspect",
+        "text": "Alert, speaking comfortably in full sentences; no respiratory distress.",
+        "concepts": {
+          "exam_general_inspect": {
+            "polarity": "positive",
+            "value": "Alert, speaking comfortably in full sentences; no respiratory distress."
+          }
+        },
+        "scopes": [
+          "general"
+        ],
+        "checklist": "p_exam_general_inspect",
+        "requires_components": [],
+        "key_finding": true
+      }
+    ],
+    "chest_inspect": [
+      {
+        "id": "exam_chest_inspect",
+        "text": "Symmetric chest movement without accessory muscle use.",
+        "concepts": {
+          "exam_chest_inspect": {
+            "polarity": "positive",
+            "value": "Symmetric chest movement without accessory muscle use."
+          }
+        },
+        "scopes": [
+          "lungs.inspection"
+        ],
+        "checklist": "p_exam_chest_inspect",
+        "requires_components": [
+          "symmetry",
+          "accessory muscle use"
+        ],
+        "key_finding": true
+      }
+    ],
+    "lungs_auscultate": [
+      {
+        "id": "exam_lungs_auscultate",
+        "text": "Mild bilateral expiratory wheezes with prolonged expiration; no focal crackles.",
+        "concepts": {
+          "exam_lungs_auscultate": {
+            "polarity": "positive",
+            "value": "Mild bilateral expiratory wheezes with prolonged expiration; no focal crackles."
+          }
+        },
+        "scopes": [
+          "lungs"
+        ],
+        "checklist": "p_exam_lungs_auscultate",
+        "requires_components": [
+          "posterior",
+          "on skin",
+          "compare side to side",
+          "mouth open"
+        ],
+        "key_finding": true
+      }
+    ],
+    "heart_auscultate": [
+      {
+        "id": "exam_heart_auscultate",
+        "text": "Regular rate and rhythm without murmur.",
+        "concepts": {
+          "exam_heart_auscultate": {
+            "polarity": "positive",
+            "value": "Regular rate and rhythm without murmur."
+          }
+        },
+        "scopes": [
+          "heart"
+        ],
+        "checklist": "p_exam_heart_auscultate",
+        "requires_components": [
+          "aortic",
+          "pulmonic",
+          "tricuspid",
+          "mitral",
+          "on skin"
+        ],
+        "key_finding": true
+      }
+    ],
+    "heent_nose": [
+      {
+        "id": "exam_heent_nose",
+        "text": "Pale edematous nasal mucosa with clear secretions bilaterally.",
+        "concepts": {
+          "exam_heent_nose": {
+            "polarity": "positive",
+            "value": "Pale edematous nasal mucosa with clear secretions bilaterally."
+          }
+        },
+        "scopes": [
+          "heent.nose"
+        ],
+        "checklist": "p_exam_heent_nose",
+        "requires_components": [
+          "right naris",
+          "left naris"
+        ],
+        "key_finding": true
+      }
+    ],
+    "heent_throat": [
+      {
+        "id": "exam_heent_throat",
+        "text": "No tonsillar swelling or exudate; voice clear at rest.",
+        "concepts": {
+          "exam_heent_throat": {
+            "polarity": "positive",
+            "value": "No tonsillar swelling or exudate; voice clear at rest."
+          }
+        },
+        "scopes": [
+          "heent.throat"
+        ],
+        "checklist": "p_exam_heent_throat",
+        "requires_components": [
+          "oropharynx",
+          "tonsils"
+        ],
+        "key_finding": true
+      }
+    ],
+    "osteo_screen": [
+      {
+        "id": "exam_osteo_screen",
+        "text": "T3 right paraspinal tissue texture change and tenderness.",
+        "concepts": {
+          "exam_osteo_screen": {
+            "polarity": "positive",
+            "value": "T3 right paraspinal tissue texture change and tenderness."
+          }
+        },
+        "scopes": [
+          "osteopathic"
+        ],
+        "checklist": "p_exam_osteo_screen",
+        "requires_components": [
+          "thoracic"
+        ],
+        "key_finding": false
+      }
+    ]
+  },
+  "refusals": [],
+  "refusal_expectation": {},
+  "area_of_concern": {
+    "system": "Respiratory",
+    "required_methods": [
+      "inspect",
+      "auscultate"
+    ],
+    "special_tests": [],
+    "note": "Characterize variable obstruction and distinguish lung wheeze from throat symptoms."
+  },
+  "osteopathic": {
+    "expected_documentation": "Document the supplied level and palpatory descriptor only after the structural screen; treatment is not implied."
+  },
+  "ros_pertinent_systems": [
+    "respiratory",
+    "heent",
+    "general"
+  ],
+  "differentials": [
+    {
+      "rank": 1,
+      "name": "Asthma, possibly work-related",
+      "vindicate": "A",
+      "aliases": [
+        "Asthma, possibly work-related"
+      ],
+      "supported_by": [
+        "hpi_setting",
+        "hpi_timing",
+        "exam_lungs_auscultate"
+      ],
+      "teaching_context": "Variable nocturnal/exertional symptoms, atopy and expiratory wheeze support asthma; work association requires evaluation."
+    },
+    {
+      "rank": 2,
+      "name": "Irritant-triggered inducible laryngeal obstruction",
+      "vindicate": "I2",
+      "aliases": [
+        "inducible laryngeal obstruction",
+        "vocal cord dysfunction"
+      ],
+      "supported_by": [
+        "symptom_sore_throat",
+        "symptom_hoarseness",
+        "hpi_aggravating"
+      ],
+      "teaching_context": "Episodic throat tightness and voice change with irritants support consideration; expiratory wheeze favors asthma and both may coexist."
+    },
+    {
+      "rank": 3,
+      "name": "Gastroesophageal reflux with airway symptoms",
+      "vindicate": "I",
+      "aliases": [
+        "Gastroesophageal reflux with airway symptoms"
+      ],
+      "supported_by": [
+        "history_medical_history",
+        "history_medication",
+        "hpi_chronology"
+      ],
+      "teaching_context": "Reported heartburn and nocturnal cough support reflux as a contributor, but do not explain all wheezing."
+    }
+  ],
+  "implausible_differentials": [],
+  "plan_expectations": {
+    "tests": [],
+    "medications": [],
+    "omt": [],
+    "education": [],
+    "referral": [],
+    "follow_up": []
+  },
+  "checklist": {
+    "history": [
+      {
+        "id": "h_opening_complaint",
+        "text": "Opening complaint"
+      },
+      {
+        "id": "h_hpi_onset",
+        "text": "Onset"
+      },
+      {
+        "id": "h_hpi_location",
+        "text": "Location"
+      },
+      {
+        "id": "h_hpi_quality",
+        "text": "Character"
+      },
+      {
+        "id": "h_hpi_severity",
+        "text": "Function"
+      },
+      {
+        "id": "h_hpi_timing",
+        "text": "Duration and frequency"
+      },
+      {
+        "id": "h_hpi_chronology",
+        "text": "Nighttime symptoms"
+      },
+      {
+        "id": "h_hpi_setting",
+        "text": "Work exposure"
+      },
+      {
+        "id": "h_hpi_aggravating",
+        "text": "Other triggers"
+      },
+      {
+        "id": "h_hpi_alleviating",
+        "text": "Relief"
+      },
+      {
+        "id": "h_hpi_treatment",
+        "text": "Inhaler use"
+      },
+      {
+        "id": "h_hpi_past_occurrence",
+        "text": "Past breathing trouble"
+      },
+      {
+        "id": "h_history_medical_history",
+        "text": "Medical history"
+      },
+      {
+        "id": "h_history_procedures",
+        "text": "Procedures"
+      },
+      {
+        "id": "h_history_medication",
+        "text": "Medication"
+      },
+      {
+        "id": "h_history_drug_reactions",
+        "text": "Drug reactions"
+      },
+      {
+        "id": "h_history_smoking",
+        "text": "Smoking"
+      },
+      {
+        "id": "h_history_alcohol",
+        "text": "Alcohol"
+      },
+      {
+        "id": "h_history_drugs",
+        "text": "Drugs"
+      },
+      {
+        "id": "h_history_work",
+        "text": "Work"
+      },
+      {
+        "id": "h_history_home",
+        "text": "Home"
+      },
+      {
+        "id": "h_history_family_history",
+        "text": "Family history"
+      },
+      {
+        "id": "h_history_pregnancy_possibility",
+        "text": "Pregnancy possibility"
+      },
+      {
+        "id": "h_history_father",
+        "text": "Father"
+      },
+      {
+        "id": "h_patient_concern",
+        "text": "Patient concern"
+      },
+      {
+        "id": "h_symptom_cough",
+        "text": "Cough"
+      },
+      {
+        "id": "h_symptom_dyspnea",
+        "text": "Dyspnea"
+      },
+      {
+        "id": "h_symptom_hemoptysis",
+        "text": "Hemoptysis"
+      },
+      {
+        "id": "h_symptom_rhinorrhea",
+        "text": "Rhinorrhea"
+      },
+      {
+        "id": "h_symptom_sore_throat",
+        "text": "Sore throat"
+      },
+      {
+        "id": "h_symptom_hoarseness",
+        "text": "Hoarseness"
+      },
+      {
+        "id": "h_symptom_fever",
+        "text": "Fever"
+      },
+      {
+        "id": "h_symptom_fatigue",
+        "text": "Fatigue"
+      },
+      {
+        "id": "h_symptom_weight_loss",
+        "text": "Weight loss"
+      }
+    ],
+    "physical": [
+      {
+        "id": "p_exam_general_inspect",
+        "text": "General appearance",
+        "maneuver": "general_inspect",
+        "components": []
+      },
+      {
+        "id": "p_exam_chest_inspect",
+        "text": "Inspect chest wall",
+        "maneuver": "chest_inspect",
+        "components": [
+          "symmetry",
+          "accessory muscle use"
+        ]
+      },
+      {
+        "id": "p_exam_lungs_auscultate",
+        "text": "Auscultate lungs",
+        "maneuver": "lungs_auscultate",
+        "components": [
+          "posterior",
+          "on skin",
+          "compare side to side",
+          "mouth open"
+        ]
+      },
+      {
+        "id": "p_exam_heart_auscultate",
+        "text": "Auscultate heart",
+        "maneuver": "heart_auscultate",
+        "components": [
+          "aortic",
+          "pulmonic",
+          "tricuspid",
+          "mitral",
+          "on skin"
+        ]
+      },
+      {
+        "id": "p_exam_heent_nose",
+        "text": "Inspect nose with light source",
+        "maneuver": "heent_nose",
+        "components": [
+          "right naris",
+          "left naris"
+        ]
+      },
+      {
+        "id": "p_exam_heent_throat",
+        "text": "Inspect mouth and throat with light",
+        "maneuver": "heent_throat",
+        "components": [
+          "oropharynx",
+          "tonsils"
+        ]
+      },
+      {
+        "id": "p_exam_osteo_screen",
+        "text": "Osteopathic structural screen",
+        "maneuver": "osteo_screen",
+        "components": [
+          "thoracic"
+        ]
+      },
+      {
+        "id": "p_introduce",
+        "text": "Introduce yourself and verify identity",
+        "courtesy": "introduce"
+      },
+      {
+        "id": "p_hand_hygiene",
+        "text": "Clean hands before examination",
+        "courtesy": "hand_hygiene"
+      },
+      {
+        "id": "p_drape",
+        "text": "Provide appropriate draping",
+        "courtesy": "drape"
+      }
+    ]
+  },
+  "model_note": {
+    "S": "CC: I keep getting spells of wheezing and a tight chest.\n\nHPI: 27-year-old female. Six weeks of intermittent wheezing and chest tightness. Diffuse chest tightness. Expiratory wheeze and difficulty exhaling. Interrupts jogging; speech maintained. Episodes 10–20 minutes, approximately 3 days weekly. Weekly nocturnal cough. Flour-dust exposure at bakery; improved during 4 days away. Cold air and cleaning sprays also trigger symptoms. Improves with rest and exposure avoidance. No prior inhaler trial. Childhood allergic rhinitis without prior asthma diagnosis.\n\nPMH: Seasonal allergic rhinitis; occasional heartburn.\n\nPSH: Wisdom teeth removed at 20.\n\nMeds: Cetirizine 10 mg as needed; antacid approximately weekly.\n\nSH: Never smoked or vaped. No alcohol. No recreational drugs. Bakery dough mixing with flour exposure; inconsistent respiratory protection. Lives with two roommates; no household pets or smoke. LMP 2 weeks ago; IUD; pregnancy not suspected by patient.\n\nFH: Mother: asthma; brother: eczema. Father: no known major illness.\n\nAllergies: TMP-SMX: nonblistering rash at 17, no respiratory symptoms.\n\nROS: Respiratory: Dry nocturnal cough. Episodic dyspnea; none at rest now. No hemoptysis. Heent: Seasonal rhinorrhea. Occasional throat tightness with episodes. Transient postepisode hoarseness. General: No fever. Fatigue after disrupted sleep. No weight loss.",
+    "O": "Vitals: BP 116/72 mmHg, P 84 bpm, R 18 rpm, T 98.2 F oral, Pulse Ox 98% on room air, Ht 5' 4\", Wt 138 lbs\n\nGeneral: Alert, speaking comfortably in full sentences; no respiratory distress.\nLungs: Symmetric chest movement without accessory muscle use. Mild bilateral expiratory wheezes with prolonged expiration; no focal crackles.\nHeart: Regular rate and rhythm without murmur.\nHEENT: Pale edematous nasal mucosa with clear secretions bilaterally. No tonsillar swelling or exudate; voice clear at rest.\nOsteopathic: T3 right paraspinal tissue texture change and tenderness.",
+    "A": [
+      "1. Asthma, possibly work-related",
+      "2. Irritant-triggered inducible laryngeal obstruction",
+      "3. Gastroesophageal reflux with airway symptoms"
+    ],
+    "P": [
+      "1. Arrange pre/post-bronchodilator spirometry; consider serial peak-flow records at and away from work and occupational review. Start an inhaled-corticosteroid-containing plan if asthma is established; teach inhaler technique and an action plan. Arrange temporary duties away from flour exposure pending occupational assessment; review in 2 weeks. Severe breathlessness or inability to speak needs emergency help.",
+      "2. If throat/voice episodes persist or lung tests do not explain them, refer for laryngeal assessment during symptoms and breathing retraining. Discuss irritant avoidance and explain overlap with asthma.",
+      "3. If reflux symptoms persist, use meal-timing/trigger measures and consider a supervised acid-suppression trial after review. Explain that reflux treatment does not replace respiratory evaluation."
+    ]
+  },
+  "print_additional_exams": {
+    "osteo_screen": "Include when practicing the course structural screen; it does not establish the cause of the complaint."
+  },
+  "ideal_encounter_extras": [
+    "Characterize variable obstruction and distinguish lung wheeze from throat symptoms."
+  ],
+  "supersedes_core": [
+    "chest_pain",
+    "tobacco_use",
+    "alcohol_use",
+    "drug_use",
+    "allergies",
+    "medications",
+    "family_history",
+    "past_medical",
+    "past_surgical",
+    "cough",
+    "dyspnea",
+    "hemoptysis",
+    "rhinorrhea",
+    "sore_throat",
+    "hoarseness",
+    "fever",
+    "fatigue",
+    "weight_loss"
+  ],
+  "review_status": "Source-checked fictional practice; not faculty or clinician approved.",
+  "clinical_review": {
+    "status": "source_checked_not_clinician_approved",
+    "date": "2026-09-14",
+    "method": "Individual presentation, differential, safety and plan review against named primary clinical references plus course documentation constraints.",
+    "limits": "Fictional details deliberately authored. Mnemonic category placement is instructional and is not proof of etiology. Generic 3D appearance is not a diagnostic visual.",
+    "sources": [
+      "https://www.nhlbi.nih.gov/health/asthma/diagnosis",
+      "https://www.nhlbi.nih.gov/health/asthma/treatment-action-plan",
+      "https://www.cdc.gov/niosh/asthma/hcp/diagnosing/index.html"
+    ]
+  },
+  "sources": [
+    {
+      "title": "2026 FALL M2 ILG Student Manual",
+      "path": "claude builds/PCM/2026 FALL M2 ILG - STUDENT MANUAL update.docx",
+      "locator": "SOAP rubric and physical examination requirements",
+      "kind": "course"
+    },
+    {
+      "title": "Asthma diagnosis",
+      "url": "https://www.nhlbi.nih.gov/health/asthma/diagnosis",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+    },
+    {
+      "title": "Asthma treatment and occupational asthma",
+      "url": "https://www.nhlbi.nih.gov/health/asthma/treatment-action-plan",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+    },
+    {
+      "title": "Work-related asthma diagnosis and differentials",
+      "url": "https://www.cdc.gov/niosh/asthma/hcp/diagnosing/index.html",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+    }
+  ],
+  "teaching": {
+    "goals": [
+      "Characterize variable obstruction and distinguish lung wheeze from throat symptoms.",
+      "Document only supplied, asked or examined information."
+    ],
+    "skills": [
+      "history-sequencing",
+      "focused-examination",
+      "clinical-reasoning",
+      "evidence-based-soap",
+      "respiratory"
+    ],
+    "common_omissions": [
+      "Distinguishing history from examination evidence.",
+      "Explaining uncertainty and the practical follow-up plan."
+    ],
+    "lesson_plan": {
+      "notice": "Characterize variable obstruction and distinguish lung wheeze from throat symptoms.",
+      "anchor": "Episodes of wheezing and chest tightness",
+      "pivot": "Do spells occur at work, away from work, or during sleep?",
+      "exam": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
+      "avoid": "Treating an unperformed examination or a possible diagnosis as obtained fact."
+    },
+    "closing_dialogue": [
+      "I will arrange breathing tests and review the work pattern. If we confirm asthma, we will choose an inhaler plan and practice using it. Severe trouble breathing or speaking means seek emergency help."
+    ],
+    "concern_response": "We can discuss safer flour handling and protection with occupational health, with your permission, rather than assuming you must leave your job.",
+    "reasoning_steps": [
+      {
+        "id": "orient",
+        "phase": "history",
+        "purpose": "Hear the presenting concern",
+        "question": "What brings you in today?",
+        "fact_ids": [
+          "opening_complaint"
+        ],
+        "why": "Characterize variable obstruction and distinguish lung wheeze from throat symptoms."
+      },
+      {
+        "id": "pattern",
+        "phase": "history",
+        "purpose": "Clarify the pattern",
+        "question": "Do spells occur at work, away from work, or during sleep?",
+        "fact_ids": [
+          "hpi_onset"
+        ],
+        "why": "Characterize variable obstruction and distinguish lung wheeze from throat symptoms."
+      },
+      {
+        "id": "examine",
+        "phase": "exam",
+        "purpose": "Perform relevant examinations",
+        "question": "May I examine you?",
+        "fact_ids": [],
+        "why": "Findings require performed actions."
+      }
+    ],
+    "reasoning_map": [
+      {
+        "id": "pulm-episodic-wheeze-decision",
+        "question": "Do spells occur at work, away from work, or during sleep?",
+        "why": "Characterize variable obstruction and distinguish lung wheeze from throat symptoms.",
+        "if_present": "Use the reported pattern to select the relevant examinations and assess urgency.",
+        "if_absent": "Keep alternatives open and ask a focused follow-up.",
+        "next_action": "Perform the relevant case-specific examination.",
+        "document": "Separate reported symptoms, observed signs, assessment and proposed care."
+      }
+    ],
+    "classification_note": "Categories reflect the explicitly proposed mechanism; e.g., irritant exposure is I2. They are a course organizing aid, not confirmation of mechanism."
+  },
+  "content_revisions": {
+    "library_expansion_20260914": "New independently authored presentation. Single core path; no renamed cosmetic variants."
+  }
+}

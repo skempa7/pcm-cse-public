@@ -1,0 +1,2330 @@
+{
+  "id": "msk-hand-stiffness",
+  "presentation_id": "msk-hand-stiffness",
+  "title": "Persistent hand stiffness and swelling",
+  "hidden_label": "Station 30",
+  "system": "Musculoskeletal",
+  "complaint_family": "Musculoskeletal",
+  "level": "M2",
+  "difficulty": "intermediate",
+  "blurb": "Both hands are stiff and swollen when I wake up.",
+  "curriculum_note": "Supplementary fictional practice for the course history, physical examination and SOAP skills; not an official or predicted station.",
+  "scope_status": "supplementary_cross_system",
+  "station": {
+    "doorway": [
+      "Amina Reed, 38-year-old female.",
+      "Both hands are stiff and swollen when I wake up.",
+      "Vital signs are available on the chart.",
+      "Perform a focused history and physical examination, discuss your plan, and document only what you obtain.",
+      "Use the time limit stated for your selected practice mode."
+    ],
+    "vitals": {
+      "BP": "114/70 mmHg",
+      "P": "80 bpm",
+      "R": "16 rpm",
+      "T": "98.6 F oral",
+      "Pulse Ox": "99% on room air",
+      "Ht": "5' 5\"",
+      "Wt": "148 lbs"
+    },
+    "supplied_results": []
+  },
+  "patient": {
+    "name": "Amina Reed",
+    "age": 38,
+    "sex": "female",
+    "pronouns": "she/her",
+    "persona": "I work at a daycare, lifting children and opening food containers. My partner helps with our toddler, but missing work for appointments is difficult.",
+    "opening": "Both hands are stiff and swollen when I wake up.",
+    "opening_facts": [
+      "opening_complaint"
+    ],
+    "opening_contract": {
+      "text": "Both hands are stiff and swollen when I wake up.",
+      "fact_ids": [
+        "opening_complaint"
+      ],
+      "review": "Exact opening only."
+    },
+    "volunteer_budget": 1,
+    "volunteer_order": [
+      "patient_concern"
+    ],
+    "affect": "I want to know what is causing this and how to get back to my usual activities.",
+    "communication_style": "concise",
+    "empathy_replies": [
+      "Thank you for listening.",
+      "I appreciate you explaining that."
+    ],
+    "closing_questions": [
+      "I want to know what is causing this and how to get back to my usual activities."
+    ],
+    "appearance": {
+      "presentation": "female",
+      "model": "mpfb-public-patient",
+      "skinTone": 1,
+      "eyeColor": "brown",
+      "hairColor": "brunette",
+      "hairStyle": "long",
+      "outfit": "fitted-casual",
+      "bodyBuild": "standard"
+    },
+    "voice": {
+      "rate": 1,
+      "pitch": 1,
+      "gender": "female",
+      "adult": true
+    },
+    "education_responses": [
+      {
+        "student": "The swelling and long morning stiffness need prompt assessment by a joint specialist. We can arrange blood tests, but the referral should not wait for their results. We will check within one to two weeks that you have an appointment.",
+        "patient": "Thank you. I understand that the next steps depend on the examination and tests."
+      },
+      {
+        "student": "We can discuss scheduling and a work note, plus practical tools that make buttons and jars easier while the assessment is underway.",
+        "patient": "That would help. Thank you."
+      }
+    ]
+  },
+  "facts": [
+    {
+      "id": "opening_complaint",
+      "category": "chief_complaint",
+      "print_label": "Opening complaint",
+      "checklist": "h_opening_complaint",
+      "value": "Both hands are stiff and swollen when I wake up.",
+      "sp_says": [
+        "Both hands are stiff and swollen when I wake up."
+      ],
+      "triggers": {
+        "any": [
+          "What brings you in today?"
+        ]
+      },
+      "concepts": {
+        "opening_complaint": {
+          "polarity": "positive",
+          "value": "Both hands are stiff and swollen when I wake up."
+        }
+      },
+      "example_questions": [
+        "What brings you in today?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Both hands are stiff and swollen when I wake up.",
+            "concepts": {
+              "opening_complaint": {
+                "polarity": "positive",
+                "value": "Both hands are stiff and swollen when I wake up."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Both hands are stiff and swollen when I wake up."
+    },
+    {
+      "id": "hpi_onset",
+      "category": "onset",
+      "print_label": "Onset",
+      "checklist": "h_hpi_onset",
+      "value": "About 8 weeks ago.",
+      "sp_says": [
+        "About 8 weeks ago."
+      ],
+      "triggers": {
+        "any": [
+          "When did the hand symptoms start?",
+          "when did",
+          "started",
+          "began"
+        ]
+      },
+      "concepts": {
+        "hpi_onset": {
+          "polarity": "positive",
+          "value": "About 8 weeks ago."
+        }
+      },
+      "example_questions": [
+        "When did the hand symptoms start?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "About 8 weeks ago.",
+            "concepts": {
+              "hpi_onset": {
+                "polarity": "positive",
+                "value": "About 8 weeks ago."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Eight weeks of bilateral hand symptoms.",
+      "temporal_role": "first_episode_onset"
+    },
+    {
+      "id": "hpi_location",
+      "category": "location",
+      "print_label": "Joints",
+      "checklist": "h_hpi_location",
+      "value": "The knuckles where my fingers meet my hands and the middle finger joints, on both sides.",
+      "sp_says": [
+        "The knuckles where my fingers meet my hands and the middle finger joints, on both sides."
+      ],
+      "triggers": {
+        "any": [
+          "Which joints are affected?",
+          "where",
+          "which side"
+        ]
+      },
+      "concepts": {
+        "hpi_location": {
+          "polarity": "positive",
+          "value": "The knuckles where my fingers meet my hands and the middle finger joints, on both sides."
+        }
+      },
+      "example_questions": [
+        "Which joints are affected?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "The knuckles where my fingers meet my hands and the middle finger joints, on both sides.",
+            "concepts": {
+              "hpi_location": {
+                "polarity": "positive",
+                "value": "The knuckles where my fingers meet my hands and the middle finger joints, on both sides."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Bilateral MCP and PIP symptoms."
+    },
+    {
+      "id": "hpi_quality",
+      "category": "quality",
+      "print_label": "Character",
+      "checklist": "h_hpi_quality",
+      "value": "Achy, puffy and hard to bend.",
+      "sp_says": [
+        "Achy, puffy and hard to bend."
+      ],
+      "triggers": {
+        "any": [
+          "How do the hands feel?",
+          "feel like",
+          "describe"
+        ]
+      },
+      "concepts": {
+        "hpi_quality": {
+          "polarity": "positive",
+          "value": "Achy, puffy and hard to bend."
+        }
+      },
+      "example_questions": [
+        "How do the hands feel?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Achy, puffy and hard to bend.",
+            "concepts": {
+              "hpi_quality": {
+                "polarity": "positive",
+                "value": "Achy, puffy and hard to bend."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Aching, swelling and stiffness."
+    },
+    {
+      "id": "hpi_severity",
+      "category": "severity",
+      "print_label": "Function",
+      "checklist": "h_hpi_severity",
+      "value": "It is about 5 out of 10. Opening jars and fastening buttons are difficult.",
+      "sp_says": [
+        "It is about 5 out of 10. Opening jars and fastening buttons are difficult."
+      ],
+      "triggers": {
+        "any": [
+          "How is this affecting you?",
+          "how bad",
+          "out of ten",
+          "severity"
+        ]
+      },
+      "concepts": {
+        "hpi_severity": {
+          "polarity": "positive",
+          "value": "It is about 5 out of 10. Opening jars and fastening buttons are difficult."
+        }
+      },
+      "example_questions": [
+        "How is this affecting you?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "It is about 5 out of 10. Opening jars and fastening buttons are difficult.",
+            "concepts": {
+              "hpi_severity": {
+                "polarity": "positive",
+                "value": "It is about 5 out of 10. Opening jars and fastening buttons are difficult."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "5/10; difficulty with jars and buttons."
+    },
+    {
+      "id": "hpi_timing",
+      "category": "timing",
+      "print_label": "Morning stiffness",
+      "checklist": "h_hpi_timing",
+      "value": "At least an hour, sometimes an hour and a half.",
+      "sp_says": [
+        "At least an hour, sometimes an hour and a half."
+      ],
+      "triggers": {
+        "any": [
+          "How long does the morning stiffness last?",
+          "how long each",
+          "how often"
+        ]
+      },
+      "concepts": {
+        "hpi_timing": {
+          "polarity": "positive",
+          "value": "At least an hour, sometimes an hour and a half."
+        }
+      },
+      "example_questions": [
+        "How long does the morning stiffness last?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "At least an hour, sometimes an hour and a half.",
+            "concepts": {
+              "hpi_timing": {
+                "polarity": "positive",
+                "value": "At least an hour, sometimes an hour and a half."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Morning stiffness 60–90 minutes.",
+      "question_dimensions": [
+        "episode_duration"
+      ],
+      "temporal_role": "episode_duration"
+    },
+    {
+      "id": "hpi_chronology",
+      "category": "chronology",
+      "print_label": "Progression",
+      "checklist": "h_hpi_chronology",
+      "value": "It started in a few fingers and now affects both hands most days.",
+      "sp_says": [
+        "It started in a few fingers and now affects both hands most days."
+      ],
+      "triggers": {
+        "any": [
+          "Has it improved or worsened?",
+          "changed",
+          "progressed"
+        ]
+      },
+      "concepts": {
+        "hpi_chronology": {
+          "polarity": "positive",
+          "value": "It started in a few fingers and now affects both hands most days."
+        }
+      },
+      "example_questions": [
+        "Has it improved or worsened?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "It started in a few fingers and now affects both hands most days.",
+            "concepts": {
+              "hpi_chronology": {
+                "polarity": "positive",
+                "value": "It started in a few fingers and now affects both hands most days."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Progressed from several fingers to bilateral daily symptoms.",
+      "question_dimensions": [
+        "progression"
+      ],
+      "temporal_role": "pattern_or_progression"
+    },
+    {
+      "id": "hpi_setting",
+      "category": "setting",
+      "print_label": "Preceding illness",
+      "checklist": "h_hpi_setting",
+      "value": "I had a mild cold just before it began. A child at the daycare had a slapped-cheek rash.",
+      "sp_says": [
+        "I had a mild cold just before it began. A child at the daycare had a slapped-cheek rash."
+      ],
+      "triggers": {
+        "any": [
+          "Were you sick before it started?",
+          "trigger",
+          "doing when"
+        ]
+      },
+      "concepts": {
+        "hpi_setting": {
+          "polarity": "positive",
+          "value": "I had a mild cold just before it began. A child at the daycare had a slapped-cheek rash."
+        }
+      },
+      "example_questions": [
+        "Were you sick before it started?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I had a mild cold just before it began. A child at the daycare had a slapped-cheek rash.",
+            "concepts": {
+              "hpi_setting": {
+                "polarity": "positive",
+                "value": "I had a mild cold just before it began. A child at the daycare had a slapped-cheek rash."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "A mild cold preceded the joint symptoms. A child at the daycare had a slapped-cheek rash."
+    },
+    {
+      "id": "hpi_aggravating",
+      "category": "aggravating",
+      "print_label": "Rest",
+      "checklist": "h_hpi_aggravating",
+      "value": "Sitting still for a long time makes me stiff again.",
+      "sp_says": [
+        "Sitting still for a long time makes me stiff again."
+      ],
+      "triggers": {
+        "any": [
+          "What makes the stiffness worse?",
+          "makes worse"
+        ]
+      },
+      "concepts": {
+        "hpi_aggravating": {
+          "polarity": "positive",
+          "value": "Sitting still for a long time makes me stiff again."
+        }
+      },
+      "example_questions": [
+        "What makes the stiffness worse?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Sitting still for a long time makes me stiff again.",
+            "concepts": {
+              "hpi_aggravating": {
+                "polarity": "positive",
+                "value": "Sitting still for a long time makes me stiff again."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Stiffness after inactivity."
+    },
+    {
+      "id": "hpi_alleviating",
+      "category": "alleviating",
+      "print_label": "Relief",
+      "checklist": "h_hpi_alleviating",
+      "value": "A warm shower and gently moving them.",
+      "sp_says": [
+        "A warm shower and gently moving them."
+      ],
+      "triggers": {
+        "any": [
+          "What helps your hands?",
+          "helps",
+          "relieves"
+        ]
+      },
+      "concepts": {
+        "hpi_alleviating": {
+          "polarity": "positive",
+          "value": "A warm shower and gently moving them."
+        }
+      },
+      "example_questions": [
+        "What helps your hands?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "A warm shower and gently moving them.",
+            "concepts": {
+              "hpi_alleviating": {
+                "polarity": "positive",
+                "value": "A warm shower and gently moving them."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Relief with warmth and movement."
+    },
+    {
+      "id": "hpi_treatment",
+      "category": "treatment",
+      "print_label": "Self-treatment",
+      "checklist": "h_hpi_treatment",
+      "value": "Ibuprofen 200 milligrams twice on a few days helped somewhat, but it upset my stomach.",
+      "sp_says": [
+        "Ibuprofen 200 milligrams twice on a few days helped somewhat, but it upset my stomach."
+      ],
+      "triggers": {
+        "any": [
+          "Have you tried pain medicine?",
+          "tried for",
+          "taken for"
+        ]
+      },
+      "concepts": {
+        "hpi_treatment": {
+          "polarity": "positive",
+          "value": "Ibuprofen 200 milligrams twice on a few days helped somewhat, but it upset my stomach."
+        }
+      },
+      "example_questions": [
+        "Have you tried pain medicine?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Ibuprofen 200 milligrams twice on a few days helped somewhat, but it upset my stomach.",
+            "concepts": {
+              "hpi_treatment": {
+                "polarity": "positive",
+                "value": "Ibuprofen 200 milligrams twice on a few days helped somewhat, but it upset my stomach."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Partial relief but dyspepsia with intermittent ibuprofen 200 mg twice daily."
+    },
+    {
+      "id": "hpi_past_occurrence",
+      "category": "past_occurrence",
+      "print_label": "Previous episodes",
+      "checklist": "h_hpi_past_occurrence",
+      "value": "No, not like this.",
+      "sp_says": [
+        "No, not like this."
+      ],
+      "triggers": {
+        "any": [
+          "Has this happened before?",
+          "had before"
+        ]
+      },
+      "concepts": {
+        "hpi_past_occurrence": {
+          "polarity": "positive",
+          "value": "No, not like this."
+        }
+      },
+      "example_questions": [
+        "Has this happened before?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No, not like this.",
+            "concepts": {
+              "hpi_past_occurrence": {
+                "polarity": "positive",
+                "value": "No, not like this."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No similar previous episode."
+    },
+    {
+      "id": "history_medical_history",
+      "category": "pmh",
+      "print_label": "Medical history",
+      "checklist": "h_history_medical_history",
+      "value": "I have hypothyroidism, treated for 6 years.",
+      "sp_says": [
+        "I have hypothyroidism, treated for 6 years."
+      ],
+      "triggers": {
+        "any": [
+          "What medical problems do you have?",
+          "What illnesses have you had?",
+          "Any medical conditions?"
+        ]
+      },
+      "concepts": {
+        "history_medical_history": {
+          "polarity": "positive",
+          "value": "I have hypothyroidism, treated for 6 years."
+        }
+      },
+      "example_questions": [
+        "What medical problems do you have?",
+        "What illnesses have you had?",
+        "Any medical conditions?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have hypothyroidism, treated for 6 years.",
+            "concepts": {
+              "history_medical_history": {
+                "polarity": "positive",
+                "value": "I have hypothyroidism, treated for 6 years."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Hypothyroidism for 6 years."
+    },
+    {
+      "id": "history_surgery",
+      "category": "psh",
+      "print_label": "Surgery",
+      "checklist": "h_history_surgery",
+      "value": "My gallbladder was removed 4 years ago.",
+      "sp_says": [
+        "My gallbladder was removed 4 years ago."
+      ],
+      "triggers": {
+        "any": [
+          "What surgery have you had?",
+          "Have you had any operations?"
+        ]
+      },
+      "concepts": {
+        "history_surgery": {
+          "polarity": "positive",
+          "value": "My gallbladder was removed 4 years ago."
+        }
+      },
+      "example_questions": [
+        "What surgery have you had?",
+        "Have you had any operations?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My gallbladder was removed 4 years ago.",
+            "concepts": {
+              "history_surgery": {
+                "polarity": "positive",
+                "value": "My gallbladder was removed 4 years ago."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Cholecystectomy 4 years ago."
+    },
+    {
+      "id": "history_medicines",
+      "category": "medications",
+      "print_label": "Medicines",
+      "checklist": "h_history_medicines",
+      "value": "Levothyroxine 75 micrograms every morning, and the occasional ibuprofen I mentioned.",
+      "sp_says": [
+        "Levothyroxine 75 micrograms every morning, and the occasional ibuprofen I mentioned."
+      ],
+      "triggers": {
+        "any": [
+          "What medications do you take?",
+          "What medications are you taking?"
+        ]
+      },
+      "concepts": {
+        "history_medicines": {
+          "polarity": "positive",
+          "value": "Levothyroxine 75 micrograms every morning, and the occasional ibuprofen I mentioned."
+        }
+      },
+      "example_questions": [
+        "What medications do you take?",
+        "What medications are you taking?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Levothyroxine 75 micrograms every morning, and the occasional ibuprofen I mentioned.",
+            "concepts": {
+              "history_medicines": {
+                "polarity": "positive",
+                "value": "Levothyroxine 75 micrograms every morning, and the occasional ibuprofen I mentioned."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Levothyroxine 75 mcg daily; intermittent ibuprofen."
+    },
+    {
+      "id": "history_drug_reactions",
+      "category": "allergies",
+      "print_label": "Drug reactions",
+      "checklist": "h_history_drug_reactions",
+      "value": "Amoxicillin caused hives as an adult, without breathing trouble.",
+      "sp_says": [
+        "Amoxicillin caused hives as an adult, without breathing trouble."
+      ],
+      "triggers": {
+        "any": [
+          "Do you have medication allergies?",
+          "Any medication allergies?"
+        ]
+      },
+      "concepts": {
+        "history_drug_reactions": {
+          "polarity": "positive",
+          "value": "Amoxicillin caused hives as an adult, without breathing trouble."
+        }
+      },
+      "example_questions": [
+        "Do you have medication allergies?",
+        "Any medication allergies?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Amoxicillin caused hives as an adult, without breathing trouble.",
+            "concepts": {
+              "history_drug_reactions": {
+                "polarity": "positive",
+                "value": "Amoxicillin caused hives as an adult, without breathing trouble."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Amoxicillin: hives without respiratory symptoms."
+    },
+    {
+      "id": "history_smoking",
+      "category": "social",
+      "print_label": "Smoking",
+      "checklist": "h_history_smoking",
+      "value": "I have never smoked.",
+      "sp_says": [
+        "I have never smoked."
+      ],
+      "triggers": {
+        "any": [
+          "Do you smoke?"
+        ]
+      },
+      "concepts": {
+        "history_smoking": {
+          "polarity": "positive",
+          "value": "I have never smoked."
+        }
+      },
+      "example_questions": [
+        "Do you smoke?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have never smoked.",
+            "concepts": {
+              "history_smoking": {
+                "polarity": "positive",
+                "value": "I have never smoked."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Never smoked.",
+      "history_topic": "tobacco"
+    },
+    {
+      "id": "history_alcohol",
+      "category": "social",
+      "print_label": "Alcohol",
+      "checklist": "h_history_alcohol",
+      "value": "I do not drink.",
+      "sp_says": [
+        "I do not drink."
+      ],
+      "triggers": {
+        "any": [
+          "Do you drink alcohol?"
+        ]
+      },
+      "concepts": {
+        "history_alcohol": {
+          "polarity": "positive",
+          "value": "I do not drink."
+        }
+      },
+      "example_questions": [
+        "Do you drink alcohol?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I do not drink.",
+            "concepts": {
+              "history_alcohol": {
+                "polarity": "positive",
+                "value": "I do not drink."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No alcohol.",
+      "history_topic": "alcohol"
+    },
+    {
+      "id": "history_drugs",
+      "category": "social",
+      "print_label": "Drugs",
+      "checklist": "h_history_drugs",
+      "value": "No.",
+      "sp_says": [
+        "No."
+      ],
+      "triggers": {
+        "any": [
+          "Do you use recreational drugs?"
+        ]
+      },
+      "concepts": {
+        "history_drugs": {
+          "polarity": "positive",
+          "value": "No."
+        }
+      },
+      "example_questions": [
+        "Do you use recreational drugs?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No.",
+            "concepts": {
+              "history_drugs": {
+                "polarity": "positive",
+                "value": "No."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No recreational drugs.",
+      "history_topic": "drugs"
+    },
+    {
+      "id": "history_work",
+      "category": "social",
+      "print_label": "Work",
+      "checklist": "h_history_work",
+      "value": "I work at a daycare, lifting children and opening food containers.",
+      "sp_says": [
+        "I work at a daycare, lifting children and opening food containers."
+      ],
+      "triggers": {
+        "any": [
+          "What do you do for work?"
+        ]
+      },
+      "concepts": {
+        "history_work": {
+          "polarity": "positive",
+          "value": "I work at a daycare, lifting children and opening food containers."
+        }
+      },
+      "example_questions": [
+        "What do you do for work?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I work at a daycare, lifting children and opening food containers.",
+            "concepts": {
+              "history_work": {
+                "polarity": "positive",
+                "value": "I work at a daycare, lifting children and opening food containers."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Daycare worker; hand function affects lifting and containers.",
+      "history_topic": "occupation"
+    },
+    {
+      "id": "history_support",
+      "category": "social",
+      "print_label": "Support",
+      "checklist": "h_history_support",
+      "value": "My partner helps with our toddler, but missing work for appointments is difficult.",
+      "sp_says": [
+        "My partner helps with our toddler, but missing work for appointments is difficult."
+      ],
+      "triggers": {
+        "any": [
+          "Who helps at home?"
+        ]
+      },
+      "concepts": {
+        "history_support": {
+          "polarity": "positive",
+          "value": "My partner helps with our toddler, but missing work for appointments is difficult."
+        }
+      },
+      "example_questions": [
+        "Who helps at home?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My partner helps with our toddler, but missing work for appointments is difficult.",
+            "concepts": {
+              "history_support": {
+                "polarity": "positive",
+                "value": "My partner helps with our toddler, but missing work for appointments is difficult."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Partner helps with toddler; appointment-related work absence is difficult.",
+      "history_topic": "social_context"
+    },
+    {
+      "id": "history_family_history",
+      "category": "family",
+      "print_label": "Family history",
+      "checklist": "h_history_family_history",
+      "value": "My mother has rheumatoid arthritis. My father has arthritis in his finger tips.",
+      "sp_says": [
+        "My mother has rheumatoid arthritis. My father has arthritis in his finger tips."
+      ],
+      "triggers": {
+        "any": [
+          "Is there arthritis in your family?"
+        ]
+      },
+      "concepts": {
+        "history_family_history": {
+          "polarity": "positive",
+          "value": "My mother has rheumatoid arthritis. My father has arthritis in his finger tips."
+        }
+      },
+      "example_questions": [
+        "Is there arthritis in your family?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My mother has rheumatoid arthritis. My father has arthritis in his finger tips.",
+            "concepts": {
+              "history_family_history": {
+                "polarity": "positive",
+                "value": "My mother has rheumatoid arthritis. My father has arthritis in his finger tips."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Mother: rheumatoid arthritis; father: distal finger arthritis."
+    },
+    {
+      "id": "history_pregnancy",
+      "category": "obgyn",
+      "print_label": "Pregnancy",
+      "checklist": "h_history_pregnancy",
+      "value": "My period was one week ago. I use condoms and have not done a pregnancy test.",
+      "sp_says": [
+        "My period was one week ago. I use condoms and have not done a pregnancy test."
+      ],
+      "triggers": {
+        "any": [
+          "Could you be pregnant?"
+        ]
+      },
+      "concepts": {
+        "history_pregnancy": {
+          "polarity": "positive",
+          "value": "My period was one week ago. I use condoms and have not done a pregnancy test."
+        }
+      },
+      "example_questions": [
+        "Could you be pregnant?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My period was one week ago. I use condoms and have not done a pregnancy test.",
+            "concepts": {
+              "history_pregnancy": {
+                "polarity": "positive",
+                "value": "My period was one week ago. I use condoms and have not done a pregnancy test."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "LMP 1 week ago; condoms; pregnancy test not obtained."
+    },
+    {
+      "id": "history_sibling",
+      "category": "family",
+      "print_label": "Sibling",
+      "checklist": "h_history_sibling",
+      "value": "One brother, with no major illness that I know of.",
+      "sp_says": [
+        "One brother, with no major illness that I know of."
+      ],
+      "triggers": {
+        "any": [
+          "Do you have siblings?"
+        ]
+      },
+      "concepts": {
+        "history_sibling": {
+          "polarity": "positive",
+          "value": "One brother, with no major illness that I know of."
+        }
+      },
+      "example_questions": [
+        "Do you have siblings?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "One brother, with no major illness that I know of.",
+            "concepts": {
+              "history_sibling": {
+                "polarity": "positive",
+                "value": "One brother, with no major illness that I know of."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Brother: no known major illness."
+    },
+    {
+      "id": "symptom_joint_swelling",
+      "category": "associated",
+      "print_label": "Joint swelling",
+      "checklist": "h_symptom_joint_swelling",
+      "value": "The same finger joints look puffy on both hands.",
+      "sp_says": [
+        "The same finger joints look puffy on both hands."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had joint swelling?",
+          "swollen joints"
+        ]
+      },
+      "concepts": {
+        "symptom_joint_swelling": {
+          "polarity": "positive",
+          "value": "The same finger joints look puffy on both hands."
+        }
+      },
+      "example_questions": [
+        "Have you had joint swelling?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "The same finger joints look puffy on both hands.",
+            "concepts": {
+              "symptom_joint_swelling": {
+                "polarity": "positive",
+                "value": "The same finger joints look puffy on both hands."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Symmetric finger-joint swelling.",
+      "ros_system": "musculoskeletal"
+    },
+    {
+      "id": "symptom_joint_pain",
+      "category": "associated",
+      "print_label": "Joint pain",
+      "checklist": "h_symptom_joint_pain",
+      "value": "My wrists ache too.",
+      "sp_says": [
+        "My wrists ache too."
+      ],
+      "triggers": {
+        "any": [
+          "Any other joint pain?",
+          "joint pain"
+        ]
+      },
+      "concepts": {
+        "symptom_joint_pain": {
+          "polarity": "positive",
+          "value": "My wrists ache too."
+        }
+      },
+      "example_questions": [
+        "Any other joint pain?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My wrists ache too.",
+            "concepts": {
+              "symptom_joint_pain": {
+                "polarity": "positive",
+                "value": "My wrists ache too."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Associated wrist arthralgia.",
+      "ros_system": "musculoskeletal"
+    },
+    {
+      "id": "symptom_myalgia",
+      "category": "pertinent_negative",
+      "print_label": "Myalgia",
+      "checklist": "h_symptom_myalgia",
+      "value": "My muscles themselves do not ache.",
+      "sp_says": [
+        "My muscles themselves do not ache."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had myalgia?",
+          "muscle aches",
+          "body aches"
+        ]
+      },
+      "concepts": {
+        "symptom_myalgia": {
+          "polarity": "negative",
+          "value": "My muscles themselves do not ache."
+        }
+      },
+      "example_questions": [
+        "Have you had myalgia?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My muscles themselves do not ache.",
+            "concepts": {
+              "symptom_myalgia": {
+                "polarity": "negative",
+                "value": "My muscles themselves do not ache."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No myalgia.",
+      "ros_system": "musculoskeletal"
+    },
+    {
+      "id": "symptom_fatigue",
+      "category": "associated",
+      "print_label": "Fatigue",
+      "checklist": "h_symptom_fatigue",
+      "value": "I feel more tired than usual.",
+      "sp_says": [
+        "I feel more tired than usual."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had fatigue?",
+          "fatigue"
+        ]
+      },
+      "concepts": {
+        "symptom_fatigue": {
+          "polarity": "positive",
+          "value": "I feel more tired than usual."
+        }
+      },
+      "example_questions": [
+        "Have you had fatigue?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I feel more tired than usual.",
+            "concepts": {
+              "symptom_fatigue": {
+                "polarity": "positive",
+                "value": "I feel more tired than usual."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Fatigue.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_fever",
+      "category": "pertinent_negative",
+      "print_label": "Fever",
+      "checklist": "h_symptom_fever",
+      "value": "No fever.",
+      "sp_says": [
+        "No fever."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had a fever?",
+          "fever"
+        ]
+      },
+      "concepts": {
+        "symptom_fever": {
+          "polarity": "negative",
+          "value": "No fever."
+        }
+      },
+      "example_questions": [
+        "Have you had a fever?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No fever.",
+            "concepts": {
+              "symptom_fever": {
+                "polarity": "negative",
+                "value": "No fever."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No fever.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_weight_loss",
+      "category": "pertinent_negative",
+      "print_label": "Weight loss",
+      "checklist": "h_symptom_weight_loss",
+      "value": "No weight loss.",
+      "sp_says": [
+        "No weight loss."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had weight loss?",
+          "weight loss"
+        ]
+      },
+      "concepts": {
+        "symptom_weight_loss": {
+          "polarity": "negative",
+          "value": "No weight loss."
+        }
+      },
+      "example_questions": [
+        "Have you had weight loss?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No weight loss.",
+            "concepts": {
+              "symptom_weight_loss": {
+                "polarity": "negative",
+                "value": "No weight loss."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No weight loss.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_rash",
+      "category": "pertinent_negative",
+      "print_label": "Rash",
+      "checklist": "h_symptom_rash",
+      "value": "I have not had a rash or scaly patches.",
+      "sp_says": [
+        "I have not had a rash or scaly patches."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had rash?",
+          "rash"
+        ]
+      },
+      "concepts": {
+        "symptom_rash": {
+          "polarity": "negative",
+          "value": "I have not had a rash or scaly patches."
+        }
+      },
+      "example_questions": [
+        "Have you had rash?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not had a rash or scaly patches.",
+            "concepts": {
+              "symptom_rash": {
+                "polarity": "negative",
+                "value": "I have not had a rash or scaly patches."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No rash or psoriasis-like plaques.",
+      "ros_system": "skin"
+    },
+    {
+      "id": "symptom_photosensitivity",
+      "category": "pertinent_negative",
+      "print_label": "Photosensitivity",
+      "checklist": "h_symptom_photosensitivity",
+      "value": "Sunlight does not cause a rash.",
+      "sp_says": [
+        "Sunlight does not cause a rash."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had photosensitivity?",
+          "photosensitivity"
+        ]
+      },
+      "concepts": {
+        "symptom_photosensitivity": {
+          "polarity": "negative",
+          "value": "Sunlight does not cause a rash."
+        }
+      },
+      "example_questions": [
+        "Have you had photosensitivity?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Sunlight does not cause a rash.",
+            "concepts": {
+              "symptom_photosensitivity": {
+                "polarity": "negative",
+                "value": "Sunlight does not cause a rash."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No photosensitive rash.",
+      "ros_system": "skin"
+    },
+    {
+      "id": "symptom_nail_changes",
+      "category": "pertinent_negative",
+      "print_label": "Nail changes",
+      "checklist": "h_symptom_nail_changes",
+      "value": "I have not noticed pits or changes in my nails.",
+      "sp_says": [
+        "I have not noticed pits or changes in my nails."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had nail changes?",
+          "nail changes"
+        ]
+      },
+      "concepts": {
+        "symptom_nail_changes": {
+          "polarity": "negative",
+          "value": "I have not noticed pits or changes in my nails."
+        }
+      },
+      "example_questions": [
+        "Have you had nail changes?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not noticed pits or changes in my nails.",
+            "concepts": {
+              "symptom_nail_changes": {
+                "polarity": "negative",
+                "value": "I have not noticed pits or changes in my nails."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No nail changes.",
+      "ros_system": "skin"
+    },
+    {
+      "id": "patient_concern",
+      "category": "concern",
+      "print_label": "Concern",
+      "checklist": "h_patient_concern",
+      "value": "I want to know what is causing this and how to get back to my usual activities.",
+      "sp_says": [
+        "I want to know what is causing this and how to get back to my usual activities."
+      ],
+      "triggers": {
+        "any": [
+          "What worries you most?"
+        ]
+      },
+      "concepts": {
+        "patient_concern": {
+          "polarity": "positive",
+          "value": "I want to know what is causing this and how to get back to my usual activities."
+        }
+      },
+      "example_questions": [
+        "What worries you most?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I want to know what is causing this and how to get back to my usual activities.",
+            "concepts": {
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "I want to know what is causing this and how to get back to my usual activities."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Wants explanation and return to usual activities."
+    }
+  ],
+  "concept_lexicon": {
+    "opening_complaint": [
+      "Both hands are stiff and swollen when I wake up."
+    ],
+    "hpi_onset": [
+      "About 8 weeks ago.",
+      "Eight weeks of bilateral hand symptoms."
+    ],
+    "hpi_location": [
+      "The knuckles where my fingers meet my hands and the middle finger joints, on both sides.",
+      "Bilateral MCP and PIP symptoms."
+    ],
+    "hpi_quality": [
+      "Achy, puffy and hard to bend.",
+      "Aching, swelling and stiffness."
+    ],
+    "hpi_severity": [
+      "It is about 5 out of 10. Opening jars and fastening buttons are difficult.",
+      "5/10; difficulty with jars and buttons."
+    ],
+    "hpi_timing": [
+      "At least an hour, sometimes an hour and a half.",
+      "Morning stiffness 60–90 minutes."
+    ],
+    "hpi_chronology": [
+      "It started in a few fingers and now affects both hands most days.",
+      "Progressed from several fingers to bilateral daily symptoms."
+    ],
+    "hpi_setting": [
+      "I had a mild cold just before it began. A child at the daycare had a slapped-cheek rash.",
+      "A mild cold preceded the joint symptoms. A child at the daycare had a slapped-cheek rash."
+    ],
+    "hpi_aggravating": [
+      "Sitting still for a long time makes me stiff again.",
+      "Stiffness after inactivity."
+    ],
+    "hpi_alleviating": [
+      "A warm shower and gently moving them.",
+      "Relief with warmth and movement."
+    ],
+    "hpi_treatment": [
+      "Ibuprofen 200 milligrams twice on a few days helped somewhat, but it upset my stomach.",
+      "Partial relief but dyspepsia with intermittent ibuprofen 200 mg twice daily."
+    ],
+    "hpi_past_occurrence": [
+      "No, not like this.",
+      "No similar previous episode."
+    ],
+    "history_medical_history": [
+      "I have hypothyroidism, treated for 6 years.",
+      "Hypothyroidism for 6 years."
+    ],
+    "history_surgery": [
+      "My gallbladder was removed 4 years ago.",
+      "Cholecystectomy 4 years ago."
+    ],
+    "history_medicines": [
+      "Levothyroxine 75 micrograms every morning, and the occasional ibuprofen I mentioned.",
+      "Levothyroxine 75 mcg daily; intermittent ibuprofen."
+    ],
+    "history_drug_reactions": [
+      "Amoxicillin caused hives as an adult, without breathing trouble.",
+      "Amoxicillin: hives without respiratory symptoms."
+    ],
+    "history_smoking": [
+      "I have never smoked.",
+      "Never smoked."
+    ],
+    "history_alcohol": [
+      "I do not drink.",
+      "No alcohol."
+    ],
+    "history_drugs": [
+      "No.",
+      "No recreational drugs."
+    ],
+    "history_work": [
+      "I work at a daycare, lifting children and opening food containers.",
+      "Daycare worker; hand function affects lifting and containers."
+    ],
+    "history_support": [
+      "My partner helps with our toddler, but missing work for appointments is difficult.",
+      "Partner helps with toddler; appointment-related work absence is difficult."
+    ],
+    "history_family_history": [
+      "My mother has rheumatoid arthritis. My father has arthritis in his finger tips.",
+      "Mother: rheumatoid arthritis; father: distal finger arthritis."
+    ],
+    "history_pregnancy": [
+      "My period was one week ago. I use condoms and have not done a pregnancy test.",
+      "LMP 1 week ago; condoms; pregnancy test not obtained."
+    ],
+    "history_sibling": [
+      "One brother, with no major illness that I know of.",
+      "Brother: no known major illness."
+    ],
+    "symptom_joint_swelling": [
+      "The same finger joints look puffy on both hands.",
+      "Symmetric finger-joint swelling.",
+      "swollen joints"
+    ],
+    "symptom_joint_pain": [
+      "My wrists ache too.",
+      "Associated wrist arthralgia.",
+      "joint pain"
+    ],
+    "symptom_myalgia": [
+      "My muscles themselves do not ache.",
+      "No myalgia.",
+      "muscle aches",
+      "body aches"
+    ],
+    "symptom_fatigue": [
+      "I feel more tired than usual.",
+      "Fatigue.",
+      "fatigue"
+    ],
+    "symptom_fever": [
+      "No fever.",
+      "fever"
+    ],
+    "symptom_weight_loss": [
+      "No weight loss.",
+      "weight loss"
+    ],
+    "symptom_rash": [
+      "I have not had a rash or scaly patches.",
+      "No rash or psoriasis-like plaques.",
+      "rash"
+    ],
+    "symptom_photosensitivity": [
+      "Sunlight does not cause a rash.",
+      "No photosensitive rash.",
+      "photosensitivity"
+    ],
+    "symptom_nail_changes": [
+      "I have not noticed pits or changes in my nails.",
+      "No nail changes.",
+      "nail changes"
+    ],
+    "patient_concern": [
+      "I want to know what is causing this and how to get back to my usual activities.",
+      "Wants explanation and return to usual activities."
+    ],
+    "exam_general_inspect": [
+      "Alert, mildly tired appearing."
+    ],
+    "exam_msk_inspect": [
+      "Symmetric swelling of second and third MCP and PIP joints; no DIP swelling or deformity."
+    ],
+    "exam_msk_palpate": [
+      "Boggy tenderness of affected MCP/PIP joints and mild bilateral wrist tenderness."
+    ],
+    "exam_msk_rom": [
+      "Finger flexion limited by pain and swelling; wrist flexion mildly painful bilaterally."
+    ],
+    "exam_msk_strength": [
+      "Grip strength mildly reduced bilaterally by pain; proximal arm strength 5/5."
+    ],
+    "exam_skin_inspect": [
+      "No rash on inspected arms or palms; no nail pitting."
+    ],
+    "exam_heart_auscultate": [
+      "Regular rate and rhythm without murmur."
+    ],
+    "exam_lungs_auscultate": [
+      "Clear bilateral breath sounds."
+    ],
+    "exam_osteo_screen": [
+      "T1 bilateral paraspinal tissue texture change and tenderness."
+    ]
+  },
+  "exam_findings": {
+    "general_inspect": [
+      {
+        "id": "exam_general_inspect",
+        "text": "Alert, mildly tired appearing.",
+        "concepts": {
+          "exam_general_inspect": {
+            "polarity": "positive",
+            "value": "Alert, mildly tired appearing."
+          }
+        },
+        "scopes": [
+          "general"
+        ],
+        "checklist": "p_exam_general_inspect",
+        "requires_components": [],
+        "key_finding": true
+      }
+    ],
+    "msk_inspect": [
+      {
+        "id": "exam_msk_inspect",
+        "text": "Symmetric swelling of second and third MCP and PIP joints; no DIP swelling or deformity.",
+        "concepts": {
+          "exam_msk_inspect": {
+            "polarity": "positive",
+            "value": "Symmetric swelling of second and third MCP and PIP joints; no DIP swelling or deformity."
+          }
+        },
+        "scopes": [
+          "msk.inspection"
+        ],
+        "checklist": "p_exam_msk_inspect",
+        "requires_components": [
+          "swelling",
+          "deformity"
+        ],
+        "key_finding": true
+      }
+    ],
+    "msk_palpate": [
+      {
+        "id": "exam_msk_palpate",
+        "text": "Boggy tenderness of affected MCP/PIP joints and mild bilateral wrist tenderness.",
+        "concepts": {
+          "exam_msk_palpate": {
+            "polarity": "positive",
+            "value": "Boggy tenderness of affected MCP/PIP joints and mild bilateral wrist tenderness."
+          }
+        },
+        "scopes": [
+          "msk.palpation"
+        ],
+        "checklist": "p_exam_msk_palpate",
+        "requires_components": [
+          "point tenderness"
+        ],
+        "key_finding": true
+      }
+    ],
+    "msk_rom": [
+      {
+        "id": "exam_msk_rom",
+        "text": "Finger flexion limited by pain and swelling; wrist flexion mildly painful bilaterally.",
+        "concepts": {
+          "exam_msk_rom": {
+            "polarity": "positive",
+            "value": "Finger flexion limited by pain and swelling; wrist flexion mildly painful bilaterally."
+          }
+        },
+        "scopes": [
+          "msk.rom"
+        ],
+        "checklist": "p_exam_msk_rom",
+        "requires_components": [
+          "flexion",
+          "extension"
+        ],
+        "key_finding": true
+      }
+    ],
+    "msk_strength": [
+      {
+        "id": "exam_msk_strength",
+        "text": "Grip strength mildly reduced bilaterally by pain; proximal arm strength 5/5.",
+        "concepts": {
+          "exam_msk_strength": {
+            "polarity": "positive",
+            "value": "Grip strength mildly reduced bilaterally by pain; proximal arm strength 5/5."
+          }
+        },
+        "scopes": [
+          "neuro.motor"
+        ],
+        "checklist": "p_exam_msk_strength",
+        "requires_components": [
+          "upper extremity"
+        ],
+        "key_finding": true
+      }
+    ],
+    "skin_inspect": [
+      {
+        "id": "exam_skin_inspect",
+        "text": "No rash on inspected arms or palms; no nail pitting.",
+        "concepts": {
+          "exam_skin_inspect": {
+            "polarity": "positive",
+            "value": "No rash on inspected arms or palms; no nail pitting."
+          }
+        },
+        "scopes": [
+          "skin"
+        ],
+        "checklist": "p_exam_skin_inspect",
+        "requires_components": [
+          "arms",
+          "palms"
+        ],
+        "key_finding": true
+      }
+    ],
+    "heart_auscultate": [
+      {
+        "id": "exam_heart_auscultate",
+        "text": "Regular rate and rhythm without murmur.",
+        "concepts": {
+          "exam_heart_auscultate": {
+            "polarity": "positive",
+            "value": "Regular rate and rhythm without murmur."
+          }
+        },
+        "scopes": [
+          "heart"
+        ],
+        "checklist": "p_exam_heart_auscultate",
+        "requires_components": [
+          "aortic",
+          "pulmonic",
+          "tricuspid",
+          "mitral",
+          "on skin"
+        ],
+        "key_finding": true
+      }
+    ],
+    "lungs_auscultate": [
+      {
+        "id": "exam_lungs_auscultate",
+        "text": "Clear bilateral breath sounds.",
+        "concepts": {
+          "exam_lungs_auscultate": {
+            "polarity": "positive",
+            "value": "Clear bilateral breath sounds."
+          }
+        },
+        "scopes": [
+          "lungs"
+        ],
+        "checklist": "p_exam_lungs_auscultate",
+        "requires_components": [
+          "posterior",
+          "on skin",
+          "compare side to side",
+          "mouth open"
+        ],
+        "key_finding": true
+      }
+    ],
+    "osteo_screen": [
+      {
+        "id": "exam_osteo_screen",
+        "text": "T1 bilateral paraspinal tissue texture change and tenderness.",
+        "concepts": {
+          "exam_osteo_screen": {
+            "polarity": "positive",
+            "value": "T1 bilateral paraspinal tissue texture change and tenderness."
+          }
+        },
+        "scopes": [
+          "osteopathic"
+        ],
+        "checklist": "p_exam_osteo_screen",
+        "requires_components": [
+          "thoracic"
+        ],
+        "key_finding": false
+      }
+    ]
+  },
+  "refusals": [],
+  "refusal_expectation": {},
+  "area_of_concern": {
+    "system": "Musculoskeletal",
+    "required_methods": [
+      "inspect",
+      "palpate"
+    ],
+    "special_tests": [],
+    "note": "Recognize persistent inflammatory small-joint disease and refer without waiting for tests."
+  },
+  "osteopathic": {
+    "expected_documentation": "Document the supplied level and palpatory descriptor only after the structural screen; treatment is not implied."
+  },
+  "ros_pertinent_systems": [
+    "musculoskeletal",
+    "general",
+    "skin"
+  ],
+  "differentials": [
+    {
+      "rank": 1,
+      "name": "Rheumatoid arthritis",
+      "vindicate": "A",
+      "aliases": [
+        "Rheumatoid arthritis"
+      ],
+      "supported_by": [
+        "hpi_timing",
+        "history_family_history",
+        "exam_msk_palpate"
+      ],
+      "teaching_context": "Persistent symmetric small-joint synovitis and prolonged morning stiffness favor RA."
+    },
+    {
+      "rank": 2,
+      "name": "Viral polyarthritis, including parvovirus B19",
+      "vindicate": "I",
+      "aliases": [
+        "Viral polyarthritis, including parvovirus B19"
+      ],
+      "supported_by": [
+        "hpi_setting",
+        "exam_msk_inspect"
+      ],
+      "teaching_context": "Exposure and preceding illness support viral arthritis; persistence for 8 weeks makes reassessment essential."
+    },
+    {
+      "rank": 3,
+      "name": "Hand osteoarthritis",
+      "vindicate": "D",
+      "aliases": [
+        "Hand osteoarthritis"
+      ],
+      "supported_by": [
+        "history_family_history",
+        "hpi_severity"
+      ],
+      "teaching_context": "Hand functional pain and family history support consideration, but MCP synovitis and prolonged stiffness weigh against primary OA."
+    }
+  ],
+  "implausible_differentials": [],
+  "plan_expectations": {
+    "tests": [],
+    "medications": [],
+    "omt": [],
+    "education": [],
+    "referral": [],
+    "follow_up": []
+  },
+  "checklist": {
+    "history": [
+      {
+        "id": "h_opening_complaint",
+        "text": "Opening complaint"
+      },
+      {
+        "id": "h_hpi_onset",
+        "text": "Onset"
+      },
+      {
+        "id": "h_hpi_location",
+        "text": "Joints"
+      },
+      {
+        "id": "h_hpi_quality",
+        "text": "Character"
+      },
+      {
+        "id": "h_hpi_severity",
+        "text": "Function"
+      },
+      {
+        "id": "h_hpi_timing",
+        "text": "Morning stiffness"
+      },
+      {
+        "id": "h_hpi_chronology",
+        "text": "Progression"
+      },
+      {
+        "id": "h_hpi_setting",
+        "text": "Preceding illness"
+      },
+      {
+        "id": "h_hpi_aggravating",
+        "text": "Rest"
+      },
+      {
+        "id": "h_hpi_alleviating",
+        "text": "Relief"
+      },
+      {
+        "id": "h_hpi_treatment",
+        "text": "Self-treatment"
+      },
+      {
+        "id": "h_hpi_past_occurrence",
+        "text": "Previous episodes"
+      },
+      {
+        "id": "h_history_medical_history",
+        "text": "Medical history"
+      },
+      {
+        "id": "h_history_surgery",
+        "text": "Surgery"
+      },
+      {
+        "id": "h_history_medicines",
+        "text": "Medicines"
+      },
+      {
+        "id": "h_history_drug_reactions",
+        "text": "Drug reactions"
+      },
+      {
+        "id": "h_history_smoking",
+        "text": "Smoking"
+      },
+      {
+        "id": "h_history_alcohol",
+        "text": "Alcohol"
+      },
+      {
+        "id": "h_history_drugs",
+        "text": "Drugs"
+      },
+      {
+        "id": "h_history_work",
+        "text": "Work"
+      },
+      {
+        "id": "h_history_support",
+        "text": "Support"
+      },
+      {
+        "id": "h_history_family_history",
+        "text": "Family history"
+      },
+      {
+        "id": "h_history_pregnancy",
+        "text": "Pregnancy"
+      },
+      {
+        "id": "h_history_sibling",
+        "text": "Sibling"
+      },
+      {
+        "id": "h_symptom_joint_swelling",
+        "text": "Joint swelling"
+      },
+      {
+        "id": "h_symptom_joint_pain",
+        "text": "Joint pain"
+      },
+      {
+        "id": "h_symptom_myalgia",
+        "text": "Myalgia"
+      },
+      {
+        "id": "h_symptom_fatigue",
+        "text": "Fatigue"
+      },
+      {
+        "id": "h_symptom_fever",
+        "text": "Fever"
+      },
+      {
+        "id": "h_symptom_weight_loss",
+        "text": "Weight loss"
+      },
+      {
+        "id": "h_symptom_rash",
+        "text": "Rash"
+      },
+      {
+        "id": "h_symptom_photosensitivity",
+        "text": "Photosensitivity"
+      },
+      {
+        "id": "h_symptom_nail_changes",
+        "text": "Nail changes"
+      },
+      {
+        "id": "h_patient_concern",
+        "text": "Concern"
+      }
+    ],
+    "physical": [
+      {
+        "id": "p_exam_general_inspect",
+        "text": "General appearance",
+        "maneuver": "general_inspect",
+        "components": []
+      },
+      {
+        "id": "p_exam_msk_inspect",
+        "text": "Inspect the affected area",
+        "maneuver": "msk_inspect",
+        "components": [
+          "swelling",
+          "deformity"
+        ]
+      },
+      {
+        "id": "p_exam_msk_palpate",
+        "text": "Palpate the affected area",
+        "maneuver": "msk_palpate",
+        "components": [
+          "point tenderness"
+        ]
+      },
+      {
+        "id": "p_exam_msk_rom",
+        "text": "Range of motion",
+        "maneuver": "msk_rom",
+        "components": [
+          "flexion",
+          "extension"
+        ]
+      },
+      {
+        "id": "p_exam_msk_strength",
+        "text": "Muscle strength testing",
+        "maneuver": "msk_strength",
+        "components": [
+          "upper extremity"
+        ]
+      },
+      {
+        "id": "p_exam_skin_inspect",
+        "text": "Inspect skin",
+        "maneuver": "skin_inspect",
+        "components": [
+          "arms",
+          "palms"
+        ]
+      },
+      {
+        "id": "p_exam_heart_auscultate",
+        "text": "Auscultate heart",
+        "maneuver": "heart_auscultate",
+        "components": [
+          "aortic",
+          "pulmonic",
+          "tricuspid",
+          "mitral",
+          "on skin"
+        ]
+      },
+      {
+        "id": "p_exam_lungs_auscultate",
+        "text": "Auscultate lungs",
+        "maneuver": "lungs_auscultate",
+        "components": [
+          "posterior",
+          "on skin",
+          "compare side to side",
+          "mouth open"
+        ]
+      },
+      {
+        "id": "p_exam_osteo_screen",
+        "text": "Osteopathic structural screen",
+        "maneuver": "osteo_screen",
+        "components": [
+          "thoracic"
+        ]
+      },
+      {
+        "id": "p_introduce",
+        "text": "Introduce yourself and verify identity",
+        "courtesy": "introduce"
+      },
+      {
+        "id": "p_hand_hygiene",
+        "text": "Clean hands before examination",
+        "courtesy": "hand_hygiene"
+      },
+      {
+        "id": "p_drape",
+        "text": "Provide appropriate draping",
+        "courtesy": "drape"
+      }
+    ]
+  },
+  "model_note": {
+    "S": "CC: Both hands are stiff and swollen when I wake up.\n\nHPI: 38-year-old female. Eight weeks of bilateral hand symptoms. Bilateral MCP and PIP symptoms. Aching, swelling and stiffness. 5/10; difficulty with jars and buttons. Morning stiffness 60–90 minutes. Progressed from several fingers to bilateral daily symptoms. A mild cold preceded the joint symptoms. A child at the daycare had a slapped-cheek rash. Stiffness after inactivity. Relief with warmth and movement. Partial relief but dyspepsia with intermittent ibuprofen 200 mg twice daily. No similar previous episode.\n\nPMH: Hypothyroidism for 6 years.\n\nPSH: Cholecystectomy 4 years ago.\n\nMeds: Levothyroxine 75 mcg daily; intermittent ibuprofen.\n\nSH: Never smoked. No alcohol. No recreational drugs. Daycare worker; hand function affects lifting and containers. Partner helps with toddler; appointment-related work absence is difficult. LMP 1 week ago; condoms; pregnancy test not obtained.\n\nFH: Mother: rheumatoid arthritis; father: distal finger arthritis. Brother: no known major illness.\n\nAllergies: Amoxicillin: hives without respiratory symptoms.\n\nROS: Musculoskeletal: Symmetric finger-joint swelling. Associated wrist arthralgia. No myalgia. General: Fatigue. No fever. No weight loss. Skin: No rash or psoriasis-like plaques. No photosensitive rash. No nail changes.",
+    "O": "Vitals: BP 114/70 mmHg, P 80 bpm, R 16 rpm, T 98.6 F oral, Pulse Ox 99% on room air, Ht 5' 5\", Wt 148 lbs\n\nGeneral: Alert, mildly tired appearing.\nMusculoskeletal: Symmetric swelling of second and third MCP and PIP joints; no DIP swelling or deformity. Boggy tenderness of affected MCP/PIP joints and mild bilateral wrist tenderness. Finger flexion limited by pain and swelling; wrist flexion mildly painful bilaterally. Grip strength mildly reduced bilaterally by pain; proximal arm strength 5/5.\nSkin: No rash on inspected arms or palms; no nail pitting.\nHeart: Regular rate and rhythm without murmur.\nLungs: Clear bilateral breath sounds.\nOsteopathic: T1 bilateral paraspinal tissue texture change and tenderness.",
+    "A": [
+      "1. Rheumatoid arthritis",
+      "2. Viral polyarthritis, including parvovirus B19",
+      "3. Hand osteoarthritis"
+    ],
+    "P": [
+      "1. Arrange urgent rheumatology referral for persistent small-joint synovitis; do not wait for laboratory results. Obtain RF, anti-CCP, CBC, renal/liver profile and ESR/CRP, with hand/foot imaging as appropriate. Discuss early disease-modifying treatment assessment, joint protection and safe symptom relief; review within 1–2 weeks to confirm access. A hot single joint or fever needs urgent evaluation.",
+      "2. Assess whether parvovirus testing would clarify the exposure and prolonged course; avoid attributing persistent synovitis to a past cold alone. Offer supportive analgesia and explain pregnancy/exposure discussion if relevant.",
+      "3. If degenerative disease remains after inflammatory assessment, consider radiographs and occupational therapy for hand function, pacing and adaptive aids. Explain that symptomatic measures do not replace evaluation of synovitis."
+    ]
+  },
+  "print_additional_exams": {
+    "osteo_screen": "Include when practicing the course structural screen; it does not establish the cause of the complaint."
+  },
+  "ideal_encounter_extras": [
+    "Recognize persistent inflammatory small-joint disease and refer without waiting for tests."
+  ],
+  "supersedes_core": [
+    "tobacco_use",
+    "alcohol_use",
+    "drug_use",
+    "allergies",
+    "medications",
+    "family_history",
+    "past_medical",
+    "past_surgical",
+    "joint_swelling",
+    "joint_pain",
+    "myalgia",
+    "fatigue",
+    "fever",
+    "weight_loss",
+    "rash",
+    "photosensitivity",
+    "nail_changes"
+  ],
+  "review_status": "Source-checked fictional practice; not faculty or clinician approved.",
+  "clinical_review": {
+    "status": "source_checked_not_clinician_approved",
+    "date": "2026-09-14",
+    "method": "Individual presentation, differential, safety and plan review against named primary clinical references plus course documentation constraints.",
+    "limits": "Fictional details deliberately authored. Mnemonic category placement is instructional and is not proof of etiology. Generic 3D appearance is not a diagnostic visual.",
+    "sources": [
+      "https://www.niams.nih.gov/health-topics/rheumatoid-arthritis/diagnosis-treatment-and-steps-to-take",
+      "https://www.nice.org.uk/guidance/ng100/chapter/Recommendations"
+    ]
+  },
+  "sources": [
+    {
+      "title": "2026 FALL M2 ILG Student Manual",
+      "path": "claude builds/PCM/2026 FALL M2 ILG - STUDENT MANUAL update.docx",
+      "locator": "SOAP rubric and physical examination requirements",
+      "kind": "course"
+    },
+    {
+      "title": "Rheumatoid arthritis diagnosis and treatment",
+      "url": "https://www.niams.nih.gov/health-topics/rheumatoid-arthritis/diagnosis-treatment-and-steps-to-take",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+    },
+    {
+      "title": "NICE rheumatoid arthritis recommendations",
+      "url": "https://www.nice.org.uk/guidance/ng100/chapter/Recommendations",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+    }
+  ],
+  "teaching": {
+    "goals": [
+      "Recognize persistent inflammatory small-joint disease and refer without waiting for tests.",
+      "Document only supplied, asked or examined information."
+    ],
+    "skills": [
+      "history-sequencing",
+      "focused-examination",
+      "clinical-reasoning",
+      "evidence-based-soap",
+      "musculoskeletal"
+    ],
+    "common_omissions": [
+      "Distinguishing history from examination evidence.",
+      "Explaining uncertainty and the practical follow-up plan."
+    ],
+    "lesson_plan": {
+      "notice": "Recognize persistent inflammatory small-joint disease and refer without waiting for tests.",
+      "anchor": "Persistent hand stiffness and swelling",
+      "pivot": "How long does stiffness last, and are the swollen joints symmetric?",
+      "exam": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
+      "avoid": "Treating an unperformed examination or a possible diagnosis as obtained fact."
+    },
+    "closing_dialogue": [
+      "The swelling and long morning stiffness need prompt assessment by a joint specialist. We can arrange blood tests, but the referral should not wait for their results. We will check within one to two weeks that you have an appointment."
+    ],
+    "concern_response": "We can discuss scheduling and a work note, plus practical tools that make buttons and jars easier while the assessment is underway.",
+    "reasoning_steps": [
+      {
+        "id": "orient",
+        "phase": "history",
+        "purpose": "Hear the presenting concern",
+        "question": "What brings you in today?",
+        "fact_ids": [
+          "opening_complaint"
+        ],
+        "why": "Recognize persistent inflammatory small-joint disease and refer without waiting for tests."
+      },
+      {
+        "id": "pattern",
+        "phase": "history",
+        "purpose": "Clarify the pattern",
+        "question": "How long does stiffness last, and are the swollen joints symmetric?",
+        "fact_ids": [
+          "hpi_onset"
+        ],
+        "why": "Recognize persistent inflammatory small-joint disease and refer without waiting for tests."
+      },
+      {
+        "id": "examine",
+        "phase": "exam",
+        "purpose": "Perform relevant examinations",
+        "question": "May I examine you?",
+        "fact_ids": [],
+        "why": "Findings require performed actions."
+      }
+    ],
+    "reasoning_map": [
+      {
+        "id": "msk-hand-stiffness-decision",
+        "question": "How long does stiffness last, and are the swollen joints symmetric?",
+        "why": "Recognize persistent inflammatory small-joint disease and refer without waiting for tests.",
+        "if_present": "Use the reported pattern to select the relevant examinations and assess urgency.",
+        "if_absent": "Keep alternatives open and ask a focused follow-up.",
+        "next_action": "Perform the relevant case-specific examination.",
+        "document": "Separate reported symptoms, observed signs, assessment and proposed care."
+      }
+    ],
+    "classification_note": "Categories reflect the explicitly proposed mechanism; e.g., irritant exposure is I2. They are a course organizing aid, not confirmation of mechanism."
+  },
+  "content_revisions": {
+    "library_expansion_20260914": "New independently authored presentation. Single core path; no renamed cosmetic variants."
+  }
+}

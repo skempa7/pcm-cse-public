@@ -120,7 +120,8 @@ TOPIC_CUES = {
     "psh":         [r"surger", r"\bsurgical\b", r"\bpsh\b", r"operation", r"\bprocedure",
                     r"been operated"],
     "medications": [r"medicat", r"\bmeds\b", r"\bmedicine", r"prescription", r"\bpills?\b",
-                    r"supplement", r"taking anything", r"\bdrugs? (?:do|are) you tak"],
+                    r"supplement", r"taking anything", r"\bdrugs? (?:do|are) you tak",
+                    r"what do you take (?:every day|daily|regularly)\b"],
     "allergies":   [r"allerg", r"\breaction\b"],
     "family":      [r"family history", r"\bfamily\b", r"\bmother\b", r"\bfather\b", r"\bmom\b",
                     r"\bdad\b", r"\bparents?\b", r"sibling", r"\bbrother\b", r"\bsister\b",
@@ -918,6 +919,12 @@ def segment(utterance):
     if not utterance or not utterance.strip():
         return [utterance]
     utterance = casual_expand(utterance)
+    # Quantified substance-use questions contain two independent histories.
+    # Keep this separate from descriptor comparisons such as 'sharp or dull'.
+    substance_pair = re.fullmatch(r"\s*(?:how much do you|do you) (smoke|drink)(?: alcohol)? (?:or|and) (smoke|drink)(?: alcohol)?[?. ]*", utterance, re.I)
+    if substance_pair and substance_pair[1].lower() != substance_pair[2].lower():
+        prompts = {'smoke': 'How much do you smoke?', 'drink': 'How much alcohol do you drink?'}
+        return [prompts[verb.lower()] for verb in substance_pair.groups()]
     # A title's full stop is not a sentence boundary. "I'm working with Dr.
     # Lee. What brought you in?" used to split into "...with Dr", "Lee" and the
     # question, and the stray fragment cost the turn its opening.

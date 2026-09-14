@@ -58,7 +58,7 @@
       "pitch": 1,
       "gender": "female",
       "adult": true,
-      "age_range": "18\u201330"
+      "age_range": "18–30"
     },
     "comfort_response": {
       "reply": "The pressure is 8/10.",
@@ -286,15 +286,18 @@
       "I am a engineering technician."
     ],
     "history_family_1": [
-      "My dad is fifty-eight and he's had an enlarged prostate.", "Father had prostate enlargement",
+      "My dad is fifty-eight and he's had an enlarged prostate.",
+      "Father had prostate enlargement",
       "father"
     ],
     "history_family_2": [
-      "My mom is fifty-six and she has high blood pressure.", "mother had hypertension",
+      "My mom is fifty-six and she has high blood pressure.",
+      "mother had hypertension",
       "mother"
     ],
     "history_family_3": [
-      "I have one brother, he's twenty-nine and he's healthy.", "brother healthy.",
+      "I have one brother, he's twenty-nine and he's healthy.",
+      "brother healthy.",
       "brother"
     ],
     "patient_concern": [
@@ -2215,15 +2218,22 @@
       "teaching_context": "Working possibility requiring the proposed evaluation; no diagnosis is confirmed by case selection."
     },
     {
-      "rank": 3,
-      "name": "Neurogenic bladder due to multiple sclerosis",
-      "vindicate": "A",
+      "name": "Nonrelaxing pelvic-floor voiding dysfunction",
+      "vindicate": null,
       "aliases": [
-        "multiple sclerosis",
-        "demyelinating neurogenic bladder"
+        "nonrelaxing pelvic floor",
+        "pelvic-floor voiding dysfunction",
+        "functional outlet dysfunction"
       ],
-      "supported_by": [],
-      "teaching_context": "Working possibility requiring the proposed evaluation; no diagnosis is confirmed by case selection."
+      "supported_by": [
+        "history_pmh_1",
+        "symptom_hesitancy",
+        "hpi_past_occurrence"
+      ],
+      "teaching_context": "Longstanding difficulty relaxing to urinate and hesitancy support functional outlet dysfunction; no pelvic-floor assessment yet confirms it. The VINDICATE category remains unresolved and must not be labeled neurologic or psychogenic without supporting evidence.",
+      "classification_status": "unresolved_course_review_needed",
+      "rank": 3,
+      "review_status": "author_source_checked_not_clinician_approved"
     }
   ],
   "implausible_differentials": [],
@@ -2393,13 +2403,13 @@
     "physical": [
       {
         "id": "p_exam_1",
-        "text": "Alert and distressed by lower abdominal pressure \u2014 obtain with general inspect",
+        "text": "Alert and distressed by lower abdominal pressure — obtain with general inspect",
         "maneuver": "general_inspect",
         "components": []
       },
       {
         "id": "p_exam_2",
-        "text": "Regular rhythm without murmur \u2014 obtain with heart auscultate",
+        "text": "Regular rhythm without murmur — obtain with heart auscultate",
         "maneuver": "heart_auscultate",
         "components": [
           "aortic",
@@ -2411,7 +2421,7 @@
       },
       {
         "id": "p_exam_3",
-        "text": "Clear breath sounds bilaterally \u2014 obtain with lungs auscultate",
+        "text": "Clear breath sounds bilaterally — obtain with lungs auscultate",
         "maneuver": "lungs_auscultate",
         "components": [
           "posterior",
@@ -2422,7 +2432,7 @@
       },
       {
         "id": "p_exam_4",
-        "text": "Visible lower midline abdominal fullness \u2014 obtain with abd inspect",
+        "text": "Visible lower midline abdominal fullness — obtain with abd inspect",
         "maneuver": "abd_inspect",
         "components": [
           "contour",
@@ -2431,7 +2441,7 @@
       },
       {
         "id": "p_exam_5",
-        "text": "Bowel sounds present \u2014 obtain with abd auscultate",
+        "text": "Bowel sounds present — obtain with abd auscultate",
         "maneuver": "abd_auscultate",
         "components": [
           "all four quadrants"
@@ -2439,7 +2449,7 @@
       },
       {
         "id": "p_exam_6",
-        "text": "Tender rounded fullness in the suprapubic region \u2014 obtain with abd palpate",
+        "text": "Tender rounded fullness in the suprapubic region — obtain with abd palpate",
         "maneuver": "abd_palpate",
         "components": [
           "light",
@@ -2448,7 +2458,7 @@
       },
       {
         "id": "p_exam_7",
-        "text": "Dull percussion over the suprapubic fullness \u2014 obtain with abd percuss",
+        "text": "Dull percussion over the suprapubic fullness — obtain with abd percuss",
         "maneuver": "abd_percuss",
         "components": [
           "four quadrants"
@@ -2456,7 +2466,7 @@
       },
       {
         "id": "p_exam_8",
-        "text": "Lower extremity strength 5/5 bilaterally \u2014 obtain with msk strength",
+        "text": "Lower extremity strength 5/5 bilaterally — obtain with msk strength",
         "maneuver": "msk_strength",
         "components": [
           "lower extremity"
@@ -2464,7 +2474,7 @@
       },
       {
         "id": "p_exam_9",
-        "text": "T10 paraspinal tissue texture change with mild tenderness on the right \u2014 obtain with osteo screen",
+        "text": "T10 paraspinal tissue texture change with mild tenderness on the right — obtain with osteo screen",
         "maneuver": "osteo_screen",
         "components": [
           "lumbar"
@@ -2472,7 +2482,7 @@
       },
       {
         "id": "p_exam_10",
-        "text": "No visible rash on the inspected arms \u2014 obtain with skin inspect",
+        "text": "No visible rash on the inspected arms — obtain with skin inspect",
         "maneuver": "skin_inspect",
         "components": [
           "arms"
@@ -2501,12 +2511,12 @@
     "A": [
       "1. Medication-precipitated acute urinary retention",
       "2. Pelvic mass causing bladder outlet obstruction",
-      "3. Neurogenic bladder due to multiple sclerosis"
+      "3. Nonrelaxing pelvic-floor voiding dysfunction"
     ],
     "P": [
       "1. Arrange immediate emergency or urology assessment for bladder decompression; obtain bladder volume, renal function, urinalysis and pregnancy testing without delaying treatment; stop further diphenhydramine pending clinician review; explain retention and arrange supervised disposition today with a catheter/reassessment plan before discharge.",
       "2. After acute decompression, assess menstrual/pelvic history and obtain pelvic imaging if obstruction persists or a mass is suspected; arrange urology or gynecology referral as indicated; explain that a possible mass is not a confirmed cancer diagnosis.",
-      "3. Ask about prior episodic visual, sensory or motor symptoms and examine relevant neurologic function; arrange neurology evaluation and targeted imaging only when supported; explain that urinary retention alone does not establish multiple sclerosis and must not delay immediate bladder care."
+      "3. After immediate bladder decompression, evaluate the longstanding hesitancy with pelvic-floor assessment, uroflow and postvoid residual as indicated; arrange urology and pelvic-floor therapy if dysfunctional relaxation is confirmed. Explain relaxed, unhurried voiding without straining and that exercises do not replace urgent bladder care."
     ]
   },
   "ideal_encounter_extras": [
@@ -2585,16 +2595,18 @@
     "limits": "No official faculty validation. Treatment choices require local protocol and patient-specific assessment. Synthetic physical findings and mnemonic placement are educational assumptions.",
     "sources": [
       "https://www.niddk.nih.gov/health-information/urologic-diseases/urinary-retention",
-      "https://www.niddk.nih.gov/health-information/urologic-diseases/urinary-retention/treatment"
+      "https://www.niddk.nih.gov/health-information/urologic-diseases/urinary-retention/treatment",
+      "https://uroweb.org/guidelines/non-neurogenic-female-luts/chapter/disease-management"
     ],
     "round3_plan_review": "Made vague alternative plans actionable with conditional evaluation, safety counseling and follow-up. Specific outpatient review intervals are authored teaching examples, not confirmed course mandates. No new findings or clinician approval.",
-    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional."
+    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional.",
+    "print_case_revision": "2026-09-14: Deliberate source-checked authoring revision for new attempts. Existing saved snapshots and archived versions remain unchanged. Not clinician or faculty approved."
   },
   "sources": [
     {
       "title": "PCM I syllabus, fall 2026",
       "path": "claude builds/PCM/PCM syllabus.pdf",
-      "locator": "pp. 14\u201315: cardiovascular, GI, renal and neurologic complaint/case objectives",
+      "locator": "pp. 14–15: cardiovascular, GI, renal and neurologic complaint/case objectives",
       "kind": "course"
     },
     {
@@ -2623,6 +2635,13 @@
       "kind": "supplementary_clinical",
       "reviewed": "2026-09-09",
       "review_scope": "Age/anatomy-dependent cohort adaptation; does not establish course scoring or a patient diagnosis."
+    },
+    {
+      "title": "EAU: Non-neurogenic female lower urinary tract symptoms",
+      "url": "https://uroweb.org/guidelines/non-neurogenic-female-luts/chapter/disease-management",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Conditional differential and evaluation only. No new obtained findings or confirmed diagnosis; course category gap remains explicit."
     }
   ],
   "teaching": {
@@ -2738,10 +2757,11 @@
     "round2": "Atomic history disclosures; onset versus episode duration; coherent position/comfort responses; authored voiding clarification. Natural-question router validation remains separate.",
     "round3": "Question dimensions restricted to authored temporal content; complete medication sentences retain original scope, doses and timing; causal assessment aliases require the stated etiology. No new case findings; author-reviewed, not clinician approved.",
     "round4": "Exact opening and per-speech-version disclosure contracts; removed borrowed opening atoms; split previously unspoken negative-history qualifiers; explicit current status and last-known-well routes. Existing clinical facts and IDs preserved; no clinician approval.",
-    "young_female_cohort": "New female adult18\u201330 authoring; old saved snapshots remain outside this generator.",
+    "young_female_cohort": "New female adult18–30 authoring; old saved snapshots remain outside this generator.",
     "experience_review2_language": "Reviewed vomiting tense forms; unsupported progression is not invented; timing cues reference obtainable dimensions; target maneuver removed from public doorway.",
     "demeanor": "demeanor-axes-v1: independently authored communication style and emotional state; legacy pace/gesture style retained; no physical finding credit.",
-    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+    "print_case_plan_20260914": "Reviewed conditional differential/plan clarity; original attempts retain their frozen source. Course VINDICATE uncertainty remains explicit where unresolved."
   },
   "cohort": {
     "id": "young-adult-female-v1",
@@ -2787,7 +2807,7 @@
             "pitch": 1,
             "gender": "female",
             "adult": true,
-            "age_range": "18\u201330"
+            "age_range": "18–30"
           },
           "comfort_response": {
             "reply": "The pressure is 8/10.",
@@ -3015,15 +3035,18 @@
             "I am a engineering technician."
           ],
           "history_family_1": [
-            "My dad is fifty-eight and he's had an enlarged prostate.", "Father had prostate enlargement",
+            "My dad is fifty-eight and he's had an enlarged prostate.",
+            "Father had prostate enlargement",
             "father"
           ],
           "history_family_2": [
-            "My mom is fifty-six and she has high blood pressure.", "mother had hypertension",
+            "My mom is fifty-six and she has high blood pressure.",
+            "mother had hypertension",
             "mother"
           ],
           "history_family_3": [
-            "I have one brother, he's twenty-nine and he's healthy.", "brother healthy.",
+            "I have one brother, he's twenty-nine and he's healthy.",
+            "brother healthy.",
             "brother"
           ],
           "patient_concern": [
@@ -4844,13 +4867,13 @@
           "physical": [
             {
               "id": "p_exam_1",
-              "text": "Alert and distressed by lower abdominal pressure \u2014 obtain with general inspect",
+              "text": "Alert and distressed by lower abdominal pressure — obtain with general inspect",
               "maneuver": "general_inspect",
               "components": []
             },
             {
               "id": "p_exam_2",
-              "text": "Regular rhythm without murmur \u2014 obtain with heart auscultate",
+              "text": "Regular rhythm without murmur — obtain with heart auscultate",
               "maneuver": "heart_auscultate",
               "components": [
                 "aortic",
@@ -4862,7 +4885,7 @@
             },
             {
               "id": "p_exam_3",
-              "text": "Clear breath sounds bilaterally \u2014 obtain with lungs auscultate",
+              "text": "Clear breath sounds bilaterally — obtain with lungs auscultate",
               "maneuver": "lungs_auscultate",
               "components": [
                 "posterior",
@@ -4872,7 +4895,7 @@
             },
             {
               "id": "p_exam_4",
-              "text": "Visible lower midline abdominal fullness \u2014 obtain with abd inspect",
+              "text": "Visible lower midline abdominal fullness — obtain with abd inspect",
               "maneuver": "abd_inspect",
               "components": [
                 "contour",
@@ -4881,7 +4904,7 @@
             },
             {
               "id": "p_exam_5",
-              "text": "Bowel sounds present \u2014 obtain with abd auscultate",
+              "text": "Bowel sounds present — obtain with abd auscultate",
               "maneuver": "abd_auscultate",
               "components": [
                 "all four quadrants"
@@ -4889,7 +4912,7 @@
             },
             {
               "id": "p_exam_6",
-              "text": "Tender rounded fullness in the suprapubic region \u2014 obtain with abd palpate",
+              "text": "Tender rounded fullness in the suprapubic region — obtain with abd palpate",
               "maneuver": "abd_palpate",
               "components": [
                 "light",
@@ -4898,7 +4921,7 @@
             },
             {
               "id": "p_exam_7",
-              "text": "Dull percussion over the suprapubic fullness \u2014 obtain with abd percuss",
+              "text": "Dull percussion over the suprapubic fullness — obtain with abd percuss",
               "maneuver": "abd_percuss",
               "components": [
                 "four quadrants"
@@ -4906,7 +4929,7 @@
             },
             {
               "id": "p_exam_8",
-              "text": "Lower extremity strength 5/5 bilaterally \u2014 obtain with msk strength",
+              "text": "Lower extremity strength 5/5 bilaterally — obtain with msk strength",
               "maneuver": "msk_strength",
               "components": [
                 "lower extremity"
@@ -4914,7 +4937,7 @@
             },
             {
               "id": "p_exam_9",
-              "text": "T10 paraspinal tissue texture change with mild tenderness on the right \u2014 obtain with osteo screen",
+              "text": "T10 paraspinal tissue texture change with mild tenderness on the right — obtain with osteo screen",
               "maneuver": "osteo_screen",
               "components": [
                 "lumbar"
@@ -4922,7 +4945,7 @@
             },
             {
               "id": "p_exam_10",
-              "text": "No visible rash on the inspected arms \u2014 obtain with skin inspect",
+              "text": "No visible rash on the inspected arms — obtain with skin inspect",
               "maneuver": "skin_inspect",
               "components": [
                 "arms"
@@ -4951,16 +4974,17 @@
           "A": [
             "1. Medication-precipitated acute urinary retention",
             "2. Pelvic mass causing bladder outlet obstruction",
-            "3. Neurogenic bladder due to multiple sclerosis"
+            "3. Nonrelaxing pelvic-floor voiding dysfunction"
           ],
           "P": [
             "1. Arrange immediate emergency or urology assessment for bladder decompression; obtain bladder volume, renal function, urinalysis and pregnancy testing without delaying treatment; stop further diphenhydramine pending clinician review; explain retention and arrange supervised disposition today with a catheter/reassessment plan before discharge.",
             "2. After acute decompression, assess menstrual/pelvic history and obtain pelvic imaging if obstruction persists or a mass is suspected; arrange urology or gynecology referral as indicated; explain that a possible mass is not a confirmed cancer diagnosis.",
-            "3. Ask about prior episodic visual, sensory or motor symptoms and examine relevant neurologic function; arrange neurology evaluation and targeted imaging only when supported; explain that urinary retention alone does not establish multiple sclerosis and must not delay immediate bladder care."
+            "3. After immediate bladder decompression, evaluate the longstanding hesitancy with pelvic-floor assessment, uroflow and postvoid residual as indicated; arrange urology and pelvic-floor therapy if dysfunctional relaxation is confirmed. Explain relaxed, unhurried voiding without straining and that exercises do not replace urgent bladder care."
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "print_case_plan_20260914": "Reviewed conditional differential/plan clarity; original attempts retain their frozen source. Course VINDICATE uncertainty remains explicit where unresolved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"
@@ -5000,7 +5024,7 @@
             "pitch": 1,
             "gender": "female",
             "adult": true,
-            "age_range": "18\u201330"
+            "age_range": "18–30"
           },
           "comfort_response": {
             "reply": "The pressure is 8/10.",
@@ -5228,15 +5252,18 @@
             "I am a engineering technician."
           ],
           "history_family_1": [
-            "My dad is fifty-eight and he's had an enlarged prostate.", "Father had prostate enlargement",
+            "My dad is fifty-eight and he's had an enlarged prostate.",
+            "Father had prostate enlargement",
             "father"
           ],
           "history_family_2": [
-            "My mom is fifty-six and she has high blood pressure.", "mother had hypertension",
+            "My mom is fifty-six and she has high blood pressure.",
+            "mother had hypertension",
             "mother"
           ],
           "history_family_3": [
-            "I have one brother, he's twenty-nine and he's healthy.", "brother healthy.",
+            "I have one brother, he's twenty-nine and he's healthy.",
+            "brother healthy.",
             "brother"
           ],
           "patient_concern": [
@@ -7109,13 +7136,13 @@
           "physical": [
             {
               "id": "p_exam_1",
-              "text": "Alert and distressed by lower abdominal pressure \u2014 obtain with general inspect",
+              "text": "Alert and distressed by lower abdominal pressure — obtain with general inspect",
               "maneuver": "general_inspect",
               "components": []
             },
             {
               "id": "p_exam_2",
-              "text": "Regular rhythm without murmur \u2014 obtain with heart auscultate",
+              "text": "Regular rhythm without murmur — obtain with heart auscultate",
               "maneuver": "heart_auscultate",
               "components": [
                 "aortic",
@@ -7127,7 +7154,7 @@
             },
             {
               "id": "p_exam_3",
-              "text": "Clear breath sounds bilaterally \u2014 obtain with lungs auscultate",
+              "text": "Clear breath sounds bilaterally — obtain with lungs auscultate",
               "maneuver": "lungs_auscultate",
               "components": [
                 "posterior",
@@ -7137,7 +7164,7 @@
             },
             {
               "id": "p_exam_4",
-              "text": "Visible lower midline abdominal fullness \u2014 obtain with abd inspect",
+              "text": "Visible lower midline abdominal fullness — obtain with abd inspect",
               "maneuver": "abd_inspect",
               "components": [
                 "contour",
@@ -7146,7 +7173,7 @@
             },
             {
               "id": "p_exam_5",
-              "text": "Bowel sounds present \u2014 obtain with abd auscultate",
+              "text": "Bowel sounds present — obtain with abd auscultate",
               "maneuver": "abd_auscultate",
               "components": [
                 "all four quadrants"
@@ -7154,7 +7181,7 @@
             },
             {
               "id": "p_exam_6",
-              "text": "Tender rounded fullness in the suprapubic region \u2014 obtain with abd palpate",
+              "text": "Tender rounded fullness in the suprapubic region — obtain with abd palpate",
               "maneuver": "abd_palpate",
               "components": [
                 "light",
@@ -7163,7 +7190,7 @@
             },
             {
               "id": "p_exam_7",
-              "text": "Dull percussion over the suprapubic fullness \u2014 obtain with abd percuss",
+              "text": "Dull percussion over the suprapubic fullness — obtain with abd percuss",
               "maneuver": "abd_percuss",
               "components": [
                 "four quadrants"
@@ -7171,7 +7198,7 @@
             },
             {
               "id": "p_exam_8",
-              "text": "Lower extremity strength 5/5 bilaterally \u2014 obtain with msk strength",
+              "text": "Lower extremity strength 5/5 bilaterally — obtain with msk strength",
               "maneuver": "msk_strength",
               "components": [
                 "lower extremity"
@@ -7179,7 +7206,7 @@
             },
             {
               "id": "p_exam_9",
-              "text": "T10 paraspinal tissue texture change with mild tenderness on the right \u2014 obtain with osteo screen",
+              "text": "T10 paraspinal tissue texture change with mild tenderness on the right — obtain with osteo screen",
               "maneuver": "osteo_screen",
               "components": [
                 "lumbar"
@@ -7187,7 +7214,7 @@
             },
             {
               "id": "p_exam_10",
-              "text": "No visible rash on the inspected arms \u2014 obtain with skin inspect",
+              "text": "No visible rash on the inspected arms — obtain with skin inspect",
               "maneuver": "skin_inspect",
               "components": [
                 "arms"
@@ -7216,16 +7243,17 @@
           "A": [
             "1. Medication-precipitated acute urinary retention",
             "2. Pelvic mass causing bladder outlet obstruction",
-            "3. Neurogenic bladder due to multiple sclerosis"
+            "3. Nonrelaxing pelvic-floor voiding dysfunction"
           ],
           "P": [
             "1. Arrange immediate emergency or urology assessment for bladder decompression; obtain bladder volume, renal function, urinalysis and pregnancy testing without delaying treatment; stop further diphenhydramine pending clinician review; explain retention and arrange supervised disposition today with a catheter/reassessment plan before discharge. Ask whom she wants involved, preserve privacy and explain catheter comfort and care in practical terms.",
             "2. After acute decompression, assess menstrual/pelvic history and obtain pelvic imaging if obstruction persists or a mass is suspected; arrange urology or gynecology referral as indicated; explain that a possible mass is not a confirmed cancer diagnosis.",
-            "3. Ask about prior episodic visual, sensory or motor symptoms and examine relevant neurologic function; arrange neurology evaluation and targeted imaging only when supported; explain that urinary retention alone does not establish multiple sclerosis and must not delay immediate bladder care."
+            "3. After immediate bladder decompression, evaluate the longstanding hesitancy with pelvic-floor assessment, uroflow and postvoid residual as indicated; arrange urology and pelvic-floor therapy if dysfunctional relaxation is confirmed. Explain relaxed, unhurried voiding without straining and that exercises do not replace urgent bladder care."
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "print_case_plan_20260914": "Reviewed conditional differential/plan clarity; original attempts retain their frozen source. Course VINDICATE uncertainty remains explicit where unresolved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"

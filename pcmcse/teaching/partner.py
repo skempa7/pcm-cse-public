@@ -33,10 +33,11 @@ CATEGORY_TITLE = {
     "psh": "Operations and hospital stays", "medications": "Medicines used",
     "allergies": "Medication allergies and reactions", "pmh": "Conditions diagnosed before",
     "family": "Family health", "fife": "Worries, expectations, and practical concerns",
+    "concern": "What worries me",
     "obgyn": "Menstrual and pregnancy history", "social": "Home and daily life",
 }
 HPI_ORDER = ["onset", "location", "radiation", "timing", "chronology", "quality", "severity", "setting",
-             "aggravating", "alleviating", "treatment", "past_occurrence", "obgyn", "fife"]
+             "aggravating", "alleviating", "treatment", "past_occurrence", "obgyn", "fife", "concern"]
 ROS_LABELS = {"general": "General symptoms", "cardiovascular": "Heart and circulation",
               "respiratory": "Breathing and chest", "gastrointestinal": "Stomach and bowels",
               "urinary": "Urinary symptoms", "genital": "Genital symptoms", "neurologic": "Nerves and balance",
@@ -44,6 +45,7 @@ ROS_LABELS = {"general": "General symptoms", "cardiovascular": "Heart and circul
               "musculoskeletal": "Muscles and joints", "hematologic": "Bleeding and bruising",
               "multiple": "Other symptom checks"}
 TOPIC_TITLES = {
+    "symptom_myalgia": "Muscle aches",
     "onset_dysuria": "When the urinary burning began", "onset_flank": "When the back pain began",
     "hpi_current_episode_onset": "When this current episode began", "hpi_episode_duration": "Length of each episode",
     "hpi_urinary_onset": "When the urinary symptoms began", "hpi_stool_quantity": "Amount and frequency of diarrhea",
@@ -328,6 +330,8 @@ def _ros_system(fact):
 
 
 def _title(fact):
+    if fact.get("print_label"):
+        return fact["print_label"]
     fid = fact["id"]
     if fact["category"] == "family":
         question = fact.get("example_questions", [""])[0].lower()
@@ -390,14 +394,19 @@ def _questions(fact, title):
     return list(dict.fromkeys(authored + aliases))[:3]
 
 
-def _topic(fact, case_id):
+def _relationship_conflict(case):
+    values = " ".join(str(f.get("value", "")).lower() for f in case.get("facts", []) if f.get("id") in {"history_household", "history_sexual_partners"})
+    return case.get("id") == "renal-flank-pain" and "husband" in values and "boyfriend" in values
+
+
+def _topic(fact, case_id, relationship_conflict=False):
     title = _title(fact)
     text = _voice(fact["sp_says"][0])
     note = ""
-    if case_id == "renal-flank-pain" and fact["id"] == "history_household":
+    if relationship_conflict and fact["id"] == "history_household":
         text = "I live off campus."
         note = "Relationship label is inconsistent in the source. Give the off-campus detail; do not invent whether the partner is a spouse or boyfriend."
-    if case_id == "renal-flank-pain" and fact["id"] == "history_sexual_partners":
+    if relationship_conflict and fact["id"] == "history_sexual_partners":
         text = "I have one male partner and no new partners."
         note = "Relationship label is inconsistent in the source. Retain one male partner and no new partners; do not choose a relationship label."
     pieces = _parts(text)
@@ -438,7 +447,7 @@ def _briefing(case):
     opening_ids = [f["id"] for f in case["facts"] if f["category"] == "chief_complaint"]
     return {"name": patient["name"], "age": patient["age"], "sex": patient["sex"],
             "background": persona.split(". ")[0] if persona else "",
-            "acting_directions": acting, "opening": patient["opening"],
+            "acting_directions": acting, "communication_style": patient.get("communication_style", ""), "opening": patient["opening"],
             "volunteer_rule": "Begin with the opening statement only. Match the meaning of questions, not exact wording. Answer every part of a compound question: include the matching follow-up answer immediately when that detail is asked, without making the student ask twice. For a broad invitation, give the initial response and pause. For a focused question, give only the relevant facts, even when a printed reply bundles several symptoms. Do not turn an unasked bundled symptom into a volunteered denial. Do not announce a diagnosis or read out examination findings.",
             "unknown_rule": UNKNOWN_RULE, "source_fact_ids": opening_ids}
 
@@ -461,7 +470,7 @@ def build_patient_script(case, lesson):
             unknown_categories.append(fact["id"])
             continue
         sid = CATEGORY_SECTION.get(fact["category"], "history")
-        lookup[sid]["topics"].append(_topic(fact, case["id"]))
+        lookup[sid]["topics"].append(_topic(fact, case["id"], _relationship_conflict(case)))
     lookup["history"]["topics"].sort(key=lambda t: HPI_ORDER.index(t["category"]))
     ros_order = list(ROS_LABELS)
     lookup["ros"]["topics"].sort(key=lambda t: (ros_order.index(t["system"]) if t["system"] in ros_order else 99))
@@ -502,7 +511,7 @@ def build_patient_script(case, lesson):
                             "actor_note": ("For a broad invitation, give this initial response, then pause. Use the focused topics for additional questions." if entry_answer else UNKNOWN_RULE)}
     actor_notes = []
     conflicts = []
-    if case["id"] == "renal-flank-pain":
+    if _relationship_conflict(case):
         conflicts = [{"id": "relationship-label", "source_fact_ids": ["history_household", "history_sexual_partners"],
                       "detail": "Source calls the partner both husband and boyfriend. Relationship label is withheld pending author clarification; off-campus residence, one male partner, and no new partners are retained."}]
         actor_notes.append({"title": "Source detail needing clarification", "text": conflicts[0]["detail"], "source_fact_ids": conflicts[0]["source_fact_ids"]})

@@ -58,7 +58,7 @@
       "pitch": 1,
       "gender": "female",
       "adult": true,
-      "age_range": "18\u201330"
+      "age_range": "18–30"
     },
     "comfort_response": {
       "reply": "I wake to urinate 3 times nightly.",
@@ -294,15 +294,18 @@
       "I am an accountant."
     ],
     "history_family_1": [
-      "My dad is fifty-five and he has high blood pressure.", "Father has hypertension",
+      "My dad is fifty-five and he has high blood pressure.",
+      "Father has hypertension",
       "father"
     ],
     "history_family_2": [
-      "My mom is fifty-three and she's had diabetes.", "mother had diabetes",
+      "My mom is fifty-three and she's had diabetes.",
+      "mother had diabetes",
       "mother"
     ],
     "history_family_3": [
-      "I have one brother, he's twenty-two and he's healthy.", "one brother healthy.",
+      "I have one brother, he's twenty-two and he's healthy.",
+      "one brother healthy.",
       "brother"
     ],
     "patient_concern": [
@@ -2400,15 +2403,21 @@
       "teaching_context": "Working possibility requiring the proposed evaluation; no diagnosis is confirmed by case selection."
     },
     {
-      "rank": 3,
-      "name": "Diabetes mellitus with osmotic diuresis",
-      "vindicate": "E",
+      "name": "Overactive bladder",
+      "vindicate": null,
       "aliases": [
-        "diabetes mellitus",
-        "osmotic diuresis"
+        "overactive bladder",
+        "OAB"
       ],
-      "supported_by": [],
-      "teaching_context": "Working possibility requiring the proposed evaluation; no diagnosis is confirmed by case selection."
+      "supported_by": [
+        "hpi_quality",
+        "symptom_nocturia",
+        "history_voided_volume"
+      ],
+      "teaching_context": "A strong urge, repeated nighttime voids and small voided volumes allow overactive bladder, but hesitancy and incomplete emptying require residual assessment; bladder-filling pain favors the leading bladder pain syndrome. No specific VINDICATE etiology is established.",
+      "classification_status": "unresolved_course_review_needed",
+      "rank": 3,
+      "review_status": "author_source_checked_not_clinician_approved"
     }
   ],
   "implausible_differentials": [],
@@ -2594,19 +2603,19 @@
     "physical": [
       {
         "id": "p_exam_1",
-        "text": "Alert \u2014 obtain with general inspect",
+        "text": "Alert — obtain with general inspect",
         "maneuver": "general_inspect",
         "components": []
       },
       {
         "id": "p_exam_2",
-        "text": "Comfortable and well appearing \u2014 obtain with general inspect",
+        "text": "Comfortable and well appearing — obtain with general inspect",
         "maneuver": "general_inspect",
         "components": []
       },
       {
         "id": "p_exam_3",
-        "text": "Regular rhythm without murmur \u2014 obtain with heart auscultate",
+        "text": "Regular rhythm without murmur — obtain with heart auscultate",
         "maneuver": "heart_auscultate",
         "components": [
           "aortic",
@@ -2618,7 +2627,7 @@
       },
       {
         "id": "p_exam_4",
-        "text": "Clear breath sounds bilaterally \u2014 obtain with lungs auscultate",
+        "text": "Clear breath sounds bilaterally — obtain with lungs auscultate",
         "maneuver": "lungs_auscultate",
         "components": [
           "posterior",
@@ -2629,7 +2638,7 @@
       },
       {
         "id": "p_exam_5",
-        "text": "Abdomen not distended \u2014 obtain with abd inspect",
+        "text": "Abdomen not distended — obtain with abd inspect",
         "maneuver": "abd_inspect",
         "components": [
           "contour",
@@ -2638,7 +2647,7 @@
       },
       {
         "id": "p_exam_6",
-        "text": "Bowel sounds present \u2014 obtain with abd auscultate",
+        "text": "Bowel sounds present — obtain with abd auscultate",
         "maneuver": "abd_auscultate",
         "components": [
           "all four quadrants"
@@ -2646,7 +2655,7 @@
       },
       {
         "id": "p_exam_7",
-        "text": "No palpable suprapubic fullness or focal tenderness \u2014 obtain with abd palpate",
+        "text": "No palpable suprapubic fullness or focal tenderness — obtain with abd palpate",
         "maneuver": "abd_palpate",
         "components": [
           "light",
@@ -2655,7 +2664,7 @@
       },
       {
         "id": "p_exam_8",
-        "text": "No suprapubic dullness \u2014 obtain with abd percuss",
+        "text": "No suprapubic dullness — obtain with abd percuss",
         "maneuver": "abd_percuss",
         "components": [
           "four quadrants"
@@ -2663,7 +2672,7 @@
       },
       {
         "id": "p_exam_9",
-        "text": "Lower extremity strength 5/5 bilaterally \u2014 obtain with msk strength",
+        "text": "Lower extremity strength 5/5 bilaterally — obtain with msk strength",
         "maneuver": "msk_strength",
         "components": [
           "lower extremity"
@@ -2671,7 +2680,7 @@
       },
       {
         "id": "p_exam_10",
-        "text": "T10 paraspinal tissue texture change with mild tenderness on the right \u2014 obtain with osteo screen",
+        "text": "T10 paraspinal tissue texture change with mild tenderness on the right — obtain with osteo screen",
         "maneuver": "osteo_screen",
         "components": [
           "lumbar"
@@ -2679,7 +2688,7 @@
       },
       {
         "id": "p_exam_11",
-        "text": "No visible rash on the inspected arms \u2014 obtain with skin inspect",
+        "text": "No visible rash on the inspected arms — obtain with skin inspect",
         "maneuver": "skin_inspect",
         "components": [
           "arms"
@@ -2708,12 +2717,12 @@
     "A": [
       "1. Interstitial cystitis / bladder pain syndrome",
       "2. Caffeine-related bladder irritation",
-      "3. Diabetes mellitus with osmotic diuresis"
+      "3. Overactive bladder"
     ],
     "P": [
       "1. Obtain urinalysis/culture and pregnancy testing, characterize bladder-filling pain, frequency, voided volumes and a bladder diary; exclude infection and other causes before labeling bladder pain syndrome; discuss individual triggers and gentle pelvic-floor relaxation rather than automatic strengthening; arrange follow-up in 2 weeks and urology review if persistent.",
-      "2. Review caffeine and other irritants and compare symptoms with a gradual caffeine reduction and bladder diary; explain avoiding excessive fluid restriction; reassess in 2 weeks and avoid antibiotics without evidence of infection.",
-      "3. Ask about thirst, weight change and large-volume urination; obtain glucose and A1c if clinically indicated; explain that frequent small voids differ from osmotic polyuria and arrange primary-care follow-up for the results."
+      "2. Review caffeine and other irritants and compare symptoms with a gradual caffeine reduction and bladder diary; explain avoiding excessive fluid restriction; avoid antibiotics without evidence of infection.",
+      "3. Measure postvoid residual because of hesitancy and incomplete emptying, and review a bladder diary after excluding infection. If emptying is adequate and urgency predominates, discuss bladder training and individualized fluid timing; explain that this differs from large-volume polyuria. Consider urology assessment if symptoms persist or residual is elevated."
     ]
   },
   "ideal_encounter_extras": [
@@ -2792,15 +2801,17 @@
     "limits": "No official faculty validation. Treatment choices require local protocol and patient-specific assessment. Synthetic physical findings and mnemonic placement are educational assumptions.",
     "sources": [
       "https://www.niddk.nih.gov/health-information/urologic-diseases/prostate-problems/enlarged-prostate-benign-prostatic-hyperplasia",
-      "https://www.niddk.nih.gov/health-information/diagnostic-tests/prostate"
+      "https://www.niddk.nih.gov/health-information/diagnostic-tests/prostate",
+      "https://www.auanet.org/documents/Guidelines/PDF/2024%20Guidelines/OAB%202024%20Unabridgedv2.pdf"
     ],
-    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional."
+    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional.",
+    "print_case_revision": "2026-09-14: Deliberate source-checked authoring revision for new attempts. Existing saved snapshots and archived versions remain unchanged. Not clinician or faculty approved."
   },
   "sources": [
     {
       "title": "PCM I syllabus, fall 2026",
       "path": "claude builds/PCM/PCM syllabus.pdf",
-      "locator": "pp. 14\u201315: cardiovascular, GI, renal and neurologic complaint/case objectives",
+      "locator": "pp. 14–15: cardiovascular, GI, renal and neurologic complaint/case objectives",
       "kind": "course"
     },
     {
@@ -2822,6 +2833,13 @@
       "kind": "supplementary_clinical",
       "reviewed": "2026-09-09",
       "review_scope": "Age/anatomy-dependent cohort adaptation; does not establish course scoring or a patient diagnosis."
+    },
+    {
+      "title": "AUA/SUFU 2024: Idiopathic overactive bladder",
+      "url": "https://www.auanet.org/documents/Guidelines/PDF/2024%20Guidelines/OAB%202024%20Unabridgedv2.pdf",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Conditional differential and evaluation only. No new obtained findings or confirmed diagnosis; course category gap remains explicit."
     }
   ],
   "teaching": {
@@ -2938,10 +2956,11 @@
     "round2": "Atomic history disclosures; onset versus episode duration; coherent position/comfort responses; authored voiding clarification. Natural-question router validation remains separate.",
     "round3": "Question dimensions restricted to authored temporal content; complete medication sentences retain original scope, doses and timing; causal assessment aliases require the stated etiology. No new case findings; author-reviewed, not clinician approved.",
     "round4": "Exact opening and per-speech-version disclosure contracts; removed borrowed opening atoms; split previously unspoken negative-history qualifiers; explicit current status and last-known-well routes. Existing clinical facts and IDs preserved; no clinician approval.",
-    "young_female_cohort": "New female adult18\u201330 authoring; old saved snapshots remain outside this generator.",
+    "young_female_cohort": "New female adult18–30 authoring; old saved snapshots remain outside this generator.",
     "experience_review2_language": "Reviewed vomiting tense forms; unsupported progression is not invented; timing cues reference obtainable dimensions; target maneuver removed from public doorway.",
     "demeanor": "demeanor-axes-v1: independently authored communication style and emotional state; legacy pace/gesture style retained; no physical finding credit.",
-    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+    "print_case_plan_20260914": "Reviewed conditional differential/plan clarity; original attempts retain their frozen source. Course VINDICATE uncertainty remains explicit where unresolved."
   },
   "cohort": {
     "id": "young-adult-female-v1",
@@ -2987,7 +3006,7 @@
             "pitch": 1,
             "gender": "female",
             "adult": true,
-            "age_range": "18\u201330"
+            "age_range": "18–30"
           },
           "comfort_response": {
             "reply": "I wake to urinate 3 times nightly.",
@@ -3223,15 +3242,18 @@
             "I am an accountant."
           ],
           "history_family_1": [
-            "My dad is fifty-five and he has high blood pressure.", "Father has hypertension",
+            "My dad is fifty-five and he has high blood pressure.",
+            "Father has hypertension",
             "father"
           ],
           "history_family_2": [
-            "My mom is fifty-three and she's had diabetes.", "mother had diabetes",
+            "My mom is fifty-three and she's had diabetes.",
+            "mother had diabetes",
             "mother"
           ],
           "history_family_3": [
-            "I have one brother, he's twenty-two and he's healthy.", "one brother healthy.",
+            "I have one brother, he's twenty-two and he's healthy.",
+            "one brother healthy.",
             "brother"
           ],
           "patient_concern": [
@@ -5231,19 +5253,19 @@
           "physical": [
             {
               "id": "p_exam_1",
-              "text": "Alert \u2014 obtain with general inspect",
+              "text": "Alert — obtain with general inspect",
               "maneuver": "general_inspect",
               "components": []
             },
             {
               "id": "p_exam_2",
-              "text": "Comfortable and well appearing \u2014 obtain with general inspect",
+              "text": "Comfortable and well appearing — obtain with general inspect",
               "maneuver": "general_inspect",
               "components": []
             },
             {
               "id": "p_exam_3",
-              "text": "Regular rhythm without murmur \u2014 obtain with heart auscultate",
+              "text": "Regular rhythm without murmur — obtain with heart auscultate",
               "maneuver": "heart_auscultate",
               "components": [
                 "aortic",
@@ -5255,7 +5277,7 @@
             },
             {
               "id": "p_exam_4",
-              "text": "Clear breath sounds bilaterally \u2014 obtain with lungs auscultate",
+              "text": "Clear breath sounds bilaterally — obtain with lungs auscultate",
               "maneuver": "lungs_auscultate",
               "components": [
                 "posterior",
@@ -5265,7 +5287,7 @@
             },
             {
               "id": "p_exam_5",
-              "text": "Abdomen not distended \u2014 obtain with abd inspect",
+              "text": "Abdomen not distended — obtain with abd inspect",
               "maneuver": "abd_inspect",
               "components": [
                 "contour",
@@ -5274,7 +5296,7 @@
             },
             {
               "id": "p_exam_6",
-              "text": "Bowel sounds present \u2014 obtain with abd auscultate",
+              "text": "Bowel sounds present — obtain with abd auscultate",
               "maneuver": "abd_auscultate",
               "components": [
                 "all four quadrants"
@@ -5282,7 +5304,7 @@
             },
             {
               "id": "p_exam_7",
-              "text": "No palpable suprapubic fullness or focal tenderness \u2014 obtain with abd palpate",
+              "text": "No palpable suprapubic fullness or focal tenderness — obtain with abd palpate",
               "maneuver": "abd_palpate",
               "components": [
                 "light",
@@ -5291,7 +5313,7 @@
             },
             {
               "id": "p_exam_8",
-              "text": "No suprapubic dullness \u2014 obtain with abd percuss",
+              "text": "No suprapubic dullness — obtain with abd percuss",
               "maneuver": "abd_percuss",
               "components": [
                 "four quadrants"
@@ -5299,7 +5321,7 @@
             },
             {
               "id": "p_exam_9",
-              "text": "Lower extremity strength 5/5 bilaterally \u2014 obtain with msk strength",
+              "text": "Lower extremity strength 5/5 bilaterally — obtain with msk strength",
               "maneuver": "msk_strength",
               "components": [
                 "lower extremity"
@@ -5307,7 +5329,7 @@
             },
             {
               "id": "p_exam_10",
-              "text": "T10 paraspinal tissue texture change with mild tenderness on the right \u2014 obtain with osteo screen",
+              "text": "T10 paraspinal tissue texture change with mild tenderness on the right — obtain with osteo screen",
               "maneuver": "osteo_screen",
               "components": [
                 "lumbar"
@@ -5315,7 +5337,7 @@
             },
             {
               "id": "p_exam_11",
-              "text": "No visible rash on the inspected arms \u2014 obtain with skin inspect",
+              "text": "No visible rash on the inspected arms — obtain with skin inspect",
               "maneuver": "skin_inspect",
               "components": [
                 "arms"
@@ -5344,16 +5366,17 @@
           "A": [
             "1. Interstitial cystitis / bladder pain syndrome",
             "2. Caffeine-related bladder irritation",
-            "3. Diabetes mellitus with osmotic diuresis"
+            "3. Overactive bladder"
           ],
           "P": [
             "1. Obtain urinalysis/culture and pregnancy testing, characterize bladder-filling pain, frequency, voided volumes and a bladder diary; exclude infection and other causes before labeling bladder pain syndrome; discuss individual triggers and gentle pelvic-floor relaxation rather than automatic strengthening; arrange follow-up in 2 weeks and urology review if persistent.",
-            "2. Review caffeine and other irritants and compare symptoms with a gradual caffeine reduction and bladder diary; explain avoiding excessive fluid restriction; reassess in 2 weeks and avoid antibiotics without evidence of infection.",
-            "3. Ask about thirst, weight change and large-volume urination; obtain glucose and A1c if clinically indicated; explain that frequent small voids differ from osmotic polyuria and arrange primary-care follow-up for the results."
+            "2. Review caffeine and other irritants and compare symptoms with a gradual caffeine reduction and bladder diary; explain avoiding excessive fluid restriction; avoid antibiotics without evidence of infection.",
+            "3. Measure postvoid residual because of hesitancy and incomplete emptying, and review a bladder diary after excluding infection. If emptying is adequate and urgency predominates, discuss bladder training and individualized fluid timing; explain that this differs from large-volume polyuria. Consider urology assessment if symptoms persist or residual is elevated."
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "print_case_plan_20260914": "Reviewed conditional differential/plan clarity; original attempts retain their frozen source. Course VINDICATE uncertainty remains explicit where unresolved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"
@@ -5393,7 +5416,7 @@
             "pitch": 1,
             "gender": "female",
             "adult": true,
-            "age_range": "18\u201330"
+            "age_range": "18–30"
           },
           "comfort_response": {
             "reply": "I wake to urinate 3 times nightly.",
@@ -5629,15 +5652,18 @@
             "I am an accountant."
           ],
           "history_family_1": [
-            "My dad is fifty-five and he has high blood pressure.", "Father has hypertension",
+            "My dad is fifty-five and he has high blood pressure.",
+            "Father has hypertension",
             "father"
           ],
           "history_family_2": [
-            "My mom is fifty-three and she's had diabetes.", "mother had diabetes",
+            "My mom is fifty-three and she's had diabetes.",
+            "mother had diabetes",
             "mother"
           ],
           "history_family_3": [
-            "I have one brother, he's twenty-two and he's healthy.", "one brother healthy.",
+            "I have one brother, he's twenty-two and he's healthy.",
+            "one brother healthy.",
             "brother"
           ],
           "patient_concern": [
@@ -7689,19 +7715,19 @@
           "physical": [
             {
               "id": "p_exam_1",
-              "text": "Alert \u2014 obtain with general inspect",
+              "text": "Alert — obtain with general inspect",
               "maneuver": "general_inspect",
               "components": []
             },
             {
               "id": "p_exam_2",
-              "text": "Comfortable and well appearing \u2014 obtain with general inspect",
+              "text": "Comfortable and well appearing — obtain with general inspect",
               "maneuver": "general_inspect",
               "components": []
             },
             {
               "id": "p_exam_3",
-              "text": "Regular rhythm without murmur \u2014 obtain with heart auscultate",
+              "text": "Regular rhythm without murmur — obtain with heart auscultate",
               "maneuver": "heart_auscultate",
               "components": [
                 "aortic",
@@ -7713,7 +7739,7 @@
             },
             {
               "id": "p_exam_4",
-              "text": "Clear breath sounds bilaterally \u2014 obtain with lungs auscultate",
+              "text": "Clear breath sounds bilaterally — obtain with lungs auscultate",
               "maneuver": "lungs_auscultate",
               "components": [
                 "posterior",
@@ -7723,7 +7749,7 @@
             },
             {
               "id": "p_exam_5",
-              "text": "Abdomen not distended \u2014 obtain with abd inspect",
+              "text": "Abdomen not distended — obtain with abd inspect",
               "maneuver": "abd_inspect",
               "components": [
                 "contour",
@@ -7732,7 +7758,7 @@
             },
             {
               "id": "p_exam_6",
-              "text": "Bowel sounds present \u2014 obtain with abd auscultate",
+              "text": "Bowel sounds present — obtain with abd auscultate",
               "maneuver": "abd_auscultate",
               "components": [
                 "all four quadrants"
@@ -7740,7 +7766,7 @@
             },
             {
               "id": "p_exam_7",
-              "text": "No palpable suprapubic fullness or focal tenderness \u2014 obtain with abd palpate",
+              "text": "No palpable suprapubic fullness or focal tenderness — obtain with abd palpate",
               "maneuver": "abd_palpate",
               "components": [
                 "light",
@@ -7749,7 +7775,7 @@
             },
             {
               "id": "p_exam_8",
-              "text": "No suprapubic dullness \u2014 obtain with abd percuss",
+              "text": "No suprapubic dullness — obtain with abd percuss",
               "maneuver": "abd_percuss",
               "components": [
                 "four quadrants"
@@ -7757,7 +7783,7 @@
             },
             {
               "id": "p_exam_9",
-              "text": "Lower extremity strength 5/5 bilaterally \u2014 obtain with msk strength",
+              "text": "Lower extremity strength 5/5 bilaterally — obtain with msk strength",
               "maneuver": "msk_strength",
               "components": [
                 "lower extremity"
@@ -7765,7 +7791,7 @@
             },
             {
               "id": "p_exam_10",
-              "text": "T10 paraspinal tissue texture change with mild tenderness on the right \u2014 obtain with osteo screen",
+              "text": "T10 paraspinal tissue texture change with mild tenderness on the right — obtain with osteo screen",
               "maneuver": "osteo_screen",
               "components": [
                 "lumbar"
@@ -7773,7 +7799,7 @@
             },
             {
               "id": "p_exam_11",
-              "text": "No visible rash on the inspected arms \u2014 obtain with skin inspect",
+              "text": "No visible rash on the inspected arms — obtain with skin inspect",
               "maneuver": "skin_inspect",
               "components": [
                 "arms"
@@ -7802,16 +7828,17 @@
           "A": [
             "1. Interstitial cystitis / bladder pain syndrome",
             "2. Caffeine-related bladder irritation",
-            "3. Diabetes mellitus with osmotic diuresis"
+            "3. Overactive bladder"
           ],
           "P": [
             "1. Obtain urinalysis/culture and pregnancy testing, characterize bladder-filling pain, frequency, voided volumes and a bladder diary; exclude infection and other causes before labeling bladder pain syndrome; discuss individual triggers and gentle pelvic-floor relaxation rather than automatic strengthening; arrange follow-up in 2 weeks and urology review if persistent. Discuss her lightheadedness concern before any symptom medicine and emphasize that initial assessment and behavioral options do not require starting a drug.",
-            "2. Review caffeine and other irritants and compare symptoms with a gradual caffeine reduction and bladder diary; explain avoiding excessive fluid restriction; reassess in 2 weeks and avoid antibiotics without evidence of infection.",
-            "3. Ask about thirst, weight change and large-volume urination; obtain glucose and A1c if clinically indicated; explain that frequent small voids differ from osmotic polyuria and arrange primary-care follow-up for the results."
+            "2. Review caffeine and other irritants and compare symptoms with a gradual caffeine reduction and bladder diary; explain avoiding excessive fluid restriction; avoid antibiotics without evidence of infection.",
+            "3. Measure postvoid residual because of hesitancy and incomplete emptying, and review a bladder diary after excluding infection. If emptying is adequate and urgency predominates, discuss bladder training and individualized fluid timing; explain that this differs from large-volume polyuria. Consider urology assessment if symptoms persist or residual is elevated."
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "print_case_plan_20260914": "Reviewed conditional differential/plan clarity; original attempts retain their frozen source. Course VINDICATE uncertainty remains explicit where unresolved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"

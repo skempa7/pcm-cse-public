@@ -258,11 +258,10 @@
     ],
     "alcohol_use": [
       "alcohol",
-      "alcoholic",
+      "drink alcohol",
       "beer",
       "wine",
-      "drinks",
-      "One alcoholic drink weekly; none during this illness."
+      "I do not drink alcohol."
     ],
     "drug_use": [
       "recreational drugs",
@@ -273,19 +272,26 @@
       "No recreational drugs."
     ],
     "history_context_1": [
-      "I am a preschool teacher."
+      "occupation",
+      "work duties",
+      "job",
+      "do for a living",
+      "I am a preschool teacher. I help the children use the toilet and prepare their snacks."
     ],
     "history_family_1": [
-      "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.", "Mother and father have no major disease",
+      "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.",
+      "Mother and father have no major disease",
       "mother",
       "father"
     ],
     "history_family_2": [
-      "I have a brother who's twenty-three and he's healthy.", "brother healthy",
+      "I have a brother who's twenty-three and he's healthy.",
+      "brother healthy",
       "brother"
     ],
     "history_family_3": [
-      "No one in my family has inflammatory bowel disease.", "no family inflammatory bowel disease."
+      "No one in my family has inflammatory bowel disease.",
+      "no family inflammatory bowel disease."
     ],
     "patient_concern": [
       "Do I need antibiotics to get back to work?"
@@ -1499,9 +1505,9 @@
       "id": "alcohol_use",
       "category": "social",
       "checklist": "h_alcohol_use",
-      "value": "One alcoholic drink weekly; none during this illness.",
+      "value": "I do not drink alcohol.",
       "sp_says": [
-        "One alcoholic drink weekly; none during this illness."
+        "I do not drink alcohol."
       ],
       "triggers": {
         "any": [
@@ -1515,7 +1521,7 @@
       "concepts": {
         "alcohol_use": {
           "polarity": "positive",
-          "value": "One alcoholic drink weekly; none during this illness."
+          "value": "I do not drink alcohol."
         }
       },
       "example_questions": [
@@ -1524,11 +1530,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "One alcoholic drink weekly; none during this illness.",
+            "text": "I do not drink alcohol.",
             "concepts": {
               "alcohol_use": {
                 "polarity": "positive",
-                "value": "One alcoholic drink weekly; none during this illness."
+                "value": "I do not drink alcohol."
               }
             },
             "complete_fact": true
@@ -1582,25 +1588,23 @@
       "id": "history_context_1",
       "category": "social",
       "checklist": "h_history_context_1",
-      "value": "I am a preschool teacher.",
+      "value": "I am a preschool teacher. I help the children use the toilet and prepare their snacks.",
       "sp_says": [
-        "I am a preschool teacher."
+        "I am a preschool teacher. I help the children use the toilet and prepare their snacks."
       ],
       "triggers": {
         "any": [
           "What do you do for work?",
-          "what do you do for work",
-          "what do you do for a living",
           "occupation",
-          "your job",
-          "do you work",
-          "are you a student"
+          "work duties",
+          "job",
+          "do for a living"
         ]
       },
       "concepts": {
         "history_context_1": {
           "polarity": "positive",
-          "value": "I am a preschool teacher."
+          "value": "I am a preschool teacher. I help the children use the toilet and prepare their snacks."
         }
       },
       "history_topic": "occupation",
@@ -1610,11 +1614,11 @@
       "delivery_contract": {
         "versions": [
           {
-            "text": "I am a preschool teacher.",
+            "text": "I am a preschool teacher. I help the children use the toilet and prepare their snacks.",
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a preschool teacher."
+                "value": "I am a preschool teacher. I help the children use the toilet and prepare their snacks."
               }
             },
             "complete_fact": true
@@ -2482,7 +2486,7 @@
       },
       {
         "id": "h_alcohol_use",
-        "text": "One alcoholic drink weekly; none during this illness."
+        "text": "I do not drink alcohol."
       },
       {
         "id": "h_drug_use",
@@ -2490,7 +2494,7 @@
       },
       {
         "id": "h_history_context_1",
-        "text": "I am a preschool teacher."
+        "text": "I am a preschool teacher. I help the children use the toilet and prepare their snacks."
       },
       {
         "id": "h_history_family_1",
@@ -2653,7 +2657,7 @@
     ]
   },
   "model_note": {
-    "S": "cc: Watery diarrhea and reduced fluid intake\n\nHPI: 25 yo f. Patient reports: It started 2 days ago. The cramps are across my lower abdomen. They do not spread elsewhere. The pain is crampy and the stool is watery. I have had 7 watery stools in the past day; cramps are 4/10. Cramps come before each bowel movement and then ease. A child in my household had similar symptoms. Small sips of oral rehydration drink help. A large meal worsens the cramps. I tried small sips of water but have eaten little. No similar illness recently. The stools are watery, without visible blood. I feel nauseated. I vomited twice yesterday but not today. I am very thirsty. I feel tired and lightheaded standing. I have urinated only twice today and it looks dark.\n\nPatient perspective: Do I need antibiotics to get back to work?\n\nPMH: No inflammatory bowel disease or immunosuppression.\n\nPSH: No surgeries or admissions.\n\nMeds: No daily medication; no antibiotics in the past 3 months.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly; none during this illness. No recreational drugs. Preschool teacher; lives with husband and child; no recent travel or untreated-water exposure; last period 1 week ago.\n\nFH: My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.; I have a brother who's twenty-three and he's healthy.; No one in my family has inflammatory bowel disease.\n\nROS: Gastrointestinal - Reports diarrhea. Reports nausea. Reports vomiting. General - Reports thirst. Denies fever. Reports fatigue. Urinary - Reports urine output. Denies dysuria. Denies hematuria.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.",
+    "S": "cc: Watery diarrhea and reduced fluid intake\n\nHPI: 25 yo f. Patient reports: It started 2 days ago. The cramps are across my lower abdomen. They do not spread elsewhere. The pain is crampy and the stool is watery. I have had 7 watery stools in the past day; cramps are 4/10. Cramps come before each bowel movement and then ease. A child in my household had similar symptoms. Small sips of oral rehydration drink help. A large meal worsens the cramps. I tried small sips of water but have eaten little. No similar illness recently. The stools are watery, without visible blood. I feel nauseated. I vomited twice yesterday but not today. I am very thirsty. I feel tired and lightheaded standing. I have urinated only twice today and it looks dark.\n\nPatient perspective: Do I need antibiotics to get back to work?\n\nPMH: No inflammatory bowel disease or immunosuppression.\n\nPSH: No surgeries or admissions.\n\nMeds: No daily medication; no antibiotics in the past 3 months.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked; no alcohol or recreational drugs. Preschool teacher who assists with toileting and prepares snacks. Lives with husband and child. No recent travel or untreated-water exposure; last period 1 week ago.\n\nFH: My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.; I have a brother who's twenty-three and he's healthy.; No one in my family has inflammatory bowel disease.\n\nROS: Gastrointestinal - Reports diarrhea. Reports nausea. Reports vomiting. General - Reports thirst. Denies fever. Reports fatigue. Urinary - Reports reduced urine output. Denies dysuria. Denies hematuria.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.",
     "O": "Vitals: T 98.8 F oral, P 100 bpm, BP 108/70 mmHg, R 18 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Tired appearing, able to drink small sips.\n\nHeart: Regular rhythm, mildly fast.\n\nLungs: Clear breath sounds bilaterally.\n\nHEENT: Oral mucosa is dry.\n\nAbd: Abdomen not distended. Active bowel sounds in all quadrants. Mild diffuse lower abdominal tenderness. No involuntary guarding. Tympanitic throughout.\n\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
     "A": [
       "1. Acute infectious gastroenteritis",
@@ -2661,7 +2665,7 @@
       "3. Medication-associated diarrhea"
     ],
     "P": [
-      "1. Assess hydration and ability to tolerate oral rehydration; consider BMP when dehydration is significant and targeted stool testing for severe, persistent or bloody illness rather than routinely; educate about oral rehydration, hand hygiene and warning signs; recheck within 24\u201348 hours and use urgent care for inability to drink, scant urine, bloody stool or worsening focal pain.",
+      "1. Assess hydration and ability to tolerate oral rehydration; consider BMP when dehydration is significant and targeted stool testing for severe, persistent or bloody illness rather than routinely; educate about oral rehydration, hand hygiene and warning signs; recheck within 24\u201348 hours and use urgent care for inability to drink, scant urine, bloody stool or worsening focal pain. Wash hands with soap and water; avoid preparing food or caring for children until at least 48 hours after symptoms stop, following workplace/public-health rules.",
       "2. Ask about recurrent episodes, nocturnal diarrhea, weight loss and blood; pursue stool inflammatory testing and gastroenterology evaluation only if persistent features support it; explain that current acute exposure makes infection more likely.",
       "3. Reconcile antibiotics, laxatives and supplements; avoid unnecessary antibiotics and review any culprit medication with the prescriber; educate on medication-related diarrhea and arrange reassessment in 48\u201372 hours if symptoms persist despite recovery measures; consider targeted stool testing for persistent illness."
     ]
@@ -2744,7 +2748,8 @@
       "https://www.niddk.nih.gov/health-information/digestive-diseases/viral-gastroenteritis",
       "https://www.niddk.nih.gov/health-information/digestive-diseases/diarrhea/symptoms-causes"
     ],
-    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional."
+    "cohort_revision": "Public adults cohort:18 women,6 men; demographic conversion structurally checked; inherited clinical review remains provisional.",
+    "background_revision": "2026-09-14: New synthetic background facts reviewed for internal consistency and relevance against primary clinical sources; source references support clinical plausibility, not the existence of a real patient. No clinician approval."
   },
   "sources": [
     {
@@ -2772,6 +2777,13 @@
       "kind": "supplementary_clinical",
       "reviewed": "2026-09-08",
       "review_scope": "Presentation pattern, key danger signs, and diagnostic/management direction; local prescribing protocols are not specified."
+    },
+    {
+      "title": "How to prevent norovirus",
+      "url": "https://www.cdc.gov/norovirus/prevention/index.html",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Soap-and-water hygiene and at least48hours symptom-free before food preparation or childcare are relevant to suspected infectious gastroenteritis in a preschool worker; no pathogen is claimed confirmed."
     }
   ],
   "teaching": {
@@ -2890,7 +2902,8 @@
     "young_female_cohort": "New female adult18\u201330 authoring; old saved snapshots remain outside this generator.",
     "experience_review2_language": "Reviewed vomiting tense forms; unsupported progression is not invented; timing cues reference obtainable dimensions; target maneuver removed from public doorway.",
     "demeanor": "demeanor-axes-v1: independently authored communication style and emotional state; legacy pace/gesture style retained; no physical finding credit.",
-    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+    "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+    "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
   },
   "cohort": {
     "id": "young-adult-female-v1",
@@ -3136,11 +3149,10 @@
           ],
           "alcohol_use": [
             "alcohol",
-            "alcoholic",
+            "drink alcohol",
             "beer",
             "wine",
-            "drinks",
-            "One alcoholic drink weekly; none during this illness."
+            "I do not drink alcohol."
           ],
           "drug_use": [
             "recreational drugs",
@@ -3151,19 +3163,26 @@
             "No recreational drugs."
           ],
           "history_context_1": [
-            "I am a preschool teacher."
+            "occupation",
+            "work duties",
+            "job",
+            "do for a living",
+            "I am a preschool teacher. I help the children use the toilet and prepare their snacks."
           ],
           "history_family_1": [
-            "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.", "Mother and father have no major disease",
+            "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.",
+            "Mother and father have no major disease",
             "mother",
             "father"
           ],
           "history_family_2": [
-            "I have a brother who's twenty-three and he's healthy.", "brother healthy",
+            "I have a brother who's twenty-three and he's healthy.",
+            "brother healthy",
             "brother"
           ],
           "history_family_3": [
-            "No one in my family has inflammatory bowel disease.", "no family inflammatory bowel disease."
+            "No one in my family has inflammatory bowel disease.",
+            "no family inflammatory bowel disease."
           ],
           "patient_concern": [
             "Do I need antibiotics to get back to work?"
@@ -4377,9 +4396,9 @@
             "id": "alcohol_use",
             "category": "social",
             "checklist": "h_alcohol_use",
-            "value": "One alcoholic drink weekly; none during this illness.",
+            "value": "I do not drink alcohol.",
             "sp_says": [
-              "One alcoholic drink weekly; none during this illness."
+              "I do not drink alcohol."
             ],
             "triggers": {
               "any": [
@@ -4393,7 +4412,7 @@
             "concepts": {
               "alcohol_use": {
                 "polarity": "positive",
-                "value": "One alcoholic drink weekly; none during this illness."
+                "value": "I do not drink alcohol."
               }
             },
             "example_questions": [
@@ -4402,11 +4421,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "One alcoholic drink weekly; none during this illness.",
+                  "text": "I do not drink alcohol.",
                   "concepts": {
                     "alcohol_use": {
                       "polarity": "positive",
-                      "value": "One alcoholic drink weekly; none during this illness."
+                      "value": "I do not drink alcohol."
                     }
                   },
                   "complete_fact": true
@@ -4460,25 +4479,23 @@
             "id": "history_context_1",
             "category": "social",
             "checklist": "h_history_context_1",
-            "value": "I am a preschool teacher.",
+            "value": "I am a preschool teacher. I help the children use the toilet and prepare their snacks.",
             "sp_says": [
-              "I am a preschool teacher."
+              "I am a preschool teacher. I help the children use the toilet and prepare their snacks."
             ],
             "triggers": {
               "any": [
                 "What do you do for work?",
-                "what do you do for work",
-                "what do you do for a living",
                 "occupation",
-                "your job",
-                "do you work",
-                "are you a student"
+                "work duties",
+                "job",
+                "do for a living"
               ]
             },
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a preschool teacher."
+                "value": "I am a preschool teacher. I help the children use the toilet and prepare their snacks."
               }
             },
             "history_topic": "occupation",
@@ -4488,11 +4505,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I am a preschool teacher.",
+                  "text": "I am a preschool teacher. I help the children use the toilet and prepare their snacks.",
                   "concepts": {
                     "history_context_1": {
                       "polarity": "positive",
-                      "value": "I am a preschool teacher."
+                      "value": "I am a preschool teacher. I help the children use the toilet and prepare their snacks."
                     }
                   },
                   "complete_fact": true
@@ -5044,7 +5061,7 @@
             },
             {
               "id": "h_alcohol_use",
-              "text": "One alcoholic drink weekly; none during this illness."
+              "text": "I do not drink alcohol."
             },
             {
               "id": "h_drug_use",
@@ -5052,7 +5069,7 @@
             },
             {
               "id": "h_history_context_1",
-              "text": "I am a preschool teacher."
+              "text": "I am a preschool teacher. I help the children use the toilet and prepare their snacks."
             },
             {
               "id": "h_history_family_1",
@@ -5214,7 +5231,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Watery diarrhea and reduced fluid intake\n\nHPI: 25 yo f. Patient reports: It started 4 days ago. The cramps are across my lower abdomen. They do not spread elsewhere. The pain is crampy and the stool is watery. I have had 7 watery stools in the past day; cramps are 4/10. Cramps come before each bowel movement and then ease. A child in my household had similar symptoms. Small sips of oral rehydration drink help. A large meal worsens the cramps. I tried small sips of water but have eaten little. No similar illness recently. The stools are watery, without visible blood. I feel nauseated. I vomited twice yesterday but not today. I am very thirsty. I feel tired and lightheaded standing. I have urinated only twice today and it looks dark.\n\nPatient perspective: Do I need antibiotics to get back to work?\n\nPMH: No inflammatory bowel disease or immunosuppression.\n\nPSH: No surgeries or admissions.\n\nMeds: No daily medication; no antibiotics in the past 3 months.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly; none during this illness. No recreational drugs. Preschool teacher; lives with husband and child; no recent travel or untreated-water exposure; last period 1 week ago.\n\nFH: My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.; I have a brother who's twenty-three and he's healthy.; No one in my family has inflammatory bowel disease.\n\nROS: Gastrointestinal - Reports diarrhea. Reports nausea. Reports vomiting. General - Reports thirst. Denies fever. Reports fatigue. Urinary - Reports urine output. Denies dysuria. Denies hematuria.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.",
+          "S": "cc: Watery diarrhea and reduced fluid intake\n\nHPI: 25 yo f. Patient reports: It started 4 days ago. The cramps are across my lower abdomen. They do not spread elsewhere. The pain is crampy and the stool is watery. I have had 7 watery stools in the past day; cramps are 4/10. Cramps come before each bowel movement and then ease. A child in my household had similar symptoms. Small sips of oral rehydration drink help. A large meal worsens the cramps. I tried small sips of water but have eaten little. No similar illness recently. The stools are watery, without visible blood. I feel nauseated. I vomited twice yesterday but not today. I am very thirsty. I feel tired and lightheaded standing. I have urinated only twice today and it looks dark.\n\nPatient perspective: Do I need antibiotics to get back to work?\n\nPMH: No inflammatory bowel disease or immunosuppression.\n\nPSH: No surgeries or admissions.\n\nMeds: No daily medication; no antibiotics in the past 3 months.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked; no alcohol or recreational drugs. Preschool teacher who assists with toileting and prepares snacks. Lives with husband and child. No recent travel or untreated-water exposure; last period 1 week ago.\n\nFH: My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.; I have a brother who's twenty-three and he's healthy.; No one in my family has inflammatory bowel disease.\n\nROS: Gastrointestinal - Reports diarrhea. Reports nausea. Reports vomiting. General - Reports thirst. Denies fever. Reports fatigue. Urinary - Reports reduced urine output. Denies dysuria. Denies hematuria.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.",
           "O": "Vitals: T 98.8 F oral, P 100 bpm, BP 108/70 mmHg, R 18 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Tired appearing, able to drink small sips.\n\nHeart: Regular rhythm, mildly fast.\n\nLungs: Clear breath sounds bilaterally.\n\nHEENT: Oral mucosa is dry.\n\nAbd: Abdomen not distended. Active bowel sounds in all quadrants. Mild diffuse lower abdominal tenderness. No involuntary guarding. Tympanitic throughout.\n\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Acute infectious gastroenteritis",
@@ -5222,13 +5239,14 @@
             "3. Medication-associated diarrhea"
           ],
           "P": [
-            "1. Assess hydration and ability to tolerate oral rehydration; consider BMP when dehydration is significant and targeted stool testing for severe, persistent or bloody illness rather than routinely; educate about oral rehydration, hand hygiene and warning signs; recheck within 24\u201348 hours and use urgent care for inability to drink, scant urine, bloody stool or worsening focal pain.",
+            "1. Assess hydration and ability to tolerate oral rehydration; consider BMP when dehydration is significant and targeted stool testing for severe, persistent or bloody illness rather than routinely; educate about oral rehydration, hand hygiene and warning signs; recheck within 24\u201348 hours and use urgent care for inability to drink, scant urine, bloody stool or worsening focal pain. Wash hands with soap and water; avoid preparing food or caring for children until at least 48 hours after symptoms stop, following workplace/public-health rules.",
             "2. Ask about recurrent episodes, nocturnal diarrhea, weight loss and blood; pursue stool inflammatory testing and gastroenterology evaluation only if persistent features support it; explain that current acute exposure makes infection more likely.",
             "3. Reconcile antibiotics, laxatives and supplements; avoid unnecessary antibiotics and review any culprit medication with the prescriber; educate on medication-related diarrhea and arrange reassessment in 48\u201372 hours if symptoms persist despite recovery measures; consider targeted stool testing for persistent illness."
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"
@@ -5468,11 +5486,10 @@
           ],
           "alcohol_use": [
             "alcohol",
-            "alcoholic",
+            "drink alcohol",
             "beer",
             "wine",
-            "drinks",
-            "One alcoholic drink weekly; none during this illness."
+            "I do not drink alcohol."
           ],
           "drug_use": [
             "recreational drugs",
@@ -5483,19 +5500,26 @@
             "No recreational drugs."
           ],
           "history_context_1": [
-            "I am a preschool teacher."
+            "occupation",
+            "work duties",
+            "job",
+            "do for a living",
+            "I am a preschool teacher. I help the children use the toilet and prepare their snacks."
           ],
           "history_family_1": [
-            "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.", "Mother and father have no major disease",
+            "My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.",
+            "Mother and father have no major disease",
             "mother",
             "father"
           ],
           "history_family_2": [
-            "I have a brother who's twenty-three and he's healthy.", "brother healthy",
+            "I have a brother who's twenty-three and he's healthy.",
+            "brother healthy",
             "brother"
           ],
           "history_family_3": [
-            "No one in my family has inflammatory bowel disease.", "no family inflammatory bowel disease."
+            "No one in my family has inflammatory bowel disease.",
+            "no family inflammatory bowel disease."
           ],
           "patient_concern": [
             "Do I need antibiotics to get back to work?"
@@ -6712,9 +6736,9 @@
             "id": "alcohol_use",
             "category": "social",
             "checklist": "h_alcohol_use",
-            "value": "One alcoholic drink weekly; none during this illness.",
+            "value": "I do not drink alcohol.",
             "sp_says": [
-              "One alcoholic drink weekly; none during this illness."
+              "I do not drink alcohol."
             ],
             "triggers": {
               "any": [
@@ -6728,7 +6752,7 @@
             "concepts": {
               "alcohol_use": {
                 "polarity": "positive",
-                "value": "One alcoholic drink weekly; none during this illness."
+                "value": "I do not drink alcohol."
               }
             },
             "example_questions": [
@@ -6737,11 +6761,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "One alcoholic drink weekly; none during this illness.",
+                  "text": "I do not drink alcohol.",
                   "concepts": {
                     "alcohol_use": {
                       "polarity": "positive",
-                      "value": "One alcoholic drink weekly; none during this illness."
+                      "value": "I do not drink alcohol."
                     }
                   },
                   "complete_fact": true
@@ -6795,25 +6819,23 @@
             "id": "history_context_1",
             "category": "social",
             "checklist": "h_history_context_1",
-            "value": "I am a preschool teacher.",
+            "value": "I am a preschool teacher. I help the children use the toilet and prepare their snacks.",
             "sp_says": [
-              "I am a preschool teacher."
+              "I am a preschool teacher. I help the children use the toilet and prepare their snacks."
             ],
             "triggers": {
               "any": [
                 "What do you do for work?",
-                "what do you do for work",
-                "what do you do for a living",
                 "occupation",
-                "your job",
-                "do you work",
-                "are you a student"
+                "work duties",
+                "job",
+                "do for a living"
               ]
             },
             "concepts": {
               "history_context_1": {
                 "polarity": "positive",
-                "value": "I am a preschool teacher."
+                "value": "I am a preschool teacher. I help the children use the toilet and prepare their snacks."
               }
             },
             "history_topic": "occupation",
@@ -6823,11 +6845,11 @@
             "delivery_contract": {
               "versions": [
                 {
-                  "text": "I am a preschool teacher.",
+                  "text": "I am a preschool teacher. I help the children use the toilet and prepare their snacks.",
                   "concepts": {
                     "history_context_1": {
                       "polarity": "positive",
-                      "value": "I am a preschool teacher."
+                      "value": "I am a preschool teacher. I help the children use the toilet and prepare their snacks."
                     }
                   },
                   "complete_fact": true
@@ -7424,7 +7446,7 @@
             },
             {
               "id": "h_alcohol_use",
-              "text": "One alcoholic drink weekly; none during this illness."
+              "text": "I do not drink alcohol."
             },
             {
               "id": "h_drug_use",
@@ -7432,7 +7454,7 @@
             },
             {
               "id": "h_history_context_1",
-              "text": "I am a preschool teacher."
+              "text": "I am a preschool teacher. I help the children use the toilet and prepare their snacks."
             },
             {
               "id": "h_history_family_1",
@@ -7598,7 +7620,7 @@
           ]
         },
         "model_note": {
-          "S": "cc: Watery diarrhea and reduced fluid intake\n\nHPI: 25 yo f. Patient reports: It started 2 days ago. The cramps are across my lower abdomen. They do not spread elsewhere. The pain is crampy and the stool is watery. I have had 7 watery stools in the past day; cramps are 4/10. Cramps come before each bowel movement and then ease. A child in my household had similar symptoms. Small sips of oral rehydration drink help. A large meal worsens the cramps. I tried small sips of water but have eaten little. No similar illness recently. The stools are watery, without visible blood. I feel nauseated. I vomited twice yesterday but not today. I am very thirsty. I feel tired and lightheaded standing. I have urinated only twice today and it looks dark.\n\nPatient perspective: Do I need antibiotics to get back to work?\n\nPMH: No inflammatory bowel disease or immunosuppression.\n\nPSH: No surgeries or admissions.\n\nMeds: No daily medication; no antibiotics in the past 3 months.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked tobacco. One alcoholic drink weekly; none during this illness. No recreational drugs. Preschool teacher; lives with husband and child; no recent travel or untreated-water exposure; last period 1 week ago.\n\nFH: My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.; I have a brother who's twenty-three and he's healthy.; No one in my family has inflammatory bowel disease.\n\nROS: Gastrointestinal - Reports diarrhea. Reports nausea. Reports vomiting. General - Reports thirst. Denies fever. Reports fatigue. Urinary - Reports urine output. Denies dysuria. Denies hematuria.\n\nPatient concern: I thought sports drinks and oral rehydration solution were exactly the same.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.",
+          "S": "cc: Watery diarrhea and reduced fluid intake\n\nHPI: 25 yo f. Patient reports: It started 2 days ago. The cramps are across my lower abdomen. They do not spread elsewhere. The pain is crampy and the stool is watery. I have had 7 watery stools in the past day; cramps are 4/10. Cramps come before each bowel movement and then ease. A child in my household had similar symptoms. Small sips of oral rehydration drink help. A large meal worsens the cramps. I tried small sips of water but have eaten little. No similar illness recently. The stools are watery, without visible blood. I feel nauseated. I vomited twice yesterday but not today. I am very thirsty. I feel tired and lightheaded standing. I have urinated only twice today and it looks dark.\n\nPatient perspective: Do I need antibiotics to get back to work?\n\nPMH: No inflammatory bowel disease or immunosuppression.\n\nPSH: No surgeries or admissions.\n\nMeds: No daily medication; no antibiotics in the past 3 months.\n\nAllergies: No known drug allergies.\n\nSH: Never smoked; no alcohol or recreational drugs. Preschool teacher who assists with toileting and prepares snacks. Lives with husband and child. No recent travel or untreated-water exposure; last period 1 week ago.\n\nFH: My mom is fifty-two and my dad is fifty-five, and neither of them has any major disease.; I have a brother who's twenty-three and he's healthy.; No one in my family has inflammatory bowel disease.\n\nROS: Gastrointestinal - Reports diarrhea. Reports nausea. Reports vomiting. General - Reports thirst. Denies fever. Reports fatigue. Urinary - Reports reduced urine output. Denies dysuria. Denies hematuria.\n\nPatient concern: I thought sports drinks and oral rehydration solution were exactly the same.\nReproductive history: I do not think I am pregnant, but I have not taken a pregnancy test.",
           "O": "Vitals: T 98.8 F oral, P 100 bpm, BP 108/70 mmHg, R 18 rpm, Pulse Ox 99% on room air, Ht 5' 7\", Wt 165 lbs\n\nGeneral: Alert. Tired appearing, able to drink small sips.\n\nHeart: Regular rhythm, mildly fast.\n\nLungs: Clear breath sounds bilaterally.\n\nHEENT: Oral mucosa is dry.\n\nAbd: Abdomen not distended. Active bowel sounds in all quadrants. Mild diffuse lower abdominal tenderness. No involuntary guarding. Tympanitic throughout.\n\nOsteopathic: T5 paraspinal tissue texture change with mild tenderness on the right.\n\nSkin: No visible rash on the inspected arms.",
           "A": [
             "1. Acute infectious gastroenteritis",
@@ -7606,13 +7628,14 @@
             "3. Medication-associated diarrhea"
           ],
           "P": [
-            "1. Assess hydration and ability to tolerate oral rehydration; consider BMP when dehydration is significant and targeted stool testing for severe, persistent or bloody illness rather than routinely; educate about oral rehydration, hand hygiene and warning signs; recheck within 24\u201348 hours and use urgent care for inability to drink, scant urine, bloody stool or worsening focal pain. Explain oral rehydration in simple terms and have the patient describe a feasible drinking plan.",
+            "1. Assess hydration and ability to tolerate oral rehydration; consider BMP when dehydration is significant and targeted stool testing for severe, persistent or bloody illness rather than routinely; educate about oral rehydration, hand hygiene and warning signs; recheck within 24\u201348 hours and use urgent care for inability to drink, scant urine, bloody stool or worsening focal pain. Explain oral rehydration in simple terms and have the patient describe a feasible drinking plan. Wash hands with soap and water; avoid preparing food or caring for children until at least 48 hours after symptoms stop, following workplace/public-health rules.",
             "2. Ask about recurrent episodes, nocturnal diarrhea, weight loss and blood; pursue stool inflammatory testing and gastroenterology evaluation only if persistent features support it; explain that current acute exposure makes infection more likely.",
             "3. Reconcile antibiotics, laxatives and supplements; avoid unnecessary antibiotics and review any culprit medication with the prescriber; educate on medication-related diarrhea and arrange reassessment in 48\u201372 hours if symptoms persist despite recovery measures; consider targeted stool testing for persistent illness."
           ]
         },
         "content_revisions": {
-          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved."
+          "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
+          "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
         }
       },
       "review_status": "source_checked_not_clinician_approved"

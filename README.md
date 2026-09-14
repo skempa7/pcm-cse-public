@@ -4,7 +4,7 @@ A browser-local clinical-skills practice app: read the doorway information, inte
 
 **Public site:** https://skempa7.github.io/pcm-cse-public/web/
 
-This public repository is the sole current application. The retired private server and standalone edition are not required. There are 24 fictional presentations, 72 case/variant paths, and 72 written walkthroughs. Clinical content and automated scoring remain provisional; this is independent student practice software, not a clinically validated assessment or an official institutional examination.
+This public repository is the sole current application. The retired private server and standalone edition are not required. There are 34 fictional presentations, 82 case/variant paths, and 82 written walkthroughs. Clinical content and automated scoring remain provisional; this is independent student practice software, not a clinically validated assessment or an official institutional examination.
 
 ## Current experience
 
@@ -14,7 +14,7 @@ This public repository is the sole current application. The retired private serv
 - **SOAP writing:** a full editor with permitted references alongside it on wide windows, or a writing/reference switch on narrower windows. Drafts, editing position, and recoverable writing are preserved; saving and submitting remain distinct.
 - The top-left logo returns Home with save/leave safeguards. Progress contains saved attempts, original submissions, feedback and separate repairs/regrades.
 - Patient camera controls are always available: drag to orbit, use the zoom icons and framing presets, or use the labeled View menu. The shirt icon switches clothing/anatomical appearance without performing an examination. Seated, supine, standing and prone are recorded position choices. Reduced motion retains the same final poses.
-- Exam guide is a rehearsal aid. Its example documentation is conditional, not a finding obtained from clicking through the lesson. For printouts, use **Learn → choose a case/path → Print case documents**. Choose the patient script, simulated examination findings, SOAP answer key, or complete study packet, then **Print / Save PDF**. Previews check solution access before showing or printing protected material. Patient scripts and examination findings use landscape pages; SOAP keys use portrait pages; complete packets combine both.
+- Exam guide is a rehearsal aid. Its example documentation is conditional, not a finding obtained from clicking through the lesson. For printouts, use **Cases & print → choose a case → choose your materials**. Choose doorway information, patient script, examinations and findings, a blank SOAP workspace, example SOAP, student copy, or complete practice packet, then **Print / Save PDF**. Previews check solution access before showing or printing protected material. Patient scripts and examination findings use landscape pages; SOAP keys use portrait pages; complete packets combine both.
 
 The current patient assets preserve the established bald male head with mustache, original female hair, body contours and clothing fit. Both shirts use AMERICA 250 artwork, on the male back and female front. The intentionally retained shirt/pants overlap can still show intersections. These models are illustrative surfaces, not validated diagnostic anatomy or hands-on examination simulators.
 
@@ -59,7 +59,7 @@ Current source and outputs:
 
 After Python, case or lesson edits run `python3 tools/package_engine.py`. For renderer edits, run `npm ci` and `npm run build` from `web/patient3d/`. Then run `python3 tools/stamp_cache_tags.py` once; it stamps the nested worker, iframe and print-module dependencies before the containing page. `--check` verifies freshness without changing files.
 
-Verification entry points include `python3 -m unittest discover -s tests`, `python3 tools/test_public_release.py`, `python3 tools/test_evidence_guarantees.py`, `python3 tools/test_patient_chat.py`, and the focused tests described in the current audit. Browser integration checks require Playwright and a local static server. `tools/test_print_browser.cjs` covers preview/export controls, title and reading-position restoration, image-load recovery, slow access checks, and protected printing. Use disposable databases and isolated browser profiles. Stage intended files before `python3 tools/build_manifest.py`; its `--check` verifies the public file inventory. Do not weaken evidence or publishing checks to obtain a pass.
+Verification entry points include `python3 -m unittest discover -s tests`, `python3 tools/test_public_release.py`, `python3 tools/test_evidence_guarantees.py`, `python3 tools/test_patient_chat.py`, and the focused tests described in the current audit. Browser integration checks require Playwright and a local static server. `tools/test_print_browser.cjs` covers preview/export controls, title and reading-position restoration, print-style-load recovery, slow access checks, and protected printing. Use disposable databases and isolated browser profiles. Stage intended files before `python3 tools/build_manifest.py`; its `--check` verifies the public file inventory. Do not weaken evidence or publishing checks to obtain a pass.
 
 ## Boundaries and remaining limits
 
@@ -69,4 +69,8 @@ Private course documents and real attempts are excluded. Source titles/locators 
 
 ### Partner practice printouts
 
-In Learn, open a case and select **Print case documents**. The default patient script is organized for out-of-order role-play. Examination findings and the example SOAP key can be printed separately; a full study packet keeps the note at the end. See [the partner-print update](PARTNER-PRINT-2026-09-13.md) for source terminology, evidence boundaries, authoring limitations, and verification entry points.
+**Cases & print** is the main document entry point. Choose a presentation and, where offered, its case path. Student materials (doorway, blank SOAP, combined student copy) contain no answers and do not change assistance status. Patient script, examination findings, example SOAP and full packet are clearly marked as answer materials and retain the independent/exam-rehearsal access gate.
+
+The script uses first-person statements under HPI and spelled-out SMASH FMR history headings. Examination rows are grouped by system and are released only when performed/simulated. The blank SOAP provides two portrait writing pages. The example note uses only the complete demonstrated encounter; it is not permission to document hidden information in an individual attempt. Sources and the full online demonstration remain available under **Demonstration and sources**.
+
+The September 14 expansion adds 10 distinct cardiovascular, respiratory, MSK, HEENT and skin presentations. See `PRINTABLE-CASES-2026-09-14.md` for inventory, review scope and remaining authoring limitations. The preceding `PARTNER-PRINT-2026-09-13.md` describes the superseded longer print format and its historical checks.

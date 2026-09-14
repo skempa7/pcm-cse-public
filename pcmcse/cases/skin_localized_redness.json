@@ -1,0 +1,2322 @@
+{
+  "id": "skin-localized-redness",
+  "presentation_id": "skin-localized-redness",
+  "title": "Expanding painful redness on the leg",
+  "hidden_label": "Station 34",
+  "system": "Skin",
+  "complaint_family": "Skin",
+  "level": "M2",
+  "difficulty": "intermediate",
+  "blurb": "A red sore patch on my left shin is getting bigger.",
+  "curriculum_note": "Supplementary fictional practice for the course history, physical examination and SOAP skills; not an official or predicted station.",
+  "scope_status": "supplementary_cross_system",
+  "station": {
+    "doorway": [
+      "Owen Price, 42-year-old male.",
+      "A red sore patch on my left shin is getting bigger.",
+      "Vital signs are available on the chart.",
+      "Perform a focused history and physical examination, discuss your plan, and document only what you obtain.",
+      "Use the time limit stated for your selected practice mode."
+    ],
+    "vitals": {
+      "BP": "126/78 mmHg",
+      "P": "84 bpm",
+      "R": "16 rpm",
+      "T": "99.0 F oral",
+      "Pulse Ox": "98% on room air",
+      "Ht": "6' 0\"",
+      "Wt": "190 lbs"
+    },
+    "supplied_results": []
+  },
+  "patient": {
+    "name": "Owen Price",
+    "age": 42,
+    "sex": "male",
+    "pronouns": "he/him",
+    "persona": "I am a barber, standing most of the day.",
+    "opening": "A red sore patch on my left shin is getting bigger.",
+    "opening_facts": [
+      "opening_complaint"
+    ],
+    "opening_contract": {
+      "text": "A red sore patch on my left shin is getting bigger.",
+      "fact_ids": [
+        "opening_complaint"
+      ],
+      "review": "Exact opening only."
+    },
+    "volunteer_budget": 1,
+    "volunteer_order": [
+      "patient_concern"
+    ],
+    "affect": "I want to know what is causing this and how to get back to my usual activities.",
+    "communication_style": "concise",
+    "empathy_replies": [
+      "Thank you for listening.",
+      "I appreciate you explaining that."
+    ],
+    "closing_questions": [
+      "I want to know what is causing this and how to get back to my usual activities."
+    ],
+    "appearance": {
+      "presentation": "male",
+      "model": "mpfb-public-patient",
+      "skinTone": 1,
+      "eyeColor": "brown",
+      "hairColor": "brunette",
+      "hairStyle": "bald",
+      "outfit": "fitted-casual",
+      "bodyBuild": "standard"
+    },
+    "voice": {
+      "rate": 1,
+      "pitch": 1,
+      "gender": "male",
+      "adult": true
+    },
+    "education_responses": [
+      {
+        "student": "I will examine the skin and circulation. If this is a skin infection, we can treat it and mark the edge to track it. Review is needed within two to three days, sooner for rapid spread, severe pain or fever.",
+        "patient": "Thank you. I understand that the next steps depend on the examination and tests."
+      },
+      {
+        "student": "Your partner can help monitor the marked edge, and we can discuss breaks from standing at work.",
+        "patient": "That would help. Thank you."
+      }
+    ]
+  },
+  "facts": [
+    {
+      "id": "opening_complaint",
+      "category": "chief_complaint",
+      "print_label": "Opening complaint",
+      "checklist": "h_opening_complaint",
+      "value": "A red sore patch on my left shin is getting bigger.",
+      "sp_says": [
+        "A red sore patch on my left shin is getting bigger."
+      ],
+      "triggers": {
+        "any": [
+          "What brings you in today?"
+        ]
+      },
+      "concepts": {
+        "opening_complaint": {
+          "polarity": "positive",
+          "value": "A red sore patch on my left shin is getting bigger."
+        }
+      },
+      "example_questions": [
+        "What brings you in today?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "A red sore patch on my left shin is getting bigger.",
+            "concepts": {
+              "opening_complaint": {
+                "polarity": "positive",
+                "value": "A red sore patch on my left shin is getting bigger."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "A red sore patch on my left shin is getting bigger."
+    },
+    {
+      "id": "hpi_onset",
+      "category": "onset",
+      "print_label": "Onset",
+      "checklist": "h_hpi_onset",
+      "value": "Two days ago.",
+      "sp_says": [
+        "Two days ago."
+      ],
+      "triggers": {
+        "any": [
+          "When did you notice the red area?",
+          "when did",
+          "started",
+          "began"
+        ]
+      },
+      "concepts": {
+        "hpi_onset": {
+          "polarity": "positive",
+          "value": "Two days ago."
+        }
+      },
+      "example_questions": [
+        "When did you notice the red area?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Two days ago.",
+            "concepts": {
+              "hpi_onset": {
+                "polarity": "positive",
+                "value": "Two days ago."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Expanding left shin erythema for 2 days.",
+      "temporal_role": "first_episode_onset"
+    },
+    {
+      "id": "hpi_location",
+      "category": "location",
+      "print_label": "Location",
+      "checklist": "h_hpi_location",
+      "value": "Around a small scratch on the front of my left shin.",
+      "sp_says": [
+        "Around a small scratch on the front of my left shin."
+      ],
+      "triggers": {
+        "any": [
+          "Where did it begin?",
+          "where",
+          "which side"
+        ]
+      },
+      "concepts": {
+        "hpi_location": {
+          "polarity": "positive",
+          "value": "Around a small scratch on the front of my left shin."
+        }
+      },
+      "example_questions": [
+        "Where did it begin?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Around a small scratch on the front of my left shin.",
+            "concepts": {
+              "hpi_location": {
+                "polarity": "positive",
+                "value": "Around a small scratch on the front of my left shin."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Began around anterior left shin scratch."
+    },
+    {
+      "id": "hpi_quality",
+      "category": "quality",
+      "print_label": "Sensation",
+      "checklist": "h_hpi_quality",
+      "value": "Warm and sore, more painful than itchy.",
+      "sp_says": [
+        "Warm and sore, more painful than itchy."
+      ],
+      "triggers": {
+        "any": [
+          "What does it feel like?",
+          "feel like",
+          "describe"
+        ]
+      },
+      "concepts": {
+        "hpi_quality": {
+          "polarity": "positive",
+          "value": "Warm and sore, more painful than itchy."
+        }
+      },
+      "example_questions": [
+        "What does it feel like?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Warm and sore, more painful than itchy.",
+            "concepts": {
+              "hpi_quality": {
+                "polarity": "positive",
+                "value": "Warm and sore, more painful than itchy."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Warmth and tenderness predominate over itch."
+    },
+    {
+      "id": "hpi_severity",
+      "category": "severity",
+      "print_label": "Severity",
+      "checklist": "h_hpi_severity",
+      "value": "About 4 out of 10. I can walk normally.",
+      "sp_says": [
+        "About 4 out of 10. I can walk normally."
+      ],
+      "triggers": {
+        "any": [
+          "How bad is the pain?",
+          "how bad",
+          "out of ten",
+          "severity"
+        ]
+      },
+      "concepts": {
+        "hpi_severity": {
+          "polarity": "positive",
+          "value": "About 4 out of 10. I can walk normally."
+        }
+      },
+      "example_questions": [
+        "How bad is the pain?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "About 4 out of 10. I can walk normally.",
+            "concepts": {
+              "hpi_severity": {
+                "polarity": "positive",
+                "value": "About 4 out of 10. I can walk normally."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "4/10; normal reported walking ability."
+    },
+    {
+      "id": "hpi_timing",
+      "category": "timing",
+      "print_label": "Pattern",
+      "checklist": "h_hpi_timing",
+      "value": "It is a steady soreness.",
+      "sp_says": [
+        "It is a steady soreness."
+      ],
+      "triggers": {
+        "any": [
+          "Is the pain constant?",
+          "how long each",
+          "how often"
+        ]
+      },
+      "concepts": {
+        "hpi_timing": {
+          "polarity": "positive",
+          "value": "It is a steady soreness."
+        }
+      },
+      "example_questions": [
+        "Is the pain constant?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "It is a steady soreness.",
+            "concepts": {
+              "hpi_timing": {
+                "polarity": "positive",
+                "value": "It is a steady soreness."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Steady discomfort.",
+      "question_dimensions": [
+        "frequency"
+      ]
+    },
+    {
+      "id": "hpi_chronology",
+      "category": "chronology",
+      "print_label": "Spread",
+      "checklist": "h_hpi_chronology",
+      "value": "It was coin-sized and is now about the size of my palm.",
+      "sp_says": [
+        "It was coin-sized and is now about the size of my palm."
+      ],
+      "triggers": {
+        "any": [
+          "How has the patch changed?",
+          "changed",
+          "progressed"
+        ]
+      },
+      "concepts": {
+        "hpi_chronology": {
+          "polarity": "positive",
+          "value": "It was coin-sized and is now about the size of my palm."
+        }
+      },
+      "example_questions": [
+        "How has the patch changed?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "It was coin-sized and is now about the size of my palm.",
+            "concepts": {
+              "hpi_chronology": {
+                "polarity": "positive",
+                "value": "It was coin-sized and is now about the size of my palm."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Expanded from coin-sized to palm-sized.",
+      "question_dimensions": [
+        "progression"
+      ],
+      "temporal_role": "pattern_or_progression"
+    },
+    {
+      "id": "hpi_setting",
+      "category": "setting",
+      "print_label": "Injury and exposure",
+      "checklist": "h_hpi_setting",
+      "value": "A branch scraped me while gardening. Mosquitoes were around, but I did not see a bite there.",
+      "sp_says": [
+        "A branch scraped me while gardening. Mosquitoes were around, but I did not see a bite there."
+      ],
+      "triggers": {
+        "any": [
+          "How did you get the scratch?",
+          "trigger",
+          "doing when"
+        ]
+      },
+      "concepts": {
+        "hpi_setting": {
+          "polarity": "positive",
+          "value": "A branch scraped me while gardening. Mosquitoes were around, but I did not see a bite there."
+        }
+      },
+      "example_questions": [
+        "How did you get the scratch?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "A branch scraped me while gardening. Mosquitoes were around, but I did not see a bite there.",
+            "concepts": {
+              "hpi_setting": {
+                "polarity": "positive",
+                "value": "A branch scraped me while gardening. Mosquitoes were around, but I did not see a bite there."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Gardening scratch; insect exposure without witnessed bite at site."
+    },
+    {
+      "id": "hpi_aggravating",
+      "category": "aggravating",
+      "print_label": "Triggers",
+      "checklist": "h_hpi_aggravating",
+      "value": "Touching it and standing all day.",
+      "sp_says": [
+        "Touching it and standing all day."
+      ],
+      "triggers": {
+        "any": [
+          "What makes it worse?",
+          "makes worse"
+        ]
+      },
+      "concepts": {
+        "hpi_aggravating": {
+          "polarity": "positive",
+          "value": "Touching it and standing all day."
+        }
+      },
+      "example_questions": [
+        "What makes it worse?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Touching it and standing all day.",
+            "concepts": {
+              "hpi_aggravating": {
+                "polarity": "positive",
+                "value": "Touching it and standing all day."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Worse with touch and prolonged standing."
+    },
+    {
+      "id": "hpi_alleviating",
+      "category": "alleviating",
+      "print_label": "Relief",
+      "checklist": "h_hpi_alleviating",
+      "value": "Elevating the leg helps the ache.",
+      "sp_says": [
+        "Elevating the leg helps the ache."
+      ],
+      "triggers": {
+        "any": [
+          "What helps?",
+          "helps",
+          "relieves"
+        ]
+      },
+      "concepts": {
+        "hpi_alleviating": {
+          "polarity": "positive",
+          "value": "Elevating the leg helps the ache."
+        }
+      },
+      "example_questions": [
+        "What helps?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Elevating the leg helps the ache.",
+            "concepts": {
+              "hpi_alleviating": {
+                "polarity": "positive",
+                "value": "Elevating the leg helps the ache."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Elevation relieves aching."
+    },
+    {
+      "id": "hpi_treatment",
+      "category": "treatment",
+      "print_label": "Care so far",
+      "checklist": "h_hpi_treatment",
+      "value": "I washed it with soap and water and used plain petroleum jelly.",
+      "sp_says": [
+        "I washed it with soap and water and used plain petroleum jelly."
+      ],
+      "triggers": {
+        "any": [
+          "What have you put on it?",
+          "tried for",
+          "taken for"
+        ]
+      },
+      "concepts": {
+        "hpi_treatment": {
+          "polarity": "positive",
+          "value": "I washed it with soap and water and used plain petroleum jelly."
+        }
+      },
+      "example_questions": [
+        "What have you put on it?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I washed it with soap and water and used plain petroleum jelly.",
+            "concepts": {
+              "hpi_treatment": {
+                "polarity": "positive",
+                "value": "I washed it with soap and water and used plain petroleum jelly."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Cleansed with soap/water; petrolatum only."
+    },
+    {
+      "id": "hpi_past_occurrence",
+      "category": "past_occurrence",
+      "print_label": "Previous episode",
+      "checklist": "h_hpi_past_occurrence",
+      "value": "No infection like this before.",
+      "sp_says": [
+        "No infection like this before."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had this before?",
+          "had before"
+        ]
+      },
+      "concepts": {
+        "hpi_past_occurrence": {
+          "polarity": "positive",
+          "value": "No infection like this before."
+        }
+      },
+      "example_questions": [
+        "Have you had this before?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No infection like this before.",
+            "concepts": {
+              "hpi_past_occurrence": {
+                "polarity": "positive",
+                "value": "No infection like this before."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No similar prior infection."
+    },
+    {
+      "id": "history_medical_history",
+      "category": "pmh",
+      "print_label": "Medical history",
+      "checklist": "h_history_medical_history",
+      "value": "Varicose veins in both legs. No diabetes or immune condition.",
+      "sp_says": [
+        "Varicose veins in both legs. No diabetes or immune condition."
+      ],
+      "triggers": {
+        "any": [
+          "What health conditions do you have?",
+          "What illnesses have you had?",
+          "Any medical conditions?"
+        ]
+      },
+      "concepts": {
+        "history_medical_history": {
+          "polarity": "positive",
+          "value": "Varicose veins in both legs. No diabetes or immune condition."
+        }
+      },
+      "example_questions": [
+        "What health conditions do you have?",
+        "What illnesses have you had?",
+        "Any medical conditions?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Varicose veins in both legs. No diabetes or immune condition.",
+            "concepts": {
+              "history_medical_history": {
+                "polarity": "positive",
+                "value": "Varicose veins in both legs. No diabetes or immune condition."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Bilateral varicose veins; no known diabetes or immunocompromise."
+    },
+    {
+      "id": "history_surgery_and_procedures",
+      "category": "psh",
+      "print_label": "Surgery and procedures",
+      "checklist": "h_history_surgery_and_procedures",
+      "value": "No operations or recent procedures.",
+      "sp_says": [
+        "No operations or recent procedures."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had surgery or recent procedures?",
+          "Have you had any operations?"
+        ]
+      },
+      "concepts": {
+        "history_surgery_and_procedures": {
+          "polarity": "positive",
+          "value": "No operations or recent procedures."
+        }
+      },
+      "example_questions": [
+        "Have you had surgery or recent procedures?",
+        "Have you had any operations?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No operations or recent procedures.",
+            "concepts": {
+              "history_surgery_and_procedures": {
+                "polarity": "positive",
+                "value": "No operations or recent procedures."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No surgical/procedural history."
+    },
+    {
+      "id": "history_medication",
+      "category": "medications",
+      "print_label": "Medication",
+      "checklist": "h_history_medication",
+      "value": "No regular medicine or steroid pills.",
+      "sp_says": [
+        "No regular medicine or steroid pills."
+      ],
+      "triggers": {
+        "any": [
+          "What medicines do you take?",
+          "What medications are you taking?"
+        ]
+      },
+      "concepts": {
+        "history_medication": {
+          "polarity": "positive",
+          "value": "No regular medicine or steroid pills."
+        }
+      },
+      "example_questions": [
+        "What medicines do you take?",
+        "What medications are you taking?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No regular medicine or steroid pills.",
+            "concepts": {
+              "history_medication": {
+                "polarity": "positive",
+                "value": "No regular medicine or steroid pills."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No regular medication or systemic steroids."
+    },
+    {
+      "id": "history_drug_reactions",
+      "category": "allergies",
+      "print_label": "Drug reactions",
+      "checklist": "h_history_drug_reactions",
+      "value": "No known medicine allergies.",
+      "sp_says": [
+        "No known medicine allergies."
+      ],
+      "triggers": {
+        "any": [
+          "Are you allergic to medicines?",
+          "Any medication allergies?"
+        ]
+      },
+      "concepts": {
+        "history_drug_reactions": {
+          "polarity": "positive",
+          "value": "No known medicine allergies."
+        }
+      },
+      "example_questions": [
+        "Are you allergic to medicines?",
+        "Any medication allergies?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No known medicine allergies.",
+            "concepts": {
+              "history_drug_reactions": {
+                "polarity": "positive",
+                "value": "No known medicine allergies."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No known drug allergies."
+    },
+    {
+      "id": "history_smoking",
+      "category": "social",
+      "print_label": "Smoking",
+      "checklist": "h_history_smoking",
+      "value": "I stopped smoking five years ago. Before that, half a pack daily for 12 years.",
+      "sp_says": [
+        "I stopped smoking five years ago. Before that, half a pack daily for 12 years."
+      ],
+      "triggers": {
+        "any": [
+          "Do you smoke?"
+        ]
+      },
+      "concepts": {
+        "history_smoking": {
+          "polarity": "positive",
+          "value": "I stopped smoking five years ago. Before that, half a pack daily for 12 years."
+        }
+      },
+      "example_questions": [
+        "Do you smoke?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I stopped smoking five years ago. Before that, half a pack daily for 12 years.",
+            "concepts": {
+              "history_smoking": {
+                "polarity": "positive",
+                "value": "I stopped smoking five years ago. Before that, half a pack daily for 12 years."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Former smoker: 6 pack-years; quit 5 years ago.",
+      "history_topic": "tobacco"
+    },
+    {
+      "id": "history_alcohol",
+      "category": "social",
+      "print_label": "Alcohol",
+      "checklist": "h_history_alcohol",
+      "value": "I do not drink alcohol.",
+      "sp_says": [
+        "I do not drink alcohol."
+      ],
+      "triggers": {
+        "any": [
+          "How much alcohol do you drink?"
+        ]
+      },
+      "concepts": {
+        "history_alcohol": {
+          "polarity": "positive",
+          "value": "I do not drink alcohol."
+        }
+      },
+      "example_questions": [
+        "How much alcohol do you drink?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I do not drink alcohol.",
+            "concepts": {
+              "history_alcohol": {
+                "polarity": "positive",
+                "value": "I do not drink alcohol."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No alcohol.",
+      "history_topic": "alcohol"
+    },
+    {
+      "id": "history_drugs",
+      "category": "social",
+      "print_label": "Drugs",
+      "checklist": "h_history_drugs",
+      "value": "No recreational or injected drugs.",
+      "sp_says": [
+        "No recreational or injected drugs."
+      ],
+      "triggers": {
+        "any": [
+          "Do you use recreational drugs or inject anything?"
+        ]
+      },
+      "concepts": {
+        "history_drugs": {
+          "polarity": "positive",
+          "value": "No recreational or injected drugs."
+        }
+      },
+      "example_questions": [
+        "Do you use recreational drugs or inject anything?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No recreational or injected drugs.",
+            "concepts": {
+              "history_drugs": {
+                "polarity": "positive",
+                "value": "No recreational or injected drugs."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No recreational/injection drugs.",
+      "history_topic": "drugs"
+    },
+    {
+      "id": "history_work",
+      "category": "social",
+      "print_label": "Work",
+      "checklist": "h_history_work",
+      "value": "I am a barber, standing most of the day.",
+      "sp_says": [
+        "I am a barber, standing most of the day."
+      ],
+      "triggers": {
+        "any": [
+          "What does your work involve?"
+        ]
+      },
+      "concepts": {
+        "history_work": {
+          "polarity": "positive",
+          "value": "I am a barber, standing most of the day."
+        }
+      },
+      "example_questions": [
+        "What does your work involve?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I am a barber, standing most of the day.",
+            "concepts": {
+              "history_work": {
+                "polarity": "positive",
+                "value": "I am a barber, standing most of the day."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Barber; prolonged standing.",
+      "history_topic": "occupation"
+    },
+    {
+      "id": "history_home_and_support",
+      "category": "social",
+      "print_label": "Home and support",
+      "checklist": "h_history_home_and_support",
+      "value": "My partner can help check the edge of the redness.",
+      "sp_says": [
+        "My partner can help check the edge of the redness."
+      ],
+      "triggers": {
+        "any": [
+          "Who can help you at home?"
+        ]
+      },
+      "concepts": {
+        "history_home_and_support": {
+          "polarity": "positive",
+          "value": "My partner can help check the edge of the redness."
+        }
+      },
+      "example_questions": [
+        "Who can help you at home?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My partner can help check the edge of the redness.",
+            "concepts": {
+              "history_home_and_support": {
+                "polarity": "positive",
+                "value": "My partner can help check the edge of the redness."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Partner can monitor skin changes.",
+      "history_topic": "social_context"
+    },
+    {
+      "id": "history_family_history",
+      "category": "family",
+      "print_label": "Family history",
+      "checklist": "h_history_family_history",
+      "value": "My mother had a leg clot after hip surgery. No unprovoked family clots that I know of.",
+      "sp_says": [
+        "My mother had a leg clot after hip surgery. No unprovoked family clots that I know of."
+      ],
+      "triggers": {
+        "any": [
+          "Does anyone in your family have blood clots?"
+        ]
+      },
+      "concepts": {
+        "history_family_history": {
+          "polarity": "positive",
+          "value": "My mother had a leg clot after hip surgery. No unprovoked family clots that I know of."
+        }
+      },
+      "example_questions": [
+        "Does anyone in your family have blood clots?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My mother had a leg clot after hip surgery. No unprovoked family clots that I know of.",
+            "concepts": {
+              "history_family_history": {
+                "polarity": "positive",
+                "value": "My mother had a leg clot after hip surgery. No unprovoked family clots that I know of."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Mother: postoperative DVT; no known unprovoked familial thrombosis."
+    },
+    {
+      "id": "history_tetanus",
+      "category": "pmh",
+      "print_label": "Tetanus",
+      "checklist": "h_history_tetanus",
+      "value": "Three years ago.",
+      "sp_says": [
+        "Three years ago."
+      ],
+      "triggers": {
+        "any": [
+          "When was your last tetanus shot?"
+        ]
+      },
+      "concepts": {
+        "history_tetanus": {
+          "polarity": "positive",
+          "value": "Three years ago."
+        }
+      },
+      "example_questions": [
+        "When was your last tetanus shot?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Three years ago.",
+            "concepts": {
+              "history_tetanus": {
+                "polarity": "positive",
+                "value": "Three years ago."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Reported tetanus immunization 3 years ago."
+    },
+    {
+      "id": "history_other_family",
+      "category": "family",
+      "print_label": "Other family",
+      "checklist": "h_history_other_family",
+      "value": "My father has high blood pressure. My sister has no major illness.",
+      "sp_says": [
+        "My father has high blood pressure. My sister has no major illness."
+      ],
+      "triggers": {
+        "any": [
+          "What about your father and siblings?"
+        ]
+      },
+      "concepts": {
+        "history_other_family": {
+          "polarity": "positive",
+          "value": "My father has high blood pressure. My sister has no major illness."
+        }
+      },
+      "example_questions": [
+        "What about your father and siblings?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My father has high blood pressure. My sister has no major illness.",
+            "concepts": {
+              "history_other_family": {
+                "polarity": "positive",
+                "value": "My father has high blood pressure. My sister has no major illness."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Father: hypertension; sister: no known major illness."
+    },
+    {
+      "id": "symptom_rash",
+      "category": "associated",
+      "print_label": "Rash",
+      "checklist": "h_symptom_rash",
+      "value": "The red patch is only on the shin.",
+      "sp_says": [
+        "The red patch is only on the shin."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had rash?",
+          "rash"
+        ]
+      },
+      "concepts": {
+        "symptom_rash": {
+          "polarity": "positive",
+          "value": "The red patch is only on the shin."
+        }
+      },
+      "example_questions": [
+        "Have you had rash?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "The red patch is only on the shin.",
+            "concepts": {
+              "symptom_rash": {
+                "polarity": "positive",
+                "value": "The red patch is only on the shin."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Localized shin erythema.",
+      "ros_system": "skin"
+    },
+    {
+      "id": "symptom_skin_drainage",
+      "category": "pertinent_negative",
+      "print_label": "Skin drainage",
+      "checklist": "h_symptom_skin_drainage",
+      "value": "No pus has come out.",
+      "sp_says": [
+        "No pus has come out."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had skin drainage?",
+          "pus",
+          "drainage"
+        ]
+      },
+      "concepts": {
+        "symptom_skin_drainage": {
+          "polarity": "negative",
+          "value": "No pus has come out."
+        }
+      },
+      "example_questions": [
+        "Have you had skin drainage?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No pus has come out.",
+            "concepts": {
+              "symptom_skin_drainage": {
+                "polarity": "negative",
+                "value": "No pus has come out."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No drainage.",
+      "ros_system": "skin"
+    },
+    {
+      "id": "symptom_pruritus",
+      "category": "associated",
+      "print_label": "Pruritus",
+      "checklist": "h_symptom_pruritus",
+      "value": "A little itch at first, but now it is mostly sore.",
+      "sp_says": [
+        "A little itch at first, but now it is mostly sore."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had pruritus?",
+          "itching",
+          "itchy"
+        ]
+      },
+      "concepts": {
+        "symptom_pruritus": {
+          "polarity": "positive",
+          "value": "A little itch at first, but now it is mostly sore."
+        }
+      },
+      "example_questions": [
+        "Have you had pruritus?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "A little itch at first, but now it is mostly sore.",
+            "concepts": {
+              "symptom_pruritus": {
+                "polarity": "positive",
+                "value": "A little itch at first, but now it is mostly sore."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Initial mild itch; pain now predominant.",
+      "ros_system": "skin"
+    },
+    {
+      "id": "symptom_fever",
+      "category": "pertinent_negative",
+      "print_label": "Fever",
+      "checklist": "h_symptom_fever",
+      "value": "No fever.",
+      "sp_says": [
+        "No fever."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had a fever?",
+          "fever"
+        ]
+      },
+      "concepts": {
+        "symptom_fever": {
+          "polarity": "negative",
+          "value": "No fever."
+        }
+      },
+      "example_questions": [
+        "Have you had a fever?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No fever.",
+            "concepts": {
+              "symptom_fever": {
+                "polarity": "negative",
+                "value": "No fever."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No fever.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_chills",
+      "category": "pertinent_negative",
+      "print_label": "Chills",
+      "checklist": "h_symptom_chills",
+      "value": "No chills.",
+      "sp_says": [
+        "No chills."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had chills?",
+          "chills"
+        ]
+      },
+      "concepts": {
+        "symptom_chills": {
+          "polarity": "negative",
+          "value": "No chills."
+        }
+      },
+      "example_questions": [
+        "Have you had chills?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No chills.",
+            "concepts": {
+              "symptom_chills": {
+                "polarity": "negative",
+                "value": "No chills."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No chills.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_fatigue",
+      "category": "pertinent_negative",
+      "print_label": "Fatigue",
+      "checklist": "h_symptom_fatigue",
+      "value": "I do not feel ill.",
+      "sp_says": [
+        "I do not feel ill."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had fatigue?",
+          "fatigue"
+        ]
+      },
+      "concepts": {
+        "symptom_fatigue": {
+          "polarity": "negative",
+          "value": "I do not feel ill."
+        }
+      },
+      "example_questions": [
+        "Have you had fatigue?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I do not feel ill.",
+            "concepts": {
+              "symptom_fatigue": {
+                "polarity": "negative",
+                "value": "I do not feel ill."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No malaise.",
+      "ros_system": "general"
+    },
+    {
+      "id": "symptom_chest_pain",
+      "category": "pertinent_negative",
+      "print_label": "Chest pain",
+      "checklist": "h_symptom_chest_pain",
+      "value": "No chest pain.",
+      "sp_says": [
+        "No chest pain."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had chest pain?",
+          "chest pain",
+          "chest pressure"
+        ]
+      },
+      "concepts": {
+        "symptom_chest_pain": {
+          "polarity": "negative",
+          "value": "No chest pain."
+        }
+      },
+      "example_questions": [
+        "Have you had chest pain?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No chest pain.",
+            "concepts": {
+              "symptom_chest_pain": {
+                "polarity": "negative",
+                "value": "No chest pain."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No chest pain.",
+      "ros_system": "cardiovascular"
+    },
+    {
+      "id": "symptom_dyspnea",
+      "category": "pertinent_negative",
+      "print_label": "Dyspnea",
+      "checklist": "h_symptom_dyspnea",
+      "value": "No trouble breathing.",
+      "sp_says": [
+        "No trouble breathing."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had dyspnea?",
+          "short of breath",
+          "shortness of breath",
+          "breathless"
+        ]
+      },
+      "concepts": {
+        "symptom_dyspnea": {
+          "polarity": "negative",
+          "value": "No trouble breathing."
+        }
+      },
+      "example_questions": [
+        "Have you had dyspnea?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "No trouble breathing.",
+            "concepts": {
+              "symptom_dyspnea": {
+                "polarity": "negative",
+                "value": "No trouble breathing."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "No dyspnea.",
+      "ros_system": "cardiovascular"
+    },
+    {
+      "id": "symptom_edema",
+      "category": "associated",
+      "print_label": "Edema",
+      "checklist": "h_symptom_edema",
+      "value": "Only a little puffiness right around the red spot, not the whole calf.",
+      "sp_says": [
+        "Only a little puffiness right around the red spot, not the whole calf."
+      ],
+      "triggers": {
+        "any": [
+          "Have you had edema?",
+          "swelling",
+          "swollen ankles"
+        ]
+      },
+      "concepts": {
+        "symptom_edema": {
+          "polarity": "positive",
+          "value": "Only a little puffiness right around the red spot, not the whole calf."
+        }
+      },
+      "example_questions": [
+        "Have you had edema?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "Only a little puffiness right around the red spot, not the whole calf.",
+            "concepts": {
+              "symptom_edema": {
+                "polarity": "positive",
+                "value": "Only a little puffiness right around the red spot, not the whole calf."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Localized swelling; no whole-calf swelling.",
+      "ros_system": "cardiovascular"
+    },
+    {
+      "id": "patient_concern",
+      "category": "concern",
+      "print_label": "Concern",
+      "checklist": "h_patient_concern",
+      "value": "I want to know what is causing this and how to get back to my usual activities.",
+      "sp_says": [
+        "I want to know what is causing this and how to get back to my usual activities."
+      ],
+      "triggers": {
+        "any": [
+          "What worries you most?"
+        ]
+      },
+      "concepts": {
+        "patient_concern": {
+          "polarity": "positive",
+          "value": "I want to know what is causing this and how to get back to my usual activities."
+        }
+      },
+      "example_questions": [
+        "What worries you most?"
+      ],
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I want to know what is causing this and how to get back to my usual activities.",
+            "concepts": {
+              "patient_concern": {
+                "polarity": "positive",
+                "value": "I want to know what is causing this and how to get back to my usual activities."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authored_note": "Wants explanation and return to usual activities."
+    }
+  ],
+  "concept_lexicon": {
+    "opening_complaint": [
+      "A red sore patch on my left shin is getting bigger."
+    ],
+    "hpi_onset": [
+      "Two days ago.",
+      "Expanding left shin erythema for 2 days."
+    ],
+    "hpi_location": [
+      "Around a small scratch on the front of my left shin.",
+      "Began around anterior left shin scratch."
+    ],
+    "hpi_quality": [
+      "Warm and sore, more painful than itchy.",
+      "Warmth and tenderness predominate over itch."
+    ],
+    "hpi_severity": [
+      "About 4 out of 10. I can walk normally.",
+      "4/10; normal reported walking ability."
+    ],
+    "hpi_timing": [
+      "It is a steady soreness.",
+      "Steady discomfort."
+    ],
+    "hpi_chronology": [
+      "It was coin-sized and is now about the size of my palm.",
+      "Expanded from coin-sized to palm-sized."
+    ],
+    "hpi_setting": [
+      "A branch scraped me while gardening. Mosquitoes were around, but I did not see a bite there.",
+      "Gardening scratch; insect exposure without witnessed bite at site."
+    ],
+    "hpi_aggravating": [
+      "Touching it and standing all day.",
+      "Worse with touch and prolonged standing."
+    ],
+    "hpi_alleviating": [
+      "Elevating the leg helps the ache.",
+      "Elevation relieves aching."
+    ],
+    "hpi_treatment": [
+      "I washed it with soap and water and used plain petroleum jelly.",
+      "Cleansed with soap/water; petrolatum only."
+    ],
+    "hpi_past_occurrence": [
+      "No infection like this before.",
+      "No similar prior infection."
+    ],
+    "history_medical_history": [
+      "Varicose veins in both legs. No diabetes or immune condition.",
+      "Bilateral varicose veins; no known diabetes or immunocompromise."
+    ],
+    "history_surgery_and_procedures": [
+      "No operations or recent procedures.",
+      "No surgical/procedural history."
+    ],
+    "history_medication": [
+      "No regular medicine or steroid pills.",
+      "No regular medication or systemic steroids."
+    ],
+    "history_drug_reactions": [
+      "No known medicine allergies.",
+      "No known drug allergies."
+    ],
+    "history_smoking": [
+      "I stopped smoking five years ago. Before that, half a pack daily for 12 years.",
+      "Former smoker: 6 pack-years; quit 5 years ago."
+    ],
+    "history_alcohol": [
+      "I do not drink alcohol.",
+      "No alcohol."
+    ],
+    "history_drugs": [
+      "No recreational or injected drugs.",
+      "No recreational/injection drugs."
+    ],
+    "history_work": [
+      "I am a barber, standing most of the day.",
+      "Barber; prolonged standing."
+    ],
+    "history_home_and_support": [
+      "My partner can help check the edge of the redness.",
+      "Partner can monitor skin changes."
+    ],
+    "history_family_history": [
+      "My mother had a leg clot after hip surgery. No unprovoked family clots that I know of.",
+      "Mother: postoperative DVT; no known unprovoked familial thrombosis."
+    ],
+    "history_tetanus": [
+      "Three years ago.",
+      "Reported tetanus immunization 3 years ago."
+    ],
+    "history_other_family": [
+      "My father has high blood pressure. My sister has no major illness.",
+      "Father: hypertension; sister: no known major illness."
+    ],
+    "symptom_rash": [
+      "The red patch is only on the shin.",
+      "Localized shin erythema.",
+      "rash"
+    ],
+    "symptom_skin_drainage": [
+      "No pus has come out.",
+      "No drainage.",
+      "pus",
+      "drainage"
+    ],
+    "symptom_pruritus": [
+      "A little itch at first, but now it is mostly sore.",
+      "Initial mild itch; pain now predominant.",
+      "itching",
+      "itchy"
+    ],
+    "symptom_fever": [
+      "No fever.",
+      "fever"
+    ],
+    "symptom_chills": [
+      "No chills.",
+      "chills"
+    ],
+    "symptom_fatigue": [
+      "I do not feel ill.",
+      "No malaise.",
+      "fatigue"
+    ],
+    "symptom_chest_pain": [
+      "No chest pain.",
+      "chest pain",
+      "chest pressure"
+    ],
+    "symptom_dyspnea": [
+      "No trouble breathing.",
+      "No dyspnea.",
+      "short of breath",
+      "shortness of breath",
+      "breathless"
+    ],
+    "symptom_edema": [
+      "Only a little puffiness right around the red spot, not the whole calf.",
+      "Localized swelling; no whole-calf swelling.",
+      "swelling",
+      "swollen ankles"
+    ],
+    "patient_concern": [
+      "I want to know what is causing this and how to get back to my usual activities.",
+      "Wants explanation and return to usual activities."
+    ],
+    "exam_general_inspect": [
+      "Well appearing and hemodynamically stable."
+    ],
+    "exam_skin_inspect": [
+      "Anterior left shin: 8 by 10 cm poorly demarcated erythema surrounding a superficial scratch, without vesicles, bullae, necrosis or purulent drainage. Visible superficial varicosities."
+    ],
+    "exam_skin_palpate": [
+      "Skin warm and tender without fluctuance, crepitus, pain beyond visible margins or a palpable venous cord."
+    ],
+    "exam_extremities": [
+      "Mild localized edema at lesion; calves symmetric and nontender; capillary refill under 2 seconds."
+    ],
+    "exam_peripheral_pulses": [
+      "Pedal pulses 2+ bilaterally."
+    ],
+    "exam_heart_auscultate": [
+      "Regular rate and rhythm without murmur."
+    ],
+    "exam_lungs_auscultate": [
+      "Clear bilateral breath sounds."
+    ],
+    "exam_osteo_screen": [
+      "L2 left lumbar paraspinal tissue texture change and tenderness."
+    ]
+  },
+  "exam_findings": {
+    "general_inspect": [
+      {
+        "id": "exam_general_inspect",
+        "text": "Well appearing and hemodynamically stable.",
+        "concepts": {
+          "exam_general_inspect": {
+            "polarity": "positive",
+            "value": "Well appearing and hemodynamically stable."
+          }
+        },
+        "scopes": [
+          "general"
+        ],
+        "checklist": "p_exam_general_inspect",
+        "requires_components": [],
+        "key_finding": true
+      }
+    ],
+    "skin_inspect": [
+      {
+        "id": "exam_skin_inspect",
+        "text": "Anterior left shin: 8 by 10 cm poorly demarcated erythema surrounding a superficial scratch, without vesicles, bullae, necrosis or purulent drainage. Visible superficial varicosities.",
+        "concepts": {
+          "exam_skin_inspect": {
+            "polarity": "positive",
+            "value": "Anterior left shin: 8 by 10 cm poorly demarcated erythema surrounding a superficial scratch, without vesicles, bullae, necrosis or purulent drainage. Visible superficial varicosities."
+          }
+        },
+        "scopes": [
+          "skin"
+        ],
+        "checklist": "p_exam_skin_inspect",
+        "requires_components": [
+          "legs"
+        ],
+        "key_finding": true
+      }
+    ],
+    "skin_palpate": [
+      {
+        "id": "exam_skin_palpate",
+        "text": "Skin warm and tender without fluctuance, crepitus, pain beyond visible margins or a palpable venous cord.",
+        "concepts": {
+          "exam_skin_palpate": {
+            "polarity": "positive",
+            "value": "Skin warm and tender without fluctuance, crepitus, pain beyond visible margins or a palpable venous cord."
+          }
+        },
+        "scopes": [
+          "skin.palpation"
+        ],
+        "checklist": "p_exam_skin_palpate",
+        "requires_components": [
+          "tenderness",
+          "warmth",
+          "induration",
+          "fluctuance"
+        ],
+        "key_finding": true
+      }
+    ],
+    "extremities": [
+      {
+        "id": "exam_extremities",
+        "text": "Mild localized edema at lesion; calves symmetric and nontender; capillary refill under 2 seconds.",
+        "concepts": {
+          "exam_extremities": {
+            "polarity": "positive",
+            "value": "Mild localized edema at lesion; calves symmetric and nontender; capillary refill under 2 seconds."
+          }
+        },
+        "scopes": [
+          "extremities"
+        ],
+        "checklist": "p_exam_extremities",
+        "requires_components": [
+          "edema",
+          "calf symmetry",
+          "calf tenderness",
+          "capillary refill"
+        ],
+        "key_finding": true
+      }
+    ],
+    "peripheral_pulses": [
+      {
+        "id": "exam_peripheral_pulses",
+        "text": "Pedal pulses 2+ bilaterally.",
+        "concepts": {
+          "exam_peripheral_pulses": {
+            "polarity": "positive",
+            "value": "Pedal pulses 2+ bilaterally."
+          }
+        },
+        "scopes": [
+          "extremities.pulses"
+        ],
+        "checklist": "p_exam_peripheral_pulses",
+        "requires_components": [
+          "dorsalis pedis",
+          "posterior tibial"
+        ],
+        "key_finding": true
+      }
+    ],
+    "heart_auscultate": [
+      {
+        "id": "exam_heart_auscultate",
+        "text": "Regular rate and rhythm without murmur.",
+        "concepts": {
+          "exam_heart_auscultate": {
+            "polarity": "positive",
+            "value": "Regular rate and rhythm without murmur."
+          }
+        },
+        "scopes": [
+          "heart"
+        ],
+        "checklist": "p_exam_heart_auscultate",
+        "requires_components": [
+          "aortic",
+          "pulmonic",
+          "tricuspid",
+          "mitral",
+          "on skin"
+        ],
+        "key_finding": true
+      }
+    ],
+    "lungs_auscultate": [
+      {
+        "id": "exam_lungs_auscultate",
+        "text": "Clear bilateral breath sounds.",
+        "concepts": {
+          "exam_lungs_auscultate": {
+            "polarity": "positive",
+            "value": "Clear bilateral breath sounds."
+          }
+        },
+        "scopes": [
+          "lungs"
+        ],
+        "checklist": "p_exam_lungs_auscultate",
+        "requires_components": [
+          "posterior",
+          "on skin",
+          "compare side to side",
+          "mouth open"
+        ],
+        "key_finding": true
+      }
+    ],
+    "osteo_screen": [
+      {
+        "id": "exam_osteo_screen",
+        "text": "L2 left lumbar paraspinal tissue texture change and tenderness.",
+        "concepts": {
+          "exam_osteo_screen": {
+            "polarity": "positive",
+            "value": "L2 left lumbar paraspinal tissue texture change and tenderness."
+          }
+        },
+        "scopes": [
+          "osteopathic"
+        ],
+        "checklist": "p_exam_osteo_screen",
+        "requires_components": [
+          "lumbar"
+        ],
+        "key_finding": false
+      }
+    ]
+  },
+  "refusals": [],
+  "refusal_expectation": {},
+  "area_of_concern": {
+    "system": "Skin",
+    "required_methods": [
+      "inspect",
+      "palpate"
+    ],
+    "special_tests": [],
+    "note": "Describe a localized skin lesion and separate infection from inflammatory and venous mimics."
+  },
+  "osteopathic": {
+    "expected_documentation": "Document the supplied level and palpatory descriptor only after the structural screen; treatment is not implied."
+  },
+  "ros_pertinent_systems": [
+    "skin",
+    "general",
+    "cardiovascular"
+  ],
+  "differentials": [
+    {
+      "rank": 1,
+      "name": "Nonpurulent cellulitis",
+      "vindicate": "I",
+      "aliases": [
+        "Nonpurulent cellulitis"
+      ],
+      "supported_by": [
+        "hpi_location",
+        "hpi_chronology",
+        "exam_skin_inspect",
+        "exam_skin_palpate"
+      ],
+      "teaching_context": "Progressive warmth/tenderness around a skin break supports cellulitis without abscess or systemic illness."
+    },
+    {
+      "rank": 2,
+      "name": "Large local inflammatory reaction to an insect bite",
+      "vindicate": "A",
+      "aliases": [
+        "Large local inflammatory reaction to an insect bite"
+      ],
+      "supported_by": [
+        "hpi_setting",
+        "symptom_pruritus"
+      ],
+      "teaching_context": "Outdoor exposure and initial itching allow a bite reaction; progressive tenderness and a visible scratch favor cellulitis."
+    },
+    {
+      "rank": 3,
+      "name": "Superficial thrombophlebitis",
+      "vindicate": "V",
+      "aliases": [
+        "Superficial thrombophlebitis"
+      ],
+      "supported_by": [
+        "history_medical_history",
+        "hpi_aggravating",
+        "exam_skin_inspect"
+      ],
+      "teaching_context": "Varicosities and focal painful erythema support consideration; absence of a cord and diffuse contact-area inflammation make it less likely."
+    }
+  ],
+  "implausible_differentials": [],
+  "plan_expectations": {
+    "tests": [],
+    "medications": [],
+    "omt": [],
+    "education": [],
+    "referral": [],
+    "follow_up": []
+  },
+  "checklist": {
+    "history": [
+      {
+        "id": "h_opening_complaint",
+        "text": "Opening complaint"
+      },
+      {
+        "id": "h_hpi_onset",
+        "text": "Onset"
+      },
+      {
+        "id": "h_hpi_location",
+        "text": "Location"
+      },
+      {
+        "id": "h_hpi_quality",
+        "text": "Sensation"
+      },
+      {
+        "id": "h_hpi_severity",
+        "text": "Severity"
+      },
+      {
+        "id": "h_hpi_timing",
+        "text": "Pattern"
+      },
+      {
+        "id": "h_hpi_chronology",
+        "text": "Spread"
+      },
+      {
+        "id": "h_hpi_setting",
+        "text": "Injury and exposure"
+      },
+      {
+        "id": "h_hpi_aggravating",
+        "text": "Triggers"
+      },
+      {
+        "id": "h_hpi_alleviating",
+        "text": "Relief"
+      },
+      {
+        "id": "h_hpi_treatment",
+        "text": "Care so far"
+      },
+      {
+        "id": "h_hpi_past_occurrence",
+        "text": "Previous episode"
+      },
+      {
+        "id": "h_history_medical_history",
+        "text": "Medical history"
+      },
+      {
+        "id": "h_history_surgery_and_procedures",
+        "text": "Surgery and procedures"
+      },
+      {
+        "id": "h_history_medication",
+        "text": "Medication"
+      },
+      {
+        "id": "h_history_drug_reactions",
+        "text": "Drug reactions"
+      },
+      {
+        "id": "h_history_smoking",
+        "text": "Smoking"
+      },
+      {
+        "id": "h_history_alcohol",
+        "text": "Alcohol"
+      },
+      {
+        "id": "h_history_drugs",
+        "text": "Drugs"
+      },
+      {
+        "id": "h_history_work",
+        "text": "Work"
+      },
+      {
+        "id": "h_history_home_and_support",
+        "text": "Home and support"
+      },
+      {
+        "id": "h_history_family_history",
+        "text": "Family history"
+      },
+      {
+        "id": "h_history_tetanus",
+        "text": "Tetanus"
+      },
+      {
+        "id": "h_history_other_family",
+        "text": "Other family"
+      },
+      {
+        "id": "h_symptom_rash",
+        "text": "Rash"
+      },
+      {
+        "id": "h_symptom_skin_drainage",
+        "text": "Skin drainage"
+      },
+      {
+        "id": "h_symptom_pruritus",
+        "text": "Pruritus"
+      },
+      {
+        "id": "h_symptom_fever",
+        "text": "Fever"
+      },
+      {
+        "id": "h_symptom_chills",
+        "text": "Chills"
+      },
+      {
+        "id": "h_symptom_fatigue",
+        "text": "Fatigue"
+      },
+      {
+        "id": "h_symptom_chest_pain",
+        "text": "Chest pain"
+      },
+      {
+        "id": "h_symptom_dyspnea",
+        "text": "Dyspnea"
+      },
+      {
+        "id": "h_symptom_edema",
+        "text": "Edema"
+      },
+      {
+        "id": "h_patient_concern",
+        "text": "Concern"
+      }
+    ],
+    "physical": [
+      {
+        "id": "p_exam_general_inspect",
+        "text": "General appearance",
+        "maneuver": "general_inspect",
+        "components": []
+      },
+      {
+        "id": "p_exam_skin_inspect",
+        "text": "Inspect skin",
+        "maneuver": "skin_inspect",
+        "components": [
+          "legs"
+        ]
+      },
+      {
+        "id": "p_exam_skin_palpate",
+        "text": "Palpate the skin concern",
+        "maneuver": "skin_palpate",
+        "components": [
+          "tenderness",
+          "warmth",
+          "induration",
+          "fluctuance"
+        ]
+      },
+      {
+        "id": "p_exam_extremities",
+        "text": "Inspect / palpate extremities",
+        "maneuver": "extremities",
+        "components": [
+          "edema",
+          "calf symmetry",
+          "calf tenderness",
+          "capillary refill"
+        ]
+      },
+      {
+        "id": "p_exam_peripheral_pulses",
+        "text": "Palpate peripheral pulses",
+        "maneuver": "peripheral_pulses",
+        "components": [
+          "dorsalis pedis",
+          "posterior tibial"
+        ]
+      },
+      {
+        "id": "p_exam_heart_auscultate",
+        "text": "Auscultate heart",
+        "maneuver": "heart_auscultate",
+        "components": [
+          "aortic",
+          "pulmonic",
+          "tricuspid",
+          "mitral",
+          "on skin"
+        ]
+      },
+      {
+        "id": "p_exam_lungs_auscultate",
+        "text": "Auscultate lungs",
+        "maneuver": "lungs_auscultate",
+        "components": [
+          "posterior",
+          "on skin",
+          "compare side to side",
+          "mouth open"
+        ]
+      },
+      {
+        "id": "p_exam_osteo_screen",
+        "text": "Osteopathic structural screen",
+        "maneuver": "osteo_screen",
+        "components": [
+          "lumbar"
+        ]
+      },
+      {
+        "id": "p_introduce",
+        "text": "Introduce yourself and verify identity",
+        "courtesy": "introduce"
+      },
+      {
+        "id": "p_hand_hygiene",
+        "text": "Clean hands before examination",
+        "courtesy": "hand_hygiene"
+      },
+      {
+        "id": "p_drape",
+        "text": "Provide appropriate draping",
+        "courtesy": "drape"
+      }
+    ]
+  },
+  "model_note": {
+    "S": "CC: A red sore patch on my left shin is getting bigger.\n\nHPI: 42-year-old male. Expanding left shin erythema for 2 days. Began around anterior left shin scratch. Warmth and tenderness predominate over itch. 4/10; normal reported walking ability. Steady discomfort. Expanded from coin-sized to palm-sized. Gardening scratch; insect exposure without witnessed bite at site. Worse with touch and prolonged standing. Elevation relieves aching. Cleansed with soap/water; petrolatum only. No similar prior infection.\n\nPMH: Bilateral varicose veins; no known diabetes or immunocompromise. Reported tetanus immunization 3 years ago.\n\nPSH: No surgical/procedural history.\n\nMeds: No regular medication or systemic steroids.\n\nSH: Former smoker: 6 pack-years; quit 5 years ago. No alcohol. No recreational/injection drugs. Barber; prolonged standing. Partner can monitor skin changes.\n\nFH: Mother: postoperative DVT; no known unprovoked familial thrombosis. Father: hypertension; sister: no known major illness.\n\nAllergies: No known drug allergies.\n\nROS: Skin: Localized shin erythema. No drainage. Initial mild itch; pain now predominant. General: No fever. No chills. No malaise. Cardiovascular: No chest pain. No dyspnea. Localized swelling; no whole-calf swelling.",
+    "O": "Vitals: BP 126/78 mmHg, P 84 bpm, R 16 rpm, T 99.0 F oral, Pulse Ox 98% on room air, Ht 6' 0\", Wt 190 lbs\n\nGeneral: Well appearing and hemodynamically stable.\nSkin: Anterior left shin: 8 by 10 cm poorly demarcated erythema surrounding a superficial scratch, without vesicles, bullae, necrosis or purulent drainage. Visible superficial varicosities. Skin warm and tender without fluctuance, crepitus, pain beyond visible margins or a palpable venous cord.\nExtremities: Mild localized edema at lesion; calves symmetric and nontender; capillary refill under 2 seconds.\nHeart: Pedal pulses 2+ bilaterally. Regular rate and rhythm without murmur.\nLungs: Clear bilateral breath sounds.\nOsteopathic: L2 left lumbar paraspinal tissue texture change and tenderness.",
+    "A": [
+      "1. Nonpurulent cellulitis",
+      "2. Large local inflammatory reaction to an insect bite",
+      "3. Superficial thrombophlebitis"
+    ],
+    "P": [
+      "1. Mark the erythema margin and start an appropriate oral streptococcal-active antibiotic after clinician assessment; a 5-day course is reasonable if improving, adjusted to response/local guidance. Elevate, clean and protect the scratch; no routine culture or MRSA coverage without indication. Review in 48–72 hours. Rapid spread, disproportionate pain, fever or systemic illness needs urgent evaluation.",
+      "2. If reassessment supports a noninfectious bite reaction, emphasize cool compresses and appropriate antipruritic treatment rather than unnecessary antibiotics. Explain the difference between itch-predominant local inflammation and worsening infection; monitor the marked margin.",
+      "3. If cord-like tenderness, progression or DVT features appear, use venous ultrasound to define extent and assess deep involvement before selecting treatment. Discuss leg elevation and safe symptom relief; emergency evaluation is needed for new chest pain or breathlessness."
+    ]
+  },
+  "print_additional_exams": {
+    "osteo_screen": "Include when practicing the course structural screen; it does not establish the cause of the complaint."
+  },
+  "ideal_encounter_extras": [
+    "Describe a localized skin lesion and separate infection from inflammatory and venous mimics."
+  ],
+  "supersedes_core": [
+    "tobacco_use",
+    "alcohol_use",
+    "drug_use",
+    "allergies",
+    "medications",
+    "family_history",
+    "past_medical",
+    "past_surgical",
+    "rash",
+    "skin_drainage",
+    "pruritus",
+    "fever",
+    "chills",
+    "fatigue",
+    "chest_pain",
+    "dyspnea",
+    "edema"
+  ],
+  "review_status": "Source-checked fictional practice; not faculty or clinician approved.",
+  "clinical_review": {
+    "status": "source_checked_not_clinician_approved",
+    "date": "2026-09-14",
+    "method": "Individual presentation, differential, safety and plan review against named primary clinical references plus course documentation constraints.",
+    "limits": "Fictional details deliberately authored. Mnemonic category placement is instructional and is not proof of etiology. Generic 3D appearance is not a diagnostic visual.",
+    "sources": [
+      "https://www.idsociety.org/practice-guideline/skin-and-soft-tissue-infections/",
+      "https://www.nice.org.uk/guidance/ng141/chapter/Recommendations"
+    ]
+  },
+  "sources": [
+    {
+      "title": "2026 FALL M2 ILG Student Manual",
+      "path": "claude builds/PCM/2026 FALL M2 ILG - STUDENT MANUAL update.docx",
+      "locator": "SOAP rubric and physical examination requirements",
+      "kind": "course"
+    },
+    {
+      "title": "IDSA skin and soft tissue infection guideline",
+      "url": "https://www.idsociety.org/practice-guideline/skin-and-soft-tissue-infections/",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+    },
+    {
+      "title": "Cellulitis reassessment and alternatives",
+      "url": "https://www.nice.org.uk/guidance/ng141/chapter/Recommendations",
+      "kind": "supplementary_clinical",
+      "reviewed": "2026-09-14",
+      "review_scope": "Presentation pattern, relevant alternatives, diagnostic direction and safe initial management. Fictional history/vitals/findings are authored, not extracted patient data."
+    }
+  ],
+  "teaching": {
+    "goals": [
+      "Describe a localized skin lesion and separate infection from inflammatory and venous mimics.",
+      "Document only supplied, asked or examined information."
+    ],
+    "skills": [
+      "history-sequencing",
+      "focused-examination",
+      "clinical-reasoning",
+      "evidence-based-soap",
+      "skin"
+    ],
+    "common_omissions": [
+      "Distinguishing history from examination evidence.",
+      "Explaining uncertainty and the practical follow-up plan."
+    ],
+    "lesson_plan": {
+      "notice": "Describe a localized skin lesion and separate infection from inflammatory and venous mimics.",
+      "anchor": "Expanding painful redness on the leg",
+      "pivot": "Is the area spreading, is pain disproportionate, and is there pus or a venous cord?",
+      "exam": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
+      "avoid": "Treating an unperformed examination or a possible diagnosis as obtained fact."
+    },
+    "closing_dialogue": [
+      "I will examine the skin and circulation. If this is a skin infection, we can treat it and mark the edge to track it. Review is needed within two to three days, sooner for rapid spread, severe pain or fever."
+    ],
+    "concern_response": "Your partner can help monitor the marked edge, and we can discuss breaks from standing at work.",
+    "reasoning_steps": [
+      {
+        "id": "orient",
+        "phase": "history",
+        "purpose": "Hear the presenting concern",
+        "question": "What brings you in today?",
+        "fact_ids": [
+          "opening_complaint"
+        ],
+        "why": "Describe a localized skin lesion and separate infection from inflammatory and venous mimics."
+      },
+      {
+        "id": "pattern",
+        "phase": "history",
+        "purpose": "Clarify the pattern",
+        "question": "Is the area spreading, is pain disproportionate, and is there pus or a venous cord?",
+        "fact_ids": [
+          "hpi_onset"
+        ],
+        "why": "Describe a localized skin lesion and separate infection from inflammatory and venous mimics."
+      },
+      {
+        "id": "examine",
+        "phase": "exam",
+        "purpose": "Perform relevant examinations",
+        "question": "May I examine you?",
+        "fact_ids": [],
+        "why": "Findings require performed actions."
+      }
+    ],
+    "reasoning_map": [
+      {
+        "id": "skin-localized-redness-decision",
+        "question": "Is the area spreading, is pain disproportionate, and is there pus or a venous cord?",
+        "why": "Describe a localized skin lesion and separate infection from inflammatory and venous mimics.",
+        "if_present": "Use the reported pattern to select the relevant examinations and assess urgency.",
+        "if_absent": "Keep alternatives open and ask a focused follow-up.",
+        "next_action": "Perform the relevant case-specific examination.",
+        "document": "Separate reported symptoms, observed signs, assessment and proposed care."
+      }
+    ],
+    "classification_note": "Categories reflect the explicitly proposed mechanism; e.g., irritant exposure is I2. They are a course organizing aid, not confirmation of mechanism."
+  },
+  "content_revisions": {
+    "library_expansion_20260914": "New independently authored presentation. Single core path; no renamed cosmetic variants."
+  },
+  "print_exam_systems": {
+    "skin_palpate": "Skin",
+    "lymph_nodes": "Lymphatic"
+  },
+  "examination_display_note": "The case-specific skin, ear, nose and throat appearance is supplied in the labeled examination result; the generic patient model does not reliably display these findings."
+}

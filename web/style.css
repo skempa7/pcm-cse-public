@@ -1055,3 +1055,19 @@ ul.tight li { margin-bottom: var(--sp-1); }
 .print-document-choice input{width:20px;height:20px;flex:none;margin-top:2px}.print-document-choice label span{min-width:0}
 .print-document-choice small{display:block;margin-top:3px;font-size:.88rem;line-height:1.4}
 .print-choice-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
+
+/* 2026-09-14: printable cases are a primary workspace, with separate answer-free materials. */
+.materials-library,.materials-case{max-width:1160px;margin:auto}
+.material-intro{max-width:76ch;line-height:1.6}
+.material-intro b{color:var(--text)}
+.material-variant{display:grid;gap:.3rem;max-width:24rem;margin:1rem 0}
+.material-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;margin:.75rem 0 1.4rem}
+.material-option{display:flex;flex-direction:column;align-items:flex-start;gap:.45rem;text-align:left;padding:1rem;border:1px solid var(--line);border-radius:12px;background:var(--surface-2);color:var(--text);cursor:pointer;min-width:0;font:inherit}
+.material-option b{font-size:1.05rem}.material-option span{line-height:1.45;color:var(--muted);font-size:.9rem}.material-option small{margin-top:auto;padding-top:.45rem;color:var(--accent);font-weight:650}
+.material-option:hover{border-color:var(--accent)}.material-option:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.material-option:disabled{opacity:.65;cursor:wait}
+.material-note{font-size:.8rem;font-weight:400;color:var(--muted);margin-left:.5rem}
+.material-details{border-top:1px solid var(--line);padding-top:1rem;margin-top:1.5rem}
+@media(max-width:850px){.material-options{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.material-options{grid-template-columns:1fr}.material-note{display:block;margin-left:0}.material-option{padding:.9rem}}
+
+.clinical-key-limit{border-left:3px solid var(--accent);padding:.6rem .9rem;line-height:1.5}.example-note h4{font-size:1rem;margin:1rem 0 .35rem}
