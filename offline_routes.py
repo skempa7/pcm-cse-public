@@ -334,12 +334,22 @@ class Handler:
             if action == 'interruption':
                 s.record_interruption(body.get('kind', 'unknown'), body.get('detail', ''), body.get('ms', 0))
                 return self._json({'recorded': True, 'integrity': s.integrity_report()})
-            if action == 'revise':
+            if action in ('revise', 'recheck'):
                 if s.row['phase'] != 'submitted':
                     return self._json({'error': 'not submitted'}, 409)
-                payload = body.get('note') or {}
-                results = s.compute_results(payload, label='revision (untimed)')
-                rid = db.add_revision(sid, 'revision', payload, results)
+                recheck = action == 'recheck'
+                payload = s.original_note() if recheck else body.get('note') or {}
+                if recheck:
+                    # A retry after a storage/network interruption must not
+                    # duplicate a completed evaluation of this frozen note.
+                    current = s.versions()['current']
+                    for prior in reversed(db.list_revisions(sid)):
+                        previous = prior.get('results') or {}
+                        if (prior['kind'] == 'recheck' and prior['note'] == payload
+                                and previous.get('versions', {}).get('current') == current):
+                            return self._json({'revision_id': prior['id'], 'results': previous})
+                results = s.compute_results(payload, label='original note recheck (current grader)' if recheck else 'revision (untimed)')
+                rid = db.add_revision(sid, 'recheck' if recheck else 'revision', payload, results)
                 return self._json({'revision_id': rid, 'results': results})
             if action == 'delete':
                 db.delete_session(sid)

@@ -27,7 +27,7 @@ The current patient assets preserve the established bald male head with mustache
 | Independent | 30 minutes | 5 minutes | 20 minutes |
 | Exam rehearsal | 14 minutes | None | 9 minutes |
 
-Saved attempts retain their original preset and absolute deadlines. Leaving a timed attempt does not pause it. Accessing solutions during an active independent/rehearsal attempt requires explicit conversion to assisted practice. Clinical credit derives from supplied or actually disclosed/examined evidence, not hidden case facts. Original submitted notes and grades remain frozen; regrading is a separate record.
+Saved attempts retain their original preset and absolute deadlines. Leaving a timed attempt does not pause it. Accessing solutions during an active independent/rehearsal attempt requires explicit conversion to assisted practice. Clinical credit derives from supplied or actually disclosed/examined evidence, not hidden case facts. Original submitted notes and grades remain frozen; **Recheck this note** evaluates the unchanged original with the current grader and saves a separate result. Editing through Deliberate practice remains a separate revision.
 
 ## Speech and privacy
 
@@ -63,7 +63,7 @@ Verification entry points include `python3 -m unittest discover -s tests`, `pyth
 
 ## Boundaries and remaining limits
 
-A broad test pass is not clinician validation of every fictional case, clinical explanation or free-text note. Missing authored history cannot safely become a fabricated denial. The symbolic dialogue/grader can still require clarification for unfamiliar wording. Mouth movement, gestures and tissue/cloth behavior are approximate; no soft-tissue resistance, exact contact verification, or internal intimate examination is simulated.
+A broad test pass is not clinician validation of every fictional case, clinical explanation or free-text note. Missing authored history cannot safely become a fabricated denial. The symbolic dialogue/grader can still require clarification for unfamiliar wording. SOAP parsing accepts standalone, colon, dash and Markdown headings, repeated history sections, and multiline numbered assessment/plan entries. Clinical phrase matching remains bounded; feedback shows unverified passages and unresolved diagnosis mappings separately from established errors. Mouth movement, gestures and tissue/cloth behavior are approximate; no soft-tissue resistance, exact contact verification, or internal intimate examination is simulated.
 
 Private course documents and real attempts are excluded. Source titles/locators preserve course provenance without publishing source materials. See [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) and [the supplied-room notice](licenses/SUPPLIED-ROOM.md). The imported room's provenance/redistribution permission remains unverified; attribution is not a substitute for permission, and this application grants no new asset license.
 

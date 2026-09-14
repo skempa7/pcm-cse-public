@@ -2161,7 +2161,11 @@ function renderNote(){
     </div>
   </section>`;
   const workspace=$('.note-workspace'),controller=new AbortController(),signal=controller.signal,narrow=matchMedia('(max-width:1099px)');
-  let scrollTimer,submitting=false,restoring=true,referencesReady=false;
+  let scrollTimer,submitting=false,restoring=true,referencesReady=false,initialInteraction=false;
+  // A deferred resume restore must never reclaim focus after the student has
+  // already chosen a field or another control. Otherwise fast typing/pasting
+  // can land in the previously selected section.
+  for(const event of ['pointerdown','keydown','focusin'])document.addEventListener(event,()=>{initialInteraction=true;},{once:true,capture:true,signal});
   const valid=()=>workspace.isConnected&&S?.id===sid&&S.phase==='note';
   const store=()=>{if(valid())setUiMeta(sid,{...uiMeta(sid),noteWorkspace:{...position,panels:{...position.panels}}});};
   const rememberField=el=>{if(!ids.includes(el?.id))return;position.field=el.id;position.start=el.selectionStart;position.end=el.selectionEnd;store();};
@@ -2193,7 +2197,7 @@ function renderNote(){
     clearMatchingDraft('note',sid,frozenDraft);renderNote.cleanup();S=next;renderPhase(true);
   }finally{submitting=false;if(valid()){button.disabled=false;button.textContent='Submit note';ids.forEach(id=>$('#'+id).readOnly=false);if(document.activeElement===document.body||document.activeElement===view)button.focus({preventScroll:true});}}};
   if(recoveredNote)toast('Recovered your unsent note draft from this browser.');
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{if(!valid())return;if(narrow.matches&&position.view==='reference')$('#noteRefTab-'+position.reference)?.focus({preventScroll:true});else restoreEditor();window.scrollTo({top:narrow.matches&&position.view==='reference'?position.referenceTop:position.writeTop,behavior:'instant'});restoring=false;}));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{if(!valid())return;if(!initialInteraction){if(narrow.matches&&position.view==='reference')$('#noteRefTab-'+position.reference)?.focus({preventScroll:true});else restoreEditor();window.scrollTo({top:narrow.matches&&position.view==='reference'?position.referenceTop:position.writeTop,behavior:'instant'});}restoring=false;}));
   queueNoteSave();
 }
 
@@ -2277,7 +2281,7 @@ async function renderDebrief(){
     if (d.error) { view.innerHTML = `<div class="card"><h2>Results unavailable</h2>
       <p class="small">${esc(d.message || d.error)}</p></div>`; return; }
     RESULTS = d; RESULTS.__for = S.id;
-    activeTab = d.reader_versions?.is_regrade ? 'about' : 'lessons';
+    activeTab = d.reader_versions?.is_regrade ? 'score' : 'lessons';
   }
   paintDebrief();
   window.pcmLearningRender?.(S);
@@ -2312,7 +2316,7 @@ function paintDebrief(){
     return paintDebriefBody(r);
   }
   view.dataset.debriefFor = S.id;
-  view.innerHTML = `${historical?'<div class="callout small"><b>Preserved historical result.</b> This note was graded under an earlier or unrecorded engine. Its score and feedback remain unchanged; earlier interpretation errors may still appear below. Use <b>Deliberate practice → Grade the revision</b> for a separate evaluation with the current grader.</div>':''}<div class="tabs" role="tablist" aria-label="Debrief sections">${
+  view.innerHTML = `${historical?'<div class="callout small"><b>Preserved historical result.</b> This note was graded under an earlier or unrecorded engine. Its score and feedback remain unchanged; earlier interpretation errors may still appear below. Use <b>Recheck this note</b> to evaluate the same writing with the current grader. Your original submission and score stay unchanged.</div>':''}<div class="tabs" role="tablist" aria-label="Debrief sections">${
     tabs.map(pair => `<button role="tab" id="tab-${pair[0]}" data-t="${pair[0]}"
       aria-selected="${pair[0] === activeTab}" aria-controls="tabBody"
       tabindex="${pair[0] === activeTab ? '0' : '-1'}">${esc(pair[1])}</button>`).join('')}</div>
@@ -2332,12 +2336,17 @@ function paintDebrief(){
     view.insertAdjacentHTML('afterbegin', `<section class="debrief-result card">
       <div class="dr-score"><span class="dr-num">${esc(String(earned))}<span class="dr-of">/${esc(String(available))}</span></span>
         <span class="tiny muted">${pct===null?'':esc(pct + '%')} \u00b7 ${esc(rub.grade_kind || 'PCM 2026 SOAP rubric')}</span></div>
-      <div class="dr-lead"><p class="eyebrow">${esc([S.learning_mode, RESULTS.results.assistance?.assisted ? 'assisted' : 'unassisted'].filter(Boolean).join(' \u00b7 '))}</p>
+      <div class="dr-lead"><p class="eyebrow">${esc([S.learning_mode, r.assisted ? 'assisted' : 'unassisted'].filter(Boolean).join(' \u00b7 '))}</p>
         ${top ? `<p class="dr-first"><b>Start here:</b> ${esc(top.title || '')}</p>` : ''}
-        <p class="tiny muted">Every requirement, the evidence behind it and your note are in the tabs below.</p></div>
-      <div class="dr-actions"><a class="btn sm primary" href="#practice">Start another encounter</a></div>
+        <p class="tiny muted">${r.grading_review?.status === 'needs_review' ? 'Automatic review incomplete: some wording needs checking. Open Score to see the unverified passages.' : 'Review each criterion alongside your wording and the recorded evidence.'}</p></div>
+      <div class="dr-actions"><button type="button" class="btn sm" id="recheckNote">Recheck this note</button><a class="btn sm primary" href="#practice">Start another encounter</a></div>
     </section>`);
   }
+  const recheck = $('#recheckNote');
+  if(recheck)recheck.onclick = recheckSubmittedNote;
+  const savedRecheck=(RESULTS.revisions || []).filter(x=>x.kind==='recheck' && x.results).slice(-1)[0];
+  view.querySelector('.debrief-result').insertAdjacentHTML('afterend', '<div id="recheckOutput" aria-live="polite"></div>');
+  if(savedRecheck)$('#recheckOutput').innerHTML=recheckResult(savedRecheck.results,r);
   // Keep the common review route direct; secondary evidence tools remain named
   // and available together without ten equally prominent navigation choices.
   const reviewTabs=$('.tabs');
@@ -2387,7 +2396,7 @@ function lessonsFor(r){
       .forEach(row => {
         if (out.length >= 3) return;
         if (out.some(o => o.title === row.label)) return;
-        out.push({ title: row.label + ' — ' + row.points_available + ' points not earned',
+        out.push({ title: row.label + (row.recognition_limited ? ' — automated reading needs review' : ' — ' + row.points_available + ' points not earned'),
           kind:'rubric', what: row.why, passage: row.passage, evidence: row.evidence || [],
           why: 'This row is on the PCM 2026 SOAP note grading table and is worth ' +
                row.points_available + ' of 100.',
@@ -2521,8 +2530,41 @@ function drillMeasure(r, key){
     verdict: bad + ' flagged claim' + (bad === 1 ? '' : 's'),
     detail: 'Unsupported ' + (c.unsupported || 0) + ' · contradicts ' + (c.contradicts || 0) +
       ' · broader than examined ' + (c.overbroad || 0) + ' · wrong section ' +
-      (c.misplaced || 0) + ' · obtained but never written down ' +
+      (c.misplaced || 0) + ' · obtained but not matched in the note ' +
       ((r.audit.obtained_but_omitted || []).length) + '.' };
+}
+
+function gradingReviewNotice(r){
+  const review=r.grading_review;
+  if(!review || review.status!=='needs_review')return '';
+  const passages=review.unverified_passages || [], rows=review.unresolved_rows || [];
+  return `<div class="callout warn small"><b>Automatic review needs checking</b><p>${esc(review.note)}</p>
+    <details><summary>${passages.length} unverified passage${passages.length===1?'':'s'}${rows.length ? ' · ' + rows.length + ' unresolved criterion' + (rows.length===1?'':'s') : ''}</summary>
+      ${passages.map(p=>`<div class="item"><b>${esc(p.section)}${p.header?' · '+esc(p.header):''}</b><div class="quote">${esc(p.text)}</div><p class="small">${esc(p.reason)}</p>${(p.evidence||[]).map(e=>`<div class="ev tiny">${esc(e.text)}</div>`).join('')}</div>`).join('')}
+      ${rows.map(row=>`<div class="item"><b>${esc(row.label)}</b><div class="quote">${esc(row.text)}</div><p class="small">${esc(row.reason)}</p></div>`).join('')}
+    </details></div>`;
+}
+function recheckResult(result, original){
+  const engine=result.versions?.current?.engine;
+  const current=engine && engine===RESULTS.reader_versions?.current?.engine;
+  return `<section class="card"><h2>${current?'Rechecked with the current grader':'Saved recheck'}</h2><p><b>${esc(result.rubric.total_earned)}/${esc(result.rubric.total_available)}</b> automatic practice score. Original: ${esc(original.rubric.total_earned)}/${esc(original.rubric.total_available)}, unchanged.</p><p class="small muted">Grader ${esc(engine || 'version unrecorded')}. The same submitted note and encounter evidence were used. This separate recheck is saved with the attempt.</p>${gradingReviewNotice(result)}<details><summary>Review the rechecked criteria</summary>${result.rubric.rows.map(row=>`<div class="item ${row.earned?'ok':row.recognition_limited?'warn':'bad'}"><b>${esc(row.label)} · ${row.points_earned}/${row.points_available}</b><p class="small">${esc(row.why)}</p>${row.passage?`<div class="quote">${esc(row.passage)}</div>`:''}${(row.evidence||[]).map(e=>`<div class="ev tiny">${esc(e.text)}</div>`).join('')}</div>`).join('')}</details></section>`;
+}
+async function recheckSubmittedNote(){
+  const button=$('#recheckNote'), sid=S.id, original=RESULTS.results;
+  if(!button || button.disabled)return;
+  button.disabled=true;button.textContent='Rechecking…';
+  try {
+    const d=await api(`/api/session/${sid}/recheck`,{});
+    if(S?.id!==sid || RESULTS?.__for!==sid)return;
+    if(d.error)throw new Error(d.message || d.error);
+    RESULTS.revisions=(RESULTS.revisions||[]).filter(x=>x.id!==d.revision_id).concat([{id:d.revision_id,kind:'recheck',results:d.results}]);
+    $('#recheckOutput').innerHTML=recheckResult(d.results,original);
+    announce('Recheck saved separately. Your original note and score are unchanged.');
+  } catch(error) {
+    if(S?.id===sid && $('#recheckOutput'))$('#recheckOutput').innerHTML=`<div class="callout warn">The recheck could not be completed. Your original note and score are unchanged. Try again. <span class="small">${esc(error.message || 'Connection unavailable')}</span></div>`;
+  } finally {
+    if(button.isConnected){button.disabled=false;button.textContent='Recheck this note';}
+  }
 }
 
 /* --- score ---------------------------------------------------------------- */
@@ -2532,7 +2574,7 @@ function tabScore(r){
   return `<div class="card">
     <div class="score-hero">
       <div><div class="score-big">${g.total_earned}<small>/${g.total_available}</small></div>
-        <div class="small muted">rubric-based practice grade</div></div>
+        <div class="small muted">automatic practice score</div></div>
       <div class="catbars">${cats.map(c => {
         const v = g.categories[c] || { earned:0, available:0 };
         const pct = v.available ? 100 * v.earned / v.available : 0;
@@ -2546,6 +2588,7 @@ function tabScore(r){
     ${!r.integrity.clean ? `<div class="callout warn small"><b>Interruptions recorded.</b>
       ${r.integrity.events.map(e => esc(e.detail)).join(' ')} ${esc(r.integrity.note)}</div>` : ''}
   </div>
+  ${gradingReviewNotice(r)}
   <div class="card"><h2>Every row</h2>
     <div class="table-scroll"><table class="rows">
     <thead><tr><th>Row</th><th>Verdict</th><th class="pts">Pts</th></tr></thead><tbody>
@@ -2557,7 +2600,7 @@ function tabScore(r){
         ${(row.advisories || []).map(a => `<div class="tiny"><span class="badge b-warn">advisory</span> ${esc(a)}</div>`).join('')}
         ${row.uncertain ? `<div class="tiny"><span class="badge b-info">interpretation</span> ${esc(row.uncertain)}</div>` : ''}
         ${(row.evidence || []).map(e => `<div class="ev tiny"><b>${esc(e.time || '')} ${esc(e.kind || '')}</b> ${esc(e.text)}</div>`).join('')}
-      </td><td>${row.earned ? '<span class="badge b-ok">earned</span>' : '<span class="badge b-bad">no credit</span>'}</td>
+      </td><td>${row.earned ? '<span class="badge b-ok">earned</span>' : row.recognition_limited ? '<span class="badge b-warn">needs review</span>' : '<span class="badge b-bad">not met</span>'}</td>
       <td class="pts">${row.points_earned}/${row.points_available}</td></tr>`).join('')}
     </tbody></table></div></div>
   <div class="card"><h2>Timing</h2>
@@ -2617,8 +2660,7 @@ function tabAudit(r){
     not_evaluated:['b-mute','not evaluated'] };
   const claims = a.claims.slice().sort((x, y) => order.indexOf(x.verdict) - order.indexOf(y.verdict));
   return `<div class="card"><h2>Claim-by-claim documentation audit</h2>
-    <p class="small muted">Every sentence checked against your own encounter record — not
-    against the case. A fact being true of the patient does not make it documentable.</p>
+    <p class="small muted">Recognized claims are compared with your own encounter record. Unverified wording is listed separately and needs review. A fact being true of the patient does not make it documentable.</p>
     <div class="row">${Object.keys(a.counts).map(k =>
       `<span class="badge ${(label[k] || ['b-mute'])[0]}">${esc((label[k] || [0, k])[1])}: ${a.counts[k]}</span>`).join('')}</div></div>
   ${a.internal_contradictions.length ? `<div class="card"><h3>Your note contradicts itself</h3>
@@ -2628,10 +2670,8 @@ function tabAudit(r){
       <div class="quote">${esc(ic.second_section)}: ${esc(ic.second)}</div>
       <div class="small">${esc(ic.explanation)}</div></div>`).join('')}</div>` : ''}
   ${a.obtained_but_omitted.length ? `<div class="card">
-    <h3>You obtained these and did not document them <span class="badge b-warn">${a.obtained_but_omitted.length}</span></h3>
-    <p class="small muted">This is the most common documentation failure in the published
-    literature — students obtain about 87% of items but document barely half of the
-    negatives.</p>
+    <h3>Obtained information not matched in your note <span class="badge b-warn">${a.obtained_but_omitted.length}</span></h3>
+    <p class="small muted">These details may be missing or expressed in wording the automatic review did not recognize. Compare them with your note before adding anything.</p>
     ${a.obtained_but_omitted.map(o => `<div class="chk">
       <span class="st"><span class="badge b-warn">${esc(o.time)}</span></span>
       <span class="tx"><b>${esc(o.label)}</b> — ${esc(o.value)}
@@ -2900,11 +2940,11 @@ function wirePractice(r){
         <span class="badge b-info">untimed practice</span></div>
       <div class="score-hero"><div><div class="score-big">${got}<small>/100</small></div>
       <div class="small muted">original timed submission: ${orig}/100 — unchanged</div></div></div>
-      ${d.results.rubric.rows.filter(x => !x.earned).map(x => `<div class="item bad">
-        <h4>${esc(x.label)} — still no credit</h4><div class="small">${esc(x.why)}</div></div>`).join('')}
+      ${gradingReviewNotice(d.results)}
+      ${d.results.rubric.rows.filter(x => !x.earned).map(x => `<div class="item ${x.recognition_limited?'warn':'bad'}">
+        <h4>${esc(x.label)} — ${x.recognition_limited?'needs review':'not met'}</h4><div class="small">${esc(x.why)}</div></div>`).join('')}
       <div class="callout mute small">A revision cannot fix what you did not obtain in the
-      room. Rows that still fail on evidence are telling you about the encounter, not the
-      writing.</div></div>`;
+      room. Compare each remaining issue with your wording and the recorded evidence; unrecognized wording needs review.</div></div>`;
     announce('Revision graded: ' + got + ' out of 100.');
   };
 }

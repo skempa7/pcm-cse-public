@@ -57,6 +57,18 @@ def _priority_errors(audit_result, rubric, chk, case):
     for row in rubric["rows"]:
         if row["earned"]:
             continue
+        if row.get("recognition_limited"):
+            items.append({
+                "rank_score": row["points_available"] * 10,
+                "kind": "recognition_review", "category": row["category"],
+                "label": row["label"], "title": row["label"] + " — automated reading needs review",
+                "what_happened": row["why"],
+                "why_it_matters": "Unrecognized wording is not proof that the clinical statement is incorrect. This criterion did not receive automatic credit.",
+                "what_to_do": "Compare your quoted wording with the criterion and the encounter. Do not add unsupported facts or change a valid diagnosis just to match a phrase.",
+                "passage": row["passage"], "evidence": row["evidence"],
+                "conditions": row["conditions_applied"], "points": 0,
+            })
+            continue
         items.append({
             "rank_score": row["points_available"] * 10,
             "kind": "rubric",

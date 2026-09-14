@@ -174,6 +174,7 @@ class Row:
         self.conditions = []
         self.advisories = []
         self.uncertain = ""
+        self.recognition_limited = False
 
     def award(self, why, passage="", evidence=None):
         self.earned = True
@@ -201,6 +202,7 @@ class Row:
             "why": self.why, "passage": self.passage, "evidence": self.evidence,
             "conditions_applied": self.conditions, "advisories": self.advisories,
             "uncertain": self.uncertain,
+            "recognition_limited": self.recognition_limited,
         }
 
 
@@ -488,6 +490,7 @@ def _row_cc(row, parsed, case, headers):
     hpi = parsed.s_header("hpi")
     agreement = _same_problem(body, hpi["body"], case) if hpi else True
     if agreement is None:
+        row.recognition_limited = True
         row.uncertain = "The wording could not be mapped confidently; lack of lexical overlap is not evidence that two complaints conflict."
         return row.deny("Chief complaint/HPI equivalence is unresolved by this parser. Check that both clearly describe the same presenting problem.", passage=body + " || " + hpi["body"][:120],condition="No credit for unclear or non-specific documentation")
     if agreement is False:
@@ -1235,29 +1238,62 @@ def _acute_infarction_surface(text,differential):
     return 0
 
 
-def _vindicate_of(text, case):
-    """Which VINDICATE element(s) a differential belongs to.
+def _assessment_wording(text):
+    """Equivalent diagnosis names, without introducing an unstated etiology."""
+    text = re.sub(r"\ba[ -]?fib\b", "atrial fibrillation", text, flags=re.I)
+    return re.sub(r"\b(?:overactive thyroid|thyroid overactivity|hyperthyroid state)\b",
+                  "hyperthyroidism", text, flags=re.I)
 
-    The most SPECIFIC differential wins, not the first one in the list. Several
-    differentials on a case legitimately share a generic surface -- "angina" sits
-    inside both stable and unstable angina -- and taking list order would read
-    "Unstable angina / acute coronary syndrome" as the stable-angina row and deny
-    a correct answer.
+
+def _vindicate_of(text, case):
+    """Map the asserted differential rather than a longer excluded alternative.
+
+    Narrative justification is welcome in a numbered entry. A diagnosis in a
+    later explanation or a negated alternative must not replace its subject.
+    Within a clause the first asserted diagnosis wins, with specific aliases
+    preferred over shorter aliases beginning at that same location.
     """
-    best, best_len = None, 0
-    for d in differential_supplements.for_case(case):
-        if not _etiology_compatible(text,d):continue
-        n = max(_longest_match(text, [d["name"]] + d.get("aliases", [])), _acute_infarction_surface(text,d))
-        if n > best_len:
-            best, best_len = d, n
-    if best is not None:
-        if best.get("vindicate") not in config.VINDICATE:
-            return None, None  # Unassigned etiology cannot earn a guessed category.
-        return best["vindicate"], best
-    hits = []
-    for letter, spec in config.VINDICATE.items():
-        if nlp.matches_any(text, spec["hints"]):
-            hits.append(letter)
+    text = _assessment_wording(text)
+    clauses = re.split(r"[;\n(]|(?<!\d)\.(?!\d)", text)
+    for raw in clauses:
+        # A leading 'less likely' is normal in a lower-ranked differential;
+        # after a stated diagnosis it instead introduces its comparison.
+        explanation = re.search(r"\b(?:because|given|supported by|based on|"
+                                r"less likely|unlikely|rather than|instead of)\b", raw, re.I)
+        if explanation and explanation.start() > 0:
+            raw = raw[:explanation.start()]
+        normalized = re.sub(r"[-–—]", " ", nlp.normalize(raw))
+        candidates = []
+        for differential in differential_supplements.for_case(case):
+            if not _etiology_compatible(raw, differential):
+                continue
+            for surface in [differential["name"]] + differential.get("aliases", []):
+                term = re.sub(r"[-–—]", " ", nlp.normalize(surface))
+                pos = nlp.find_term(term, normalized)
+                if pos < 0 or nlp.is_negated(normalized, term):
+                    continue
+                after = normalized[pos + len(term):]
+                if re.match(r"\s+(?:is |was |has been )?(?:excluded|ruled out)\b", after):
+                    continue
+                candidates.append((pos, -len(term), differential))
+            if _acute_infarction_surface(raw, differential):
+                match = re.search(r"\b(?:myocardial infarction|mi|nstemi|stemi)\b", normalized)
+                if match:
+                    candidates.append((match.start(), -len(match.group()), differential))
+        if candidates:
+            best = min(candidates, key=lambda hit: hit[:2])[2]
+            if best.get("vindicate") not in config.VINDICATE:
+                return None, None
+            return best["vindicate"], best
+        if normalized and not re.fullmatch(r"(?:assessment|diagnosis|impression|differential(?: diagnosis)?)\s*:?", normalized):
+            # An unrecognized primary proposal cannot borrow credit from a
+            # familiar diagnosis in its later comparison. Only an explicitly
+            # excluded first clause may lead on to the affirmative proposal.
+            if not re.match(r"^(?:no|not|unlikely|ruled? out|negative for|denies)\b", normalized):
+                return None, None
+    # An etiologic category by itself is not a reviewed case differential.
+    hits = [letter for letter, spec in config.VINDICATE.items()
+            if nlp.matches_any(text, spec["hints"])]
     return (hits[0] if hits else None), None
 
 
@@ -1308,6 +1344,7 @@ def _grade_assessment(parsed, case, scoring):
             seen_letters.append(None)
             continue
         if matched is None:
+            row.recognition_limited = True
             row.uncertain += " Automated mapping is unresolved; faculty review may be needed for a plausible alternative outside the authored list."
             row.deny(
                 "The stated diagnosis or cause could not be mapped confidently to a reviewed case alternative and VINDICATE element. This is unresolved, not proof that the diagnosis is unrelated. Specify the suspected cause when known; a broad syndrome cannot inherit an unasserted etiology.",
@@ -1384,20 +1421,51 @@ def _plan_hint_pattern(hint):
     pattern=re.escape(h).replace(r'\ ',r'\s+')
     return r'(?<![a-z0-9])'+pattern+(r'[a-z]*\b' if h in _PLAN_HINT_STEMS else r'(?:s)?(?![a-z0-9])')
 
+def _plan_wording(text):
+    """Normalize common plan equivalents for action recognition only."""
+    equivalents = (
+        (r"\belectrocardiograms?\b", "ECG"),
+        (r"\b(?:complete|full) blood counts?\b", "CBC"),
+        (r"\bthyroid (?:function )?(?:tests?|testing|panel)\b", "thyroid testing"),
+        (r"\b(?:stop|stopping|avoid|avoiding|eliminate|eliminating|cut out) (?:the |all )?energy drinks\b", "stopping energy drinks"),
+        (r"\b(?:avoid|avoiding|reduce|reducing|limit|limiting|cut down on) (?:your |the )?caffeine(?: intake)?\b", "limiting caffeine"),
+        (r"\b(?:reduce|reducing|limit|limiting|cut down on|cutting down on) (?:your |the )?alcohol(?: intake)?\b", "reducing alcohol"),
+    )
+    for pattern, replacement in equivalents:
+        text = re.sub(pattern, replacement, text, flags=re.I)
+    # 'Get an ECG' is an order. Do not turn other uses of 'get' or any past
+    # tense 'got an ECG' into a future investigation.
+    return re.sub(r"\bget(?=\s+(?:(?:an?|the)\s+)?(?:(?:12|twelve)[ -]lead\s+)?"
+                  r"(?:ECG|EKG|CBC|BMP|CMP|TSH|thyroid testing)\b)",
+                  "obtain", text, flags=re.I)
+
+
+def _direct_selfcare_advice(text):
+    """A specific instruction is education even without an 'educate' label."""
+    t = nlp.normalize(text)
+    return bool(re.match(
+        r"^(?:please |recommend |advise |recommend that (?:the )?patient )?"
+        r"(?:stop(?:ping)?|avoid(?:ing)?|limit(?:ing)?|reduce|reducing|cut(?:ting)? down on)\b", t)
+        and re.search(r"\b(?:energy drinks|caffeine|alcohol|tobacco|smoking)\b", t))
+
+
 def _motherr_elements(text):
     """Distinct documented plan actions, not fragments inside unrelated words."""
     out={}
     for raw in claims_mod.investigation_clauses(text):
-        t=nlp.normalize(raw).replace('-',' ')
-        expanded=nlp.expand_abbreviations(raw).replace('-',' ')
+        canonical = _plan_wording(raw)
+        t=nlp.normalize(canonical).replace('-',' ')
+        expanded=nlp.expand_abbreviations(canonical).replace('-',' ')
         for letter,spec in config.MOTHERR.items():
             if letter in out: continue
             hints=list(spec['hints'])
             if letter=='M': hints += ['diphenhydramine','anticholinergic medicine','anticholinergic medication','antimicrobial','pain control','nicotine replacement','oral contraceptive','oral iron','iron supplementation','ferrous sulfate','vitamin c']
-            if letter=='T': hints += ['echocardiogram','echocardiography','echocardiographic','glucose','prostate testing','urine testing','ferritin','reticulocyte','hemoglobin','positional assessment','dix hallpike','endoscopic assessment','lipase','amylase','bilirubin','creatinine','electrolytes','serum sodium','serum potassium','blood urea nitrogen','urine microscopy','urine protein','blood tests']
-            if letter=='H': hints += ['tobacco cessation','stopping energy drinks','reducing alcohol','activity restriction','no heavy exertion','no stair climbing']
+            if letter=='T': hints += ['thyroid testing','echocardiogram','echocardiography','echocardiographic','glucose','prostate testing','urine testing','ferritin','reticulocyte','hemoglobin','positional assessment','dix hallpike','endoscopic assessment','lipase','amylase','bilirubin','creatinine','electrolytes','serum sodium','serum potassium','blood urea nitrogen','urine microscopy','urine protein','blood tests']
+            if letter=='H': hints += ['limiting caffeine','tobacco cessation','stopping energy drinks','reducing alcohol','activity restriction','no heavy exertion','no stair climbing']
             if letter=='R': hints += ['emergency evaluation','emergency assessment','emergency team','gynecology','clinician evaluation','ems','stroke pathway','urology input','stroke team evaluation']
             if letter=='R2': hints += ['reassess','reassessment','reevaluation','review in']
+            if letter=='E' and _direct_selfcare_advice(raw):
+                hints += ['stopping energy drinks','limiting caffeine','reducing alcohol']
             for hint in hints:
                 match=re.search(_plan_hint_pattern(hint),t)
                 if not match:
@@ -1410,7 +1478,7 @@ def _motherr_elements(text):
                 # itself a management action, unlike an absent prescription.
                 action=list(re.finditer(_PLAN_ACTIONS.get(letter,r'(?!)'),subject))
                 if letter=='E':
-                    if not action and not re.search(r'\b(?:return precautions?|patient education|counseling)\b',subject):continue
+                    if not action and not re.search(r'\b(?:return precautions?|patient education|counseling)\b',subject) and not _direct_selfcare_advice(raw):continue
                     if action and all(_is_negated(subject,a.start(),a.end()) for a in action):continue
                 if letter=='T' and action and all(_is_negated(subject,a.start(),a.end()) for a in action):continue
                 if letter=='T' and not action and re.match(r'^(?:no|neither)\b',t):continue
@@ -1429,7 +1497,7 @@ def _motherr_elements(text):
                 if re.search(r'\b(?:defer\w*|contraindicated|not indicated|not needed|not required)\b',subject) and letter in ('O','T','R'):continue
                 # A result reported in past tense is not a future test order.
                 if letter=='T' and (claims_mod.action_status(raw)=='done' or re.search(r'\b(?:not|never|no)\s+(?:yet |been |was |were |is )*(?:performed|obtained|completed|done)\b',subject)):continue
-                if letter=='T' and not claims_mod.proposed_test(raw):continue
+                if letter=='T' and not claims_mod.proposed_test(canonical):continue
                 # Named tests, medication prescriptions and supportive orders
                 # are often written as noun phrases in a plan. Their exact
                 # bounded term is sufficient unless negated or result-only.
@@ -1764,16 +1832,18 @@ def _plan_education(parsed, case, audit_result):
 def _education_is_specific(text):
     # A named topic or a five-word sentence is not the actual instruction.
     # Keep this separate from MOTHERR's broader 'education was mentioned' test.
-    topics=r'\b(?:nsaids?|ibuprofen|exertion|driving|drive|fluids?|water|rehydration|antibiotic\w*|medication\w*|prescribed|fever|faint\w*|syncope|vertigo|weakness|deficits?|gait|pain|breath\w*|dyspnea|vomit\w*|hematemesis|stools?|bleeding|urine|urinary|wounds?|feet|foot|meals?|sleep|tobacco|smoking|alcohol|chest|diabetes|anemia|clot|stroke|biliary|thunderclap|inflammation|compression|nerve\w*|imaging|scan|radiation|glucose|symptom\w*|diagnos\w*)\b'
+    topics=r'\b(?:energy drinks|caffeine|heart(?:beat)?|nsaids?|ibuprofen|exertion|driving|drive|fluids?|water|rehydration|antibiotic\w*|medication\w*|prescribed|fever|faint\w*|syncope|vertigo|weakness|deficits?|gait|pain|breath\w*|dyspnea|vomit\w*|hematemesis|stools?|bleeding|urine|urinary|wounds?|feet|foot|meals?|sleep|tobacco|smoking|alcohol|chest|diabetes|anemia|clot|stroke|biliary|thunderclap|inflammation|compression|nerve\w*|imaging|scan|radiation|glucose|symptom\w*|diagnos\w*)\b'
     action=r'\b(?:avoid\w*|stop\w*|limit\w*|reduc\w*|take|taking|complete|drink\w*|sip\w*|use|using|keep|keeping|check\w*|inspect\w*|rise|rising|stand\w*|rest\w*|elevat\w*|wear\w*|seek|call|report\w*)\b'
     for raw in re.split(r'[;.!?\n]',text):
-        t=nlp.normalize(raw)
+        t=nlp.normalize(_plan_wording(raw))
         for cue in re.finditer(r'\b(?:educat\w*|counsel\w*|advis\w*|instruct\w*|discuss\w*|explain\w*)\b',t):
             if re.search(r'\b(?:not|no|never|without)\b[^,;]{0,30}$',t[:cue.start()]):continue
             tail=t[cue.end():]
-            if re.search(topics,tail) and (re.search(action,tail) or re.search(r'\b(?:why|because|cannot|differs|means|represents|requires|contribute|accumulation|inflammation|compression|uncertainty|possibilities|purpose)\b',tail)):
+            if re.search(topics,tail) and (re.search(action,tail) or re.search(r'\b(?:why|because|cannot|differs|means|represents|requires|contribute|trigger|accelerate|accumulation|inflammation|compression|uncertainty|possibilities|purpose)\b',tail)):
                 return True
             if re.search(r'\b(?:smoking cessation|tobacco cessation|hand hygiene|daily foot checks|protective footwear|urine straining|slow standing|regular meals|headache diary|fall(?:/driving)? precautions)\b',tail):return True
+        if _direct_selfcare_advice(raw):
+            return True
         # Explicit safety advice remains specific when it follows an education
         # sentence, rather than needing the word 'educate' repeated each time.
         if re.search(r'\b(?:seek|call|return|report)\b.*\b(?:for|if|with)\b',t) and re.search(topics,t) and not re.search(r'\b(?:do not|never|no need to)\s+(?:seek|call|return|report)\b',t):return True

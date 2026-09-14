@@ -752,6 +752,48 @@ def current_status_subject_matches(fact, clause):
 
 # Narrow language equivalences for history actually requested by the learner.
 # Topic names select authored facts; they never supply clinical answers.
+
+def associated_symptom_request(utterance):
+    """Recognize a request for additional symptoms, not an embedded symptom.
+
+    The patient's own authored facts supply the answer. This only identifies
+    the kind of question, including ordinary spoken lead-ins and paraphrases.
+    Attribute questions ("when did those other symptoms start?") and a named
+    symptom's presence ("any pain associated with it?") keep their own routes.
+    """
+    text = nlp.normalize(dialogue.strip_discourse(utterance)).strip(" .?")
+    text = re.sub(r"^(?:can|could|would) you (?:please )?tell me (?:if |whether )?", "", text)
+    forms = (
+        r"(?:(?:have|do|did|are) you (?:have |had |having |been having |noticed |notice |"
+        r"experienced |experience |felt |feel |feeling |been feeling )?(?:any )?"
+        r"|(?:are|were|is) there (?:any )?|any |what (?:other |additional )?"
+        r"|which (?:other |additional )?|tell me about (?:any |your )?)"
+        r"(?:(?:other|additional|associated|accompanying) )+symptoms?\b",
+        r"(?:any |what |which |have you (?:noticed |experienced )?(?:any )?|"
+        r"do you have (?:any )?)symptoms? (?:that )?(?:go(?:es)? |come(?:s)? )?"
+        r"(?:along with|with|accompany|accompanying|associated with)\b",
+        r"(?:what else (?:happens|do you (?:notice|feel))|"
+        r"(?:does|did) anything else happen|"
+        r"have you (?:noticed|felt|experienced) anything else) "
+        r"(?:that )?(?:go(?:es)? |come(?:s)? )?(?:along with|with|when|besides)\b",
+        r"(?:other|additional|associated|accompanying) symptoms?$",
+    )
+    match = next((found for pattern in forms if (found := re.match(pattern, text))), None)
+    if match is None:
+        return None
+    tail = text[match.end():].strip()
+    # These words introduce an explicitly named screen, not an invitation to
+    # substitute whichever associated symptom is next in the case.
+    named = re.search(r"\b(?:such as|like|including|for example)\s+(.+)$", tail)
+    if named:
+        return {"named": named.group(1), "anchor": "", "excluded": ""}
+    anchor = re.search(r"\b(?:associated with|along with|with|when|besides|"
+                       r"apart from|accompanying)\s+(.+)$", text)
+    excluded = re.search(r"\b(?:besides|apart from|other than|in addition to)\s+(.+)$", text)
+    return {"named": "", "anchor": anchor.group(1) if anchor else "",
+            "excluded": excluded.group(1) if excluded else ""}
+
+
 def _instruction_or_other_person(text):
     q=nlp.normalize(text)
     return bool(re.search(r"\b(?:do not|don't|dont|not asking|not to|phrase|quoted?|hidden findings|answer key|diagnosis)\b|\b(?:mother|father|family|partner|someone|somebody|friend|child|sister|brother)\b|\b(?:cause|caused|causes|medication|medicine|drug)\b",q) or re.search(r'["“”]|(?:^|\s)[‘\'][^‘\']+[’\'](?:$|\s|[.!?])',str(text)))
@@ -1808,6 +1850,14 @@ class PatientEngine:
             return self._join(ack, "I do not have information about " + subject +
                              " in this simulated case. Please treat it as unavailable, not as a denial.")
 
+        # "Other symptoms" is a clinical request even when its long spoken
+        # wording also names the chief complaint. Resolve it before a trigger
+        # like "racing" can repeat the heartbeat description, or "any other"
+        # can consume an unrelated concern from the volunteer queue.
+        associated = self._associated_symptom_reply(utterance, state, meta)
+        if associated is not None:
+            return self._join(ack, associated)
+
         # 4b. A bare follow-up resolves against the subject already on the
         #     table before any general matcher gets to guess at its topic.
         followup = self._followup_hits(utterance, state)
@@ -2679,6 +2729,84 @@ class PatientEngine:
         scoped = [f for f in candidates
                   if complaint_regions & self._pain_regions(spoken(f))]
         return scoped[:1] if len(scoped) == 1 else []
+
+    def _associated_symptom_reply(self, utterance, state, meta):
+        request = associated_symptom_request(utterance)
+        if request is None:
+            return None
+        if (_instruction_or_other_person(utterance) or re.search(
+                r"\b(?:should|would|might|could) (?:i|we|you|someone)|"
+                r"\b(?:expect|look for|watch for|watch out|develop|in the future)\b",
+                nlp.normalize(utterance))):
+            meta.update(kind="non_answer", no_information=True, unscripted_topic=True)
+            return "I can tell you what I have experienced, but I do not know what other symptoms someone should expect."
+        if request["named"]:
+            return self._respond_inner("Have you had " + request["named"],
+                                       nlp.normalize("Have you had " + request["named"]),
+                                       state, meta)
+
+        surfaces = self._concept_surfaces()
+        anchor = request["anchor"]
+        if anchor and not re.fullmatch(
+                r"(?:it|this|that|these|those|(?:the |your |this |that )?"
+                r"(?:pain|symptoms?|sensation|problem|episode|spells?|discomfort))"
+                r"(?: (?:at all|today|happens?|starts?))?", anchor):
+            named = set(nlp.find_concepts(anchor, surfaces))
+            relevant = [fact for fact in self.facts.values()
+                        if fact.get("category") in ("associated", "pertinent_negative",
+                                                     "chief_complaint", "quality", "location")
+                        and set(fact.get("concepts", {})) & named
+                        and regional_fact_allowed(fact, utterance)]
+            positive = [fact for fact in relevant if any(
+                cid in named and spec.get("polarity") == "positive"
+                for cid, spec in fact.get("concepts", {}).items())]
+            if not positive:
+                # The prompt may presuppose a symptom this patient explicitly
+                # denies. Give that authored denial, never assert an unprovided
+                # link between it and another positive symptom.
+                negative = [fact for fact in relevant if all(
+                    spec.get("polarity") == "negative"
+                    for spec in fact.get("concepts", {}).values())]
+                if negative:
+                    return self._say(negative[0], state, meta, prefixed=False)
+                meta.update(kind="non_answer", no_information=True, unscripted_topic=True)
+                return "I do not have information linking other symptoms to that in this simulated case."
+
+        primary = set(nlp.find_concepts(self.opening(), surfaces))
+        excluded = set(nlp.find_concepts(request["excluded"], surfaces))
+        # These legacy openings describe the same symptoms in language absent
+        # from their concept aliases. Explicit authored IDs avoid equating all
+        # joint pain with the chief complaint (e.g. wrist pain can be additional
+        # to finger stiffness), or inventing a broader synonym match.
+        primary_fact_ids = {
+            "msk-knee-injury": {"symptom_joint_swelling", "symptom_joint_pain"},
+            "neuro-acute-focal-weakness": {"symptom_focal_weakness", "symptom_speech_change"},
+        }.get(self.case.get("id"), set())
+        candidates = []
+        for fact in self.facts.values():
+            concepts = fact.get("concepts", {})
+            positive_ids = {cid for cid, spec in concepts.items()
+                            if spec.get("polarity") == "positive"}
+            if (fact.get("category") != "associated" or not positive_ids
+                    or fact["id"].startswith("history_")
+                    or fact.get("requires_current_status_question")
+                    or not regional_fact_allowed(fact, utterance)
+                    or fact["id"] in primary_fact_ids
+                    or bool(positive_ids & excluded)
+                    or not (positive_ids - primary)):
+                continue
+            candidates.append(fact)
+        if not candidates:
+            meta.update(kind="non_answer", no_information=True, unscripted_topic=True)
+            return "The case does not provide additional symptom details. Please do not treat that as a denial of other symptoms."
+        # A broad request earns the symptoms actually spoken, not a checklist
+        # of unasked negatives. A repeated request can reveal another small
+        # group; once exhausted it restates the same known information without
+        # claiming the rest of the review of systems is normal.
+        unreleased = [fact for fact in candidates if fact["id"] not in state["released"]]
+        selected = (unreleased or candidates)[:2]
+        return dialogue.join_spoken([self._say(fact, state, meta, prefixed=False)
+                                     for fact in selected])
 
     def _specific_setting_hits(self, utterance):
         """A preceding-illness or exposure question, answered only by a fact

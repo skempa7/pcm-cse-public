@@ -15,7 +15,7 @@ import re
 
 from . import audit as audit_mod
 from . import record, station_info
-from . import cases, checklist, config, db, evidence, feedback, grader, ips
+from . import cases, checklist, config, db, evidence, feedback, grader, ips, grading_review
 from . import note as note_mod
 from . import intent as intent_mod
 from . import nlp, patient, physexam, presentation, historical_cases
@@ -1011,6 +1011,7 @@ class Session:
             "label": label,
             "note": payload,
             "rubric": rubric,
+            "grading_review": grading_review.describe(parsed, audit_result, rubric),
             "audit": audit_result,
             "checklist": chk,
             "ips": interp,

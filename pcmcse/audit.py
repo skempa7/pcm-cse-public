@@ -585,6 +585,100 @@ def _literal_social_history(claim, case, ledger):
     return {'verdict': 'supported', 'concepts': [], 'evidence': [_ev(ev) for ev in links],
             'explanation': 'This concise social history preserves the exact occupation or household wording actually reported; only grammatical framing was removed.'}
 
+# 2026-09-14: bind ordinary clinical paraphrases to attributes in actual
+# delivered answers. These do not turn a matching topic into a complete proof.
+def _heartbeat_quality(text, require_subject=False):
+    t = nlp.normalize(text)
+    if require_subject:
+        descriptor = r'(?:fast|rapid|racing|slow|irregular|uneven|regular)'
+        description = descriptor + r'(?:(?: and| but)? ' + descriptor + r'){0,3}'
+        subject = r'(?:heartbeat|heart|palpitations|fluttering)'
+        m = re.search(r'\b(?:' + description + r' ' + subject + r'|' + subject +
+                      r' (?:is |feels? |beats? )?' + description + r')\b', t)
+        if not m:
+            return {}
+        # Preserve only an immediately preceding negator, not an adjective
+        # belonging to a neighboring subject (e.g. "fast RR, regular heart").
+        negator = re.search(r'\b(?:no|not|without|denies)(?: (?:a|an|any))?\s*$', t[:m.start()])
+        t = (negator.group() if negator else '') + m.group()
+    # Rate and regularity are independent; "fast" cannot establish "irregular".
+    rate = re.search(r"\b(?:fast|rapid|racing|slow)\b", t)
+    rhythm = re.search(r"\b(?:irregular|uneven|regular)\b", t)
+    out = {}
+    if rate:
+        out['rate'] = ('not_' if nlp.is_negated(t, rate.group()) else '') + ('slow' if rate.group() == 'slow' else 'fast')
+    if rhythm:
+        out['rhythm'] = ('not_' if nlp.is_negated(t, rhythm.group()) else '') + ('regular' if rhythm.group() == 'regular' else 'irregular')
+    return out
+
+
+def _walking_discomfort(text):
+    t = nlp.normalize(text)
+    forms = (r"\b(?:discomfort|uncomfortable) (?:with|during|on) (?:ordinary|normal|usual) walking\b",
+             r"\b(?:ordinary|normal|usual) walking(?: (?:is|feels|makes? (?:me|her|him|the patient)))? uncomfortable\b",
+             r"\b(?:ordinary|normal|usual) walking (?:causes?|produces?) discomfort\b")
+    found = next((m for form in forms if (m := re.search(form, t))), None)
+    if not found:
+        return None
+    before = t[max(0, found.start()-25):found.start()]
+    intensity = re.search(r'\b(mild|moderate|severe|marked|slight|extreme)\s*$', before)
+    return {'present': not nlp.is_negated(t, found.group()),
+            'intensity': intensity.group(1) if intensity else None}
+
+
+def _beverage_trigger_parts(text):
+    t = nlp.normalize(text).strip(' .;')
+    m = re.fullmatch(r"(?P<beverage>energy drinks?|coffee|caffeine|alcohol|beer|wine) "
+        r"(?P<uncertain>seems? to |appears? to |may |might |could )?"
+        r"(?P<negative>do not |does not |never |not )?"
+        r"(?:(?:triggers?|causes?) (?:the |my )?(?:episodes?|palpitations|symptoms)|"
+        r"brings? (?:the |my )?(?:episodes?|palpitations|symptoms) on)", t)
+    if not m:
+        return None
+    return {'beverage': m['beverage'].rstrip('s'), 'trigger': not bool(m['negative']),
+            'uncertain': bool(m['uncertain'])}
+
+
+def _beverage_trigger_history(claim, case, ledger):
+    if claim['section'] != 'S' or claim.get('header') not in ('hpi', None):
+        return None
+    text = claim.get('eval_text') or claim['text']
+    target = _beverage_trigger_parts(text)
+    if target is None:
+        return None
+    eligible = []
+    for fact in case.get('facts', []):
+        if fact.get('category') != 'aggravating':
+            continue
+        for ev in ledger.by_kind(evidence.PATIENT):
+            if fact['id'] not in ev['meta'].get('facts_released', []):
+                continue
+            ids = set(fact.get('concepts', {})) & set(ev['meta'].get('concepts', {}))
+            for clause in re.split(r'[.;!?]', ev['text']):
+                actual = _beverage_trigger_parts(clause)
+                if ids and actual and actual['beverage'] == target['beverage']:
+                    eligible.append((actual, ev, ids))
+    matching = next((x for x in eligible if x[0] == target), None)
+    if matching:
+        return {'verdict': 'supported', 'concepts': sorted(matching[2]), 'evidence': [_ev(matching[1])],
+                'explanation': 'The beverage, reported trigger relationship, and degree of certainty match the actual history answer.'}
+    opposite = eligible and all(x[0]['trigger'] != target['trigger'] for x in eligible)
+    return {'verdict': 'contradicts' if opposite else 'unsupported', 'concepts': [],
+            'evidence': [_ev(x[1]) for x in eligible],
+            'explanation': 'The encounter did not establish this beverage-trigger relationship with the documented certainty. Beverage use alone does not establish a trigger.'}
+
+
+def _exclude_nonalcohol_drink_match(text, found):
+    """Drinking water/coffee/energy drinks is not evidence of alcohol use."""
+    t = nlp.normalize(text)
+    nonalcohol = re.search(r"\b(?:energy drinks?|water|coffee|tea|juice|soda|milk)\b", t)
+    alcohol = re.search(r"\b(?:alcohol|etoh|beers?|wine|liquor|spirits?|vodka|whiskey|whisky)\b", t)
+    if nonalcohol and not alcohol:
+        return {cid: hit for cid, hit in found.items()
+                if not ('alcohol' in cid and nlp.normalize(hit.get('surface', '')).strip() in ('drink', 'drinks', 'drinking'))}
+    return found
+
+
 def _semantic_history(text, claim, case, released, ledger):
     if claim['section'] != 'S': return {}, ''
     t=nlp.normalize(text); hits={}; defect=''
@@ -610,6 +704,33 @@ def _semantic_history(text, claim, case, released, ledger):
                 defect='UNSUPPORTED: The documented attribute was not delivered during this encounter.'
             elif cid in released and not valid:
                 defect=reason or 'This attribute does not match the answer obtained in this encounter.'
+    if claim.get('header') in ('hpi', None) and not re.search(r'\b(?:mother|father|sister|brother|wife|husband)\b', t):
+        # A heartbeat description can be concise, but must still name the
+        # symptom. A rapid respiratory rate is not a palpitation description.
+        heartbeat = re.search(r'\b(?:heart(?:beat)?|palpitations|fluttering)\b', t)
+        requested_quality = _heartbeat_quality(t, require_subject=True) if heartbeat else {}
+        requested_walking = _walking_discomfort(t)
+        for f in facts:
+            category = f.get('category')
+            source = next(iter(supports_for(f)), None)
+            if category == 'quality' and requested_quality:
+                # The case may supply a pronoun-based answer; only the actual
+                # delivered quality response can establish its attributes.
+                actual = _heartbeat_quality(source.get('value', '')) if source else {}
+                if source and not actual:
+                    continue
+                # A noncardiac case's quick/sharp pain cannot establish a
+                # separate heartbeat quality that was never asked about.
+                if not re.search(r'heart|palpitat|flutter', nlp.normalize(case.get('patient', {}).get('opening', ''))):
+                    continue
+                valid = bool(source) and all(actual.get(k) == v for k, v in requested_quality.items())
+                register(f, valid, 'The documented heartbeat quality differs from the description actually obtained.')
+            elif category == 'severity' and requested_walking is not None:
+                actual = _walking_discomfort(source.get('value', '')) if source else None
+                if source and actual is None:
+                    continue
+                register(f, bool(source) and actual == requested_walking,
+                         'UNSUPPORTED: The effect on ordinary walking or its added severity qualifier was not established by the reported functional history.')
     # A temporal claim in HPI is bound to onset or episode duration. LMP,
     # medication courses and follow-up intervals are deliberately excluded.
     times=_times(t)
@@ -1137,6 +1258,13 @@ def audit_note(parsed, ledger, case):
             findings.append(rec)
             continue
 
+        beverage_trigger = _beverage_trigger_history(claim, case, ledger)
+        if beverage_trigger:
+            rec.update(beverage_trigger)
+            if rec['verdict'] == 'supported':documented_concepts.update(rec['concepts'])
+            findings.append(rec)
+            continue
+
         social = _literal_social_history(claim, case, ledger)
         if social:
             rec.update(social)
@@ -1209,7 +1337,7 @@ def audit_note(parsed, ledger, case):
             continue
 
         # --- Subjective / Objective: factual claims ----------------------
-        found = nlp.find_concepts(etext, concept_map)
+        found = _exclude_nonalcohol_drink_match(etext, nlp.find_concepts(etext, concept_map))
         if claim.get('header')=='meds' and not re.search(r'\b(?:help\w*|relie\w*|improv\w*|worsen\w*|effective|ineffective)\b',nlp.normalize(etext)):
             med_ids={cid for f in case.get('facts',[]) if f.get('category')=='medications' for cid in f.get('concepts',{})}
             med_surfaces={hit['surface'] for cid,hit in found.items() if cid in med_ids and cid in released}
@@ -1218,6 +1346,16 @@ def audit_note(parsed, ledger, case):
             found={cid:hit for cid,hit in found.items() if cid in released or hit['surface'] not in med_surfaces}
         semantic, semantic_defect = _semantic_history(etext, claim, case, released, ledger)
         found.update(semantic)
+        quality_ids = {cid for f in case.get('facts', []) if f.get('category') == 'quality'
+                       for cid in f.get('concepts', {})}
+        quality_proven = any(semantic.get(cid, {}).get('semantic_verified') for cid in quality_ids)
+        if quality_proven and 'symptom_palpitations' not in released:
+            duplicate = found.get('symptom_palpitations')
+            # A second alias for the SAME rate/regularity description is not
+            # an additional missing history claim. Preserve the proved quality
+            # concept only; this does not credit an unasked ROS checklist item.
+            if duplicate and re.fullmatch(r'(?:fast|rapid|racing|irregular|uneven|fluttering)(?: (?:and )?(?:fast|rapid|racing|irregular|uneven|fluttering))*', nlp.normalize(duplicate['surface'])):
+                found.pop('symptom_palpitations', None)
         exam_family = nlp.find_concepts(etext, lexicon.EXAM_CLAIM_CONCEPTS)
 
         family = _family_evidence(claim, ledger)
