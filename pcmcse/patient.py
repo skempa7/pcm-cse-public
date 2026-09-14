@@ -39,7 +39,7 @@ import copy
 import random
 import re
 
-from . import allergy_history, dialogue, lexicon, nlp, reproductive_history
+from . import allergy_history, dialogue, lexicon, nlp, reproductive_history, ros_history
 from . import physexam as _physexam
 
 _ANYTHING_ELSE = [
@@ -1169,6 +1169,7 @@ class PatientEngine:
                     or dialogue.is_clarification_opener(segment)
                     or dialogue.is_backchannel(segment)
                     or dialogue.is_self_narration(segment)
+                    or ros_history.history_transition(segment)
                     or dialogue.read_act(segment)
                     or courtesy_statement(segment))
 
@@ -1201,6 +1202,8 @@ class PatientEngine:
             for example in fact.get('example_questions', []) or []:
                 if nlp.normalize(example).strip(' .?') == asked:
                     return True
+        if ros_history.request(utterance) is not None or ros_history.exam_transition(utterance):
+            return True
         if reproductive_history.protected_question(utterance):
             return True
         if allergy_history.scoped_list(utterance):
@@ -1246,6 +1249,7 @@ class PatientEngine:
         final_context = None
         final_allergy_context = None
         final_reproductive_context = None
+        final_ros_context = None
         # Resolving a segment MARKS things in `state`: the fact is released,
         # the patient's pending question is resolved. When composition is then
         # abandoned (fewer than two segments answered) the whole turn is
@@ -1272,12 +1276,14 @@ class PatientEngine:
                 final_context = sub['context_subject']
                 final_allergy_context = sub.get('allergy_context')
                 final_reproductive_context = sub.get('reproductive_context')
+                final_ros_context = sub.get('ros_context')
                 if sub.get('no_information'):
                     self._remember(segment, seg_text, probe, sub, part)
             elif self._informative(part, sub):
                 final_context = None
                 final_allergy_context = None
                 final_reproductive_context = None
+                final_ros_context = None
             if sub.get('unavailable_topics'):
                 explicit_limits.append((part, sub))
             if self._informative(part, sub):
@@ -1328,7 +1334,7 @@ class PatientEngine:
                 meta['volunteered'] = True
             if sub.get('emotion') and 'emotion' not in meta:
                 meta['emotion'] = sub['emotion']
-            for key in ('context_subject', 'allergy_context', 'reproductive_context'):
+            for key in ('context_subject', 'allergy_context', 'reproductive_context', 'ros_context'):
                 if key in sub:
                     meta[key] = sub[key]
             meta['kind'] = sub.get('kind', 'answer')
@@ -1348,6 +1354,8 @@ class PatientEngine:
                     meta['allergy_context'] = final_allergy_context
                 if final_reproductive_context:
                     meta['reproductive_context'] = final_reproductive_context
+                if final_ros_context:
+                    meta['ros_context'] = final_ros_context
             return dialogue.join_spoken(list(dict.fromkeys(part for part, _ in explicit_limits)))
         # `state` is still pristine here, so the re-run sees the turn as new.
         if len(parts) < 2 and not (len(parts) == 1 and real_asks):
@@ -1383,6 +1391,8 @@ class PatientEngine:
                 meta['allergy_context'] = final_allergy_context
             if final_reproductive_context:
                 meta['reproductive_context'] = final_reproductive_context
+            if final_ros_context:
+                meta['ros_context'] = final_ros_context
         # Some part of the turn was answered, so the turn is not a non-answer.
         # This matters beyond wording: the encounter engine REPLACES a reply
         # flagged no_information, which would throw away the answers above.
@@ -1429,6 +1439,73 @@ class PatientEngine:
             if cue in fid or cue in topic:
                 return {name}
         return set()
+
+    def _ros_presence_reply(self, utterance, state, meta):
+        named = ros_history.named(utterance)
+        text = nlp.normalize(utterance)
+        if named:
+            # Relative history and possible drug mechanisms cannot disclose
+            # the patient's current symptom. Family-specific authored routes
+            # have already had their opportunity before this scope guard.
+            if re.search(r'\b(?:husband|wife|spouse|partner|children|child|son|daughter|mother|father|sister|brother|friend|family)\b', text):
+                meta.update(kind='non_answer', no_information=True, unscripted_topic=True)
+                return 'The case does not provide that symptom history for the other person.'
+            reaction = re.fullmatch(r'do you (?:get|have) (.+) from (\w+)', text.strip(' .?'))
+            if reaction:
+                matches = [f for f in self.facts.values() if f.get('category') == 'allergies'
+                           and re.search(r'\b' + re.escape(reaction[2]) + r'\b', f.get('value', ''), re.I)
+                           and any(re.search(ros_history.TOPICS[t][1], nlp.normalize(f.get('value', ''))) for t in named)]
+                if matches:
+                    return dialogue.join_spoken([self._say(f, state, meta, prefixed=False) for f in matches])
+            if re.search(r'\b(?:medicine|medication|drug)\b.*caus|\b(?:could|can|might|would)\b.*caus', text) or reaction:
+                meta.update(kind='non_answer', no_information=True, unscripted_topic=True)
+                return 'The case does not establish what caused ' + ', '.join(ros_history.TOPICS[t][2] for t in named) + '.'
+            attribute = ros_history.attribute(utterance)
+            if attribute and not _instruction_or_other_person(utterance.replace('causes', '').replace('caused', '')):
+                # A presenting headache keeps its authored HPI; secondary
+                # nausea must not inherit an abdominal-pain timeline.
+                primary = {t for t in named if any(
+                    f.get('category') in ('chief_complaint', 'quality')
+                    and re.search(ros_history.TOPICS[t][1], nlp.normalize(f.get('value', '')))
+                    for f in self.facts.values())}
+                if not primary:
+                    label, categories = attribute
+                    matches = [f for f in self.facts.values() if f.get('category') in categories
+                               and any(re.search(ros_history.TOPICS[t][1], nlp.normalize(f.get('value', ''))) for t in named)]
+                    if matches:
+                        return dialogue.join_spoken([self._say(f, state, meta, prefixed=False) for f in matches])
+                    meta.update(kind='non_answer', no_information=True, unscripted_topic=True,
+                                context_subject='ros', ros_context=named,
+                                unavailable_topics=[label + ' of ' + ros_history.TOPICS[t][2] for t in named])
+                    return 'The case does not provide the ' + label + ' of ' + ', '.join(ros_history.TOPICS[t][2] for t in named) + '.'
+        asked = ros_history.request(utterance)
+        if not asked:
+            # After an explicitly unavailable ROS topic, "How long?" cannot
+            # silently return to a previously discussed complaint's timeline.
+            previous = state.get('ros_context') if state.get('last_subjects') == ['ros'] else None
+            if (previous and not state.get('last_facts') and
+                    re.fullmatch(r'how long(?: has (?:that|it|this) been going on)?|how often|how bad|how severe|when did (?:it|that) start', nlp.normalize(utterance).strip(' .?'))):
+                meta.update(kind='non_answer', no_information=True, unscripted_topic=True,
+                            context_subject='ros', ros_context=previous)
+                return 'The case does not provide those details about ' + ', '.join(ros_history.TOPICS[t][2] for t in previous) + '.'
+            return None
+        selected, missing = [], []
+        for topic in asked:
+            matches = ros_history.select(self.facts.values(), topic)
+            if not matches:
+                missing.append(ros_history.TOPICS[topic][2])
+            for fact in matches:
+                if fact not in selected:
+                    selected.append(fact)
+        meta.update(context_subject='ros', ros_context=asked)
+        parts = [self._say(f, state, meta, prefixed=False) for f in selected]
+        if missing:
+            meta['unavailable_topics'] = missing
+            parts.append('The case does not provide an answer about ' + ', '.join(missing) +
+                         '. This information is unavailable, not a negative finding.')
+        if not selected:
+            meta.update(kind='non_answer', no_information=True, unscripted_topic=True)
+        return dialogue.join_spoken(parts)
 
     def _reproductive_history_reply(self, utterance, state, meta):
         previous = state.get('reproductive_context') if state.get('last_subjects') == ['reproductive_history'] else None
@@ -1859,6 +1936,12 @@ class PatientEngine:
         if route=='diagnostic_uncertainty':
             meta.update(kind='diagnostic_uncertainty',no_information=True)
             return "I do not know what is causing these symptoms. I am here to find out."
+        if ros_history.history_transition(utterance):
+            meta['kind'] = 'transition_ack'
+            return 'Okay.'
+        if ros_history.exam_transition(utterance):
+            meta.update(kind='transition_ack', ips_signal='transition_used')
+            return "Okay. Please explain what you'll do."
         reproductive = self._reproductive_history_reply(utterance, state, meta)
         if reproductive is not None:
             return reproductive
@@ -1907,6 +1990,9 @@ class PatientEngine:
                 return dialogue.join_spoken([self._say(f, state, meta) for f, _ in family[:3]])
             meta.update(kind="non_answer", no_information=True, unscripted_topic=True)
             return "I am not sure about that. I cannot give you a definite answer."
+        ros = self._ros_presence_reply(utterance, state, meta)
+        if ros is not None:
+            return ros
         # Authored single-fact example questions are an explicit disclosure route.
         # Ambiguous shared prompts still use the contextual matcher below.
         exact = [f for f in self.facts.values() if any(nlp.normalize(q).strip(' .?') == text.strip(' .?') for q in f.get('example_questions', []))]
@@ -2193,13 +2279,13 @@ class PatientEngine:
     def _remember(self, utterance, text, state, meta, reply):
         """Keep the topic, so the next short turn has something to resolve to.
 
-        Only turns that actually carried a question become the remembered
-        question: a non-answer or a courtesy is not a topic, and letting one
-        overwrite the topic is what makes "did that help?" lose its referent.
+        Remember answered questions and explicitly recognized ROS topics.
+        A known topic with unavailable details replaces its older referent;
+        unrecognized asides and courtesies keep the existing subject.
         """
-        if reply and not meta.get("no_information"):
+        if reply and (not meta.get("no_information") or meta.get("ros_context")):
             state["last_reply"] = reply
-        if meta.get("facts_released"):
+        if meta.get("facts_released") or meta.get("ros_context"):
             state["last_question"] = text
         elif meta.get("kind") in ("opening", "volunteered"):
             state["last_question"] = text
@@ -2212,9 +2298,8 @@ class PatientEngine:
 
         The subject comes from the facts actually spoken where there are any --
         what she said is a better anchor than what was asked -- and otherwise
-        from the wording of the question. An uninformative turn leaves the
-        previous subject standing rather than clearing it, so an aside between
-        two related questions does not break the thread.
+        from the wording of the question. An unrecognized aside leaves the previous subject standing. Explicitly
+        recognized but unavailable topics replace it to prevent stale replies.
         """
         spoken = list(meta.get('facts_released') or [])
         subjects = set()
@@ -2247,6 +2332,11 @@ class PatientEngine:
             state['last_facts'] = []
         if subjects:
             state['last_subjects'] = sorted(subjects)
+        if meta.get('ros_context'):
+            state['ros_context'] = meta['ros_context']
+            state['last_facts'] = spoken
+        elif subjects and subjects != {'ros'}:
+            state.pop('ros_context', None)
         if meta.get('reproductive_context'):
             state['reproductive_context'] = meta['reproductive_context']
             state['last_facts'] = spoken
@@ -2859,7 +2949,7 @@ class PatientEngine:
         named_symptoms = nlp.find_concepts(utterance, {
             cid: lexicon.CORE_CONCEPTS[cid] for cid in lexicon.DENIABLE_SYMPTOMS
             if cid in lexicon.CORE_CONCEPTS})
-        if named_symptoms:
+        if named_symptoms or ros_history.named(utterance):
             return []
         if self._is_elliptical(utterance) and state.get("last_question"):
             context = utterance + " " + state["last_question"]
@@ -3427,7 +3517,7 @@ class PatientEngine:
         """A turn too short to carry its own topic ("did that help?")."""
         text = nlp.normalize(utterance)
         tokens = text.split()
-        if len(tokens) > 8:
+        if len(tokens) > 8 or ros_history.named(utterance):
             return False
         if set(tokens) & _ANAPHORS:
             return True

@@ -31,7 +31,7 @@ INVARIANTS THIS MODULE MUST NOT BREAK
 """
 import re
 
-from . import nlp, allergy_history, reproductive_history
+from . import nlp, allergy_history, reproductive_history, ros_history
 
 # --------------------------------------------------------------------------
 # Segmentation
@@ -390,6 +390,8 @@ def expand_bare_topic(segment):
     """
     stripped = re.sub(r"^(?:please\s+)|(?:\s+please)$", "",
                       segment.strip(" ?.!,"), flags=re.I)
+    if ros_history.request(stripped) is not None:
+        return segment
     if reproductive_history.request(stripped) is not None:
         return segment
     if allergy_history.request(stripped) is not None:
@@ -519,7 +521,7 @@ def is_bare_followup(text):
     stripped = text.strip()
     if len(stripped.split()) > 7:
         return False
-    if subjects_in(stripped):
+    if subjects_in(stripped) or ros_history.named(stripped):
         return False
     return bool(BARE_FOLLOWUP.match(stripped) or
                 (topics_in(stripped) and not subjects_in(stripped)))
