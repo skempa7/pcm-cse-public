@@ -1606,6 +1606,20 @@
               }
             },
             "complete_fact": true
+          },
+          {
+            "text": "And two children, both normal deliveries.",
+            "concepts": {
+              "obstetric_history": {
+                "polarity": "positive",
+                "value": "And two children, both normal deliveries."
+              }
+            },
+            "complete_fact": false,
+            "history_dimensions": [
+              "pregnancy_history",
+              "deliveries"
+            ]
           }
         ],
         "review_status": "author_statement_contract_checked_not_clinician_approved"

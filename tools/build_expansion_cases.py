@@ -242,6 +242,9 @@ def build_case(s,index):
         q={'fever':'Have you had a fever?','cough':'Have you had a cough?','joint_pain':'Any other joint pain?','weakness':'Have you noticed weakness?','sore_throat':'Have you had a sore throat?'}.get(key,'Have you had '+key.replace('_',' ')+'?')
         facts.append(make_fact('symptom_'+key,'associated' if pos else 'pertinent_negative',key.replace('_',' ').capitalize(),q,a,n,rs,pos))
     if not any(f['category']=='concern' for f in facts):facts.append(make_fact('patient_concern','concern','Concern','What worries you most?','I want to know what is causing this and how to get back to my usual activities.','Wants explanation and return to usual activities.'))
+    # 2026-09-14: preserve focused authored clauses and legacy-snapshot parity.
+    from pcmcse.reproductive_history import scoped_fact
+    facts = [scoped_fact(f) for f in facts]
     assert len({f['id'] for f in facts})==len(facts),cid
     # Authored clinical paraphrases use the existing lexicon; the audit still
     # requires the fact to be delivered and checks polarity, quantities and scope.

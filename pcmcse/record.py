@@ -26,7 +26,7 @@ from __future__ import annotations
 
 import re
 
-from . import evidence, identity_evidence, lexicon, nlp, patient as _patient
+from . import evidence, identity_evidence, lexicon, nlp, patient as _patient, reproductive_history
 
 # Rubric row -> the authored fact categories that belong in it. Categories come
 # from the case library's own `category` vocabulary, so nothing here invents a
@@ -285,6 +285,57 @@ def _direct_denials(case, question, event):
             and spec.get("value") == "denied on direct questioning"]
 
 
+_PARTIAL_HISTORY_LABELS = {
+    "children": "Children", "children_count": "Number of children",
+    "child_age": "Children's ages", "pregnancy_history": "Previous pregnancies",
+    "pregnancy_count": "Number of pregnancies", "deliveries": "Previous deliveries",
+    "parity": "Obstetric history", "losses": "Pregnancy losses",
+    "current_pregnancy": "Pregnancy possibility", "pregnancy_test": "Pregnancy testing",
+}
+
+
+def _approved_partial_entries(definitions, event):
+    """Yield only scoped contract text that was spoken with matching metadata.
+
+    A partial statement can be useful in Notes without conferring the bundled
+    fact ID or checklist credit. Arbitrary delivered_text metadata is not an
+    authoring contract and cannot expose hidden case text here.
+    """
+    meta = event.get("meta") or {}
+    if meta.get("no_information") or meta.get("interrupted"):
+        return
+    claimed = meta.get("concepts") or {}
+    spoken = nlp.normalize(event.get("text", "")).strip()
+    for fid, fact in definitions.items():
+        fact = reproductive_history.scoped_fact(fact)
+        for index, version in enumerate(fact.get("delivery_contract", {}).get("versions", [])):
+            if version.get("complete_fact") is not False:
+                continue
+            text = version.get("text", "").strip()
+            normalized = nlp.normalize(text).strip()
+            if not normalized or not re.search(r"(?<!\w)" + re.escape(normalized) + r"(?!\w)", spoken):
+                continue
+            expected = version.get("concepts") or {"delivered_text_" + fid: {"polarity": "positive"}}
+            if not all(isinstance(claimed.get(cid), dict)
+                       and claimed[cid].get("polarity", "positive") == spec.get("polarity", "positive")
+                       and nlp.normalize(claimed[cid].get("value", "")).strip() == normalized
+                       for cid, spec in expected.items()):
+                continue
+            dimensions = version.get("history_dimensions") or []
+            dimension = next((d for d in dimensions if d in _PARTIAL_HISTORY_LABELS), None)
+            category = ("social" if dimension and dimension.startswith("child") else "obgyn") if dimension else fact.get("category")
+            section = _CATEGORY_SECTION.get(category)
+            if not section:
+                continue
+            shortened = condense(text)
+            yield fid, index, {
+                "section": section, "category": category,
+                "label": _PARTIAL_HISTORY_LABELS.get(dimension, _item_label(fact)),
+                "text": shortened, "text_full": text if shortened != text else "",
+                "reported_negative": _negative({"concepts": expected}),
+            }
+
+
 def summarize(case, events):
     """Project the ledger onto the note's rows. Read-only; never mutates."""
     definitions = {f["id"]: f for f in (case.get("facts") or [])}
@@ -341,6 +392,19 @@ def summarize(case, events):
                 approved = _patient.delivered_fact_metadata(fact, event.get("text", "")) or {}
                 if fid in (approved.get("facts_released") or []):
                     authorised.append(fid)
+            for source_id, version_index, detail in _approved_partial_entries(definitions, event):
+                # A complete delivered statement already subsumes its clauses.
+                if source_id in items or source_id in authorised:
+                    continue
+                partial_id = "partial:%s:%s" % (source_id, version_index)
+                if partial_id in items:
+                    items[partial_id]["seqs"].append(seq)
+                    continue
+                items[partial_id] = dict(
+                    detail, fact_id=partial_id, source_fact_id=source_id, partial=True,
+                    volunteered=bool(meta.get("volunteered")),
+                    uncertain=bool(meta.get("uncertain")), seqs=[seq])
+                order.append(partial_id)
             if not authorised:
                 # An unanswered question is a gap, not a fact. Naming it keeps
                 # "asked and refused" distinct from "never asked" without
@@ -366,6 +430,15 @@ def summarize(case, events):
                         entry["text"] = condense(said)
                         entry["text_full"] = said if entry["text"] != said else ""
                     continue
+                # Once the full statement is obtained, consolidate its earlier
+                # partial rows at their original place without duplicate facts.
+                partial_ids = [pid for pid in order if items[pid].get("source_fact_id") == fid]
+                if partial_ids:
+                    position = order.index(partial_ids[0])
+                    for pid in partial_ids:
+                        order.remove(pid)
+                        del items[pid]
+                    order.insert(position, fid)
                 value = said
                 shortened = condense(value)
                 items[fid] = {
@@ -382,7 +455,8 @@ def summarize(case, events):
                     "uncertain": bool(meta.get("uncertain")),
                     "seqs": [seq],
                 }
-                order.append(fid)
+                if fid not in order:
+                    order.append(fid)
 
         elif kind == evidence.EXAM_FINDING:
             findings.append({

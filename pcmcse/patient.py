@@ -39,7 +39,7 @@ import copy
 import random
 import re
 
-from . import allergy_history, dialogue, lexicon, nlp
+from . import allergy_history, dialogue, lexicon, nlp, reproductive_history
 from . import physexam as _physexam
 
 _ANYTHING_ELSE = [
@@ -739,6 +739,7 @@ def family_scoped(question):
     """
     q=nlp.normalize(question)
     if _FAMILY_NOT_HISTORY.search(q):return False
+    if re.search(r'\b(?:children|kids|sons?|daughters?)\b', q) and re.search(r'allerg|asthma|medical (?:history|conditions)|pregnan|deliveries|miscarri|parity', q):return True
     return bool(_FAMILY_SCOPE.search(q))
 
 
@@ -1200,6 +1201,8 @@ class PatientEngine:
             for example in fact.get('example_questions', []) or []:
                 if nlp.normalize(example).strip(' .?') == asked:
                     return True
+        if reproductive_history.protected_question(utterance):
+            return True
         if allergy_history.scoped_list(utterance):
             return True
         if exact_authored_compound_history(self.case, utterance):
@@ -1242,6 +1245,7 @@ class PatientEngine:
         explicit_limits = []
         final_context = None
         final_allergy_context = None
+        final_reproductive_context = None
         # Resolving a segment MARKS things in `state`: the fact is released,
         # the patient's pending question is resolved. When composition is then
         # abandoned (fewer than two segments answered) the whole turn is
@@ -1267,11 +1271,13 @@ class PatientEngine:
             if sub.get('context_subject'):
                 final_context = sub['context_subject']
                 final_allergy_context = sub.get('allergy_context')
+                final_reproductive_context = sub.get('reproductive_context')
                 if sub.get('no_information'):
                     self._remember(segment, seg_text, probe, sub, part)
             elif self._informative(part, sub):
                 final_context = None
                 final_allergy_context = None
+                final_reproductive_context = None
             if sub.get('unavailable_topics'):
                 explicit_limits.append((part, sub))
             if self._informative(part, sub):
@@ -1322,6 +1328,9 @@ class PatientEngine:
                 meta['volunteered'] = True
             if sub.get('emotion') and 'emotion' not in meta:
                 meta['emotion'] = sub['emotion']
+            for key in ('context_subject', 'allergy_context', 'reproductive_context'):
+                if key in sub:
+                    meta[key] = sub[key]
             meta['kind'] = sub.get('kind', 'answer')
             meta.pop('no_information', None)
             return parts[0]
@@ -1337,6 +1346,8 @@ class PatientEngine:
                 meta['context_subject'] = final_context
                 if final_allergy_context:
                     meta['allergy_context'] = final_allergy_context
+                if final_reproductive_context:
+                    meta['reproductive_context'] = final_reproductive_context
             return dialogue.join_spoken(list(dict.fromkeys(part for part, _ in explicit_limits)))
         # `state` is still pristine here, so the re-run sees the turn as new.
         if len(parts) < 2 and not (len(parts) == 1 and real_asks):
@@ -1370,6 +1381,8 @@ class PatientEngine:
             meta['context_subject'] = final_context
             if final_allergy_context:
                 meta['allergy_context'] = final_allergy_context
+            if final_reproductive_context:
+                meta['reproductive_context'] = final_reproductive_context
         # Some part of the turn was answered, so the turn is not a non-answer.
         # This matters beyond wording: the encounter engine REPLACES a reply
         # flagged no_information, which would throw away the answers above.
@@ -1416,6 +1429,28 @@ class PatientEngine:
             if cue in fid or cue in topic:
                 return {name}
         return set()
+
+    def _reproductive_history_reply(self, utterance, state, meta):
+        previous = state.get('reproductive_context') if state.get('last_subjects') == ['reproductive_history'] else None
+        asked = reproductive_history.request(utterance, previous)
+        if not asked:
+            return None
+        if re.search(r"\b(?:mother|father|wife|husband|partner|sister|brother|friend|roommate)\b", utterance, re.I):
+            return None
+        if re.search(r"\b(?:your|my|her|his|their) (?:children|kids|sons?|daughters?)\b", utterance, re.I) and asked != ['child_age']:
+            return None
+        if re.search(r"\b(?:we|i) (?:should|will|would|can|could|might)|\byou (?:may|might|could) have|^(?:i have|i am pregnant)|not asking|quoted|answer key|[\"“”]", utterance, re.I):
+            return None
+        selected, missing = reproductive_history.select(self.facts.values(), asked)
+        meta.update(context_subject='reproductive_history', reproductive_context=asked)
+        parts = [self._say(f, state, meta, prefixed=False) for f in selected]
+        if missing:
+            meta['unavailable_topics'] = missing
+            parts.append('The case does not specify ' + ', '.join(missing) +
+                         '. This information is unavailable, not a negative finding.')
+        if not selected:
+            meta.update(kind='non_answer', no_information=True, unscripted_topic=True)
+        return dialogue.join_spoken(parts)
 
     def _allergy_history_reply(self, utterance, state, meta):
         if family_scoped(utterance) or re.search(r'\b(?:not asking|do not answer|quote|quoted|hidden findings|answer key)\b|["“”]', utterance, re.I):
@@ -1824,6 +1859,9 @@ class PatientEngine:
         if route=='diagnostic_uncertainty':
             meta.update(kind='diagnostic_uncertainty',no_information=True)
             return "I do not know what is causing these symptoms. I am here to find out."
+        reproductive = self._reproductive_history_reply(utterance, state, meta)
+        if reproductive is not None:
+            return reproductive
         if route=='onset_activity' and not _instruction_or_other_person(utterance):
             # Only a fact the case FLAGGED as the activity answer. Deliberately
             # not every `setting` fact: a case's setting row answers whichever
@@ -2209,6 +2247,11 @@ class PatientEngine:
             state['last_facts'] = []
         if subjects:
             state['last_subjects'] = sorted(subjects)
+        if meta.get('reproductive_context'):
+            state['reproductive_context'] = meta['reproductive_context']
+            state['last_facts'] = spoken
+        elif subjects and subjects != {'reproductive_history'}:
+            state.pop('reproductive_context', None)
         if meta.get('allergy_context'):
             state['allergy_context'] = meta['allergy_context']
             state['last_facts'] = spoken
@@ -2999,8 +3042,14 @@ class PatientEngine:
         honest "I do not have that information", not a different row.
         """
         text = nlp.normalize(utterance)
+        contact_question = bool(re.search(
+            r'\b(?:children|kids|anyone|anybody|people) (?:around you|at home|at work)'
+            r'.*(?:sick|ill|similar symptoms)', text))
         for intent in _SPECIFIC_SETTING_INTENTS:
-            if not any(cue in text for cue in intent["cues"]):
+            if contact_question:
+                if intent["id"] != "exposure_contact":
+                    continue  # "Been sick" here refers to contacts, not the patient.
+            elif not any(cue in text for cue in intent["cues"]):
                 continue
             found = []
             for fact in self.case.get("facts", []):
@@ -3074,7 +3123,7 @@ class PatientEngine:
         text = nlp.normalize(utterance)
         relatives = [f for f in self.facts.values() if f.get("category") == "family"]
         member_patterns = (r"mother|mom|mum", r"father|dad", r"sister", r"brother",
-                           r"grandmother", r"grandfather")
+                           r"grandmother", r"grandfather", r"sons?", r"daughters?", r"children|kids")
         named = [p for p in member_patterns if re.search(r"\b(?:" + p + r")\b", text)]
         if re.search(r"\bparents?\b", text) and not named:
             named = list(member_patterns[:2])
@@ -3402,9 +3451,10 @@ class PatientEngine:
             meta.update(kind='non_answer',no_information=True)
             return 'My earlier wording named a diagnosis that has not been established for this encounter. I do not know what is causing these symptoms.'
         approved=delivered_fact_metadata(fact,line)
-        if approved['facts_released']:
-            if fact['id'] not in state['released']:state['released'].append(fact['id'])
-            state['asked_counts'][fact['id']]=state['asked_counts'].get(fact['id'],0)+1
+        if approved['facts_released'] or approved['concepts']:
+            if approved['facts_released'] and fact['id'] not in state['released']:state['released'].append(fact['id'])
+            if approved['facts_released']:
+                state['asked_counts'][fact['id']]=state['asked_counts'].get(fact['id'],0)+1
             for fid in approved['facts_released']:
                 if fid not in meta['facts_released']:meta['facts_released'].append(fid)
             meta['concepts'].update(approved['concepts'])
@@ -3413,7 +3463,8 @@ class PatientEngine:
             # Actual text remains evidence; old rich metadata is not trusted.
             cid='delivered_text_'+fact['id']
             meta['concepts'][cid]={'polarity':'positive','value':line}
-            meta.setdefault('delivery_limits',[]).append('Legacy statement has no verified atomic contract: '+fact['id'])
+            if not any(nlp.normalize(v.get('text', '')) == nlp.normalize(line) for v in fact.get('delivery_contract', {}).get('versions', [])):
+                meta.setdefault('delivery_limits',[]).append('Legacy statement has no verified atomic contract: '+fact['id'])
         if repeat and prefixed:
             prefix=self.rng.choice(_REPEAT_PREFIXES)
             if prefix:line=prefix+_lower_first(line)

@@ -31,7 +31,7 @@ INVARIANTS THIS MODULE MUST NOT BREAK
 """
 import re
 
-from . import nlp, allergy_history
+from . import nlp, allergy_history, reproductive_history
 
 # --------------------------------------------------------------------------
 # Segmentation
@@ -390,6 +390,8 @@ def expand_bare_topic(segment):
     """
     stripped = re.sub(r"^(?:please\s+)|(?:\s+please)$", "",
                       segment.strip(" ?.!,"), flags=re.I)
+    if reproductive_history.request(stripped) is not None:
+        return segment
     if allergy_history.request(stripped) is not None:
         return segment  # Food/drug/environmental modifiers are essential.
     words = re.findall(r"[a-z]+", stripped.lower())
