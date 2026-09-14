@@ -39,7 +39,7 @@ import copy
 import random
 import re
 
-from . import dialogue, lexicon, nlp
+from . import allergy_history, dialogue, lexicon, nlp
 from . import physexam as _physexam
 
 _ANYTHING_ELSE = [
@@ -1110,7 +1110,7 @@ class PatientEngine:
         # set no_information deliberately -- a diagnostic-certainty challenge,
         # an unscripted topic -- and re-running those with a repaired copy
         # would replace a correct refusal with an unrelated clinical fact.
-        if meta.get("kind") == "non_answer" and not meta.get("facts_released"):
+        if meta.get("kind") == "non_answer" and not meta.get("facts_released") and not meta.get("unscripted_topic"):
             repaired = dialogue.repair_typos(text, self._question_vocabulary())
             if repaired != text:
                 retry = {"facts_released": [], "concepts": {}, "volunteered": False,
@@ -1200,6 +1200,8 @@ class PatientEngine:
             for example in fact.get('example_questions', []) or []:
                 if nlp.normalize(example).strip(' .?') == asked:
                     return True
+        if allergy_history.scoped_list(utterance):
+            return True
         if exact_authored_compound_history(self.case, utterance):
             return True
         if examination_consent_request(text):
@@ -1239,6 +1241,7 @@ class PatientEngine:
         spoken_ids, parts, subs, unanswered, declined = set(), [], [], [], []
         explicit_limits = []
         final_context = None
+        final_allergy_context = None
         # Resolving a segment MARKS things in `state`: the fact is released,
         # the patient's pending question is resolved. When composition is then
         # abandoned (fewer than two segments answered) the whole turn is
@@ -1263,10 +1266,12 @@ class PatientEngine:
                 continue
             if sub.get('context_subject'):
                 final_context = sub['context_subject']
+                final_allergy_context = sub.get('allergy_context')
                 if sub.get('no_information'):
                     self._remember(segment, seg_text, probe, sub, part)
             elif self._informative(part, sub):
                 final_context = None
+                final_allergy_context = None
             if sub.get('unavailable_topics'):
                 explicit_limits.append((part, sub))
             if self._informative(part, sub):
@@ -1330,6 +1335,8 @@ class PatientEngine:
                             for topic in sub.get('unavailable_topics', []))))
             if final_context:
                 meta['context_subject'] = final_context
+                if final_allergy_context:
+                    meta['allergy_context'] = final_allergy_context
             return dialogue.join_spoken(list(dict.fromkeys(part for part, _ in explicit_limits)))
         # `state` is still pristine here, so the re-run sees the turn as new.
         if len(parts) < 2 and not (len(parts) == 1 and real_asks):
@@ -1361,6 +1368,8 @@ class PatientEngine:
         meta['composed_asks'] = len(parts)
         if final_context:
             meta['context_subject'] = final_context
+            if final_allergy_context:
+                meta['allergy_context'] = final_allergy_context
         # Some part of the turn was answered, so the turn is not a non-answer.
         # This matters beyond wording: the encounter engine REPLACES a reply
         # flagged no_information, which would throw away the answers above.
@@ -1407,6 +1416,30 @@ class PatientEngine:
             if cue in fid or cue in topic:
                 return {name}
         return set()
+
+    def _allergy_history_reply(self, utterance, state, meta):
+        if family_scoped(utterance) or re.search(r'\b(?:not asking|do not answer|quote|quoted|hidden findings|answer key)\b|["“”]', utterance, re.I):
+            return None
+        previous = state.get('allergy_context') if state.get('last_subjects') == ['allergies'] else None
+        asked = allergy_history.request(utterance, previous)
+        if asked is None:
+            return None
+        if re.search(r'\b(?:husband|wife|spouse|boyfriend|girlfriend|roommate|they|their)\b', utterance, re.I):
+            meta.update(kind='non_answer', no_information=True, unscripted_topic=True)
+            return 'The case does not provide allergy history for that person.'
+        if re.search(r"\b(?:we|i) (?:should|will|would|can|could|might|want to)|\byou (?:may|might|could) have|^(?:i have|i am allergic|my allergies)", utterance, re.I):
+            meta.update(kind='action_narrated', no_information=True)
+            return 'Okay.'
+        selected, missing = allergy_history.select(self.facts.values(), asked)
+        meta.update(context_subject='allergies', allergy_context=asked)
+        parts = [self._say(f, state, meta, prefixed=False) for f in selected]
+        if missing:
+            meta['unavailable_topics'] = missing
+            parts.append('The case does not specify ' + ', '.join(missing) +
+                         '. This information is unavailable, not a negative finding.')
+        if not selected:
+            meta.update(kind='non_answer', no_information=True, unscripted_topic=True)
+        return dialogue.join_spoken(parts)
 
     def _sleep_history_reply(self, utterance, state, meta):
         """Recognize sleep questions without inventing a missing sleep history."""
@@ -1859,6 +1892,10 @@ class PatientEngine:
         if proposal is not None:
             return proposal
 
+        allergy = self._allergy_history_reply(utterance, state, meta)
+        if allergy is not None:
+            return allergy
+
         complete=exact_authored_compound_history(self.case,utterance)
         if complete:return dialogue.join_spoken([self._say(f,state,meta) for f in complete[:3]])
 
@@ -2172,6 +2209,14 @@ class PatientEngine:
             state['last_facts'] = []
         if subjects:
             state['last_subjects'] = sorted(subjects)
+        if meta.get('allergy_context'):
+            state['allergy_context'] = meta['allergy_context']
+            state['last_facts'] = spoken
+        elif subjects == {'allergies'} and spoken:
+            known = set().union(*(allergy_history.fact_scopes(self.facts[fid]) for fid in spoken))
+            state['allergy_context'] = {'scopes': sorted(known), 'targets': []} if known else None
+        elif subjects and subjects != {'allergies'}:
+            state.pop('allergy_context', None)
 
 
     @staticmethod

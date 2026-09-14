@@ -71,7 +71,7 @@ const output=process.env.CSE_TEST_OUTPUT||require('node:os').tmpdir()+'/cse-brow
  await p.waitForFunction(()=>noteSave.state==='saved');const sid=await p.evaluate(()=>S.id);
  await p.reload();await p.locator('#noteS').waitFor({timeout:120000});assert.equal(await p.locator('#noteS').inputValue(),'Patient reports cough starting four days ago.');
  await p.locator('#btnSubmit').click();await p.locator('.confirm-dialog button[value=confirm]').click();await p.waitForFunction(()=>S.phase==='submitted'&&RESULTS?.__for===S.id,{},{timeout:30000});
- assert.equal(await p.evaluate(()=>S.id),sid);assert.equal(await p.evaluate(()=>RESULTS.results.versions.recorded.engine),'4.2.1');await p.screenshot({path:path.join(output,'review-feedback.png'),fullPage:true});
+ assert.equal(await p.evaluate(()=>S.id),sid);assert.equal(await p.evaluate(()=>RESULTS.results.versions.recorded.engine),'4.2.2');await p.screenshot({path:path.join(output,'review-feedback.png'),fullPage:true});
  await p.locator('#btnBrand').click();await p.waitForFunction(()=>document.body.dataset.workspace==='home');
  const resume=p.locator('[data-resume="'+sid+'"]');assert(await resume.count());
  console.log('PASS cancel Home, finish encounter, note save/reload, submit feedback, Home and saved attempt');
