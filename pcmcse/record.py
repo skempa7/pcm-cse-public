@@ -26,12 +26,13 @@ from __future__ import annotations
 
 import re
 
-from . import evidence, lexicon, nlp, patient as _patient
+from . import evidence, identity_evidence, lexicon, nlp, patient as _patient
 
 # Rubric row -> the authored fact categories that belong in it. Categories come
 # from the case library's own `category` vocabulary, so nothing here invents a
 # clinical grouping the cases do not already make.
 SECTIONS = (
+    ("identity",    "subjective", "Patient details",                 ()),
     ("concern",     "subjective", "Chief concern",                  ("chief_complaint",)),
     ("onset",       "hpi",        "Onset / location",               ("onset", "location", "radiation", "setting")),
     ("duration",    "hpi",        "Duration / chronology",          ("timing", "chronology")),
@@ -299,6 +300,23 @@ def summarize(case, events):
         if kind == evidence.STUDENT:
             last_question = event.get("text", "")
         elif kind == evidence.PATIENT:
+            # Identity is obtained dialogue, separate from clinical concepts.
+            # Validate the words actually delivered before showing a detail.
+            for field, detail in identity_evidence.obtained(case, [event]).items():
+                fid = "identity:" + field
+                if fid not in items:
+                    order.append(fid)
+                    items[fid] = {
+                        "fact_id": fid, "section": "identity", "category": "identity",
+                        "label": {"name": "Name", "preferred_name": "Address as",
+                                  "age": "Age", "sex": "Sex"}[field],
+                        "text": (str(detail["value"]) + " years old" if field == "age"
+                                 else str(detail["value"])),
+                        "text_full": event.get("text", ""),
+                        "reported_negative": False, "volunteered": False,
+                        "uncertain": False, "seqs": [],
+                    }
+                items[fid]["seqs"].append(seq)
             for cid in _direct_denials(case, last_question, event):
                 fid = "ros:" + cid
                 if fid not in items:
@@ -391,14 +409,13 @@ def summarize(case, events):
                     "text": text, "seqs": [seq],
                 })
                 continue
-            # The doorway brief is mostly instructions to the student -- what to
-            # perform, how long they have. Only its first line is patient
-            # information, and age and sex are a scored row of the note, so that
-            # line is kept and the procedural remainder is dropped rather than
-            # pasted into the summary the student writes from.
-            identity = _identity_line(text)
-            if identity:
-                chart.append({"label": "Age / sex", "text": identity, "seqs": [seq]})
+            # Posted demographics stay supplied information. Older attempts
+            # may legitimately include age; new ones provide name and sex only.
+            supplied = identity_evidence.obtained(case, [event])
+            if supplied:
+                identity = _identity_line(text) if "age" in supplied else (
+                    str(supplied["name"]["value"]) + ", " + str(supplied["sex"]["value"]) + ".")
+                chart.append({"label": "Patient details", "text": identity, "seqs": [seq]})
 
     sections = {}
     for fid in order:

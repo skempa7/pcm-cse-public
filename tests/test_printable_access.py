@@ -5,7 +5,7 @@ import os
 import tempfile
 import unittest
 from unittest.mock import patch
-from pcmcse import cases, config, db, engine
+from pcmcse import cases, config, db, engine, station_info
 from pcmcse.teaching import printables
 from offline_routes import request
 
@@ -34,8 +34,8 @@ class PrintableAccessTests(unittest.TestCase):
                     before = copy.deepcopy(c)
                     data = printables.doorway(cid, vid)
                     self.assertEqual(set(data), {'case_id','variant_id','variant_label','patient','doorway','title','timeline'})
-                    self.assertEqual(data['patient'], {k:c['patient'][k] for k in ('name','age','sex')})
-                    self.assertEqual(data['doorway'], {k:c['station'].get(k, {} if k=='vitals' else []) for k in ('doorway','vitals','supplied_results')})
+                    self.assertEqual(data['patient'], {k:c['patient'][k] for k in ('name','sex')})
+                    self.assertEqual(data['doorway'], {k:station_info.doorway(c) if k=='doorway' else c['station'].get(k, {} if k=='vitals' else []) for k in ('doorway','vitals','supplied_results')})
                     self.assertEqual(data['timeline'], [])
                     self.assertEqual(c, before)
                     # Mutation of a consumer's safe payload must not alter canonical material.

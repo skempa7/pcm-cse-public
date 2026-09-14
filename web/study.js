@@ -61,7 +61,7 @@ async function choosePrintDocument(l){
  closePrintChoice();
  const dialog=document.createElement('dialog');dialog.id='printDocumentChoice';dialog.className='print-document-choice';
  dialog.setAttribute('aria-labelledby','printChoiceTitle');
- const catalog=(await import(new URL('./partner-print.js?v=9639edf495',location.href))).PRINT_EDITIONS;
+ const catalog=(await import(new URL('./partner-print.js?v=136c87f6e7',location.href))).PRINT_EDITIONS;
  dialog.innerHTML=`<form method="dialog"><h2 id="printChoiceTitle">Print for practice</h2><fieldset><legend>Choose a document</legend>${Object.entries(catalog).map(([id,item])=>`<label><input type="radio" name="edition" value="${id}" ${id==='patient'?'checked':''}><span><b>${esc(item.label)}</b><small>${esc(item.description)}</small></span></label>`).join('')}</fieldset><div class="print-choice-actions"><button class="btn" value="cancel">Cancel</button><button class="btn primary" id="preparePrintDocument" value="prepare">Prepare preview</button></div></form>`;
  document.body.append(dialog);dialog.showModal();
  dialog.addEventListener('close',()=>{const edition=dialog.querySelector('input:checked')?.value,prepare=dialog.returnValue==='prepare';dialog.remove();if(prepare)printLesson(l,edition,previous);else {$('#printLesson')?.focus({preventScroll:true});window.scrollTo(previous.x,previous.y);}},{once:true});
@@ -75,7 +75,7 @@ async function printLesson(l,edition='patient',returnPosition=null){
  let status=$('#printLessonStatus');if(!status){status=document.createElement('p');status.id='printLessonStatus';status.setAttribute('role','status');(button.closest('.reader-top')||button.parentElement).after(status);}
  status.textContent='Preparing the selected document and checking page breaks. Your encounter and writing are unchanged.';
  try{
-  printModule=printModule||await import(new URL('./walkthrough-print.js?v=0f21a52b27',location.href));
+  printModule=printModule||await import(new URL('./walkthrough-print.js?v=c6210e9e66',location.href));
   const prepared=await printModule.prepareWalkthrough(l,{edition});
   if(token!==printTask||location.hash!==route){printModule.clearWalkthroughPrint(prepared.root);return;}
   if(!await verifyCached(true)){printModule.clearWalkthroughPrint(prepared.root);return;}
@@ -150,7 +150,7 @@ async function renderMaterials(route){
   }
   const c=data.cases.find(c=>c.id===cid);if(!c)throw Error('This case could not be found.');
   const result=await api('/api/printables/'+encodeURIComponent(cid)+'?variant='+encodeURIComponent(variant));if(result.error)throw Error(result.error);if(!current())return;
-  const l=result.material,m=await import(new URL('./partner-print.js?v=9639edf495',location.href));if(!current())return;
+  const l=result.material,m=await import(new URL('./partner-print.js?v=136c87f6e7',location.href));if(!current())return;
   const option=id=>`<button type="button" class="material-option" id="material-${id}" data-material="${id}"><b>${esc(m.PRINT_EDITIONS[id].label)}</b><span>${esc(m.PRINT_EDITIONS[id].description)}</span><small>Preview & print →</small></button>`;
   view.innerHTML=`<div class="workbench materials-case"><div class="reader-top"><a href="#cases">← All cases</a><button class="btn" id="materialPractice">Start coached practice</button></div>${heading('Practice documents',esc(c.title),esc(l.patient.name)+' · '+esc(l.patient.age)+' · '+esc(l.patient.sex))}${c.variants.length>1?`<label class="material-variant">Case path<select id="materialVariant">${c.variants.map(v=>`<option value="${esc(v.id)}" ${v.id===variant?'selected':''}>${esc(v.label)}</option>`).join('')}</select></label>`:''}<p>Choose a document to preview or print.</p><section aria-labelledby="studentMaterialsTitle"><h2 id="studentMaterialsTitle">Student materials <span class="material-note">No answers</span></h2><div class="material-options">${['student','doorway','blank'].map(option).join('')}</div></section><section aria-labelledby="answerMaterialsTitle"><h2 id="answerMaterialsTitle">Patient & reference materials <span class="material-note">Contains answers</span></h2><div class="material-options">${['patient','examiner','soap','study'].map(option).join('')}</div><p class="small muted">During a scored attempt, opening these materials requires an explicit change to assisted practice. Your deadline and saved work stay intact.</p></section><p id="printLessonStatus" role="status"></p><details class="material-details"><summary>Demonstration and sources</summary><p><a href="#learn/${esc(cid)}?variant=${esc(variant)}">Read the demonstrated encounter and source references →</a></p></details></div>`;
   if($('#materialVariant'))$('#materialVariant').onchange=e=>location.hash='#cases/'+cid+'?variant='+encodeURIComponent(e.target.value);

@@ -1,7 +1,7 @@
 """Private, evidence-linked written teaching. Never served as a static asset."""
 from pathlib import Path
 import json
-from .. import cases, db, engine, evidence, learning
+from .. import cases, db, engine, evidence, learning, station_info
 ROOT=Path(__file__).parent
 
 def blockers():
@@ -46,6 +46,7 @@ def read(cid,variant='base'):
         current['partner_note'] = build_example_note(resolved, current)
         from .printables import examinations
         current['partner_examinations'] = examinations(resolved, current)
+        current['doorway']['doorway'] = station_info.doorway(resolved)
     return current
 
 def progress():

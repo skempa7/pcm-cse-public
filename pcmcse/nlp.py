@@ -461,6 +461,50 @@ def expand_contractions(text: str) -> str:
     return out
 
 
+# Patient identification has a shared vocabulary: topic segmentation and the
+# reply route must agree, or a preferred-address question gets lost in a
+# compound turn. Match the person being addressed, not a relative, medicine
+# name, postal address, or age at symptom onset. (2026-09-14)
+_PREFERRED_ADDRESS = re.compile(
+    r"\b(?:how (?:do|may|can|could|should|shall|would) (?:i|we) (?:address|call|refer to) you"
+    r"|how (?:do|would) you (?:like|prefer|want) (?:me|us) to (?:address|call|refer to) you"
+    r"|what (?:may|can|could|should|shall) (?:i|we) call you"
+    r"|what (?:do|would) you (?:like|prefer|want) (?:me|us) to call you"
+    r"|what (?:do|would) you (?:like|prefer|want) to be called"
+    r"|what you (?:like|prefer|want) to be called"
+    r"|what (?:would|do) you (?:prefer|like) (?:that )?i call you"
+    r"|what name (?:should|can|may) i (?:use|call you)"
+    r"|how (?:do|would) you (?:like|prefer|want) to be addressed"
+    r"|what name (?:do|would) you (?:go by|prefer|like|use)"
+    r"|(?:your |a )preferred (?:name|form of address)"
+    r"|(?:do you have|is there) (?:a )?name you (?:prefer|go by))\b", re.I)
+_NAME_REQUEST = re.compile(
+    r"\byour (?:(?:full|first|last|given|preferred) )?name\b"
+    r"|\bwho are you\b(?!\s+(?:living|staying|seeing|with|caring|talking|working)\b)"
+    r"|\b(?:who am i speaking (?:with|to)|(?:can|could|would) you introduce yourself)\b", re.I)
+_AGE_REQUEST = re.compile(
+    r"\b(?:how old are you|how old you are|what age are you|your (?:current )?age|name and (?:your )?age)\b"
+    r"(?!\s+(?:when|whenever|at (?:the )?(?:onset|start|time)|if|once)\b)", re.I)
+
+
+def identity_requests(utterance: str) -> dict:
+    """Requested patient identity fields; contains no case data or evidence."""
+    text = normalize(expand_contractions(utterance))
+    preferred_match = _PREFERRED_ADDRESS.search(text)
+    name_match = _NAME_REQUEST.search(text)
+    preferred = bool(preferred_match)
+    name = preferred or bool(name_match) or bool(re.fullmatch(r"(?:full |first |last )?name[ .]*", text))
+    age = bool(_AGE_REQUEST.search(text)) or bool(re.fullmatch(r"age[ .]*", text))
+    # A reference to age alone is not a demographic question, e.g. 'at your
+    # age, do you exercise?' or 'your age when the pain first started'.
+    if age and not re.search(r"how old are you|how old you are|what age are you|name and (?:your )?age", text):
+        age = bool(re.search(r"(?:what is|tell me|confirm|know|ask|have|get|check|verify|and) (?:me )?your (?:current )?age\b", text)
+                   or re.fullmatch(r"(?:your )?age[ .]*", text))
+    return {"name": name, "age": age, "preferred_address": preferred,
+            "name_phrase": name_match.group(0) if name_match and 'preferred' not in name_match.group(0) else '',
+            "preferred_address_phrase": preferred_match.group(0) if preferred_match else ''}
+
+
 def trigger_score(utterance: str, trigger: dict) -> float:
     """Score how well an utterance matches a fact's trigger spec.
 

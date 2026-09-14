@@ -1,4 +1,4 @@
-import {buildPartnerSections, PRINT_EDITIONS} from './partner-print.js?v=9639edf495';
+import {buildPartnerSections, PRINT_EDITIONS} from './partner-print.js?v=136c87f6e7';
 export {PRINT_EDITIONS};
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const assetURL=path=>new URL(path,import.meta.url).href;

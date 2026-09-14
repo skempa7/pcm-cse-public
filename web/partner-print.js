@@ -4,7 +4,7 @@ const p=(x,cls='')=>x?`<p class="${cls}">${esc(x).replaceAll('\n','<br>')}</p>`:
 const block=(html,cls='',id='')=>`<section class="pw-block ${cls}"${id?` data-anchor="${esc(id)}"`:''}>${html}</section>`;
 const heading=(title,id='')=>block(`<h2>${esc(title)}</h2>`,'pw-heading',id);
 const section=(title,blocks,{paper='landscape',kind='reading',startPage=true}={})=>({title,blocks,paper,kind,startPage});
-const cover=(l,label)=>block(`<div class="pw-kicker">${esc(label)}</div><h1>${esc(l.patient.name)}</h1><p class="rp-case">${esc(l.patient.age)} years · ${esc(l.patient.sex)} · ${esc(l.variant_label)}</p>`,'rp-cover');
+const cover=(l,label,showAge=true)=>block(`<div class="pw-kicker">${esc(label)}</div><h1>${esc(l.patient.name)}</h1><p class="rp-case">${showAge && l.patient.age != null ? `${esc(l.patient.age)} years · ` : ''}${esc(l.patient.sex)} · ${esc(l.variant_label)}</p>`,'rp-cover');
 const ref=(id,label)=>`<a class="rp-ref" href="#rp-${esc(id)}" data-page-ref="${esc(id)}">${esc(label)} <span class="rp-page-ref">p. —</span></a>`;
 export const PRINT_EDITIONS={
  doorway:{label:'Doorway information',paper:'portrait',protected:false,description:'Before the encounter. Supplied information only.'},
@@ -17,7 +17,7 @@ export const PRINT_EDITIONS={
 };
 const vitalLabels={T:'Temperature',P:'Pulse',BP:'Blood pressure',R:'Respirations','Pulse Ox':'Oxygen saturation',Ht:'Height',Wt:'Weight'};
 export function doorwaySections(l){return [section('Doorway information',[
- cover(l,'Doorway information'),block((l.doorway.doorway||[]).map(x=>p(x)).join(''),'rp-doorway'),
+ cover(l,'Doorway information',false),block((l.doorway.doorway||[]).map(x=>p(x)).join(''),'rp-doorway'),
  heading('Supplied vital signs'),block(`<dl class="pw-vitals">${Object.entries(l.doorway.vitals||{}).map(([k,v])=>`<div><dt>${esc(vitalLabels[k]||k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>`),
  ...(l.doorway.supplied_results?.length?[heading('Supplied results'),...l.doorway.supplied_results.map(x=>block(`<b>${esc(x.label)}</b>${p(x.value)}`))]:[])
 ],{paper:'portrait',kind:'doorway'})];}

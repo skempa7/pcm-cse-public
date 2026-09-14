@@ -918,10 +918,8 @@ def delivered_fact_metadata(fact, text):
 
 def identity_fields(utterance):
     """Identity requests use supplied demographics, never lexical fact guesses."""
-    text=nlp.normalize(utterance)
-    name=bool(re.search(r"\b(?:your (?:full )?name|what (?:should|can|may) i call you|what would you like me to call you)\b",text))
-    age=bool(re.search(r"\b(?:how old are you|your age|name and age|name and your age)\b",text))
-    return name,age
+    requested = nlp.identity_requests(utterance)
+    return requested['name'], requested['age']
 
 
 def courtesy_statement(utterance):
@@ -1236,7 +1234,7 @@ class PatientEngine:
                 if fid not in meta['facts_released']:
                     meta['facts_released'].append(fid)
             meta['concepts'].update(sub.get('concepts', {}))
-            for key in ('checklist_hits', 'delivery_limits'):
+            for key in ('checklist_hits', 'delivery_limits', 'identity_fields'):
                 if sub.get(key):
                     meta.setdefault(key, []).extend(sub[key])
             if sub.get('volunteered'):
@@ -1261,6 +1259,8 @@ class PatientEngine:
                 meta.setdefault('checklist_hits', []).extend(sub['checklist_hits'])
             if sub.get('delivery_limits'):
                 meta.setdefault('delivery_limits', []).extend(sub['delivery_limits'])
+            if sub.get('identity_fields'):
+                meta.setdefault('identity_fields', []).extend(field for field in sub['identity_fields'] if field not in meta.get('identity_fields', []))
             if sub.get('volunteered'):
                 meta['volunteered'] = True
             if sub.get('emotion') and 'emotion' not in meta:
@@ -1581,8 +1581,20 @@ class PatientEngine:
             pat=self.case['patient']
             meta['kind']='identity_response'
             parts=[]
-            if name:parts.append("My name is %s." % pat['name'])
-            if age:parts.append("I am %s years old." % pat['age'])
+            meta['identity_fields'] = []
+            if name and pat.get('name'):
+                if nlp.identity_requests(utterance)['preferred_address']:
+                    parts.append("You can call me %s." % (pat.get('preferred_name') or pat['name']))
+                else:
+                    parts.append("My name is %s." % pat['name'])
+                meta['identity_fields'].append('preferred_name' if nlp.identity_requests(utterance)['preferred_address'] and pat.get('preferred_name') and pat['preferred_name'] != pat['name'] else 'name')
+            if age and isinstance(pat.get('age'), int) and not isinstance(pat['age'], bool):
+                parts.append("I am %s years old." % pat['age'])
+                meta['identity_fields'].append('age')
+            if (name and not pat.get('name')) or (age and 'age' not in meta['identity_fields']):
+                parts.append("That detail is not provided for this patient.")
+                if not meta['identity_fields']:
+                    meta.update(kind='non_answer', no_information=True, unscripted_topic=True)
             return dialogue.join_spoken(parts)
         if route=='introduction':
             meta['kind']='introduction_response'

@@ -499,12 +499,19 @@ def topics_in(text):
     if not text:
         return []
     found = []
+    identity = nlp.identity_requests(text)
     for name, patterns in _TOPIC_RES.items():
+        if name in ('name', 'age') and not identity[name]:
+            continue
         position = None
+        if name == 'name' and identity['preferred_address']:
+            position = 0
         for pattern in patterns:
             match = pattern.search(text)
             if match and (position is None or match.start() < position):
                 position = match.start()
+        if position is None and name in ('name', 'age') and identity[name]:
+            position = 0
         if position is not None:
             found.append((position, name))
     return [name for _, name in sorted(found)]
@@ -910,6 +917,47 @@ _ABBREVIATION = re.compile(
     r"\b(?:dr|mr|mrs|ms|prof|st|sr|jr|approx|vs|etc|e\.g|i\.e)\.", re.I)
 
 
+def _identity_topic_list(utterance):
+    """A polite request for 'name, age, and reason for visit' is three asks.
+
+    Limit this to recognized short noun phrases and require identity content;
+    descriptor lists and authored clinical questions keep their existing path.
+    """
+    # Use punctuation from the original input: normalization removes commas.
+    raw = nlp.expand_contractions(utterance).lower()
+    raw = re.sub(r"^(?:please )?(?:(?:can|could|would|will) you (?:please )?(?:tell me|confirm|give me)|(?:may|can|could) i (?:ask|have|get|confirm)|tell me|confirm|what (?:is|are))\s+", '', raw)
+    items = [re.sub(r"^(?:your|the)\s+", '', item.strip(' ?.')) for item in re.split(r",\s*(?:and\s+)?|\s+and\s+", raw)]
+    names = {'name':'name', 'full name':'name', 'age':'age', 'current age':'age', 'reason for visit':'chief_complaint',
+             'reason for your visit':'chief_complaint', 'chief complaint':'chief_complaint',
+             'medications':'medications', 'medicines':'medications', 'allergies':'allergies',
+             'occupation':'occupation', 'job':'occupation'}
+    if not 2 <= len(items) <= 5 or any(item not in names for item in items):
+        return None
+    topics = list(dict.fromkeys(names[item] for item in items))
+    if not set(topics) & {'name', 'age'}:
+        return None
+    return [TOPIC_QUESTION[topic] for topic in topics]
+
+
+def _split_after_identity(utterance):
+    """Speech often omits punctuation between identity and another question.
+
+    Split only a fresh interrogative following a recognized identity request;
+    do not infer missing clinical nouns or tear apart age-at-onset questions.
+    """
+    boundary = re.compile(r"\s+(?=(?:what|when|where|why|how|who|which)\s+"
+                          r"(?:is|are|was|were|do|does|did|can|could|may|should|would|will|have|has|brings?|brought|old|long|bad|severe)\b)", re.I)
+    parts, start = [], 0
+    for match in boundary.finditer(utterance):
+        prefix = utterance[start:match.start()].strip()
+        requested = nlp.identity_requests(prefix)
+        if requested['name'] or requested['age']:
+            parts.append(prefix)
+            start = match.end()
+    parts.append(utterance[start:].strip())
+    return parts
+
+
 def segment(utterance):
     """Split a turn into the separate things it asks, in the order asked.
 
@@ -929,11 +977,11 @@ def segment(utterance):
     # Lee. What brought you in?" used to split into "...with Dr", "Lee" and the
     # question, and the stray fragment cost the turn its opening.
     utterance = _ABBREVIATION.sub(lambda m: m.group(0)[:-1] + "\u2024", utterance)
-    group = _shorthand_group(utterance)
+    group = _shorthand_group(utterance) or _identity_topic_list(utterance)
     if group:
         return group
     raw = [_clean(p).replace("\u2024", ".") for p in _NEW_ASK.split(utterance)]
-    parts = [p for p in raw if p]
+    parts = [piece for p in raw if p for piece in _split_after_identity(p)]
     if not parts:
         return [utterance]
 

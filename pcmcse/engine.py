@@ -14,7 +14,7 @@ import json
 import re
 
 from . import audit as audit_mod
-from . import record
+from . import record, station_info
 from . import cases, checklist, config, db, evidence, feedback, grader, ips
 from . import note as note_mod
 from . import intent as intent_mod
@@ -208,6 +208,20 @@ def _courtesy_hits(text):
         credited = False
         for sentence in (sentences or [text or ""]):
             normalized_sentence = nlp.normalize(nlp.expand_contractions(sentence))
+            if c['id'] == 'confirm_name' and _courtesy_components(c, normalized_sentence):
+                credited = True
+                break
+            # A spoken introduction can share a sentence with an identity
+            # question. The explicit first-person role declaration still
+            # happened, including the ordinary spoken/written "student Dr".
+            if c['id'] == 'introduce':
+                declaration = re.match(
+                    r"^(?:(?:hello|hi|hey|good morning|good afternoon|good evening)[ .,!]* )?"
+                    r"i am (?:a |your )?(?:student (?:dr\.?|doctor)|medical student)\b",
+                    normalized_sentence)
+                if declaration and not intent_mod.courtesy_is_negated(sentence, declaration.group(0)):
+                    credited = True
+                    break
             for trig in c["triggers"]:
                 normalized = nlp.normalize(nlp.expand_contractions(trig))
                 pos = normalized_sentence.find(normalized)
@@ -248,6 +262,12 @@ def _courtesy_components(entry, normalized):
                 if not intent_mod.courtesy_is_negated(normalized, trigger):
                     hit.append(name)
                 break
+    if entry.get('id') == 'confirm_name':
+        requested = nlp.identity_requests(normalized)
+        for component in ('name', 'preferred_address'):
+            phrase = requested[component + '_phrase']
+            if phrase and component not in hit and not intent_mod.courtesy_is_negated(normalized, phrase):
+                hit.append(component)
     return hit
 
 
@@ -367,7 +387,7 @@ class Session:
                         phase="encounter", meta={"event": "phase_start"})
         # Authorized station information enters the record as evidence.
         self.ledger.add(evidence.STATION_INFO,
-                        " ".join(self.case["station"]["doorway"]), t_ms=0,
+                        " ".join(station_info.doorway(self.case)), t_ms=0,
                         phase="encounter", meta={"doorway": True})
         vitals = self.case["station"]["vitals"]
         self.ledger.add(
@@ -1304,7 +1324,7 @@ def state_payload(s):
     }
     if row["phase"] == "briefing":
         payload["station"] = {
-            "doorway": s.case["station"]["doorway"],
+            "doorway": station_info.doorway(s.case),
             "vitals": dict(s.case["station"]["vitals"]),
             "vitals_source": "Supplied doorway information",
             "hidden_label": s.case.get("hidden_label", "Station"),
@@ -1315,7 +1335,7 @@ def state_payload(s):
             "supplied_results": [
                 {"label": r["label"], "value": r["value"]}
                 for r in s.case["station"].get("supplied_results", [])],
-            "doorway": s.case["station"]["doorway"],
+            "doorway": station_info.doorway(s.case),
         }
     if row["phase"] == "encounter":
         payload["exam_catalog"] = physexam.catalog_for_ui()

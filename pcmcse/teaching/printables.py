@@ -4,7 +4,7 @@ The allowlist is intentional: no clinical facts, findings, notes, or hidden
 patient biography cross this route. Answer editions keep the teaching guard.
 """
 from copy import deepcopy
-from .. import cases, physexam
+from .. import cases, physexam, station_info
 
 
 def index():
@@ -18,8 +18,8 @@ def doorway(case_id, variant='base'):
     labels = {v['id']: v.get('label', v['id']) for v in cases.get(case_id).get('variants', [])}
     return {'case_id': case_id, 'variant_id': variant,
             'variant_label': labels.get(variant, 'Core presentation'),
-            'patient': {k: case['patient'][k] for k in ('name', 'age', 'sex')},
-            'doorway': {k: deepcopy(case['station'].get(k, [] if k != 'vitals' else {}))
+            'patient': {k: case['patient'][k] for k in ('name', 'sex')},
+            'doorway': {k: (station_info.doorway(case) if k == 'doorway' else deepcopy(case['station'].get(k, [] if k != 'vitals' else {})))
                         for k in ('doorway', 'vitals', 'supplied_results')},
             'title': case['title'], 'timeline': []}
 

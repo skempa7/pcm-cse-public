@@ -15,7 +15,7 @@ from __future__ import annotations
 
 import re
 
-from . import config, lexicon, nlp, differential_supplements
+from . import config, lexicon, nlp, differential_supplements, identity_evidence
 from . import claims as claims_mod
 
 SUBJECTIVE_ROWS = [
@@ -212,7 +212,7 @@ def grade(parsed, ledger, case, audit_result, settings=None):
     supported = _supported_index(audit_result)
     problems = _problem_index(audit_result)
 
-    rows += _grade_subjective(parsed, case, supported, problems, scoring)
+    rows += _grade_subjective(parsed, case, supported, problems, scoring, ledger)
     rows += _grade_objective(parsed, ledger, case, supported, problems, scoring)
     a_rows, a_meta = _grade_assessment(parsed, case, scoring)
     rows += a_rows
@@ -313,7 +313,7 @@ def _block_problem(problems, section, header):
 # Subjective
 # ---------------------------------------------------------------------------
 
-def _grade_subjective(parsed, case, supported, problems, scoring):
+def _grade_subjective(parsed, case, supported, problems, scoring, ledger):
     rows = []
     headers = parsed.s_headers_present()
     header_ok = bool(headers)
@@ -329,7 +329,7 @@ def _grade_subjective(parsed, case, supported, problems, scoring):
             continue
 
         if rid == "age_sex":
-            _row_age_sex(row, parsed, case)
+            _row_age_sex(row, parsed, case, ledger)
         elif rid == "cc_clear":
             _row_cc(row, parsed, case, headers)
         elif rid == "ros":
@@ -430,7 +430,7 @@ def _demographic_candidates(text):
     return [(age, sex, passage) for _, age, sex, passage in out]
 
 
-def _row_age_sex(row, parsed, case):
+def _row_age_sex(row, parsed, case, ledger):
     candidates = _demographic_candidates(parsed.s_text)
     want_age = case["patient"]["age"]
     want_sex = case["patient"]["sex"].lower()
@@ -443,7 +443,12 @@ def _row_age_sex(row, parsed, case):
             condition=condition)
     for age, sex, passage in candidates:
         if age == want_age and sex == want_sex:
-            return row.award("Age and sex documented accurately.", passage=passage)
+            sources = identity_evidence.matching_events({"age": age, "sex": sex}, case, ledger)
+            if not sources:
+                return row.deny("Age and sex must be obtained before they are documented. Ask the patient for their age; do not infer it from appearance or the hidden case.",
+                                passage=passage, condition=condition)
+            return row.award("Age and sex documented accurately from obtained information.", passage=passage,
+                             evidence=[{"seq": ev["seq"], "kind": ev["kind"], "text": ev["text"]} for ev in sources])
     # Nothing documented both correctly; explain the most complete attempt.
     age, sex, passage = next((c for c in candidates if c[1]), candidates[0])
     if not sex:

@@ -166,6 +166,12 @@ def create_session(case_id, preset, interaction_mode, assisted, settings,
     if case is None:
         from . import cases
         case = cases.resolve(case_id)
+    # Age is obtained during the interview in new attempts. Freeze the new
+    # doorway contract without changing authored demographics or older saves.
+    from . import station_info
+    import copy
+    case = copy.deepcopy(case)
+    case["station"]["doorway"] = station_info.doorway(case)
     # New practice presets freeze their actual timing in the posted brief and
     # supplied encounter record. Never rewrite a historical snapshot or ledger.
     if preset in ("guided_untimed", "coached_untimed", "independent_extended"):

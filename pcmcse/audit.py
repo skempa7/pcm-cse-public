@@ -30,7 +30,7 @@ from . import evidence
 
 from . import claims as claims_mod
 from . import lexicon, nlp, physexam
-from . import vital_evidence, opening_evidence
+from . import vital_evidence, opening_evidence, identity_evidence
 from . import scoped_claims
 
 # Claims that assert a discussion took place.
@@ -930,8 +930,8 @@ def _opening_spoken(claim,ledger):
                 'explanation':'The patient volunteered this in her opening statement: \u201c'+quote+'\u201d'}
     return None
 
-def _opening_summary_target(claim,ledger):
-    """Strip only a demographic introduction verified by the actual doorway."""
+def _opening_summary_target(claim,ledger,case=None):
+    """Strip only a demographic introduction supported by delivered identity."""
     text=claim.get('eval_text') or claim['text']
     prefix=re.match(r'^(?:([A-Za-z]+(?: [A-Za-z]+){1,3})(?: is a |,\s*))?(\d{1,3})[- ]year[- ]old (woman|female|man|male),?\s+(?:(?:who )?(?:reports|is reporting)|reporting|with|who(?= feels?\b))\s+',text,re.I)
     if not prefix:
@@ -940,10 +940,15 @@ def _opening_summary_target(claim,ledger):
     canonical=lambda x:re.sub(r'\s+',' ',nlp.normalize(x).replace('-',' ')).strip()
     expected=canonical((name+' ' if name else '')+age+' year old '+sex)
     sources=[ev for ev in ledger.by_kind(evidence.STATION_INFO) if ev.get('meta',{}).get('doorway') and re.search(r'(?<![a-z0-9])'+re.escape(expected)+r'(?![a-z0-9])',canonical(ev['text']))]
-    return (text[prefix.end():],sources[:1]) if sources else (text,[])
+    if case is not None:
+        fields = {"age": int(age), "sex": sex}
+        if name:
+            fields["name"] = name
+        sources = identity_evidence.matching_events(fields, case, ledger)
+    return (text[prefix.end():],sources) if sources else (text,[])
 
 
-def _opening_paraphrase(claim,ledger,concept_map):
+def _opening_paraphrase(claim,ledger,concept_map,case=None):
     if claim['section']!='S':return None
     # The opening is the chief complaint and the history it opens. It is not a
     # family history, a medication list or a social history, and its concept
@@ -956,12 +961,12 @@ def _opening_paraphrase(claim,ledger,concept_map):
     target=norm(claim.get('eval_text') or claim['text'])
     for ev in ledger.by_kind(evidence.PATIENT):
         if ev['meta'].get('kind')!='opening':continue
-        summary_text, demographic_sources = _opening_summary_target(claim,ledger)
+        summary_text, demographic_sources = _opening_summary_target(claim,ledger,case)
         for mapping in opening_evidence.PARAPHRASES:
             if claim.get('header') in ('cc','hpi',None) and norm(ev['text'])==norm(mapping['source']) and any(opening_evidence.summary_text(summary_text)==opening_evidence.summary_text(example) for example in mapping['summaries']):
                 return {'verdict':'supported','concepts':[cid for cid in ev['meta'].get('concepts',{}) if cid in ('opening_complaint','opening_delivered_text')] or ['opening_delivered_summary'],'evidence':[_ev(e) for e in demographic_sources]+[_ev(ev)],'explanation':'This symptom summary matches the actual spoken opening. It supplies only opening evidence, not an unasked detailed history or a confirmed diagnosis.'}
         if claim.get('header') in ('cc','hpi',None):
-            summary_text, demographic_sources = _opening_summary_target(claim,ledger)
+            summary_text, demographic_sources = _opening_summary_target(claim,ledger,case)
             summary = _opening_complaint_summary(summary_text)
             actual = _opening_complaint_summary(ev['text'])
             if summary and actual and summary['location'] == actual['location'] \
@@ -1075,6 +1080,13 @@ def audit_note(parsed, ledger, case):
             "explanation": "",
         }
 
+        identity = identity_evidence.demographic_claim(claim, case, ledger)
+        if identity:
+            identity["evidence"] = [_ev(ev) for ev in identity.pop("events")]
+            rec.update(identity)
+            findings.append(rec)
+            continue
+
         # Completed results are factual in every section, including mixed Plan
         # paragraphs with counseling or legitimate future actions.
         result_text = text
@@ -1131,7 +1143,7 @@ def audit_note(parsed, ledger, case):
             findings.append(rec)
             continue
 
-        scoped = scoped_claims.evaluate(claim,case,ledger,_opening_summary_target)
+        scoped = scoped_claims.evaluate(claim,case,ledger,lambda c,l: _opening_summary_target(c,l,case))
         # A bounded parser may not understand a literal qualitative reflex
         # finding. Preserve its safeguards for unknown modifiers, but let an
         # exact delivered clause reach the existing verbatim proof below.
@@ -1246,7 +1258,7 @@ def audit_note(parsed, ledger, case):
             findings.append(rec)
             continue
 
-        opening = _opening_paraphrase(claim,ledger,concept_map)
+        opening = _opening_paraphrase(claim,ledger,concept_map,case)
         if opening:
             rec.update(opening);documented_concepts.update(rec['concepts'])
             findings.append(rec);continue
