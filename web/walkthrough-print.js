@@ -127,7 +127,7 @@ async function decodeImages(root){
  const images=[...root.querySelectorAll('img')];
  const failures=[];
  await Promise.all(images.map(async img=>{try{await img.decode();if(!img.naturalWidth)throw Error();}catch{failures.push(img.getAttribute('src'));}}));
- if(failures.length)throw Error('A walkthrough image could not load. Reconnect and try Print walkthrough again.');
+ if(failures.length)throw Error('A walkthrough image could not load. Reconnect and try Print case documents again.');
 }
 function paginate(root,l,sections,edition){
  const report={edition,case_id:l.case_id,variant_id:l.variant_id,pages:0,turns:l.timeline.length,oversized:[],images:0,sections:[],evidence_strategy:'Actor facts are separate from obtained evidence. Revised note references identify demonstrated topics and exact examinations; they are not automatic semantic verification.'};

@@ -47,7 +47,7 @@ function closePrintedLesson(){
  if(previous?.route===location.hash){document.querySelector('#printLesson')?.focus({preventScroll:true});window.scrollTo(previous.x,previous.y);}
 }
 window.addEventListener('beforeprint',()=>{
- if(!approvedPrint||!document.body.hasAttribute('data-walkthrough-preview'))coverSolutions('Use Print walkthrough to verify solution access before printing.');
+ if(!approvedPrint||!document.body.hasAttribute('data-walkthrough-preview'))coverSolutions('Use Print case documents to verify solution access before printing.');
  else printDialogOpen=true;
 });
 window.addEventListener('afterprint',()=>{closePrintedLesson();verifyCached(true);});
@@ -76,7 +76,7 @@ async function printLesson(l,edition='patient',returnPosition=null){
  let status=$('#printLessonStatus');if(!status){status=document.createElement('p');status.id='printLessonStatus';status.setAttribute('role','status');button.closest('.reader-top').after(status);}
  status.textContent='Preparing the selected document and checking page breaks. Your encounter and writing are unchanged.';
  try{
-  printModule=printModule||await import(new URL('./walkthrough-print.js?v=a445d7d1ba',location.href));
+  printModule=printModule||await import(new URL('./walkthrough-print.js?v=b9ca5463cd',location.href));
   const prepared=await printModule.prepareWalkthrough(l,{edition});
   if(token!==printTask||location.hash!==route){printModule.clearWalkthroughPrint();return;}
   if(!await verifyCached(true)){printModule.clearWalkthroughPrint();return;}
