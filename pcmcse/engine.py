@@ -884,9 +884,10 @@ class Session:
             self.save()
             return {
                 "kind": "not_simulated", "label": man["label"],
-                "text": ("%s is not available in this simulation: this case "
-                         "does not author a result for it. Nothing was "
-                         "recorded, and no credit was given."
+                "text": ("%s has no finding available in this case. "
+                         "Your attempt was recorded, but it released no "
+                         "finding or examination credit. This does not mean "
+                         "the result is normal or the examination is unnecessary."
                          % man["label"]),
                 "duration_s": duration, "components": list(components),
             }

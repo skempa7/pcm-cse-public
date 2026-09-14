@@ -39,7 +39,7 @@ import copy
 import random
 import re
 
-from . import allergy_history, dialogue, lexicon, nlp, reproductive_history, ros_history
+from . import allergy_history, dialogue, lexicon, nlp, reproductive_history, ros_history, social_history
 from . import physexam as _physexam
 
 _ANYTHING_ELSE = [
@@ -1170,6 +1170,8 @@ class PatientEngine:
                     or dialogue.is_backchannel(segment)
                     or dialogue.is_self_narration(segment)
                     or ros_history.history_transition(segment)
+                    or social_history.handoff_statement(segment)
+                    or social_history.handoff_preface(segment)
                     or dialogue.read_act(segment)
                     or courtesy_statement(segment))
 
@@ -1178,7 +1180,7 @@ class PatientEngine:
         # splitter and fires on any input, so it must not be used as a test.
         if any(c in text for c in _SUMMARY_CUES):
             return True
-        if any(c in text for c in _CLOSURE_CUES):
+        if social_history.closing_invitation(utterance) or social_history.handoff_statement(utterance):
             return True
         # An opening invitation is defined over the WHOLE turn, greeting and
         # self-introduction included: "Hello, my name is Sam. I'm a student
@@ -1231,7 +1233,7 @@ class PatientEngine:
         return bool(sub.get('facts_released') or sub.get('concepts')
                     or sub.get('kind') in ('identity_response', 'opening', 'answer',
                                            'repeat', 'volunteered', 'consent',
-                                           'education_response',
+                                           'education_response', 'handoff_ack', 'closure_response',
                                            # Acknowledging the patient's own
                                            # question is a real contribution
                                            # even though it releases no fact.
@@ -1439,6 +1441,53 @@ class PatientEngine:
             if cue in fid or cue in topic:
                 return {name}
         return set()
+
+    def _diet_history_reply(self, utterance, state, meta):
+        detail = social_history.diet_detail(utterance, state.get('last_subjects') == ['diet'])
+        if not social_history.diet_request(utterance) and not detail:
+            return None
+        meta['context_subject'] = 'diet'
+        if detail:
+            # A general takeout or unrestricted-diet statement does not tell
+            # us what was eaten at a particular meal or for how many years.
+            meta.update(kind='non_answer', no_information=True, unscripted_topic=True,
+                        unavailable_topics=[detail], clear_context_facts=True)
+            return 'The case does not specify ' + detail + '. This information is unavailable.'
+        # Diet facts and the patient's actual meal-habit statements can answer
+        # this question; caffeine alone and eating-related pain cannot.
+        selected = [f for f in self.facts.values() if f.get('history_topic') == 'diet'
+                    or (f.get('category') == 'social' and re.search(
+                        r'\b(?:diet|meals?|takeout|vegetarian|vegan)\b', f.get('value', ''), re.I))]
+        if selected:
+            return dialogue.join_spoken([self._say(f, state, meta, prefixed=False) for f in selected[:2]])
+        meta.update(kind='non_answer', no_information=True, unscripted_topic=True,
+                    unavailable_topics=['usual diet'], clear_context_facts=True)
+        return 'The case does not describe my usual diet or eating habits. This information is unavailable.'
+
+    def _closing_reply(self, state, meta):
+        meta.update(kind='closure_response', ips_signal='closure_invited')
+        meta.pop('no_information', None)
+        voiced = state.setdefault('concerns_voiced', [])
+        already = {nlp.normalize(line).strip(' .?') for line in voiced}
+        for fid in state.get('released', []):
+            fact = self.facts.get(fid, {})
+            already.update(nlp.normalize(line).strip(' .?') for line in
+                           (fact.get('sp_says') or [fact.get('value', '')]))
+        for line in self.case['patient'].get('closing_questions', []) or []:
+            if nlp.normalize(line).strip(' .?') in already:
+                continue
+            voiced.append(line)
+            # Use the existing approved delivery contract when this concern
+            # is also a history fact. A closing invitation earns no extra
+            # focused-history checklist credit by itself.
+            fact = next((f for f in self.facts.values() if line in
+                         (f.get('sp_says') or [f.get('value', '')])), None)
+            if fact:
+                meta['volunteered'] = True
+                self._say(dict(fact, sp_says=[line]), state, meta, credit=False, prefixed=False)
+            self._note_patient_question(line, fact, state)
+            return line
+        return 'Thank you for listening. I do not have anything further to add right now.'
 
     def _ros_presence_reply(self, utterance, state, meta):
         named = ros_history.named(utterance)
@@ -1936,6 +1985,15 @@ class PatientEngine:
         if route=='diagnostic_uncertainty':
             meta.update(kind='diagnostic_uncertainty',no_information=True)
             return "I do not know what is causing these symptoms. I am here to find out."
+        if social_history.handoff_preface(utterance):
+            meta['kind'] = 'transition_ack'
+            return 'Okay.'
+        if social_history.handoff_statement(utterance):
+            meta['kind'] = 'handoff_ack'
+            return 'Okay. Thank you for letting me know. I will wait here.'
+        diet = self._diet_history_reply(utterance, state, meta)
+        if diet is not None:
+            return diet
         if ros_history.history_transition(utterance):
             meta['kind'] = 'transition_ack'
             return 'Okay.'
@@ -2087,16 +2145,7 @@ class PatientEngine:
         if dialogue.is_closing_statement(utterance):
             meta.update(kind='closure_response', ips_signal='closure_invited',
                         no_information=True)
-            concerns = self.case['patient'].get('closing_questions') or []
-            voiced = state.setdefault('concerns_voiced', [])
-            unasked = [c for c in concerns if c not in voiced]
-            if unasked:
-                voiced.append(unasked[0])
-                self._note_patient_question(unasked[0], None, state)
-                return self._join(ack, 'Thank you, doctor. ' + unasked[0])
-            return self._join(ack, self.rng.choice(
-                ['Thank you, doctor.', 'Okay. Thank you for listening.',
-                 'Thank you — I appreciate you explaining it.']))
+            return self._join(ack, self._closing_reply(state, meta))
 
         # 3d. An acknowledgement asks for nothing. Re-reading the last answer
         #     here makes the patient sound as though the student had missed it.
@@ -2283,9 +2332,9 @@ class PatientEngine:
         A known topic with unavailable details replaces its older referent;
         unrecognized asides and courtesies keep the existing subject.
         """
-        if reply and (not meta.get("no_information") or meta.get("ros_context")):
+        if reply and (not meta.get("no_information") or meta.get("ros_context") or meta.get("clear_context_facts")):
             state["last_reply"] = reply
-        if meta.get("facts_released") or meta.get("ros_context"):
+        if meta.get("facts_released") or meta.get("ros_context") or meta.get("clear_context_facts"):
             state["last_question"] = text
         elif meta.get("kind") in ("opening", "volunteered"):
             state["last_question"] = text
@@ -2312,6 +2361,8 @@ class PatientEngine:
         # anchoring subject of their own. `last_subjects` is the narrower
         # anchor used to confine a bare follow-up, so it only changes when a
         # real subject was named.
+        if meta.get('clear_context_facts'):
+            state['last_facts'] = []
         if spoken:
             state['last_facts'] = spoken
             pending = state.get('pending_question')
@@ -2480,16 +2531,8 @@ class PatientEngine:
             meta["ips_signal"] = "summary_offered"
             return self._answer_summary(utterance, state, meta)
 
-        if any(c in text for c in _CLOSURE_CUES):
-            meta["kind"] = "closure_response"
-            meta["ips_signal"] = "closure_invited"
-            concerns = pat.get("closing_questions") or []
-            voiced = state.setdefault("concerns_voiced", [])
-            unasked = [c for c in concerns if c not in voiced]
-            if unasked:
-                voiced.append(unasked[0])
-                return unasked[0]
-            return "No, I think you covered everything. Thank you."
+        if social_history.closing_invitation(utterance):
+            return self._closing_reply(state, meta)
         return None
 
     def _acknowledgement(self, text, state, meta):

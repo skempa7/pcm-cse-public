@@ -391,7 +391,7 @@ function refreshExam(reset=false){if(!active)return;const panel=q('#ewPanelExam'
  // real but secondary, and a 27-tile wall made the core route hard to find.
  const regionsInOrder=[...new Set(list.map(m=>m.region))];
  const core=regionsInOrder.slice(0,3),rest=regionsInOrder.slice(3);
- const groupHtml=region=>'<section class="ew-action-group"><h3>'+E(region)+'</h3><div class="ew-action-grid">'+list.filter(m=>m.region===region).map(m=>'<button type="button" class="ew-action-tile" data-exam-action="'+E(m.actionKey)+'"><span aria-hidden="true">'+({inspect:'\u25c9',auscultate:'\u25d6',palpate:'\u270b',percuss:'\u22ef',special:'\u25c7'}[m.method]||'\u271a')+'</span><b>'+E(m.label)+'</b><small>'+E(m.method)+' \u00b7 ~'+examDuration(m)+'s</small><small class="ew-done-flag" hidden>✓ performed</small>'+(statedTechnique(m)?'<small class="ew-states">'+E(statedTechnique(m))+'</small>':'')+'</button>').join('')+'</div></section>';
+ const groupHtml=region=>'<section class="ew-action-group"><h3>'+E(region)+'</h3><div class="ew-action-grid">'+list.filter(m=>m.region===region).map(m=>'<button type="button" class="ew-action-tile" data-exam-action="'+E(m.actionKey)+'"><span aria-hidden="true">'+({inspect:'\u25c9',auscultate:'\u25d6',palpate:'\u270b',percuss:'\u22ef',special:'\u25c7'}[m.method]||'\u271a')+'</span><b>'+E(m.label)+'</b><small>'+E(m.method)+' \u00b7 ~'+examDuration(m)+'s</small><small class="ew-done-flag" hidden>✓ performed</small><small class="ew-unavailable-flag" hidden>No finding available</small>'+(statedTechnique(m)?'<small class="ew-states">'+E(statedTechnique(m))+'</small>':'')+'</button>').join('')+'</div></section>';
  q('#ewExamBoard',panel).innerHTML=list.length
   ?core.map(groupHtml).join('')
     +(rest.length?'<details class="ew-more-systems"><summary>Other systems ('+rest.length+')</summary>'+rest.map(groupHtml).join('')+'</details>':'')
@@ -426,16 +426,24 @@ function refreshExam(reset=false){if(!active)return;const panel=q('#ewPanelExam'
    the board is open marks its tile without rebuilding (and losing) the list. */
 function paintExamDone(){
  if(!active)return;const panel=q('#ewPanelExam');if(!panel)return;
- const done=performedActions();let n=0;
+ const done=performedActions();let n=0,unavailable=0;
+ // Only reveal a case's missing result AFTER the learner attempts that action.
+ // Keep this in the ledger-backed tile status so it survives filtering, task
+ // switches and reloads, without marking it performed or granting credit.
+ const noFinding=new Set([...(latest?.examination_activity||[]),...(latest?.transcript||[])]
+   .filter(e=>e.kind==='exam_action'&&e.meta?.status==='not_simulated')
+   .map(e=>e.meta.maneuver_id));
  qa('[data-exam-action]',panel).forEach(b=>{
   const m=(active.examList||[]).find(x=>x.actionKey===b.dataset.examAction);
   const was=m?isPerformed(m,done):false;if(was)n++;
+  const missing=!!m&&!was&&noFinding.has(m.id);if(missing)unavailable++;
   b.classList.toggle('is-done',was);
   const flag=q('.ew-done-flag',b);if(flag)flag.hidden=!was;
+  const unavailableFlag=q('.ew-unavailable-flag',b);if(unavailableFlag)unavailableFlag.hidden=!missing;
  });
  const count=q('#manCount',panel);
  if(count)count.textContent=(count.dataset.total||0)+' actions · '+(n?n+' already performed · ':'')
-   +'select an action to perform it';
+   +(unavailable?unavailable+' without findings · ':'')+'select an action to perform it';
 }
 function drawManeuver(){if(!active)return;updateExamStatus();}
 function updateExamStatus(){if(!active)return;const busy=!!(latest?.pending_exam||active.examSending);
@@ -488,7 +496,7 @@ function syncExamOutcome(s){
  const title=meta.label||meta.maneuver_id||'Examination';
  if(rows.length)outcome(title+' — findings',rows.map(e=>e.text).join('\n\n'),true);
  else if(action.kind==='exam_refused')outcome('Examination declined',action.text);
- else if(meta.status==='not_simulated')outcome(title+' — result unavailable','This case has no authored result for this action. The action is recorded, but it provides no finding to document. This does not mean the examination is clinically irrelevant or normal.');
+ else if(meta.status==='not_simulated')outcome(title+' — no finding available','Your attempt is recorded. This case has no finding for this action, so there is nothing to document. It does not mean the result is normal or the examination is unnecessary.');
  else if(meta.status==='interrupted')outcome('Examination interrupted','No findings were released. Check the encounter phase before trying again.');
  else if(meta.status!=='in_progress'){
   const missed=active.lastExamOutcome&&active.lastExamOutcome.label===title
