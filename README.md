@@ -66,3 +66,7 @@ Verification entry points include `python3 -m unittest discover -s tests`, `pyth
 A broad test pass is not clinician validation of every fictional case, clinical explanation or free-text note. Missing authored history cannot safely become a fabricated denial. The symbolic dialogue/grader can still require clarification for unfamiliar wording. Mouth movement, gestures and tissue/cloth behavior are approximate; no soft-tissue resistance, exact contact verification, or internal intimate examination is simulated.
 
 Private course documents and real attempts are excluded. Source titles/locators preserve course provenance without publishing source materials. See [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) and [the supplied-room notice](licenses/SUPPLIED-ROOM.md). The imported room's provenance/redistribution permission remains unverified; attribution is not a substitute for permission, and this application grants no new asset license.
+
+### Partner practice printouts
+
+In Learn, open a case and select **Print case documents**. The default patient script is organized for out-of-order role-play. Examination findings and the example SOAP key can be printed separately; a full study packet keeps the note at the end. See [the partner-print update](PARTNER-PRINT-2026-09-13.md) for source terminology, evidence boundaries, authoring limitations, and verification entry points.

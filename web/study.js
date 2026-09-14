@@ -4,6 +4,8 @@ const $=s=>document.querySelector(s), esc=x=>String(x??'').replace(/[&<>"']/g,c=
 let request=0;
 let accessCheck=0, forcedAccessChecks=0, approvedPrint=false, printDialogOpen=false, tabPaused=false;
 let printModule=null, printTask=0, printReturn=null;
+function closePrintChoice(){document.getElementById('printDocumentChoice')?.close();document.getElementById('printDocumentChoice')?.remove();}
+window.addEventListener('hashchange',closePrintChoice);
 const accessKey='pcmcse.solution-access-change.v1';
 let accessChannel=null;try{accessChannel=new BroadcastChannel(accessKey);}catch{}
 const inLibrary=()=>/^#learn(?:\/|$)/.test(location.hash);
@@ -51,16 +53,31 @@ window.addEventListener('beforeprint',()=>{
 window.addEventListener('afterprint',()=>{closePrintedLesson();verifyCached(true);});
 window.addEventListener('hashchange',closePrintedLesson);
 window.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.hasAttribute('data-walkthrough-preview')){e.preventDefault();closePrintedLesson();}});
-async function printLesson(l){
- const token=++printTask,route=location.hash,button=$('#printLesson'),previous={route,x:window.scrollX,y:window.scrollY};
+async function choosePrintDocument(l){
+ const previous={route:location.hash,x:window.scrollX,y:window.scrollY};
+ if(!await verifyCached(true))return;
+ closePrintChoice();
+ const dialog=document.createElement('dialog');dialog.id='printDocumentChoice';dialog.className='print-document-choice';
+ dialog.setAttribute('aria-labelledby','printChoiceTitle');
+ dialog.innerHTML=`<form method="dialog"><h2 id="printChoiceTitle">Print for practice</h2><p>Keep the patient script and SOAP solution on separate sheets.</p><fieldset><legend>Choose a document</legend>
+ <label><input type="radio" name="edition" value="patient" checked><span><b>Patient role-play script</b><small>Quick history lookup for your partner. No SOAP solution.</small></span></label>
+ <label><input type="radio" name="edition" value="examiner"><span><b>Simulated examination findings</b><small>Release each result only after its examination.</small></span></label>
+ <label><input type="radio" name="edition" value="soap"><span><b>Example SOAP answer key</b><small>Defined example encounter, clinical note, and any case limits.</small></span></label>
+ <label><input type="radio" name="edition" value="study"><span><b>Complete study packet</b><small>All parts, demonstrated encounter, teaching and evidence.</small></span></label></fieldset>
+ <div class="print-choice-actions"><button class="btn" value="cancel">Cancel</button><button class="btn primary" id="preparePrintDocument" value="prepare">Prepare preview</button></div></form>`;
+ document.body.append(dialog);dialog.showModal();
+ dialog.addEventListener('close',()=>{const edition=dialog.querySelector('input:checked')?.value,prepare=dialog.returnValue==='prepare';dialog.remove();if(prepare)printLesson(l,edition,previous);else {$('#printLesson')?.focus({preventScroll:true});window.scrollTo(previous.x,previous.y);}},{once:true});
+}
+async function printLesson(l,edition='patient',returnPosition=null){
+ const token=++printTask,route=location.hash,button=$('#printLesson'),previous=returnPosition||{route,x:window.scrollX,y:window.scrollY};
  if(!await verifyCached(true))return;
  printReturn=previous;
- button.disabled=true;button.textContent='Preparing landscape pages…';
+ button.disabled=true;button.textContent='Preparing print pages…';
  let status=$('#printLessonStatus');if(!status){status=document.createElement('p');status.id='printLessonStatus';status.setAttribute('role','status');button.closest('.reader-top').after(status);}
- status.textContent='Loading local images and checking that every paragraph fits. Your encounter and note are unchanged.';
+ status.textContent='Preparing the selected document and checking page breaks. Your encounter and writing are unchanged.';
  try{
-  printModule=printModule||await import(new URL('./walkthrough-print.js?v=801e31db86',location.href));
-  const prepared=await printModule.prepareWalkthrough(l);
+  printModule=printModule||await import(new URL('./walkthrough-print.js?v=a445d7d1ba',location.href));
+  const prepared=await printModule.prepareWalkthrough(l,{edition});
   if(token!==printTask||location.hash!==route){printModule.clearWalkthroughPrint();return;}
   if(!await verifyCached(true)){printModule.clearWalkthroughPrint();return;}
   const openPreview=()=>{approvedPrint=true;printModule.showWalkthroughPreview({onClose:closePrintedLesson,onPrint:async()=>{
@@ -68,10 +85,10 @@ async function printLesson(l){
    if(token!==printTask||location.hash!==route)return;
    openPreview();printDialogOpen=true;window.print();
   }});};
-  status.textContent=`${prepared.report.pages} landscape sheets prepared. All dialogue, actions and linked example-note evidence are included.`;
+  status.textContent=`${prepared.report.pages} sheets prepared: ${printModule.PRINT_EDITIONS[edition].label}.`;
   openPreview();
  }catch(e){printModule?.clearWalkthroughPrint();approvedPrint=false;status.textContent='Print edition could not be prepared: '+e.message+' Your written lesson and saved work are unchanged.';}
- finally{if(button.isConnected){button.disabled=false;button.textContent='Print walkthrough';}}
+ finally{if(button.isConnected){button.disabled=false;button.textContent='Print case documents';}}
 }
 setInterval(()=>{if(inLibrary()&&!document.hidden)verifyCached();},2000);
 async function api(path,body){const r=await fetch(path,{cache:'no-store',method:body?'POST':'GET',headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined});return r.json();}
@@ -100,7 +117,7 @@ function lesson(l,index){
 const draftKey='pcmcse.written-reflection.'+l.case_id+'.'+l.variant_id;let localDraft=null;
 try{localDraft=JSON.parse(localStorage.getItem(draftKey)||'null');}catch{}
 const variants=index.cases.find(c=>c.id===l.case_id).walkthroughs;const events=new Map(l.ledger.map(e=>[e.seq,e]));const phaseLinks=['doorway','encounter','reasoning','soap','recall'];
-$('#view').innerHTML=`<div class="lesson-reader"><div class="reader-top"><a href="#learn">← All walkthroughs</a><button class="btn sm" id="printLesson">Print walkthrough</button><button class="btn primary sm" id="practiceLesson">Practice this case</button></div>${heading('One defensible approach',esc(l.title),esc(l.patient.name)+' · '+l.patient.age+' · '+esc(l.variant_label))}<div class="reader-meta"><label>Case path<select id="lessonVariant">${variants.map(v=>`<option value="${esc(v.id)}" ${v.id===l.variant_id?'selected':''}>${esc(v.label)}</option>`).join('')}</select></label><p><b>${Math.floor(l.estimated_encounter_s/60)}m ${l.estimated_encounter_s%60}s</b> estimated encounter · <b>${l.note_words} words</b> in the example note<br><small>14-minute encounter / 9-minute SOAP. Deeper explanations are outside the timed example.</small></p></div><nav class="reader-toc" aria-label="Walkthrough sections">${phaseLinks.map(k=>`<button class="btn ghost sm" data-section="${k}">${({doorway:'1 Prepare',encounter:'2 Encounter',reasoning:'3 Reason',soap:'4 Document',recall:'5 Recall'})[k]}</button>`).join('')}</nav>
+$('#view').innerHTML=`<div class="lesson-reader"><div class="reader-top"><a href="#learn">← All walkthroughs</a><button class="btn sm" id="printLesson">Print case documents</button><button class="btn primary sm" id="practiceLesson">Practice this case</button></div>${heading('One defensible approach',esc(l.title),esc(l.patient.name)+' · '+l.patient.age+' · '+esc(l.variant_label))}<div class="reader-meta"><label>Case path<select id="lessonVariant">${variants.map(v=>`<option value="${esc(v.id)}" ${v.id===l.variant_id?'selected':''}>${esc(v.label)}</option>`).join('')}</select></label><p><b>${Math.floor(l.estimated_encounter_s/60)}m ${l.estimated_encounter_s%60}s</b> estimated encounter · <b>${l.note_words} words</b> in the example note<br><small>14-minute encounter / 9-minute SOAP. Deeper explanations are outside the timed example.</small></p></div><nav class="reader-toc" aria-label="Walkthrough sections">${phaseLinks.map(k=>`<button class="btn ghost sm" data-section="${k}">${({doorway:'1 Prepare',encounter:'2 Encounter',reasoning:'3 Reason',soap:'4 Document',recall:'5 Recall'})[k]}</button>`).join('')}</nav>
 <section id="lesson-doorway"><h2>1. At the doorway</h2><div class="doorway-written">${l.doorway.doorway.map(t=>'<p>'+esc(t)+'</p>').join('')}<dl class="written-vitals">${Object.entries(l.doorway.vitals).map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>${(l.doorway.supplied_results||[]).map(x=>'<p>Supplied '+esc(x.label)+': '+esc(x.value)+'</p>').join('')}</div><p class="learning-anchor">${esc(l.plan.anchor)}</p><p>${esc(l.plan.notice)}</p><p>${esc(l.plan.pivot)}</p>${l.variant_id!=='base'?`<aside class="variant-note"><h3>What changes in this variation</h3><p>${esc(l.variant_guidance)}</p>${l.differences.map(d=>`<p><b>${esc(d.topic.replaceAll('_',' '))}:</b> ${esc(d.current)}<br><small>Core case: ${esc(d.base)}</small></p>`).join('')}</aside>`:''}</section>
 <section id="lesson-encounter"><h2>2. An example encounter</h2><p>Read the dialogue and actions in order. This is one defensible approach, with room to adapt to the patient. Expand teaching notes after the first read.</p>${l.plan.urgent?'<div class="clinical-priority">Urgent care takes priority. The example states escalation early; continue nonurgent questions or examinations only if care permits. A real patient should not wait for checklist completion.</div>':''}<details><summary>Timing and simulation assumptions</summary><p>${esc(l.estimate_method)}</p><p>The note requires approximately ${Math.ceil(l.note_words/9)} words per minute over nine minutes; allow additional time for thinking and editing. This is a reference, not a typing target. Virtual actions do not verify touch, force, auscultatory discrimination or full physical technique.</p></details><div class="example-transcript">${l.timeline.map((t,i)=>`<article class="example-turn ${t.kind}" id="turn-${i}"><div class="turn-phase">${esc(t.section)}</div>${t.kind==='dialogue'?`<p><b>Student</b> ${esc(t.student)}</p>${t.patient?`<p><b>Patient</b> ${esc(t.patient)}</p>`:''}`:`<p><b>Action</b> ${esc(t.action)}</p>${t.finding?`<p class="obtained-finding"><b>Finding obtained</b> ${esc(t.finding)}</p>`:''}`}${t.why?`<details><summary>Why this step matters</summary><p>${esc(t.why)}</p></details>`:''}</article>`).join('')}</div></section>
 <section id="lesson-reasoning"><h2>3. Connect the findings to a decision</h2><p>${esc(l.plan.exam)}</p>${l.reasoning.map(r=>`<div class="reasoning-card"><h3>${esc(r.question)}</h3><p>${esc(r.why)}</p><p><b>If present:</b> ${esc(r.if_present)}</p><p><b>If absent:</b> ${esc(r.if_absent)}</p><p><b>Next action:</b> ${esc(r.next_action)}</p></div>`).join('')}<p>Assessment contains clinical inferences. Neither a differential nor its mnemonic category proves the diagnosis. Consider urgent alternatives even when they are less likely.</p><details><summary>Memory tools, expanded and used in context</summary><p><b>FIFE:</b> the syllabus groups Feelings/Fears; Insight/Ideas; Function/Effects; Expectations. At the patient-perspective turn, ask what worries the patient and how symptoms affect daily life. Use what they actually report; an unanswered topic remains unknown.</p><p><b>VINDICATE:</b> a common expansion is Vascular, Infectious, Neoplastic, Degenerative/Deficiency, Iatrogenic/Intoxication, Congenital, Autoimmune, Traumatic, Endocrine/Metabolic. The course requires three different categories; the supplied files do not settle every expansion or diagnosis placement. Organize reasonable alternatives, not implausible diagnoses chosen just to fill letters.</p><p><b>MOTHERR:</b> Medications, Osteopathic treatment, Testing, Humanistic / supportive needs, Education, Referral, Return/follow-up. Consider function, support, and the ability to carry out the plan. The course requires at least three different elements per paired plan. This is a working expansion; see Scoring for its source status. For this case, connect the actual first plan's proposed tests, explanation and disposition; do not add unnecessary treatment to collect letters.</p><p><b>When blank:</b> pause → name your phase → recall its purpose → choose one relevant question or action. This recovery cue is supplementary teaching, not a scored course mnemonic.</p></details><h3>Common traps</h3><p>${esc(l.plan.avoid)}</p><ul>${l.omissions.map(x=>'<li>'+esc(x)+'</li>').join('')}</ul></section>
@@ -109,7 +126,7 @@ $('#view').innerHTML=`<div class="lesson-reader"><div class="reader-top"><a href
 <footer class="lesson-sources"><h2>Sources and review status</h2><p>${esc(l.review_status)}</p><ul>${l.course_sources.map(s=>`<li>${esc(s.label)} — ${esc(s.locator)}</li>`).join('')}${l.sources.map(sourceLine).join('')}</ul></footer></div>`;
 $('#lessonVariant').onchange=e=>location.hash='#learn/'+l.case_id+'?variant='+encodeURIComponent(e.target.value);
 document.querySelectorAll('[data-section]').forEach(b=>b.onclick=async()=>{if(!await verifyCached(true))return;$('#lesson-'+b.dataset.section).scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});} );
-$('#printLesson').onclick=()=>printLesson(l);$('#practiceLesson').onclick=async()=>{const r=await api('/api/session',{case_id:l.case_id,variant_id:l.variant_id,learning_mode:'coached',from_walkthrough:true});if(r.error){alert(r.error);return;}location.hash='#/'+r.id;};
+$('#printLesson').onclick=()=>choosePrintDocument(l);$('#practiceLesson').onclick=async()=>{const r=await api('/api/session',{case_id:l.case_id,variant_id:l.variant_id,learning_mode:'coached',from_walkthrough:true});if(r.error){alert(r.error);return;}location.hash='#/'+r.id;};
 l.recall.forEach((_,i)=>$('#recall-'+i).oninput=()=>{try{localStorage.setItem(draftKey,JSON.stringify(l.recall.map((_,j)=>$('#recall-'+j).value)));$('#recallStatus').textContent='Draft kept in this browser. Save reflection to add it to your learning history.';}catch{$('#recallStatus').textContent='Browser draft storage unavailable. Use Save reflection before leaving.';}});
 $('#saveRecall').onclick=async()=>{try{const r=await api('/api/teaching/progress',{case_id:l.case_id,variant_id:l.variant_id,answers:l.recall.map((_,i)=>$('#recall-'+i).value)});$('#recallStatus').textContent=r.error||r.message;if(r.saved){try{localStorage.removeItem(draftKey);}catch{}}}catch(e){$('#recallStatus').textContent='Could not save. Keep this page open and try again.';}};
 }

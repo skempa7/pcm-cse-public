@@ -1,3 +1,5 @@
+import {buildPartnerSections,PRINT_EDITIONS} from './partner-print.js?v=31bd29f16e';
+export {PRINT_EDITIONS};
 /* A source-preserving print edition. No encounter or grading writes occur here. */
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const para=(text,cls='')=>text?`<p${cls?` class="${cls}"`:''}>${esc(text).replaceAll('\n','<br>')}</p>`:'';
@@ -33,12 +35,12 @@ export function buildPrintSections(l,manifest={},credits=[]){
  const sim=chooseSimulation(l,manifest),imgs=sim?.images||{},caption=sim?.label||'';
  const illustration=(path,text,cls='')=>figure(path,text,cls,manifest.assets?.[path?.split('/').pop()]);
  const photo=(kind,cls='',brief=false)=>illustration(imgs[kind]||imgs.conversation||imgs.examination,brief?(sim?.exact?'Illustrative simulation view.':'Representative patient; not this case.'):caption,cls);
- const header=`<section class="pw-block pw-cover"><div class="pw-kicker">Chat CSE · Written encounter fieldbook</div><h1>${esc(l.title)}</h1><p class="pw-patient">${esc(l.patient.name)} · ${esc(l.patient.age)} · ${esc(l.variant_label)}</p><p>One defensible approach. Adapt the sequence to the patient; deeper explanations are outside the timed example.</p><div class="pw-facts"><span><b>${Math.floor(l.estimated_encounter_s/60)}:${String(l.estimated_encounter_s%60).padStart(2,'0')}</b> estimated encounter</span><span><b>${l.note_words}</b> note words</span><span><b>14 / 9 min</b> course encounter / SOAP</span></div></section>`;
+ const header=`<section class="pw-block pw-cover"><div class="pw-kicker">Chat CSE · Written encounter fieldbook</div><h1>${esc(l.title)}</h1><p class="pw-patient">${esc(l.patient.name)} · ${esc(l.patient.age)} · ${esc(l.variant_label)}</p><p>One defensible approach. Adapt the sequence to the patient; deeper explanations are outside the timed example.</p><div class="pw-facts"><span><b>${Math.floor(l.estimated_encounter_s/60)}:${String(l.estimated_encounter_s%60).padStart(2,'0')}</b> estimated encounter</span><span><b>${l.note_words}</b> note words</span><span><b>14 / 9 min</b> app rehearsal preset</span></div></section>`;
  const doorway=[header,`<section class="pw-block pw-doorway"><h2>01 · Read the doorway</h2>${(l.doorway.doorway||[]).map(x=>para(x)).join('')}<dl class="pw-vitals">${Object.entries(l.doorway.vitals||{}).map(([k,v])=>`<div><dt>${esc(({T:'Temperature',P:'Pulse',BP:'Blood pressure',R:'Respirations','Pulse Ox':'Oxygen saturation',Ht:'Height',Wt:'Weight'})[k]||k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>${(l.doorway.supplied_results||[]).map(x=>label('Supplied '+x.label,x.value)).join('')}<p class="pw-caption">Doorway vitals and supplied results are authorized information. The equipment illustration does not mean the student measured them.</p></section>`,
  `<section class="pw-block">${photo('doorway','pw-wide')}</section>`,
  `<section class="pw-block pw-callout"><h2>Find your starting point</h2>${label('Memory anchor',l.plan.anchor)}${para(l.plan.notice)}${para(l.plan.pivot)}</section>`,
  `<section class="pw-block">${illustration('print-assets/blood-pressure-equipment.jpg','Blood-pressure equipment · CDC, public domain. Equipment illustration; no patient result is shown.','pw-equipment')}<h3>Read the storyboard</h3><p><span class="pw-key pw-student">STUDENT</span> spoken words · <span class="pw-key pw-patient-key">PATIENT</span> an authored response · <span class="pw-key pw-action-key">ACTION</span> physical / virtual action · <span class="pw-key pw-finding-key">FINDING</span> obtained in this example · <span class="pw-key pw-why-key">WHY</span> teaching commentary.</p><p>Read each page down the left column, then down the right. Follow the numbered steps. Pictures orient the scene; only the written findings and linked encounter record supply clinical evidence.</p></section>`,
- `<section class="pw-block"><h3>Timing & simulation limits</h3>${para(l.estimate_method)}<p>The example note requires approximately ${Math.ceil(l.note_words/9)} words per minute over nine minutes; leave time for thinking and editing. This is a reference, not a typing target. Virtual actions do not verify touch, force, auscultatory discrimination or full physical technique.</p><p>Guided and Coached practice are untimed. Independent practice uses 30 / 5 / 20 minutes. These allowances are practice modifications, not course requirements.</p></section>`];
+ `<section class="pw-block"><h3>Timing & simulation limits</h3>${para(l.estimate_method)}<p>Course files disagree on timing (14/9 versus 15/10 minutes). Follow the current station instructions. Application timers are unchanged. The example note is a study reference, not a typing target; leave time for thinking and editing. Virtual actions do not verify touch, force, auscultatory discrimination or full physical technique.</p><p>Guided and Coached practice are untimed. Independent practice uses 30 / 5 / 20 minutes. These allowances are practice modifications, not course requirements.</p></section>`];
  const timingNotes=doorway.pop();
  // A portrait and compact key fill the opening reading pane; station facts stay together opposite it.
  const [cover,doorwayBrief,simulationImage,memoryAnchor,storyboardKey]=doorway;
@@ -106,20 +108,20 @@ export function showWalkthroughPreview({onPrint,onClose}){
  if(!previewContext)previewContext={title:document.title};document.title=activeRoot.dataset.documentTitle;
  let bar=document.getElementById('walkthroughPrintToolbar');
  if(!bar){bar=document.createElement('nav');bar.id='walkthroughPrintToolbar';bar.setAttribute('aria-label','Print preview controls');document.body.insertBefore(bar,activeRoot);}
- bar.innerHTML=`<div><b>Landscape walkthrough</b><span>${window.pcmPrintReport.pages} Letter-landscape sheets · read left column, then right</span></div><button type="button" id="pwNativePrint">Print / Save PDF</button><button type="button" id="pwClosePrint">Return to lesson</button>`;
+ bar.innerHTML=`<div><b>${esc(PRINT_EDITIONS[window.pcmPrintReport.edition].label)}</b><span>${window.pcmPrintReport.pages} Letter sheets · ${window.pcmPrintReport.edition==='soap'?'portrait clinical note':window.pcmPrintReport.edition==='study'?'landscape script; portrait SOAP key':'read left column, then right'}</span></div><button type="button" id="pwNativePrint">Print / Save PDF</button><button type="button" id="pwClosePrint">Return to lesson</button>`;
  bar.querySelector('#pwNativePrint').onclick=onPrint;bar.querySelector('#pwClosePrint').onclick=onClose;
- activeRoot.setAttribute('aria-hidden','false');activeRoot.setAttribute('aria-label','Landscape walkthrough preview');
+ activeRoot.setAttribute('aria-hidden','false');activeRoot.setAttribute('aria-label',PRINT_EDITIONS[window.pcmPrintReport.edition].label+' preview');
  document.body.setAttribute('data-walkthrough-preview','true');document.body.setAttribute('data-walkthrough-print','approved');
  window.scrollTo(0,0);bar.querySelector('#pwNativePrint').focus();
 }
 
 async function loadStyle(){
  if(document.getElementById('walkthroughPrintCSS'))return;
- await new Promise((resolve,reject)=>{const link=document.createElement('link');link.id='walkthroughPrintCSS';link.rel='stylesheet';link.href=assetURL('walkthrough-print.css?v=72ad76ab63');link.onload=resolve;link.onerror=()=>{link.remove();reject(Error('The print layout could not load. Please reconnect and try again.'));};document.head.append(link);});
+ await new Promise((resolve,reject)=>{const link=document.createElement('link');link.id='walkthroughPrintCSS';link.rel='stylesheet';link.href=assetURL('walkthrough-print.css?v=d154cbfbfc');link.onload=resolve;link.onerror=()=>{link.remove();reject(Error('The print layout could not load. Please reconnect and try again.'));};document.head.append(link);});
 }
-function makePage(root,l,title,kind){
- const page=document.createElement('section');page.className='pw-page '+(kind==='storyboard'?'pw-storyboard-page':'pw-reading-page');page.dataset.section=title;
- page.innerHTML=`<header class="pw-page-header"><span class="pw-brand">Chat CSE <i>/</i> ${esc(title)}</span><span>${esc(l.patient.name)} · ${esc(l.variant_label)}</span></header><div class="pw-columns"><div class="pw-column"></div><div class="pw-column"></div></div><footer class="pw-page-footer"><span>${esc(l.case_id)} · ${esc(l.variant_id)} · Print edition 2026-09-13</span><span class="pw-page-count"></span></footer>`;root.append(page);return page;
+function makePage(root,l,title,kind,paper='landscape'){
+ const page=document.createElement('section');page.className='pw-page '+(kind==='storyboard'?'pw-storyboard-page':'pw-reading-page');page.dataset.section=title;page.dataset.paper=paper;page.dataset.kind=kind;
+ page.innerHTML=`<header class="pw-page-header"><span class="pw-brand">Chat CSE <i>/</i> ${esc(title)}</span><span>${esc(l.patient.name)} · ${esc(l.variant_label)}</span></header><div class="pw-columns"><div class="pw-column"></div>${paper==='portrait'?'':'<div class="pw-column"></div>'}</div><footer class="pw-page-footer"><span>${esc(l.case_id)} · ${esc(l.variant_id)} · Print edition 2026-09-13</span><span class="pw-page-count"></span></footer>`;root.append(page);return page;
 }
 async function decodeImages(root){
  const images=[...root.querySelectorAll('img')];
@@ -127,21 +129,27 @@ async function decodeImages(root){
  await Promise.all(images.map(async img=>{try{await img.decode();if(!img.naturalWidth)throw Error();}catch{failures.push(img.getAttribute('src'));}}));
  if(failures.length)throw Error('A walkthrough image could not load. Reconnect and try Print walkthrough again.');
 }
-function paginate(root,l,sections){
- const report={case_id:l.case_id,variant_id:l.variant_id,pages:0,turns:l.timeline.length,oversized:[],images:0,sections:[],evidence_strategy:'Every note statement → numbered storyboard steps + exact record IDs; unmatched records included once'};
- let page=null,column=null,colIndex=0,previousKind=null;
+function paginate(root,l,sections,edition){
+ const report={edition,case_id:l.case_id,variant_id:l.variant_id,pages:0,turns:l.timeline.length,oversized:[],images:0,sections:[],evidence_strategy:'Actor facts are separate from obtained evidence. Revised note references identify demonstrated topics and exact examinations; they are not automatic semantic verification.'};
+ let page=null,column=null,colIndex=0,previousKind=null,previousPaper=null;
  for(const section of sections){
-  const continueReading=section.kind==='reading'&&previousKind==='reading'&&!section.startPage;
-  if(!continueReading){page=makePage(root,l,section.title,section.kind);column=page.querySelector('.pw-column');colIndex=0;}
-  else page.querySelector('.pw-brand').innerHTML='<span>Chat CSE <i>/</i> Reason · document · recall</span>';
-  previousKind=section.kind;
-  const next=()=>{if(colIndex===0){colIndex=1;column=page.querySelectorAll('.pw-column')[1];}else{page=makePage(root,l,section.title,section.kind);colIndex=0;column=page.querySelector('.pw-column');}};
+  const paper=section.paper||'landscape';
+  const continueReading=section.kind===previousKind&&previousPaper===paper&&!section.startPage;
+  if(!continueReading){page=makePage(root,l,section.title,section.kind,paper);column=page.querySelector('.pw-column');colIndex=0;}
+
+  previousKind=section.kind;previousPaper=paper;
+  const next=()=>{if(paper!=='portrait'&&colIndex===0){colIndex=1;column=page.querySelectorAll('.pw-column')[1];}else{page=makePage(root,l,section.title,section.kind,paper);colIndex=0;column=page.querySelector('.pw-column');}};
   const queue=section.blocks.map(html=>{const holder=document.createElement('template');holder.innerHTML=html;return holder.content.firstElementChild;});
   for(let n=0;n<queue.length;n++){
    const block=queue[n];column.append(block);
    // Headings stay with enough of the following block to preserve reading order.
    let overflow=column.scrollHeight>column.clientHeight+1;
-   if(!overflow&&block.classList.contains('pw-heading')&&queue[n+1]){const nextBlock=queue[n+1].cloneNode(true);nextBlock.style.maxHeight='1.0in';nextBlock.style.overflow='hidden';column.append(nextBlock);overflow=column.scrollHeight>column.clientHeight+1;nextBlock.remove();}
+   if(!overflow&&block.classList.contains('pw-heading')&&queue[n+1]){
+    // Keep the section label, navigation line, and first actual answer together.
+    const preview=[];
+    for(let look=n+1;look<queue.length;look++){const child=queue[look].cloneNode(true);column.append(child);preview.push(child);if(!child.classList.contains('pw-heading')&&!child.classList.contains('rp-crossref'))break;}
+    overflow=column.scrollHeight>column.clientHeight+1;preview.forEach(child=>child.remove());
+   }
    if(overflow&&column.children.length>1){block.remove();next();column.append(block);}
    if(column.scrollHeight>column.clientHeight+1){
     // Split by direct children, preserving complete paragraphs and every original word.
@@ -151,7 +159,7 @@ function paginate(root,l,sections){
      column.append(part);
      for(const child of children){
       part.append(child);
-      if(column.scrollHeight>column.clientHeight+1&&part.children.length>1){child.remove();next();part=block.cloneNode(false);part.dataset.continuation='true';part.removeAttribute('data-turn-index');part.removeAttribute('data-note-link');column.append(part);part.append(child);}
+      if(column.scrollHeight>column.clientHeight+1&&part.children.length>1){child.remove();next();part=block.cloneNode(false);part.dataset.continuation='true';part.removeAttribute('data-anchor');part.removeAttribute('id');part.removeAttribute('data-turn-index');part.removeAttribute('data-note-link');column.append(part);part.append(child);}
       if(column.scrollHeight>column.clientHeight+1)report.oversized.push({section:section.title,text:child.textContent.slice(0,100)});
      }
     }else report.oversized.push({section:section.title,text:block.textContent.slice(0,100)});
@@ -161,25 +169,30 @@ function paginate(root,l,sections){
  }
  const pages=[...root.querySelectorAll('.pw-page')];report.pages=pages.length;report.images=root.querySelectorAll('img').length;
  pages.forEach((page,i)=>{page.querySelector('.pw-page-count').textContent=`${i+1} / ${pages.length}`;});
+ const anchors=new Map();
+ pages.forEach((page,i)=>page.querySelectorAll('[data-anchor]').forEach(el=>{if(!anchors.has(el.dataset.anchor)){el.id='rp-'+el.dataset.anchor;anchors.set(el.dataset.anchor,{page:i+1,element:el});}}));
+ report.missingReferences=[];
+ root.querySelectorAll('[data-page-ref]').forEach(link=>{const target=anchors.get(link.dataset.pageRef);if(target){link.querySelector('.rp-page-ref').textContent='p. '+target.page;link.onclick=event=>{event.preventDefault();target.element.scrollIntoView({block:'center'});};}else {report.missingReferences.push(link.dataset.pageRef);}});
  return report;
 }
-export async function prepareWalkthrough(l){
+export async function prepareWalkthrough(l,{edition='patient'}={}){
  clearWalkthroughPrint();await loadStyle();await document.fonts.ready;
- const [manifest,onlineCredits,appCredits]=await Promise.all([
+ const [manifest,onlineCredits,appCredits]=edition==='study'?await Promise.all([
   fetch(assetURL('print-assets/manifest.json?v=576a8c5fb4'),{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('The simulation image set is unavailable. Please try again after reconnecting.');return r.json();}),
   fetch(assetURL('print-assets/ONLINE-SOURCES.json'),{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Image credits could not load.');return r.json();}),
   fetch(assetURL('print-assets/APP-SOURCES.json'),{cache:'no-store'}).then(r=>r.ok?r.json():[])
- ]);
- if(!chooseSimulation(l,manifest))throw Error('No approved simulation image is available for this print edition.');
- const root=document.createElement('div');root.id='walkthroughPrint';root.dataset.documentTitle=`${l.patient.name} - ${l.title} - ${l.variant_label}`;root.setAttribute('aria-hidden','true');document.body.append(root);activeRoot=root;
+ ]):[{},[],[]];
+ if(edition==='study'&&!chooseSimulation(l,manifest))throw Error('No approved simulation image is available for this print edition.');
+ const root=document.createElement('div');root.id='walkthroughPrint';root.dataset.documentTitle=`${l.patient.name} - ${PRINT_EDITIONS[edition]?.label||'Print'} - ${l.variant_label}`;root.dataset.edition=edition;root.setAttribute('aria-hidden','true');document.body.append(root);activeRoot=root;
  const credits=[...onlineCredits,...(Array.isArray(appCredits)?appCredits:[]).map(c=>({...c,title:c.title||c.file,author:c.author||c.source||'Chat CSE screenshot',license:c.license||'Underlying model and room asset credits are provided in the application',source_url:c.source_url||'',usage:c.usage||'Illustrative app scene.'}))];
- const sections=buildPrintSections(l,manifest,credits);
+ const sections=buildPartnerSections(l,edition,edition==='study'?buildPrintSections(l,manifest,credits):[]);
  // Preload each unique local image before measuring physical page geometry.
  const preloader=document.createElement('div');preloader.innerHTML=sections.flatMap(s=>s.blocks).join('');root.append(preloader);
  try{
   await decodeImages(preloader);preloader.remove();
-  const report=paginate(root,l,sections);
+  const report=paginate(root,l,sections,edition);
   await decodeImages(root);
+  if(report.missingReferences.length)throw Error('A script cross-reference could not be resolved. No pages were removed.');
   if(report.oversized.length)throw Error('A section is too long for the print layout. The lesson has not been truncated. Please use the written lesson while this layout is corrected.');
   window.pcmPrintReport=report;return {root,report};
  }catch(error){clearWalkthroughPrint();throw error;}

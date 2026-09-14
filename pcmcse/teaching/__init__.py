@@ -37,7 +37,14 @@ def index():
 def read(cid,variant='base'):
     if not cases.get(cid):raise ValueError('Unknown presentation')
     lesson=json.loads((ROOT/'lessons'/(cid+'.json')).read_text())
-    return next((x for x in lesson['walkthroughs'] if x['variant_id']==variant),None)
+    current = next((x for x in lesson['walkthroughs'] if x['variant_id']==variant), None)
+    if current is not None:
+        from .partner import build_patient_script
+        from .partner_note import build_example_note
+        resolved = cases.resolve(cid, variant)
+        current['partner_script'] = build_patient_script(resolved, current)
+        current['partner_note'] = build_example_note(resolved, current)
+    return current
 
 def progress():
     with db.connect() as conn:

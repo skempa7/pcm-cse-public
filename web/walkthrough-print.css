@@ -113,3 +113,60 @@
  body[data-walkthrough-preview="true"] #walkthroughPrintToolbar{min-width:0;flex-wrap:wrap;padding:10px 14px}
  #walkthroughPrintToolbar>div{flex:1 1 100%;min-width:0}
 }
+
+/* Partner edition: history lookup and a conventional portrait clinical note. */
+@page partnerLandscape { size: Letter landscape; margin:.38in .4in; }
+@page partnerPortrait { size: Letter portrait; margin:.48in .55in; }
+#walkthroughPrint .pw-page[data-paper=landscape]{page:partnerLandscape}
+#walkthroughPrint .pw-page[data-paper=portrait]{page:partnerPortrait;width:7.4in;height:10.0in;margin-left:auto;margin-right:auto}
+#walkthroughPrint .pw-page[data-paper=portrait] .pw-columns{grid-template-columns:1fr;height:9.13in;gap:0}
+#walkthroughPrint .pw-page[data-paper=portrait] .pw-column{height:8.97in}
+#walkthroughPrint .rp-cover{padding-bottom:.1in;border-bottom:2pt solid #305e4d}
+#walkthroughPrint .rp-case{font:10pt/1.3 Arial,sans-serif;color:#526057}
+#walkthroughPrint .rp-topic{border-bottom:.6pt solid #c8d2cb;padding-bottom:.10in;margin-bottom:.12in}
+#walkthroughPrint .rp-topic h3{font-size:11.5pt;margin-bottom:.065in}
+#walkthroughPrint .rp-question{font:10pt/1.3 Arial,sans-serif;margin-bottom:.045in}
+#walkthroughPrint .rp-question::before{content:'Ask  ';font-weight:700;color:#254f42}
+#walkthroughPrint .rp-answer{font-size:11pt;line-height:1.34;padding-left:.12in;border-left:2pt solid #375d4b}
+#walkthroughPrint .rp-answer::before{content:'Say  ';font:700 8.5pt/1.3 Arial,sans-serif;color:#254f42}
+#walkthroughPrint .rp-actor{font:9pt/1.3 Arial,sans-serif;color:#4f5752;border-left:1pt dashed #8c9790;padding-left:.10in;margin-top:.06in}
+#walkthroughPrint .rp-actor::before{content:'Actor note: ';font-weight:700}
+#walkthroughPrint .rp-alias{font:8.8pt/1.3 Arial,sans-serif;color:#57635b;margin-bottom:.05in}
+#walkthroughPrint .rp-small,#walkthroughPrint .rp-crossref{font:8.5pt/1.3 Arial,sans-serif;color:#586459}
+#walkthroughPrint .rp-broad{padding:.10in;background:#f3f6f1;border:.7pt solid #c4d1c4}
+#walkthroughPrint .rp-qa,#walkthroughPrint .rp-followup{break-inside:avoid;page-break-inside:avoid}
+#walkthroughPrint .rp-followup{margin-top:.085in}
+#walkthroughPrint .rp-followup h4{font:700 8.3pt/1.3 Arial,sans-serif;text-transform:uppercase;letter-spacing:.2pt;color:#596350;margin:0 0 .04in}
+#walkthroughPrint .rp-index{list-style:none;padding:0;margin:.08in 0 .1in;font:10.5pt/1.45 Arial,sans-serif}
+#walkthroughPrint .rp-index li{padding:.045in 0;border-bottom:.5pt solid #d6ded7;display:flex;gap:.1in}
+#walkthroughPrint .rp-index li>b{min-width:.14in;color:#355d46}
+#walkthroughPrint .rp-ref{color:#284d3c;text-decoration:none;display:inline}
+#walkthroughPrint .rp-index .rp-ref{display:flex;justify-content:space-between;flex:1}
+#walkthroughPrint .rp-page-ref{font:8.3pt/1.3 Arial,sans-serif;white-space:nowrap;display:inline-block;min-width:.36in;margin-left:.08in}
+#walkthroughPrint .rp-ref:focus-visible{outline:2px solid #335f45;outline-offset:3px}
+#walkthroughPrint .rp-exam-topic{border-left:2pt solid #95732c;padding-left:.12in;border-bottom:.5pt solid #d4d8cd;padding-bottom:.1in}
+#walkthroughPrint .rp-exam-action{font:700 10pt/1.3 Arial,sans-serif}
+#walkthroughPrint .rp-exam-action::before{content:'Student action: ';font-size:8.5pt}
+#walkthroughPrint .rp-finding::before{content:'Release finding: ';font:700 8.5pt Arial,sans-serif}
+#walkthroughPrint .rp-key-limit{padding:.10in .12in;border:1pt solid #88734a;background:#faf8f1}
+#walkthroughPrint .rp-obtained p{font-size:10pt}
+#walkthroughPrint .rp-note-heading h1{font-size:21pt}
+#walkthroughPrint .rp-note-heading p{font:11pt/1.3 Arial,sans-serif}
+#walkthroughPrint [data-kind=clinical-note]{color:#171e19}
+#walkthroughPrint [data-kind=clinical-note] .pw-block{margin-bottom:.075in}
+#walkthroughPrint [data-kind=clinical-note] .pw-heading{padding:.035in 0;border:0;margin-top:.06in}
+#walkthroughPrint [data-kind=clinical-note] .pw-heading h2{font-size:14pt;color:#14231b}
+#walkthroughPrint [data-kind=clinical-note] h3{font:700 10.5pt/1.3 Arial,sans-serif;margin-bottom:.035in;color:#14231b}
+#walkthroughPrint [data-kind=clinical-note] p{font:11pt/1.37 Georgia,'Times New Roman',serif;color:#17251d}
+#walkthroughPrint [data-kind=clinical-note] .rp-condition{font:italic 10pt/1.3 Georgia,serif}
+
+@media screen{#walkthroughPrint[data-edition=soap]{width:7.4in}}
+@media print{
+ body[data-walkthrough-print="approved"] #walkthroughPrint{width:auto!important}
+ #walkthroughPrint .pw-page{margin-left:0!important;margin-right:0!important}
+}
+
+#walkthroughPrint .rp-note-section h3{display:inline}
+#walkthroughPrint .rp-note-section h3::after{content:': '}
+#walkthroughPrint .rp-note-section h3+p{display:inline}
+#walkthroughPrint .rp-note-section p+p{margin-top:.04in}
