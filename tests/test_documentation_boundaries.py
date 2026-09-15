@@ -105,7 +105,7 @@ class DocumentationBoundaries(unittest.TestCase):
         before = session.ledger.to_json()
         summary = record.summarize(case, session.ledger.events)
         rows = [i for g in summary['groups'] for sec in g['sections'] for i in sec['items']]
-        self.assertEqual(len([r for r in rows if r.get('fact_id') == 'ros:rash']), 1)
+        self.assertEqual(len([r for r in rows if r.get('fact_id') == 'expanded_ros_rash']), 1)
         self.assertEqual(session.ledger.to_json(), before)
         # Forging either the question, answer or an allowed topic must not add a denial.
         question = {'kind': evidence.STUDENT, 'seq': 1, 'text': 'Have you had a rash?', 'meta': {}}

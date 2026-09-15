@@ -7,6 +7,7 @@ from pathlib import Path
 import unittest
 
 from pcmcse.cases import all_cases, resolve
+from sparse_case_fixtures import without_supplemental_content
 from pcmcse.teaching.partner import build_patient_script
 
 LESSONS = Path(__file__).resolve().parents[1] / 'pcmcse' / 'teaching' / 'lessons'
@@ -28,7 +29,7 @@ def response(topic):
 
 class PartnerScriptTests(unittest.TestCase):
     def test_every_case_fact_is_covered_once_and_inputs_are_unchanged(self):
-        count = fact_count = 0
+        count = fact_count = original_fact_count = 0
         for cid in all_cases():
             for lesson in json.loads((LESSONS / (cid + '.json')).read_text())['walkthroughs']:
                 case = resolve(cid, lesson['variant_id'])
@@ -50,8 +51,10 @@ class PartnerScriptTests(unittest.TestCase):
                         self.assertLessEqual(len(topic['questions']), 3)
                 count += 1
                 fact_count += len(expected)
+                original_fact_count += len(without_supplemental_content(case)["facts"])
         self.assertEqual(count, 82)
-        self.assertEqual(fact_count, 3168)  # 2827 existing facts plus 341 authored expansion facts.
+        self.assertEqual(original_fact_count, 3168)  # Original source inventory is preserved.
+        self.assertGreater(fact_count, original_fact_count)
 
     def test_clinical_variation_uses_resolved_patient_answers(self):
         _, _, base = fixture('cardio-palpitations')
@@ -80,7 +83,8 @@ class PartnerScriptTests(unittest.TestCase):
         self.assertIn('hives', allergy['followups'][0]['answer'])
 
     def test_unsupported_information_is_an_actor_instruction_not_a_patient_denial(self):
-        _, _, script = fixture('cardio-febrile-cough')
+        case, lesson, _ = fixture('cardio-febrile-cough')
+        script = build_patient_script(without_supplemental_content(case), lesson)
         self.assertIn('outside the patient role', script['briefing']['unknown_rule'])
         self.assertIn('not provided', script['briefing']['unknown_rule'])
         self.assertIn('not turn it into a denial', script['briefing']['unknown_rule'])
@@ -135,8 +139,9 @@ class PartnerScriptTests(unittest.TestCase):
         self.assertIn('Do not supply a finding', refused['text'])
 
     def test_additional_actor_fact_is_not_marked_as_demonstrated_evidence(self):
-        _, lesson, script = fixture('neuro-positional-vertigo')
-        self.assertEqual(script['audit']['not_in_demonstrated_encounter'], ['hpi_radiation'])
+        case, lesson, script = fixture('neuro-positional-vertigo')
+        added = {f['id'] for f in case['facts'] if f.get('authoring')}
+        self.assertEqual(set(script['audit']['not_in_demonstrated_encounter']), added | {'hpi_radiation'})
         self.assertIn('hpi_radiation', topics(script))
         self.assertNotIn('hpi_radiation', [fid for t in lesson['timeline'] for fid in t.get('fact_ids', [])])
 

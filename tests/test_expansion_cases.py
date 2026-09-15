@@ -12,6 +12,7 @@ from pathlib import Path
 from pcmcse import audit, cases, dialogue, evidence, grader, note, physexam, teaching
 from pcmcse.patient import PatientEngine
 from tools.build_expansion_cases import CASES, build_case
+from sparse_case_fixtures import without_supplemental_content
 
 ROOT = Path(__file__).resolve().parents[1]
 # This explicit inventory is independent of discovery and protects against omission.
@@ -30,7 +31,8 @@ EXPECTED = {
 
 
 def raw_case(cid):
-    return json.loads((ROOT/'pcmcse'/'cases'/(cid.replace('-', '_')+'.json')).read_text())
+    # Verify the original course/author inventory independently of supplemental practice content.
+    return without_supplemental_content(json.loads((ROOT/'pcmcse'/'cases'/(cid.replace('-', '_')+'.json')).read_text()))
 
 
 def reply_ledger(case, ids):
@@ -110,7 +112,7 @@ class ExpansionInventoryTests(unittest.TestCase):
                 self.assertNotIn('auscultate', c['area_of_concern']['required_methods'])
             if c['system'] == 'Skin':
                 self.assertIn('skin_palpate', c['exam_findings'])
-                self.assertNotIn('msk_palpate', c['exam_findings'])
+                self.assertNotIn('msk_palpate', without_supplemental_content(c)['exam_findings'])
                 self.assertEqual(physexam.CATALOG_BY_ID['skin_palpate']['region'], 'Skin')
 
     def test_complete_examples_release_history_and_all_eighty_four_actual_findings(self):
@@ -218,7 +220,7 @@ class InterviewQuestionRegressionTests(unittest.TestCase):
         c=cases.resolve('pulm-episodic-wheeze');p=PatientEngine(c);state={'opened':True,'open_budget':0}
         p.respond('Any operations?', state)
         reply,meta=p.respond('Any allergies, and what happens?',state)
-        self.assertEqual(meta['facts_released'], ['history_drug_reactions'])
+        self.assertEqual(set(meta['facts_released']), {'history_drug_reactions', 'expanded_allergy_food', 'expanded_allergy_contact'})
         self.assertNotIn('wisdom', reply.lower())
         self.assertEqual(reply.lower().count('rash'),1)
         for text in ['Is it sharp or dull?', 'Does pain go into the left arm and jaw?', 'Is it constant or intermittent?']:

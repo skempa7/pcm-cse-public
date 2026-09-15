@@ -333,6 +333,10 @@ def main():
     import argparse
     parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,default=ROOT/'pcmcse/cases');args=parser.parse_args()
     args.output.mkdir(parents=True,exist_ok=True)
+    for spec in CASES:
+        target=args.output/(spec['cid'].replace('-','_')+'.json')
+        if target.exists() and json.loads(target.read_text()).get('practice_expansion'):
+            raise SystemExit('This case contains later authored practice content. Generate into a separate --output directory and merge intentionally: '+str(target))
     built=[]
     for i,s in enumerate(CASES):
         c=build_case(s,i);(args.output/(c['id'].replace('-','_')+'.json')).write_text(json.dumps(c,indent=2,ensure_ascii=False)+'\n')

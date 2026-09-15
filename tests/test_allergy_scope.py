@@ -1,3 +1,4 @@
+from sparse_case_fixtures import resolve as sparse_resolve
 """Allergy questions preserve allergen scope and actually obtained evidence."""
 import unittest
 
@@ -11,13 +12,13 @@ class AllergyScopeTests(unittest.TestCase):
     }
 
     def ready(self, case_id='cardio-palpitations', variant='base'):
-        case = cases.resolve(case_id, variant)
+        case = sparse_resolve(case_id, variant)
         return case, patient.PatientEngine(case), {}
 
     def all_paths(self):
         for cid, base in cases.all_cases().items():
             for variant in ['base'] + [v['id'] for v in base.get('variants', [])]:
-                yield cid, variant, cases.resolve(cid, variant)
+                yield cid, variant, sparse_resolve(cid, variant)
 
     def assert_scope(self, case, reply, meta, allowed, required=()):
         released = set(meta.get('facts_released', []))

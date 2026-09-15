@@ -892,6 +892,17 @@ class Session:
                 "duration_s": duration, "components": list(components),
             }
 
+        limitation = self.case.get('exam_limitations', {}).get(maneuver_id)
+        if limitation and not (maneuver_id == 'neuro_dix_hallpike' and components == ['cervical_suitability']):
+            self.ledger.add(evidence.EXAM_ACTION, limitation, t_ms=completed_at,
+                meta={'status':'not_performed', 'maneuver_id':maneuver_id,
+                      'label':man['label'], 'components':list(components),
+                      'duration_s':duration, 'reason':limitation})
+            self.set(exam_busy_until=completed_at)
+            self.save()
+            return {'kind':'no_result', 'label':man['label'], 'text':limitation,
+                    'released':[], 'duration_s':duration, 'components':list(components)}
+
         released, texts, concepts, scopes = [], [], {}, []
         partial_notes, withheld = [], []
         for f in findings:

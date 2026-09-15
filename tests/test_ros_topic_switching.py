@@ -1,3 +1,4 @@
+from sparse_case_fixtures import resolve as sparse_resolve
 """ROS questions change topic explicitly and keep unsupported symptoms unknown."""
 import tempfile
 import unittest
@@ -9,7 +10,7 @@ from pcmcse import cases, config, db, engine, evidence, patient, record, ros_his
 
 class ROSTopicSwitchingTests(unittest.TestCase):
     def ready(self, case_id='cardio-palpitations', variant='base'):
-        case = cases.resolve(case_id, variant)
+        case = sparse_resolve(case_id, variant)
         return case, patient.PatientEngine(case), {}
 
     def mara_variants(self):
@@ -324,7 +325,7 @@ class ROSTopicSwitchingTests(unittest.TestCase):
                 db.init()
                 for mode in ['guided', 'coached', 'independent', 'rehearsal']:
                     with self.subTest(mode=mode):
-                        case = cases.resolve('cardio-palpitations', 'base')
+                        case = sparse_resolve('cardio-palpitations', 'base')
                         preset = config.preset_for_learning_mode(mode)
                         settings = dict(config.load_settings(), learning_mode=mode, preset=preset,
                                         simulation_runtime='immediate')

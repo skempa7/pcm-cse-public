@@ -873,6 +873,9 @@ def _semantic_history(text, claim, case, released, ledger):
     for topic,pattern in [('allergies',r'\b(?:no (?:known )?(?:(?:drug|medication) )?allergies|denies (?:any )?allergies|nkda)\b'),('pregnancy',r'\b(?:denies pregnancy|not pregnant|no (?:chance|possibility) of pregnancy)\b')]:
         if not re.search(pattern,t): continue
         relevant=[f for f in facts if (f.get('category')=='allergies' if topic=='allergies' else f.get('history_topic')=='pregnancy')]
+        if topic=='allergies' and re.search(r'\b(?:drug|medication|medicine|nkda)\b',t):
+            from .allergy_history import fact_scopes
+            relevant=[f for f in relevant if 'medication' in fact_scopes(f)]
         if not relevant:
             hits['history_assertion:'+topic]={'surface':topic,'negated':True}
         for f in relevant:
@@ -881,7 +884,7 @@ def _semantic_history(text, claim, case, released, ledger):
             valid=bool(re.search(r'\b(no|never|not|denies|nkda|none)\b',value))
             if topic=='pregnancy' and re.search(r'\b(possible|could|might|unsure|uncertain)\b',value): valid=False
             register(f,valid,'This negative is not what the patient reported: '+(support.get('value','') if support else ''))
-            if topic=='allergies' and support and not re.search(r'\b(drug|medication|nkda)\b',t) and re.search(r'\b(drug|medication)\b',value):
+            if topic=='allergies' and support and not re.search(r'\b(drug|medication|medicine|nkda)\b',t) and re.search(r'\b(drug|medication|medicine)\b',value):
                 defect='OVERBROAD: The encounter established medication allergies only. Document NKDA or no known medication allergies; do not broaden it to all allergies.'
     return hits,defect
 

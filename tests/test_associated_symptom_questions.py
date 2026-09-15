@@ -1,3 +1,4 @@
+from sparse_case_fixtures import resolve as sparse_resolve
 """Broad symptom questions must not become concern or work-history invitations."""
 import copy
 import unittest
@@ -22,7 +23,7 @@ class AssociatedSymptomQuestionTests(unittest.TestCase):
 
     def test_mara_paraphrases_answer_additional_symptoms_in_all_variants(self):
         for variant in ['base'] + [v['id'] for v in cases.get('cardio-palpitations').get('variants', [])]:
-            case = cases.resolve('cardio-palpitations', variant)
+            case = sparse_resolve('cardio-palpitations', variant)
             for question in self.prompts:
                 with self.subTest(variant=variant, question=question):
                     pe, state = self.ready(case)
@@ -35,7 +36,7 @@ class AssociatedSymptomQuestionTests(unittest.TestCase):
                     self.assertEqual(state['open_budget'], before)
 
     def test_exact_sequence_and_notes_dont_record_unrelated_history(self):
-        case = cases.resolve('cardio-palpitations')
+        case = sparse_resolve('cardio-palpitations')
         pe, state = self.ready(case)
         ledger = evidence.Ledger()
         for q in ['does it hurt at all', self.prompts[0], self.prompts[1]]:
@@ -53,14 +54,14 @@ class AssociatedSymptomQuestionTests(unittest.TestCase):
             self.assertEqual(sum(i.get('fact_id') == fid for i in rows), 1)
 
     def test_symptom_request_does_not_depend_on_volunteer_budget(self):
-        pe, state = self.ready(cases.resolve('cardio-palpitations'))
+        pe, state = self.ready(sparse_resolve('cardio-palpitations'))
         state['open_budget'] = 0
         reply, meta = pe.respond('Have you noticed any other associated symptoms?', state)
         self.assertEqual(set(meta['facts_released']), {'symptom_dyspnea', 'symptom_fatigue'}, reply)
         self.assertEqual(state['open_budget'], 0)
 
     def test_narrow_symptom_requests_stay_narrow(self):
-        pe, state = self.ready(cases.resolve('cardio-palpitations'))
+        pe, state = self.ready(sparse_resolve('cardio-palpitations'))
         for q, allowed in [('Is there any pain associated with that?', {'symptom_chest_pain'}),
                            ('Are you short of breath?', {'symptom_dyspnea'}),
                            ('Have you felt unusually tired or low in energy?', {'symptom_fatigue'})]:
@@ -68,7 +69,7 @@ class AssociatedSymptomQuestionTests(unittest.TestCase):
             self.assertEqual(set(meta['facts_released']), allowed, reply)
 
     def test_general_invitation_keeps_its_existing_courtesy_behavior(self):
-        pe, state = self.ready(cases.resolve('cardio-palpitations'))
+        pe, state = self.ready(sparse_resolve('cardio-palpitations'))
         reply, meta = pe.respond('Is there anything else you would like to tell me?', state)
         self.assertTrue(meta['volunteered'])
         self.assertEqual(meta['facts_released'], ['patient_concern'])
@@ -76,7 +77,7 @@ class AssociatedSymptomQuestionTests(unittest.TestCase):
     def test_no_additional_authored_symptoms_does_not_repeat_primary_complaint(self):
         for cid in ['cardio-presyncope', 'renal-painless-hematuria', 'msk-knee-injury',
                     'skin-contact-rash', 'neuro-acute-focal-weakness']:
-            pe, state = self.ready(cases.resolve(cid))
+            pe, state = self.ready(sparse_resolve(cid))
             reply, meta = pe.respond('Have you noticed any other associated symptoms?', state)
             self.assertFalse(meta['facts_released'], (cid, reply))
             self.assertFalse(meta['volunteered'])
@@ -93,13 +94,13 @@ class AssociatedSymptomQuestionTests(unittest.TestCase):
             'neuro-back-bladder-redflags': {'symptom_saddle_numbness'},
         }
         for cid, withheld in blocked.items():
-            pe, state = self.ready(cases.resolve(cid))
+            pe, state = self.ready(sparse_resolve(cid))
             for _ in range(5):
                 reply, meta = pe.respond('Any other associated symptoms?', state)
                 self.assertFalse(withheld & set(meta['facts_released']), (cid, reply, meta))
 
     def test_combined_identity_and_associated_question_answers_both(self):
-        pe, state = self.ready(cases.resolve('cardio-palpitations'))
+        pe, state = self.ready(sparse_resolve('cardio-palpitations'))
         reply, meta = pe.respond('What is your name and have you noticed any other associated symptoms?', state)
         self.assertIn('Mara Lee', reply)
         self.assertEqual(set(meta['facts_released']), {'symptom_dyspnea', 'symptom_fatigue'})
@@ -107,18 +108,18 @@ class AssociatedSymptomQuestionTests(unittest.TestCase):
         self.assertFalse(meta['volunteered'])
 
     def test_symptom_question_can_be_asked_before_the_opening(self):
-        reply, meta = patient.PatientEngine(cases.resolve('cardio-palpitations')).respond('Any other associated symptoms?', {})
+        reply, meta = patient.PatientEngine(sparse_resolve('cardio-palpitations')).respond('Any other associated symptoms?', {})
         self.assertEqual(set(meta['facts_released']), {'symptom_dyspnea', 'symptom_fatigue'}, reply)
         self.assertFalse(meta['volunteered'])
 
     def test_exclusions_and_prospective_questions_do_not_dump_symptom_list(self):
-        pe, state = self.ready(cases.resolve('cardio-palpitations'))
+        pe, state = self.ready(sparse_resolve('cardio-palpitations'))
         reply, meta = pe.respond('What other symptoms besides shortness of breath have you noticed?', state)
         self.assertEqual(meta['facts_released'], ['symptom_fatigue'], reply)
         for q in ['What other symptoms should I look for?',
                   'Does your mother have any other symptoms?',
                   'Does nausea always occur at the same time as the palpitations?']:
-            pe, state = self.ready(cases.resolve('cardio-palpitations'))
+            pe, state = self.ready(sparse_resolve('cardio-palpitations'))
             reply, meta = pe.respond(q, state)
             self.assertFalse(set(meta['facts_released']) & {'symptom_dyspnea', 'symptom_fatigue'}, (q, reply))
 
@@ -126,7 +127,7 @@ class AssociatedSymptomQuestionTests(unittest.TestCase):
         count = 0
         for cid, base in cases.all_cases().items():
             for variant in ['base'] + [v['id'] for v in base.get('variants', [])]:
-                case = cases.resolve(cid, variant)
+                case = sparse_resolve(cid, variant)
                 original = copy.deepcopy(case)
                 definitions = {f['id']: f for f in case['facts']}
                 pe, state = self.ready(case)

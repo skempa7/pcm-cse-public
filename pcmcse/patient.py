@@ -1448,6 +1448,21 @@ class PatientEngine:
                 return {name}
         return set()
 
+    def _medication_detail_reply(self, utterance, state, meta):
+        from . import medication_history
+        request = medication_history.request(utterance, self.facts.values(), state)
+        if request is None:
+            return None
+        selected, missing = medication_history.select(self.facts.values(), request)
+        meta.update(context_subject='medications', medication_context=request['names'])
+        parts = [self._say(f, state, meta, prefixed=False) for f in selected]
+        if missing:
+            parts.append('I cannot confirm ' + ', '.join(missing) + ' from my medication history.')
+            meta['unavailable_topics'] = missing
+        if not selected:
+            meta.update(kind='non_answer', no_information=True, unscripted_topic=True)
+        return dialogue.join_spoken(parts)
+
     def _diet_history_reply(self, utterance, state, meta):
         detail = social_history.diet_detail(utterance, state.get('last_subjects') == ['diet'])
         if not social_history.diet_request(utterance) and not detail:
@@ -1645,6 +1660,8 @@ class PatientEngine:
         supported = [f for f in candidates if (amount and re.search(
             r'\b(?:sleep|get|getting)\w*[^.!?]{0,16}\b(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten) hours?\b', self._fact_text(f), re.I))
             or (adequacy and re.search(r'\b(?:not enough sleep|enough sleep|sleep well|sleep poorly)\b', self._fact_text(f), re.I))]
+        candidates.sort(key=lambda f: f.get('history_topic') != 'sleep')
+        supported.sort(key=lambda f: f.get('history_topic') != 'sleep')
         chosen = supported if amount or adequacy else candidates[:1]
         parts = [self._say(f, state, meta, prefixed=False) for f in chosen[:2]]
         missing = not supported if amount or adequacy else not chosen
@@ -1997,6 +2014,9 @@ class PatientEngine:
         if social_history.handoff_statement(utterance):
             meta['kind'] = 'handoff_ack'
             return 'Okay. Thank you for letting me know. I will wait here.'
+        medication_detail = self._medication_detail_reply(utterance, state, meta)
+        if medication_detail is not None:
+            return medication_detail
         diet = self._diet_history_reply(utterance, state, meta)
         if diet is not None:
             return diet
@@ -2894,7 +2914,7 @@ class PatientEngine:
                     candidates=[f for f in candidates if any(w in self._fact_text(f).lower() or w in f['id'] for w in words) or (self.case.get('id','').startswith('renal-') and f['id']=='hpi_timing')]
                 exact=[f for f in candidates if any(nlp.normalize(q).rstrip('?')==nlp.normalize(clause).rstrip('?') for q in f.get('example_questions',[]))]
                 if exact:candidates=exact
-                if 'night_pattern' in dims:
+                if dims & {'night_pattern', 'constancy'}:
                     candidates=[f for f in candidates if self._timing_detail_matches(f, clause)]
                 if 'current_status' in dims:
                     candidates=[f for f in candidates if current_status_subject_matches(f,clause)]
@@ -3358,9 +3378,9 @@ class PatientEngine:
             if relatives:return [(f,3.0) for f in relatives]
         domains=compound_history_domains(utterance)
         if len(domains)>1 or domains==['allergies']:
-            return [(f,3.0) for f in self.facts.values() if f.get('category') in domains]
+            return [(f,3.0) for f in self.facts.values() if f.get('category') in domains and not f.get('medication_dimensions')]
         if domains==['medications'] and re.search(r'how often|what.*(?:medicin|medication)|which|dosage|dose|take daily|over the counter',text) and not re.search(r'help|tried|for (?:the )?pain',text):
-            return [(f,3.0) for f in self.facts.values() if f.get('category')=='medications']
+            return [(f,3.0) for f in self.facts.values() if f.get('category')=='medications' and not f.get('medication_dimensions')]
         # Common tense forms refer to the same authored symptom, not a
         # fabricated denial. Bloody emesis, third-party history and causal or
         # medication questions retain their more specific existing routes.

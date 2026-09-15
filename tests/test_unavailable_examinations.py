@@ -1,3 +1,4 @@
+from sparse_case_fixtures import resolve as sparse_resolve
 """Unavailable examinations stay honest; authored JVD findings retain their evidence."""
 import copy
 import json
@@ -25,7 +26,7 @@ class UnavailableExaminationTests(unittest.TestCase):
         self.temp.cleanup()
 
     def session(self, cid, variant='base', mode='coached'):
-        case = cases.resolve(cid, variant)
+        case = sparse_resolve(cid, variant)
         settings = copy.deepcopy(config.DEFAULT_SETTINGS)
         preset = config.preset_for_learning_mode(mode)
         settings.update(learning_mode=mode, simulation_runtime='interactive', preset=preset)

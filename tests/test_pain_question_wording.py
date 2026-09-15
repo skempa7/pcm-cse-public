@@ -1,15 +1,16 @@
+from sparse_case_fixtures import resolve as sparse_resolve
 """Equivalent pain questions, partial timing knowledge, and evidence boundaries."""
 import unittest
 from pcmcse import cases, patient, evidence, record
 
 class PainQuestionWordingTests(unittest.TestCase):
     def respond(self, cid, text, variant='base'):
-        return patient.PatientEngine(cases.resolve(cid, variant)).respond(text, {})
+        return patient.PatientEngine(sparse_resolve(cid, variant)).respond(text, {})
 
     def test_radiation_noun_and_verb_reach_same_fact_on_all_paths(self):
         for cid, base in cases.all_cases().items():
             for variant in ['base']+[v['id'] for v in base.get('variants', [])]:
-                c=cases.resolve(cid, variant)
+                c=sparse_resolve(cid, variant)
                 for q in ['Have you noticed any radiation of the pain?', 'Is the pain radiating anywhere?', 'Any radiation of the discomfort?']:
                     with self.subTest(case=cid, variant=variant, question=q):
                         _, expected=patient.PatientEngine(c).respond('Does the pain radiate?', {})
@@ -18,7 +19,7 @@ class PainQuestionWordingTests(unittest.TestCase):
                         self.assertEqual(actual.get('concepts', {}), expected.get('concepts', {}))
 
     def test_noah_exact_sequence_and_notes(self):
-        c=cases.resolve('cardio-febrile-cough'); p=patient.PatientEngine(c); state={}; ledger=evidence.Ledger()
+        c=sparse_resolve('cardio-febrile-cough'); p=patient.PatientEngine(c); state={}; ledger=evidence.Ledger()
         prompts=['have you noticed any radiation of the pain','does the pain radiate',
                  'is the pain constant or does it come and go','do you notice the pain only in the day or only at night']
         for i,q in enumerate(prompts):

@@ -1,3 +1,4 @@
+from sparse_case_fixtures import resolve as sparse_resolve
 """Background-history follow-ups retain their topic and authored certainty."""
 import unittest
 
@@ -6,7 +7,7 @@ from pcmcse import cases, patient
 
 class BackgroundFollowupTests(unittest.TestCase):
     def ready(self, variant='base', case_id='cardio-palpitations'):
-        case = cases.resolve(case_id, variant)
+        case = sparse_resolve(case_id, variant)
         return case, patient.PatientEngine(case), {}
 
     def assert_only_facts(self, case, reply, meta, allowed, required=()):

@@ -71,6 +71,8 @@ def scoped_list(utterance):
 
 
 def fact_scopes(fact):
+    if fact.get('allergy_scopes'):
+        return set(fact['allergy_scopes'])
     value = nlp.normalize(fact.get('value', ''))
     if fact.get('category') == 'allergies':
         # Questions and concepts disambiguate terse answers such as "None

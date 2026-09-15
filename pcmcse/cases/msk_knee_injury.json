@@ -1174,7 +1174,10 @@
         "review_status": "author_statement_contract_checked_not_clinician_approved"
       },
       "authored_note": "No other current joint pain.",
-      "ros_system": "musculoskeletal"
+      "ros_system": "musculoskeletal",
+      "ros_topics": [
+        "joint_pain"
+      ]
     },
     {
       "id": "symptom_myalgia",
@@ -1217,7 +1220,10 @@
         "review_status": "author_statement_contract_checked_not_clinician_approved"
       },
       "authored_note": "No generalized myalgia.",
-      "ros_system": "musculoskeletal"
+      "ros_system": "musculoskeletal",
+      "ros_topics": [
+        "myalgia"
+      ]
     },
     {
       "id": "symptom_fever",
@@ -1259,7 +1265,10 @@
         "review_status": "author_statement_contract_checked_not_clinician_approved"
       },
       "authored_note": "No fever.",
-      "ros_system": "general"
+      "ros_system": "general",
+      "ros_topics": [
+        "fever"
+      ]
     },
     {
       "id": "symptom_chills",
@@ -1301,7 +1310,10 @@
         "review_status": "author_statement_contract_checked_not_clinician_approved"
       },
       "authored_note": "No chills.",
-      "ros_system": "general"
+      "ros_system": "general",
+      "ros_topics": [
+        "chills"
+      ]
     },
     {
       "id": "symptom_fatigue",
@@ -1343,7 +1355,10 @@
         "review_status": "author_statement_contract_checked_not_clinician_approved"
       },
       "authored_note": "No systemic malaise.",
-      "ros_system": "general"
+      "ros_system": "general",
+      "ros_topics": [
+        "fatigue"
+      ]
     },
     {
       "id": "symptom_numbness",
@@ -1386,7 +1401,10 @@
         "review_status": "author_statement_contract_checked_not_clinician_approved"
       },
       "authored_note": "No distal numbness.",
-      "ros_system": "neurologic"
+      "ros_system": "neurologic",
+      "ros_topics": [
+        "numbness"
+      ]
     },
     {
       "id": "symptom_tingling",
@@ -1429,7 +1447,10 @@
         "review_status": "author_statement_contract_checked_not_clinician_approved"
       },
       "authored_note": "No paresthesias.",
-      "ros_system": "neurologic"
+      "ros_system": "neurologic",
+      "ros_topics": [
+        "tingling"
+      ]
     },
     {
       "id": "symptom_weakness",
@@ -1513,6 +1534,1425 @@
         "review_status": "author_statement_contract_checked_not_clinician_approved"
       },
       "authored_note": "Wants explanation and return to usual activities."
+    },
+    {
+      "id": "expanded_ros_depression",
+      "category": "pertinent_negative",
+      "value": "I have not been feeling persistently depressed.",
+      "sp_says": [
+        "I have not been feeling persistently depressed."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_depression": {
+          "polarity": "negative",
+          "value": "I have not been feeling persistently depressed."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not been feeling persistently depressed.",
+            "concepts": {
+              "expanded_ros_depression": {
+                "polarity": "negative",
+                "value": "I have not been feeling persistently depressed."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "depression"
+      ]
+    },
+    {
+      "id": "expanded_ros_suicidal_thoughts",
+      "category": "pertinent_negative",
+      "value": "I have not had thoughts of suicide or hurting myself.",
+      "sp_says": [
+        "I have not had thoughts of suicide or hurting myself."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_suicidal_thoughts": {
+          "polarity": "negative",
+          "value": "I have not had thoughts of suicide or hurting myself."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not had thoughts of suicide or hurting myself.",
+            "concepts": {
+              "expanded_ros_suicidal_thoughts": {
+                "polarity": "negative",
+                "value": "I have not had thoughts of suicide or hurting myself."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "suicidal_thoughts"
+      ]
+    },
+    {
+      "id": "expanded_ros_weight_change",
+      "category": "pertinent_negative",
+      "value": "My weight has not changed recently.",
+      "sp_says": [
+        "My weight has not changed recently."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_weight_change": {
+          "polarity": "negative",
+          "value": "My weight has not changed recently."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My weight has not changed recently.",
+            "concepts": {
+              "expanded_ros_weight_change": {
+                "polarity": "negative",
+                "value": "My weight has not changed recently."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "weight_change"
+      ]
+    },
+    {
+      "id": "expanded_ros_headache",
+      "category": "pertinent_negative",
+      "value": "I have not had headaches.",
+      "sp_says": [
+        "I have not had headaches."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_headache": {
+          "polarity": "negative",
+          "value": "I have not had headaches."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not had headaches.",
+            "concepts": {
+              "expanded_ros_headache": {
+                "polarity": "negative",
+                "value": "I have not had headaches."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "headache"
+      ]
+    },
+    {
+      "id": "expanded_ros_nausea",
+      "category": "pertinent_negative",
+      "value": "I have not felt nauseated.",
+      "sp_says": [
+        "I have not felt nauseated."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_nausea": {
+          "polarity": "negative",
+          "value": "I have not felt nauseated."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not felt nauseated.",
+            "concepts": {
+              "expanded_ros_nausea": {
+                "polarity": "negative",
+                "value": "I have not felt nauseated."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "nausea"
+      ]
+    },
+    {
+      "id": "expanded_ros_vomiting",
+      "category": "pertinent_negative",
+      "value": "I have not vomited.",
+      "sp_says": [
+        "I have not vomited."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_vomiting": {
+          "polarity": "negative",
+          "value": "I have not vomited."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not vomited.",
+            "concepts": {
+              "expanded_ros_vomiting": {
+                "polarity": "negative",
+                "value": "I have not vomited."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "vomiting"
+      ]
+    },
+    {
+      "id": "expanded_ros_dizziness",
+      "category": "pertinent_negative",
+      "value": "I have not felt dizzy.",
+      "sp_says": [
+        "I have not felt dizzy."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_dizziness": {
+          "polarity": "negative",
+          "value": "I have not felt dizzy."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not felt dizzy.",
+            "concepts": {
+              "expanded_ros_dizziness": {
+                "polarity": "negative",
+                "value": "I have not felt dizzy."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "dizziness"
+      ]
+    },
+    {
+      "id": "expanded_ros_lightheadedness",
+      "category": "pertinent_negative",
+      "value": "I have not felt lightheaded or close to fainting.",
+      "sp_says": [
+        "I have not felt lightheaded or close to fainting."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_lightheadedness": {
+          "polarity": "negative",
+          "value": "I have not felt lightheaded or close to fainting."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not felt lightheaded or close to fainting.",
+            "concepts": {
+              "expanded_ros_lightheadedness": {
+                "polarity": "negative",
+                "value": "I have not felt lightheaded or close to fainting."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "lightheadedness"
+      ]
+    },
+    {
+      "id": "expanded_ros_vertigo",
+      "category": "pertinent_negative",
+      "value": "I have not felt the room spinning.",
+      "sp_says": [
+        "I have not felt the room spinning."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_vertigo": {
+          "polarity": "negative",
+          "value": "I have not felt the room spinning."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not felt the room spinning.",
+            "concepts": {
+              "expanded_ros_vertigo": {
+                "polarity": "negative",
+                "value": "I have not felt the room spinning."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "vertigo"
+      ]
+    },
+    {
+      "id": "expanded_ros_tinnitus",
+      "category": "pertinent_negative",
+      "value": "I have not had ringing in my ears.",
+      "sp_says": [
+        "I have not had ringing in my ears."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_tinnitus": {
+          "polarity": "negative",
+          "value": "I have not had ringing in my ears."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not had ringing in my ears.",
+            "concepts": {
+              "expanded_ros_tinnitus": {
+                "polarity": "negative",
+                "value": "I have not had ringing in my ears."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "tinnitus"
+      ]
+    },
+    {
+      "id": "expanded_ros_palpitations",
+      "category": "pertinent_negative",
+      "value": "I have not noticed my heart racing or fluttering.",
+      "sp_says": [
+        "I have not noticed my heart racing or fluttering."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_palpitations": {
+          "polarity": "negative",
+          "value": "I have not noticed my heart racing or fluttering."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not noticed my heart racing or fluttering.",
+            "concepts": {
+              "expanded_ros_palpitations": {
+                "polarity": "negative",
+                "value": "I have not noticed my heart racing or fluttering."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "palpitations"
+      ]
+    },
+    {
+      "id": "expanded_ros_chest_pain",
+      "category": "pertinent_negative",
+      "value": "I have not had chest pain.",
+      "sp_says": [
+        "I have not had chest pain."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_chest_pain": {
+          "polarity": "negative",
+          "value": "I have not had chest pain."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not had chest pain.",
+            "concepts": {
+              "expanded_ros_chest_pain": {
+                "polarity": "negative",
+                "value": "I have not had chest pain."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "chest_pain"
+      ]
+    },
+    {
+      "id": "expanded_ros_dyspnea",
+      "category": "pertinent_negative",
+      "value": "I have not been short of breath.",
+      "sp_says": [
+        "I have not been short of breath."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_dyspnea": {
+          "polarity": "negative",
+          "value": "I have not been short of breath."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not been short of breath.",
+            "concepts": {
+              "expanded_ros_dyspnea": {
+                "polarity": "negative",
+                "value": "I have not been short of breath."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "dyspnea"
+      ]
+    },
+    {
+      "id": "expanded_ros_cough",
+      "category": "pertinent_negative",
+      "value": "I have not had a cough.",
+      "sp_says": [
+        "I have not had a cough."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_cough": {
+          "polarity": "negative",
+          "value": "I have not had a cough."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not had a cough.",
+            "concepts": {
+              "expanded_ros_cough": {
+                "polarity": "negative",
+                "value": "I have not had a cough."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "cough"
+      ]
+    },
+    {
+      "id": "expanded_ros_tremor",
+      "category": "pertinent_negative",
+      "value": "My hands have not been shaky, and I have not noticed a tremor.",
+      "sp_says": [
+        "My hands have not been shaky, and I have not noticed a tremor."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_tremor": {
+          "polarity": "negative",
+          "value": "My hands have not been shaky, and I have not noticed a tremor."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My hands have not been shaky, and I have not noticed a tremor.",
+            "concepts": {
+              "expanded_ros_tremor": {
+                "polarity": "negative",
+                "value": "My hands have not been shaky, and I have not noticed a tremor."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "tremor"
+      ]
+    },
+    {
+      "id": "expanded_ros_blurred_vision",
+      "category": "pertinent_negative",
+      "value": "My vision has not been blurry.",
+      "sp_says": [
+        "My vision has not been blurry."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_blurred_vision": {
+          "polarity": "negative",
+          "value": "My vision has not been blurry."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My vision has not been blurry.",
+            "concepts": {
+              "expanded_ros_blurred_vision": {
+                "polarity": "negative",
+                "value": "My vision has not been blurry."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "blurred_vision"
+      ]
+    },
+    {
+      "id": "expanded_ros_bruising",
+      "category": "pertinent_negative",
+      "value": "I have not noticed unusual bruising.",
+      "sp_says": [
+        "I have not noticed unusual bruising."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_bruising": {
+          "polarity": "negative",
+          "value": "I have not noticed unusual bruising."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not noticed unusual bruising.",
+            "concepts": {
+              "expanded_ros_bruising": {
+                "polarity": "negative",
+                "value": "I have not noticed unusual bruising."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "bruising"
+      ]
+    },
+    {
+      "id": "expanded_ros_mood_swings",
+      "category": "pertinent_negative",
+      "value": "I have not had unusual mood swings.",
+      "sp_says": [
+        "I have not had unusual mood swings."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_mood_swings": {
+          "polarity": "negative",
+          "value": "I have not had unusual mood swings."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not had unusual mood swings.",
+            "concepts": {
+              "expanded_ros_mood_swings": {
+                "polarity": "negative",
+                "value": "I have not had unusual mood swings."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "mood_swings"
+      ]
+    },
+    {
+      "id": "expanded_ros_weakness",
+      "category": "associated",
+      "value": "My right knee hurts when I use it; my ankle and foot feel strong.",
+      "sp_says": [
+        "My right knee hurts when I use it; my ankle and foot feel strong."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_weakness": {
+          "polarity": "positive",
+          "value": "My right knee hurts when I use it; my ankle and foot feel strong."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "My right knee hurts when I use it; my ankle and foot feel strong.",
+            "concepts": {
+              "expanded_ros_weakness": {
+                "polarity": "positive",
+                "value": "My right knee hurts when I use it; my ankle and foot feel strong."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "weakness"
+      ]
+    },
+    {
+      "id": "expanded_ros_cramping",
+      "category": "pertinent_negative",
+      "value": "I have not had cramps.",
+      "sp_says": [
+        "I have not had cramps."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_cramping": {
+          "polarity": "negative",
+          "value": "I have not had cramps."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not had cramps.",
+            "concepts": {
+              "expanded_ros_cramping": {
+                "polarity": "negative",
+                "value": "I have not had cramps."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "cramping"
+      ]
+    },
+    {
+      "id": "expanded_ros_sweating",
+      "category": "pertinent_negative",
+      "value": "I have not noticed unusual sweating.",
+      "sp_says": [
+        "I have not noticed unusual sweating."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_sweating": {
+          "polarity": "negative",
+          "value": "I have not noticed unusual sweating."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not noticed unusual sweating.",
+            "concepts": {
+              "expanded_ros_sweating": {
+                "polarity": "negative",
+                "value": "I have not noticed unusual sweating."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "sweating"
+      ]
+    },
+    {
+      "id": "expanded_ros_night_sweats",
+      "category": "pertinent_negative",
+      "value": "I have not had night sweats.",
+      "sp_says": [
+        "I have not had night sweats."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_night_sweats": {
+          "polarity": "negative",
+          "value": "I have not had night sweats."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not had night sweats.",
+            "concepts": {
+              "expanded_ros_night_sweats": {
+                "polarity": "negative",
+                "value": "I have not had night sweats."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "night_sweats"
+      ]
+    },
+    {
+      "id": "expanded_ros_diarrhea",
+      "category": "pertinent_negative",
+      "value": "I have not had diarrhea.",
+      "sp_says": [
+        "I have not had diarrhea."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_diarrhea": {
+          "polarity": "negative",
+          "value": "I have not had diarrhea."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not had diarrhea.",
+            "concepts": {
+              "expanded_ros_diarrhea": {
+                "polarity": "negative",
+                "value": "I have not had diarrhea."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "diarrhea"
+      ]
+    },
+    {
+      "id": "expanded_ros_constipation",
+      "category": "pertinent_negative",
+      "value": "I have not been constipated.",
+      "sp_says": [
+        "I have not been constipated."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_constipation": {
+          "polarity": "negative",
+          "value": "I have not been constipated."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not been constipated.",
+            "concepts": {
+              "expanded_ros_constipation": {
+                "polarity": "negative",
+                "value": "I have not been constipated."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "constipation"
+      ]
+    },
+    {
+      "id": "expanded_ros_rash",
+      "category": "pertinent_negative",
+      "value": "I have not noticed a rash.",
+      "sp_says": [
+        "I have not noticed a rash."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_rash": {
+          "polarity": "negative",
+          "value": "I have not noticed a rash."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not noticed a rash.",
+            "concepts": {
+              "expanded_ros_rash": {
+                "polarity": "negative",
+                "value": "I have not noticed a rash."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "rash"
+      ]
+    },
+    {
+      "id": "expanded_ros_wheezing",
+      "category": "pertinent_negative",
+      "value": "I have not noticed wheezing.",
+      "sp_says": [
+        "I have not noticed wheezing."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_wheezing": {
+          "polarity": "negative",
+          "value": "I have not noticed wheezing."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not noticed wheezing.",
+            "concepts": {
+              "expanded_ros_wheezing": {
+                "polarity": "negative",
+                "value": "I have not noticed wheezing."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "wheezing"
+      ]
+    },
+    {
+      "id": "expanded_ros_dysuria",
+      "category": "pertinent_negative",
+      "value": "I have not had burning when I urinate.",
+      "sp_says": [
+        "I have not had burning when I urinate."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_dysuria": {
+          "polarity": "negative",
+          "value": "I have not had burning when I urinate."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not had burning when I urinate.",
+            "concepts": {
+              "expanded_ros_dysuria": {
+                "polarity": "negative",
+                "value": "I have not had burning when I urinate."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "dysuria"
+      ]
+    },
+    {
+      "id": "expanded_ros_hematuria",
+      "category": "pertinent_negative",
+      "value": "I have not seen blood in my urine.",
+      "sp_says": [
+        "I have not seen blood in my urine."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_hematuria": {
+          "polarity": "negative",
+          "value": "I have not seen blood in my urine."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not seen blood in my urine.",
+            "concepts": {
+              "expanded_ros_hematuria": {
+                "polarity": "negative",
+                "value": "I have not seen blood in my urine."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "hematuria"
+      ]
+    },
+    {
+      "id": "expanded_history_diet",
+      "category": "social",
+      "value": "I usually eat three mixed meals a day, with grains, vegetables and some meat or beans. I do not follow a special diet.",
+      "sp_says": [
+        "I usually eat three mixed meals a day, with grains, vegetables and some meat or beans. I do not follow a special diet."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_history_diet": {
+          "polarity": "positive",
+          "value": "I usually eat three mixed meals a day, with grains, vegetables and some meat or beans. I do not follow a special diet."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I usually eat three mixed meals a day, with grains, vegetables and some meat or beans. I do not follow a special diet.",
+            "concepts": {
+              "expanded_history_diet": {
+                "polarity": "positive",
+                "value": "I usually eat three mixed meals a day, with grains, vegetables and some meat or beans. I do not follow a special diet."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "history_topic": "diet"
+    },
+    {
+      "id": "expanded_history_sleep",
+      "category": "social",
+      "value": "I usually sleep about 7 hours a night. Before this problem I felt I got enough sleep.",
+      "sp_says": [
+        "I usually sleep about 7 hours a night. Before this problem I felt I got enough sleep."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_history_sleep": {
+          "polarity": "positive",
+          "value": "I usually sleep about 7 hours a night. Before this problem I felt I got enough sleep."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I usually sleep about 7 hours a night. Before this problem I felt I got enough sleep.",
+            "concepts": {
+              "expanded_history_sleep": {
+                "polarity": "positive",
+                "value": "I usually sleep about 7 hours a night. Before this problem I felt I got enough sleep."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "history_topic": "sleep"
+    },
+    {
+      "id": "expanded_allergy_food",
+      "category": "allergies",
+      "value": "I have no known food allergies.",
+      "sp_says": [
+        "I have no known food allergies."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_allergy_food": {
+          "polarity": "positive",
+          "value": "I have no known food allergies."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have no known food allergies.",
+            "concepts": {
+              "expanded_allergy_food": {
+                "polarity": "positive",
+                "value": "I have no known food allergies."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "allergy_scopes": [
+        "food"
+      ],
+      "example_questions": [
+        "Do you have any food allergies?"
+      ]
+    },
+    {
+      "id": "expanded_allergy_environmental",
+      "category": "allergies",
+      "value": "I have not had seasonal or environmental allergies.",
+      "sp_says": [
+        "I have not had seasonal or environmental allergies."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_allergy_environmental": {
+          "polarity": "positive",
+          "value": "I have not had seasonal or environmental allergies."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not had seasonal or environmental allergies.",
+            "concepts": {
+              "expanded_allergy_environmental": {
+                "polarity": "positive",
+                "value": "I have not had seasonal or environmental allergies."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "allergy_scopes": [
+        "environmental"
+      ],
+      "example_questions": [
+        "Do you have any environmental allergies?"
+      ]
+    },
+    {
+      "id": "expanded_allergy_contact",
+      "category": "allergies",
+      "value": "I have not had reactions to latex or nickel.",
+      "sp_says": [
+        "I have not had reactions to latex or nickel."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_allergy_contact": {
+          "polarity": "positive",
+          "value": "I have not had reactions to latex or nickel."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not had reactions to latex or nickel.",
+            "concepts": {
+              "expanded_allergy_contact": {
+                "polarity": "positive",
+                "value": "I have not had reactions to latex or nickel."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "allergy_scopes": [
+        "contact"
+      ],
+      "example_questions": [
+        "Do you have any contact allergies?"
+      ]
+    },
+    {
+      "id": "expanded_ros_sore_throat",
+      "category": "pertinent_negative",
+      "value": "I have not had a sore throat.",
+      "sp_says": [
+        "I have not had a sore throat."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_ros_sore_throat": {
+          "polarity": "negative",
+          "value": "I have not had a sore throat."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I have not had a sore throat.",
+            "concepts": {
+              "expanded_ros_sore_throat": {
+                "polarity": "negative",
+                "value": "I have not had a sore throat."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "ros_topics": [
+        "sore_throat"
+      ]
+    },
+    {
+      "id": "expanded_medication_acetaminophen",
+      "category": "medications",
+      "value": "I took two 325 mg acetaminophen tablets at a time, totaling 650 mg, twice yesterday.",
+      "sp_says": [
+        "I took two 325 mg acetaminophen tablets at a time, totaling 650 mg, twice yesterday."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_medication_acetaminophen": {
+          "polarity": "positive",
+          "value": "I took two 325 mg acetaminophen tablets at a time, totaling 650 mg, twice yesterday."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I took two 325 mg acetaminophen tablets at a time, totaling 650 mg, twice yesterday.",
+            "concepts": {
+              "expanded_medication_acetaminophen": {
+                "polarity": "positive",
+                "value": "I took two 325 mg acetaminophen tablets at a time, totaling 650 mg, twice yesterday."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "medication_names": [
+        "acetaminophen"
+      ],
+      "medication_dimensions": [
+        "dose",
+        "tablets",
+        "frequency"
+      ]
+    },
+    {
+      "id": "expanded_medication_hydrochlorothiazide",
+      "category": "medications",
+      "value": "I take one 25 mg hydrochlorothiazide tablet daily.",
+      "sp_says": [
+        "I take one 25 mg hydrochlorothiazide tablet daily."
+      ],
+      "triggers": {},
+      "concepts": {
+        "expanded_medication_hydrochlorothiazide": {
+          "polarity": "positive",
+          "value": "I take one 25 mg hydrochlorothiazide tablet daily."
+        }
+      },
+      "delivery_contract": {
+        "versions": [
+          {
+            "text": "I take one 25 mg hydrochlorothiazide tablet daily.",
+            "concepts": {
+              "expanded_medication_hydrochlorothiazide": {
+                "polarity": "positive",
+                "value": "I take one 25 mg hydrochlorothiazide tablet daily."
+              }
+            },
+            "complete_fact": true
+          }
+        ],
+        "review_status": "author_statement_contract_checked_not_clinician_approved"
+      },
+      "authoring": {
+        "date": "2026-09-14",
+        "kind": "user_requested_fictional_case_expansion",
+        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+        "review_status": "author_consistency_checked_not_clinician_approved"
+      },
+      "medication_names": [
+        "hydrochlorothiazide"
+      ],
+      "medication_dimensions": [
+        "dose",
+        "tablets",
+        "frequency"
+      ]
     }
   ],
   "concept_lexicon": {
@@ -1690,6 +3130,339 @@
     ],
     "exam_osteo_screen": [
       "L4 right lumbar paraspinal tissue texture change and tenderness."
+    ],
+    "expanded_ros_depression": [
+      "I have not been feeling persistently depressed."
+    ],
+    "expanded_ros_suicidal_thoughts": [
+      "I have not had thoughts of suicide or hurting myself."
+    ],
+    "expanded_ros_weight_change": [
+      "My weight has not changed recently."
+    ],
+    "expanded_ros_headache": [
+      "I have not had headaches."
+    ],
+    "expanded_ros_nausea": [
+      "I have not felt nauseated."
+    ],
+    "expanded_ros_vomiting": [
+      "I have not vomited."
+    ],
+    "expanded_ros_dizziness": [
+      "I have not felt dizzy."
+    ],
+    "expanded_ros_lightheadedness": [
+      "I have not felt lightheaded or close to fainting."
+    ],
+    "expanded_ros_vertigo": [
+      "I have not felt the room spinning."
+    ],
+    "expanded_ros_tinnitus": [
+      "I have not had ringing in my ears."
+    ],
+    "expanded_ros_palpitations": [
+      "I have not noticed my heart racing or fluttering."
+    ],
+    "expanded_ros_chest_pain": [
+      "I have not had chest pain."
+    ],
+    "expanded_ros_dyspnea": [
+      "I have not been short of breath."
+    ],
+    "expanded_ros_cough": [
+      "I have not had a cough."
+    ],
+    "expanded_ros_tremor": [
+      "My hands have not been shaky, and I have not noticed a tremor."
+    ],
+    "expanded_ros_blurred_vision": [
+      "My vision has not been blurry."
+    ],
+    "expanded_ros_bruising": [
+      "I have not noticed unusual bruising."
+    ],
+    "expanded_ros_mood_swings": [
+      "I have not had unusual mood swings."
+    ],
+    "expanded_ros_weakness": [
+      "My right knee hurts when I use it; my ankle and foot feel strong."
+    ],
+    "expanded_ros_cramping": [
+      "I have not had cramps."
+    ],
+    "expanded_ros_sweating": [
+      "I have not noticed unusual sweating."
+    ],
+    "expanded_ros_night_sweats": [
+      "I have not had night sweats."
+    ],
+    "expanded_ros_diarrhea": [
+      "I have not had diarrhea."
+    ],
+    "expanded_ros_constipation": [
+      "I have not been constipated."
+    ],
+    "expanded_ros_rash": [
+      "I have not noticed a rash."
+    ],
+    "expanded_ros_wheezing": [
+      "I have not noticed wheezing."
+    ],
+    "expanded_ros_dysuria": [
+      "I have not had burning when I urinate."
+    ],
+    "expanded_ros_hematuria": [
+      "I have not seen blood in my urine."
+    ],
+    "expanded_history_diet": [
+      "I usually eat three mixed meals a day, with grains, vegetables and some meat or beans. I do not follow a special diet."
+    ],
+    "expanded_history_sleep": [
+      "I usually sleep about 7 hours a night. Before this problem I felt I got enough sleep."
+    ],
+    "expanded_allergy_food": [
+      "I have no known food allergies."
+    ],
+    "expanded_allergy_environmental": [
+      "I have not had seasonal or environmental allergies."
+    ],
+    "expanded_allergy_contact": [
+      "I have not had reactions to latex or nickel."
+    ],
+    "expanded_exam_vitals_review_complete": [
+      "Supplied chart: BP 138/84 mmHg, P 78 bpm, R 16 rpm, T 98.5 F oral, Pulse Ox 98% on room air, Ht 5' 11\", Wt 206 lbs."
+    ],
+    "expanded_exam_heent_eyes_pupils_conjunctivae_sclerae_cornea": [
+      "Pupils equal, round and reactive to light. Conjunctivae pink. Sclerae anicteric. Corneas clear on inspection."
+    ],
+    "expanded_exam_heent_eyes_extraocular_movements": [
+      "Extraocular movements intact without spontaneous nystagmus."
+    ],
+    "expanded_exam_heent_eyes_fundoscopic": [
+      "Optic disc margins sharp in the visualized fundi; no retinal hemorrhage seen."
+    ],
+    "expanded_exam_heent_ears_right_ear_left_ear": [
+      "Right canal clear; tympanic membrane intact without bulging. Left canal clear; tympanic membrane intact without bulging."
+    ],
+    "expanded_exam_heent_nose_right_naris_left_naris": [
+      "Right nasal passage patent without purulent discharge. Left nasal passage patent without purulent discharge."
+    ],
+    "expanded_exam_heent_throat_tongue_blade_oropharynx_tonsils": [
+      "Tongue and oral mucosa without visible ulceration. Oropharynx moist without erythema or exudate. Tonsils without enlargement or exudate."
+    ],
+    "expanded_exam_heent_sinuses_frontal_maxillary": [
+      "Frontal sinuses nontender. Maxillary sinuses nontender."
+    ],
+    "expanded_exam_lymph_nodes_cervical_submandibular_supraclavicular_axillary": [
+      "Cervical nodes not enlarged or tender. Submandibular nodes not enlarged or tender. Supraclavicular nodes not enlarged or tender. Axillary nodes not enlarged or tender."
+    ],
+    "expanded_exam_thyroid_ask_patient_to_swallow": [
+      "Thyroid moves with swallowing, without palpable enlargement, nodules or tenderness."
+    ],
+    "expanded_exam_neck_rom_flexion_rotation": [
+      "Neck flexion comfortable and unrestricted. Neck rotation comfortable bilaterally."
+    ],
+    "expanded_exam_neck_rom_brudzinski": [
+      "Brudzinski sign negative."
+    ],
+    "expanded_exam_neck_rom_kernig": [
+      "Kernig sign negative."
+    ],
+    "expanded_exam_heart_inspect_palpate_pmi_thrills_heaves": [
+      "PMI nondisplaced. No palpable precordial thrill. No palpable precordial heave."
+    ],
+    "expanded_exam_jvd_complete": [
+      "Jugular venous pressure is not elevated at 45 degrees."
+    ],
+    "expanded_exam_carotid_auscultate_right_left": [
+      "No right carotid bruit. No left carotid bruit."
+    ],
+    "expanded_exam_lungs_percuss_anterior_posterior_compare_side_to_side": [
+      "Anterior fields resonant and symmetric. Posterior fields resonant and symmetric. Percussion is symmetric between corresponding fields."
+    ],
+    "expanded_exam_lungs_fremitus_compare_side_to_side": [
+      "Tactile fremitus symmetric without focal increase."
+    ],
+    "expanded_exam_chest_inspect_symmetry_scars_accessory_muscle_use": [
+      "Chest movement symmetric. No chest wall surgical scar. No accessory muscle use at rest."
+    ],
+    "expanded_exam_chest_wall_palpate_costochondral_junctions_ribs": [
+      "Costochondral junctions nontender. Ribs nontender to gentle palpation."
+    ],
+    "expanded_exam_abd_inspect_contour_scars_distention_pulsation": [
+      "Abdominal contour flat. No open abdominal wound. No abdominal distention. No abnormal visible abdominal pulsation."
+    ],
+    "expanded_exam_abd_auscultate_all_four_quadrants": [
+      "Bowel sounds present in all four quadrants."
+    ],
+    "expanded_exam_abd_auscultate_bruits": [
+      "No abdominal bruit heard."
+    ],
+    "expanded_exam_abd_percuss_four_quadrants": [
+      "Abdomen predominantly tympanitic in all four quadrants."
+    ],
+    "expanded_exam_abd_percuss_liver_span": [
+      "Liver span approximately 9 cm at the right midclavicular line."
+    ],
+    "expanded_exam_abd_percuss_shifting_dullness": [
+      "No shifting dullness."
+    ],
+    "expanded_exam_abd_palpate_light_four_quadrants_guarding": [
+      "Abdomen soft and nontender to light palpation. All four quadrants examined. No involuntary guarding."
+    ],
+    "expanded_exam_abd_palpate_deep_four_quadrants": [
+      "No deep abdominal tenderness or palpable mass. All four quadrants examined."
+    ],
+    "expanded_exam_abd_palpate_rebound": [
+      "No rebound tenderness."
+    ],
+    "expanded_exam_abd_special_murphy": [
+      "Murphy sign negative."
+    ],
+    "expanded_exam_abd_special_mcburney": [
+      "McBurney point nontender."
+    ],
+    "expanded_exam_abd_special_rovsing": [
+      "Rovsing sign negative."
+    ],
+    "expanded_exam_abd_special_psoas": [
+      "Psoas test negative."
+    ],
+    "expanded_exam_abd_special_obturator": [
+      "Obturator test negative."
+    ],
+    "expanded_exam_abd_special_cva_tenderness": [
+      "No costovertebral-angle tenderness bilaterally."
+    ],
+    "expanded_exam_msk_palpate_paraspinal_musculature": [
+      "Mild paraspinal tenderness in the region of the structural finding."
+    ],
+    "expanded_exam_msk_palpate_midline_spine": [
+      "No midline spinal tenderness or step-off."
+    ],
+    "expanded_exam_msk_strength_upper_extremity": [
+      "Upper extremity strength 5/5 bilaterally."
+    ],
+    "expanded_exam_msk_strength_pronator_drift": [
+      "No pronator drift."
+    ],
+    "expanded_exam_msk_slr_supine_right_left": [
+      "Supine straight-leg raise does not reproduce radicular pain."
+    ],
+    "expanded_exam_msk_slr_seated_right_left": [
+      "Seated straight-leg raise does not reproduce radicular pain."
+    ],
+    "expanded_exam_neuro_cn_cn_ii": [
+      "Visual fields full to confrontation."
+    ],
+    "expanded_exam_neuro_cn_cn_iii_iv_vi": [
+      "Pupils reactive; extraocular movements intact."
+    ],
+    "expanded_exam_neuro_cn_cn_v": [
+      "Facial sensation and jaw strength symmetric."
+    ],
+    "expanded_exam_neuro_cn_cn_vii": [
+      "Facial movements symmetric."
+    ],
+    "expanded_exam_neuro_cn_cn_viii": [
+      "Hearing intact to conversational voice bilaterally."
+    ],
+    "expanded_exam_neuro_cn_cn_ix_x": [
+      "Palate elevates symmetrically; voice clear."
+    ],
+    "expanded_exam_neuro_cn_cn_xi": [
+      "Shoulder shrug symmetric."
+    ],
+    "expanded_exam_neuro_cn_cn_xii": [
+      "Tongue protrudes in the midline."
+    ],
+    "expanded_exam_neuro_sensory_light_touch": [
+      "Light touch intact and symmetric in the tested limbs."
+    ],
+    "expanded_exam_neuro_sensory_pinprick": [
+      "Pinprick intact and symmetric in the tested limbs."
+    ],
+    "expanded_exam_neuro_sensory_vibration": [
+      "Vibration intact at fingers and toes bilaterally."
+    ],
+    "expanded_exam_neuro_sensory_proprioception": [
+      "Great-toe position sense intact bilaterally."
+    ],
+    "expanded_exam_neuro_reflexes_biceps_triceps_patellar_achilles": [
+      "Biceps reflexes 2+ bilaterally. Triceps reflexes 2+ bilaterally. Patellar reflexes 2+ bilaterally. Achilles reflexes 2+ bilaterally."
+    ],
+    "expanded_exam_neuro_reflexes_babinski": [
+      "Plantar responses downgoing bilaterally."
+    ],
+    "expanded_exam_neuro_coordination_finger_to_nose": [
+      "Finger-to-nose accurate bilaterally."
+    ],
+    "expanded_exam_neuro_coordination_heel_to_shin": [
+      "Heel-to-shin accurate bilaterally."
+    ],
+    "expanded_exam_neuro_coordination_romberg": [
+      "Romberg negative."
+    ],
+    "expanded_exam_neuro_coordination_rapid_alternating": [
+      "Rapid alternating movements coordinated bilaterally."
+    ],
+    "expanded_exam_mental_status_orientation_memory_attention_naming": [
+      "Oriented to person, place, time and situation. Immediate and delayed recall intact on brief testing. Attention maintained during brief testing. Names common objects correctly."
+    ],
+    "expanded_exam_skin_inspect_chest": [
+      "No rash or open lesion on the inspected chest."
+    ],
+    "expanded_exam_skin_inspect_back": [
+      "No rash or open lesion on the inspected back."
+    ],
+    "expanded_exam_skin_inspect_arms": [
+      "No rash or open lesion on the inspected arms."
+    ],
+    "expanded_exam_skin_inspect_legs": [
+      "No rash or open lesion on the inspected legs."
+    ],
+    "expanded_exam_skin_inspect_palms": [
+      "No rash or open lesion on the inspected palms."
+    ],
+    "expanded_exam_skin_inspect_soles": [
+      "No rash or open lesion on the inspected soles."
+    ],
+    "expanded_exam_skin_palpate_tenderness_warmth_induration_fluctuance": [
+      "No focal skin tenderness. No focal increase in skin warmth. No skin induration. No fluctuance."
+    ],
+    "expanded_exam_extremities_edema_capillary_refill_clubbing_cyanosis_calf_tenderness_calf_symmetry_nail_beds": [
+      "No peripheral edema. Capillary refill under 2 seconds. No digital clubbing. No peripheral cyanosis. Calves nontender. Calves symmetric. Nail beds without splinter hemorrhages."
+    ],
+    "expanded_exam_osteo_screen_cervical": [
+      "No additional tissue texture change, asymmetry, restricted motion or tenderness in the examined cervical region."
+    ],
+    "expanded_exam_osteo_screen_thoracic": [
+      "No additional tissue texture change, asymmetry, restricted motion or tenderness in the examined thoracic region."
+    ],
+    "expanded_exam_osteo_screen_sacrum": [
+      "No additional tissue texture change, asymmetry, restricted motion or tenderness in the examined sacrum region."
+    ],
+    "expanded_exam_osteo_screen_ribs": [
+      "No additional tissue texture change, asymmetry, restricted motion or tenderness in the examined ribs region."
+    ],
+    "expanded_exam_orthostatic_vitals_supine_standing_1min_standing_3min": [
+      "After resting supine: BP 138/84 mmHg, pulse 78/min. Standing at 1 minute: BP 134/84 mmHg, pulse 86/min. Standing at 3 minutes: BP 136/84 mmHg, pulse 84/min. No lightheadedness during measurement."
+    ],
+    "expanded_ros_sore_throat": [
+      "I have not had a sore throat."
+    ],
+    "expanded_medication_acetaminophen": [
+      "I took two 325 mg acetaminophen tablets at a time, totaling 650 mg, twice yesterday."
+    ],
+    "expanded_medication_hydrochlorothiazide": [
+      "I take one 25 mg hydrochlorothiazide tablet daily."
+    ],
+    "expanded_exam_dix_right": [
+      "Right Dix–Hallpike after suitability review does not elicit vertigo or nystagmus."
+    ],
+    "expanded_exam_dix_left": [
+      "Left Dix–Hallpike after suitability review does not elicit vertigo or nystagmus."
     ]
   },
   "exam_findings": {
@@ -1751,6 +3524,50 @@
           "point tenderness"
         ],
         "key_finding": true
+      },
+      {
+        "id": "expanded_exam_msk_palpate_paraspinal_musculature",
+        "text": "Mild paraspinal tenderness in the region of the structural finding.",
+        "requires_components": [
+          "paraspinal musculature"
+        ],
+        "concepts": {
+          "expanded_exam_msk_palpate_paraspinal_musculature": {
+            "polarity": "positive",
+            "value": "Mild paraspinal tenderness in the region of the structural finding."
+          }
+        },
+        "scopes": [
+          "msk.palpation"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_msk_palpate_midline_spine",
+        "text": "No midline spinal tenderness or step-off.",
+        "requires_components": [
+          "midline spine"
+        ],
+        "concepts": {
+          "expanded_exam_msk_palpate_midline_spine": {
+            "polarity": "positive",
+            "value": "No midline spinal tenderness or step-off."
+          }
+        },
+        "scopes": [
+          "msk.palpation"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
       }
     ],
     "msk_rom": [
@@ -1792,6 +3609,50 @@
           "lower extremity"
         ],
         "key_finding": true
+      },
+      {
+        "id": "expanded_exam_msk_strength_upper_extremity",
+        "text": "Upper extremity strength 5/5 bilaterally.",
+        "requires_components": [
+          "upper extremity"
+        ],
+        "concepts": {
+          "expanded_exam_msk_strength_upper_extremity": {
+            "polarity": "positive",
+            "value": "Upper extremity strength 5/5 bilaterally."
+          }
+        },
+        "scopes": [
+          "neuro.motor"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_msk_strength_pronator_drift",
+        "text": "No pronator drift.",
+        "requires_components": [
+          "pronator drift"
+        ],
+        "concepts": {
+          "expanded_exam_msk_strength_pronator_drift": {
+            "polarity": "positive",
+            "value": "No pronator drift."
+          }
+        },
+        "scopes": [
+          "neuro.motor"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
       }
     ],
     "gait": [
@@ -1898,6 +3759,1699 @@
           "lumbar"
         ],
         "key_finding": false
+      },
+      {
+        "id": "expanded_exam_osteo_screen_cervical",
+        "text": "No additional tissue texture change, asymmetry, restricted motion or tenderness in the examined cervical region.",
+        "requires_components": [
+          "cervical"
+        ],
+        "concepts": {
+          "expanded_exam_osteo_screen_cervical": {
+            "polarity": "positive",
+            "value": "No additional tissue texture change, asymmetry, restricted motion or tenderness in the examined cervical region."
+          }
+        },
+        "scopes": [
+          "osteopathic"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_osteo_screen_thoracic",
+        "text": "No additional tissue texture change, asymmetry, restricted motion or tenderness in the examined thoracic region.",
+        "requires_components": [
+          "thoracic"
+        ],
+        "concepts": {
+          "expanded_exam_osteo_screen_thoracic": {
+            "polarity": "positive",
+            "value": "No additional tissue texture change, asymmetry, restricted motion or tenderness in the examined thoracic region."
+          }
+        },
+        "scopes": [
+          "osteopathic"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_osteo_screen_sacrum",
+        "text": "No additional tissue texture change, asymmetry, restricted motion or tenderness in the examined sacrum region.",
+        "requires_components": [
+          "sacrum"
+        ],
+        "concepts": {
+          "expanded_exam_osteo_screen_sacrum": {
+            "polarity": "positive",
+            "value": "No additional tissue texture change, asymmetry, restricted motion or tenderness in the examined sacrum region."
+          }
+        },
+        "scopes": [
+          "osteopathic"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_osteo_screen_ribs",
+        "text": "No additional tissue texture change, asymmetry, restricted motion or tenderness in the examined ribs region.",
+        "requires_components": [
+          "ribs"
+        ],
+        "concepts": {
+          "expanded_exam_osteo_screen_ribs": {
+            "polarity": "positive",
+            "value": "No additional tissue texture change, asymmetry, restricted motion or tenderness in the examined ribs region."
+          }
+        },
+        "scopes": [
+          "osteopathic"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "vitals_review": [
+      {
+        "id": "expanded_exam_vitals_review_complete",
+        "text": "Supplied chart: BP 138/84 mmHg, P 78 bpm, R 16 rpm, T 98.5 F oral, Pulse Ox 98% on room air, Ht 5' 11\", Wt 206 lbs.",
+        "requires_components": [],
+        "concepts": {
+          "expanded_exam_vitals_review_complete": {
+            "polarity": "positive",
+            "value": "Supplied chart: BP 138/84 mmHg, P 78 bpm, R 16 rpm, T 98.5 F oral, Pulse Ox 98% on room air, Ht 5' 11\", Wt 206 lbs."
+          }
+        },
+        "scopes": [
+          "vitals"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "heent_eyes": [
+      {
+        "id": "expanded_exam_heent_eyes_pupils_conjunctivae_sclerae_cornea",
+        "text": "Pupils equal, round and reactive to light. Conjunctivae pink. Sclerae anicteric. Corneas clear on inspection.",
+        "requires_components": [
+          "pupils",
+          "conjunctivae",
+          "sclerae",
+          "cornea"
+        ],
+        "concepts": {
+          "expanded_exam_heent_eyes_pupils_conjunctivae_sclerae_cornea": {
+            "polarity": "positive",
+            "value": "Pupils equal, round and reactive to light. Conjunctivae pink. Sclerae anicteric. Corneas clear on inspection."
+          }
+        },
+        "scopes": [
+          "heent.eyes"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_heent_eyes_extraocular_movements",
+        "text": "Extraocular movements intact without spontaneous nystagmus.",
+        "requires_components": [
+          "extraocular movements"
+        ],
+        "concepts": {
+          "expanded_exam_heent_eyes_extraocular_movements": {
+            "polarity": "positive",
+            "value": "Extraocular movements intact without spontaneous nystagmus."
+          }
+        },
+        "scopes": [
+          "heent.eyes"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_heent_eyes_fundoscopic",
+        "text": "Optic disc margins sharp in the visualized fundi; no retinal hemorrhage seen.",
+        "requires_components": [
+          "fundoscopic"
+        ],
+        "concepts": {
+          "expanded_exam_heent_eyes_fundoscopic": {
+            "polarity": "positive",
+            "value": "Optic disc margins sharp in the visualized fundi; no retinal hemorrhage seen."
+          }
+        },
+        "scopes": [
+          "heent.eyes"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "heent_ears": [
+      {
+        "id": "expanded_exam_heent_ears_right_ear_left_ear",
+        "text": "Right canal clear; tympanic membrane intact without bulging. Left canal clear; tympanic membrane intact without bulging.",
+        "requires_components": [
+          "right ear",
+          "left ear"
+        ],
+        "concepts": {
+          "expanded_exam_heent_ears_right_ear_left_ear": {
+            "polarity": "positive",
+            "value": "Right canal clear; tympanic membrane intact without bulging. Left canal clear; tympanic membrane intact without bulging."
+          }
+        },
+        "scopes": [
+          "heent.ears"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "heent_nose": [
+      {
+        "id": "expanded_exam_heent_nose_right_naris_left_naris",
+        "text": "Right nasal passage patent without purulent discharge. Left nasal passage patent without purulent discharge.",
+        "requires_components": [
+          "right naris",
+          "left naris"
+        ],
+        "concepts": {
+          "expanded_exam_heent_nose_right_naris_left_naris": {
+            "polarity": "positive",
+            "value": "Right nasal passage patent without purulent discharge. Left nasal passage patent without purulent discharge."
+          }
+        },
+        "scopes": [
+          "heent.nose"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "heent_throat": [
+      {
+        "id": "expanded_exam_heent_throat_tongue_blade_oropharynx_tonsils",
+        "text": "Tongue and oral mucosa without visible ulceration. Oropharynx moist without erythema or exudate. Tonsils without enlargement or exudate.",
+        "requires_components": [
+          "tongue blade",
+          "oropharynx",
+          "tonsils"
+        ],
+        "concepts": {
+          "expanded_exam_heent_throat_tongue_blade_oropharynx_tonsils": {
+            "polarity": "positive",
+            "value": "Tongue and oral mucosa without visible ulceration. Oropharynx moist without erythema or exudate. Tonsils without enlargement or exudate."
+          }
+        },
+        "scopes": [
+          "heent.throat"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "heent_sinuses": [
+      {
+        "id": "expanded_exam_heent_sinuses_frontal_maxillary",
+        "text": "Frontal sinuses nontender. Maxillary sinuses nontender.",
+        "requires_components": [
+          "frontal",
+          "maxillary"
+        ],
+        "concepts": {
+          "expanded_exam_heent_sinuses_frontal_maxillary": {
+            "polarity": "positive",
+            "value": "Frontal sinuses nontender. Maxillary sinuses nontender."
+          }
+        },
+        "scopes": [
+          "heent.sinuses"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "lymph_nodes": [
+      {
+        "id": "expanded_exam_lymph_nodes_cervical_submandibular_supraclavicular_axillary",
+        "text": "Cervical nodes not enlarged or tender. Submandibular nodes not enlarged or tender. Supraclavicular nodes not enlarged or tender. Axillary nodes not enlarged or tender.",
+        "requires_components": [
+          "cervical",
+          "submandibular",
+          "supraclavicular",
+          "axillary"
+        ],
+        "concepts": {
+          "expanded_exam_lymph_nodes_cervical_submandibular_supraclavicular_axillary": {
+            "polarity": "positive",
+            "value": "Cervical nodes not enlarged or tender. Submandibular nodes not enlarged or tender. Supraclavicular nodes not enlarged or tender. Axillary nodes not enlarged or tender."
+          }
+        },
+        "scopes": [
+          "lymph"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "thyroid": [
+      {
+        "id": "expanded_exam_thyroid_ask_patient_to_swallow",
+        "text": "Thyroid moves with swallowing, without palpable enlargement, nodules or tenderness.",
+        "requires_components": [
+          "ask patient to swallow"
+        ],
+        "concepts": {
+          "expanded_exam_thyroid_ask_patient_to_swallow": {
+            "polarity": "positive",
+            "value": "Thyroid moves with swallowing, without palpable enlargement, nodules or tenderness."
+          }
+        },
+        "scopes": [
+          "thyroid"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "neck_rom": [
+      {
+        "id": "expanded_exam_neck_rom_flexion_rotation",
+        "text": "Neck flexion comfortable and unrestricted. Neck rotation comfortable bilaterally.",
+        "requires_components": [
+          "flexion",
+          "rotation"
+        ],
+        "concepts": {
+          "expanded_exam_neck_rom_flexion_rotation": {
+            "polarity": "positive",
+            "value": "Neck flexion comfortable and unrestricted. Neck rotation comfortable bilaterally."
+          }
+        },
+        "scopes": [
+          "neck"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_neck_rom_brudzinski",
+        "text": "Brudzinski sign negative.",
+        "requires_components": [
+          "brudzinski"
+        ],
+        "concepts": {
+          "expanded_exam_neck_rom_brudzinski": {
+            "polarity": "positive",
+            "value": "Brudzinski sign negative."
+          }
+        },
+        "scopes": [
+          "neck"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_neck_rom_kernig",
+        "text": "Kernig sign negative.",
+        "requires_components": [
+          "kernig"
+        ],
+        "concepts": {
+          "expanded_exam_neck_rom_kernig": {
+            "polarity": "positive",
+            "value": "Kernig sign negative."
+          }
+        },
+        "scopes": [
+          "neck"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "heart_inspect_palpate": [
+      {
+        "id": "expanded_exam_heart_inspect_palpate_pmi_thrills_heaves",
+        "text": "PMI nondisplaced. No palpable precordial thrill. No palpable precordial heave.",
+        "requires_components": [
+          "pmi",
+          "thrills",
+          "heaves"
+        ],
+        "concepts": {
+          "expanded_exam_heart_inspect_palpate_pmi_thrills_heaves": {
+            "polarity": "positive",
+            "value": "PMI nondisplaced. No palpable precordial thrill. No palpable precordial heave."
+          }
+        },
+        "scopes": [
+          "heart.precordium"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "jvd": [
+      {
+        "id": "expanded_exam_jvd_complete",
+        "text": "Jugular venous pressure is not elevated at 45 degrees.",
+        "requires_components": [],
+        "concepts": {
+          "expanded_exam_jvd_complete": {
+            "polarity": "positive",
+            "value": "Jugular venous pressure is not elevated at 45 degrees."
+          }
+        },
+        "scopes": [
+          "heart.jvd"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "carotid_auscultate": [
+      {
+        "id": "expanded_exam_carotid_auscultate_right_left",
+        "text": "No right carotid bruit. No left carotid bruit.",
+        "requires_components": [
+          "right",
+          "left"
+        ],
+        "concepts": {
+          "expanded_exam_carotid_auscultate_right_left": {
+            "polarity": "positive",
+            "value": "No right carotid bruit. No left carotid bruit."
+          }
+        },
+        "scopes": [
+          "heart.carotids"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "lungs_percuss": [
+      {
+        "id": "expanded_exam_lungs_percuss_anterior_posterior_compare_side_to_side",
+        "text": "Anterior fields resonant and symmetric. Posterior fields resonant and symmetric. Percussion is symmetric between corresponding fields.",
+        "requires_components": [
+          "anterior",
+          "posterior",
+          "compare side to side"
+        ],
+        "concepts": {
+          "expanded_exam_lungs_percuss_anterior_posterior_compare_side_to_side": {
+            "polarity": "positive",
+            "value": "Anterior fields resonant and symmetric. Posterior fields resonant and symmetric. Percussion is symmetric between corresponding fields."
+          }
+        },
+        "scopes": [
+          "lungs.percussion"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "lungs_fremitus": [
+      {
+        "id": "expanded_exam_lungs_fremitus_compare_side_to_side",
+        "text": "Tactile fremitus symmetric without focal increase.",
+        "requires_components": [
+          "compare side to side"
+        ],
+        "concepts": {
+          "expanded_exam_lungs_fremitus_compare_side_to_side": {
+            "polarity": "positive",
+            "value": "Tactile fremitus symmetric without focal increase."
+          }
+        },
+        "scopes": [
+          "lungs.fremitus"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "chest_inspect": [
+      {
+        "id": "expanded_exam_chest_inspect_symmetry_scars_accessory_muscle_use",
+        "text": "Chest movement symmetric. No chest wall surgical scar. No accessory muscle use at rest.",
+        "requires_components": [
+          "symmetry",
+          "scars",
+          "accessory muscle use"
+        ],
+        "concepts": {
+          "expanded_exam_chest_inspect_symmetry_scars_accessory_muscle_use": {
+            "polarity": "positive",
+            "value": "Chest movement symmetric. No chest wall surgical scar. No accessory muscle use at rest."
+          }
+        },
+        "scopes": [
+          "lungs.inspection"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "chest_wall_palpate": [
+      {
+        "id": "expanded_exam_chest_wall_palpate_costochondral_junctions_ribs",
+        "text": "Costochondral junctions nontender. Ribs nontender to gentle palpation.",
+        "requires_components": [
+          "costochondral junctions",
+          "ribs"
+        ],
+        "concepts": {
+          "expanded_exam_chest_wall_palpate_costochondral_junctions_ribs": {
+            "polarity": "positive",
+            "value": "Costochondral junctions nontender. Ribs nontender to gentle palpation."
+          }
+        },
+        "scopes": [
+          "chest_wall"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "abd_inspect": [
+      {
+        "id": "expanded_exam_abd_inspect_contour_scars_distention_pulsation",
+        "text": "Abdominal contour flat. No open abdominal wound. No abdominal distention. No abnormal visible abdominal pulsation.",
+        "requires_components": [
+          "contour",
+          "scars",
+          "distention",
+          "pulsation"
+        ],
+        "concepts": {
+          "expanded_exam_abd_inspect_contour_scars_distention_pulsation": {
+            "polarity": "positive",
+            "value": "Abdominal contour flat. No open abdominal wound. No abdominal distention. No abnormal visible abdominal pulsation."
+          }
+        },
+        "scopes": [
+          "abdomen.inspection"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "abd_auscultate": [
+      {
+        "id": "expanded_exam_abd_auscultate_all_four_quadrants",
+        "text": "Bowel sounds present in all four quadrants.",
+        "requires_components": [
+          "all four quadrants"
+        ],
+        "concepts": {
+          "expanded_exam_abd_auscultate_all_four_quadrants": {
+            "polarity": "positive",
+            "value": "Bowel sounds present in all four quadrants."
+          }
+        },
+        "scopes": [
+          "abdomen.auscultation"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_abd_auscultate_bruits",
+        "text": "No abdominal bruit heard.",
+        "requires_components": [
+          "bruits"
+        ],
+        "concepts": {
+          "expanded_exam_abd_auscultate_bruits": {
+            "polarity": "positive",
+            "value": "No abdominal bruit heard."
+          }
+        },
+        "scopes": [
+          "abdomen.auscultation"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "abd_percuss": [
+      {
+        "id": "expanded_exam_abd_percuss_four_quadrants",
+        "text": "Abdomen predominantly tympanitic in all four quadrants.",
+        "requires_components": [
+          "four quadrants"
+        ],
+        "concepts": {
+          "expanded_exam_abd_percuss_four_quadrants": {
+            "polarity": "positive",
+            "value": "Abdomen predominantly tympanitic in all four quadrants."
+          }
+        },
+        "scopes": [
+          "abdomen.percussion"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_abd_percuss_liver_span",
+        "text": "Liver span approximately 9 cm at the right midclavicular line.",
+        "requires_components": [
+          "liver span"
+        ],
+        "concepts": {
+          "expanded_exam_abd_percuss_liver_span": {
+            "polarity": "positive",
+            "value": "Liver span approximately 9 cm at the right midclavicular line."
+          }
+        },
+        "scopes": [
+          "abdomen.percussion"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_abd_percuss_shifting_dullness",
+        "text": "No shifting dullness.",
+        "requires_components": [
+          "shifting dullness"
+        ],
+        "concepts": {
+          "expanded_exam_abd_percuss_shifting_dullness": {
+            "polarity": "positive",
+            "value": "No shifting dullness."
+          }
+        },
+        "scopes": [
+          "abdomen.percussion"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "abd_palpate": [
+      {
+        "id": "expanded_exam_abd_palpate_light_four_quadrants_guarding",
+        "text": "Abdomen soft and nontender to light palpation. All four quadrants examined. No involuntary guarding.",
+        "requires_components": [
+          "light",
+          "four quadrants",
+          "guarding"
+        ],
+        "concepts": {
+          "expanded_exam_abd_palpate_light_four_quadrants_guarding": {
+            "polarity": "positive",
+            "value": "Abdomen soft and nontender to light palpation. All four quadrants examined. No involuntary guarding."
+          }
+        },
+        "scopes": [
+          "abdomen.palpation"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_abd_palpate_deep_four_quadrants",
+        "text": "No deep abdominal tenderness or palpable mass. All four quadrants examined.",
+        "requires_components": [
+          "deep",
+          "four quadrants"
+        ],
+        "concepts": {
+          "expanded_exam_abd_palpate_deep_four_quadrants": {
+            "polarity": "positive",
+            "value": "No deep abdominal tenderness or palpable mass. All four quadrants examined."
+          }
+        },
+        "scopes": [
+          "abdomen.palpation"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_abd_palpate_rebound",
+        "text": "No rebound tenderness.",
+        "requires_components": [
+          "rebound"
+        ],
+        "concepts": {
+          "expanded_exam_abd_palpate_rebound": {
+            "polarity": "positive",
+            "value": "No rebound tenderness."
+          }
+        },
+        "scopes": [
+          "abdomen.palpation"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "abd_special": [
+      {
+        "id": "expanded_exam_abd_special_murphy",
+        "text": "Murphy sign negative.",
+        "requires_components": [
+          "murphy"
+        ],
+        "concepts": {
+          "expanded_exam_abd_special_murphy": {
+            "polarity": "positive",
+            "value": "Murphy sign negative."
+          }
+        },
+        "scopes": [
+          "abdomen.special"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_abd_special_mcburney",
+        "text": "McBurney point nontender.",
+        "requires_components": [
+          "mcburney"
+        ],
+        "concepts": {
+          "expanded_exam_abd_special_mcburney": {
+            "polarity": "positive",
+            "value": "McBurney point nontender."
+          }
+        },
+        "scopes": [
+          "abdomen.special"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_abd_special_rovsing",
+        "text": "Rovsing sign negative.",
+        "requires_components": [
+          "rovsing"
+        ],
+        "concepts": {
+          "expanded_exam_abd_special_rovsing": {
+            "polarity": "positive",
+            "value": "Rovsing sign negative."
+          }
+        },
+        "scopes": [
+          "abdomen.special"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_abd_special_psoas",
+        "text": "Psoas test negative.",
+        "requires_components": [
+          "psoas"
+        ],
+        "concepts": {
+          "expanded_exam_abd_special_psoas": {
+            "polarity": "positive",
+            "value": "Psoas test negative."
+          }
+        },
+        "scopes": [
+          "abdomen.special"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_abd_special_obturator",
+        "text": "Obturator test negative.",
+        "requires_components": [
+          "obturator"
+        ],
+        "concepts": {
+          "expanded_exam_abd_special_obturator": {
+            "polarity": "positive",
+            "value": "Obturator test negative."
+          }
+        },
+        "scopes": [
+          "abdomen.special"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_abd_special_cva_tenderness",
+        "text": "No costovertebral-angle tenderness bilaterally.",
+        "requires_components": [
+          "cva tenderness"
+        ],
+        "concepts": {
+          "expanded_exam_abd_special_cva_tenderness": {
+            "polarity": "positive",
+            "value": "No costovertebral-angle tenderness bilaterally."
+          }
+        },
+        "scopes": [
+          "abdomen.special"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "msk_slr": [
+      {
+        "id": "expanded_exam_msk_slr_supine_right_left",
+        "text": "Supine straight-leg raise does not reproduce radicular pain.",
+        "requires_components": [
+          "supine",
+          "right",
+          "left"
+        ],
+        "concepts": {
+          "expanded_exam_msk_slr_supine_right_left": {
+            "polarity": "positive",
+            "value": "Supine straight-leg raise does not reproduce radicular pain."
+          }
+        },
+        "scopes": [
+          "msk.slr"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_msk_slr_seated_right_left",
+        "text": "Seated straight-leg raise does not reproduce radicular pain.",
+        "requires_components": [
+          "seated",
+          "right",
+          "left"
+        ],
+        "concepts": {
+          "expanded_exam_msk_slr_seated_right_left": {
+            "polarity": "positive",
+            "value": "Seated straight-leg raise does not reproduce radicular pain."
+          }
+        },
+        "scopes": [
+          "msk.slr"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "neuro_cn": [
+      {
+        "id": "expanded_exam_neuro_cn_cn_ii",
+        "text": "Visual fields full to confrontation.",
+        "requires_components": [
+          "cn ii"
+        ],
+        "concepts": {
+          "expanded_exam_neuro_cn_cn_ii": {
+            "polarity": "positive",
+            "value": "Visual fields full to confrontation."
+          }
+        },
+        "scopes": [
+          "neuro.cn"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_neuro_cn_cn_iii_iv_vi",
+        "text": "Pupils reactive; extraocular movements intact.",
+        "requires_components": [
+          "cn iii-iv-vi"
+        ],
+        "concepts": {
+          "expanded_exam_neuro_cn_cn_iii_iv_vi": {
+            "polarity": "positive",
+            "value": "Pupils reactive; extraocular movements intact."
+          }
+        },
+        "scopes": [
+          "neuro.cn"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_neuro_cn_cn_v",
+        "text": "Facial sensation and jaw strength symmetric.",
+        "requires_components": [
+          "cn v"
+        ],
+        "concepts": {
+          "expanded_exam_neuro_cn_cn_v": {
+            "polarity": "positive",
+            "value": "Facial sensation and jaw strength symmetric."
+          }
+        },
+        "scopes": [
+          "neuro.cn"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_neuro_cn_cn_vii",
+        "text": "Facial movements symmetric.",
+        "requires_components": [
+          "cn vii"
+        ],
+        "concepts": {
+          "expanded_exam_neuro_cn_cn_vii": {
+            "polarity": "positive",
+            "value": "Facial movements symmetric."
+          }
+        },
+        "scopes": [
+          "neuro.cn"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_neuro_cn_cn_viii",
+        "text": "Hearing intact to conversational voice bilaterally.",
+        "requires_components": [
+          "cn viii"
+        ],
+        "concepts": {
+          "expanded_exam_neuro_cn_cn_viii": {
+            "polarity": "positive",
+            "value": "Hearing intact to conversational voice bilaterally."
+          }
+        },
+        "scopes": [
+          "neuro.cn"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_neuro_cn_cn_ix_x",
+        "text": "Palate elevates symmetrically; voice clear.",
+        "requires_components": [
+          "cn ix-x"
+        ],
+        "concepts": {
+          "expanded_exam_neuro_cn_cn_ix_x": {
+            "polarity": "positive",
+            "value": "Palate elevates symmetrically; voice clear."
+          }
+        },
+        "scopes": [
+          "neuro.cn"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_neuro_cn_cn_xi",
+        "text": "Shoulder shrug symmetric.",
+        "requires_components": [
+          "cn xi"
+        ],
+        "concepts": {
+          "expanded_exam_neuro_cn_cn_xi": {
+            "polarity": "positive",
+            "value": "Shoulder shrug symmetric."
+          }
+        },
+        "scopes": [
+          "neuro.cn"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_neuro_cn_cn_xii",
+        "text": "Tongue protrudes in the midline.",
+        "requires_components": [
+          "cn xii"
+        ],
+        "concepts": {
+          "expanded_exam_neuro_cn_cn_xii": {
+            "polarity": "positive",
+            "value": "Tongue protrudes in the midline."
+          }
+        },
+        "scopes": [
+          "neuro.cn"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "neuro_sensory": [
+      {
+        "id": "expanded_exam_neuro_sensory_light_touch",
+        "text": "Light touch intact and symmetric in the tested limbs.",
+        "requires_components": [
+          "light touch"
+        ],
+        "concepts": {
+          "expanded_exam_neuro_sensory_light_touch": {
+            "polarity": "positive",
+            "value": "Light touch intact and symmetric in the tested limbs."
+          }
+        },
+        "scopes": [
+          "neuro.sensory"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_neuro_sensory_pinprick",
+        "text": "Pinprick intact and symmetric in the tested limbs.",
+        "requires_components": [
+          "pinprick"
+        ],
+        "concepts": {
+          "expanded_exam_neuro_sensory_pinprick": {
+            "polarity": "positive",
+            "value": "Pinprick intact and symmetric in the tested limbs."
+          }
+        },
+        "scopes": [
+          "neuro.sensory"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_neuro_sensory_vibration",
+        "text": "Vibration intact at fingers and toes bilaterally.",
+        "requires_components": [
+          "vibration"
+        ],
+        "concepts": {
+          "expanded_exam_neuro_sensory_vibration": {
+            "polarity": "positive",
+            "value": "Vibration intact at fingers and toes bilaterally."
+          }
+        },
+        "scopes": [
+          "neuro.sensory"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_neuro_sensory_proprioception",
+        "text": "Great-toe position sense intact bilaterally.",
+        "requires_components": [
+          "proprioception"
+        ],
+        "concepts": {
+          "expanded_exam_neuro_sensory_proprioception": {
+            "polarity": "positive",
+            "value": "Great-toe position sense intact bilaterally."
+          }
+        },
+        "scopes": [
+          "neuro.sensory"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "neuro_reflexes": [
+      {
+        "id": "expanded_exam_neuro_reflexes_biceps_triceps_patellar_achilles",
+        "text": "Biceps reflexes 2+ bilaterally. Triceps reflexes 2+ bilaterally. Patellar reflexes 2+ bilaterally. Achilles reflexes 2+ bilaterally.",
+        "requires_components": [
+          "biceps",
+          "triceps",
+          "patellar",
+          "achilles"
+        ],
+        "concepts": {
+          "expanded_exam_neuro_reflexes_biceps_triceps_patellar_achilles": {
+            "polarity": "positive",
+            "value": "Biceps reflexes 2+ bilaterally. Triceps reflexes 2+ bilaterally. Patellar reflexes 2+ bilaterally. Achilles reflexes 2+ bilaterally."
+          }
+        },
+        "scopes": [
+          "neuro.reflexes"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_neuro_reflexes_babinski",
+        "text": "Plantar responses downgoing bilaterally.",
+        "requires_components": [
+          "babinski"
+        ],
+        "concepts": {
+          "expanded_exam_neuro_reflexes_babinski": {
+            "polarity": "positive",
+            "value": "Plantar responses downgoing bilaterally."
+          }
+        },
+        "scopes": [
+          "neuro.reflexes"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "neuro_coordination": [
+      {
+        "id": "expanded_exam_neuro_coordination_finger_to_nose",
+        "text": "Finger-to-nose accurate bilaterally.",
+        "requires_components": [
+          "finger to nose"
+        ],
+        "concepts": {
+          "expanded_exam_neuro_coordination_finger_to_nose": {
+            "polarity": "positive",
+            "value": "Finger-to-nose accurate bilaterally."
+          }
+        },
+        "scopes": [
+          "neuro.coordination"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_neuro_coordination_heel_to_shin",
+        "text": "Heel-to-shin accurate bilaterally.",
+        "requires_components": [
+          "heel to shin"
+        ],
+        "concepts": {
+          "expanded_exam_neuro_coordination_heel_to_shin": {
+            "polarity": "positive",
+            "value": "Heel-to-shin accurate bilaterally."
+          }
+        },
+        "scopes": [
+          "neuro.coordination"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_neuro_coordination_romberg",
+        "text": "Romberg negative.",
+        "requires_components": [
+          "romberg"
+        ],
+        "concepts": {
+          "expanded_exam_neuro_coordination_romberg": {
+            "polarity": "positive",
+            "value": "Romberg negative."
+          }
+        },
+        "scopes": [
+          "neuro.coordination"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_neuro_coordination_rapid_alternating",
+        "text": "Rapid alternating movements coordinated bilaterally.",
+        "requires_components": [
+          "rapid alternating"
+        ],
+        "concepts": {
+          "expanded_exam_neuro_coordination_rapid_alternating": {
+            "polarity": "positive",
+            "value": "Rapid alternating movements coordinated bilaterally."
+          }
+        },
+        "scopes": [
+          "neuro.coordination"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "mental_status": [
+      {
+        "id": "expanded_exam_mental_status_orientation_memory_attention_naming",
+        "text": "Oriented to person, place, time and situation. Immediate and delayed recall intact on brief testing. Attention maintained during brief testing. Names common objects correctly.",
+        "requires_components": [
+          "orientation",
+          "memory",
+          "attention",
+          "naming"
+        ],
+        "concepts": {
+          "expanded_exam_mental_status_orientation_memory_attention_naming": {
+            "polarity": "positive",
+            "value": "Oriented to person, place, time and situation. Immediate and delayed recall intact on brief testing. Attention maintained during brief testing. Names common objects correctly."
+          }
+        },
+        "scopes": [
+          "neuro.mental"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "skin_inspect": [
+      {
+        "id": "expanded_exam_skin_inspect_chest",
+        "text": "No rash or open lesion on the inspected chest.",
+        "requires_components": [
+          "chest"
+        ],
+        "concepts": {
+          "expanded_exam_skin_inspect_chest": {
+            "polarity": "positive",
+            "value": "No rash or open lesion on the inspected chest."
+          }
+        },
+        "scopes": [
+          "skin"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_skin_inspect_back",
+        "text": "No rash or open lesion on the inspected back.",
+        "requires_components": [
+          "back"
+        ],
+        "concepts": {
+          "expanded_exam_skin_inspect_back": {
+            "polarity": "positive",
+            "value": "No rash or open lesion on the inspected back."
+          }
+        },
+        "scopes": [
+          "skin"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_skin_inspect_arms",
+        "text": "No rash or open lesion on the inspected arms.",
+        "requires_components": [
+          "arms"
+        ],
+        "concepts": {
+          "expanded_exam_skin_inspect_arms": {
+            "polarity": "positive",
+            "value": "No rash or open lesion on the inspected arms."
+          }
+        },
+        "scopes": [
+          "skin"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_skin_inspect_legs",
+        "text": "No rash or open lesion on the inspected legs.",
+        "requires_components": [
+          "legs"
+        ],
+        "concepts": {
+          "expanded_exam_skin_inspect_legs": {
+            "polarity": "positive",
+            "value": "No rash or open lesion on the inspected legs."
+          }
+        },
+        "scopes": [
+          "skin"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_skin_inspect_palms",
+        "text": "No rash or open lesion on the inspected palms.",
+        "requires_components": [
+          "palms"
+        ],
+        "concepts": {
+          "expanded_exam_skin_inspect_palms": {
+            "polarity": "positive",
+            "value": "No rash or open lesion on the inspected palms."
+          }
+        },
+        "scopes": [
+          "skin"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_skin_inspect_soles",
+        "text": "No rash or open lesion on the inspected soles.",
+        "requires_components": [
+          "soles"
+        ],
+        "concepts": {
+          "expanded_exam_skin_inspect_soles": {
+            "polarity": "positive",
+            "value": "No rash or open lesion on the inspected soles."
+          }
+        },
+        "scopes": [
+          "skin"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "skin_palpate": [
+      {
+        "id": "expanded_exam_skin_palpate_tenderness_warmth_induration_fluctuance",
+        "text": "No focal skin tenderness. No focal increase in skin warmth. No skin induration. No fluctuance.",
+        "requires_components": [
+          "tenderness",
+          "warmth",
+          "induration",
+          "fluctuance"
+        ],
+        "concepts": {
+          "expanded_exam_skin_palpate_tenderness_warmth_induration_fluctuance": {
+            "polarity": "positive",
+            "value": "No focal skin tenderness. No focal increase in skin warmth. No skin induration. No fluctuance."
+          }
+        },
+        "scopes": [
+          "skin.palpation"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "extremities": [
+      {
+        "id": "expanded_exam_extremities_edema_capillary_refill_clubbing_cyanosis_calf_tenderness_calf_symmetry_nail_beds",
+        "text": "No peripheral edema. Capillary refill under 2 seconds. No digital clubbing. No peripheral cyanosis. Calves nontender. Calves symmetric. Nail beds without splinter hemorrhages.",
+        "requires_components": [
+          "edema",
+          "capillary refill",
+          "clubbing",
+          "cyanosis",
+          "calf tenderness",
+          "calf symmetry",
+          "nail beds"
+        ],
+        "concepts": {
+          "expanded_exam_extremities_edema_capillary_refill_clubbing_cyanosis_calf_tenderness_calf_symmetry_nail_beds": {
+            "polarity": "positive",
+            "value": "No peripheral edema. Capillary refill under 2 seconds. No digital clubbing. No peripheral cyanosis. Calves nontender. Calves symmetric. Nail beds without splinter hemorrhages."
+          }
+        },
+        "scopes": [
+          "extremities"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "orthostatic_vitals": [
+      {
+        "id": "expanded_exam_orthostatic_vitals_supine_standing_1min_standing_3min",
+        "text": "After resting supine: BP 138/84 mmHg, pulse 78/min. Standing at 1 minute: BP 134/84 mmHg, pulse 86/min. Standing at 3 minutes: BP 136/84 mmHg, pulse 84/min. No lightheadedness during measurement.",
+        "requires_components": [
+          "supine",
+          "standing_1min",
+          "standing_3min"
+        ],
+        "concepts": {
+          "expanded_exam_orthostatic_vitals_supine_standing_1min_standing_3min": {
+            "polarity": "positive",
+            "value": "After resting supine: BP 138/84 mmHg, pulse 78/min. Standing at 1 minute: BP 134/84 mmHg, pulse 86/min. Standing at 3 minutes: BP 136/84 mmHg, pulse 84/min. No lightheadedness during measurement."
+          }
+        },
+        "scopes": [
+          "vitals.orthostatic"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      }
+    ],
+    "neuro_dix_hallpike": [
+      {
+        "id": "expanded_exam_dix_suitability",
+        "text": "Cervical movement tolerated without pain or restriction during the suitability check.",
+        "requires_components": [
+          "cervical_suitability"
+        ],
+        "covered_by_components": [
+          "cervical_suitability",
+          "right",
+          "left"
+        ],
+        "concepts": {},
+        "scopes": [
+          "neuro.positional.suitability"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_dix_right",
+        "text": "Right Dix–Hallpike after suitability review does not elicit vertigo or nystagmus.",
+        "requires_components": [
+          "cervical_suitability",
+          "right"
+        ],
+        "concepts": {
+          "expanded_exam_dix_right": {
+            "polarity": "positive",
+            "value": "Right Dix–Hallpike after suitability review does not elicit vertigo or nystagmus."
+          }
+        },
+        "scopes": [
+          "neuro.neuro_dix_hallpike"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
+      },
+      {
+        "id": "expanded_exam_dix_left",
+        "text": "Left Dix–Hallpike after suitability review does not elicit vertigo or nystagmus.",
+        "requires_components": [
+          "cervical_suitability",
+          "left"
+        ],
+        "concepts": {
+          "expanded_exam_dix_left": {
+            "polarity": "positive",
+            "value": "Left Dix–Hallpike after suitability review does not elicit vertigo or nystagmus."
+          }
+        },
+        "scopes": [
+          "neuro.neuro_dix_hallpike"
+        ],
+        "authoring": {
+          "date": "2026-09-14",
+          "kind": "user_requested_fictional_case_expansion",
+          "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+          "review_status": "author_consistency_checked_not_clinician_approved"
+        }
       }
     ]
   },
@@ -2361,5 +5915,11 @@
   },
   "content_revisions": {
     "library_expansion_20260914": "New independently authored presentation. Single core path; no renamed cosmetic variants."
+  },
+  "practice_expansion": {
+    "date": "2026-09-14",
+    "kind": "user_requested_fictional_case_expansion",
+    "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
+    "review_status": "author_consistency_checked_not_clinician_approved"
   }
 }

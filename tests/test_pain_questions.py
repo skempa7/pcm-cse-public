@@ -1,3 +1,4 @@
+from sparse_case_fixtures import resolve as sparse_resolve
 """Pain presence is a new clinical question, not a repeat of prior quality."""
 import copy
 import unittest
@@ -16,7 +17,7 @@ class PainQuestionTests(unittest.TestCase):
 
     def test_exact_screenshot_sequence_across_palpitations_variants(self):
         for variant in ['base'] + [v['id'] for v in cases.get('cardio-palpitations').get('variants', [])]:
-            case = cases.resolve('cardio-palpitations', variant)
+            case = sparse_resolve('cardio-palpitations', variant)
             pe, state, ledger = patient.PatientEngine(case), {}, evidence.Ledger()
             for q in [
                 'What brings you in today?',
@@ -47,7 +48,7 @@ class PainQuestionTests(unittest.TestCase):
             'msk-knee-injury': ['hpi_quality', 'symptom_joint_pain'],
         }
         for cid, allowed in examples.items():
-            case = cases.resolve(cid)
+            case = sparse_resolve(cid)
             for question in self.prompts:
                 with self.subTest(case=cid, question=question):
                     reply, meta = self.reply_after_quality(case, question)
@@ -59,7 +60,7 @@ class PainQuestionTests(unittest.TestCase):
         for cid, expected in [('cardio-palpitations', 'I do not have chest pain.'),
                               ('gi-progressive-dysphagia', 'Swallowing itself is not painful.'),
                               ('renal-painless-hematuria', 'nothing hurts')]:
-            case = cases.resolve(cid)
+            case = sparse_resolve(cid)
             for question in self.prompts:
                 with self.subTest(case=cid, question=question):
                     reply, meta = self.reply_after_quality(case, question)
@@ -68,7 +69,7 @@ class PainQuestionTests(unittest.TestCase):
 
     def test_missing_pain_information_does_not_become_a_denial_or_old_quality(self):
         for cid in ['cardio-orthopnea-edema', 'pulm-episodic-wheeze', 'neuro-positional-vertigo']:
-            case = cases.resolve(cid)
+            case = sparse_resolve(cid)
             for question in self.prompts:
                 with self.subTest(case=cid, question=question):
                     reply, meta = self.reply_after_quality(case, question)
@@ -77,24 +78,24 @@ class PainQuestionTests(unittest.TestCase):
                     self.assertTrue(meta.get('no_information'), reply)
 
     def test_pain_attributes_and_explicit_regions_keep_their_own_routes(self):
-        case = cases.resolve('cardio-palpitations')
+        case = sparse_resolve('cardio-palpitations')
         for question, expected in [('What does it feel like?', 'hpi_quality'),
                                     ('Does the discomfort spread anywhere else?', 'hpi_radiation')]:
             reply, meta = self.reply_after_quality(case, question)
             self.assertIn(expected, meta['facts_released'], reply)
-        case = cases.resolve('renal-dysuria')
+        case = sparse_resolve('renal-dysuria')
         reply, meta = self.reply_after_quality(case, 'Do you have flank pain?')
         self.assertIn('symptom_flank_pain', meta['facts_released'], reply)
         self.assertNotIn('hpi_quality', meta['facts_released'])
 
     def test_fresh_named_symptom_does_not_inherit_previous_quality(self):
-        case = cases.resolve('cardio-palpitations')
+        case = sparse_resolve('cardio-palpitations')
         for question in ['Is there any nausea with that?', 'Do you get a rash with that?', 'Any vomiting with that?']:
             reply, meta = self.reply_after_quality(case, question)
             self.assertNotIn('hpi_quality', meta['facts_released'], (question, reply))
 
     def test_named_pain_and_combined_symptoms_do_not_repeat_palpitations(self):
-        case = cases.resolve('cardio-palpitations')
+        case = sparse_resolve('cardio-palpitations')
         for question in ['Are you in pain?', 'Are the palpitations painful?',
                          'Is there pain with the racing heartbeat?']:
             reply, meta = self.reply_after_quality(case, question)
@@ -109,7 +110,7 @@ class PainQuestionTests(unittest.TestCase):
         self.assertNotRegex(reply.lower(), r"no pain anywhere|no pain at all|nothing hurts")
 
     def test_immediate_followup_keeps_the_specific_pain_region(self):
-        case = cases.resolve('cardio-exertional-leg-pain')
+        case = sparse_resolve('cardio-exertional-leg-pain')
         pe, state = patient.PatientEngine(case), {}
         pe.respond('What does it feel like?', state)
         reply, meta = pe.respond('Do you have chest pain?', state)
@@ -122,7 +123,7 @@ class PainQuestionTests(unittest.TestCase):
         count = 0
         for cid, base in cases.all_cases().items():
             for variant in ['base'] + [v['id'] for v in base.get('variants', [])]:
-                case = cases.resolve(cid, variant)
+                case = sparse_resolve(cid, variant)
                 before = copy.deepcopy(case)
                 for question in self.prompts:
                     reply, meta = self.reply_after_quality(case, question)
