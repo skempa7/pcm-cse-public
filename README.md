@@ -9,7 +9,7 @@ This public repository is the sole current application. The retired private serv
 ## Current experience
 
 - **Talk:** type or dictate questions. Guided and Coached modes offer an encounter coach within Talk. Selected guidance stays available; Bedside suggestions become editable drafts with explicit choices when you already have writing. Stated actions are performed through the ordinary conversation path.
-- **Physical Exam:** one-click actions perform the technique listed on each tile. Findings appear in the panel and are saved in **Notes**; its badge highlights new findings. Unavailable, declined, and interrupted actions do not become normal findings.
+- **Physical Exam:** one-click actions show a maneuver-specific technique demonstration for the time listed on each tile. **Skip animation** completes an eligible action and deducts only its unwatched time in timed modes; **Cancel examination** releases no finding. Teaching replays do not perform an examination. Findings appear in the panel and are saved in **Notes**; its badge highlights new findings. Unavailable, declined, and interrupted actions do not become normal findings.
 - **Notes:** a condensed summary of obtained information, with HPI organized by **OLDCARTS**. Missing information stays unknown. Choosing a view or opening a teaching suggestion creates no clinical evidence.
 - **SOAP writing:** a full editor with permitted references alongside it on wide windows, or a writing/reference switch on narrower windows. Drafts, editing position, and recoverable writing are preserved; saving and submitting remain distinct.
 - The top-left logo returns Home with save/leave safeguards. Progress contains saved attempts, original submissions, feedback and separate repairs/regrades.
@@ -22,12 +22,12 @@ The current patient assets preserve the established bald male head with mustache
 
 | Mode | Encounter | Organization | SOAP |
 | --- | --- | --- | --- |
-| Guided | Untimed; shortened simulated exam durations | None | Untimed |
+| Guided | Untimed; full demonstration durations | None | Untimed |
 | Coached | Untimed; ordinary simulated exam durations | None | Untimed |
 | Independent | 30 minutes | 5 minutes | 20 minutes |
 | Exam rehearsal | 14 minutes | None | 9 minutes |
 
-Saved attempts retain their original preset and absolute deadlines. Leaving a timed attempt does not pause it. Accessing solutions during an active independent/rehearsal attempt requires explicit conversion to assisted practice. Clinical credit derives from supplied or actually disclosed/examined evidence, not hidden case facts. Original submitted notes and grades remain frozen; **Recheck this note** evaluates the unchanged original with the current grader and saves a separate result. Editing through Deliberate practice remains a separate revision.
+Saved attempts retain their original preset. Leaving an attempt preserves its absolute deadline; explicitly skipping an examination advances the encounter clock by its remaining time. An already-running examination keeps its original due time when resumed after an update. Leaving a timed attempt does not pause it. Accessing solutions during an active independent/rehearsal attempt requires explicit conversion to assisted practice. Clinical credit derives from supplied or actually disclosed/examined evidence, not hidden case facts. Original submitted notes and grades remain frozen; **Recheck this note** evaluates the unchanged original with the current grader and saves a separate result. Editing through Deliberate practice remains a separate revision.
 
 ## Speech and privacy
 
@@ -74,3 +74,5 @@ Private course documents and real attempts are excluded. Source titles/locators 
 The script uses first-person statements under HPI and spelled-out SMASH FMR history headings. Examination rows are grouped by system and are released only when performed/simulated. The blank SOAP provides two portrait writing pages. The example note uses only the complete demonstrated encounter; it is not permission to document hidden information in an individual attempt. Sources and the full online demonstration remain available under **Demonstration and sources**.
 
 The September 14 expansion adds 10 distinct cardiovascular, respiratory, MSK, HEENT and skin presentations. See `PRINTABLE-CASES-2026-09-14.md` for inventory, review scope and remaining authoring limitations. The preceding `PARTNER-PRINT-2026-09-13.md` describes the superseded longer print format and its historical checks.
+
+See [Examination demonstrations](EXAM-ANIMATIONS.md) for the technique sources, duration decisions, coverage and verification limits.

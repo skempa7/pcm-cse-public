@@ -1,7 +1,7 @@
 """Private, evidence-linked written teaching. Never served as a static asset."""
 from pathlib import Path
 import json
-from .. import cases, db, engine, evidence, learning, station_info
+from .. import cases, db, engine, evidence, learning, station_info, physexam
 ROOT=Path(__file__).parent
 
 def blockers():
@@ -47,6 +47,20 @@ def read(cid,variant='base'):
         from .printables import examinations
         current['partner_examinations'] = examinations(resolved, current)
         current['doorway']['doorway'] = station_info.doorway(resolved)
+        # Keep the demonstrated encounter and its original ledger intact. The
+        # current animation estimate is a projection, not rewritten evidence.
+        projected = current['estimated_encounter_s']
+        for item in current['timeline']:
+            if not item.get('maneuver_id'):
+                continue
+            event = next((e for e in current['ledger'] if e['seq'] in item.get('event_ids', [])
+                          and e['kind'] == evidence.EXAM_ACTION), None)
+            if event:
+                plan = physexam.demonstration(item['maneuver_id'], event['meta'].get('components', []))
+                if plan:
+                    projected += plan['duration_s'] - item.get('duration_s', 0)
+        current['current_demonstration_estimate_s'] = projected
+
     return current
 
 def progress():

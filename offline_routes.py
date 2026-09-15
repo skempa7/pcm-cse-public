@@ -169,7 +169,7 @@ class Handler:
             if visual_demo:
                 return self._json({'error': 'The development trial selector is retired. Choose an active library presentation.'}, 400)
             settings['visual_demo'] = visual_demo or None
-            settings['scoring'] = dict(settings.get('scoring', {}), realtime_exam_durations=True, exam_time_scale=0.15 if mode == 'guided' else 1.0)
+            settings['scoring'] = dict(settings.get('scoring', {}), realtime_exam_durations=True, exam_time_scale=1.0)
             try:
                 import random
                 variant_id = body.get('variant_id')
@@ -297,6 +297,10 @@ class Handler:
                 res = s.perform_maneuver(body.get('maneuver_id'), body.get('components') or [], body.get('source_text', ''))
                 s2 = engine.load(sid)
                 return self._json({'events': [res], 'state': engine.state_payload(s2)})
+            if action == 'exam_control':
+                result = s.control_examination(body.get('examination_id'), body.get('operation'))
+                s2 = engine.load(sid)
+                return self._json({'events': [result] if result else [], 'state': engine.state_payload(s2)})
             if action == 'propose_refusal':
                 if s.row['phase'] != 'encounter':
                     return self._json({'error': 'closed'}, 409)

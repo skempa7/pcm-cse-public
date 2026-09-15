@@ -17,6 +17,9 @@ instantly.  See docs/requirements-map.md section 9.
 from __future__ import annotations
 
 import re
+import json
+from pathlib import Path
+from copy import deepcopy
 
 from . import nlp
 
@@ -329,7 +332,7 @@ CATALOG = [
 CATALOG += [
     _m("orthostatic_vitals", "General", "special", "Orthostatic vital signs",
        ["supine", "standing_1min", "standing_3min"], 180, "orthostatic_vitals", ["vitals.orthostatic"],
-       "Obtain supine baseline after 5 minutes resting, then standing at 1 and 3 minutes. This action assumes the resting interval was completed as station preparation; help the patient stand and stop if unsafe."),
+       "Obtain supine baseline after 5 minutes resting, then standing at 1 and 3 minutes. The full demonstration includes the resting interval; help the patient stand and stop if unsafe."),
     _m("neuro_dix_hallpike", "Neurologic", "special", "Dix–Hallpike positioning test",
        ["cervical_suitability", "right", "left"], 60, "positional_nystagmus", ["neuro.positional"],
        "Check cervical suitability and explain positioning first. Select sides assessed. This illustrates selection and stated technique; it cannot verify hands-on proficiency."),
@@ -635,15 +638,68 @@ def resolve(utterance: str):
             "reason": ""}
 
 
+# 2026-09-15: one authored sequence owns action labels, component selection,
+# readable duration and visual stages. Case findings never enter this file.
+DEMONSTRATIONS = json.loads(Path(__file__).with_name("exam_demonstrations.json").read_text())
+
+
+def demonstration(maneuver_id, components):
+    requested = set(components or [])
+    options = [v for v in DEMONSTRATIONS.values() if v["maneuver_id"] == maneuver_id]
+    exact = next((v for v in options if set(v["components"]) == requested), None)
+    if exact:
+        return deepcopy(exact)
+    # Partial coach/typed requests retain the same clinical/evidence semantics.
+    # Modifiers describe technique; they must never select additional body sites.
+    modifiers = {"on skin", "mouth open", "compare side to side", "four quadrants",
+                 "right", "left", "supine", "seated", "cervical_suitability"}
+    if maneuver_id in ("carotid_auscultate", "heent_ears", "orthostatic_vitals"):
+        modifiers -= {"right", "left", "supine", "seated"}
+    if maneuver_id == "msk_slr":
+        modifiers -= {"right", "left"}
+    target = requested - modifiers
+    steps, chosen, covered = [], [], set()
+    for option in options:
+        option_set = set(option["components"])
+        if not target or not (option_set & target):
+            continue
+        # Side/position alternatives must not be silently combined.
+        if maneuver_id == "msk_slr" and not ((option_set & {"supine", "seated"}) <= requested):
+            continue
+        option_steps = []
+        for stage in option["steps"]:
+            belongs = set(stage.get("covers", option["components"])) - modifiers
+            if belongs & target:
+                option_steps.append(deepcopy(stage))
+                covered |= belongs & target
+        if option_steps:
+            chosen.append(option)
+            steps.extend(option_steps)
+            covered |= (option_set & target) if not any("covers" in x for x in option["steps"]) else set()
+    if maneuver_id == "abd_auscultate" and requested == {"one quadrant"}:
+        chosen = [DEMONSTRATIONS["abd_auscultate:sounds"]]
+        steps = [deepcopy(chosen[0]["steps"][0])]
+        covered = target
+    if steps and covered == target:
+        return {"key": maneuver_id + ":selected", "maneuver_id": maneuver_id,
+                "label": CATALOG_BY_ID[maneuver_id]["label"], "components": list(components),
+                "position": " / ".join(dict.fromkeys(v["position"] for v in chosen)),
+                "steps": steps, "duration_s": sum(stage["seconds"] for stage in steps),
+                "sources": list(dict.fromkeys(x for v in chosen for x in v["sources"]))}
+    return None
+
+
 def action_time(maneuver: dict, components, scale: float = 1.0) -> int:
-    """Seconds the maneuver occupies. Partial coverage costs proportionally."""
+    """Authored sequence duration; legacy noninteractive replay keeps its scale."""
+    plan = demonstration(maneuver["id"], components)
+    if plan:
+        return max(4, int(round(plan["duration_s"] * scale)))
     base = maneuver["duration_s"]
     total = len(maneuver["components"])
     if total and components:
-        frac = 0.45 + 0.55 * (len(components) / total)
-        base = base * frac
-    elif total and not components:
-        base = base * 0.5
+        base *= 0.45 + 0.55 * (len(components) / total)
+    elif total:
+        base *= 0.5
     return max(4, int(round(base * scale)))
 
 
@@ -653,8 +709,11 @@ def catalog_for_ui():
     for region in REGION_ORDER:
         items = [{
             "id": m["id"], "label": m["label"], "method": m["method"],
-            "components": m["components"], "duration_s": m["duration_s"],
+            "components": m["components"], "duration_s": max(
+                (v["duration_s"] for v in DEMONSTRATIONS.values() if v["maneuver_id"] == m["id"]),
+                default=m["duration_s"]),
             "notes": m["notes"],
+            "actions": [deepcopy(v) for v in DEMONSTRATIONS.values() if v["maneuver_id"] == m["id"]],
         } for m in CATALOG if m["region"] == region and m["id"] != "vitals_review"]
         if items:
             groups.append({"region": region, "maneuvers": items})

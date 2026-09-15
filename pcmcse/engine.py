@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import re
+import uuid
 
 from . import audit as audit_mod
 from . import record, station_info
@@ -766,6 +767,8 @@ class Session:
             # examination released nothing" diagnosis was computed on every
             # deferred examination and never reached the learner: they saw the
             # action recorded and no explanation of why it produced no finding.
+            result["assisted_timing"] = False
+            result["duration_s"] = pending["duration_s"]
             self._exam_outcome = result
             self.save()
             return result
@@ -776,6 +779,45 @@ class Session:
         self.set(pending_exam_json="", exam_busy_until=self.elapsed_ms())
         self.save()
         return {"kind":"exam_interrupted", "text":"Examination interrupted; no findings released."}
+
+    def control_examination(self, examination_id, operation):
+        """Complete or cancel only the identified pending action, once.
+
+        Skip advances the encounter clock by the unobserved interval. Moving
+        both persisted clock anchors preserves elapsed/remaining time across
+        reloads without changing the encounter's allowed duration.
+        """
+        self.finish_pending()
+        raw = self.row.get("pending_exam_json")
+        if not raw or self.row["phase"] != "encounter":
+            return {"kind": "exam_unchanged", "charged_ms": 0}
+        pending = json.loads(raw)
+        if not examination_id or examination_id != pending.get("id"):
+            return {"kind": "exam_unchanged", "charged_ms": 0}
+        if operation == "cancel":
+            return self.finish_pending(cancel=True)
+        if operation != "skip":
+            return {"kind": "sim_note", "text": "Unknown examination control."}
+        now = db.now_ms()
+        remaining = max(0, pending["due_at"] - now)
+        deadline = self.row["phase_ends_at"]
+        eligible = not deadline or pending["due_at"] <= deadline
+        charge = min(remaining, max(0, deadline - now)) if deadline else 0
+        if deadline:
+            self.set(phase_started_at=self.row["phase_started_at"] - charge,
+                     phase_ends_at=deadline - charge)
+        # If the original due time crossed the deadline, never convert it to
+        # an eligible completion just because Skip was clicked.
+        if eligible:
+            pending["due_at"] = now
+        else:
+            pending["due_at"] = now + 1
+        pending["skipped_ms"] = remaining
+        self.set(pending_exam_json=json.dumps(pending))
+        self.save()
+        result = self.finish_pending(cancel=not eligible) or {"kind": "exam_unchanged"}
+        self.advance_if_expired()
+        return dict(result, charged_ms=charge, skipped_ms=remaining)
 
     def perform_maneuver(self, maneuver_id, components, source_text=""):
         if self.settings.get("simulation_runtime") != "interactive":
@@ -791,10 +833,12 @@ class Session:
         components = list(dict.fromkeys(c for c in (components or []) if c in man["components"]))
         if maneuver_id == "neuro_dix_hallpike" and "cervical_suitability" not in components:
             return {"kind":"no_result", "text":"Check cervical suitability before positional testing."}
-        scale = .15 if self.settings.get("learning_mode") == "guided" else 1.0
-        duration = physexam.action_time(man, components, scale)
+        plan = physexam.demonstration(maneuver_id, components)
+        if not plan:
+            return {"kind": "sim_note", "text": "Choose the specific action in Physical Exam so its sites, technique and demonstration match."}
+        duration = plan["duration_s"]
         now = db.now_ms()
-        pending = {"maneuver_id":maneuver_id, "components":components, "source_text":source_text,
+        pending = {"id": uuid.uuid4().hex, "maneuver_id":maneuver_id, "components":components, "source_text":source_text,
                    "started_at":now, "due_at":now + duration*1000, "duration_s":duration}
         context = getattr(self, "bridge_context", None)
         if context:
@@ -805,7 +849,7 @@ class Session:
         self.set(pending_exam_json=json.dumps(pending), exam_busy_until=self.elapsed_ms()+duration*1000)
         self.save()
         return {"kind":"exam_started", "label":man["label"], "text":"Examination in progress. Findings will appear when it finishes.",
-                "duration_s":duration, "due_at":pending["due_at"]}
+                "duration_s":duration, "due_at":pending["due_at"], "examination_id": pending["id"]}
 
     def _perform_immediate(self, maneuver_id, components, source_text=""):
         """Carry out one examination, under a single authoritative lifecycle.
@@ -1244,7 +1288,7 @@ def branch_from(sid, from_seq, label=""):
     branch_settings = dict(parent.settings, learning_mode=mode,
                            preset=config.preset_for_learning_mode(mode))
     branch_settings['scoring'] = dict(parent.settings.get('scoring',{}),
-        realtime_exam_durations=True, exam_time_scale=.15 if mode=='guided' else 1.0)
+        realtime_exam_durations=True, exam_time_scale=1.0)
     remaining = 0  # The new preset is untimed; the branch keeps elapsed history.
     timing_text = ('Guided retry is untimed.' if mode=='guided' else
                    'Coached retry is untimed. The original attempt retains its timing and score.')
@@ -1283,6 +1327,13 @@ def load(sid):
 def state_payload(s):
     remaining = s.remaining_ms()
     row = s.row
+    pending = json.loads(row.get("pending_exam_json") or "null")
+    if pending:
+        if not pending.get("id"):
+            pending["id"] = uuid.uuid4().hex
+            s.set(pending_exam_json=json.dumps(pending))
+            s.save()
+        pending["demonstration"] = physexam.demonstration(pending["maneuver_id"], pending["components"])
     payload = {
         "id": s.id,
         "phase": row["phase"],
@@ -1314,7 +1365,7 @@ def state_payload(s):
                 ("status", "maneuver_id", "label", "components", "duration_s")}}
             for ev in s.ledger.events if ev["kind"] == evidence.EXAM_ACTION
         ],
-        "pending_exam": json.loads(row.get("pending_exam_json") or "null"),
+        "pending_exam": pending,
         "exam_busy_until": row["exam_busy_until"],
         "assisted": bool(row["assisted"]),
         "remaining_ms": remaining,

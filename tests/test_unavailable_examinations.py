@@ -94,7 +94,7 @@ class UnavailableExaminationTests(unittest.TestCase):
                     self.assertIn(result['text'], json.dumps(record.summarize(session.case, session.ledger.events)))
 
     def test_unavailable_status_preserves_full_catalog_and_mode_timing(self):
-        for mode, duration in (('guided', 4), ('coached', 15), ('independent', 15), ('rehearsal', 15)):
+        for mode, duration in (('guided', 15), ('coached', 15), ('independent', 15), ('rehearsal', 15)):
             with self.subTest(mode=mode):
                 session = self.session('cardio-palpitations', mode=mode)
                 before = engine.state_payload(session)

@@ -1,0 +1,5152 @@
+{
+  "general_inspect:complete": {
+    "key": "general_inspect:complete",
+    "maneuver_id": "general_inspect",
+    "label": "General appearance",
+    "components": [],
+    "position": "At the end of the bed; patient at rest",
+    "steps": [
+      {
+        "caption": "Observe overall comfort, posture and alertness",
+        "view": "body",
+        "action": "observe",
+        "points": [
+          [
+            50,
+            25
+          ],
+          [
+            50,
+            50
+          ]
+        ],
+        "seconds": 5
+      },
+      {
+        "caption": "Observe breathing effort and exposed skin color",
+        "view": "body",
+        "action": "observe",
+        "points": [
+          [
+            50,
+            38
+          ],
+          [
+            30,
+            60
+          ]
+        ],
+        "seconds": 5
+      }
+    ],
+    "duration_s": 10,
+    "sources": [
+      "course",
+      "clinicalmethods"
+    ]
+  },
+  "heent_eyes:inspect": {
+    "key": "heent_eyes:inspect",
+    "maneuver_id": "heent_eyes",
+    "label": "Inspect pupils, conjunctivae, sclerae and corneas",
+    "components": [
+      "pupils",
+      "conjunctivae",
+      "sclerae",
+      "cornea"
+    ],
+    "position": "Seated, at eye level; explain the light",
+    "steps": [
+      {
+        "caption": "Inspect both eyes, sclerae and clear corneal surfaces",
+        "view": "head",
+        "action": "observe",
+        "points": [
+          [
+            40,
+            40
+          ],
+          [
+            60,
+            40
+          ]
+        ],
+        "seconds": 5,
+        "covers": [
+          "sclerae",
+          "cornea"
+        ]
+      },
+      {
+        "caption": "Gently lower each lower lid to inspect conjunctivae",
+        "view": "head",
+        "action": "lid",
+        "points": [
+          [
+            40,
+            44
+          ],
+          [
+            60,
+            44
+          ]
+        ],
+        "seconds": 6,
+        "covers": [
+          "conjunctivae"
+        ]
+      },
+      {
+        "caption": "Approach from the side; compare direct and consensual pupil responses",
+        "view": "head",
+        "action": "light",
+        "points": [
+          [
+            40,
+            40
+          ],
+          [
+            60,
+            40
+          ]
+        ],
+        "seconds": 8,
+        "covers": [
+          "pupils"
+        ]
+      }
+    ],
+    "duration_s": 19,
+    "sources": [
+      "course",
+      "pupils"
+    ]
+  },
+  "heent_eyes:eye-movement": {
+    "key": "heent_eyes:eye-movement",
+    "maneuver_id": "heent_eyes",
+    "label": "Check extraocular movements",
+    "components": [
+      "extraocular movements"
+    ],
+    "position": "Seated; target about an arm’s length away",
+    "steps": [
+      {
+        "caption": "Follow the target through an H; keep the head still",
+        "view": "head",
+        "action": "trace",
+        "points": [
+          [
+            50,
+            40
+          ],
+          [
+            30,
+            40
+          ],
+          [
+            30,
+            25
+          ],
+          [
+            30,
+            55
+          ],
+          [
+            30,
+            40
+          ],
+          [
+            70,
+            40
+          ],
+          [
+            70,
+            25
+          ],
+          [
+            70,
+            55
+          ],
+          [
+            70,
+            40
+          ],
+          [
+            50,
+            40
+          ]
+        ],
+        "seconds": 12
+      }
+    ],
+    "duration_s": 12,
+    "sources": [
+      "course",
+      "cranial"
+    ]
+  },
+  "heent_eyes:fundus": {
+    "key": "heent_eyes:fundus",
+    "maneuver_id": "heent_eyes",
+    "label": "Perform fundoscopic examination",
+    "components": [
+      "fundoscopic"
+    ],
+    "position": "Seated, dim room; distant fixation",
+    "steps": [
+      {
+        "caption": "Right eye / right hand: find the red reflex from about 15° temporal",
+        "view": "fundus",
+        "action": "fundoscope",
+        "points": [
+          [
+            83,
+            39
+          ],
+          [
+            63,
+            44
+          ]
+        ],
+        "seconds": 6
+      },
+      {
+        "caption": "Move closer along the red reflex; inspect disc and retinal vessels",
+        "view": "fundus",
+        "action": "fundoscope",
+        "points": [
+          [
+            63,
+            44
+          ],
+          [
+            60,
+            44
+          ]
+        ],
+        "seconds": 6
+      },
+      {
+        "caption": "Repeat using your left eye / left hand for the patient’s left eye",
+        "view": "fundus",
+        "action": "fundoscope",
+        "points": [
+          [
+            83,
+            39
+          ],
+          [
+            60,
+            44
+          ]
+        ],
+        "seconds": 8,
+        "mirror": true
+      }
+    ],
+    "duration_s": 20,
+    "sources": [
+      "course",
+      "fundus"
+    ]
+  },
+  "heent_ears:complete": {
+    "key": "heent_ears:complete",
+    "maneuver_id": "heent_ears",
+    "label": "Otoscopic exam of ears",
+    "components": [
+      "right ear",
+      "left ear"
+    ],
+    "position": "Seated; use a clean, appropriately sized speculum",
+    "steps": [
+      {
+        "caption": "Adult right ear: draw pinna up/back; brace hand on cheek; advance under direct vision",
+        "view": "ear",
+        "action": "otoscope",
+        "points": [
+          [
+            77,
+            55
+          ],
+          [
+            53,
+            47
+          ]
+        ],
+        "seconds": 8,
+        "mirror": false,
+        "covers": [
+          "right ear"
+        ]
+      },
+      {
+        "caption": "Adult left ear: draw pinna up/back; brace hand on cheek; advance under direct vision",
+        "view": "ear",
+        "action": "otoscope",
+        "points": [
+          [
+            77,
+            55
+          ],
+          [
+            53,
+            47
+          ]
+        ],
+        "seconds": 8,
+        "mirror": true,
+        "covers": [
+          "left ear"
+        ]
+      }
+    ],
+    "duration_s": 16,
+    "sources": [
+      "course",
+      "ear"
+    ]
+  },
+  "heent_nose:complete": {
+    "key": "heent_nose:complete",
+    "maneuver_id": "heent_nose",
+    "label": "Inspect nose with light source",
+    "components": [
+      "right naris",
+      "left naris"
+    ],
+    "position": "Seated; gently tilt the head back",
+    "steps": [
+      {
+        "caption": "Lift the tip; direct light into each naris without pressing on the septum",
+        "view": "nose",
+        "action": "light",
+        "points": [
+          [
+            41,
+            60
+          ],
+          [
+            59,
+            60
+          ]
+        ],
+        "seconds": 10
+      },
+      {
+        "caption": "Inspect septum, mucosa and visible turbinates",
+        "view": "nose",
+        "action": "observe",
+        "points": [
+          [
+            41,
+            60
+          ],
+          [
+            59,
+            60
+          ]
+        ],
+        "seconds": 5
+      }
+    ],
+    "duration_s": 15,
+    "sources": [
+      "course",
+      "heent"
+    ]
+  },
+  "heent_throat:complete": {
+    "key": "heent_throat:complete",
+    "maneuver_id": "heent_throat",
+    "label": "Inspect mouth and throat with light",
+    "components": [
+      "tongue blade",
+      "oropharynx",
+      "tonsils"
+    ],
+    "position": "Seated; open mouth. Do not remove a worn mask",
+    "steps": [
+      {
+        "caption": "Illuminate oral cavity; inspect tongue, mucosa and teeth",
+        "view": "mouth",
+        "action": "light",
+        "points": [
+          [
+            50,
+            50
+          ]
+        ],
+        "seconds": 5
+      },
+      {
+        "caption": "Depress the anterior tongue gently; avoid touching the pharynx",
+        "view": "mouth",
+        "action": "blade",
+        "points": [
+          [
+            50,
+            70
+          ],
+          [
+            50,
+            58
+          ]
+        ],
+        "seconds": 5
+      },
+      {
+        "caption": "Ask “ah”; inspect palate, tonsils and posterior pharynx",
+        "view": "mouth",
+        "action": "observe",
+        "points": [
+          [
+            50,
+            36
+          ],
+          [
+            35,
+            48
+          ],
+          [
+            65,
+            48
+          ]
+        ],
+        "seconds": 8
+      }
+    ],
+    "duration_s": 18,
+    "sources": [
+      "course",
+      "cranial"
+    ]
+  },
+  "heent_sinuses:complete": {
+    "key": "heent_sinuses:complete",
+    "maneuver_id": "heent_sinuses",
+    "label": "Palpate / percuss sinuses",
+    "components": [
+      "frontal",
+      "maxillary"
+    ],
+    "position": "Seated; avoid pressure on the eyes",
+    "steps": [
+      {
+        "caption": "Fingerpads beneath bony brow; ask about frontal tenderness",
+        "view": "head",
+        "action": "palpate",
+        "points": [
+          [
+            38,
+            29
+          ],
+          [
+            62,
+            29
+          ]
+        ],
+        "seconds": 6,
+        "covers": [
+          "frontal"
+        ]
+      },
+      {
+        "caption": "Palpate over maxillary sinuses; compare sides",
+        "view": "head",
+        "action": "palpate",
+        "points": [
+          [
+            34,
+            53
+          ],
+          [
+            66,
+            53
+          ]
+        ],
+        "seconds": 6,
+        "covers": [
+          "maxillary"
+        ]
+      }
+    ],
+    "duration_s": 12,
+    "sources": [
+      "course",
+      "heent"
+    ]
+  },
+  "lymph_nodes:complete": {
+    "key": "lymph_nodes:complete",
+    "maneuver_id": "lymph_nodes",
+    "label": "Palpate lymph nodes",
+    "components": [
+      "cervical",
+      "submandibular",
+      "supraclavicular",
+      "axillary"
+    ],
+    "position": "Seated; relax neck and support the arm for axillary examination",
+    "steps": [
+      {
+        "caption": "Small gentle circles along anterior and posterior cervical chains",
+        "view": "head",
+        "action": "palpate",
+        "points": [
+          [
+            38,
+            76
+          ],
+          [
+            62,
+            76
+          ],
+          [
+            34,
+            84
+          ],
+          [
+            66,
+            84
+          ]
+        ],
+        "seconds": 8,
+        "covers": [
+          "cervical"
+        ]
+      },
+      {
+        "caption": "Sweep below the mandible, then above each clavicle",
+        "view": "head",
+        "action": "palpate",
+        "points": [
+          [
+            40,
+            66
+          ],
+          [
+            60,
+            66
+          ],
+          [
+            28,
+            92
+          ],
+          [
+            72,
+            92
+          ]
+        ],
+        "seconds": 8,
+        "covers": [
+          "submandibular",
+          "supraclavicular"
+        ]
+      },
+      {
+        "caption": "Support the arm; palpate axillary walls and apex, then opposite side",
+        "view": "torso",
+        "action": "palpate",
+        "points": [
+          [
+            26,
+            31
+          ],
+          [
+            74,
+            31
+          ]
+        ],
+        "seconds": 8,
+        "covers": [
+          "axillary"
+        ]
+      }
+    ],
+    "duration_s": 24,
+    "sources": [
+      "course",
+      "lymph"
+    ]
+  },
+  "thyroid:complete": {
+    "key": "thyroid:complete",
+    "maneuver_id": "thyroid",
+    "label": "Palpate thyroid",
+    "components": [
+      "ask patient to swallow"
+    ],
+    "position": "Seated; neck slightly flexed; examiner behind",
+    "steps": [
+      {
+        "caption": "Find cricoid, then thyroid isthmus below it",
+        "view": "head",
+        "action": "palpate",
+        "points": [
+          [
+            50,
+            82
+          ]
+        ],
+        "seconds": 5
+      },
+      {
+        "caption": "Ask for a swallow; feel the gland rise beneath the fingerpads",
+        "view": "head",
+        "action": "swallow",
+        "points": [
+          [
+            43,
+            84
+          ],
+          [
+            57,
+            84
+          ]
+        ],
+        "seconds": 6
+      },
+      {
+        "caption": "Gently displace the trachea and feel each lobe during another swallow",
+        "view": "head",
+        "action": "swallow",
+        "points": [
+          [
+            40,
+            84
+          ],
+          [
+            60,
+            84
+          ]
+        ],
+        "seconds": 8
+      }
+    ],
+    "duration_s": 19,
+    "sources": [
+      "course",
+      "thyroid"
+    ]
+  },
+  "neck_rom:rom": {
+    "key": "neck_rom:rom",
+    "maneuver_id": "neck_rom",
+    "label": "Check neck flexion and rotation",
+    "components": [
+      "flexion",
+      "rotation"
+    ],
+    "position": "Seated; active comfortable movement only",
+    "steps": [
+      {
+        "caption": "Bring chin toward chest, then return to neutral",
+        "view": "neck",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 6,
+        "motion": "neck-flex",
+        "covers": [
+          "flexion"
+        ]
+      },
+      {
+        "caption": "Look over each shoulder; stop if painful",
+        "view": "head",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 8,
+        "motion": "neck-turn",
+        "covers": [
+          "rotation"
+        ]
+      }
+    ],
+    "duration_s": 14,
+    "sources": [
+      "course",
+      "neck"
+    ]
+  },
+  "neck_rom:brudzinski": {
+    "key": "neck_rom:brudzinski",
+    "maneuver_id": "neck_rom",
+    "label": "Perform Brudzinski test",
+    "components": [
+      "brudzinski"
+    ],
+    "position": "Supine; screen for neck injury or instability first",
+    "steps": [
+      {
+        "caption": "Support occiput and upper chest; gently flex the neck",
+        "view": "supine",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 6,
+        "motion": "neck-passive"
+      },
+      {
+        "caption": "Observe hips and knees for involuntary flexion; do not force",
+        "view": "supine",
+        "action": "observe",
+        "points": [
+          [
+            57,
+            58
+          ],
+          [
+            74,
+            58
+          ]
+        ],
+        "seconds": 6,
+        "motion": "neck-hold"
+      }
+    ],
+    "duration_s": 12,
+    "sources": [
+      "course",
+      "meningeal"
+    ]
+  },
+  "neck_rom:kernig": {
+    "key": "neck_rom:kernig",
+    "maneuver_id": "neck_rom",
+    "label": "Perform Kernig test",
+    "components": [
+      "kernig"
+    ],
+    "position": "Supine; stop if painful or resistance is encountered",
+    "steps": [
+      {
+        "caption": "Support thigh and heel; flex hip and knee to 90°",
+        "view": "leg",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 5,
+        "motion": "hip-flex"
+      },
+      {
+        "caption": "Keep hip flexed; gently extend knee, observing discomfort/resistance",
+        "view": "leg",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 7,
+        "motion": "kernig"
+      },
+      {
+        "caption": "Return gently and repeat on the opposite leg",
+        "view": "leg",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 7,
+        "motion": "kernig",
+        "mirror": true
+      }
+    ],
+    "duration_s": 19,
+    "sources": [
+      "course",
+      "meningeal"
+    ]
+  },
+  "heart_auscultate:all": {
+    "key": "heart_auscultate:all",
+    "maneuver_id": "heart_auscultate",
+    "label": "Listen at all four heart valve areas, on skin",
+    "components": [
+      "aortic",
+      "pulmonic",
+      "tricuspid",
+      "mitral",
+      "on skin"
+    ],
+    "position": "Reclined; expose only the chest needed; diaphragm directly on skin",
+    "steps": [
+      {
+        "caption": "Listen — aortic: right 2nd intercostal space",
+        "view": "torso",
+        "action": "listen",
+        "points": [
+          [
+            43,
+            29
+          ]
+        ],
+        "seconds": 10,
+        "covers": [
+          "aortic"
+        ]
+      },
+      {
+        "caption": "Listen — pulmonic: left 2nd intercostal space",
+        "view": "torso",
+        "action": "listen",
+        "points": [
+          [
+            57,
+            29
+          ]
+        ],
+        "seconds": 10,
+        "covers": [
+          "pulmonic"
+        ]
+      },
+      {
+        "caption": "Listen — tricuspid: left lower sternal border",
+        "view": "torso",
+        "action": "listen",
+        "points": [
+          [
+            56,
+            48
+          ]
+        ],
+        "seconds": 10,
+        "covers": [
+          "tricuspid"
+        ]
+      },
+      {
+        "caption": "Listen — mitral: left 5th intercostal space, midclavicular",
+        "view": "torso",
+        "action": "listen",
+        "points": [
+          [
+            67,
+            54
+          ]
+        ],
+        "seconds": 10,
+        "covers": [
+          "mitral"
+        ]
+      }
+    ],
+    "duration_s": 40,
+    "sources": [
+      "course",
+      "heart"
+    ]
+  },
+  "heart_inspect_palpate:complete": {
+    "key": "heart_inspect_palpate:complete",
+    "maneuver_id": "heart_inspect_palpate",
+    "label": "Inspect / palpate precordium, PMI",
+    "components": [
+      "pmi",
+      "thrills",
+      "heaves"
+    ],
+    "position": "Reclined; chest exposed and remainder draped",
+    "steps": [
+      {
+        "caption": "Inspect for visible precordial impulses",
+        "view": "torso",
+        "action": "observe",
+        "points": [
+          [
+            50,
+            40
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "pmi"
+        ]
+      },
+      {
+        "caption": "Fingerpads at left 5th intercostal space, midclavicular line: locate PMI",
+        "view": "torso",
+        "action": "palpate",
+        "points": [
+          [
+            67,
+            54
+          ]
+        ],
+        "seconds": 6,
+        "covers": [
+          "pmi"
+        ]
+      },
+      {
+        "caption": "Heel of hand along left sternal border: feel for heaves",
+        "view": "torso",
+        "action": "palm",
+        "points": [
+          [
+            56,
+            43
+          ]
+        ],
+        "seconds": 5,
+        "covers": [
+          "heaves"
+        ]
+      },
+      {
+        "caption": "Use palmar bases of fingers at valve areas to assess thrills",
+        "view": "torso",
+        "action": "palm",
+        "points": [
+          [
+            43,
+            29
+          ],
+          [
+            57,
+            29
+          ],
+          [
+            56,
+            48
+          ],
+          [
+            67,
+            54
+          ]
+        ],
+        "seconds": 8,
+        "covers": [
+          "thrills"
+        ]
+      }
+    ],
+    "duration_s": 23,
+    "sources": [
+      "course",
+      "precordium"
+    ]
+  },
+  "jvd:complete": {
+    "key": "jvd:complete",
+    "maneuver_id": "jvd",
+    "label": "Assess jugular venous distention",
+    "components": [],
+    "position": "Recline 30–45°; relax neck; turn head slightly away",
+    "steps": [
+      {
+        "caption": "Adjust angle and lighting to see the right neck venous pulsation",
+        "view": "jvp",
+        "action": "observe",
+        "points": [
+          [
+            42,
+            49
+          ]
+        ],
+        "seconds": 5
+      },
+      {
+        "caption": "Observe respiratory variation; distinguish venous from arterial movement",
+        "view": "jvp",
+        "action": "observe",
+        "points": [
+          [
+            42,
+            49
+          ]
+        ],
+        "seconds": 5
+      },
+      {
+        "caption": "At the highest visible venous point, align horizontal and vertical rulers to sternal angle",
+        "view": "jvp",
+        "action": "ruler",
+        "points": [
+          [
+            42,
+            49
+          ],
+          [
+            54,
+            55
+          ]
+        ],
+        "seconds": 5
+      }
+    ],
+    "duration_s": 15,
+    "sources": [
+      "course",
+      "jvp"
+    ]
+  },
+  "peripheral_pulses:complete": {
+    "key": "peripheral_pulses:complete",
+    "maneuver_id": "peripheral_pulses",
+    "label": "Palpate peripheral pulses",
+    "components": [
+      "radial",
+      "dorsalis pedis",
+      "posterior tibial",
+      "carotid"
+    ],
+    "position": "Comfortably supported; compare corresponding sites",
+    "steps": [
+      {
+        "caption": "Use index and middle fingerpads at each radial artery",
+        "view": "wrist",
+        "action": "pulse",
+        "points": [
+          [
+            43,
+            54
+          ],
+          [
+            57,
+            54
+          ]
+        ],
+        "seconds": 8,
+        "covers": [
+          "radial"
+        ]
+      },
+      {
+        "caption": "Palpate each dorsalis pedis, just lateral to extensor hallucis tendon",
+        "view": "foot",
+        "action": "pulse",
+        "points": [
+          [
+            46,
+            44
+          ]
+        ],
+        "seconds": 6,
+        "covers": [
+          "dorsalis pedis"
+        ]
+      },
+      {
+        "caption": "Palpate posterior tibial behind and below medial malleolus; repeat opposite foot",
+        "view": "ankle",
+        "action": "pulse",
+        "points": [
+          [
+            56,
+            56
+          ]
+        ],
+        "seconds": 6,
+        "covers": [
+          "posterior tibial"
+        ]
+      },
+      {
+        "caption": "Gently palpate each carotid medial to sternocleidomastoid; ONE SIDE AT A TIME",
+        "view": "head",
+        "action": "pulse",
+        "points": [
+          [
+            42,
+            80
+          ],
+          [
+            58,
+            80
+          ]
+        ],
+        "seconds": 8,
+        "covers": [
+          "carotid"
+        ]
+      }
+    ],
+    "duration_s": 28,
+    "sources": [
+      "course",
+      "vascular"
+    ]
+  },
+  "carotid_auscultate:complete": {
+    "key": "carotid_auscultate:complete",
+    "maneuver_id": "carotid_auscultate",
+    "label": "Auscultate carotid arteries",
+    "components": [
+      "right",
+      "left"
+    ],
+    "position": "Seated or reclined; use the bell lightly on skin",
+    "steps": [
+      {
+        "caption": "Right carotid: ask for a brief breath hold if comfortable; listen",
+        "view": "head",
+        "action": "bell",
+        "points": [
+          [
+            42,
+            78
+          ]
+        ],
+        "seconds": 8,
+        "covers": [
+          "right"
+        ]
+      },
+      {
+        "caption": "Allow breathing, then repeat on the left; never compress both carotids",
+        "view": "head",
+        "action": "bell",
+        "points": [
+          [
+            58,
+            78
+          ]
+        ],
+        "seconds": 8,
+        "covers": [
+          "left"
+        ]
+      }
+    ],
+    "duration_s": 16,
+    "sources": [
+      "course",
+      "vascular"
+    ]
+  },
+  "lungs_auscultate:all": {
+    "key": "lungs_auscultate:all",
+    "maneuver_id": "lungs_auscultate",
+    "label": "Listen to lungs — compare both sides, front, back and sides",
+    "components": [
+      "anterior",
+      "posterior",
+      "lateral",
+      "mouth open",
+      "on skin",
+      "compare side to side"
+    ],
+    "position": "Seated; on skin; breathe through open mouth, rest if lightheaded",
+    "steps": [
+      {
+        "caption": "One full breath at each site — right upper",
+        "view": "torso",
+        "action": "listen",
+        "points": [
+          [
+            35,
+            32
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "anterior"
+        ]
+      },
+      {
+        "caption": "One full breath at each site — left upper",
+        "view": "torso",
+        "action": "listen",
+        "points": [
+          [
+            65,
+            32
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "anterior"
+        ]
+      },
+      {
+        "caption": "One full breath at each site — right middle",
+        "view": "torso",
+        "action": "listen",
+        "points": [
+          [
+            35,
+            45
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "anterior"
+        ]
+      },
+      {
+        "caption": "One full breath at each site — left middle",
+        "view": "torso",
+        "action": "listen",
+        "points": [
+          [
+            65,
+            45
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "anterior"
+        ]
+      },
+      {
+        "caption": "One full breath at each site — right lower",
+        "view": "torso",
+        "action": "listen",
+        "points": [
+          [
+            35,
+            58
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "anterior"
+        ]
+      },
+      {
+        "caption": "One full breath at each site — left lower",
+        "view": "torso",
+        "action": "listen",
+        "points": [
+          [
+            65,
+            58
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "anterior"
+        ]
+      },
+      {
+        "caption": "Arms crossed; compare posterior fields — right upper",
+        "view": "back",
+        "action": "listen",
+        "points": [
+          [
+            65,
+            32
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "posterior"
+        ]
+      },
+      {
+        "caption": "Arms crossed; compare posterior fields — left upper",
+        "view": "back",
+        "action": "listen",
+        "points": [
+          [
+            35,
+            32
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "posterior"
+        ]
+      },
+      {
+        "caption": "Arms crossed; compare posterior fields — right middle",
+        "view": "back",
+        "action": "listen",
+        "points": [
+          [
+            65,
+            48
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "posterior"
+        ]
+      },
+      {
+        "caption": "Arms crossed; compare posterior fields — left middle",
+        "view": "back",
+        "action": "listen",
+        "points": [
+          [
+            35,
+            48
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "posterior"
+        ]
+      },
+      {
+        "caption": "Arms crossed; compare posterior fields — right base",
+        "view": "back",
+        "action": "listen",
+        "points": [
+          [
+            65,
+            65
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "posterior"
+        ]
+      },
+      {
+        "caption": "Arms crossed; compare posterior fields — left base",
+        "view": "back",
+        "action": "listen",
+        "points": [
+          [
+            35,
+            65
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "posterior"
+        ]
+      },
+      {
+        "caption": "Raise arm; listen in midaxillary line — right lateral base",
+        "view": "torso",
+        "action": "listen",
+        "points": [
+          [
+            25,
+            59
+          ]
+        ],
+        "seconds": 5,
+        "covers": [
+          "lateral"
+        ]
+      },
+      {
+        "caption": "Raise arm; listen in midaxillary line — left lateral base",
+        "view": "torso",
+        "action": "listen",
+        "points": [
+          [
+            75,
+            59
+          ]
+        ],
+        "seconds": 5,
+        "covers": [
+          "lateral"
+        ]
+      }
+    ],
+    "duration_s": 58,
+    "sources": [
+      "course",
+      "pulmonary"
+    ]
+  },
+  "lungs_percuss:complete": {
+    "key": "lungs_percuss:complete",
+    "maneuver_id": "lungs_percuss",
+    "label": "Percuss lung fields",
+    "components": [
+      "anterior",
+      "posterior",
+      "compare side to side"
+    ],
+    "position": "Seated; expose chest/back; arms crossed for posterior fields",
+    "steps": [
+      {
+        "caption": "Middle finger firm in interspace; strike distal joint with opposite middle fingertip; compare pairs",
+        "view": "torso",
+        "action": "percuss",
+        "points": [
+          [
+            35,
+            32
+          ],
+          [
+            65,
+            32
+          ],
+          [
+            35,
+            45
+          ],
+          [
+            65,
+            45
+          ],
+          [
+            35,
+            58
+          ],
+          [
+            65,
+            58
+          ]
+        ],
+        "seconds": 18,
+        "covers": [
+          "anterior"
+        ]
+      },
+      {
+        "caption": "Middle finger firm in interspace; strike distal joint with opposite middle fingertip; compare pairs",
+        "view": "back",
+        "action": "percuss",
+        "points": [
+          [
+            65,
+            32
+          ],
+          [
+            35,
+            32
+          ],
+          [
+            65,
+            48
+          ],
+          [
+            35,
+            48
+          ],
+          [
+            65,
+            65
+          ],
+          [
+            35,
+            65
+          ]
+        ],
+        "seconds": 18,
+        "covers": [
+          "posterior"
+        ]
+      }
+    ],
+    "duration_s": 36,
+    "sources": [
+      "course",
+      "pulmonary"
+    ]
+  },
+  "lungs_fremitus:complete": {
+    "key": "lungs_fremitus:complete",
+    "maneuver_id": "lungs_fremitus",
+    "label": "Assess tactile fremitus",
+    "components": [
+      "compare side to side"
+    ],
+    "position": "Seated; expose posterior chest",
+    "steps": [
+      {
+        "caption": "Use ulnar surfaces of hands; ask “ninety-nine” at each paired level",
+        "view": "back",
+        "action": "fremitus",
+        "points": [
+          [
+            35,
+            32
+          ],
+          [
+            65,
+            32
+          ],
+          [
+            35,
+            48
+          ],
+          [
+            65,
+            48
+          ],
+          [
+            35,
+            65
+          ],
+          [
+            65,
+            65
+          ]
+        ],
+        "seconds": 18
+      }
+    ],
+    "duration_s": 18,
+    "sources": [
+      "course",
+      "pulmonary"
+    ]
+  },
+  "chest_inspect:complete": {
+    "key": "chest_inspect:complete",
+    "maneuver_id": "chest_inspect",
+    "label": "Inspect chest wall",
+    "components": [
+      "symmetry",
+      "scars",
+      "accessory muscle use"
+    ],
+    "position": "Seated; expose chest with appropriate draping",
+    "steps": [
+      {
+        "caption": "Observe anterior contour, scars and symmetry at rest",
+        "view": "torso",
+        "action": "observe",
+        "points": [
+          [
+            35,
+            35
+          ],
+          [
+            65,
+            35
+          ]
+        ],
+        "seconds": 6,
+        "covers": [
+          "symmetry",
+          "scars"
+        ]
+      },
+      {
+        "caption": "Watch several breaths: rate, effort, accessory muscle use",
+        "view": "torso",
+        "action": "observe",
+        "points": [
+          [
+            50,
+            26
+          ],
+          [
+            50,
+            50
+          ]
+        ],
+        "seconds": 9,
+        "covers": [
+          "accessory muscle use"
+        ]
+      }
+    ],
+    "duration_s": 15,
+    "sources": [
+      "course",
+      "pulmonary"
+    ]
+  },
+  "chest_wall_palpate:complete": {
+    "key": "chest_wall_palpate:complete",
+    "maneuver_id": "chest_wall_palpate",
+    "label": "Palpate chest wall",
+    "components": [
+      "costochondral junctions",
+      "ribs"
+    ],
+    "position": "Seated; ask the patient to indicate tenderness first",
+    "steps": [
+      {
+        "caption": "Gently palpate costochondral junctions, comparing sides",
+        "view": "torso",
+        "action": "palpate",
+        "points": [
+          [
+            43,
+            35
+          ],
+          [
+            57,
+            35
+          ],
+          [
+            43,
+            45
+          ],
+          [
+            57,
+            45
+          ],
+          [
+            43,
+            55
+          ],
+          [
+            57,
+            55
+          ]
+        ],
+        "seconds": 10,
+        "covers": [
+          "costochondral junctions"
+        ]
+      },
+      {
+        "caption": "Palpate ribs; approach the painful area last",
+        "view": "torso",
+        "action": "palpate",
+        "points": [
+          [
+            30,
+            40
+          ],
+          [
+            70,
+            40
+          ],
+          [
+            30,
+            55
+          ],
+          [
+            70,
+            55
+          ]
+        ],
+        "seconds": 8,
+        "covers": [
+          "ribs"
+        ]
+      }
+    ],
+    "duration_s": 18,
+    "sources": [
+      "course",
+      "pulmonary"
+    ]
+  },
+  "abd_inspect:complete": {
+    "key": "abd_inspect:complete",
+    "maneuver_id": "abd_inspect",
+    "label": "Inspect abdomen",
+    "components": [
+      "contour",
+      "scars",
+      "distention",
+      "pulsation"
+    ],
+    "position": "Supine; knees supported, arms at sides; abdomen exposed, remainder draped",
+    "steps": [
+      {
+        "caption": "Look tangentially across abdomen for contour and distention",
+        "view": "abdomen",
+        "action": "observe",
+        "points": [
+          [
+            50,
+            50
+          ]
+        ],
+        "seconds": 6,
+        "covers": [
+          "contour",
+          "distention"
+        ]
+      },
+      {
+        "caption": "Inspect skin, scars and visible pulsations",
+        "view": "abdomen",
+        "action": "observe",
+        "points": [
+          [
+            37,
+            39
+          ],
+          [
+            63,
+            39
+          ],
+          [
+            63,
+            63
+          ],
+          [
+            37,
+            63
+          ]
+        ],
+        "seconds": 6,
+        "covers": [
+          "scars",
+          "pulsation"
+        ]
+      }
+    ],
+    "duration_s": 12,
+    "sources": [
+      "course",
+      "abdomen"
+    ]
+  },
+  "abd_auscultate:sounds": {
+    "key": "abd_auscultate:sounds",
+    "maneuver_id": "abd_auscultate",
+    "label": "Listen for bowel sounds in all four quadrants",
+    "components": [
+      "all four quadrants"
+    ],
+    "position": "Supine; auscultate before percussion or palpation",
+    "steps": [
+      {
+        "caption": "Diaphragm on skin; listen for bowel sounds — right upper",
+        "view": "abdomen",
+        "action": "listen",
+        "points": [
+          [
+            37,
+            39
+          ]
+        ],
+        "seconds": 6
+      },
+      {
+        "caption": "Diaphragm on skin; listen for bowel sounds — left upper",
+        "view": "abdomen",
+        "action": "listen",
+        "points": [
+          [
+            63,
+            39
+          ]
+        ],
+        "seconds": 6
+      },
+      {
+        "caption": "Diaphragm on skin; listen for bowel sounds — left lower",
+        "view": "abdomen",
+        "action": "listen",
+        "points": [
+          [
+            63,
+            63
+          ]
+        ],
+        "seconds": 6
+      },
+      {
+        "caption": "Diaphragm on skin; listen for bowel sounds — right lower",
+        "view": "abdomen",
+        "action": "listen",
+        "points": [
+          [
+            37,
+            63
+          ]
+        ],
+        "seconds": 6
+      },
+      {
+        "caption": "This is a brief screen; absent bowel sounds require prolonged listening",
+        "view": "abdomen",
+        "action": "observe",
+        "points": [
+          [
+            50,
+            50
+          ]
+        ],
+        "seconds": 4
+      }
+    ],
+    "duration_s": 28,
+    "sources": [
+      "course",
+      "abdomen"
+    ]
+  },
+  "abd_auscultate:bruits": {
+    "key": "abd_auscultate:bruits",
+    "maneuver_id": "abd_auscultate",
+    "label": "Listen for abdominal bruits",
+    "components": [
+      "bruits"
+    ],
+    "position": "Supine; bell on skin with light pressure",
+    "steps": [
+      {
+        "caption": "Listen for vascular sounds — aorta",
+        "view": "abdomen",
+        "action": "bell",
+        "points": [
+          [
+            50,
+            32
+          ]
+        ],
+        "seconds": 5
+      },
+      {
+        "caption": "Listen for vascular sounds — right renal artery",
+        "view": "abdomen",
+        "action": "bell",
+        "points": [
+          [
+            40,
+            37
+          ]
+        ],
+        "seconds": 5
+      },
+      {
+        "caption": "Listen for vascular sounds — left renal artery",
+        "view": "abdomen",
+        "action": "bell",
+        "points": [
+          [
+            60,
+            37
+          ]
+        ],
+        "seconds": 5
+      },
+      {
+        "caption": "Listen for vascular sounds — right iliac artery",
+        "view": "abdomen",
+        "action": "bell",
+        "points": [
+          [
+            40,
+            67
+          ]
+        ],
+        "seconds": 5
+      },
+      {
+        "caption": "Listen for vascular sounds — left iliac artery",
+        "view": "abdomen",
+        "action": "bell",
+        "points": [
+          [
+            60,
+            67
+          ]
+        ],
+        "seconds": 5
+      }
+    ],
+    "duration_s": 25,
+    "sources": [
+      "course",
+      "abdomen"
+    ]
+  },
+  "abd_percuss:quadrants": {
+    "key": "abd_percuss:quadrants",
+    "maneuver_id": "abd_percuss",
+    "label": "Percuss all four abdominal quadrants",
+    "components": [
+      "four quadrants"
+    ],
+    "position": "Supine; relax abdomen",
+    "steps": [
+      {
+        "caption": "Middle finger against skin; strike its distal joint; sample all quadrants",
+        "view": "abdomen",
+        "action": "percuss",
+        "points": [
+          [
+            37,
+            39
+          ],
+          [
+            63,
+            39
+          ],
+          [
+            63,
+            63
+          ],
+          [
+            37,
+            63
+          ]
+        ],
+        "seconds": 16
+      }
+    ],
+    "duration_s": 16,
+    "sources": [
+      "course",
+      "abdomen"
+    ]
+  },
+  "abd_percuss:liver": {
+    "key": "abd_percuss:liver",
+    "maneuver_id": "abd_percuss",
+    "label": "Percuss liver span",
+    "components": [
+      "liver span"
+    ],
+    "position": "Supine; percuss along the RIGHT midclavicular line",
+    "steps": [
+      {
+        "caption": "From resonant chest, percuss downward to upper border of dullness",
+        "view": "abdomen",
+        "action": "percuss",
+        "points": [
+          [
+            37,
+            15
+          ],
+          [
+            37,
+            25
+          ],
+          [
+            37,
+            35
+          ]
+        ],
+        "seconds": 8
+      },
+      {
+        "caption": "From below the umbilicus, percuss upward to lower border of dullness",
+        "view": "abdomen",
+        "action": "percuss",
+        "points": [
+          [
+            37,
+            69
+          ],
+          [
+            37,
+            58
+          ],
+          [
+            37,
+            47
+          ]
+        ],
+        "seconds": 8
+      },
+      {
+        "caption": "Measure the distance between the two identified borders",
+        "view": "abdomen",
+        "action": "measure",
+        "points": [
+          [
+            37,
+            35
+          ],
+          [
+            37,
+            47
+          ]
+        ],
+        "seconds": 5
+      }
+    ],
+    "duration_s": 21,
+    "sources": [
+      "course",
+      "liver"
+    ]
+  },
+  "abd_percuss:ascites": {
+    "key": "abd_percuss:ascites",
+    "maneuver_id": "abd_percuss",
+    "label": "Check shifting dullness",
+    "components": [
+      "shifting dullness"
+    ],
+    "position": "Supine, then roll away from the examining side",
+    "steps": [
+      {
+        "caption": "Percuss from center toward flank; mark transition to dullness if present",
+        "view": "abdomen",
+        "action": "percuss",
+        "points": [
+          [
+            50,
+            48
+          ],
+          [
+            40,
+            48
+          ],
+          [
+            30,
+            48
+          ]
+        ],
+        "seconds": 7
+      },
+      {
+        "caption": "Keep the boundary marked; ask the patient to roll away",
+        "view": "abdomen",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 5,
+        "motion": "roll"
+      },
+      {
+        "caption": "Wait for fluid to redistribute",
+        "view": "abdomen",
+        "action": "wait",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 8,
+        "motion": "side"
+      },
+      {
+        "caption": "Re-percuss the same marked area and compare the boundary",
+        "view": "abdomen",
+        "action": "percuss",
+        "points": [
+          [
+            30,
+            48
+          ],
+          [
+            40,
+            48
+          ]
+        ],
+        "seconds": 7,
+        "motion": "side"
+      }
+    ],
+    "duration_s": 27,
+    "sources": [
+      "course",
+      "ascites"
+    ]
+  },
+  "abd_palpate:light": {
+    "key": "abd_palpate:light",
+    "maneuver_id": "abd_palpate",
+    "label": "Lightly palpate all quadrants; assess guarding",
+    "components": [
+      "light",
+      "four quadrants",
+      "guarding"
+    ],
+    "position": "Supine; knees supported; ask about pain and examine painful area last",
+    "steps": [
+      {
+        "caption": "Use warm fingerpads with gentle shallow pressure in each quadrant",
+        "view": "abdomen",
+        "action": "palpate",
+        "points": [
+          [
+            37,
+            39
+          ],
+          [
+            63,
+            39
+          ],
+          [
+            63,
+            63
+          ],
+          [
+            37,
+            63
+          ]
+        ],
+        "seconds": 16
+      },
+      {
+        "caption": "Observe the face and abdominal relaxation; distinguish voluntary guarding",
+        "view": "abdomen",
+        "action": "observe",
+        "points": [
+          [
+            50,
+            50
+          ]
+        ],
+        "seconds": 4
+      }
+    ],
+    "duration_s": 20,
+    "sources": [
+      "course",
+      "abdomen"
+    ]
+  },
+  "abd_palpate:deep": {
+    "key": "abd_palpate:deep",
+    "maneuver_id": "abd_palpate",
+    "label": "Deeply palpate all four quadrants",
+    "components": [
+      "deep",
+      "four quadrants"
+    ],
+    "position": "Supine; first assess with light palpation; stop if painful",
+    "steps": [
+      {
+        "caption": "Gradually increase depth with flat fingerpads; assess masses/tenderness in all quadrants",
+        "view": "abdomen",
+        "action": "deep",
+        "points": [
+          [
+            37,
+            39
+          ],
+          [
+            63,
+            39
+          ],
+          [
+            63,
+            63
+          ],
+          [
+            37,
+            63
+          ]
+        ],
+        "seconds": 20
+      }
+    ],
+    "duration_s": 20,
+    "sources": [
+      "course",
+      "abdomen"
+    ]
+  },
+  "abd_palpate:rebound": {
+    "key": "abd_palpate:rebound",
+    "maneuver_id": "abd_palpate",
+    "label": "Assess rebound tenderness",
+    "components": [
+      "rebound"
+    ],
+    "position": "Supine; use only if indicated; explain discomfort and stop if needed",
+    "steps": [
+      {
+        "caption": "Press slowly and gently at a site away from greatest pain",
+        "view": "abdomen",
+        "action": "deep",
+        "points": [
+          [
+            62,
+            60
+          ]
+        ],
+        "seconds": 5
+      },
+      {
+        "caption": "Release promptly; ask whether release or pressure hurt more",
+        "view": "abdomen",
+        "action": "release",
+        "points": [
+          [
+            62,
+            60
+          ]
+        ],
+        "seconds": 5
+      }
+    ],
+    "duration_s": 10,
+    "sources": [
+      "course",
+      "abdomen"
+    ]
+  },
+  "abd_special:0": {
+    "key": "abd_special:0",
+    "maneuver_id": "abd_special",
+    "label": "Perform Murphy sign",
+    "components": [
+      "murphy"
+    ],
+    "position": "Supine; examiner at patient’s right",
+    "steps": [
+      {
+        "caption": "Place fingers just below RIGHT costal margin at midclavicular line",
+        "view": "abdomen",
+        "action": "palpate",
+        "points": [
+          [
+            37,
+            32
+          ]
+        ],
+        "seconds": 5
+      },
+      {
+        "caption": "Maintain gentle pressure; ask for inspiration and observe for inspiratory arrest",
+        "view": "abdomen",
+        "action": "hold",
+        "points": [
+          [
+            37,
+            32
+          ]
+        ],
+        "seconds": 8
+      }
+    ],
+    "duration_s": 13,
+    "sources": [
+      "course",
+      "abdomen"
+    ]
+  },
+  "abd_special:1": {
+    "key": "abd_special:1",
+    "maneuver_id": "abd_special",
+    "label": "Assess McBurney-point tenderness",
+    "components": [
+      "mcburney"
+    ],
+    "position": "Supine; identify right ASIS and umbilicus",
+    "steps": [
+      {
+        "caption": "Locate one-third of the distance from right ASIS toward umbilicus",
+        "view": "abdomen",
+        "action": "trace",
+        "points": [
+          [
+            29,
+            72
+          ],
+          [
+            36,
+            64
+          ]
+        ],
+        "seconds": 5
+      },
+      {
+        "caption": "Gently assess focal tenderness at McBurney point; stop if painful",
+        "view": "abdomen",
+        "action": "palpate",
+        "points": [
+          [
+            36,
+            64
+          ]
+        ],
+        "seconds": 7
+      }
+    ],
+    "duration_s": 12,
+    "sources": [
+      "course",
+      "abdomen"
+    ]
+  },
+  "abd_special:2": {
+    "key": "abd_special:2",
+    "maneuver_id": "abd_special",
+    "label": "Perform Rovsing sign",
+    "components": [
+      "rovsing"
+    ],
+    "position": "Supine; explain the test",
+    "steps": [
+      {
+        "caption": "Apply slow pressure in LEFT lower quadrant",
+        "view": "abdomen",
+        "action": "deep",
+        "points": [
+          [
+            63,
+            63
+          ]
+        ],
+        "seconds": 6
+      },
+      {
+        "caption": "Ask specifically whether this produces pain on the RIGHT lower side",
+        "view": "abdomen",
+        "action": "hold",
+        "points": [
+          [
+            63,
+            63
+          ]
+        ],
+        "seconds": 6,
+        "observe": [
+          [
+            37,
+            63
+          ]
+        ]
+      }
+    ],
+    "duration_s": 12,
+    "sources": [
+      "course",
+      "abdomen"
+    ]
+  },
+  "abd_special:3": {
+    "key": "abd_special:3",
+    "maneuver_id": "abd_special",
+    "label": "Perform psoas test",
+    "components": [
+      "psoas"
+    ],
+    "position": "Supine; resist active RIGHT hip flexion",
+    "steps": [
+      {
+        "caption": "Support the patient; place hand above right knee",
+        "view": "leg",
+        "action": "hold",
+        "points": [
+          [
+            62,
+            40
+          ]
+        ],
+        "seconds": 4
+      },
+      {
+        "caption": "Ask patient to raise thigh against gentle resistance; ask about abdominal pain",
+        "view": "leg",
+        "action": "resist",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 8,
+        "motion": "hip-resist"
+      }
+    ],
+    "duration_s": 12,
+    "sources": [
+      "course",
+      "abdomen"
+    ]
+  },
+  "abd_special:4": {
+    "key": "abd_special:4",
+    "maneuver_id": "abd_special",
+    "label": "Perform obturator test",
+    "components": [
+      "obturator"
+    ],
+    "position": "Supine; gently flex right hip and knee to 90°",
+    "steps": [
+      {
+        "caption": "Support knee and ankle in hip/knee flexion",
+        "view": "leg",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 5,
+        "motion": "hip-flex"
+      },
+      {
+        "caption": "Keep knee supported; move ankle outward to internally rotate hip",
+        "view": "leg",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 7,
+        "motion": "obturator"
+      }
+    ],
+    "duration_s": 12,
+    "sources": [
+      "course",
+      "abdomen"
+    ]
+  },
+  "abd_special:5": {
+    "key": "abd_special:5",
+    "maneuver_id": "abd_special",
+    "label": "Check costovertebral-angle tenderness",
+    "components": [
+      "cva tenderness"
+    ],
+    "position": "Seated; expose back and locate 12th rib / spine angle",
+    "steps": [
+      {
+        "caption": "Lay one hand over the right costovertebral angle; tap gently with ulnar fist",
+        "view": "back",
+        "action": "cva",
+        "points": [
+          [
+            59,
+            63
+          ]
+        ],
+        "seconds": 6
+      },
+      {
+        "caption": "Repeat over the left angle; ask about tenderness",
+        "view": "back",
+        "action": "cva",
+        "points": [
+          [
+            41,
+            63
+          ]
+        ],
+        "seconds": 6
+      }
+    ],
+    "duration_s": 12,
+    "sources": [
+      "course",
+      "renal"
+    ]
+  },
+  "msk_inspect:complete": {
+    "key": "msk_inspect:complete",
+    "maneuver_id": "msk_inspect",
+    "label": "Inspect the affected area",
+    "components": [
+      "swelling",
+      "deformity",
+      "erythema"
+    ],
+    "position": "Expose the symptomatic area; compare corresponding sides",
+    "steps": [
+      {
+        "caption": "Inspect alignment, contour, swelling and skin color",
+        "view": "region",
+        "action": "observe",
+        "points": [
+          [
+            40,
+            45
+          ],
+          [
+            60,
+            45
+          ]
+        ],
+        "seconds": 12
+      }
+    ],
+    "duration_s": 12,
+    "sources": [
+      "course",
+      "msk"
+    ]
+  },
+  "msk_palpate:0": {
+    "key": "msk_palpate:0",
+    "maneuver_id": "msk_palpate",
+    "label": "Palpate the affected area — point tenderness",
+    "components": [
+      "point tenderness"
+    ],
+    "position": "Support the symptomatic region; examine the most painful spot last",
+    "steps": [
+      {
+        "caption": "Patient indicates pain; palpate adjacent bony and soft-tissue landmarks",
+        "view": "region",
+        "action": "palpate",
+        "points": [
+          [
+            35,
+            42
+          ],
+          [
+            50,
+            50
+          ],
+          [
+            65,
+            42
+          ]
+        ],
+        "seconds": 12
+      }
+    ],
+    "duration_s": 12,
+    "sources": [
+      "course",
+      "msk"
+    ]
+  },
+  "msk_palpate:1": {
+    "key": "msk_palpate:1",
+    "maneuver_id": "msk_palpate",
+    "label": "Palpate the affected area — paraspinal musculature",
+    "components": [
+      "paraspinal musculature"
+    ],
+    "position": "Seated or prone; back exposed and muscles relaxed",
+    "steps": [
+      {
+        "caption": "Use fingerpads beside spinous processes; compare paraspinal tissue side to side",
+        "view": "back",
+        "action": "palpate",
+        "points": [
+          [
+            43,
+            36
+          ],
+          [
+            57,
+            36
+          ],
+          [
+            43,
+            50
+          ],
+          [
+            57,
+            50
+          ],
+          [
+            43,
+            65
+          ],
+          [
+            57,
+            65
+          ]
+        ],
+        "seconds": 18
+      }
+    ],
+    "duration_s": 18,
+    "sources": [
+      "course",
+      "back"
+    ]
+  },
+  "msk_palpate:2": {
+    "key": "msk_palpate:2",
+    "maneuver_id": "msk_palpate",
+    "label": "Palpate the affected area — midline spine",
+    "components": [
+      "midline spine"
+    ],
+    "position": "Seated; stop for marked pain or concern for injury",
+    "steps": [
+      {
+        "caption": "Gently palpate successive midline spinous processes for focal tenderness",
+        "view": "back",
+        "action": "palpate",
+        "points": [
+          [
+            50,
+            25
+          ],
+          [
+            50,
+            35
+          ],
+          [
+            50,
+            45
+          ],
+          [
+            50,
+            55
+          ],
+          [
+            50,
+            65
+          ]
+        ],
+        "seconds": 15
+      }
+    ],
+    "duration_s": 15,
+    "sources": [
+      "course",
+      "back"
+    ]
+  },
+  "msk_rom:complete": {
+    "key": "msk_rom:complete",
+    "maneuver_id": "msk_rom",
+    "label": "Range of motion",
+    "components": [
+      "flexion",
+      "extension",
+      "side bending",
+      "rotation"
+    ],
+    "position": "Active, comfortable motion first; stabilize the region; do not force",
+    "steps": [
+      {
+        "caption": "Flex, then return to neutral",
+        "view": "region",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 7,
+        "motion": "region-flex",
+        "covers": [
+          "flexion"
+        ]
+      },
+      {
+        "caption": "Extend, then return to neutral",
+        "view": "region",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 7,
+        "motion": "region-extend",
+        "covers": [
+          "extension"
+        ]
+      },
+      {
+        "caption": "For the spine: side bend; for limb joints: assess the appropriate side-to-side plane",
+        "view": "region",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 7,
+        "motion": "region-side",
+        "covers": [
+          "side bending"
+        ]
+      },
+      {
+        "caption": "Assess rotation where anatomically appropriate; compare sides",
+        "view": "region",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 7,
+        "motion": "region-rotate",
+        "covers": [
+          "rotation"
+        ]
+      }
+    ],
+    "duration_s": 28,
+    "sources": [
+      "course",
+      "msk"
+    ]
+  },
+  "msk_strength:0": {
+    "key": "msk_strength:0",
+    "maneuver_id": "msk_strength",
+    "label": "Muscle strength testing — upper extremity",
+    "components": [
+      "upper extremity"
+    ],
+    "position": "Seated; compare sides and stop if painful",
+    "steps": [
+      {
+        "caption": "Stabilize shoulder; resist arm abduction",
+        "view": "body",
+        "action": "resist",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 6,
+        "motion": "arm-abduct"
+      },
+      {
+        "caption": "Support elbow; resist flexion and extension",
+        "view": "arm",
+        "action": "resist",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 8,
+        "motion": "elbow-resist"
+      },
+      {
+        "caption": "Stabilize forearm; resist wrist extension, comparing sides",
+        "view": "arm",
+        "action": "resist",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 6,
+        "motion": "wrist-resist"
+      },
+      {
+        "caption": "Spread fingers against inward resistance; compare sides",
+        "view": "hand",
+        "action": "resist",
+        "points": [
+          [
+            32,
+            38
+          ],
+          [
+            68,
+            38
+          ]
+        ],
+        "seconds": 6,
+        "motion": "hand-spread"
+      },
+      {
+        "caption": "Squeeze two examiner fingers; compare grip on the opposite side",
+        "view": "hand",
+        "action": "resist",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 6,
+        "motion": "grip"
+      }
+    ],
+    "duration_s": 32,
+    "sources": [
+      "course",
+      "motor"
+    ]
+  },
+  "msk_strength:1": {
+    "key": "msk_strength:1",
+    "maneuver_id": "msk_strength",
+    "label": "Muscle strength testing — lower extremity",
+    "components": [
+      "lower extremity"
+    ],
+    "position": "Seated or supine; stabilize proximal segment and compare sides",
+    "steps": [
+      {
+        "caption": "Resist hip flexion with hand above the knee",
+        "view": "leg",
+        "action": "resist",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 6,
+        "motion": "hip-resist"
+      },
+      {
+        "caption": "Resist knee extension and flexion at distal leg",
+        "view": "leg",
+        "action": "resist",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 6,
+        "motion": "knee"
+      },
+      {
+        "caption": "Stabilize heel; resist ankle dorsiflexion and plantarflexion",
+        "view": "foot",
+        "action": "resist",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 8,
+        "motion": "ankle-resist"
+      }
+    ],
+    "duration_s": 20,
+    "sources": [
+      "course",
+      "motor"
+    ]
+  },
+  "msk_strength:2": {
+    "key": "msk_strength:2",
+    "maneuver_id": "msk_strength",
+    "label": "Muscle strength testing — pronator drift",
+    "components": [
+      "pronator drift"
+    ],
+    "position": "Seated; arms forward, palms up",
+    "steps": [
+      {
+        "caption": "Hold both arms out, palms up; close eyes",
+        "view": "body",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 4,
+        "motion": "arms-forward"
+      },
+      {
+        "caption": "Observe for pronation or drift; do not guide the arms",
+        "view": "body",
+        "action": "observe",
+        "points": [
+          [
+            63,
+            39
+          ]
+        ],
+        "seconds": 20,
+        "motion": "arms-forward"
+      }
+    ],
+    "duration_s": 24,
+    "sources": [
+      "course",
+      "motor"
+    ]
+  },
+  "msk_slr:supine": {
+    "key": "msk_slr:supine",
+    "maneuver_id": "msk_slr",
+    "label": "Supine straight-leg raise — both legs",
+    "components": [
+      "supine",
+      "right",
+      "left"
+    ],
+    "position": "Supine; support heel; stop if pain occurs",
+    "steps": [
+      {
+        "caption": "Raise the straight leg at the hip; ask about radiating symptoms — right",
+        "view": "leg",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 10,
+        "motion": "slr-supine",
+        "mirror": false,
+        "covers": [
+          "right"
+        ]
+      },
+      {
+        "caption": "Raise the straight leg at the hip; ask about radiating symptoms — left",
+        "view": "leg",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 10,
+        "motion": "slr-supine",
+        "mirror": true,
+        "covers": [
+          "left"
+        ]
+      }
+    ],
+    "duration_s": 20,
+    "sources": [
+      "course",
+      "back"
+    ]
+  },
+  "msk_slr:seated": {
+    "key": "msk_slr:seated",
+    "maneuver_id": "msk_slr",
+    "label": "Seated straight-leg raise — both legs",
+    "components": [
+      "seated",
+      "right",
+      "left"
+    ],
+    "position": "Seated on table edge; support heel; stop if pain occurs",
+    "steps": [
+      {
+        "caption": "Extend the knee with hip flexed; keep ankle relaxed; ask about radiating symptoms — right",
+        "view": "leg",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 10,
+        "motion": "slr-seated",
+        "mirror": false,
+        "covers": [
+          "right"
+        ]
+      },
+      {
+        "caption": "Extend the knee with hip flexed; keep ankle relaxed; ask about radiating symptoms — left",
+        "view": "leg",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 10,
+        "motion": "slr-seated",
+        "mirror": true,
+        "covers": [
+          "left"
+        ]
+      }
+    ],
+    "duration_s": 20,
+    "sources": [
+      "course",
+      "back"
+    ]
+  },
+  "gait:complete": {
+    "key": "gait:complete",
+    "maneuver_id": "gait",
+    "label": "Observe gait",
+    "components": [],
+    "position": "Clear level walkway; guard nearby; use usual aid if needed",
+    "steps": [
+      {
+        "caption": "Observe the patient walking away: initiation, stride, balance and arm swing",
+        "view": "body",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 8,
+        "motion": "walk"
+      },
+      {
+        "caption": "Ask for a comfortable turn, then watch the return",
+        "view": "body",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 8,
+        "motion": "walk-return"
+      }
+    ],
+    "duration_s": 16,
+    "sources": [
+      "course",
+      "gait"
+    ]
+  },
+  "neuro_cn:0": {
+    "key": "neuro_cn:0",
+    "maneuver_id": "neuro_cn",
+    "label": "Cranial nerve examination — cn ii",
+    "components": [
+      "cn ii"
+    ],
+    "position": "Seated; usual corrective lenses; test each eye separately",
+    "steps": [
+      {
+        "caption": "Cover one eye without pressing it; read a near-vision chart at its specified distance",
+        "view": "head",
+        "action": "chart",
+        "points": [
+          [
+            40,
+            40
+          ],
+          [
+            60,
+            40
+          ]
+        ],
+        "seconds": 10
+      },
+      {
+        "caption": "Confrontation: maintain fixation; bring target inward in four quadrants, each eye",
+        "view": "head",
+        "action": "trace",
+        "points": [
+          [
+            20,
+            20
+          ],
+          [
+            40,
+            35
+          ],
+          [
+            20,
+            65
+          ],
+          [
+            40,
+            45
+          ],
+          [
+            80,
+            20
+          ],
+          [
+            60,
+            35
+          ],
+          [
+            80,
+            65
+          ],
+          [
+            60,
+            45
+          ]
+        ],
+        "seconds": 12
+      },
+      {
+        "caption": "Test direct/consensual pupil responses with a light from the side",
+        "view": "head",
+        "action": "light",
+        "points": [
+          [
+            40,
+            40
+          ],
+          [
+            60,
+            40
+          ]
+        ],
+        "seconds": 8
+      }
+    ],
+    "duration_s": 30,
+    "sources": [
+      "course",
+      "cranial"
+    ]
+  },
+  "neuro_cn:1": {
+    "key": "neuro_cn:1",
+    "maneuver_id": "neuro_cn",
+    "label": "Cranial nerve examination — cn iii-iv-vi",
+    "components": [
+      "cn iii-iv-vi"
+    ],
+    "position": "Seated; head still",
+    "steps": [
+      {
+        "caption": "Follow the target through an H; keep the head still",
+        "view": "head",
+        "action": "trace",
+        "points": [
+          [
+            50,
+            40
+          ],
+          [
+            30,
+            40
+          ],
+          [
+            30,
+            25
+          ],
+          [
+            30,
+            55
+          ],
+          [
+            30,
+            40
+          ],
+          [
+            70,
+            40
+          ],
+          [
+            70,
+            25
+          ],
+          [
+            70,
+            55
+          ],
+          [
+            70,
+            40
+          ],
+          [
+            50,
+            40
+          ]
+        ],
+        "seconds": 12
+      },
+      {
+        "caption": "Inspect lids and pupils; compare direct and consensual light responses",
+        "view": "head",
+        "action": "light",
+        "points": [
+          [
+            40,
+            40
+          ],
+          [
+            60,
+            40
+          ]
+        ],
+        "seconds": 8
+      }
+    ],
+    "duration_s": 20,
+    "sources": [
+      "course",
+      "cranial"
+    ]
+  },
+  "neuro_cn:2": {
+    "key": "neuro_cn:2",
+    "maneuver_id": "neuro_cn",
+    "label": "Cranial nerve examination — cn v",
+    "components": [
+      "cn v"
+    ],
+    "position": "Seated; eyes closed for sensory testing",
+    "steps": [
+      {
+        "caption": "Compare light touch over forehead, cheek and jaw on both sides",
+        "view": "head",
+        "action": "cotton",
+        "points": [
+          [
+            35,
+            25
+          ],
+          [
+            65,
+            25
+          ],
+          [
+            32,
+            50
+          ],
+          [
+            68,
+            50
+          ],
+          [
+            40,
+            64
+          ],
+          [
+            60,
+            64
+          ]
+        ],
+        "seconds": 10
+      },
+      {
+        "caption": "Clench teeth; palpate temporalis and masseter on each side",
+        "view": "head",
+        "action": "palpate",
+        "points": [
+          [
+            28,
+            32
+          ],
+          [
+            72,
+            32
+          ],
+          [
+            30,
+            58
+          ],
+          [
+            70,
+            58
+          ]
+        ],
+        "seconds": 8
+      },
+      {
+        "caption": "Ask patient to open jaw against gentle upward resistance under the chin",
+        "view": "head",
+        "action": "resist",
+        "points": [
+          [
+            50,
+            73
+          ]
+        ],
+        "seconds": 5,
+        "motion": "jaw-open"
+      }
+    ],
+    "duration_s": 23,
+    "sources": [
+      "course",
+      "cranial"
+    ]
+  },
+  "neuro_cn:3": {
+    "key": "neuro_cn:3",
+    "maneuver_id": "neuro_cn",
+    "label": "Cranial nerve examination — cn vii",
+    "components": [
+      "cn vii"
+    ],
+    "position": "Seated; compare both sides of the face",
+    "steps": [
+      {
+        "caption": "Raise eyebrows; compare forehead movement",
+        "view": "head",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 4,
+        "motion": "face-upper"
+      },
+      {
+        "caption": "Close eyes tightly; gently test eyelid closure without pressing the eyeballs",
+        "view": "head",
+        "action": "resist",
+        "points": [
+          [
+            33,
+            39
+          ],
+          [
+            67,
+            39
+          ]
+        ],
+        "seconds": 5,
+        "motion": "face-eyes"
+      },
+      {
+        "caption": "Smile and show teeth; compare both sides",
+        "view": "head",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 5,
+        "motion": "face-smile"
+      },
+      {
+        "caption": "Puff out both cheeks; look for air escaping",
+        "view": "head",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 5,
+        "motion": "face-cheeks"
+      }
+    ],
+    "duration_s": 19,
+    "sources": [
+      "course",
+      "cranial"
+    ]
+  },
+  "neuro_cn:4": {
+    "key": "neuro_cn:4",
+    "maneuver_id": "neuro_cn",
+    "label": "Cranial nerve examination — cn viii",
+    "components": [
+      "cn viii"
+    ],
+    "position": "Seated; examiner behind to prevent lip reading",
+    "steps": [
+      {
+        "caption": "Occlude/rub the opposite tragus; whisper a number/letter combination",
+        "view": "ear",
+        "action": "speak",
+        "points": [
+          [
+            50,
+            48
+          ]
+        ],
+        "seconds": 7
+      },
+      {
+        "caption": "Repeat with a different combination in the other ear",
+        "view": "ear",
+        "action": "speak",
+        "points": [
+          [
+            50,
+            48
+          ]
+        ],
+        "seconds": 7,
+        "mirror": true
+      }
+    ],
+    "duration_s": 14,
+    "sources": [
+      "course",
+      "cranial"
+    ]
+  },
+  "neuro_cn:5": {
+    "key": "neuro_cn:5",
+    "maneuver_id": "neuro_cn",
+    "label": "Cranial nerve examination — cn ix-x",
+    "components": [
+      "cn ix-x"
+    ],
+    "position": "Seated; open mouth; avoid eliciting a gag routinely",
+    "steps": [
+      {
+        "caption": "Listen to voice; ask about swallowing, then ask patient to say “ah”",
+        "view": "mouth",
+        "action": "speak",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 6
+      },
+      {
+        "caption": "Illuminate and watch palate elevation / uvular position",
+        "view": "mouth",
+        "action": "light",
+        "points": [
+          [
+            50,
+            35
+          ]
+        ],
+        "seconds": 7
+      }
+    ],
+    "duration_s": 13,
+    "sources": [
+      "course",
+      "cranial"
+    ]
+  },
+  "neuro_cn:6": {
+    "key": "neuro_cn:6",
+    "maneuver_id": "neuro_cn",
+    "label": "Cranial nerve examination — cn xi",
+    "components": [
+      "cn xi"
+    ],
+    "position": "Seated; stabilize shoulders as needed",
+    "steps": [
+      {
+        "caption": "Press down gently while patient shrugs both shoulders",
+        "view": "body",
+        "action": "resist",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 7,
+        "motion": "shrug"
+      },
+      {
+        "caption": "Resist head turn with hand on cheek; compare both sternocleidomastoids",
+        "view": "head",
+        "action": "resist",
+        "points": [
+          [
+            31,
+            55
+          ],
+          [
+            69,
+            55
+          ]
+        ],
+        "seconds": 8,
+        "motion": "neck-turn"
+      }
+    ],
+    "duration_s": 15,
+    "sources": [
+      "course",
+      "cranial"
+    ]
+  },
+  "neuro_cn:7": {
+    "key": "neuro_cn:7",
+    "maneuver_id": "neuro_cn",
+    "label": "Cranial nerve examination — cn xii",
+    "components": [
+      "cn xii"
+    ],
+    "position": "Seated; inspect tongue at rest first",
+    "steps": [
+      {
+        "caption": "Inspect for wasting or involuntary movements, then ask to protrude the tongue",
+        "view": "mouth",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 6,
+        "motion": "tongue"
+      },
+      {
+        "caption": "Move the tongue from side to side",
+        "view": "mouth",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 7,
+        "motion": "tongue-side"
+      },
+      {
+        "caption": "Push tongue into each cheek against gentle resistance from outside",
+        "view": "head",
+        "action": "resist",
+        "points": [
+          [
+            30,
+            55
+          ],
+          [
+            70,
+            55
+          ]
+        ],
+        "seconds": 6,
+        "motion": "face-cheeks"
+      }
+    ],
+    "duration_s": 19,
+    "sources": [
+      "course",
+      "cranial"
+    ]
+  },
+  "neuro_sensory:0": {
+    "key": "neuro_sensory:0",
+    "maneuver_id": "neuro_sensory",
+    "label": "Sensory examination — light touch",
+    "components": [
+      "light touch"
+    ],
+    "position": "Explain first; eyes closed; compare matching areas bilaterally",
+    "steps": [
+      {
+        "caption": "Light cotton touch: ask where and whether both sides feel alike",
+        "view": "body",
+        "action": "cotton",
+        "points": [
+          [
+            31,
+            54
+          ],
+          [
+            69,
+            54
+          ],
+          [
+            40,
+            86
+          ],
+          [
+            60,
+            86
+          ]
+        ],
+        "seconds": 16
+      }
+    ],
+    "duration_s": 16,
+    "sources": [
+      "course",
+      "sensory"
+    ]
+  },
+  "neuro_sensory:1": {
+    "key": "neuro_sensory:1",
+    "maneuver_id": "neuro_sensory",
+    "label": "Sensory examination — pinprick",
+    "components": [
+      "pinprick"
+    ],
+    "position": "Explain first; eyes closed; compare matching areas bilaterally",
+    "steps": [
+      {
+        "caption": "Single-use sharp/dull stimulus; never break skin: ask where and whether both sides feel alike",
+        "view": "body",
+        "action": "pin",
+        "points": [
+          [
+            31,
+            54
+          ],
+          [
+            69,
+            54
+          ],
+          [
+            40,
+            86
+          ],
+          [
+            60,
+            86
+          ]
+        ],
+        "seconds": 16
+      }
+    ],
+    "duration_s": 16,
+    "sources": [
+      "course",
+      "sensory"
+    ]
+  },
+  "neuro_sensory:2": {
+    "key": "neuro_sensory:2",
+    "maneuver_id": "neuro_sensory",
+    "label": "Sensory examination — vibration",
+    "components": [
+      "vibration"
+    ],
+    "position": "Eyes closed; use a 128-Hz tuning fork",
+    "steps": [
+      {
+        "caption": "Tap the fork, then place its base over distal bony prominence",
+        "view": "foot",
+        "action": "vibrate",
+        "points": [
+          [
+            48,
+            25
+          ]
+        ],
+        "seconds": 7
+      },
+      {
+        "caption": "Ask when vibration starts/stops; compare sides, moving proximally if needed",
+        "view": "hand",
+        "action": "vibrate",
+        "points": [
+          [
+            48,
+            24
+          ]
+        ],
+        "seconds": 7
+      }
+    ],
+    "duration_s": 14,
+    "sources": [
+      "course",
+      "sensory"
+    ]
+  },
+  "neuro_sensory:3": {
+    "key": "neuro_sensory:3",
+    "maneuver_id": "neuro_sensory",
+    "label": "Sensory examination — proprioception",
+    "components": [
+      "proprioception"
+    ],
+    "position": "Explain up/down with eyes open, then test with eyes closed",
+    "steps": [
+      {
+        "caption": "Hold sides of the distal phalanx; stabilize proximally, avoiding top/bottom pressure",
+        "view": "foot",
+        "action": "hold",
+        "points": [
+          [
+            45,
+            25
+          ],
+          [
+            55,
+            25
+          ]
+        ],
+        "seconds": 5
+      },
+      {
+        "caption": "Move the great toe slightly up or down; ask direction; compare sides",
+        "view": "foot",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 8,
+        "motion": "toe-position"
+      }
+    ],
+    "duration_s": 13,
+    "sources": [
+      "course",
+      "sensory"
+    ]
+  },
+  "neuro_reflexes:dtr": {
+    "key": "neuro_reflexes:dtr",
+    "maneuver_id": "neuro_reflexes",
+    "label": "Check biceps, triceps, patellar and Achilles reflexes",
+    "components": [
+      "biceps",
+      "triceps",
+      "patellar",
+      "achilles"
+    ],
+    "position": "Relax and support limbs; compare right and left",
+    "steps": [
+      {
+        "caption": "Biceps: place thumb on tendon; strike your thumb with reflex hammer — right",
+        "view": "arm",
+        "action": "hammer",
+        "points": [
+          [
+            48,
+            47
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "biceps"
+        ],
+        "thumb": true,
+        "mirror": false
+      },
+      {
+        "caption": "Biceps: place thumb on tendon; strike your thumb with reflex hammer — left",
+        "view": "arm",
+        "action": "hammer",
+        "points": [
+          [
+            48,
+            47
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "biceps"
+        ],
+        "thumb": true,
+        "mirror": true
+      },
+      {
+        "caption": "Triceps: support arm; tap tendon just above olecranon — right",
+        "view": "arm",
+        "action": "hammer",
+        "points": [
+          [
+            54,
+            51
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "triceps"
+        ],
+        "mirror": false
+      },
+      {
+        "caption": "Triceps: support arm; tap tendon just above olecranon — left",
+        "view": "arm",
+        "action": "hammer",
+        "points": [
+          [
+            54,
+            51
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "triceps"
+        ],
+        "mirror": true
+      },
+      {
+        "caption": "Patellar: legs hanging relaxed; strike patellar tendon below the patella — right",
+        "view": "knee-reflex",
+        "action": "hammer",
+        "points": [
+          [
+            62,
+            50
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "patellar"
+        ],
+        "mirror": false
+      },
+      {
+        "caption": "Patellar: legs hanging relaxed; strike patellar tendon below the patella — left",
+        "view": "knee-reflex",
+        "action": "hammer",
+        "points": [
+          [
+            62,
+            50
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "patellar"
+        ],
+        "mirror": true
+      },
+      {
+        "caption": "Achilles: gently dorsiflex supported foot; strike Achilles tendon — right",
+        "view": "ankle",
+        "action": "hammer",
+        "points": [
+          [
+            63,
+            51
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "achilles"
+        ],
+        "mirror": false
+      },
+      {
+        "caption": "Achilles: gently dorsiflex supported foot; strike Achilles tendon — left",
+        "view": "ankle",
+        "action": "hammer",
+        "points": [
+          [
+            63,
+            51
+          ]
+        ],
+        "seconds": 4,
+        "covers": [
+          "achilles"
+        ],
+        "mirror": true
+      }
+    ],
+    "duration_s": 32,
+    "sources": [
+      "course",
+      "reflexes"
+    ]
+  },
+  "neuro_reflexes:plantar": {
+    "key": "neuro_reflexes:plantar",
+    "maneuver_id": "neuro_reflexes",
+    "label": "Check plantar response (Babinski)",
+    "components": [
+      "babinski"
+    ],
+    "position": "Relaxed foot; use a blunt, noninjurious instrument",
+    "steps": [
+      {
+        "caption": "Stroke from lateral heel toward little toe, then medially across the ball; observe toes",
+        "view": "sole",
+        "action": "stroke",
+        "points": [
+          [
+            68,
+            80
+          ],
+          [
+            70,
+            58
+          ],
+          [
+            68,
+            34
+          ],
+          [
+            49,
+            25
+          ]
+        ],
+        "seconds": 8
+      },
+      {
+        "caption": "Repeat on the opposite foot; do not repeatedly scrape the sole",
+        "view": "sole",
+        "action": "stroke",
+        "points": [
+          [
+            68,
+            80
+          ],
+          [
+            70,
+            58
+          ],
+          [
+            68,
+            34
+          ],
+          [
+            49,
+            25
+          ]
+        ],
+        "seconds": 8,
+        "mirror": true
+      }
+    ],
+    "duration_s": 16,
+    "sources": [
+      "course",
+      "reflexes"
+    ]
+  },
+  "neuro_coordination:0": {
+    "key": "neuro_coordination:0",
+    "maneuver_id": "neuro_coordination",
+    "label": "Coordination / cerebellar — finger to nose",
+    "components": [
+      "finger to nose"
+    ],
+    "position": "Seated; examiner’s target at comfortable reach",
+    "steps": [
+      {
+        "caption": "Touch own nose, then examiner’s finger; change target position and repeat each arm",
+        "view": "body",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 14,
+        "motion": "finger-nose"
+      }
+    ],
+    "duration_s": 14,
+    "sources": [
+      "course",
+      "coordination"
+    ]
+  },
+  "neuro_coordination:1": {
+    "key": "neuro_coordination:1",
+    "maneuver_id": "neuro_coordination",
+    "label": "Coordination / cerebellar — heel to shin",
+    "components": [
+      "heel to shin"
+    ],
+    "position": "Supine; demonstrate the task",
+    "steps": [
+      {
+        "caption": "Place one heel on opposite knee; slide down the shin toward ankle and back",
+        "view": "legs",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 8,
+        "motion": "heel-shin"
+      },
+      {
+        "caption": "Repeat with the opposite heel",
+        "view": "legs",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 8,
+        "motion": "heel-shin",
+        "mirror": true
+      }
+    ],
+    "duration_s": 16,
+    "sources": [
+      "course",
+      "coordination"
+    ]
+  },
+  "neuro_coordination:2": {
+    "key": "neuro_coordination:2",
+    "maneuver_id": "neuro_coordination",
+    "label": "Coordination / cerebellar — romberg",
+    "components": [
+      "romberg"
+    ],
+    "position": "Stand with feet together; examiner close enough to guard",
+    "steps": [
+      {
+        "caption": "Observe balance first with eyes open",
+        "view": "body",
+        "action": "observe",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 8,
+        "motion": "feet-together"
+      },
+      {
+        "caption": "Close eyes; observe without touching unless needed for safety",
+        "view": "body",
+        "action": "observe",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 20,
+        "motion": "eyes-closed"
+      }
+    ],
+    "duration_s": 28,
+    "sources": [
+      "course",
+      "coordination"
+    ]
+  },
+  "neuro_coordination:3": {
+    "key": "neuro_coordination:3",
+    "maneuver_id": "neuro_coordination",
+    "label": "Coordination / cerebellar — rapid alternating",
+    "components": [
+      "rapid alternating"
+    ],
+    "position": "Seated; hands on thighs",
+    "steps": [
+      {
+        "caption": "Alternate palms and backs of hands on thighs rapidly; compare speed and rhythm",
+        "view": "hand",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 12,
+        "motion": "alternating"
+      }
+    ],
+    "duration_s": 12,
+    "sources": [
+      "course",
+      "coordination"
+    ]
+  },
+  "mental_status:complete": {
+    "key": "mental_status:complete",
+    "maneuver_id": "mental_status",
+    "label": "Mental status / orientation",
+    "components": [
+      "orientation",
+      "memory",
+      "attention",
+      "naming"
+    ],
+    "position": "Seated; ensure hearing, language and comfort needs are met",
+    "steps": [
+      {
+        "caption": "Observe behavior and speech; ask name, place and date",
+        "view": "head",
+        "action": "speak",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 12,
+        "prompt": "Name, place and date",
+        "covers": [
+          "orientation"
+        ]
+      },
+      {
+        "caption": "Give three unrelated items; ask the patient to repeat them",
+        "view": "head",
+        "action": "speak",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 8,
+        "prompt": "Repeat three items to register them",
+        "covers": [
+          "memory"
+        ]
+      },
+      {
+        "caption": "Assess attention and naming with separate prompts",
+        "view": "head",
+        "action": "speak",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 20,
+        "prompt": "Months backward; name pen and watch",
+        "covers": [
+          "attention",
+          "naming"
+        ]
+      },
+      {
+        "caption": "Allow a two-minute recall interval; converse without rehearsing the items",
+        "view": "head",
+        "action": "wait",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 100,
+        "covers": [
+          "memory"
+        ]
+      },
+      {
+        "caption": "After two minutes, ask for the three items without cues",
+        "view": "head",
+        "action": "speak",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 12,
+        "prompt": "Recall the three items",
+        "covers": [
+          "memory"
+        ]
+      }
+    ],
+    "duration_s": 152,
+    "sources": [
+      "course",
+      "mental"
+    ]
+  },
+  "skin_inspect:0": {
+    "key": "skin_inspect:0",
+    "maneuver_id": "skin_inspect",
+    "label": "Inspect skin — chest",
+    "components": [
+      "chest"
+    ],
+    "position": "Expose chest with consent; illuminate; preserve draping elsewhere",
+    "steps": [
+      {
+        "caption": "Inspect chest: color, lesions, distribution and surface; compare sides",
+        "view": "torso",
+        "action": "observe",
+        "points": [
+          [
+            35,
+            37
+          ],
+          [
+            65,
+            37
+          ]
+        ],
+        "seconds": 10
+      }
+    ],
+    "duration_s": 10,
+    "sources": [
+      "course",
+      "skin"
+    ]
+  },
+  "skin_inspect:1": {
+    "key": "skin_inspect:1",
+    "maneuver_id": "skin_inspect",
+    "label": "Inspect skin — back",
+    "components": [
+      "back"
+    ],
+    "position": "Expose back with consent; illuminate; preserve draping elsewhere",
+    "steps": [
+      {
+        "caption": "Inspect back: color, lesions, distribution and surface; compare sides",
+        "view": "back",
+        "action": "observe",
+        "points": [
+          [
+            35,
+            45
+          ],
+          [
+            65,
+            45
+          ]
+        ],
+        "seconds": 10
+      }
+    ],
+    "duration_s": 10,
+    "sources": [
+      "course",
+      "skin"
+    ]
+  },
+  "skin_inspect:2": {
+    "key": "skin_inspect:2",
+    "maneuver_id": "skin_inspect",
+    "label": "Inspect skin — arms",
+    "components": [
+      "arms"
+    ],
+    "position": "Expose arms with consent; illuminate; preserve draping elsewhere",
+    "steps": [
+      {
+        "caption": "Inspect arms: color, lesions, distribution and surface; compare sides",
+        "view": "arm",
+        "action": "observe",
+        "points": [
+          [
+            35,
+            35
+          ],
+          [
+            60,
+            63
+          ]
+        ],
+        "seconds": 10
+      }
+    ],
+    "duration_s": 10,
+    "sources": [
+      "course",
+      "skin"
+    ]
+  },
+  "skin_inspect:3": {
+    "key": "skin_inspect:3",
+    "maneuver_id": "skin_inspect",
+    "label": "Inspect skin — legs",
+    "components": [
+      "legs"
+    ],
+    "position": "Expose legs with consent; illuminate; preserve draping elsewhere",
+    "steps": [
+      {
+        "caption": "Inspect legs: color, lesions, distribution and surface; compare sides",
+        "view": "legs",
+        "action": "observe",
+        "points": [
+          [
+            38,
+            40
+          ],
+          [
+            63,
+            70
+          ]
+        ],
+        "seconds": 10
+      }
+    ],
+    "duration_s": 10,
+    "sources": [
+      "course",
+      "skin"
+    ]
+  },
+  "skin_inspect:4": {
+    "key": "skin_inspect:4",
+    "maneuver_id": "skin_inspect",
+    "label": "Inspect skin — palms",
+    "components": [
+      "palms"
+    ],
+    "position": "Expose palms with consent; illuminate; preserve draping elsewhere",
+    "steps": [
+      {
+        "caption": "Inspect palms: color, lesions, distribution and surface; compare sides",
+        "view": "hand",
+        "action": "observe",
+        "points": [
+          [
+            50,
+            55
+          ]
+        ],
+        "seconds": 10
+      }
+    ],
+    "duration_s": 10,
+    "sources": [
+      "course",
+      "skin"
+    ]
+  },
+  "skin_inspect:5": {
+    "key": "skin_inspect:5",
+    "maneuver_id": "skin_inspect",
+    "label": "Inspect skin — soles",
+    "components": [
+      "soles"
+    ],
+    "position": "Expose soles with consent; illuminate; preserve draping elsewhere",
+    "steps": [
+      {
+        "caption": "Inspect soles: color, lesions, distribution and surface; compare sides",
+        "view": "sole",
+        "action": "observe",
+        "points": [
+          [
+            50,
+            55
+          ]
+        ],
+        "seconds": 10
+      }
+    ],
+    "duration_s": 10,
+    "sources": [
+      "course",
+      "skin"
+    ]
+  },
+  "skin_palpate:complete": {
+    "key": "skin_palpate:complete",
+    "maneuver_id": "skin_palpate",
+    "label": "Palpate the skin concern",
+    "components": [
+      "tenderness",
+      "warmth",
+      "induration",
+      "fluctuance"
+    ],
+    "position": "Consent; gloves as indicated; inspect and ask about tenderness first",
+    "steps": [
+      {
+        "caption": "Use backs of fingers to compare temperature with adjacent/unaffected skin",
+        "view": "region",
+        "action": "backhand",
+        "points": [
+          [
+            35,
+            45
+          ],
+          [
+            65,
+            45
+          ]
+        ],
+        "seconds": 5,
+        "covers": [
+          "warmth"
+        ]
+      },
+      {
+        "caption": "Gently palpate tenderness and firmness at lesion edge",
+        "view": "region",
+        "action": "palpate",
+        "points": [
+          [
+            44,
+            45
+          ],
+          [
+            56,
+            45
+          ]
+        ],
+        "seconds": 5,
+        "covers": [
+          "tenderness",
+          "induration"
+        ]
+      },
+      {
+        "caption": "If appropriate, press gently from opposing sides to assess fluctuance; do not squeeze or drain",
+        "view": "region",
+        "action": "fluctuance",
+        "points": [
+          [
+            43,
+            50
+          ],
+          [
+            57,
+            50
+          ]
+        ],
+        "seconds": 6,
+        "covers": [
+          "fluctuance"
+        ]
+      }
+    ],
+    "duration_s": 16,
+    "sources": [
+      "course",
+      "skin"
+    ]
+  },
+  "extremities:complete": {
+    "key": "extremities:complete",
+    "maneuver_id": "extremities",
+    "label": "Inspect / palpate extremities",
+    "components": [
+      "edema",
+      "capillary refill",
+      "clubbing",
+      "cyanosis",
+      "calf tenderness",
+      "calf symmetry",
+      "nail beds"
+    ],
+    "position": "Support limbs; compare both sides; respect painful areas",
+    "steps": [
+      {
+        "caption": "Inspect symmetry, calf size and skin color; measure calves at matching level if needed",
+        "view": "legs",
+        "action": "calf-tape",
+        "points": [
+          [
+            35,
+            55
+          ],
+          [
+            65,
+            55
+          ]
+        ],
+        "seconds": 6,
+        "covers": [
+          "calf symmetry",
+          "cyanosis"
+        ]
+      },
+      {
+        "caption": "Gently assess calf tenderness; do not use forced dorsiflexion as a DVT test",
+        "view": "legs",
+        "action": "palpate",
+        "points": [
+          [
+            35,
+            56
+          ],
+          [
+            65,
+            56
+          ]
+        ],
+        "seconds": 5,
+        "covers": [
+          "calf tenderness"
+        ]
+      },
+      {
+        "caption": "Press over shin/ankle for several seconds, release and inspect indentation",
+        "view": "ankle",
+        "action": "release",
+        "points": [
+          [
+            43,
+            43
+          ]
+        ],
+        "seconds": 8,
+        "covers": [
+          "edema"
+        ]
+      },
+      {
+        "caption": "Inspect nail profiles; bring matching nails together for window comparison",
+        "view": "hand",
+        "action": "observe",
+        "points": [
+          [
+            42,
+            27
+          ],
+          [
+            58,
+            27
+          ]
+        ],
+        "seconds": 5,
+        "covers": [
+          "clubbing",
+          "nail beds"
+        ]
+      },
+      {
+        "caption": "Press nail bed about 5 seconds; release and observe color return",
+        "view": "hand",
+        "action": "refill",
+        "points": [
+          [
+            50,
+            26
+          ]
+        ],
+        "seconds": 8,
+        "covers": [
+          "capillary refill"
+        ]
+      }
+    ],
+    "duration_s": 32,
+    "sources": [
+      "course",
+      "vascular"
+    ]
+  },
+  "osteo_screen:0": {
+    "key": "osteo_screen:0",
+    "maneuver_id": "osteo_screen",
+    "label": "Osteopathic structural screen — cervical",
+    "components": [
+      "cervical"
+    ],
+    "position": "Comfortably supported; expose cervical region; palpation only, no manipulation",
+    "steps": [
+      {
+        "caption": "Compare cervical tissue texture, landmarks, asymmetry and tenderness",
+        "view": "back",
+        "action": "palpate",
+        "points": [
+          [
+            43,
+            23
+          ],
+          [
+            57,
+            23
+          ]
+        ],
+        "seconds": 8
+      },
+      {
+        "caption": "Assess gentle regional motion / spring only within comfort; compare restriction",
+        "view": "back",
+        "action": "hold",
+        "points": [
+          [
+            43,
+            23
+          ],
+          [
+            57,
+            23
+          ]
+        ],
+        "seconds": 8,
+        "motion": "structural"
+      }
+    ],
+    "duration_s": 16,
+    "sources": [
+      "course",
+      "osteopathic"
+    ]
+  },
+  "osteo_screen:1": {
+    "key": "osteo_screen:1",
+    "maneuver_id": "osteo_screen",
+    "label": "Osteopathic structural screen — thoracic",
+    "components": [
+      "thoracic"
+    ],
+    "position": "Comfortably supported; expose thoracic region; palpation only, no manipulation",
+    "steps": [
+      {
+        "caption": "Compare thoracic tissue texture, landmarks, asymmetry and tenderness",
+        "view": "back",
+        "action": "palpate",
+        "points": [
+          [
+            43,
+            39
+          ],
+          [
+            57,
+            39
+          ]
+        ],
+        "seconds": 8
+      },
+      {
+        "caption": "Assess gentle regional motion / spring only within comfort; compare restriction",
+        "view": "back",
+        "action": "hold",
+        "points": [
+          [
+            43,
+            39
+          ],
+          [
+            57,
+            39
+          ]
+        ],
+        "seconds": 8,
+        "motion": "structural"
+      }
+    ],
+    "duration_s": 16,
+    "sources": [
+      "course",
+      "osteopathic"
+    ]
+  },
+  "osteo_screen:2": {
+    "key": "osteo_screen:2",
+    "maneuver_id": "osteo_screen",
+    "label": "Osteopathic structural screen — lumbar",
+    "components": [
+      "lumbar"
+    ],
+    "position": "Comfortably supported; expose lumbar region; palpation only, no manipulation",
+    "steps": [
+      {
+        "caption": "Compare lumbar tissue texture, landmarks, asymmetry and tenderness",
+        "view": "back",
+        "action": "palpate",
+        "points": [
+          [
+            43,
+            62
+          ],
+          [
+            57,
+            62
+          ]
+        ],
+        "seconds": 8
+      },
+      {
+        "caption": "Assess gentle regional motion / spring only within comfort; compare restriction",
+        "view": "back",
+        "action": "hold",
+        "points": [
+          [
+            43,
+            62
+          ],
+          [
+            57,
+            62
+          ]
+        ],
+        "seconds": 8,
+        "motion": "structural"
+      }
+    ],
+    "duration_s": 16,
+    "sources": [
+      "course",
+      "osteopathic"
+    ]
+  },
+  "osteo_screen:3": {
+    "key": "osteo_screen:3",
+    "maneuver_id": "osteo_screen",
+    "label": "Osteopathic structural screen — sacrum",
+    "components": [
+      "sacrum"
+    ],
+    "position": "Comfortably supported; expose sacrum region; palpation only, no manipulation",
+    "steps": [
+      {
+        "caption": "Compare sacrum tissue texture, landmarks, asymmetry and tenderness",
+        "view": "back",
+        "action": "palpate",
+        "points": [
+          [
+            45,
+            76
+          ],
+          [
+            55,
+            76
+          ]
+        ],
+        "seconds": 8
+      },
+      {
+        "caption": "Assess gentle regional motion / spring only within comfort; compare restriction",
+        "view": "back",
+        "action": "hold",
+        "points": [
+          [
+            45,
+            76
+          ],
+          [
+            55,
+            76
+          ]
+        ],
+        "seconds": 8,
+        "motion": "structural"
+      }
+    ],
+    "duration_s": 16,
+    "sources": [
+      "course",
+      "osteopathic"
+    ]
+  },
+  "osteo_screen:4": {
+    "key": "osteo_screen:4",
+    "maneuver_id": "osteo_screen",
+    "label": "Osteopathic structural screen — ribs",
+    "components": [
+      "ribs"
+    ],
+    "position": "Comfortably supported; expose ribs region; palpation only, no manipulation",
+    "steps": [
+      {
+        "caption": "Compare ribs tissue texture, landmarks, asymmetry and tenderness",
+        "view": "back",
+        "action": "palpate",
+        "points": [
+          [
+            32,
+            46
+          ],
+          [
+            68,
+            46
+          ]
+        ],
+        "seconds": 8
+      },
+      {
+        "caption": "Assess gentle regional motion / spring only within comfort; compare restriction",
+        "view": "back",
+        "action": "hold",
+        "points": [
+          [
+            32,
+            46
+          ],
+          [
+            68,
+            46
+          ]
+        ],
+        "seconds": 8,
+        "motion": "rib-breath"
+      }
+    ],
+    "duration_s": 16,
+    "sources": [
+      "course",
+      "osteopathic"
+    ]
+  },
+  "orthostatic_vitals:complete": {
+    "key": "orthostatic_vitals:complete",
+    "maneuver_id": "orthostatic_vitals",
+    "label": "Orthostatic vital signs",
+    "components": [
+      "supine",
+      "standing_1min",
+      "standing_3min"
+    ],
+    "position": "Rest supine for 5 minutes; assist standing, guard nearby and stop if unsafe",
+    "steps": [
+      {
+        "caption": "Rest supine for 5 minutes before the baseline measurement",
+        "view": "supine",
+        "action": "wait",
+        "points": [
+          [
+            30,
+            57
+          ]
+        ],
+        "seconds": 300,
+        "covers": [
+          "supine"
+        ]
+      },
+      {
+        "caption": "After supine rest, measure BP and pulse with supported arm at heart level",
+        "view": "supine",
+        "action": "cuff",
+        "points": [
+          [
+            31,
+            56
+          ]
+        ],
+        "seconds": 10,
+        "covers": [
+          "supine"
+        ]
+      },
+      {
+        "caption": "Assist to stand; keep arm supported at heart level",
+        "view": "body",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 5,
+        "motion": "stand",
+        "covers": [
+          "standing_1min",
+          "standing_3min"
+        ]
+      },
+      {
+        "caption": "At 1 minute standing, repeat BP/pulse; ask about symptoms",
+        "view": "body",
+        "action": "cuff",
+        "points": [
+          [
+            28,
+            36
+          ]
+        ],
+        "seconds": 60,
+        "wait_until": 60,
+        "covers": [
+          "standing_1min"
+        ],
+        "motion": "bp-standing"
+      },
+      {
+        "caption": "Continue standing; at 3 minutes repeat BP/pulse and symptoms",
+        "view": "body",
+        "action": "cuff",
+        "points": [
+          [
+            28,
+            36
+          ]
+        ],
+        "seconds": 120,
+        "wait_until": 180,
+        "covers": [
+          "standing_3min"
+        ],
+        "motion": "bp-standing"
+      }
+    ],
+    "duration_s": 495,
+    "sources": [
+      "course",
+      "orthostatic"
+    ]
+  },
+  "neuro_dix_hallpike:screen": {
+    "key": "neuro_dix_hallpike:screen",
+    "maneuver_id": "neuro_dix_hallpike",
+    "label": "Check cervical and positional-test suitability first",
+    "components": [
+      "cervical_suitability"
+    ],
+    "position": "Seated; screen before any rapid positioning",
+    "steps": [
+      {
+        "caption": "Ask about neck/back injury, instability, vascular problems and positioning tolerance",
+        "view": "head",
+        "action": "speak",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 8,
+        "prompt": "Neck injury? Safe to recline and turn?"
+      },
+      {
+        "caption": "Check comfortable cervical rotation/extension; defer if unsafe",
+        "view": "neck",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 8,
+        "motion": "neck-screen"
+      }
+    ],
+    "duration_s": 16,
+    "sources": [
+      "course",
+      "dix"
+    ]
+  },
+  "neuro_dix_hallpike:right": {
+    "key": "neuro_dix_hallpike:right",
+    "maneuver_id": "neuro_dix_hallpike",
+    "label": "Dix–Hallpike, right — includes suitability check",
+    "components": [
+      "cervical_suitability",
+      "right"
+    ],
+    "position": "Screen first; proceed only if suitable; seated with room to recline and head supported",
+    "steps": [
+      {
+        "caption": "Ask about neck/back injury, instability, vascular problems and positioning tolerance",
+        "view": "head",
+        "action": "speak",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 8,
+        "prompt": "Neck injury? Safe to recline and turn?"
+      },
+      {
+        "caption": "Check comfortable cervical rotation/extension; defer if unsafe",
+        "view": "neck",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 8,
+        "motion": "neck-screen"
+      },
+      {
+        "caption": "Turn head 45° to the right; support head throughout",
+        "view": "head",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 5,
+        "motion": "dix-turn",
+        "mirror": false
+      },
+      {
+        "caption": "Move promptly to supine with head extended about 20–30° below horizontal",
+        "view": "supine",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 3,
+        "motion": "dix-lower",
+        "mirror": false
+      },
+      {
+        "caption": "Maintain position; watch eyes for nystagmus and ask about vertigo",
+        "view": "supine",
+        "action": "observe",
+        "points": [
+          [
+            20,
+            47
+          ]
+        ],
+        "seconds": 30,
+        "motion": "dix-hold"
+      },
+      {
+        "caption": "Assist back to sitting, maintaining head turn",
+        "view": "supine",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 5,
+        "motion": "dix-return"
+      },
+      {
+        "caption": "Observe eyes and symptoms after sitting; allow recovery",
+        "view": "head",
+        "action": "observe",
+        "points": [
+          [
+            40,
+            40
+          ],
+          [
+            60,
+            40
+          ]
+        ],
+        "seconds": 20
+      }
+    ],
+    "duration_s": 79,
+    "sources": [
+      "course",
+      "dix"
+    ]
+  },
+  "neuro_dix_hallpike:left": {
+    "key": "neuro_dix_hallpike:left",
+    "maneuver_id": "neuro_dix_hallpike",
+    "label": "Dix–Hallpike, left — includes suitability check",
+    "components": [
+      "cervical_suitability",
+      "left"
+    ],
+    "position": "Screen first; proceed only if suitable; seated with room to recline and head supported",
+    "steps": [
+      {
+        "caption": "Ask about neck/back injury, instability, vascular problems and positioning tolerance",
+        "view": "head",
+        "action": "speak",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 8,
+        "prompt": "Neck injury? Safe to recline and turn?"
+      },
+      {
+        "caption": "Check comfortable cervical rotation/extension; defer if unsafe",
+        "view": "neck",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 8,
+        "motion": "neck-screen"
+      },
+      {
+        "caption": "Turn head 45° to the left; support head throughout",
+        "view": "head",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 5,
+        "motion": "dix-turn",
+        "mirror": true
+      },
+      {
+        "caption": "Move promptly to supine with head extended about 20–30° below horizontal",
+        "view": "supine",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 3,
+        "motion": "dix-lower",
+        "mirror": true
+      },
+      {
+        "caption": "Maintain position; watch eyes for nystagmus and ask about vertigo",
+        "view": "supine",
+        "action": "observe",
+        "points": [
+          [
+            20,
+            47
+          ]
+        ],
+        "seconds": 30,
+        "motion": "dix-hold"
+      },
+      {
+        "caption": "Assist back to sitting, maintaining head turn",
+        "view": "supine",
+        "action": "move",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 5,
+        "motion": "dix-return"
+      },
+      {
+        "caption": "Observe eyes and symptoms after sitting; allow recovery",
+        "view": "head",
+        "action": "observe",
+        "points": [
+          [
+            40,
+            40
+          ],
+          [
+            60,
+            40
+          ]
+        ],
+        "seconds": 20
+      }
+    ],
+    "duration_s": 79,
+    "sources": [
+      "course",
+      "dix"
+    ]
+  },
+  "vitals_review:complete": {
+    "key": "vitals_review:complete",
+    "maneuver_id": "vitals_review",
+    "label": "Review the vital signs provided",
+    "components": [],
+    "position": "Read the supplied chart",
+    "steps": [
+      {
+        "caption": "Review supplied BP, pulse, respirations, temperature and oxygen saturation",
+        "view": "chart",
+        "action": "observe",
+        "points": [
+          [
+            50,
+            45
+          ]
+        ],
+        "seconds": 8
+      }
+    ],
+    "duration_s": 8,
+    "sources": [
+      "course"
+    ]
+  }
+}
