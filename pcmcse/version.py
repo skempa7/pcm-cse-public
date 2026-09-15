@@ -15,11 +15,11 @@ import os
 
 # Bumped by hand when behaviour changes in a way that makes scores
 # incomparable with earlier attempts.
-APP_VERSION = "4.2.5"
+APP_VERSION = "4.2.6"
 
 # The interpretation of the learner's turns, the examination lifecycle, the
 # documentation audit and the interpersonal instruments.
-ENGINE_VERSION = "4.2.5"
+ENGINE_VERSION = "4.2.6"
 
 # The PCM 2026 SOAP note grading table as implemented.
 RUBRIC_VERSION = "2026.1"

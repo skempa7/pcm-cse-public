@@ -266,6 +266,7 @@ _ASPECTS = [
               "what part", "point to", "show me where", "where exactly",
               "location of", "whereabouts"]},
     {"id": "radiation", "categories": ["radiation"],
+     "words": {"radiation", "radiating"}, "needs_referent": True,
      "cues": ["radiate", "spread", "travel", "move anywhere", "go anywhere",
               "shoot", "anywhere else"]},
     {"id": "quality", "categories": ["quality"],
@@ -685,6 +686,11 @@ def temporal_question_dimensions(question):
     """Explicit temporal requests; progression never stands in for constancy."""
     q=nlp.normalize(question);dims=set()
     if functional_effect_question(question):return dims
+    if (not _instruction_or_other_person(question)
+            and not re.search(r'work|shift|job|sleep schedule|diet|medicin|tablet|drink', q)
+            and (set(q.split()) & _SYMPTOM_REFERENTS)
+            and re.search(r'time of (?:the )?day|day or (?:only )?at night|day or night|during the day|at night|daytime|nighttime|in the (?:morning|evening)', q)):
+        dims.add('night_pattern')
     if re.search(r'constant|continuous|come and go|comes and goes|intermittent|all the time|(?:has|does|did).*stop|(?:has|have).*let up|between.*(?:spell|episode|wave|bowel movement)|feel well between|settle after|every urination',q):dims.add('constancy')
     if re.search(r'how (?:often|frequent)|how many times|frequency',q):dims.add('frequency')
     clauses=question_clauses(q)
@@ -2213,7 +2219,7 @@ class PatientEngine:
         if not hits and missing_dimensions:
             meta['no_information'] = True
             meta['unavailable_dimensions'] = missing_dimensions
-            return 'I do not have information about '+', '.join({'current_status':'whether the symptom is present right now','last_known_well':'when I was last completely well'}.get(d,d) for d in missing_dimensions)+' in this simulated case.'
+            return 'I do not have information about '+', '.join({'current_status':'whether the symptom is present right now','last_known_well':'when I was last completely well','constancy':'whether it is constant or comes and goes','night_pattern':'whether it varies between daytime and nighttime'}.get(d,d) for d in missing_dimensions)+' in this simulated case.'
 
         if hits:
             if len(compound_history_domains(utterance))>1 and len(hits)>3:
@@ -2221,7 +2227,8 @@ class PatientEngine:
                 return 'Please ask about my medicines and allergies separately so I can answer each fully.'
             parts = []
             for fact, _score in hits[:3]:
-                parts.append(self._say(fact, state, meta))
+                related = dimension_result and fact['id'] in dimension_result.get('related_ids', set())
+                parts.append(self._say(fact, state, meta, credit=not related))
             # A compound question -- "any night sweats or palpitations?" -- may
             # reach one scripted fact and one symptom this patient simply does
             # not have. Both halves deserve an answer.
@@ -2231,7 +2238,7 @@ class PatientEngine:
                 parts.append(leftover)
             if missing_dimensions:
                 meta['unavailable_dimensions'] = missing_dimensions
-                parts.append('I do not have information about '+', '.join({'current_status':'whether the symptom is present right now','last_known_well':'when I was last completely well'}.get(d,d) for d in missing_dimensions)+' in this simulated case.')
+                parts.append('I do not have information about '+', '.join({'current_status':'whether the symptom is present right now','last_known_well':'when I was last completely well','constancy':'whether it is constant or comes and goes','night_pattern':'whether it varies between daytime and nighttime'}.get(d,d) for d in missing_dimensions)+' in this simulated case.')
             self._maybe_follow_on(hits, state, meta, parts)
             return self._join(ack, dialogue.join_spoken(parts))
 
@@ -2853,12 +2860,28 @@ class PatientEngine:
         return any(c in text for c in _ANYTHING_ELSE)
 
     # ------------------------------------------------------------------
+    def _timing_detail_matches(self, fact, question):
+        # A pronoun in a timing row refers to the presenting complaint, not
+        # every secondary symptom a learner can name in the same case.
+        context = ' '.join(f.get('value', '') for f in self.facts.values()
+                           if f.get('category') in ('chief_complaint', 'quality', 'location'))
+        spoken = ' '.join(fact.get('sp_says', []) or [fact.get('value', '')])
+        target = spoken if re.search(r'\b(?:pain|cough|headache|nausea|breath)\b', spoken, re.I) else context + ' ' + spoken
+        for topic in ros_history.named(question):
+            if not re.search(ros_history.TOPICS[topic][1], target, re.I):
+                return False
+        for pattern in (r'\bpain\b', r'\bcough\b', r'\bback\b', r'\bchest\b',
+                        r'abdom|stomach|belly', r'\b(?:leg|calf)\b', r'\bshoulder\b'):
+            if re.search(pattern, question, re.I) and not re.search(pattern, target + ' ' + context if pattern != r'\bpain\b' else target, re.I):
+                return False
+        return True
+
     def _dimension_match(self, utterance, state):
         # Split only explicit new question clauses, not clinical noun lists or
         # the "or" that belongs to a continuous/intermittent comparison.
         clauses=question_clauses(utterance)
         if not any(temporal_question_dimensions(p) for p in clauses):return None
-        hits=[];missing=[]
+        hits=[];missing=[];related_ids=set()
         for clause in clauses:
             dims=temporal_question_dimensions(clause)
             if re.search(r'medicin|medication|supplement|alcohol|\bdrink\b|smok|cigarett|tobacco|exercise|\bwork\b|\bjob\b|family|mother|father|menstr|\bperiods?\b',clause,re.I):dims=set()
@@ -2871,6 +2894,8 @@ class PatientEngine:
                     candidates=[f for f in candidates if any(w in self._fact_text(f).lower() or w in f['id'] for w in words) or (self.case.get('id','').startswith('renal-') and f['id']=='hpi_timing')]
                 exact=[f for f in candidates if any(nlp.normalize(q).rstrip('?')==nlp.normalize(clause).rstrip('?') for q in f.get('example_questions',[]))]
                 if exact:candidates=exact
+                if 'night_pattern' in dims:
+                    candidates=[f for f in candidates if self._timing_detail_matches(f, clause)]
                 if 'current_status' in dims:
                     candidates=[f for f in candidates if current_status_subject_matches(f,clause)]
                     if re.search(r'how (?:bad|severe)|severity|(?:rate|score).*pain|out of ten',clause,re.I):
@@ -2878,10 +2903,19 @@ class PatientEngine:
                 hits.extend((f,3.0) for f in candidates)
                 supported=set().union(*(authored_temporal_dimensions(f) for f in candidates)) if candidates else set()
                 missing.extend(sorted(dims-supported))
+                if not candidates and dims == {'constancy'} and re.search(r'\bpain\b', clause, re.I) and not _instruction_or_other_person(clause):
+                    # A trigger-specific pain description is useful, but does
+                    # not establish whether pain persists between triggers.
+                    related = [(f, 1.0) for f in self.facts.values()
+                               if f.get('category') == 'quality' and self._timing_detail_matches(f, clause) and re.search(
+                                   r'\bpain\b.*\bwhen\b', ' '.join(f.get('sp_says', [])), re.I)]
+                    related = self._named_symptom_filter(clause, related)
+                    if related:
+                        hits.append(related[0]); related_ids.add(related[0][0]['id'])
             else:
                 hits.extend(self._match_without_dimensions(clause,state))
         unique={f['id']:(f,score) for f,score in hits}
-        return {'hits':list(unique.values()),'missing':list(dict.fromkeys(missing))}
+        return {'hits':list(unique.values()),'missing':list(dict.fromkeys(missing)), 'related_ids':related_ids}
 
     def _match_without_dimensions(self, utterance, state):
         precise=self._typed_question_hits(utterance)
@@ -3305,6 +3339,9 @@ class PatientEngine:
                     re.search(r"affect|activit|function|work|sleep|walk", " ".join(
                         f.get("example_questions", []) + f.get("sp_says", [])), re.I)]
         text = nlp.normalize(utterance)
+        if set(text.split()) & {'radiation', 'radiating'}:
+            # Explicit spread questions outrank a case's generic pain trigger.
+            return self._aspect_hits(utterance, only_aspect='radiation')
         # A bare "family" carries no authored trigger of its own -- those name
         # the members ("mother", "father") or the phrase "family history" -- so
         # "anyone in your family" reached no family fact at all. Member-specific
@@ -3522,6 +3559,9 @@ class PatientEngine:
         today?" uses a relief verb and asks nothing about the pain, which is
         why an aspect built on bare words also demands a referent.
         """
+        if aspect["id"] == "radiation" and "radiation" in words and (
+                _instruction_or_other_person(text) or re.search(r'therapy|treatment|exposure|x ray|scan', text)):
+            return False
         if any(cue in text for cue in aspect.get("cues", [])):
             return True
         if not words & set(aspect.get("words", ())):
