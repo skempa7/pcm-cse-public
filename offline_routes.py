@@ -42,6 +42,20 @@ class Handler:
                     return self._json({'lesson': lesson}) if lesson else self._json({'error': 'Unknown variation'}, 404)
                 except (ValueError, IndexError, FileNotFoundError):
                     return self._json({'error': 'Walkthrough unavailable'}, 404)
+        if p == '/api/scribbi' or p.startswith('/api/scribbi/'):
+            from pcmcse import scribbi
+            with _LOCK:
+                try:
+                    if p == '/api/scribbi':
+                        return self._json(scribbi.home())
+                    parts = p.split('/')
+                    if len(parts) == 5 and parts[3] == 'rounds':
+                        return self._json(scribbi.get(parts[4]))
+                    if len(parts) == 6 and parts[3] == 'rounds' and parts[5] == 'playback':
+                        return self._json(scribbi.playback(parts[4]))
+                except scribbi.ScribbiError as exc:
+                    return self._json(dict({'error': str(exc)}, **exc.extra), exc.status)
+            return self._json({'error': 'not found'}, 404)
         if p == '/api/bootstrap':
             settings = config.load_settings()
             return self._json({'progress': learning.progress(), 'presets': config.PRESETS, 'settings': settings, 'cases': cases.index(reveal_titles=True), 'systems': cases.systems(), 'assumptions': config.assumption_manifest(settings), 'exam_catalog': physexam.catalog_for_ui(), 'sessions': db.list_sessions(), 'vindicate': {k: v['name'] for (k, v) in config.VINDICATE.items()}, 'motherr': {k: v['name'] for (k, v) in config.MOTHERR.items()}, 'provenance': config.MNEMONIC_PROVENANCE})
@@ -123,6 +137,33 @@ class Handler:
                     return self._json({'error': 'Progress could not be reset. The reset transaction was rolled back; please try again.'}, 503)
                 return self._json({'ok': True, **reset, 'progress': learning.progress(),
                                    'sessions': db.list_sessions()})
+        if p == '/api/scribbi/rounds' or p.startswith('/api/scribbi/rounds/'):
+            from pcmcse import scribbi
+            if not isinstance(body, dict):
+                return self._json({'error': 'Invalid Scribbi request.'}, 400)
+            with _LOCK:
+                try:
+                    if p == '/api/scribbi/rounds':
+                        return self._json(scribbi.create(body))
+                    parts = p.split('/')
+                    if len(parts) != 6:
+                        return self._json({'error': 'not found'}, 404)
+                    rid, action = parts[4], parts[5]
+                    if action == 'review':
+                        return self._json(scribbi.save(rid, body.get('state')))
+                    if action == 'check':
+                        return self._json(scribbi.check(rid, body.get('state'), body.get('target')))
+                    if action == 'hint':
+                        return self._json(scribbi.hint(rid, body.get('state')))
+                    if action == 'sign':
+                        return self._json(scribbi.sign(rid, body.get('state')))
+                    if action == 'delete':
+                        return self._json(scribbi.delete(rid))
+                    if action == 'begin':
+                        return self._json(scribbi.begin(rid))
+                    return self._json({'error': 'not found'}, 404)
+                except scribbi.ScribbiError as exc:
+                    return self._json(dict({'error': str(exc)}, **exc.extra), exc.status)
         if p == '/api/teaching/access':
             with _LOCK:
                 if body.get('confirm') is not True:
@@ -165,6 +206,13 @@ class Handler:
                 return self._json({'error': 'Unknown learning mode'}, 400)
             preset = config.preset_for_learning_mode(mode, preset)
             settings.update(preset=preset, learning_mode=mode, simulation_runtime='interactive')
+            # A Scribbi visit is an untimed coached encounter whose note Scribbi
+            # writes; it never appears as a Chat CSE attempt.
+            settings.pop('purpose', None)
+            if body.get('purpose') is not None:
+                if body.get('purpose') != 'scribbi' or mode != 'coached':
+                    return self._json({'error': 'A Scribbi visit is an untimed coached encounter.'}, 400)
+                settings['purpose'] = 'scribbi'
             visual_demo = body.get('visual_demo')
             if visual_demo:
                 return self._json({'error': 'The development trial selector is retired. Choose an active library presentation.'}, 400)

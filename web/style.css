@@ -1059,10 +1059,10 @@ ul.tight li { margin-bottom: var(--sp-1); }
 /* 2026-09-14: printable cases are a primary workspace, with separate answer-free materials. */
 .materials-library,.materials-case{max-width:1160px;margin:auto}
 .material-intro{max-width:76ch;line-height:1.6}
-.material-intro b{color:var(--text)}
+.material-intro b{color:var(--ink)}
 .material-variant{display:grid;gap:.3rem;max-width:24rem;margin:1rem 0}
 .material-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;margin:.75rem 0 1.4rem}
-.material-option{display:flex;flex-direction:column;align-items:flex-start;gap:.45rem;text-align:left;padding:1rem;border:1px solid var(--line);border-radius:12px;background:var(--surface-2);color:var(--text);cursor:pointer;min-width:0;font:inherit}
+.material-option{display:flex;flex-direction:column;align-items:flex-start;gap:.45rem;text-align:left;padding:1rem;border:1px solid var(--line);border-radius:12px;background:var(--surface-2);color:var(--ink);cursor:pointer;min-width:0;font:inherit}
 .material-option b{font-size:1.05rem}.material-option span{line-height:1.45;color:var(--muted);font-size:.9rem}.material-option small{margin-top:auto;padding-top:.45rem;color:var(--accent);font-weight:650}
 .material-option:hover{border-color:var(--accent)}.material-option:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.material-option:disabled{opacity:.65;cursor:wait}
 .material-note{font-size:.8rem;font-weight:400;color:var(--muted);margin-left:.5rem}

@@ -48,3 +48,52 @@ body[data-workspace=practice] #portalFamilies .portal-family.selected{background
 @media(max-width:800px){.portal-workspace{padding:23px 18px 60px}.portal-dashboard{grid-template-columns:1fr}.portal-side{grid-template-columns:1fr 1fr}.portal-settings{grid-column:1/-1}.portal-destinations{grid-template-columns:1fr 1fr}.portal-metrics{grid-template-columns:1fr 1fr;gap:20px}.portal-metrics>div:nth-child(2){border:0}.portal-heading h1{font-size:32px}.topbar .brand .mark{font-size:19px}.workspace-nav{order:5;width:100%;justify-content:center}.workspace-nav .btn{font-size:11px;padding:8px 10px}.portal-resume{padding:25px}body[data-workspace=practice] .station-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:530px){.portal-side,.portal-destinations{grid-template-columns:1fr}.portal-section-heading>span{display:none}.portal-resume h2{font-size:24px}.portal-destination{min-height:125px}.portal-workspace{padding:20px 12px 50px}.portal-progress-intro{display:grid}.workspace-nav .btn{padding:8px;font-size:10px;gap:4px}.workspace-nav svg{width:15px;height:15px}body[data-workspace=practice] .station-card{grid-template-columns:45px 1fr;padding:11px!important;gap:6px}body[data-workspace=practice] .station-card .s-illustration{width:45px;height:45px}}
 @media(prefers-reduced-motion:reduce){.portal-destination{transition:none}.portal-destination:hover{transform:none}}@media print{.portal-workspace button,.workspace-nav{display:none}.portal-workspace{padding:0;color:#111}}
+
+/* Two practice modes on Home: Chat CSE (green) and Scribbi (indigo). */
+.portal-modes{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.portal-mode{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:6px;border-radius:20px;padding:26px 28px 22px;min-height:292px;color:#fcf9e8;box-shadow:0 14px 34px #163d3418}
+.portal-mode.is-chat{background:linear-gradient(115deg,#184e43,#2a7862)}
+.portal-mode.is-scribbi{background:linear-gradient(115deg,#3b2fc0,#6c5cf2);box-shadow:0 14px 34px #28265f26}
+[data-theme=night] .portal-mode.is-scribbi{background:linear-gradient(115deg,#2b2375,#4a3fb4)}
+.portal-mode:after{content:'';pointer-events:none;position:absolute;width:210px;height:210px;border-radius:50%;right:-80px;top:-86px;border:1px solid #ffffff22;box-shadow:0 0 0 30px #ffffff0c,0 0 0 62px #ffffff07}
+.portal-mode .portal-kicker{color:#cfe6d3}
+.portal-mode.is-scribbi .portal-kicker{color:#d4d0ff}
+.portal-mode h2{margin:6px 0 2px;font-size:28px;letter-spacing:-.8px;line-height:1.15;color:#fff;max-width:70%}
+.portal-mode p{margin:0;font-size:13.5px;line-height:1.6;color:#e2eee2;max-width:78%}
+.portal-mode.is-scribbi p{color:#e8e6ff}
+.portal-mode-art{position:absolute;right:18px;top:18px;width:92px;height:92px;opacity:.95}
+.portal-mode-art svg{width:100%;height:100%}
+.portal-mode.is-chat .portal-mode-art{background:#ffffff14;border-radius:50%;padding:6px}
+.portal-mode-mascot{width:104px;height:104px;right:14px;top:10px;filter:drop-shadow(0 12px 18px #0d083a55)}
+.portal-mode-resume{font-size:12.5px!important;margin-top:8px!important;padding:8px 11px;border-radius:10px;background:#ffffff18;max-width:none!important}
+.portal-mode-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:16px}
+.portal-mode .portal-primary{margin-top:0}
+.portal-scribbi{background:#fff!important;border-color:#fff!important;color:#2c1fb0!important;font-weight:750;display:inline-flex;gap:20px}
+.portal-scribbi:hover{background:#f1efff!important}
+.portal-mode-quiet{background:#ffffff1a!important;border-color:#ffffff40!important;color:#fff!important}
+.portal-mode-quiet:hover{background:#ffffff2e!important}
+.portal-mode-foot{font-size:11px;color:#ffffffb3;margin-top:10px}
+.portal-mode button:focus-visible{outline:3px solid #ffe08a;outline-offset:3px}
+@media(max-width:1120px){.portal-mode h2{font-size:25px}.portal-mode p{max-width:100%}.portal-mode-art{width:74px;height:74px}.portal-mode-mascot{width:84px;height:84px}}
+@media(max-width:760px){.portal-modes{grid-template-columns:1fr}.portal-mode{min-height:0}.portal-mode h2{max-width:72%}}
+
+/* Past attempts: patient, mode, time, status and score at a glance. */
+.attempt-filter{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 6px}
+.attempt-filter .btn{border:1px solid var(--portal-line);border-radius:999px;min-height:34px;padding:0 12px;color:var(--portal-muted)}
+.attempt-filter .btn[aria-pressed=true]{background:var(--portal-soft);color:var(--portal-ink);border-color:var(--portal-accent)}
+.attempt-count{display:inline-grid;place-items:center;min-width:20px;height:20px;border-radius:999px;background:var(--portal-soft);font-size:11px;margin-left:4px;padding:0 5px}
+.attempt-list{display:grid;gap:8px;margin:8px 0 18px}
+.hist-row.attempt-row{display:grid;grid-template-columns:48px minmax(0,1fr) auto auto;gap:6px 14px;align-items:center;padding:10px 12px;border:1px solid var(--portal-line);border-radius:14px;background:var(--portal-paper);border-bottom:1px solid var(--portal-line)}
+.attempt-row[hidden]{display:none}
+.attempt-row.is-open{border-color:var(--warn-line);background:linear-gradient(90deg,var(--warn-soft),var(--portal-paper) 45%)}
+.attempt-art{width:48px;height:48px;display:block}
+.attempt-art svg{width:100%;height:100%;display:block}
+.attempt-main{display:grid;gap:3px;min-width:0}
+.attempt-main b{font-size:14px;color:var(--portal-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.attempt-score{display:inline-flex;align-items:baseline;gap:1px;padding:5px 10px;border-radius:10px;background:var(--portal-soft);color:var(--portal-ink)}
+.attempt-score b{font-size:17px}
+.attempt-score small{font-size:11px;color:var(--portal-muted)}
+@media(max-width:640px){.hist-row.attempt-row{grid-template-columns:40px minmax(0,1fr) auto;gap:6px 10px;padding:10px}.attempt-art{width:40px;height:40px;grid-row:1/3}.attempt-main{grid-column:2;grid-row:1/3}.attempt-main b{white-space:normal}.attempt-status{grid-column:3;grid-row:1;justify-self:end}.attempt-row>span:last-child{grid-column:3;grid-row:2;justify-self:end}.attempt-filter{gap:4px}.attempt-filter .btn{padding:0 9px}}
+/* Phones: one scrollable row of destinations instead of two wrapped rows. */
+@media(max-width:800px){.workspace-nav{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:2px}.workspace-nav[data-fade=right]{mask-image:linear-gradient(90deg,#000 86%,transparent)}.workspace-nav[data-fade=left]{mask-image:linear-gradient(270deg,#000 86%,transparent)}.workspace-nav[data-fade=both]{mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}.workspace-nav::-webkit-scrollbar{display:none}.workspace-nav .btn{flex:none}}
+@media(max-width:480px){.topbar .brand-light{display:inline}}

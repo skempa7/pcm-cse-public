@@ -23,6 +23,7 @@ class CacheStampingTests(unittest.TestCase):
             'web/engine-worker.mjs': "fetch('engine.zip?v=old')",
             'web/engine.zip': 'engine version one',
             'web/app.js': "const room='patient3d/index.html?v=old'",
+            'web/scribbi-visit.js': "const ROOM_URL='patient3d/index.html?v=old'",
             'web/patient3d/index.html': '<script src="room.js?v=old"></script>',
             'web/patient3d/room.js': 'renderer version one',
             'web/study.js': "import('./walkthrough-print.js?v=old')",

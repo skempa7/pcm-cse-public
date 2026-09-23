@@ -18,6 +18,18 @@ This public repository is the sole current application. The retired private serv
 
 The current patient assets preserve the established bald male head with mustache, original female hair, body contours and clothing fit. Both shirts use AMERICA 250 artwork, on the male back and female front. The intentionally retained shirt/pants overlap can still show intersections. These models are illustrative surfaces, not validated diagnostic anatomy or hands-on examination simulators.
 
+### Scribbi: review the AI scribe
+
+Scribbi is the second mode beside Chat CSE. A simulated ambient scribe drafts the SOAP note from a visit, with planted mistakes (invented exams or history, flipped answers, wrong details, a relative's history as the patient's, dropped concerns, anchored or unsupported assessments, a plan that ignores an allergy) and always without the hands-on structural finding, because it only hears. The student reviews every line against the visit and signs. Three ways to see the visit:
+
+- **Watch** (`#scribbi/r/<id>/visit`): the demonstrated visit plays like a video on the 3D patient, with device voices, captions, each examination's technique demonstration, and Scribbi visibly listening. Palpation is felt in silence, so its finding never reaches Scribbi. A watched review's clock starts only when the review begins.
+- **Lead:** the student runs the visit in the Chat CSE room (an untimed coached encounter marked as a Scribbi visit). Finishing hands the encounter to Scribbi, which drafts from exactly what this student obtained. These visits never count as Chat CSE attempts.
+- **Read:** straight to the draft, with the visit transcript beside it.
+
+Reviews come in Learn (three mistakes, instant feedback), Coached (three or four, hints) and On your own (zero to five, optional five-minute clock) modes. The engine owns the answer key; the browser never receives it before signing.
+
+The exam room defaults to a project-built studio clinic (`web/patient3d/index.html?env=studio`: generated geometry, local CC0 Poly Haven maps, a runtime-drawn clock and print). The classic room remains one click away in **Patient view**; Scribbi always uses the studio clinic.
+
 ## Timing and evidence
 
 | Mode | Encounter | Organization | SOAP |

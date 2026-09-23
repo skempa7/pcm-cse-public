@@ -1,0 +1,69 @@
+/* Chat CSE upgrade (2026-09-23). Loaded after every other sheet; overrides
+   only, so each rule here can be read and reverted on its own.
+   Covers: notices, the theme button, the phone header, the room's subtitles
+   and typing indicator, conversation bubbles, station information, the
+   encounter toolbar on phones, and the practice page's mode cards. */
+
+/* ---------- notices: a rounded card (a pill turned into an oval on phones) ---------- */
+.toast{border-radius:14px;max-width:min(560px,calc(100vw - 32px));width:max-content;padding:12px 16px;line-height:1.45;text-align:left;bottom:calc(env(safe-area-inset-bottom,0px) + 18px)}
+
+/* ---------- theme button: an icon, with its label on larger screens ---------- */
+#themeToggle{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+#themeToggle .theme-ic{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- subtitles over the patient (the room) ---------- */
+.room-caption{position:absolute;z-index:2;left:50%;bottom:14px;transform:translate(-50%,8px);width:min(640px,calc(100% - 28px));display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;padding:10px 14px;border-radius:14px;background:#0f1d1bd9;color:#fff;font-size:15px;line-height:1.45;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 10px 30px #0004}
+.room-caption.is-shown{opacity:1;transform:translate(-50%,0)}
+.room-caption b{margin-top:1px;padding:3px 9px;border-radius:999px;background:#ffd9a8;color:#4a2c05;font-size:11px;letter-spacing:.02em;white-space:nowrap}
+.room-caption span{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+/* ---------- the patient is replying ---------- */
+.pt-typing{display:flex;align-items:center;gap:9px;width:fit-content;margin:2px 0 12px;padding:9px 14px;border-radius:18px 18px 18px 6px;background:var(--surface-2);border:1px solid var(--line-soft);color:var(--ink-2);font-size:13px}
+.pt-typing[hidden]{display:none}
+.pt-dots{display:inline-flex;gap:4px}
+.pt-dots i{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.35;animation:pt-dot 1.2s ease-in-out infinite}
+.pt-dots i:nth-child(2){animation-delay:.15s}.pt-dots i:nth-child(3){animation-delay:.3s}
+@keyframes pt-dot{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+
+/* ---------- conversation: chat bubbles that read like a conversation ---------- */
+.experience-room .turn .bubble{border-radius:18px;max-width:min(88%,640px)}
+.experience-room .turn.pt .bubble{border-bottom-left-radius:6px}
+.experience-room .turn.me .bubble{border-bottom-right-radius:6px}
+.experience-room .turn .who{font-size:11px;letter-spacing:.01em}
+.experience-room .turn .who .t{opacity:.7;font-weight:500}
+/* Station information: supplied facts, shown compactly and quietly. */
+.experience-room .turn.station{margin-bottom:10px}
+.experience-room .turn.station .who{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em}
+.experience-room .turn.station .bubble{border:1px solid var(--line-soft);border-left:3px solid var(--warn-line,#e4c98f);background:var(--surface-2);font-size:12.5px;line-height:1.5;padding:9px 12px;max-width:none;border-radius:10px}
+
+/* ---------- the exam room choice (Patient view sheet) ---------- */
+.ew-room-style{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:12px;padding:10px 12px;border:1px solid var(--line-soft);border-radius:12px;background:var(--surface-2);font-size:13px}
+
+/* ---------- practice page: mode cards ---------- */
+body[data-workspace=practice] .mode-card .m-time{font-family:inherit;font-variant-numeric:tabular-nums;letter-spacing:0;font-weight:600;color:var(--ink-2)}
+
+/* ---------- phones ---------- */
+@media(max-width:640px){
+ /* one compact header row: brand, timer, theme icon, home */
+ .topbar{row-gap:6px}
+ .topbar .clock{padding:4px 10px;min-height:0;border-radius:10px}
+ .topbar .clock .lbl{display:none}
+ .topbar .clock .digits{font-size:15px}
+ #themeToggle{padding:6px 8px;min-height:34px}
+ #themeToggle .theme-label{display:none}
+ .topbar #btnHome{padding:6px 10px;min-height:34px}
+ .topbar .phase-chip{display:none}
+ /* the practice page: one clear column of modes */
+ body[data-workspace=practice] .mode-grid{grid-template-columns:1fr!important;gap:8px}
+ body[data-workspace=practice] .mode-card{display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:start;padding:12px 14px}
+ body[data-workspace=practice] .mode-card .m-ico{grid-row:1/4;margin:2px 0 0!important}
+ body[data-workspace=practice] .mode-card .m-name{font-size:16px}
+ /* the room: essential actions in one swipeable row */
+ .ew-bottom{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;gap:6px}
+ .ew-bottom::-webkit-scrollbar{display:none}
+ .ew-bottom>*{flex:none}
+ .ew-bottom .btn{white-space:nowrap}
+ .room-caption{font-size:14px;bottom:10px;padding:9px 12px}
+ .experience-room .turn .bubble{max-width:92%}
+}
+@media(prefers-reduced-motion:reduce){.pt-dots i{animation:none;opacity:.6}.room-caption{transition:none}}

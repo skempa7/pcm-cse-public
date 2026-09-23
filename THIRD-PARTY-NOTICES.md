@@ -8,6 +8,8 @@
 - **Toigo fisherman sweater**, MRT — CC0 as declared in source asset; http://www.makehuman.org/. Modified fitting/material conversion.
 - **Poly Haven** lighting and plaster/wood/fabric maps — CC0. Asset URLs, authors and derived-map descriptions: `web/patient3d/assets/polyhaven/SOURCES.txt` and `manifest.json`; https://polyhaven.com/license. The clinical table and added decorations are project-created. The imported room geometry and supplied wood textures have separate provenance and license limitations in `licenses/SUPPLIED-ROOM.md`.
 
+The default **studio clinic** room (`?env=studio`, `web/patient3d/src/studio-room.js`) is project-built geometry using only the local CC0 Poly Haven plaster, wood and fabric maps listed above; its clock face and art print are drawn at runtime. It loads nothing from the supplied room. The supplied room below is used only when a student chooses the classic room.
+
 No proprietary Human Generator trial content is included. No purchased assets or paid browser-asset services are required. Local editable files preserve original asset provenance. The supplied room is not covered by the CC0 licenses listed above.
 
 ## External anatomical surfaces
