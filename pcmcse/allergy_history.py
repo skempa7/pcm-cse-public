@@ -28,20 +28,48 @@ _DRUG_TARGETS = {'penicillin', 'amoxicillin', 'codeine', 'neomycin', 'naproxen',
 _REACTION = re.compile(r"^(?:and )?(?:what (?:happens?|happened)(?: (?:when|if) you (?:take|eat|use|have|touch) (?:it|that|them))?|what (?:kind of )?reaction(?: (?:do|did) you (?:have|get))?|how (?:do|did) you react)(?: to (?:it|that|them))?$")
 
 
+# A bad reaction to a medicine is the drug-allergy question even when the
+# word "allergy" is never said: "do you react badly to any medication?",
+# "is there anything you cannot take?", "has a drug ever given you hives?".
+_ADVERSE = re.compile(
+    r"\breact(?:s|ed|ion|ions)?\b|\bbad (?:reaction|experience)s?\b|\bintoleran\w*"
+    r"|\b(?:cannot|can not|can't|cant|unable to|not able to) (?:take|have|tolerate)\b"
+    r"|\b(?:have|need|had) to (?:avoid|stay away from)\b"
+    r"|\b(?:do not|don't|dont|does not|doesn't|doesnt|did not|didn't|didnt) agree with you\b"
+    r"|\b(?:gave|given|give|gives|caused|cause|causes) you (?:a |any )?(?:rash|hives|swelling|itching|reaction|trouble|problems?)\b"
+    r"|\b(?:make|made|makes) you (?:break out|itch|itchy|swell|swollen|wheeze)\b|\bbreak(?:s)? out in\b")
+_DRUG_WORDS = re.compile(r"\b(?:medications?|medicines?|meds|drugs?|antibiotics?|pills?|tablets?|prescriptions?)\b")
+
+
+def adverse_drug_question(text):
+    """Asks about a bad reaction to a medicine, in words other than "allergy"."""
+    text = nlp.normalize(text)
+    # A medicine named beside an allergic reaction asks about one: "any
+    # trouble with antibiotics, like a rash?"
+    if _DRUG_WORDS.search(text) and re.search(r"\b(?:rash|rashes|hives|itch\w*|swell\w*|anaphyla\w*|welts?)\b", text):
+        return True
+    if not _ADVERSE.search(text):
+        return False
+    # "Anything you cannot take" names the medicine by its verb.
+    return bool(_DRUG_WORDS.search(text) or re.search(
+        r"\b(?:anything|something|any) (?:that )?you (?:cannot|can not|can't|cant|are unable to|have to avoid)\b", text))
+
+
 def scopes(text):
     return [scope for scope, pattern in _SCOPE_PATTERNS.items() if re.search(pattern, text)]
 
 
 def request(utterance, previous=None):
     text = nlp.normalize(utterance).strip(' .?')
-    explicit = bool(re.search(r'allerg|\bnkda\b|\bhay fever\b', text))
+    adverse = adverse_drug_question(text)
+    explicit = bool(re.search(r'allerg|\bnkda\b|\bhay fever\b', text)) or adverse
     followup = bool(previous and (_REACTION.fullmatch(text) or
                     re.fullmatch(r'(?:and |what about |how about )?(?:any )?(?:foods?|environmental|seasonal|medication|drug|pollen|dust|latex|pets|penicillin|amoxicillin|aspirin)(?: allergies)?', text)))
     if not explicit and not followup:
         return None
     selected = scopes(text)
     targets = [target for target, pattern in _TARGET_PATTERNS.items() if re.search(pattern, text)]
-    if any(target in _DRUG_TARGETS for target in targets) and 'medication' not in selected:
+    if (adverse or any(target in _DRUG_TARGETS for target in targets)) and 'medication' not in selected:
         selected.insert(0, 'medication')
     if followup and not selected and not targets:
         return dict(previous)

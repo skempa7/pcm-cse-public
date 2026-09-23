@@ -3740,6 +3740,10 @@
         "requires_components": [
           "light touch"
         ],
+        "covered_by_components": [
+          "light touch",
+          "vibration"
+        ],
         "concepts": {
           "expanded_exam_neuro_sensory_light_touch": {
             "polarity": "positive",
@@ -3782,6 +3786,10 @@
         "id": "expanded_exam_neuro_sensory_vibration",
         "text": "Vibration reduced symmetrically from toes to ankles.",
         "requires_components": [
+          "vibration"
+        ],
+        "covered_by_components": [
+          "light touch",
           "vibration"
         ],
         "concepts": {
@@ -4022,6 +4030,10 @@
         "requires_components": [
           "legs"
         ],
+        "covered_by_components": [
+          "legs",
+          "soles"
+        ],
         "concepts": {
           "expanded_exam_skin_inspect_legs": {
             "polarity": "positive",
@@ -4064,6 +4076,10 @@
         "id": "expanded_exam_skin_inspect_soles",
         "text": "No rash or open lesion on the inspected soles.",
         "requires_components": [
+          "soles"
+        ],
+        "covered_by_components": [
+          "legs",
           "soles"
         ],
         "concepts": {
@@ -14154,6 +14170,7 @@
     "date": "2026-09-14",
     "kind": "user_requested_fictional_case_expansion",
     "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
-    "review_status": "author_consistency_checked_not_clinician_approved"
+    "review_status": "author_consistency_checked_not_clinician_approved",
+    "consistency_20260923": "Routine-expansion repair requested by the user: 4 routine component rows restating a core aggregate finding are covered by it, so a complete maneuver reports each finding once. Not clinician approved."
   }
 }

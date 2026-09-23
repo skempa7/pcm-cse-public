@@ -26,6 +26,8 @@ def request(utterance,facts,state):
   ns=state.get('medication_context',[]) or list(dict.fromkeys(n for f in facts if f['id'] in state.get('last_facts',[]) for n in names(f.get('value',''))))
  if not ns:
   if not re.search(r'\b(?:medicines?|medications?|tablets?|pills?|capsules?|dosage|dose)\b',q):return None
+  # "What daily medicines do you take?" asks which medicines, not how often an unnamed one is taken.
+  if dims==['frequency'] and not re.search(r'how often|times (?:a|per) day|frequency',q):return None
   return {'names':[],'dimensions':dims}
  return {'names':ns,'dimensions':dims}
 def select(facts,request):

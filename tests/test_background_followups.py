@@ -86,6 +86,21 @@ class BackgroundFollowupTests(unittest.TestCase):
                 self.assertRegex(reply.lower(), r'amlodipine\s+(?:5|five)\s*(?:mg|milligrams).*daily')
                 self.assertNotRegex(reply.lower(), r'beers|energy drinks|walking|less energy')
 
+    def test_daily_medicine_list_question_is_not_a_frequency_detail_for_an_unnamed_drug(self):
+        case, engine, state = self.ready()
+        expected, listed = engine.respond('What medications do you take?', state)
+        for question in ['What daily medicines do you take?', 'Do you take any daily medications?',
+                         'What medications do you take every day?']:
+            with self.subTest(question=question):
+                case, engine, state = self.ready()
+                reply, meta = engine.respond(question, state)
+                self.assert_only_facts(case, reply, meta, listed['facts_released'], {'history_medications_1'})
+                self.assertEqual(reply, expected)
+        case, engine, state = self.ready()
+        reply, meta = engine.respond('How often do you take your medicine?', state)
+        self.assertRegex(reply.lower(), r'which medicine')
+        self.assertEqual(meta.get('facts_released', []), [])
+
     def test_explicit_background_topic_switch_replaces_the_followup_anchor(self):
         case, engine, state = self.ready()
         for question, expected in [('How many energy drinks do you drink?', 'history_caffeine'),

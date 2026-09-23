@@ -654,7 +654,12 @@
       "triggers": {
         "any": [
           "What surgery have you had?",
-          "Have you had any operations?"
+          "Have you had any operations?",
+          "surgery",
+          "surgeries",
+          "operation",
+          "operations",
+          "past surgical"
         ]
       },
       "concepts": {
@@ -1064,11 +1069,20 @@
             "history_dimensions": [
               "pregnancy_test"
             ]
+          },
+          {
+            "text": "My period was one week ago.",
+            "concepts": {},
+            "complete_fact": false,
+            "history_dimensions": [
+              "last_period"
+            ]
           }
         ],
         "review_status": "author_statement_contract_checked_not_clinician_approved"
       },
-      "authored_note": "LMP 1 week ago; condoms; pregnancy test not obtained."
+      "authored_note": "LMP 1 week ago; condoms; pregnancy test not obtained.",
+      "history_topic": "pregnancy"
     },
     {
       "id": "history_sibling",
@@ -1192,7 +1206,10 @@
         "review_status": "author_statement_contract_checked_not_clinician_approved"
       },
       "authored_note": "Associated wrist arthralgia.",
-      "ros_system": "musculoskeletal"
+      "ros_system": "musculoskeletal",
+      "ros_topics": [
+        "joint_pain"
+      ]
     },
     {
       "id": "symptom_myalgia",
@@ -2127,45 +2144,6 @@
       },
       "ros_topics": [
         "tremor"
-      ]
-    },
-    {
-      "id": "expanded_ros_joint_pain",
-      "category": "associated",
-      "value": "The finger joints in both hands are achy and puffy, and my wrists ache too.",
-      "sp_says": [
-        "The finger joints in both hands are achy and puffy, and my wrists ache too."
-      ],
-      "triggers": {},
-      "concepts": {
-        "expanded_ros_joint_pain": {
-          "polarity": "positive",
-          "value": "The finger joints in both hands are achy and puffy, and my wrists ache too."
-        }
-      },
-      "delivery_contract": {
-        "versions": [
-          {
-            "text": "The finger joints in both hands are achy and puffy, and my wrists ache too.",
-            "concepts": {
-              "expanded_ros_joint_pain": {
-                "polarity": "positive",
-                "value": "The finger joints in both hands are achy and puffy, and my wrists ache too."
-              }
-            },
-            "complete_fact": true
-          }
-        ],
-        "review_status": "author_statement_contract_checked_not_clinician_approved"
-      },
-      "authoring": {
-        "date": "2026-09-14",
-        "kind": "user_requested_fictional_case_expansion",
-        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
-        "review_status": "author_consistency_checked_not_clinician_approved"
-      },
-      "ros_topics": [
-        "joint_pain"
       ]
     },
     {
@@ -3258,9 +3236,6 @@
     "expanded_ros_tremor": [
       "My hands have not been shaky, and I have not noticed a tremor."
     ],
-    "expanded_ros_joint_pain": [
-      "The finger joints in both hands are achy and puffy, and my wrists ache too."
-    ],
     "expanded_ros_blurred_vision": [
       "My vision has not been blurry."
     ],
@@ -3818,6 +3793,10 @@
         "requires_components": [
           "arms"
         ],
+        "covered_by_components": [
+          "arms",
+          "palms"
+        ],
         "concepts": {
           "expanded_exam_skin_inspect_arms": {
             "polarity": "positive",
@@ -3860,6 +3839,10 @@
         "id": "expanded_exam_skin_inspect_palms",
         "text": "No rash or open lesion on the inspected palms.",
         "requires_components": [
+          "palms"
+        ],
+        "covered_by_components": [
+          "arms",
           "palms"
         ],
         "concepts": {
@@ -6027,12 +6010,14 @@
     "classification_note": "Categories reflect the explicitly proposed mechanism; e.g., irritant exposure is I2. They are a course organizing aid, not confirmation of mechanism."
   },
   "content_revisions": {
-    "library_expansion_20260914": "New independently authored presentation. Single core path; no renamed cosmetic variants."
+    "library_expansion_20260914": "New independently authored presentation. Single core path; no renamed cosmetic variants.",
+    "expansion_consistency_20260923": "Consistency repair requested by the user: surgical history accepts the short surgery/operation triggers used by the other cases; the bundled pregnancy statement answers current-pregnancy questions in full, like every other case. Existing clinical facts and rubric preserved; not clinician approved."
   },
   "practice_expansion": {
     "date": "2026-09-14",
     "kind": "user_requested_fictional_case_expansion",
     "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
-    "review_status": "author_consistency_checked_not_clinician_approved"
+    "review_status": "author_consistency_checked_not_clinician_approved",
+    "consistency_20260923": "Routine-expansion repair requested by the user: 2 routine component rows restating a core aggregate finding are covered by it, so a complete maneuver reports each finding once; the joint pain screen is answered by the core checklist fact symptom_joint_pain again; duplicate expanded_ros_joint_pain removed. Not clinician approved."
   }
 }

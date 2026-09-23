@@ -1691,6 +1691,7 @@
         "review_status": "author_statement_contract_checked_not_clinician_approved"
       },
       "ros_topics": [
+        "fever",
         "sweating"
       ]
     },
@@ -2020,7 +2021,7 @@
         }
       },
       "example_questions": [
-        "Have you had diarrhea or constipation?"
+        "Any change in your bowel habits?"
       ],
       "delivery_contract": {
         "versions": [
@@ -3081,10 +3082,7 @@
           }
         ],
         "review_status": "author_statement_contract_checked_not_clinician_approved"
-      },
-      "ros_topics": [
-        "fever"
-      ]
+      }
     },
     {
       "id": "neg_diarrhea",
@@ -4423,6 +4421,10 @@
         "requires_components": [
           "all four quadrants"
         ],
+        "covered_by_components": [
+          "all four quadrants",
+          "bruits"
+        ],
         "concepts": {
           "expanded_exam_abd_auscultate_all_four_quadrants": {
             "polarity": "positive",
@@ -4443,6 +4445,10 @@
         "id": "expanded_exam_abd_auscultate_bruits",
         "text": "No abdominal bruit heard.",
         "requires_components": [
+          "bruits"
+        ],
+        "covered_by_components": [
+          "all four quadrants",
           "bruits"
         ],
         "concepts": {
@@ -4837,6 +4843,12 @@
         "requires_components": [
           "chest"
         ],
+        "covered_by_components": [
+          "chest",
+          "back",
+          "arms",
+          "legs"
+        ],
         "concepts": {
           "expanded_exam_skin_inspect_chest": {
             "polarity": "positive",
@@ -4858,6 +4870,12 @@
         "text": "No rash or open lesion on the inspected back.",
         "requires_components": [
           "back"
+        ],
+        "covered_by_components": [
+          "chest",
+          "back",
+          "arms",
+          "legs"
         ],
         "concepts": {
           "expanded_exam_skin_inspect_back": {
@@ -4881,6 +4899,12 @@
         "requires_components": [
           "arms"
         ],
+        "covered_by_components": [
+          "chest",
+          "back",
+          "arms",
+          "legs"
+        ],
         "concepts": {
           "expanded_exam_skin_inspect_arms": {
             "polarity": "positive",
@@ -4901,6 +4925,12 @@
         "id": "expanded_exam_skin_inspect_legs",
         "text": "No rash or open lesion on the inspected legs.",
         "requires_components": [
+          "legs"
+        ],
+        "covered_by_components": [
+          "chest",
+          "back",
+          "arms",
           "legs"
         ],
         "concepts": {
@@ -5016,6 +5046,10 @@
         "requires_components": [
           "thoracic"
         ],
+        "covered_by_components": [
+          "thoracic",
+          "lumbar"
+        ],
         "concepts": {
           "expanded_exam_osteo_screen_thoracic": {
             "polarity": "positive",
@@ -5036,6 +5070,10 @@
         "id": "expanded_exam_osteo_screen_lumbar",
         "text": "Right L1 paraspinal tissue texture change, tenderness and hypertonicity.",
         "requires_components": [
+          "lumbar"
+        ],
+        "covered_by_components": [
+          "thoracic",
           "lumbar"
         ],
         "concepts": {
@@ -7131,7 +7169,8 @@
     "experience_review2_language": "Reviewed vomiting tense forms; unsupported progression is not invented; timing cues reference obtainable dimensions; target maneuver removed from public doorway.",
     "demeanor": "demeanor-axes-v1: independently authored communication style and emotional state; legacy pace/gesture style retained; no physical finding credit.",
     "public_cohort": "Fictional public cohort; six male presentations. Menstrual and pregnancy history removed only from those authored male profiles. Clinical chief complaints and examinations retained. Not independently clinically approved.",
-    "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved."
+    "background_variety_20260914": "Deliberate fictional case-authoring revision requested by the user: quantified histories, medication/procedure details and practical context. Existing saved attempts keep their own case snapshots. Not faculty or clinician approved.",
+    "expansion_consistency_20260923": "Consistency repair requested by the user: neg_bowel example question no longer duplicates the specific diarrhea and constipation screens. Existing clinical facts and rubric preserved; not clinician approved."
   },
   "cohort": {
     "id": "young-adult-female-v1",
@@ -8801,6 +8840,7 @@
               "review_status": "author_statement_contract_checked_not_clinician_approved"
             },
             "ros_topics": [
+              "fever",
               "sweating"
             ]
           },
@@ -9130,7 +9170,7 @@
               }
             },
             "example_questions": [
-              "Have you had diarrhea or constipation?"
+              "Any change in your bowel habits?"
             ],
             "delivery_contract": {
               "versions": [
@@ -10234,10 +10274,7 @@
                 }
               ],
               "review_status": "author_statement_contract_checked_not_clinician_approved"
-            },
-            "ros_topics": [
-              "fever"
-            ]
+            }
           },
           {
             "id": "neg_diarrhea",
@@ -13415,6 +13452,7 @@
               "review_status": "author_statement_contract_checked_not_clinician_approved"
             },
             "ros_topics": [
+              "fever",
               "sweating"
             ]
           },
@@ -13744,7 +13782,7 @@
               }
             },
             "example_questions": [
-              "Have you had diarrhea or constipation?"
+              "Any change in your bowel habits?"
             ],
             "delivery_contract": {
               "versions": [
@@ -14848,10 +14886,7 @@
                 }
               ],
               "review_status": "author_statement_contract_checked_not_clinician_approved"
-            },
-            "ros_topics": [
-              "fever"
-            ]
+            }
           },
           {
             "id": "neg_diarrhea",
@@ -16376,6 +16411,7 @@
     "date": "2026-09-14",
     "kind": "user_requested_fictional_case_expansion",
     "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
-    "review_status": "author_consistency_checked_not_clinician_approved"
+    "review_status": "author_consistency_checked_not_clinician_approved",
+    "consistency_20260923": "Routine-expansion repair requested by the user: 8 routine component rows restating a core aggregate finding are covered by it, so a complete maneuver reports each finding once. Not clinician approved."
   }
 }

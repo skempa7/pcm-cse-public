@@ -230,7 +230,16 @@ def make_fact(fid,category,label,q,answer,prose,ros=None,positive=True):
         if 'episode_duration' in dimensions:f['temporal_role']='episode_duration'
     if category=='social':
         f['history_topic']={'Smoking':'tobacco','Alcohol':'alcohol','Drugs':'drugs','Work':'occupation'}.get(label,'social_context')
+    # Like every other case's pregnancy history, the bundled period/contraception
+    # statement is the answer to a current-pregnancy question.
+    if category=='obgyn' and label.startswith('Pregnancy'):f['history_topic']='pregnancy'
     return f
+
+def consistency_revision(facts):
+    parts=['surgical history accepts the short surgery/operation triggers used by the other cases']
+    if any(f.get('history_topic')=='pregnancy' for f in facts):
+        parts.append('the bundled pregnancy statement answers current-pregnancy questions in full, like every other case')
+    return 'Consistency repair requested by the user: '+'; '.join(parts)+'. Existing clinical facts and rubric preserved; not clinician approved.'
 
 def build_case(s,index):
     cid=s['cid'];facts=[make_fact('opening_complaint','chief_complaint','Opening complaint','What brings you in today?',s['opening'],s['opening'])]
@@ -257,6 +266,10 @@ def build_case(s,index):
     for category,questions in {'pmh':['What illnesses have you had?','Any medical conditions?'],'psh':['Have you had any operations?'],'medications':['What medications are you taking?'],'allergies':['Any medication allergies?']}.items():
         first=next((f for f in facts if f['category']==category),None)
         if first:first['example_questions']+=questions;first['triggers']['any']+=questions
+    # The short cues the other cases use keep "Any surgeries in the past?" from
+    # being answered as a previous episode of the presenting complaint.
+    surgery=next((f for f in facts if f['category']=='psh'),None)
+    if surgery:surgery['triggers']['any']+=['surgery','surgeries','operation','operations','past surgical']
     # The knee's planted-foot twist is explicitly the activity at injury onset.
     # The other new setting rows describe earlier exposures or general triggers,
     # which must not masquerade as what happened at the first symptom moment.
@@ -320,7 +333,8 @@ def build_case(s,index):
                    'reasoning_steps':[{'id':'orient','phase':'history','purpose':'Hear the presenting concern','question':'What brings you in today?','fact_ids':['opening_complaint'],'why':s['goal']},{'id':'pattern','phase':'history','purpose':'Clarify the pattern','question':s['decision'],'fact_ids':['hpi_onset'],'why':s['goal']},{'id':'examine','phase':'exam','purpose':'Perform relevant examinations','question':'May I examine you?','fact_ids':[],'why':'Findings require performed actions.'}],
                    'reasoning_map':[{'id':cid+'-decision','question':s['decision'],'why':s['goal'],'if_present':'Use the reported pattern to select the relevant examinations and assess urgency.','if_absent':'Keep alternatives open and ask a focused follow-up.','next_action':'Perform the relevant case-specific examination.','document':'Separate reported symptoms, observed signs, assessment and proposed care.'}],
                    'classification_note':'Categories reflect the explicitly proposed mechanism; e.g., irritant exposure is I2. They are a course organizing aid, not confirmation of mechanism.'},
-       'content_revisions':{'library_expansion_20260914':'New independently authored presentation. Single core path; no renamed cosmetic variants.'}}
+       'content_revisions':{'library_expansion_20260914':'New independently authored presentation. Single core path; no renamed cosmetic variants.',
+                            'expansion_consistency_20260923':consistency_revision(facts)}}
     if s['system']=='Skin':c['print_exam_systems']={'skin_palpate':'Skin','lymph_nodes':'Lymphatic'}
     if s['system'] in ('Skin','HEENT'):
         c['examination_display_note']='The case-specific skin, ear, nose and throat appearance is supplied in the labeled examination result; the generic patient model does not reliably display these findings.'

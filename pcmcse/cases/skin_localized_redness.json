@@ -653,7 +653,12 @@
       "triggers": {
         "any": [
           "Have you had surgery or recent procedures?",
-          "Have you had any operations?"
+          "Have you had any operations?",
+          "surgery",
+          "surgeries",
+          "operation",
+          "operations",
+          "past surgical"
         ]
       },
       "concepts": {
@@ -5859,7 +5864,8 @@
     "classification_note": "Categories reflect the explicitly proposed mechanism; e.g., irritant exposure is I2. They are a course organizing aid, not confirmation of mechanism."
   },
   "content_revisions": {
-    "library_expansion_20260914": "New independently authored presentation. Single core path; no renamed cosmetic variants."
+    "library_expansion_20260914": "New independently authored presentation. Single core path; no renamed cosmetic variants.",
+    "expansion_consistency_20260923": "Consistency repair requested by the user: surgical history accepts the short surgery/operation triggers used by the other cases. Existing clinical facts and rubric preserved; not clinician approved."
   },
   "print_exam_systems": {
     "skin_palpate": "Skin",

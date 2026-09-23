@@ -62,13 +62,26 @@
         },
         {
           "kind": "dialogue",
+          "section": "Connect",
+          "student": "May I confirm your name and age?",
+          "patient": "My name is Sofia Patel. I am 27 years old.",
+          "why": "The note documents age only as the patient states it.",
+          "event_ids": [
+            8,
+            9,
+            10
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "dialogue",
           "section": "Listen to the opening",
           "student": "What brings you in today?",
           "patient": "I keep getting spells of wheezing and a tight chest.",
           "why": "Characterize variable obstruction and distinguish lung wheeze from throat symptoms.",
           "event_ids": [
-            8,
-            9
+            11,
+            12
           ],
           "fact_ids": [
             "opening_complaint"
@@ -81,8 +94,8 @@
           "patient": "About 6 weeks ago.",
           "why": "Do spells occur at work, away from work, or during sleep?",
           "event_ids": [
-            10,
-            11
+            13,
+            14
           ],
           "fact_ids": [
             "hpi_onset"
@@ -95,8 +108,8 @@
           "patient": "A dry cough wakes me about once a week.",
           "why": "Change over time can change urgency even when the symptom is familiar.",
           "event_ids": [
-            12,
-            13
+            15,
+            16
           ],
           "fact_ids": [
             "hpi_chronology"
@@ -109,8 +122,8 @@
           "patient": "Across my chest, not in one spot.",
           "why": "",
           "event_ids": [
-            14,
-            15
+            17,
+            18
           ],
           "fact_ids": [
             "hpi_location"
@@ -123,8 +136,8 @@
           "patient": "It whistles when I breathe out, and getting air out feels hard.",
           "why": "Use the patient\u2019s words before translating them into a clinical description.",
           "event_ids": [
-            16,
-            17
+            19,
+            20
           ],
           "fact_ids": [
             "hpi_quality"
@@ -137,8 +150,8 @@
           "patient": "I stop jogging and wait. I can still speak in full sentences.",
           "why": "Intensity and functional effect are distinct; record only the dimension answered.",
           "event_ids": [
-            18,
-            19
+            21,
+            22
           ],
           "fact_ids": [
             "hpi_severity"
@@ -151,8 +164,8 @@
           "patient": "Usually 10 to 20 minutes, about 3 days a week.",
           "why": "Separate time since onset from duration of one episode and from continuity.",
           "event_ids": [
-            20,
-            21
+            23,
+            24
           ],
           "fact_ids": [
             "hpi_timing"
@@ -165,8 +178,8 @@
           "patient": "Flour dust in the bakery sets it off. I was better during four days away.",
           "why": "",
           "event_ids": [
-            22,
-            23
+            25,
+            26
           ],
           "fact_ids": [
             "hpi_setting"
@@ -179,8 +192,8 @@
           "patient": "Stopping and getting away from the dust helps.",
           "why": "Relief changes probability, but is not proof that a serious cause is excluded.",
           "event_ids": [
-            24,
-            25
+            27,
+            28
           ],
           "fact_ids": [
             "hpi_alleviating"
@@ -193,8 +206,8 @@
           "patient": "Cold-air jogging and strong cleaning sprays.",
           "why": "Compare triggers with the chronology; one trigger does not establish a diagnosis.",
           "event_ids": [
-            26,
-            27
+            29,
+            30
           ],
           "fact_ids": [
             "hpi_aggravating"
@@ -207,8 +220,8 @@
           "patient": "No, I have never had an inhaler.",
           "why": "",
           "event_ids": [
-            28,
-            29
+            31,
+            32
           ],
           "fact_ids": [
             "hpi_treatment"
@@ -221,8 +234,8 @@
           "patient": "I had hay fever, but no diagnosed asthma.",
           "why": "",
           "event_ids": [
-            30,
-            31
+            33,
+            34
           ],
           "fact_ids": [
             "hpi_past_occurrence"
@@ -235,8 +248,8 @@
           "patient": "I get a dry cough, especially at night.",
           "why": "Use this answer to weigh the possibilities described in the reasoning section.",
           "event_ids": [
-            32,
-            33
+            35,
+            36
           ],
           "fact_ids": [
             "symptom_cough"
@@ -249,8 +262,8 @@
           "patient": "I am short of breath during the spells, not when resting now.",
           "why": "Use this answer to weigh the possibilities described in the reasoning section.",
           "event_ids": [
-            34,
-            35
+            37,
+            38
           ],
           "fact_ids": [
             "symptom_dyspnea"
@@ -263,8 +276,8 @@
           "patient": "My nose runs when pollen is high.",
           "why": "Use this answer to weigh the possibilities described in the reasoning section.",
           "event_ids": [
-            36,
-            37
+            39,
+            40
           ],
           "fact_ids": [
             "symptom_rhinorrhea"
@@ -277,8 +290,8 @@
           "patient": "Sometimes my throat feels tight during a spell.",
           "why": "Use this answer to weigh the possibilities described in the reasoning section.",
           "event_ids": [
-            38,
-            39
+            41,
+            42
           ],
           "fact_ids": [
             "symptom_sore_throat"
@@ -291,8 +304,8 @@
           "patient": "My voice sometimes goes raspy after a spell.",
           "why": "Use this answer to weigh the possibilities described in the reasoning section.",
           "event_ids": [
-            40,
-            41
+            43,
+            44
           ],
           "fact_ids": [
             "symptom_hoarseness"
@@ -305,8 +318,8 @@
           "patient": "I am tired after a night of coughing.",
           "why": "Use this answer to weigh the possibilities described in the reasoning section.",
           "event_ids": [
-            42,
-            43
+            45,
+            46
           ],
           "fact_ids": [
             "symptom_fatigue"
@@ -319,8 +332,8 @@
           "patient": "I have not coughed up blood.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            44,
-            45
+            47,
+            48
           ],
           "fact_ids": [
             "symptom_hemoptysis"
@@ -333,8 +346,8 @@
           "patient": "I have not had a fever.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            46,
-            47
+            49,
+            50
           ],
           "fact_ids": [
             "symptom_fever"
@@ -347,8 +360,8 @@
           "patient": "My weight has stayed the same.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            48,
-            49
+            51,
+            52
           ],
           "fact_ids": [
             "symptom_weight_loss"
@@ -361,8 +374,8 @@
           "patient": "Seasonal hay fever and occasional heartburn.",
           "why": "",
           "event_ids": [
-            50,
-            51
+            53,
+            54
           ],
           "fact_ids": [
             "history_medical_history"
@@ -375,8 +388,8 @@
           "patient": "Only wisdom teeth removal at 20.",
           "why": "",
           "event_ids": [
-            52,
-            53
+            55,
+            56
           ],
           "fact_ids": [
             "history_procedures"
@@ -389,8 +402,8 @@
           "patient": "Cetirizine 10 milligrams when pollen is bad, and a chewable antacid about once a week.",
           "why": "Name, dose and frequency matter; do not fill in missing details.",
           "event_ids": [
-            54,
-            55
+            57,
+            58
           ],
           "fact_ids": [
             "history_medication"
@@ -403,8 +416,8 @@
           "patient": "Trimethoprim-sulfamethoxazole gave me a widespread rash when I was 17, without blisters or breathing trouble.",
           "why": "Distinguish the substance and reaction from a blanket allergy label.",
           "event_ids": [
-            56,
-            57
+            59,
+            60
           ],
           "fact_ids": [
             "history_drug_reactions"
@@ -417,8 +430,8 @@
           "patient": "I have never smoked or vaped.",
           "why": "",
           "event_ids": [
-            58,
-            59
+            61,
+            62
           ],
           "fact_ids": [
             "history_smoking"
@@ -431,8 +444,8 @@
           "patient": "I do not drink alcohol.",
           "why": "",
           "event_ids": [
-            60,
-            61
+            63,
+            64
           ],
           "fact_ids": [
             "history_alcohol"
@@ -445,8 +458,8 @@
           "patient": "No.",
           "why": "",
           "event_ids": [
-            62,
-            63
+            65,
+            66
           ],
           "fact_ids": [
             "history_drugs"
@@ -459,8 +472,8 @@
           "patient": "I mix dough at a bakery. There is visible flour dust, and masks are not consistently available.",
           "why": "",
           "event_ids": [
-            64,
-            65
+            67,
+            68
           ],
           "fact_ids": [
             "history_work"
@@ -473,8 +486,8 @@
           "patient": "Two roommates. There are no pets or smokers at home.",
           "why": "",
           "event_ids": [
-            66,
-            67
+            69,
+            70
           ],
           "fact_ids": [
             "history_home"
@@ -487,8 +500,8 @@
           "patient": "My mother has asthma and my brother has eczema.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
-            68,
-            69
+            71,
+            72
           ],
           "fact_ids": [
             "history_family_history"
@@ -501,8 +514,8 @@
           "patient": "My father has no major illness that I know of.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
-            70,
-            71
+            73,
+            74
           ],
           "fact_ids": [
             "history_father"
@@ -515,8 +528,8 @@
           "patient": "My period was two weeks ago. I use an IUD and do not think I am pregnant.",
           "why": "A reported possibility or menstrual date is not a pregnancy-test result.",
           "event_ids": [
-            72,
-            73
+            75,
+            76
           ],
           "fact_ids": [
             "history_pregnancy_possibility"
@@ -529,8 +542,8 @@
           "patient": "I am worried I will have to quit the bakery.",
           "why": "",
           "event_ids": [
-            74,
-            75
+            77,
+            78
           ],
           "fact_ids": [
             "patient_concern"
@@ -543,8 +556,8 @@
           "patient": "Right, I am worried I will have to quit the bakery. I'm not sure. What do you mean exactly?",
           "why": "",
           "event_ids": [
-            76,
-            77
+            79,
+            80
           ],
           "fact_ids": [
             "patient_concern"
@@ -557,9 +570,9 @@
           "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
-            78,
-            79,
-            80
+            81,
+            82,
+            83
           ],
           "fact_ids": []
         },
@@ -577,8 +590,8 @@
           "finding": "Alert, speaking comfortably in full sentences; no respiratory distress.",
           "why": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
           "event_ids": [
-            81,
-            82
+            84,
+            85
           ],
           "maneuver_id": "general_inspect",
           "duration_s": 10
@@ -590,8 +603,8 @@
           "finding": "Regular rate and rhythm without murmur.",
           "why": "The course expects at least four listening posts, on skin.",
           "event_ids": [
-            83,
-            84
+            86,
+            87
           ],
           "maneuver_id": "heart_auscultate",
           "duration_s": 40
@@ -603,11 +616,11 @@
           "finding": "Mild bilateral expiratory wheezes with prolonged expiration; no focal crackles.",
           "why": "The course expects six posterior fields, mouth open, on skin, comparing sides.",
           "event_ids": [
-            85,
-            86
+            88,
+            89
           ],
           "maneuver_id": "lungs_auscultate",
-          "duration_s": 41
+          "duration_s": 24
         },
         {
           "kind": "action",
@@ -616,11 +629,11 @@
           "finding": "Symmetric chest movement without accessory muscle use.",
           "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
           "event_ids": [
-            87,
-            88
+            90,
+            91
           ],
           "maneuver_id": "chest_inspect",
-          "duration_s": 12
+          "duration_s": 15
         },
         {
           "kind": "action",
@@ -629,11 +642,11 @@
           "finding": "Pale edematous nasal mucosa with clear secretions bilaterally.",
           "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
           "event_ids": [
-            89,
-            90
+            92,
+            93
           ],
           "maneuver_id": "heent_nose",
-          "duration_s": 20
+          "duration_s": 15
         },
         {
           "kind": "action",
@@ -642,11 +655,11 @@
           "finding": "No tonsillar swelling or exudate; voice clear at rest.",
           "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
           "event_ids": [
-            91,
-            92
+            94,
+            95
           ],
           "maneuver_id": "heent_throat",
-          "duration_s": 20
+          "duration_s": 18
         },
         {
           "kind": "action",
@@ -655,11 +668,11 @@
           "finding": "T3 right paraspinal tissue texture change and tenderness.",
           "why": "Name the level examined; findings are released by region.",
           "event_ids": [
-            93,
-            94
+            96,
+            97
           ],
           "maneuver_id": "osteo_screen",
-          "duration_s": 25
+          "duration_s": 16
         },
         {
           "kind": "dialogue",
@@ -668,9 +681,9 @@
           "patient": "Thank you. I understand that the next steps depend on the examination and tests.",
           "why": "Proposed care, not a record of tests or treatment already completed.",
           "event_ids": [
-            95,
-            96,
-            97
+            98,
+            99,
+            100
           ],
           "fact_ids": []
         },
@@ -678,11 +691,11 @@
           "kind": "dialogue",
           "section": "Close and check understanding",
           "student": "What questions do you have about the next steps?",
-          "patient": "I am worried I will have to quit the bakery.",
+          "patient": "Thank you for listening. I do not have anything further to add right now.",
           "why": "",
           "event_ids": [
-            98,
-            99
+            101,
+            102
           ],
           "fact_ids": []
         },
@@ -691,12 +704,12 @@
           "section": "Address the patient\u2019s question",
           "student": "We can discuss safer flour handling and protection with occupational health, with your permission, rather than assuming you must leave your job.",
           "patient": "That would help. Thank you.",
-          "why": "Answer the concern that was just expressed. Give a defensible recommendation and explain uncertainty; do not promise a diagnosis or recovery before the evidence supports it.",
+          "why": "Return to the concern the patient named during the history; nothing new was raised at the close. Give a defensible recommendation and explain uncertainty; do not promise a diagnosis or recovery before the evidence supports it.",
           "event_ids": [
-            100,
-            101,
-            102,
-            103
+            103,
+            104,
+            105,
+            106
           ],
           "fact_ids": []
         }
@@ -720,7 +733,7 @@
           "section": "S",
           "statement": "I keep getting spells of wheezing and a tight chest.",
           "event_ids": [
-            9
+            12
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -730,18 +743,19 @@
           "section": "S",
           "statement": "27-year-old female.",
           "event_ids": [
+            10,
             2
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
           "statement": "Six weeks of intermittent wheezing and chest tightness.",
           "event_ids": [
-            11,
-            15
+            14,
+            18
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -751,7 +765,7 @@
           "section": "S",
           "statement": "Diffuse chest tightness.",
           "event_ids": [
-            15
+            18
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -761,7 +775,7 @@
           "section": "S",
           "statement": "Expiratory wheeze and difficulty exhaling.",
           "event_ids": [
-            17
+            20
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -787,7 +801,7 @@
           "section": "S",
           "statement": "Episodes 10\u201320 minutes, approximately 3 days weekly.",
           "event_ids": [
-            21
+            24
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -797,8 +811,8 @@
           "section": "S",
           "statement": "Weekly nocturnal cough.",
           "event_ids": [
-            13,
-            33
+            16,
+            36
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -808,8 +822,8 @@
           "section": "S",
           "statement": "Flour-dust exposure at bakery;",
           "event_ids": [
-            23,
-            65
+            26,
+            68
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -819,7 +833,7 @@
           "section": "S",
           "statement": "improved during 4 days away.",
           "event_ids": [
-            23
+            26
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -829,7 +843,7 @@
           "section": "S",
           "statement": "Cold air and cleaning sprays also trigger symptoms.",
           "event_ids": [
-            27
+            30
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -839,7 +853,7 @@
           "section": "S",
           "statement": "Improves with rest and exposure avoidance.",
           "event_ids": [
-            25
+            28
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -849,7 +863,7 @@
           "section": "S",
           "statement": "No prior inhaler trial.",
           "event_ids": [
-            29
+            32
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -859,7 +873,7 @@
           "section": "S",
           "statement": "Childhood allergic rhinitis without prior asthma diagnosis.",
           "event_ids": [
-            31
+            34
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -877,7 +891,7 @@
           "section": "S",
           "statement": "occasional heartburn.",
           "event_ids": [
-            51
+            54
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -887,7 +901,7 @@
           "section": "S",
           "statement": "Wisdom teeth removed at 20.",
           "event_ids": [
-            53
+            56
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -913,7 +927,7 @@
           "section": "S",
           "statement": "Never smoked or vaped.",
           "event_ids": [
-            59
+            62
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -923,7 +937,7 @@
           "section": "S",
           "statement": "No alcohol.",
           "event_ids": [
-            61
+            64
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -933,7 +947,7 @@
           "section": "S",
           "statement": "No recreational drugs.",
           "event_ids": [
-            63
+            66
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -943,8 +957,8 @@
           "section": "S",
           "statement": "Bakery dough mixing with flour exposure;",
           "event_ids": [
-            23,
-            65
+            26,
+            68
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -962,7 +976,7 @@
           "section": "S",
           "statement": "Lives with two roommates;",
           "event_ids": [
-            67
+            70
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -980,8 +994,8 @@
           "section": "S",
           "statement": "LMP 2 weeks ago;",
           "event_ids": [
-            11,
-            73
+            14,
+            76
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -991,7 +1005,7 @@
           "section": "S",
           "statement": "IUD;",
           "event_ids": [
-            73
+            76
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -1009,7 +1023,7 @@
           "section": "S",
           "statement": "Mother: asthma;",
           "event_ids": [
-            69
+            72
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -1019,7 +1033,7 @@
           "section": "S",
           "statement": "brother: eczema.",
           "event_ids": [
-            69
+            72
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -1029,7 +1043,7 @@
           "section": "S",
           "statement": "Father: no known major illness.",
           "event_ids": [
-            71
+            74
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1039,7 +1053,7 @@
           "section": "S",
           "statement": "TMP-SMX: nonblistering rash at 17, no respiratory symptoms.",
           "event_ids": [
-            57
+            60
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1049,7 +1063,7 @@
           "section": "S",
           "statement": "Respiratory: Dry nocturnal cough.",
           "event_ids": [
-            33
+            36
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1075,7 +1089,7 @@
           "section": "S",
           "statement": "No hemoptysis.",
           "event_ids": [
-            45
+            48
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1085,7 +1099,7 @@
           "section": "S",
           "statement": "Heent: Seasonal rhinorrhea.",
           "event_ids": [
-            37
+            40
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1095,7 +1109,7 @@
           "section": "S",
           "statement": "Occasional throat tightness with episodes.",
           "event_ids": [
-            39
+            42
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1105,7 +1119,7 @@
           "section": "S",
           "statement": "Transient postepisode hoarseness.",
           "event_ids": [
-            41
+            44
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1115,7 +1129,7 @@
           "section": "S",
           "statement": "General: No fever.",
           "event_ids": [
-            47
+            50
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1125,7 +1139,7 @@
           "section": "S",
           "statement": "Fatigue after disrupted sleep.",
           "event_ids": [
-            43
+            46
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1135,7 +1149,7 @@
           "section": "S",
           "statement": "No weight loss.",
           "event_ids": [
-            49
+            52
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1215,7 +1229,7 @@
           "section": "O",
           "statement": "Alert, speaking comfortably in full sentences;",
           "event_ids": [
-            82
+            85
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1225,7 +1239,7 @@
           "section": "O",
           "statement": "no respiratory distress.",
           "event_ids": [
-            82
+            85
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1235,7 +1249,7 @@
           "section": "O",
           "statement": "Regular rate and rhythm without murmur.",
           "event_ids": [
-            84
+            87
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1245,7 +1259,7 @@
           "section": "O",
           "statement": "Mild bilateral expiratory wheezes with prolonged expiration;",
           "event_ids": [
-            86
+            89
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1255,7 +1269,7 @@
           "section": "O",
           "statement": "no focal crackles.",
           "event_ids": [
-            86
+            89
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1265,7 +1279,7 @@
           "section": "O",
           "statement": "Symmetric chest movement without accessory muscle use.",
           "event_ids": [
-            88
+            91
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1275,7 +1289,7 @@
           "section": "O",
           "statement": "Pale edematous nasal mucosa with clear secretions bilaterally.",
           "event_ids": [
-            90
+            93
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1285,7 +1299,7 @@
           "section": "O",
           "statement": "No tonsillar swelling or exudate;",
           "event_ids": [
-            92
+            95
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1295,7 +1309,7 @@
           "section": "O",
           "statement": "voice clear at rest.",
           "event_ids": [
-            92
+            95
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1328,7 +1342,7 @@
           "t_ms": 0,
           "phase": "encounter",
           "kind": "station_info",
-          "text": "Sofia Patel, 27-year-old female. I keep getting spells of wheezing and a tight chest. Vital signs are available on the chart. Perform a focused history and physical examination, discuss your plan, and document only what you obtain. Use the time limit stated for your selected practice mode.",
+          "text": "Sofia Patel, female. I keep getting spells of wheezing and a tight chest. Vital signs are available on the chart. Perform a focused history and physical examination, discuss your plan, and document only what you obtain. Use the time limit stated for your selected practice mode.",
           "meta": {
             "doorway": true
           }
@@ -1386,7 +1400,7 @@
         },
         {
           "seq": 7,
-          "t_ms": 8,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
@@ -1399,7 +1413,49 @@
         },
         {
           "seq": 8,
-          "t_ms": 8,
+          "t_ms": 14,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "May I confirm your name and age?",
+          "meta": {
+            "mode": "type"
+          }
+        },
+        {
+          "seq": 9,
+          "t_ms": 14,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "May I confirm your name and age?",
+          "meta": {
+            "courtesy_id": "confirm_name",
+            "label": "Confirm patient name / preferred address",
+            "components": [
+              "name"
+            ]
+          }
+        },
+        {
+          "seq": 10,
+          "t_ms": 17,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My name is Sofia Patel. I am 27 years old.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "identity_response",
+            "identity_fields": [
+              "name",
+              "age"
+            ],
+            "composed_asks": 2
+          }
+        },
+        {
+          "seq": 11,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -1410,8 +1466,8 @@
           }
         },
         {
-          "seq": 9,
-          "t_ms": 12,
+          "seq": 12,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I keep getting spells of wheezing and a tight chest.",
@@ -1436,8 +1492,8 @@
           }
         },
         {
-          "seq": 10,
-          "t_ms": 12,
+          "seq": 13,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did the wheezing begin?",
@@ -1447,8 +1503,8 @@
           }
         },
         {
-          "seq": 11,
-          "t_ms": 14,
+          "seq": 14,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "About 6 weeks ago.",
@@ -1473,8 +1529,8 @@
           }
         },
         {
-          "seq": 12,
-          "t_ms": 14,
+          "seq": 15,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do symptoms wake you at night?",
@@ -1485,8 +1541,8 @@
           }
         },
         {
-          "seq": 13,
-          "t_ms": 16,
+          "seq": 16,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "A dry cough wakes me about once a week.",
@@ -1511,8 +1567,8 @@
           }
         },
         {
-          "seq": 14,
-          "t_ms": 16,
+          "seq": 17,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where do you feel the tightness?",
@@ -1522,8 +1578,8 @@
           }
         },
         {
-          "seq": 15,
-          "t_ms": 17,
+          "seq": 18,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Across my chest, not in one spot.",
@@ -1548,8 +1604,8 @@
           }
         },
         {
-          "seq": 16,
-          "t_ms": 18,
+          "seq": 19,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What is breathing like during a spell?",
@@ -1560,8 +1616,8 @@
           }
         },
         {
-          "seq": 17,
-          "t_ms": 19,
+          "seq": 20,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It whistles when I breathe out, and getting air out feels hard.",
@@ -1586,8 +1642,8 @@
           }
         },
         {
-          "seq": 18,
-          "t_ms": 20,
+          "seq": 21,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How much do the spells limit you?",
@@ -1598,8 +1654,8 @@
           }
         },
         {
-          "seq": 19,
-          "t_ms": 21,
+          "seq": 22,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I stop jogging and wait. I can still speak in full sentences.",
@@ -1624,8 +1680,8 @@
           }
         },
         {
-          "seq": 20,
-          "t_ms": 22,
+          "seq": 23,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How long do the spells last and how often do they happen?",
@@ -1636,8 +1692,8 @@
           }
         },
         {
-          "seq": 21,
-          "t_ms": 23,
+          "seq": 24,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Usually 10 to 20 minutes, about 3 days a week.",
@@ -1662,8 +1718,8 @@
           }
         },
         {
-          "seq": 22,
-          "t_ms": 24,
+          "seq": 25,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there a pattern at work or away from work?",
@@ -1674,8 +1730,8 @@
           }
         },
         {
-          "seq": 23,
-          "t_ms": 25,
+          "seq": 26,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Flour dust in the bakery sets it off. I was better during four days away.",
@@ -1700,8 +1756,8 @@
           }
         },
         {
-          "seq": 24,
-          "t_ms": 26,
+          "seq": 27,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What helps the wheezing?",
@@ -1712,8 +1768,8 @@
           }
         },
         {
-          "seq": 25,
-          "t_ms": 27,
+          "seq": 28,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Stopping and getting away from the dust helps.",
@@ -1738,8 +1794,8 @@
           }
         },
         {
-          "seq": 26,
-          "t_ms": 27,
+          "seq": 29,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What else brings it on?",
@@ -1750,8 +1806,8 @@
           }
         },
         {
-          "seq": 27,
-          "t_ms": 29,
+          "seq": 30,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Cold-air jogging and strong cleaning sprays.",
@@ -1776,8 +1832,8 @@
           }
         },
         {
-          "seq": 28,
-          "t_ms": 29,
+          "seq": 31,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you tried an inhaler?",
@@ -1788,8 +1844,8 @@
           }
         },
         {
-          "seq": 29,
-          "t_ms": 31,
+          "seq": 32,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, I have never had an inhaler.",
@@ -1814,8 +1870,8 @@
           }
         },
         {
-          "seq": 30,
-          "t_ms": 31,
+          "seq": 33,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Did you have this as a child?",
@@ -1826,8 +1882,8 @@
           }
         },
         {
-          "seq": 31,
-          "t_ms": 32,
+          "seq": 34,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I had hay fever, but no diagnosed asthma.",
@@ -1852,8 +1908,8 @@
           }
         },
         {
-          "seq": 32,
-          "t_ms": 33,
+          "seq": 35,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a cough?",
@@ -1864,8 +1920,8 @@
           }
         },
         {
-          "seq": 33,
-          "t_ms": 34,
+          "seq": 36,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I get a dry cough, especially at night.",
@@ -1881,6 +1937,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "cough"
+            ],
             "checklist_hits": [
               "h_symptom_cough"
             ],
@@ -1890,8 +1950,8 @@
           }
         },
         {
-          "seq": 34,
-          "t_ms": 35,
+          "seq": 37,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had dyspnea?",
@@ -1902,8 +1962,8 @@
           }
         },
         {
-          "seq": 35,
-          "t_ms": 36,
+          "seq": 38,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am short of breath during the spells, not when resting now.",
@@ -1919,6 +1979,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "dyspnea"
+            ],
             "checklist_hits": [
               "h_symptom_dyspnea"
             ],
@@ -1928,8 +1992,8 @@
           }
         },
         {
-          "seq": 36,
-          "t_ms": 37,
+          "seq": 39,
+          "t_ms": 56,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had rhinorrhea?",
@@ -1940,8 +2004,8 @@
           }
         },
         {
-          "seq": 37,
-          "t_ms": 38,
+          "seq": 40,
+          "t_ms": 58,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My nose runs when pollen is high.",
@@ -1966,8 +2030,8 @@
           }
         },
         {
-          "seq": 38,
-          "t_ms": 39,
+          "seq": 41,
+          "t_ms": 58,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a sore throat?",
@@ -1978,8 +2042,8 @@
           }
         },
         {
-          "seq": 39,
-          "t_ms": 40,
+          "seq": 42,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Sometimes my throat feels tight during a spell.",
@@ -1995,6 +2059,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "sore_throat"
+            ],
             "checklist_hits": [
               "h_symptom_sore_throat"
             ],
@@ -2004,8 +2072,8 @@
           }
         },
         {
-          "seq": 40,
-          "t_ms": 41,
+          "seq": 43,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had hoarseness?",
@@ -2016,8 +2084,8 @@
           }
         },
         {
-          "seq": 41,
-          "t_ms": 42,
+          "seq": 44,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My voice sometimes goes raspy after a spell.",
@@ -2042,8 +2110,8 @@
           }
         },
         {
-          "seq": 42,
-          "t_ms": 42,
+          "seq": 45,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had fatigue?",
@@ -2054,8 +2122,8 @@
           }
         },
         {
-          "seq": 43,
-          "t_ms": 44,
+          "seq": 46,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am tired after a night of coughing.",
@@ -2071,6 +2139,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "fatigue"
+            ],
             "checklist_hits": [
               "h_symptom_fatigue"
             ],
@@ -2080,8 +2152,8 @@
           }
         },
         {
-          "seq": 44,
-          "t_ms": 44,
+          "seq": 47,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had hemoptysis?",
@@ -2092,8 +2164,8 @@
           }
         },
         {
-          "seq": 45,
-          "t_ms": 45,
+          "seq": 48,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not coughed up blood.",
@@ -2118,8 +2190,8 @@
           }
         },
         {
-          "seq": 46,
-          "t_ms": 46,
+          "seq": 49,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -2130,8 +2202,8 @@
           }
         },
         {
-          "seq": 47,
-          "t_ms": 47,
+          "seq": 50,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not had a fever.",
@@ -2147,6 +2219,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "fever"
+            ],
             "checklist_hits": [
               "h_symptom_fever"
             ],
@@ -2156,8 +2232,8 @@
           }
         },
         {
-          "seq": 48,
-          "t_ms": 48,
+          "seq": 51,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had weight loss?",
@@ -2168,8 +2244,8 @@
           }
         },
         {
-          "seq": 49,
-          "t_ms": 49,
+          "seq": 52,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My weight has stayed the same.",
@@ -2185,6 +2261,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "weight_change"
+            ],
             "checklist_hits": [
               "h_symptom_weight_loss"
             ],
@@ -2194,8 +2274,8 @@
           }
         },
         {
-          "seq": 50,
-          "t_ms": 49,
+          "seq": 53,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions do you have?",
@@ -2206,8 +2286,8 @@
           }
         },
         {
-          "seq": 51,
-          "t_ms": 51,
+          "seq": 54,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Seasonal hay fever and occasional heartburn.",
@@ -2232,8 +2312,8 @@
           }
         },
         {
-          "seq": 52,
-          "t_ms": 51,
+          "seq": 55,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had surgery?",
@@ -2244,8 +2324,8 @@
           }
         },
         {
-          "seq": 53,
-          "t_ms": 53,
+          "seq": 56,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Only wisdom teeth removal at 20.",
@@ -2270,8 +2350,8 @@
           }
         },
         {
-          "seq": 54,
-          "t_ms": 53,
+          "seq": 57,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take?",
@@ -2282,8 +2362,8 @@
           }
         },
         {
-          "seq": 55,
-          "t_ms": 54,
+          "seq": 58,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Cetirizine 10 milligrams when pollen is bad, and a chewable antacid about once a week.",
@@ -2308,8 +2388,8 @@
           }
         },
         {
-          "seq": 56,
-          "t_ms": 55,
+          "seq": 59,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are you allergic to medicines?",
@@ -2320,8 +2400,8 @@
           }
         },
         {
-          "seq": 57,
-          "t_ms": 56,
+          "seq": 60,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Trimethoprim-sulfamethoxazole gave me a widespread rash when I was 17, without blisters or breathing trouble.",
@@ -2346,8 +2426,8 @@
           }
         },
         {
-          "seq": 58,
-          "t_ms": 57,
+          "seq": 61,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you smoke or vape?",
@@ -2358,8 +2438,8 @@
           }
         },
         {
-          "seq": 59,
-          "t_ms": 58,
+          "seq": 62,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have never smoked or vaped.",
@@ -2384,8 +2464,8 @@
           }
         },
         {
-          "seq": 60,
-          "t_ms": 59,
+          "seq": 63,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How much alcohol do you drink?",
@@ -2396,8 +2476,8 @@
           }
         },
         {
-          "seq": 61,
-          "t_ms": 60,
+          "seq": 64,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not drink alcohol.",
@@ -2422,8 +2502,8 @@
           }
         },
         {
-          "seq": 62,
-          "t_ms": 61,
+          "seq": 65,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use recreational drugs?",
@@ -2434,8 +2514,8 @@
           }
         },
         {
-          "seq": 63,
-          "t_ms": 62,
+          "seq": 66,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No.",
@@ -2460,8 +2540,8 @@
           }
         },
         {
-          "seq": 64,
-          "t_ms": 62,
+          "seq": 67,
+          "t_ms": 89,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does your job involve?",
@@ -2472,8 +2552,8 @@
           }
         },
         {
-          "seq": 65,
-          "t_ms": 64,
+          "seq": 68,
+          "t_ms": 91,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I mix dough at a bakery. There is visible flour dust, and masks are not consistently available.",
@@ -2498,8 +2578,8 @@
           }
         },
         {
-          "seq": 66,
-          "t_ms": 64,
+          "seq": 69,
+          "t_ms": 91,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who do you live with?",
@@ -2509,8 +2589,8 @@
           }
         },
         {
-          "seq": 67,
-          "t_ms": 65,
+          "seq": 70,
+          "t_ms": 93,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Two roommates. There are no pets or smokers at home.",
@@ -2535,8 +2615,8 @@
           }
         },
         {
-          "seq": 68,
-          "t_ms": 66,
+          "seq": 71,
+          "t_ms": 94,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does asthma or allergy run in your family?",
@@ -2547,8 +2627,8 @@
           }
         },
         {
-          "seq": 69,
-          "t_ms": 67,
+          "seq": 72,
+          "t_ms": 96,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My mother has asthma and my brother has eczema.",
@@ -2573,8 +2653,8 @@
           }
         },
         {
-          "seq": 70,
-          "t_ms": 68,
+          "seq": 73,
+          "t_ms": 96,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What health problems does your father have?",
@@ -2585,8 +2665,8 @@
           }
         },
         {
-          "seq": 71,
-          "t_ms": 69,
+          "seq": 74,
+          "t_ms": 98,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My father has no major illness that I know of.",
@@ -2611,8 +2691,8 @@
           }
         },
         {
-          "seq": 72,
-          "t_ms": 70,
+          "seq": 75,
+          "t_ms": 99,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Could you be pregnant?",
@@ -2623,8 +2703,8 @@
           }
         },
         {
-          "seq": 73,
-          "t_ms": 71,
+          "seq": 76,
+          "t_ms": 101,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My period was two weeks ago. I use an IUD and do not think I am pregnant.",
@@ -2640,6 +2720,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "reproductive_history",
+            "reproductive_context": [
+              "current_pregnancy"
+            ],
             "checklist_hits": [
               "h_history_pregnancy_possibility"
             ],
@@ -2649,8 +2733,8 @@
           }
         },
         {
-          "seq": 74,
-          "t_ms": 72,
+          "seq": 77,
+          "t_ms": 101,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most?",
@@ -2661,8 +2745,8 @@
           }
         },
         {
-          "seq": 75,
-          "t_ms": 73,
+          "seq": 78,
+          "t_ms": 103,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am worried I will have to quit the bakery.",
@@ -2687,8 +2771,8 @@
           }
         },
         {
-          "seq": 76,
-          "t_ms": 73,
+          "seq": 79,
+          "t_ms": 104,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -2698,8 +2782,8 @@
           }
         },
         {
-          "seq": 77,
-          "t_ms": 89,
+          "seq": 80,
+          "t_ms": 127,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Right, I am worried I will have to quit the bakery. I'm not sure. What do you mean exactly?",
@@ -2728,8 +2812,8 @@
           }
         },
         {
-          "seq": 78,
-          "t_ms": 90,
+          "seq": 81,
+          "t_ms": 128,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -2739,8 +2823,8 @@
           }
         },
         {
-          "seq": 79,
-          "t_ms": 91,
+          "seq": 82,
+          "t_ms": 130,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Yes, that's fine. Go ahead.",
@@ -2749,8 +2833,8 @@
           }
         },
         {
-          "seq": 80,
-          "t_ms": 90,
+          "seq": 83,
+          "t_ms": 128,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -2761,8 +2845,8 @@
           }
         },
         {
-          "seq": 81,
-          "t_ms": 10092,
+          "seq": 84,
+          "t_ms": 10131,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -2781,8 +2865,8 @@
           }
         },
         {
-          "seq": 82,
-          "t_ms": 10092,
+          "seq": 85,
+          "t_ms": 10131,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert, speaking comfortably in full sentences; no respiratory distress.",
@@ -2803,8 +2887,8 @@
           }
         },
         {
-          "seq": 83,
-          "t_ms": 50092,
+          "seq": 86,
+          "t_ms": 50131,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -2829,8 +2913,8 @@
           }
         },
         {
-          "seq": 84,
-          "t_ms": 50092,
+          "seq": 87,
+          "t_ms": 50131,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rate and rhythm without murmur.",
@@ -2851,8 +2935,8 @@
           }
         },
         {
-          "seq": 85,
-          "t_ms": 91092,
+          "seq": 88,
+          "t_ms": 74131,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -2871,13 +2955,13 @@
             "scopes": [
               "lungs"
             ],
-            "duration_s": 41,
+            "duration_s": 24,
             "withheld": []
           }
         },
         {
-          "seq": 86,
-          "t_ms": 91092,
+          "seq": 89,
+          "t_ms": 74131,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Mild bilateral expiratory wheezes with prolonged expiration; no focal crackles.",
@@ -2898,8 +2982,8 @@
           }
         },
         {
-          "seq": 87,
-          "t_ms": 103092,
+          "seq": 90,
+          "t_ms": 89131,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect chest wall",
@@ -2916,13 +3000,13 @@
             "scopes": [
               "lungs.inspection"
             ],
-            "duration_s": 12,
+            "duration_s": 15,
             "withheld": []
           }
         },
         {
-          "seq": 88,
-          "t_ms": 103092,
+          "seq": 91,
+          "t_ms": 89131,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Symmetric chest movement without accessory muscle use.",
@@ -2943,8 +3027,8 @@
           }
         },
         {
-          "seq": 89,
-          "t_ms": 123092,
+          "seq": 92,
+          "t_ms": 104131,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect nose with light source",
@@ -2961,13 +3045,13 @@
             "scopes": [
               "heent.nose"
             ],
-            "duration_s": 20,
+            "duration_s": 15,
             "withheld": []
           }
         },
         {
-          "seq": 90,
-          "t_ms": 123092,
+          "seq": 93,
+          "t_ms": 104131,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Pale edematous nasal mucosa with clear secretions bilaterally.",
@@ -2988,8 +3072,8 @@
           }
         },
         {
-          "seq": 91,
-          "t_ms": 143092,
+          "seq": 94,
+          "t_ms": 122131,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect mouth and throat with light",
@@ -3006,13 +3090,13 @@
             "scopes": [
               "heent.throat"
             ],
-            "duration_s": 20,
+            "duration_s": 18,
             "withheld": []
           }
         },
         {
-          "seq": 92,
-          "t_ms": 143092,
+          "seq": 95,
+          "t_ms": 122131,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No tonsillar swelling or exudate; voice clear at rest.",
@@ -3033,8 +3117,8 @@
           }
         },
         {
-          "seq": 93,
-          "t_ms": 168092,
+          "seq": 96,
+          "t_ms": 138131,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -3050,13 +3134,18 @@
             "scopes": [
               "osteopathic"
             ],
-            "duration_s": 25,
-            "withheld": []
+            "duration_s": 16,
+            "withheld": [
+              "expanded_exam_osteo_screen_cervical",
+              "expanded_exam_osteo_screen_lumbar",
+              "expanded_exam_osteo_screen_sacrum",
+              "expanded_exam_osteo_screen_ribs"
+            ]
           }
         },
         {
-          "seq": 94,
-          "t_ms": 168092,
+          "seq": 97,
+          "t_ms": 138131,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T3 right paraspinal tissue texture change and tenderness.",
@@ -3077,8 +3166,8 @@
           }
         },
         {
-          "seq": 95,
-          "t_ms": 168092,
+          "seq": 98,
+          "t_ms": 138131,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "I will arrange breathing tests and review the work pattern. If we confirm asthma, we will choose an inhaler plan and practice using it. Severe trouble breathing or speaking means seek emergency help.",
@@ -3089,8 +3178,8 @@
           }
         },
         {
-          "seq": 96,
-          "t_ms": 168092,
+          "seq": 99,
+          "t_ms": 138131,
           "phase": "encounter",
           "kind": "counseling",
           "text": "I will arrange breathing tests and review the work pattern. If we confirm asthma, we will choose an inhaler plan and practice using it. Severe trouble breathing or speaking means seek emergency help.",
@@ -3101,8 +3190,8 @@
           }
         },
         {
-          "seq": 97,
-          "t_ms": 168092,
+          "seq": 100,
+          "t_ms": 138131,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Thank you. I understand that the next steps depend on the examination and tests.",
@@ -3114,8 +3203,8 @@
           }
         },
         {
-          "seq": 98,
-          "t_ms": 168092,
+          "seq": 101,
+          "t_ms": 138131,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -3127,11 +3216,11 @@
           }
         },
         {
-          "seq": 99,
-          "t_ms": 168092,
+          "seq": 102,
+          "t_ms": 138131,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "I am worried I will have to quit the bakery.",
+          "text": "Thank you for listening. I do not have anything further to add right now.",
           "meta": {
             "facts_released": [],
             "concepts": {},
@@ -3142,8 +3231,8 @@
           }
         },
         {
-          "seq": 100,
-          "t_ms": 168092,
+          "seq": 103,
+          "t_ms": 138131,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "We can discuss safer flour handling and protection with occupational health, with your permission, rather than assuming you must leave your job.",
@@ -3154,8 +3243,8 @@
           }
         },
         {
-          "seq": 101,
-          "t_ms": 168092,
+          "seq": 104,
+          "t_ms": 138131,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "We can discuss safer flour handling and protection with occupational health, with your permission, rather than assuming you must leave your job.",
@@ -3166,8 +3255,8 @@
           }
         },
         {
-          "seq": 102,
-          "t_ms": 168092,
+          "seq": 105,
+          "t_ms": 138131,
           "phase": "encounter",
           "kind": "counseling",
           "text": "We can discuss safer flour handling and protection with occupational health, with your permission, rather than assuming you must leave your job.",
@@ -3178,8 +3267,8 @@
           }
         },
         {
-          "seq": 103,
-          "t_ms": 168092,
+          "seq": 106,
+          "t_ms": 138131,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "That would help. Thank you.",
@@ -3192,12 +3281,12 @@
         }
       ],
       "note_words": 403,
-      "estimated_encounter_s": 488,
+      "estimated_encounter_s": 467,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 21
+        "unresolved_count": 20
       },
       "reasoning": [
         {
@@ -3317,8 +3406,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "c259794f4564334cbb4399d2e60022a47934c58c775e55c6103938d94e700186",
-      "engine_version": "4.1.0"
+      "case_hash": "09b4f2be266c22ad357921b46c2b6f7f396dbda73cd951987f1d293ad1bf5914",
+      "engine_version": "4.3.2"
     }
   ]
 }

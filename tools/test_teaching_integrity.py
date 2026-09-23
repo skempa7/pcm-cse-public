@@ -23,7 +23,10 @@ def main():
             assert lesson['case_hash'] == hashlib.sha256(json.dumps(case, sort_keys=True).encode()).hexdigest(), context + ': stale case source'
             assert lesson.get('engine_version') == version.ENGINE_VERSION, context + ': stale engine; regenerate lessons'
             assert not lesson['missing_example_facts'], context + ': unelicited lesson facts'
-            assert lesson['estimated_encounter_s'] <= 840 and lesson['note_words'] <= 550, context + ': lesson exceeds authored scope'
+            assert lesson['note_words'] <= 550, context + ': example note exceeds authored scope'
+            # Full examination times may exceed the 14-minute encounter; the
+            # reader labels those walkthroughs for untimed study.
+            checked['untimed_over_14_minutes'] += lesson['estimated_encounter_s'] > 840
             events = {e['seq']: e for e in lesson['ledger']}
             assert list(events) == list(range(1, len(events) + 1)), context + ': broken event ordering'
             for row in lesson['timeline']:
