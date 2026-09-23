@@ -611,7 +611,57 @@ def _distribute_list(ask):
         return None
     # A stem ending in its own noun ("do you have chest pain") already carries a
     # topic; distributing it would duplicate that topic onto every item.
+    for n in range(1, len(items)):
+        items[n] = _same_object(items[n - 1], items[n])
+    # "Any cancer or heart disease in your family": the relatives at the end
+    # scope every item, or "any cancer" becomes a question about her own.
+    scope = re.search(r"\s+(?:in|among|amongst|on|within) (?:%s\s+)?(?:(?:mother|father)'?s side of (?:the |your )?)?%s$"
+                      % (_DETERMINER, _RELATIVE.pattern), items[-1], re.I)
+    if scope and len(items) > 1:
+        items = [item if _RELATIVE.search(item) else item + scope.group(0) for item in items]
     return ["%s %s" % (stem, item) for item in items]
+
+
+# "Swelling of the lips or tongue", "blood in your stool or urine": a bare
+# body part after an item that ends on a body part is that item's object
+# again, not a topic of its own -- "any tongue" is a question nobody asked.
+# The item takes over the phrase in front of the object ("swelling of the").
+_DETERMINER = r"(?:the|your|my|his|her|their|both|either)"
+_BODY_WORDS = (
+    r"(?:head|face|scalp|hair|eyes?|eyelids?|ears?|nose|mouth|lips?|tongue|gums?|teeth|tooth|throat|jaw|neck|"
+    r"shoulders?|arms?|elbows?|forearms?|wrists?|hands?|palms?|fingers?|thumbs?|nails?|chest|breasts?|back|spine|"
+    r"belly|stomach|abdomen|tummy|sides?|flanks?|groin|hips?|pelvis|buttocks?|legs?|thighs?|knees?|shins?|calf|calves|"
+    r"ankles?|feet|foot|toes?|heels?|soles?|skin|joints?|muscles?|bones?|heart|lungs?|kidneys?|bladder|bowels?|liver|"
+    r"urine|stools?|sputum|phlegm|mucus|saliva|vomit|vision|eyesight|hearing|balance|memory|speech|smell|taste|"
+    r"sleep|appetite|breathing|swallowing|walking)")
+_BODY_PART = re.compile(_BODY_WORDS)
+# Relatives behave the same way: "problems among your parents or siblings".
+_RELATIVE = re.compile(
+    r"(?:family|relatives?|parents?|mother|father|mom|mum|dad|siblings?|brothers?|sisters?|"
+    r"grandparents?|grandmothers?|grandfathers?|children|kids|sons?|daughters?|aunts?|uncles?|cousins?)")
+_OBJECT_TAIL = re.compile(
+    r"^(?P<lead>.*\b(?:of|in|on|around|with|to|from|near|behind|under|at|over|inside|into|about|among|amongst|between)\s+)"
+    r"(?P<det>%s\s+)?(?P<obj>(?:\w+\s+)?\w+)$" % _DETERMINER, re.I)
+
+
+_FINDING_AT_SITE = re.compile(
+    r"\b(?!(?:any|anything|some|something|and|or|so|but|that|it|this)\b)[a-z]+(?: [a-z]+)? (?:of|in|on|around|at|near|behind|under|over|inside) (?:%s )?%s\b" % (_DETERMINER, _BODY_WORDS), re.I)
+
+
+def names_finding_at_site(text):
+    """"Any swelling of the lips": a finding and where, a whole topic of its own."""
+    return bool(_FINDING_AT_SITE.search(nlp.normalize(text)))
+
+
+def _same_object(previous, item):
+    tail = _OBJECT_TAIL.match(previous)
+    bare = re.sub(r"^%s\s+" % _DETERMINER, "", item, flags=re.I)
+    if not tail or len(bare.split()) > 2:
+        return item
+    head, obj = bare.split()[-1].lower(), tail.group("obj").split()[-1].lower()
+    if not any(kind.fullmatch(head) and kind.fullmatch(obj) for kind in (_BODY_PART, _RELATIVE)):
+        return item
+    return tail.group("lead") + (item if bare != item else (tail.group("det") or "") + item)
 
 
 # --------------------------------------------------------------------------
@@ -997,42 +1047,52 @@ def segment(utterance):
     Always returns at least one segment. A single-ask turn returns exactly
     [utterance] so the caller can detect that nothing needs composing.
     """
+    return [item for _, items in segment_groups(utterance) for item in items]
+
+
+def segment_groups(utterance):
+    """`segment`, with each distributed list kept beside the clause it came from.
+
+    Returns [(clause, items)]. "Any swelling of the lips or tongue?" is one
+    clause with two items; a case may author it as one question, so the
+    caller can fall back to the clause when none of its items is answerable.
+    """
     if not utterance or not utterance.strip():
-        return [utterance]
+        return [(utterance, [utterance])]
     utterance = casual_expand(utterance)
     # Quantified substance-use questions contain two independent histories.
     # Keep this separate from descriptor comparisons such as 'sharp or dull'.
     substance_pair = re.fullmatch(r"\s*(?:how much do you|do you) (smoke|drink)(?: alcohol)? (?:or|and) (smoke|drink)(?: alcohol)?[?. ]*", utterance, re.I)
     if substance_pair and substance_pair[1].lower() != substance_pair[2].lower():
         prompts = {'smoke': 'How much do you smoke?', 'drink': 'How much alcohol do you drink?'}
-        return [prompts[verb.lower()] for verb in substance_pair.groups()]
+        return [(prompts[verb.lower()], [prompts[verb.lower()]]) for verb in substance_pair.groups()]
     # A title's full stop is not a sentence boundary. "I'm working with Dr.
     # Lee. What brought you in?" used to split into "...with Dr", "Lee" and the
     # question, and the stray fragment cost the turn its opening.
     utterance = _ABBREVIATION.sub(lambda m: m.group(0)[:-1] + "\u2024", utterance)
     group = _shorthand_group(utterance) or _identity_topic_list(utterance)
     if group:
-        return group
+        return [(item, [item]) for item in group]
     raw = [_clean(p).replace("\u2024", ".") for p in _NEW_ASK.split(utterance)]
     parts = [piece for p in raw if p for piece in _split_after_identity(p)]
     if not parts:
-        return [utterance]
+        return [(utterance, [utterance])]
 
     if len(parts) == 1:
         joined = _topic_conjunction(parts[0])
         if joined:
             parts = joined
 
-    expanded = []
+    groups = []
     for part in parts:
         items = _shorthand_group(part) or _shorthand_list(part) or _distribute_list(part)
-        expanded.extend(items if items else [part])
-
-    # Drop fragments that carry no askable content of their own.
-    expanded = [p for p in expanded if re.search(r"[a-z]", p, re.I)]
-    if len(expanded) <= 1:
-        return [utterance]
-    return [expand_bare_topic(p) for p in expanded]
+        # Drop fragments that carry no askable content of their own.
+        items = [p for p in (items or [part]) if re.search(r"[a-z]", p, re.I)]
+        if items:
+            groups.append((part, items))
+    if sum(len(items) for _, items in groups) <= 1:
+        return [(utterance, [utterance])]
+    return [(part, [expand_bare_topic(p) for p in items]) for part, items in groups]
 
 
 # --------------------------------------------------------------------------

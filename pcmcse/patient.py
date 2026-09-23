@@ -43,10 +43,17 @@ from . import allergy_history, dialogue, lexicon, nlp, reproductive_history, ros
 from . import physexam as _physexam
 
 _ANYTHING_ELSE = [
-    "anything else", "anything more", "is there anything", "something else",
-    "other symptoms", "any other", "anything i missed", "anything you",
-    "what else",
+    "anything else", "anything more", "other symptoms", "any other",
+    "anything i missed", "what else",
 ]
+# "Is there anything..." and "anything you..." open an invitation only when the
+# rest of the turn is one ("anything you'd like to add?"). "Is there anything
+# you take every day?" is a medication question, and answering it "No, I think
+# that's about it" reads as a denial the student would document.
+_OPEN_ANYTHING = re.compile(r"\b(?:is there anything|anything you|something else)\b")
+_INVITATION_TAIL = re.compile(
+    r"\b(?:else|more|add|tell|mention|share|want|wanted|like to|wanna|forgot|forget|"
+    r"missed|should know|need to know|think of|on your mind|ask me|bring up|go over)\b")
 
 _EMPATHY_CUES = [
     "that must", "i'm sorry", "im sorry", "sounds difficult", "sounds hard",
@@ -166,7 +173,7 @@ _WORSE_WORDS = {
     "worse", "worsen", "worsens", "worsened", "worsening", "aggravate",
     "aggravates", "aggravated", "aggravating", "exacerbate", "exacerbates",
     "exacerbated", "flare", "flares", "trigger", "triggers", "provoke",
-    "provokes", "worst",
+    "provokes",
 }
 
 # The course's own checklist keeps three things apart that a case files under
@@ -236,7 +243,7 @@ _NOT_A_SYMPTOM_NAME = {
     "begun", "going", "goes", "went", "happen", "happens", "happened",
     "happening", "been", "come", "comes", "came", "last", "lasts", "lasted",
     "long", "since", "ago", "first", "notice", "noticed", "feel", "feels",
-    "felt", "time", "times", "week", "weeks", "day", "days", "month", "months",
+    "felt", "feeling", "time", "times", "week", "weeks", "day", "days", "month", "months",
     "year", "years", "hour", "hours", "minute", "minutes", "night", "nights",
     "morning", "evening", "today", "yesterday", "recently", "usually",
     "sometimes", "often", "always", "never", "worse", "better", "much", "many",
@@ -247,6 +254,10 @@ _NOT_A_SYMPTOM_NAME = {
 }
 
 
+# Words a patient uses for what a symptom feels like.
+_DESCRIPTORS = (r"(?:sharp|dull|burning|stabbing|aching|achy|ache|throbbing|pounding|squeezing|crushing|pressure|"
+                r"tight|cramping|crampy|shooting|gnawing|heavy|stinging|pins and needles)")
+
 _ASPECTS = [
     {"id": "onset", "categories": ["onset"],
      # "how far back" is a duration question. Without it the bare word "back"
@@ -256,7 +267,12 @@ _ASPECTS = [
               "first began", "when it started", "when this started",
               "how many days", "how far back", "how long back",
               "how long has this been going on", "how long has this been",
-              "been going on for", "started how long"]},
+              "been going on for", "started how long"],
+     # "Has it been bothering you long?", "have you had this for a while?"
+     "patterns": [r"\b(?:has|have) (?:it|this|that|these|the (?:pain|problem|symptoms?)|you had (?:it|this|that|these|the (?:pain|problem|symptoms?)))\b"
+                  r".*\b(?:a while|long|some time|a long time|for ages|very long)\b",
+                  # "Did it start recently?", "has this just come on?"
+                  r"\b(?:did|has) (?:it|this|that|these symptoms|the (?:pain|problem|symptoms?)) (?:just |only |first )?(?:start|begin|come on|appear|develop)"]},
     {"id": "chronology", "categories": ["chronology"],
      "cues": ["getting worse", "getting better", "changed since", "progress",
               "since it started", "how has it changed", "course of it",
@@ -264,11 +280,20 @@ _ASPECTS = [
     {"id": "location", "categories": ["location"],
      "cues": ["where is", "where does", "where do you feel", "which side",
               "what part", "point to", "show me where", "where exactly",
-              "location of", "whereabouts"]},
+              "location of", "whereabouts", "which part", "which area",
+              "what area", "which spot", "what spot", "where on your body",
+              "where do you notice", "where do you get"]},
     {"id": "radiation", "categories": ["radiation"],
      "words": {"radiation", "radiating"}, "needs_referent": True,
      "cues": ["radiate", "spread", "travel", "move anywhere", "go anywhere",
-              "shoot", "anywhere else"]},
+              "shoot", "anywhere else", "anywhere besides", "anywhere other than",
+              "anywhere apart from", "elsewhere", "somewhere else", "another part",
+              "other part", "another area", "other area", "other places",
+              "stay in one", "stays in one", "stay in the same", "stays in the same",
+              "stay put", "stays put"],
+     # "Does it move down into your arm?", "the pain moves to my back"
+     "patterns": [r"\b(?:it|this|that|the (?:pain|discomfort|ache|pressure))\b.*\bmoves? (?:from|to|into|out of|away from|down|up)\b",
+                  r"\b(?:it|this|that|the (?:pain|discomfort|ache|pressure))\b.*\b(?:go|goes|going|went|spread|spreads|shoot|shoots|travel|travels|run|runs) (?:down|up|into|through|toward|towards|across) (?:your|the)\b"]},
     {"id": "quality", "categories": ["quality"],
      # "sensation" and "character" are the words a student reaches for when
      # they do not say "feel like". They need a referent because "what sort of
@@ -281,33 +306,62 @@ _ASPECTS = [
               "kind of pain", "type of pain", "how would you describe", "what is the pain like", "how would you describe it",
               "sort of pain", "sort of sensation", "sort of feeling",
               "kind of sensation", "kind of feeling", "type of sensation",
-              "how does it feel", "what does that feel like"]},
+              "how does it feel", "what does that feel like", "kind of discomfort",
+              "type of discomfort", "sort of discomfort"],
+     # "Is it more like a burning?", "is the pain throbbing or dull?"
+     "patterns": [r"\b(?:is|was|does) (?:it|the (?:pain|discomfort))(?: feel)? (?:more |mostly |kind of |sort of )?(?:(?:of |like )?(?:a |an )?)"
+                  + _DESCRIPTORS + r"\b",
+                  r"\b(?:call|describe) (?:it|the (?:pain|feeling|discomfort)) (?:as )?(?:a |an )?(?:more )?" + _DESCRIPTORS + r"\b",
+                  r"\binto words\b",
+                  # "What would you compare the feeling to?"
+                  r"\bcompare (?:it|the (?:pain|feeling|discomfort|sensation))\b|\bwhat (?:would|could|can) you compare\b"]},
     {"id": "severity", "categories": ["severity"],
      # "intense" must NOT reach pain severity when the turn is about exercise
      # intensity, so it is a referent-gated word, never a bare cue:
      # "How intense would you call IT?" fires, "How intense is your exercise
      # routine?" does not.
-     "words": {"intense", "intensity", "painful", "unbearable"},
+     # "Worst" asks how bad it gets ("if ten is the worst pain..."), not what
+     # makes it worse.
+     "words": {"intense", "intensity", "painful", "unbearable", "worst"},
      "needs_referent": True,
      "cues": ["how bad", "how severe", "scale of", "out of ten", "out of 10",
               "rate the pain", "rate it", "severity", "how much does it hurt",
               "how strong", "at its worst", "worst it gets", "how much pain",
-              "when it is at its worst", "how bad does it get"]},
+              "when it is at its worst", "how bad does it get",
+              "worst pain", "if ten", "if 10", "ten being", "10 being", "zero to ten",
+              "0 to 10", "one to ten", "1 to 10", "give it a number"],
+     # "Is it mild, moderate, or severe?", "how much is it hurting?"
+     "patterns": [r"\b(?:mild|moderate|severe)\b.*\b(?:mild|moderate|severe)\b",
+                  r"\bhow (?:much|badly|bad) (?:is|does|did|has) (?:it|this|that|the (?:pain|discomfort)) (?:been )?(?:hurt|hurting|bother|bothering)\b"]},
     {"id": "timing", "categories": ["timing"],
      "cues": ["constant", "come and go", "comes and goes", "all the time",
               "let up", "lets up", "ever let up", "go away completely",
               "goes away completely", "there all the time", "on and off",
               "how often", "intermittent", "does it stop", "at night",
+              "all day", "the whole day", "the whole time", "nonstop", "non stop",
+              "continuous", "continuously", "every minute",
               "time of day", "certain times", "how often does it happen", "how often does this happen", "how frequently", "how many times a day", "how many times a week", "does it happen often"]},
+    {"id": "timing_resolution", "categories": ["timing"],
+     # "Does it ever completely go away?" -- whether it stops between bouts.
+     "patterns": [r"\b(?:completely|totally|fully|entirely) (?:go|goes|went) away\b|\b(?:go|goes|went) away (?:completely|totally|fully|entirely)\b"]},
     {"id": "alleviating", "categories": ["alleviating"],
      "words": _RELIEF_WORDS, "needs_referent": True,
      "cues": ["edge off", "any relief", "calm it down", "calms it down",
-              "settle it down", "more tolerable", "more comfortable", "what helps", "what makes it better", "anything help", "does anything help", "what relieves"]},
+              "settle it down", "more tolerable", "more comfortable", "what helps", "what makes it better", "anything help", "does anything help", "what relieves"],
+     # "Does resting help?", "does lying still ease it?"
+     "patterns": [r"\b(?:does|did|do|would|will) (?:\w+ing(?: \w+)?|rest|sleep|ice|heat) (?:help|make it better|ease it|relieve it)\b"]},
     {"id": "aggravating", "categories": ["aggravating"],
      "words": _WORSE_WORDS, "needs_referent": True,
      "cues": ["set it off", "sets it off", "bring it on", "brings it on",
               "brings on", "act up", "acts up", "more intense",
-              "flare it up", "kick it off"]},
+              "flare it up", "kick it off"],
+     # Provoking it, in the phrasal verbs people use: stir up, set off, fire
+     # up, kick off, bring on.
+     "patterns": [r"\b(?:anything|what|something)\b.*\b(?:stirs?|stirred|sets?|kicks?|kicked|fires?|fired|brings?|brought|sparks?|sparked|flares?|flared)"
+                  r" (?:it|this|that|them|the (?:pain|symptoms?|discomfort|ache))? ?(?:up|off|on)\b",
+                  # "What makes it hurt more?"
+                  r"\b(?:make|makes|made|making) (?:it|this|that|the (?:pain|symptoms?|discomfort|ache)) (?:hurt|ache|sting|throb|burn|bother you) more\b"
+                  r"|\b(?:hurts?|aches?) more\b|\bmore painful\b"]},
     {"id": "treatment", "categories": ["treatment"],
      "cues": ["tried anything", "taken anything", "taken for", "done for it",
               "over the counter", "any medicine for", "remedies", "treated it",
@@ -318,20 +372,41 @@ _ASPECTS = [
     {"id": "pmh", "categories": ["pmh"],
      "cues": ["medical problem", "medical condition", "medical history",
               "health problem", "diagnosed with", "chronic condition", "chronic illness", "long term illness",
-              "other health", "any conditions"]},
+              "other health", "any conditions", "ongoing conditions", "ongoing health", "health conditions",
+              "health issues", "illnesses", "past medical", "been treated for", "see a doctor for",
+              "told you have", "told you had", "ever been told", "being treated for",
+              "other conditions", "other medical"]},
     {"id": "psh", "categories": ["psh"],
-     "cues": ["surgery", "surgeries", "operation", "hospitalized",
-              "been in the hospital", "any procedures"]},
+     "cues": ["surgery", "surgeries", "surgical", "operation", "operated",
+              "hospitalized", "been in the hospital", "any procedures",
+              "under the knife", "anesthesia", "anaesthesia", "put under",
+              "anything removed", "anything taken out", "admitted to the hospital",
+              "admitted to hospital", "hospital stay", "stayed in the hospital",
+              "hospitalization", "hospitalisation", "operating room", "operating theatre"],
+     "patterns": [r"\b(?:had|have had|undergone|gone through)\b.*\bprocedures?\b|\bprocedures? (?:done|before|in the past)\b",
+                  # "have you had your gallbladder taken out?"
+                  r"\b(?:had|get|got|have)\b.*\b(?:taken out|removed|repaired|replaced|fixed surgically)\b"]},
     {"id": "medications", "categories": ["medications"],
      "cues": ["medication", "medicine", "meds", "prescription", "pills",
-              "taking anything", "supplements", "vitamins",
-              "what do you take every day", "what do you take daily", "what do you take regularly"]},
+              "taking anything", "supplements", "vitamins", "tablets", "capsules",
+              "inhaler", "ointment", "injections",
+              "what do you take every day", "what do you take daily", "what do you take regularly"],
+     # What she takes as a rule, not what she tried for this ("have you taken
+     # anything for it?" stays the treatment row).
+     # "For your health" is still her regular medicines, not a remedy for this.
+     "patterns": [r"\b(?:do|are) you (?:currently |regularly |normally |usually |still )?(?:take|taking|use|using) (?:anything|something)\b(?! (?:for|to help|to ease|to relieve|when)(?! (?:your )?(?:general )?health))",
+                  r"\b(?:anything|something) (?:that )?you (?:currently |regularly |normally |usually )?(?:take|use)\b(?! (?:for|to help|to ease|to relieve|when)(?! (?:your )?(?:general )?health))",
+                  r"\bare you (?:currently |still |now )?on (?:anything|something|any (?:treatment|therapy|regular))\b",
+                  r"\bwhat (?:else )?do you (?:currently |regularly |normally |usually )?take\b(?! for)",
+                  r"\b(?:take|taking|use|using)\b.*\b(?:regularly|daily|every day|each day|every morning|every night|routinely|on a (?:daily|regular|routine) basis|as a rule|day to day|day-to-day)\b"]},
     {"id": "allergies", "categories": ["allergies"],
-     "cues": ["allerg", "nkda", "react to any"]},
+     "cues": ["allerg", "nkda", "react to any", "react badly", "reacted badly",
+              "bad reaction", "intoleran"]},
     {"id": "family", "categories": ["family"],
      "cues": ["family history", "runs in the family", "your parents",
               "your mother", "your father", "your mom", "your dad",
-              "siblings", "brothers or sisters", "anyone in your family", "mom or dad", "mother or father", "run in the family", "runs in the family", "runs in your family", "about your family", "family have", "anyone in your family", "parents have", "family members"]},
+              "siblings", "brothers or sisters", "anyone in your family", "mom or dad", "mother or father", "run in the family", "runs in the family", "runs in your family", "about your family", "family have", "anyone in your family", "parents have", "family members",
+              "relatives", "related to you", "hereditary", "inherited", "in the family", "in your family"]},
     {"id": "tobacco", "categories": ["social"],
      "cues": ["smoke", "smoking", "tobacco", "cigarette", "vape", "nicotine"],
      "keywords": ["smoke", "smoked", "smoking", "tobacco", "cigarette",
@@ -377,9 +452,15 @@ _ASPECTS = [
               "expectations"],
      "keywords": ["worried", "scared", "afraid", "kidney", "cancer", "heart",
                   "stroke", "thinking"]},
+    {"id": "social_overview", "categories": ["social"],
+     "cues": ["lifestyle", "daily habits", "your habits", "typical day", "day to day life",
+              "your routine", "social history", "outside of work", "for fun", "free time"]},
     {"id": "impact", "categories": ["fife"],
      "cues": ["affecting your", "impact on your life", "interfering",
-              "keeping you from", "affecting your work", "getting in the way"],
+              "keeping you from", "affecting your work", "getting in the way",
+              "interfere with", "get in the way", "stop you from", "stops you from",
+              "keep you from", "keeps you from", "affect your day", "affects your day",
+              "daily activities", "normal activities", "day to day activities"],
      "keywords": ["exam", "work", "school", "miss", "missing", "job"]},
 ]
 
@@ -720,14 +801,17 @@ def authored_temporal_dimensions(fact):
 def compound_history_domains(question):
     q=nlp.normalize(question)
     domains=[name for name,pattern in [('medications',r'medicin|medication|prescription|supplement|\bmeds\b'),('allergies',r'allerg|reaction.*(?:drug|medic)')] if re.search(pattern,q)]
+    if allergy_history.adverse_drug_question(q) and 'allergies' not in domains:
+        domains.append('allergies')
     if 'allergies' in domains and 'medications' in domains:
-        modifier=re.search(r'(?:medication|medicine|drug)\s+allerg|allerg.*(?:to|from).*(?:medic|drug)',q)
+        modifier=re.search(r'(?:medication|medicine|drug)\s+allerg|allerg.*(?:to|from).*(?:medic|drug)',q) or allergy_history.adverse_drug_question(q)
         separate_med_question=re.search(r'(?:what|which).*?(?:medicin|medication|meds)|(?:medicin|medication|meds).*?(?:take|taking)|(?:take|taking).*?(?:medicin|medication|meds)',q)
         if modifier and not separate_med_question:domains.remove('medications')
     return domains
 
 
-_FAMILY_SCOPE=re.compile(r"\b(?:family|relatives?|mothers?|fathers?|mom|mum|dad|parents?|siblings?|brothers?|sisters?|grandmothers?|grandfathers?|grandparents?)\b|\bruns in\b")
+_FAMILY_SCOPE=re.compile(r"\b(?:family|relatives?|mothers?|fathers?|mom|mum|dad|parents?|siblings?|brothers?|sisters?|grandmothers?|grandfathers?|grandparents?)\b|\bruns in\b"
+                         r"|\b(?:anyone|anybody|someone|people) related to you\b|\bhereditary\b|\binherited\b|\bgenetic\b")
 # Naming a relative is not always a family-history ask: "do you live with your
 # family?" and "do you have a family doctor?" are the patient's own social
 # history and must keep their existing routes.
@@ -1038,13 +1122,60 @@ def conversation_route(utterance):
     # a bare "what is going on", which is the opening question, not this row.
     if re.search(r"\bwhat (?:were|was|had) you (?:been )?(?:doing|up to)\b"
                  r"|\bwere you (?:doing|in the middle of) (?:anything|something)\b"
-                 r"|\bwhat (?:activity|were you doing).*?(?:start|began|onset)",text):
+                 r"|\bwhat (?:activity|were you doing).*?(?:start|began|onset)"
+                 # Where she was, or what was happening, when it began: the
+                 # onset anchor keeps "what is going on" the opening question.
+                 r"|\b(?:where were you|what was (?:going on|happening)(?: around you)?)"
+                 r" (?:when|as|at the time|around the time|right before|just before)\b"
+                 r".*\b(?:start|started|began|begin|came on|come on|hit|happened|first noticed)\b",text):
         return 'onset_activity'
     introduction=re.search(r"\b(?:hello|hi|good morning|good afternoon|good evening|i am (?:a |your )?(?:student|medical)|i'?m (?:a |your )?(?:student|medical))\b",text)
     question=re.search(r"\b(?:what|when|where|how|why|have you|do you|did you|are you|could you|can you|tell me|brings you)\b",text)
     if introduction and not question:return 'introduction'
     return None
 
+
+
+# A sentence ends at . ! or ? followed by a capital (or a quote), except after
+# a title: "Dr. Lee" is one sentence.
+_SENTENCE_BREAK = re.compile(r"(?<=[.!?])(?<!\bDr\.)(?<!\bMr\.)(?<!\bMrs\.)(?<!\bMs\.)(?<!\bSt\.)\s+(?=[A-Z\"'])")
+_REPEAT_OPENER = re.compile(r"^(?:%s)\s*" % "|".join(re.escape(p.strip()) for p in _REPEAT_PREFIXES if p.strip()), re.I)
+
+
+def _spoken_sentences(text):
+    """An answer's sentences, each with the key that finds a same-breath repeat.
+
+    The key ignores case, punctuation and the "like I said" opener a repeated
+    fact is given, so "Right, my roommate had ringworm" repeats "My roommate
+    had ringworm".
+    """
+    out = []
+    for sentence in _SENTENCE_BREAK.split((text or '').strip()):
+        key = nlp.normalize(_REPEAT_OPENER.sub('', sentence.strip()))
+        if key:
+            out.append((sentence.strip(), key))
+    return out
+
+
+def _merge_record(into, other):
+    """Fold one segment's record into the record of the words that carry it."""
+    for fid in other.get('facts_released', []):
+        if fid not in into['facts_released']:
+            into['facts_released'].append(fid)
+    for cid, concept in other.get('concepts', {}).items():
+        into['concepts'].setdefault(cid, concept)
+    for key in ('checklist_hits', 'delivery_limits'):
+        if other.get(key):
+            into.setdefault(key, []).extend(other[key])
+    if other.get('identity_fields'):
+        into.setdefault('identity_fields', []).extend(
+            f for f in other['identity_fields'] if f not in into.get('identity_fields', []))
+    if other.get('volunteered'):
+        into['volunteered'] = True
+    if other.get('emotion') and not into.get('emotion'):
+        into['emotion'] = other['emotion']
+    if other.get('kind') != into.get('kind'):
+        into['kind'] = 'answer'
 
 class PatientEngine:
     def __init__(self, case: dict, rng=None):
@@ -1181,6 +1312,18 @@ class PatientEngine:
                     or dialogue.read_act(segment)
                     or courtesy_statement(segment))
 
+    def _authored_question(self, clause):
+        """The case wrote this exact question, as a trigger or an example."""
+        asked = nlp.normalize(clause).strip(' .?')
+        for fact in self.case.get('facts', []):
+            questions = list(fact.get('example_questions') or [])
+            for group in (fact.get('triggers') or {}).values():
+                if isinstance(group, list):
+                    questions.extend(q for q in group if isinstance(q, str))
+            if any(nlp.normalize(q).strip(' .?') == asked for q in questions):
+                return True
+        return False
+
     def _claims_whole_turn(self, utterance, text):
         # Same gates the routes themselves use. `_summary_clauses` is only a
         # splitter and fires on any input, so it must not be used as a test.
@@ -1246,7 +1389,8 @@ class PatientEngine:
                                            'concern_acknowledged'))
 
     def _respond_inner(self, utterance, text, state, meta):
-        segments = dialogue.segment(utterance)
+        groups = dialogue.segment_groups(utterance)
+        segments = [item for _, items in groups for item in items]
         if len(segments) < 2 or self._claims_whole_turn(utterance, text):
             return self._resolve_single(utterance, text, state, meta)
 
@@ -1267,19 +1411,22 @@ class PatientEngine:
         # The segment pass therefore runs on a private copy, and that copy is
         # committed only if composition actually earns the turn.
         probe = copy.deepcopy(state)
-        for segment in segments:
+
+        def take(segment):
+            """Resolve one ask on the probe state; True when it was answered."""
+            nonlocal final_context, final_allergy_context, final_reproductive_context, final_ros_context
             sub = {"facts_released": [], "concepts": {}, "volunteered": False,
                    "kind": "answer"}
             seg_text = nlp.normalize(segment)
             if not seg_text:
-                continue
+                return False
             try:
                 part = self._resolve_single(segment, seg_text, probe, sub)
             except Exception:
                 # A segment is a fragment of real input; a grammar that expects
                 # a whole turn may not fit it. Losing one segment must never
                 # lose the turn.
-                continue
+                return False
             if sub.get('context_subject'):
                 final_context = sub['context_subject']
                 final_allergy_context = sub.get('allergy_context')
@@ -1294,21 +1441,71 @@ class PatientEngine:
                 final_ros_context = None
             if sub.get('unavailable_topics'):
                 explicit_limits.append((part, sub))
-            if self._informative(part, sub):
-                # Each informative clause becomes the local referent for the next
-                # clause. Otherwise 'allergies, and what happens?' inherits a
-                # previous turn's surgery history instead of the allergy just said.
-                self._remember(segment, seg_text, probe, sub, part)
-                released = [f for f in sub.get('facts_released', [])]
-                if released and set(released) <= spoken_ids:
-                    continue  # already said in this same breath
-                spoken_ids.update(released)
-                parts.append(part)
-                subs.append(sub)
-            else:
+            if not self._informative(part, sub):
                 unanswered.append(segment)
                 if part and part.strip():
                     declined.append(part.strip())
+                return False
+            # Each informative clause becomes the local referent for the next
+            # clause. Otherwise 'allergies, and what happens?' inherits a
+            # previous turn's surgery history instead of the allergy just said.
+            self._remember(segment, seg_text, probe, sub, part)
+            released = [f for f in sub.get('facts_released', [])]
+            if released and set(released) <= spoken_ids:
+                return True  # already said in this same breath
+            spoken_ids.update(released)
+            # One breath never says the same sentence twice. A focused clause
+            # and the complete statement it comes from ("any surgeries, and
+            # have you been pregnant?") both reach it, as does a fact the
+            # patient already gave this turn ("Right, my roommate..."). An
+            # earlier answer the new one contains gives way to it; sentences
+            # already said are left out of the new one. Records merge with the
+            # words they cover, so the turn's evidence names everything said.
+            new = _spoken_sentences(part)
+            keys = {key for _, key in new}
+            for i in reversed(range(len(parts))):
+                earlier = {key for _, key in _spoken_sentences(parts[i])}
+                if earlier and earlier <= keys:
+                    _merge_record(sub, subs.pop(i))
+                    parts.pop(i)
+            said = [{key for _, key in _spoken_sentences(p)} for p in parts]
+            fresh = [sentence for sentence, key in new if not any(key in s for s in said)]
+            if new and not fresh:
+                holder = next((i for i, s in enumerate(said) if keys <= s), len(parts) - 1)
+                _merge_record(subs[holder], sub)
+                return True
+            if len(fresh) < len(new):
+                part = ' '.join(fresh)
+            parts.append(part)
+            subs.append(sub)
+            return True
+
+        for clause, items in groups:
+            # A list the case wrote as one question is asked as one.
+            if len(items) > 1 and self._authored_question(clause):
+                items = [clause]
+            if len(items) < 2:
+                take(items[0])
+                continue
+            before = (copy.deepcopy(probe), len(unanswered), len(declined), len(explicit_limits),
+                      final_context, final_allergy_context, final_reproductive_context, final_ros_context)
+            if any([take(item) for item in items]):
+                continue
+            # "Any swelling of your lips or tongue?" can be authored as one
+            # question that none of its pieces reaches alone: ask it whole,
+            # and keep the pieces' outcome if that answers nothing either.
+            after = (probe, unanswered[before[1]:], declined[before[2]:], explicit_limits[before[3]:],
+                     final_context, final_allergy_context, final_reproductive_context, final_ros_context)
+            probe = before[0]
+            del unanswered[before[1]:], declined[before[2]:], explicit_limits[before[3]:]
+            (final_context, final_allergy_context, final_reproductive_context, final_ros_context) = before[4:]
+            if not take(clause):
+                probe = after[0]
+                del unanswered[before[1]:], declined[before[2]:], explicit_limits[before[3]:]
+                unanswered.extend(after[1])
+                declined.extend(after[2])
+                explicit_limits.extend(after[3])
+                (final_context, final_allergy_context, final_reproductive_context, final_ros_context) = after[4:]
 
         # Composition earns the turn only by answering more than one thing --
         # EXCEPT when the rest of the turn was never an ask. "Hello, I'm a
@@ -1580,6 +1777,13 @@ class PatientEngine:
     def _reproductive_history_reply(self, utterance, state, meta):
         previous = state.get('reproductive_context') if state.get('last_subjects') == ['reproductive_history'] else None
         asked = reproductive_history.request(utterance, previous)
+        if asked and 'last_period' in asked and not any(
+                'last_period' in reproductive_history.dimensions(reproductive_history.scoped_fact(f))
+                for f in self.facts.values()):
+            # Most cases author the menstrual history as its own fact, answered
+            # through its triggers; only a period stated inside a bundled
+            # pregnancy statement is answered here, as that statement's clause.
+            asked = [d for d in asked if d != 'last_period']
         if not asked:
             return None
         if re.search(r"\b(?:mother|father|wife|husband|partner|sister|brother|friend|roommate)\b", utterance, re.I):
@@ -2877,7 +3081,13 @@ class PatientEngine:
         return opening_invitation(text,self.case.get('patient',{}).get('name',''))
 
     def _is_anything_else(self, text):
-        return any(c in text for c in _ANYTHING_ELSE)
+        # "Burning, stabbing, or something else?" offers a choice; it does not
+        # invite more history.
+        if re.search(r"\bor (?:something|anything) else\b", text):
+            return False
+        if any(c in text for c in _ANYTHING_ELSE):
+            return True
+        return bool(_OPEN_ANYTHING.search(text) and _INVITATION_TAIL.search(text))
 
     # ------------------------------------------------------------------
     def _timing_detail_matches(self, fact, question):
@@ -2905,6 +3115,9 @@ class PatientEngine:
         for clause in clauses:
             dims=temporal_question_dimensions(clause)
             if re.search(r'medicin|medication|supplement|alcohol|\bdrink\b|smok|cigarett|tobacco|exercise|\bwork\b|\bjob\b|family|mother|father|menstr|\bperiods?\b',clause,re.I):dims=set()
+            # A question naming its history domain ("operations in the past")
+            # is not asking about the complaint's timeline.
+            elif dims and self._names_history_domain(clause):dims=set()
             if dims:
                 # A specified organ's frequency is not automatically the
                 # chief complaint's frequency; use authored lexical evidence.
@@ -2916,6 +3129,11 @@ class PatientEngine:
                 if exact:candidates=exact
                 if dims & {'night_pattern', 'constancy'}:
                     candidates=[f for f in candidates if self._timing_detail_matches(f, clause)]
+                # "How often does it happen?" asks about the complaint. A denial
+                # of increased urinary frequency is not how often IT happens.
+                if 'frequency' in dims and not ros_history.named(clause) and not re.search(
+                        r'urin|pee|void|bladder|bowel|stool|diarrh|vomit|cough', clause, re.I):
+                    candidates=[f for f in candidates if f.get('category')!='pertinent_negative']
                 if 'current_status' in dims:
                     candidates=[f for f in candidates if current_status_subject_matches(f,clause)]
                     if re.search(r'how (?:bad|severe)|severity|(?:rate|score).*pain|out of ten',clause,re.I):
@@ -2940,7 +3158,49 @@ class PatientEngine:
     def _match_without_dimensions(self, utterance, state):
         precise=self._typed_question_hits(utterance)
         if precise is not None:return precise
-        return self._trigger_hits(utterance,state) or self._aspect_hits(utterance)
+        return self._history_domain_over_timeline(utterance,self._trigger_hits(utterance,state)) or self._aspect_hits(utterance)
+
+    # Background history a question can name outright.
+    _HISTORY_DOMAINS = frozenset({"pmh", "psh", "medications", "allergies", "family"})
+
+    def _names_history_domain(self, utterance):
+        text = nlp.normalize(utterance)
+        words = set(text.split())
+        return any(aspect["id"] in self._HISTORY_DOMAINS and self._aspect_fires(aspect, text, words)
+                   for aspect in _ASPECTS)
+
+    def _history_domain_over_timeline(self, utterance, hits):
+        """A named history domain outranks a timeline row reached by a time word.
+
+        A surgical or medical history question that ends "in the past" or
+        "before" contains a case's past-occurrence trigger, and was answered
+        "No, this is new for me" -- a denial of the chief complaint's history,
+        given to a question about operations or diagnoses. When every trigger
+        hit is a timeline row and the question names a history domain, the
+        domain answers.
+        """
+        if not hits:
+            return hits
+        if all(f.get("category") in self._TEMPORAL_CATEGORIES for f, _ in hits):
+            return self._aspect_hits(utterance, only_aspect=self._HISTORY_DOMAINS) or hits
+        # A domain named by a phrase also outranks a lone keyword: "told you
+        # have ... high blood pressure" is medical history, not the "pressure"
+        # a location row happens to list.
+        if all(f.get("category") not in self._HISTORY_DOMAINS for f, _ in hits) and all(
+                " " not in phrase for f, _ in hits for phrase in self._matched_triggers(f, utterance)):
+            text = nlp.normalize(utterance)
+            named = {a["id"] for a in _ASPECTS if a["id"] in self._HISTORY_DOMAINS and (
+                any(" " in cue and cue in text for cue in a.get("cues", ()))
+                or any(re.search(p, text) for p in a.get("patterns", ())))}
+            if named:
+                return self._aspect_hits(utterance, only_aspect=named) or hits
+        return hits
+
+    @staticmethod
+    def _matched_triggers(fact, utterance):
+        text = nlp.normalize(utterance)
+        return [p for p in (nlp.normalize(x) for x in (fact.get("triggers") or {}).get("any") or [])
+                if p and re.search(r"(?<!\w)" + re.escape(p), text)]
 
     _TEMPORAL_CATEGORIES = frozenset(
         {"onset", "chronology", "timing", "episode_duration", "past_occurrence"})
@@ -3021,7 +3281,7 @@ class PatientEngine:
         precise = self._typed_question_hits(utterance)
         if precise is not None:
             return precise
-        hits = self._trigger_hits(utterance, state)
+        hits = self._history_domain_over_timeline(utterance, self._trigger_hits(utterance, state))
         # A phrase that NAMES the question outranks a single keyword that merely
         # appears in it. "How far back does this go?" is a duration question,
         # but a case whose radiation trigger lists the bare word "back" (for
@@ -3330,11 +3590,21 @@ class PatientEngine:
             grandparents anyone anybody related hereditary run runs illness illnesses disease diseases
             medical health healthy problem problems condition conditions issue issues history histories
             old age ages living alive still currently doing known major born side both good bad well
-            tell ask asking asked mean meant could would please anyone anything get gets ever previously past similar details""".split())
-        specified = [w for w in _tokens(text) if w not in generic and len(w) > 1]
-        if specified:
-            relatives = [f for f in relatives if _overlap(specified,
-                         set(_tokens(self._fact_text(f)))) == len(specified)]
+            tell ask asking asked mean meant could would please anyone anything get gets ever previously past similar details
+            through throughout among amongst between within across around down line members member folks people kin
+            immediate extended close closest blood side sides affect affects affected affecting suffer suffers suffered
+            suffering pass passed passing inherit inherited inherits genetic genetics diagnosed diagnosis""".split())
+        # "Cancer or heart disease" names alternatives: a relative with either
+        # one answers it. Each alternative must be matched whole.
+        alternatives = []
+        for part in re.split(r"\s*,\s*|\s+(?:or|and)\s+", text):
+            words = [re.sub(r"'s$", "", w) for w in _tokens(part)]
+            words = [w for w in words if w not in generic and len(w) > 1]
+            if words:
+                alternatives.append(words)
+        if alternatives:
+            relatives = [f for f in relatives if any(
+                _overlap(words, set(_tokens(self._fact_text(f)))) == len(words) for words in alternatives)]
         return [(f, 3.0) for f in relatives]
 
     def _typed_question_hits(self, utterance):
@@ -3428,7 +3698,8 @@ class PatientEngine:
             ('history_topic', 'contraception', r'contracept|birth control|condom|protection.*sex'),
             ('history_topic', 'sexual_partners', r'how many.*partner|new sexual partner|partners.*(?:men|women)|sex.*(?:men or women)'),
             ('history_topic', 'sexual_activity', r'sexually active|having sex|sexual activity'),
-            ('history_topic', 'occupation', r'what.*(?:work|living)|your (?:job|occupation)|employment'),
+            # "For a living" is the job; "your living situation" is the household.
+            ('history_topic', 'occupation', r'what.*(?:work|for a living)|your (?:job|occupation)|employment'),
             # "Where do you live?" is a social question. Without this the bare
             # word "where" reaches the symptom-location aspect and the patient
             # answers with the site of her pain.
@@ -3457,6 +3728,11 @@ class PatientEngine:
                 # Older authored facts retain their established category route.
                 if not facts and not any(key in f for f in self.facts.values()):
                     continue
+                # A case that files its home or work history under a broader
+                # topic still has it: "I live with my brother" answers "who do
+                # you live with?" even when it is tagged as social context.
+                if not facts and key == 'history_topic' and any(a['id'] == value for a in _ASPECTS):
+                    facts = [f for f, _ in self._aspect_hits(utterance, only_aspect=value)]
                 matches.extend((f,3.0) for f in facts)
                 if not facts:
                     return []
@@ -3545,8 +3821,10 @@ class PatientEngine:
         text = nlp.normalize(utterance)
         words = set(text.split())
         best = None
+        allowed = {only_aspect} if isinstance(only_aspect, str) else only_aspect
+        domain = None
         for aspect in _ASPECTS:
-            if only_aspect is not None and aspect["id"] != only_aspect:
+            if allowed is not None and aspect["id"] not in allowed:
                 continue
             if not self._aspect_fires(aspect, text, words):
                 continue
@@ -3566,8 +3844,14 @@ class PatientEngine:
             weight = (2 if aspect.get("keywords") else 1, top[0])
             if best is None or weight > best[0]:
                 best = (weight, top[1])
+            if aspect["id"] in self._HISTORY_DOMAINS and (domain is None or weight > domain[0]):
+                domain = (weight, top[1])
         if best is None:
             return []
+        # A question that names a history domain is not about the complaint's
+        # timeline, whatever time words it uses ("operations in the past").
+        if domain is not None and best[1].get("category") in self._TEMPORAL_CATEGORIES:
+            best = domain
         return [(best[1], 1.0)]
 
     @staticmethod
@@ -3583,6 +3867,8 @@ class PatientEngine:
                 _instruction_or_other_person(text) or re.search(r'therapy|treatment|exposure|x ray|scan', text)):
             return False
         if any(cue in text for cue in aspect.get("cues", [])):
+            return True
+        if any(re.search(pattern, text) for pattern in aspect.get("patterns", ())):
             return True
         if not words & set(aspect.get("words", ())):
             return False
@@ -3621,6 +3907,10 @@ class PatientEngine:
         text = nlp.normalize(utterance)
         tokens = text.split()
         if len(tokens) > 8 or ros_history.named(utterance):
+            return False
+        # "Any swelling of the lips?" names its own finding and site; borrowing
+        # the last question's topic answered it with the rash just discussed.
+        if not set(tokens) & _ANAPHORS and dialogue.names_finding_at_site(text):
             return False
         if set(tokens) & _ANAPHORS:
             return True

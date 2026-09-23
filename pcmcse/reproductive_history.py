@@ -17,6 +17,7 @@ LABELS = {
     'losses': 'pregnancy losses or terminations',
     'current_pregnancy': 'current pregnancy possibility',
     'pregnancy_test': 'pregnancy testing',
+    'last_period': 'the last menstrual period',
 }
 
 
@@ -47,6 +48,9 @@ def request(utterance, previous=None):
         found.append('deliveries')
     if re.search(r'pregnancy test|tested for pregnancy', q):
         found.append('pregnancy_test')
+    if re.search(r'\blast (?:menstrual )?period\b|\blmp\b|first day of (?:your )?(?:last )?period'
+                 r'|when (?:was|did) (?:your )?(?:last )?period|when did you (?:last )?(?:have|get|start) (?:your )?period', q):
+        found.append('last_period')
     if re.search(r'(?:are|could|might|can) you (?:possibly |currently |be )?pregnant|chance[^.!?]*pregnan'
                  r'|pregnant (?:now|right now|currently)|currently pregnant|think you (?:are|might be|could be) pregnant', q):
         found.append('current_pregnancy')
@@ -78,7 +82,11 @@ _SCOPED_SPEECH = {
     # current-pregnancy clause: that question receives the whole statement,
     # which is the patient's answer and the only way its checklist item is earned.
     'My period was one week ago. I use condoms and have not done a pregnancy test.': [
-        ('I have not done a pregnancy test.', ['pregnancy_test'], [])],
+        ('I have not done a pregnancy test.', ['pregnancy_test'], []),
+        # The period is stated; asking only about it must not disclose contraception.
+        ('My period was one week ago.', ['last_period'], [])],
+    'My period was two weeks ago. I use an IUD and do not think I am pregnant.': [
+        ('My period was two weeks ago.', ['last_period'], [])],
     'My partner helps with our toddler, but missing work for appointments is difficult.': [
         ('I have a toddler.', ['children', 'child_age'], [])],
     'I live alone. My daughter can drive me, but I lose pay for weekday visits.': [
