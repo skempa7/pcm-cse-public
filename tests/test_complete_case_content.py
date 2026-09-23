@@ -6,7 +6,7 @@ This suite intentionally exercises the expanded current library.
 import copy,json,tempfile,unittest
 from pathlib import Path
 from unittest.mock import patch
-from pcmcse import cases,patient,ros_history,physexam,config,db,engine,evidence,record
+from pcmcse import bundled_negatives,cases,patient,ros_history,physexam,config,db,engine,evidence,record
 
 def paths():
  for cid,base in cases.all_cases().items():
@@ -33,10 +33,15 @@ class CompleteCaseContentTests(unittest.TestCase):
     self.assertTrue(expected,(c['id'],topic))
     for q in ['Have you noticed any '+label+'?','Have you had any '+label+'?','Any '+label+'?']:
      text,meta=p.respond(q,state)
-     self.assertEqual(meta.get('facts_released'),[f['id'] for f in expected],(c['id'],topic,q,text))
+     # A bundled negative answers one screen with that member's approved
+     # clause and releases nothing; every other fact is released whole.
+     focused={f['id']:bundled_negatives.focus(f,q) for f in expected}
+     self.assertEqual(meta.get('facts_released'),[f['id'] for f in expected if not focused[f['id']]],(c['id'],topic,q,text))
      self.assertFalse(meta.get('no_information'),(c['id'],q,text))
      self.assertFalse(meta.get('unavailable_topics'),(c['id'],q,text))
      for fid in meta['facts_released']:self.assertIn(byid[fid]['sp_says'][0],text)
+     for clauses in focused.values():
+      for clause in clauses or []:self.assertIn(clause,text,(c['id'],q))
      count+=1
   self.assertEqual(count,82*len(ros_history.TOPICS)*3)
  def test_sore_throat_paraphrases_and_positive_case(self):
