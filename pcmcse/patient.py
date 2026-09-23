@@ -39,7 +39,7 @@ import copy
 import random
 import re
 
-from . import allergy_history, dialogue, lexicon, nlp, reproductive_history, ros_history, social_history
+from . import allergy_history, bundled_negatives, dialogue, lexicon, nlp, reproductive_history, ros_history, social_history
 from . import physexam as _physexam
 
 _ANYTHING_ELSE = [
@@ -1030,6 +1030,11 @@ def focused_history_topics(question):
     return topics
 
 
+# The same symptom in bundled_negatives' vocabulary. Presyncope has no
+# equivalent: "I haven't passed out" does not say she never felt faint.
+_FOCUSED_BUNDLE_TOPIC={'syncope':'syncope','leg_weakness':'weakness','saddle_numbness':'numbness'}
+
+
 def focused_fact_ids(question):
     topics=focused_history_topics(question)
     return None if topics is None else {fid for topic in topics for fid in _FOCUSED_FACT_IDS[topic]}
@@ -1157,13 +1162,28 @@ def _spoken_sentences(text):
     return out
 
 
+def _add_concepts(into, concepts, keep_existing=False):
+    """Merge concept evidence; a fact's delivered text accumulates.
+
+    Clauses of one bundled negative that author no concept each record
+    `delivered_text_<fact>`. Both were said, so the second joins the first
+    instead of replacing it.
+    """
+    for cid, spec in concepts.items():
+        prior = into.get(cid)
+        if (cid.startswith('delivered_text_') and isinstance(prior, dict) and isinstance(spec, dict)
+                and spec.get('value') and nlp.normalize(spec['value']) not in nlp.normalize(prior.get('value', ''))):
+            into[cid] = dict(prior, value=(prior.get('value', '') + ' ' + spec['value']).strip())
+        elif not (keep_existing and cid in into):
+            into[cid] = spec
+
+
 def _merge_record(into, other):
     """Fold one segment's record into the record of the words that carry it."""
     for fid in other.get('facts_released', []):
         if fid not in into['facts_released']:
             into['facts_released'].append(fid)
-    for cid, concept in other.get('concepts', {}).items():
-        into['concepts'].setdefault(cid, concept)
+    _add_concepts(into['concepts'], other.get('concepts', {}), keep_existing=True)
     for key in ('checklist_hits', 'delivery_limits'):
         if other.get(key):
             into.setdefault(key, []).extend(other[key])
@@ -1367,6 +1387,8 @@ class PatientEngine:
             return True
         if focused_history_topics(utterance) is not None:
             return True
+        if self._bundle_asks(utterance):
+            return True
         for pair in self.case.get('patient', {}).get('education_responses', []):
             if nlp.normalize(pair['student']).strip(' .?') == text.strip(' .?'):
                 return True
@@ -1531,7 +1553,7 @@ class PatientEngine:
             for fid in sub.get('facts_released', []):
                 if fid not in meta['facts_released']:
                     meta['facts_released'].append(fid)
-            meta['concepts'].update(sub.get('concepts', {}))
+            _add_concepts(meta['concepts'], sub.get('concepts', {}))
             for key in ('checklist_hits', 'delivery_limits', 'identity_fields'):
                 if sub.get(key):
                     meta.setdefault(key, []).extend(sub[key])
@@ -1572,7 +1594,7 @@ class PatientEngine:
             for fid in sub.get('facts_released', []):
                 if fid not in meta['facts_released']:
                     meta['facts_released'].append(fid)
-            meta['concepts'].update(sub.get('concepts', {}))
+            _add_concepts(meta['concepts'], sub.get('concepts', {}))
             if sub.get('checklist_hits'):
                 meta.setdefault('checklist_hits', []).extend(sub['checklist_hits'])
             if sub.get('delivery_limits'):
@@ -2179,6 +2201,19 @@ class PatientEngine:
                 "Please treat it as information unavailable, not as a denial." % subject)
 
     def _resolve_single(self, utterance, text, state, meta):
+        """Resolve one ask, remembering it while it is answered.
+
+        A bundled negative spoken on the way is focused on this ask (see
+        `_say`); a compound turn resolves each of its asks here in turn.
+        """
+        outer = getattr(self, '_asking', None)
+        self._asking = utterance
+        try:
+            return self._resolve_route(utterance, text, state, meta)
+        finally:
+            self._asking = outer
+
+    def _resolve_route(self, utterance, text, state, meta):
         """Resolve ONE ask through the reviewed route chain (unchanged).
 
         Everything below this line predates multi-intent composition and keeps
@@ -2323,13 +2358,25 @@ class PatientEngine:
             if missing:meta['unavailable_topics']=missing
             return dialogue.join_spoken(parts)
 
+        bundles=self._bundle_asks(utterance)
+        if bundles:
+            return dialogue.join_spoken([self._say(f,state,meta) for f in bundles])
+
         focused=focused_history_topics(utterance)
         if focused is not None:
             selected=[]
             for topic in focused:
                 selected.extend(f for f in self.facts.values() if f['id'] in _FOCUSED_FACT_IDS[topic] and f not in selected and regional_fact_allowed(f,utterance))
-            parts=[self._say(f,state,meta) for f in selected[:3]]
             missing=[topic for topic in focused if not any(f['id'] in _FOCUSED_FACT_IDS[topic] for f in selected)]
+            # A case that states this only inside a bundled negative answers
+            # with that member's clause (`_say` focuses it on the question).
+            for topic in list(missing):
+                member=_FOCUSED_BUNDLE_TOPIC.get(topic)
+                bundled=[f for f in self.facts.values() if member in bundled_negatives.members(f) and regional_fact_allowed(f,utterance)]
+                if bundled:
+                    selected.extend(f for f in bundled if f not in selected)
+                    missing.remove(topic)
+            parts=[self._say(f,state,meta) for f in selected[:3]]
             if missing or not parts:
                 parts.append('I am not sure about that. I cannot give you a definite answer.')
             if not selected:meta.update(kind='non_answer',no_information=True,unscripted_topic=True)
@@ -2681,11 +2728,16 @@ class PatientEngine:
             c: lexicon.CORE_CONCEPTS[c] for c in lexicon.DENIABLE_SYMPTOMS
             if c in lexicon.CORE_CONCEPTS})
         askable = []
+        fired_words = {w for phrase in fired for w in phrase.split() if len(w) > 3}
         for cid in found:
-            if cid in case_concepts:
+            if cid in case_concepts or ("no_" + cid) in case_concepts:
                 continue
             surf = nlp.normalize(found[cid]["surface"])
             if any(surf in phrase for phrase in fired):
+                continue
+            # "Any swelling in your ankles?" matched the fact on "swelling";
+            # its answer is that fact's, not an added generic "No."
+            if set(surf.split()) & fired_words:
                 continue
             askable.append(cid)
         if not askable:
@@ -3300,6 +3352,9 @@ class PatientEngine:
         aspect = self._aspect_hits(utterance)
         if aspect:
             return aspect
+        bundle = self._bundle_member_hits(utterance)
+        if bundle:
+            return bundle
         # A newly named symptom is not an empty pronoun. If this case has no
         # answer for "any nausea with that?", borrowing the preceding quality
         # question confidently answers the wrong symptom and grants bad credit.
@@ -3607,6 +3662,37 @@ class PatientEngine:
                 _overlap(words, set(_tokens(self._fact_text(f)))) == len(words) for words in alternatives)]
         return [(f, 3.0) for f in relatives]
 
+    def _bundle_asks(self, utterance):
+        """Bundled negatives this one question names several members of.
+
+        "Any fainting, palpitations, trouble lying flat or leg swelling?" asks
+        a bundle's members together, in the student's own words. Only when
+        every symptom it names is such a member does the bundle own the turn:
+        naming every member earns the complete statement, some of them their
+        clauses.
+        """
+        if _instruction_or_other_person(utterance) or family_scoped(utterance):
+            return []
+        asked = set(bundled_negatives.topics(utterance))
+        if len(asked) < 2:
+            return []
+        found = [f for f in self.facts.values() if len(asked & bundled_negatives.members(f)) >= 2
+                 and regional_fact_allowed(f, utterance)]
+        covered = set().union(*(bundled_negatives.members(f) for f in found)) if found else set()
+        return found if asked <= covered else []
+
+    def _bundle_member_hits(self, utterance):
+        """A member of a bundled negative, asked about on its own.
+
+        Only a symptom the question names reaches a bundle, and `_say` then
+        speaks that member's clause alone.
+        """
+        if _instruction_or_other_person(utterance) or family_scoped(utterance):
+            return []
+        asked = set(bundled_negatives.topics(utterance))
+        return [(f, 3.0) for f in self.facts.values()
+                if asked & bundled_negatives.members(f) and regional_fact_allowed(f, utterance)]
+
     def _typed_question_hits(self, utterance):
         """Resolve an explicit question dimension before broad trigger words.
 
@@ -3618,9 +3704,13 @@ class PatientEngine:
         posture=posture_history_topics(utterance)
         if posture is not None:return [(f,3.0) for f in self.facts.values() if set(posture)&set(position_history_fact_topics(f))]
         focused=focused_fact_ids(utterance)
-        if focused is not None:return [(f,3.0) for f in self.facts.values() if f['id'] in focused and regional_fact_allowed(f,utterance)]
+        if focused is not None:
+            hits=[(f,3.0) for f in self.facts.values() if f['id'] in focused and regional_fact_allowed(f,utterance)]
+            # A case that states the fainting only inside a bundled negative
+            # still answers it, with that member's clause.
+            return hits or (self._bundle_member_hits(utterance) if focused_history_topics(utterance) else [])
         specific=self._specific_setting_hits(utterance)
-        if specific is not None:return specific
+        if specific is not None:return specific or self._bundle_member_hits(utterance)
         ros = self._direct_ros_hits(utterance)
         if ros is not None:return ros
         if functional_effect_question(utterance):
@@ -3917,7 +4007,7 @@ class PatientEngine:
         return any(text.startswith(s) for s in _ELLIPTIC_STARTS)
 
     # ------------------------------------------------------------------
-    def _say(self, fact, state, meta, credit=True, prefixed=True):
+    def _say(self, fact, state, meta, credit=True, prefixed=True, focus=True):
         """Speak a scripted fact, and record what saying it put on the record.
 
         `credit` is withheld when she volunteers the fact to correct a mistake
@@ -3927,6 +4017,13 @@ class PatientEngine:
         `prefixed` is dropped where a "like I said" opener would land in the
         middle of a sentence she is building.
         """
+        # A question about one member of a bundled negative hears that member,
+        # as its approved clause: no release of the bundle, no checklist credit.
+        clauses = bundled_negatives.focus(fact, getattr(self, '_asking', None)) if focus else None
+        if clauses:
+            scoped = bundled_negatives.scoped_fact(fact)
+            return dialogue.join_spoken([self._say(dict(scoped, sp_says=[clause]), state, meta, credit,
+                                                   prefixed=False, focus=False) for clause in clauses])
         repeat = fact['id'] in state['released']
         lines = fact.get('sp_says') or [fact.get('value','')]
         line = lines[0] if repeat else self.rng.choice(lines)
@@ -3945,7 +4042,7 @@ class PatientEngine:
         else:
             # Actual text remains evidence; old rich metadata is not trusted.
             cid='delivered_text_'+fact['id']
-            meta['concepts'][cid]={'polarity':'positive','value':line}
+            _add_concepts(meta['concepts'],{cid:{'polarity':'positive','value':line}})
             if not any(nlp.normalize(v.get('text', '')) == nlp.normalize(line) for v in fact.get('delivery_contract', {}).get('versions', [])):
                 meta.setdefault('delivery_limits',[]).append('Legacy statement has no verified atomic contract: '+fact['id'])
         if repeat and prefixed:

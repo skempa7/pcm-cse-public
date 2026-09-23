@@ -21,7 +21,7 @@ import uuid
 import random
 import re
 
-from .. import cases, db, teaching, version
+from .. import cases, db, evidence, record, teaching, version
 from . import catalog as C
 from . import drafting as D
 from . import planting as P
@@ -259,6 +259,24 @@ def _add_obtained(b, session, visit, released, e2r):
         ref = e2r.get(released[fid]["seq"])
         b.chip(ln, text, [ref] if ref else [], quoted=text != words, events=[], origin="visit")
         covered_facts.add(fid)
+
+    # A focused clause -- one member of a bundled negative, a period stated
+    # inside a pregnancy answer -- was said to this student although its fact
+    # was not released. It is written too, in her words, unless a kept
+    # statement or the complete fact already covers it.
+    written = set()
+    for ev in session.ledger.by_kind(evidence.PATIENT):
+        for fid, index, detail in record.partial_answers(session.case, ev):
+            label = _CATEGORY_LABEL.get(detail["category"])
+            if not label or fid in covered_facts or (fid, index) in written:
+                continue
+            words = (detail.get("text_full") or detail["text"]).strip()
+            ln = line_for("S", label, "history")
+            continued = bool(ln["chips"]) and ln["chips"][-1].get("quoted")
+            text = T.as_patient_quote(words, label, continued=continued)
+            ref = e2r.get(ev["seq"])
+            b.chip(ln, text, [ref] if ref else [], quoted=text != words, events=[], origin="visit")
+            written.add((fid, index))
 
     for t in visit["turns"]:
         mid = t.get("maneuver_id")

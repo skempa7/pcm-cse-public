@@ -254,22 +254,30 @@ class ROSTopicSwitchingTests(unittest.TestCase):
                 self.assertEqual(meta['concepts'][fid]['polarity'], 'positive')
                 self.assertRegex(reply.lower(), words)
 
-    def test_authored_bundled_ros_responses_keep_their_existing_delivery_contracts(self):
+    def test_authored_bundled_ros_responses_answer_only_the_member_asked(self):
+        # A one-topic screen hears that member's approved clause from the
+        # bundled negative: no release of the bundle, no checklist credit, and
+        # only that member's own concept (or its delivered text).
         fixtures = [
-            ('cardio-chest-pressure', 'Any vomiting?', 'neg_gi', r"haven.t thrown up"),
-            ('cardio-chest-pressure', 'Any fever?', 'neg_resp', r'no fever'),
-            ('gi-epigastric-melena', 'Any vomiting?', 'neg_hematemesis', r"haven.t thrown up at all"),
-            ('neuro-thunderclap-headache', 'Any chills?', 'neg_infectious', r'no chills'),
+            ('cardio-chest-pressure', 'Any vomiting?', 'neg_gi', "I haven't thrown up.", {'no_vomiting'}),
+            ('cardio-chest-pressure', 'Any fever?', 'neg_resp', 'No fever.', {'delivered_text_neg_resp'}),
+            ('gi-epigastric-melena', 'Any vomiting?', 'neg_hematemesis', "No, I haven't thrown up at all.", {'no_vomiting'}),
+            ('neuro-thunderclap-headache', 'Any chills?', 'neg_infectious', 'No chills.', {'delivered_text_neg_infectious'}),
         ]
-        for cid, question, fid, words in fixtures:
+        for cid, question, fid, clause, concepts in fixtures:
             with self.subTest(case=cid, question=question):
                 case, patient_engine, state = self.ready(cid)
                 reply, meta = patient_engine.respond(question, state)
-                self.assert_scope(case, reply, meta, {fid}, {fid})
-                self.assertRegex(reply.lower(), words)
-                fact = next(f for f in case['facts'] if f['id'] == fid)
-                self.assertEqual(meta['concepts'], patient.delivered_fact_metadata(fact, reply)['concepts'])
+                self.assertEqual(reply, clause)
+                self.assertEqual(meta['facts_released'], [], meta)
+                self.assertFalse(meta.get('checklist_hits'), meta)
+                self.assertEqual(set(meta['concepts']), concepts)
+                self.assertTrue(all(c['value'] == clause for c in meta['concepts'].values()), meta)
                 self.assertFalse(meta.get('no_information'), (reply, meta))
+                # The case's own compound question still hears the whole statement.
+                fact = next(f for f in case['facts'] if f['id'] == fid)
+                reply, meta = patient.PatientEngine(case).respond(fact['example_questions'][0], {})
+                self.assert_scope(case, reply, meta, {fid}, {fid})
 
     def test_vomiting_with_absent_preceding_nausea_keeps_its_temporal_qualifier(self):
         for question in ['Any nausea?', 'Any vomiting?', 'Any nausea or vomiting?']:

@@ -26,7 +26,7 @@ from __future__ import annotations
 
 import re
 
-from . import evidence, identity_evidence, lexicon, nlp, patient as _patient, reproductive_history
+from . import bundled_negatives, evidence, identity_evidence, lexicon, nlp, patient as _patient, reproductive_history
 
 # Rubric row -> the authored fact categories that belong in it. Categories come
 # from the case library's own `category` vocabulary, so nothing here invents a
@@ -294,6 +294,26 @@ _PARTIAL_HISTORY_LABELS = {
 }
 
 
+def _records_clause(cid, value, clause, spoken):
+    """Does this recorded value carry the clause, and only spoken words?
+
+    A fact's delivered text can hold several clauses said in one reply; each
+    of its sentences must have been spoken, so a forged value naming unspoken
+    detail is still refused. An authored concept holds exactly one clause.
+    """
+    if not cid.startswith("delivered_text_"):
+        return nlp.normalize(value).strip() == clause
+    sentences = [nlp.normalize(s).strip() for s in re.split(r"(?<=[.!?])\s+", value.strip()) if s.strip()]
+    return clause in sentences and all(
+        re.search(r"(?<!\w)" + re.escape(s) + r"(?!\w)", spoken) for s in sentences)
+
+
+def partial_answers(case, event):
+    """The approved partial statements one patient reply delivered, as Notes shows them."""
+    definitions = {f["id"]: f for f in (case.get("facts") or [])}
+    return list(_approved_partial_entries(definitions, event))
+
+
 def _approved_partial_entries(definitions, event):
     """Yield only scoped contract text that was spoken with matching metadata.
 
@@ -307,7 +327,7 @@ def _approved_partial_entries(definitions, event):
     claimed = meta.get("concepts") or {}
     spoken = nlp.normalize(event.get("text", "")).strip()
     for fid, fact in definitions.items():
-        fact = reproductive_history.scoped_fact(fact)
+        fact = bundled_negatives.scoped_fact(reproductive_history.scoped_fact(fact))
         for index, version in enumerate(fact.get("delivery_contract", {}).get("versions", [])):
             if version.get("complete_fact") is not False:
                 continue
@@ -318,7 +338,7 @@ def _approved_partial_entries(definitions, event):
             expected = version.get("concepts") or {"delivered_text_" + fid: {"polarity": "positive"}}
             if not all(isinstance(claimed.get(cid), dict)
                        and claimed[cid].get("polarity", "positive") == spec.get("polarity", "positive")
-                       and nlp.normalize(claimed[cid].get("value", "")).strip() == normalized
+                       and _records_clause(cid, claimed[cid].get("value", ""), normalized, spoken)
                        for cid, spec in expected.items()):
                 continue
             dimensions = version.get("history_dimensions") or []
@@ -328,9 +348,12 @@ def _approved_partial_entries(definitions, event):
             if not section:
                 continue
             shortened = condense(text)
+            # One member of a bundled negative is labeled as that symptom.
+            symptom = next((t for t in version.get("symptom_topics") or [] if t in bundled_negatives.LABELS), None)
+            label = bundled_negatives.LABELS[symptom] if symptom else _PARTIAL_HISTORY_LABELS.get(dimension, _item_label(fact))
             yield fid, index, {
                 "section": section, "category": category,
-                "label": _PARTIAL_HISTORY_LABELS.get(dimension, _item_label(fact)),
+                "label": label,
                 "text": shortened, "text_full": text if shortened != text else "",
                 "reported_negative": _negative({"concepts": expected}),
             }
