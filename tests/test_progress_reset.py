@@ -81,7 +81,8 @@ class ProgressResetTests(unittest.TestCase):
         result = db.reset_progress('case', self.cid, confirmed=True)
         self.assertEqual(result['deleted'], {'attempts': 3, 'unfinished_attempts': 0,
                                             'revisions': 3, 'learning_events': 3, 'bridge_requests': 3,
-                                            'patient_deliveries': 3, 'study_progress': 2})
+                                            'patient_deliveries': 3, 'study_progress': 2,
+                                            'scribbi_rounds': 0, 'scribbi_visits': 0})
         self.assertEqual(set(result['deleted_attempt_ids']), {parent, variant, branch})
         for sid in (parent, variant, branch):
             self.assertIsNone(db.get_session(sid))
@@ -184,7 +185,8 @@ class ProgressResetTests(unittest.TestCase):
         status, result = self.route({'scope': 'case', 'case_id': self.cid}, '/api/progress/reset-preview')
         self.assertEqual(status, 200)
         self.assertEqual(result, {'scope': 'case', 'case_id': self.cid, 'attempt_count': 2,
-                                  'unfinished_count': 1, 'study_progress_count': 2})
+                                  'unfinished_count': 1, 'study_progress_count': 2,
+                                  'scribbi_count': 0, 'scribbi_visit_count': 0})
         for body in (None, [], {}, {'scope': 'case'}, {'scope': 'case', 'case_id': []},
                      {'scope': 'all', 'confirm': True}, {'scope': 'all', 'case_id': None}):
             self.assertEqual(self.route(body, '/api/progress/reset-preview')[0], 400)

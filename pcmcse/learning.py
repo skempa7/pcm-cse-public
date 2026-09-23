@@ -266,7 +266,8 @@ def answer_repair(s, body):
 
 def progress():
     with db.connect() as conn:
-        rows=[dict(r) for r in conn.execute("SELECT id,case_id,assisted,phase,settings_json,results_json,parent_session_id FROM sessions")]
+        rows=[dict(r) for r in conn.execute("SELECT id,case_id,assisted,phase,settings_json,results_json,parent_session_id FROM sessions")
+              if not db.is_scribbi_visit(r['settings_json'])]
     weak={};mode_counts={};completed=[]; independent_success={}; conditions={"assisted":0,"independent":0,"branches":0}
     for row in rows:
         mode=json.loads(row['settings_json'] or '{}').get('learning_mode','legacy')

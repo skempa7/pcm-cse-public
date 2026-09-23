@@ -18,7 +18,7 @@ assert.equal(states.length,82);assert.equal(new Set(states.map(s=>s.caseId)).siz
 const results={sources:Object.fromEntries(['pcmcse/presentation.py','web/patient3d/index.html','web/patient3d/dist/room.js'].map(file=>[file,crypto.createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex')])),appearances:[],poses:[],recovery:[],errors:[]};
 function inspect(){
  const x=window.pcmRoomInspection?.();if(!x)return null;
- const active=x.scene.getActiveMeshes().data.filter(m=>m&&m.getTotalVertices()>0&&m.isEnabled()&&m.isVisible&&m.name.startsWith('PCM_'));
+ const active=x.scene.getActiveMeshes().data.slice(0,x.scene.getActiveMeshes().length).filter(m=>m&&m.getTotalVertices()>0&&m.isEnabled()&&m.isVisible&&m.name.startsWith('PCM_'));
  const roots=x.scene.transformNodes.filter(n=>n.name==='MPFB public patient'&&n.isEnabled());
  const face=x.anchors?.face;let projected=null;
  if(face){const V=face.constructor,M=x.camera.getWorldMatrix().constructor;projected=V.Project(face,M.Identity(),x.scene.getTransformMatrix(),x.camera.viewport.toGlobal(x.scene.getEngine().getRenderWidth(),x.scene.getEngine().getRenderHeight())).asArray();}

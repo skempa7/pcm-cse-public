@@ -69,7 +69,7 @@ const LS = {
              catch(e){ return false; } }
 };
 
-function setTheme(theme){document.documentElement.dataset.theme=theme==='night'?'night':'day';LS.set('theme',document.documentElement.dataset.theme);const b=$('#themeToggle');if(b){b.textContent=theme==='night'?'Daylight':'Evening';b.setAttribute('aria-label',theme==='night'?'Use daylight appearance':'Use evening appearance');}}
+function setTheme(theme){document.documentElement.dataset.theme=theme==='night'?'night':'day';LS.set('theme',document.documentElement.dataset.theme);const b=$('#themeToggle');if(b){b.innerHTML=(theme==='night'?'<svg class="theme-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg>':'<svg class="theme-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8.4 8.4 0 0 1 9.4 4a8.4 8.4 0 1 0 10.6 10.6z"/></svg>')+'<span class="theme-label">'+(theme==='night'?'Daylight':'Evening')+'</span>';b.setAttribute('aria-label',theme==='night'?'Use daylight appearance':'Use evening appearance');}}
 setTheme(LS.get('theme')||'day');$('#themeToggle').onclick=()=>setTheme(document.documentElement.dataset.theme==='night'?'day':'night');
 
 function keepDraft(kind,sid,value){return LS.set('draft.'+kind+'.'+sid,{value,at:Date.now()});}
@@ -231,7 +231,7 @@ function drillOf() {
 function startTick(){ if (tick) clearInterval(tick); tick = setInterval(paintClock, 250); paintClock(); }
 function paintClock(){
   if (!S) { clockEl.classList.add('hidden'); return; }
-  if(!S.phase_ends_at){if(['briefing','submitted'].includes(S.phase)){clockEl.classList.add('hidden');return;}clockEl.classList.remove('hidden');clockDigits.textContent='Untimed';clockLabel.textContent=S.learning_mode==='guided'?'guided learning':'coached practice';clockEl.setAttribute('aria-label','Untimed '+clockLabel.textContent);clockEl.classList.remove('warn','crit');$$('[data-clock]').forEach(el=>el.textContent='Untimed');return;}
+  if(!S.phase_ends_at){if(['briefing','submitted'].includes(S.phase)){clockEl.classList.add('hidden');return;}clockEl.classList.remove('hidden');clockDigits.textContent='Untimed';clockLabel.textContent=S.purpose==='scribbi'?'Scribbi visit':S.learning_mode==='guided'?'guided learning':'coached practice';clockEl.setAttribute('aria-label','Untimed '+clockLabel.textContent);clockEl.classList.remove('warn','crit');$$('[data-clock]').forEach(el=>el.textContent='Untimed');return;}
   const left = S.phase_ends_at - now();
   clockEl.classList.remove('hidden');
   const txt = mmss(left);
@@ -257,10 +257,13 @@ function paintChip(){
   const pair = map[S.phase] || ['', ''];
   chipEl.className = 'phase-chip ' + pair[1]; chipEl.textContent = pair[0];
   chipEl.classList.remove('hidden'); homeBtn.classList.remove('hidden');
+  // A Scribbi visit returns to Scribbi, where it waits to be finished.
+  homeBtn.textContent=S.purpose==='scribbi'?'Scribbi':'Home';
   if (brandSub) brandSub.textContent = stationTitle(S.case_id) + ' · ' + mode().name;
 }
 function renderPhase(force){
   if (!S) return;
+  if(S.purpose==='scribbi'&&!['briefing','encounter'].includes(S.phase)){handOffToScribbi(S.scribbi_round_id,true);return;}
   document.body.dataset.phase=S.phase;entryPending=null;
   paintChip();
   if (S.phase !== lastPhase || force) {
@@ -287,10 +290,12 @@ function renderPhase(force){
 /* ---------- session plumbing ---------- */
 let routeEpoch=0;
 async function leaveForWorkspace(kind){
-  const active=S&&S.phase!=='submitted';
-  if(active){
+  const active=S&&S.phase!=='submitted'&&!(S.purpose==='scribbi'&&!['briefing','encounter'].includes(S.phase));
+  if(active&&S.purpose==='scribbi'){
+    if(!await confirmChoice('Leave this visit? It stays open, and you can come back to it from Scribbi. Scribbi writes the note when you finish the visit.',{title:'Leave the visit?',confirm:'Leave for now',cancel:'Stay here'})){history.replaceState(null,'','#/'+S.id);return false;}
+  }else if(active){
     const timed=!!S.phase_ends_at;
-    const message='Leave this attempt for '+({home:'Home',practice:'the case library',progress:'your progress',scoring:'the scoring guide',voice:'voice settings',session:'another attempt'}[kind]||'this workspace')+'? Your work will be saved and you can resume from Home or Progress.'+(timed?' The current timer keeps running; leaving does not add time.':' This attempt remains untimed.');
+    const message='Leave this attempt for '+({home:'Home',practice:'the case library',progress:'your progress',scoring:'the scoring guide',voice:'voice settings',session:'another attempt',scribbi:'Scribbi',cases:'case documents'}[kind]||'this workspace')+'? Your work will be saved and you can resume from Home or Progress.'+(timed?' The current timer keeps running; leaving does not add time.':' This attempt remains untimed.');
     if(!await confirmChoice(message,{title:'Leave this attempt?',confirm:'Leave attempt',cancel:'Stay here'})){history.replaceState(null,'','#/'+S.id);return false;}
   }
   if(!await window.pcmEnterWorkbench(kind))return false;
@@ -300,8 +305,10 @@ function portalContext(){return {boot:BOOT,view,api,onData:data=>Object.assign(B
 async function route(){
   const epoch=++routeEpoch,id=location.hash.replace(/^#\/?/, '');
   window.pcmPortal?.invalidate();
+  window.pcmScribbiVisit?.close();
   if (/^cases(?:\/|$)/.test(id)) {if(!await leaveForWorkspace('cases')||epoch!==routeEpoch)return;document.body.dataset.workspace='cases';window.pcmStudy.renderMaterials(id);return;}
   if (/^learn(?:\/|$)/.test(id)) {document.body.dataset.workspace='learn';window.pcmStudy.render(id);return;}
+  if (/^scribbi(?:\/|$)/.test(id)) {if(!await leaveForWorkspace('scribbi')||epoch!==routeEpoch)return;document.body.dataset.workspace='scribbi';window.pcmPortal?.nav('scribbi');if(brandSub)brandSub.textContent='Your clinical skills workspace';window.pcmScribbi.render(id);return;}
   const kind=!id||id==='home'?'home':['practice','progress','scoring'].includes(id)?id:null;
   if(kind){
     if(!await leaveForWorkspace(kind)||epoch!==routeEpoch)return;
@@ -320,6 +327,7 @@ async function openSession(id,epoch=routeEpoch){
   if (st.error || !st.phase) { location.hash = ''; return renderLobby(); }
   clearPendingReveals();
   S = st;recoverScratch();lastPhase = null;
+  if(S.purpose==='scribbi')window.pcmPortal?.nav('scribbi');
   room = { view:'front', region:null, instrument:'', position:'seated',
            running:null, runTimer:null, runEnd:null,
            performed: (LS.get('performed.' + id) || {}) };
@@ -680,13 +688,8 @@ function panelPast(){
   const choices=(BOOT.cases||[]).map(c=>`<option value="${esc(c.id)}">${esc(stationTitle(c.id))}${reveal?' — '+esc(c.title):''}</option>`).join('');
   return `<div class="disclosure-body"><h2>Past attempts</h2>
     <p class="small muted">Retries and revisions keep each original attempt intact. Use Reset progress below only when you want to remove saved work.</p>
-    ${!rows.length ? '<p class="muted small">No saved attempts yet.</p>' : rows.map(h => `<div class="hist-row">
-      <span class="small muted">${esc(new Date(h.created_at).toLocaleString())}</span>
-      <span>${esc(stationTitle(h.case_id))} <span class="tiny muted">${esc(h.preset || '')} · ${esc(h.interaction_mode || '')}</span></span>
-      <span class="ph">${h.graded ? '<span class="badge b-ok">graded</span>'
-        : '<span class="badge b-mute">' + esc(h.phase) + '</span>'}</span>
-      <span><button class="btn sm" type="button" data-open="${esc(h.id)}">Open</button></span>
-    </div>`).join('')}
+    ${!rows.length ? '<p class="muted small">No saved attempts yet.</p>' : `<div class="attempt-filter" role="group" aria-label="Show attempts">${[['all','All',rows.length],['open','In progress',rows.filter(h=>h.phase!=='submitted').length],['done','Completed',rows.filter(h=>h.phase==='submitted').length]].map(([k,l,n])=>`<button class="btn sm ghost" type="button" data-attempt-filter="${k}" aria-pressed="${k==='all'}">${l} <span class="attempt-count">${n}</span></button>`).join('')}</div>
+    <div class="attempt-list">${rows.map(h=>attemptRow(h,reveal)).join('')}</div><p class="small muted attempt-empty" hidden>No attempts in this view yet.</p>`}
     ${S?'':`<details class="progress-reset-tools" id="progressResetTools"><summary>Reset progress</summary>
       <p class="small">Start fresh for one presentation, including all its variations, or for the whole library. You can review what will be removed before confirming.</p>
       <div class="progress-reset-actions"><label for="resetProgressCase">Presentation<select id="resetProgressCase"><option value="">Choose a presentation…</option>${choices}</select></label>
@@ -694,6 +697,25 @@ function panelPast(){
         <button class="btn" type="button" id="resetAllProgress">Reset all progress</button></div>
       <p id="progressResetStatus" class="small muted" role="status"></p><div id="progressResetConfirm"></div>
     </details>`}</div>`;
+}
+/* One saved attempt, readable at a glance: which patient, which mode, when,
+   where it stands, and the score once graded. Like the station grid, exam
+   rehearsal mode keeps every title and picture sealed. */
+const ATTEMPT_MODE={guided:'Guided',coached:'Coached',independent:'Independent',rehearsal:'Exam rehearsal',practice:'Guided',drill:'Coached',legacy:'Practice'};
+const ATTEMPT_PHASE={briefing:'At the doorway',encounter:'Encounter in progress',organize:'Organizing',note:'SOAP note in progress',submitted:'Submitted'};
+function attemptWhen(ms){const d=new Date(ms),n=new Date();return d.toDateString()===n.toDateString()?'Today, '+d.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'}):d.toLocaleDateString(undefined,{month:'short',day:'numeric',year:d.getFullYear()===n.getFullYear()?undefined:'numeric'});}
+function attemptRow(h,reveal){
+  const done=h.phase==='submitted',sealed=!reveal||(h.case_title==='Exam rehearsal'&&!done);
+  const system=(BOOT.cases||[]).find(c=>c.id===h.case_id)?.system;
+  const art=window.pcmPortal?.illustration?.(sealed?'sealed':window.pcmPortal?.family?.(system)||'general')||'';
+  const title=sealed?(h.case_title==='Exam rehearsal'&&!done?'Exam rehearsal':stationTitle(h.case_id)):(h.case_title||stationTitle(h.case_id));
+  const score=h.score!=null&&h.score_available?`<span class="attempt-score" title="Rubric score"><b>${esc(String(h.score))}</b><small>/${esc(String(h.score_available))}</small></span>`:'';
+  return `<div class="hist-row attempt-row ${done?'is-done':'is-open'}" data-attempt-state="${done?'done':'open'}">
+      <span class="attempt-art" aria-hidden="true">${art}</span>
+      <span class="attempt-main"><b>${esc(title)}</b><span class="small muted">${esc(stationTitle(h.case_id))} · ${esc(ATTEMPT_MODE[h.learning_mode]||'Practice')}${h.assisted&&h.learning_mode!=='guided'?' · assisted':''} · ${esc(attemptWhen(h.created_at))}</span></span>
+      <span class="attempt-status">${done?(score||'<span class="badge b-ok">Submitted</span>'):`<span class="badge b-warn">${esc(ATTEMPT_PHASE[h.phase]||h.phase)}</span>`}</span>
+      <span><button class="btn sm ${done?'':'primary'}" type="button" data-open="${esc(h.id)}" aria-label="${done?'Review':'Resume'} ${esc(title)}">${done?'Review':'Resume'}</button></span>
+    </div>`;
 }
 function clearResetLocalWork(scope,caseId,attemptIds){
   const ids=new Set(attemptIds),known=['pcmcse.ui.','pcmcse.performed.','pcmcse.courtesy.','pcmcse.entrance.','pcm-camera.'];
@@ -713,6 +735,7 @@ function clearResetLocalWork(scope,caseId,attemptIds){
 function wirePastPanel(){
   const panel=$('#extraPanel');if(!panel)return;
   $$('[data-open]',panel).forEach(b=>{b.onclick=()=>{location.hash='#/'+b.dataset.open;};});
+  $$('[data-attempt-filter]',panel).forEach(b=>{b.onclick=()=>{const k=b.dataset.attemptFilter;$$('[data-attempt-filter]',panel).forEach(x=>x.setAttribute('aria-pressed',String(x===b)));let shown=0;$$('.attempt-row',panel).forEach(r=>{r.hidden=k!=='all'&&r.dataset.attemptState!==k;shown+=!r.hidden;});const empty=$('.attempt-empty',panel);if(empty)empty.hidden=!!shown;};});
   if(S)return;
   const select=$('#resetProgressCase',panel),caseButton=$('#resetCaseProgress',panel),allButton=$('#resetAllProgress',panel);
   if(!select||!caseButton||!allButton)return;
@@ -737,11 +760,11 @@ async function showProgressResetConfirmation(scope,caseId,trigger){
     if(!Number.isInteger(preview.attempt_count)||!Number.isInteger(preview.unfinished_count)||preview.attempt_count<0||preview.unfinished_count<0)throw Error('Reset counts could not be verified.');
   }catch(error){if(requestId===progressResetPreview&&host.isConnected){status.textContent=error.message+' No progress was removed.';host.innerHTML='';trigger?.focus();}return;}
   if(S||(!$('#stationGrid')&&!$('#progressWorkspace'))||!host.isConnected||requestId!==progressResetPreview)return;
-  const unfinished=preview.unfinished_count,attemptCount=preview.attempt_count,reflections=preview.study_progress_count||0;
+  const unfinished=preview.unfinished_count,attemptCount=preview.attempt_count,reflections=preview.study_progress_count||0,reviews=preview.scribbi_count||0;
   status.textContent='';
   host.innerHTML=`<section class="callout warn" role="group" aria-labelledby="progressResetHeading" aria-describedby="progressResetDescription">
     <h3 id="progressResetHeading">Reset ${esc(label)}?</h3>
-    <p id="progressResetDescription">This permanently removes ${attemptCount} saved attempt${attemptCount===1?'':'s'}, including their notes, scores, encounter records and learning activity, plus ${reflections} saved written reflection${reflections===1?'':'s'} and any browser reflection drafts for ${esc(label)}. This cannot be undone.</p>
+    <p id="progressResetDescription">This permanently removes ${attemptCount} saved attempt${attemptCount===1?'':'s'}, including their notes, scores, encounter records and learning activity, plus ${reflections} saved written reflection${reflections===1?'':'s'}${reviews?`, ${reviews} Scribbi review${reviews===1?'':'s'}`:''} and any browser reflection drafts for ${esc(label)}. This cannot be undone.</p>
     ${unfinished?`<label class="opt"><input type="checkbox" id="resetIncludeUnfinished"><span>Also remove ${unfinished} unfinished attempt${unfinished===1?'':'s'} and ${unfinished===1?'its':'their'} notes</span></label>`:''}
     <div class="progress-reset-actions"><button class="btn" type="button" id="cancelProgressReset">Cancel</button>
       <button class="btn danger" type="button" id="confirmProgressReset" ${unfinished?'disabled':''}>Permanently reset ${scope==='all'?'all progress':'case progress'}</button></div>
@@ -825,11 +848,21 @@ function positionRoomFrame(){
   if(!slot||!S||!['briefing','encounter'].includes(S.phase)){host.hidden=true;return;}
   const b=slot.getBoundingClientRect();host.hidden=false;Object.assign(host.style,{left:(b.left+window.scrollX)+'px',top:(b.top+window.scrollY)+'px',width:b.width+'px',height:b.height+'px'});
 }
+/* The exam room: the project-built studio clinic by default, or the classic
+   room (supplied geometry; see licenses/SUPPLIED-ROOM.md) if the student
+   prefers it. A Scribbi visit always uses the studio clinic. */
+function roomStyle(){return LS.get('roomStyle')==='classic'?'classic':'studio';}
+window.pcmRoomStyle=()=>S?.purpose==='scribbi'?'studio':roomStyle();
+window.pcmSetRoomStyle=style=>{LS.set('roomStyle',style==='classic'?'classic':'studio');if(S&&['briefing','encounter'].includes(S.phase))mountPatientFrame();};
+const ROOM_SRC='patient3d/index.html?v=d0af1e6fb3';
 function mountPatientFrame(){
-  let host=$('#roomFrameHost');if(!host){host=document.createElement('div');host.id='roomFrameHost';host.innerHTML=`<iframe id="unityFrame" src="patient3d/index.html?v=fddecb9796" title="Interactive patient and examination room" allow="autoplay"></iframe>`;document.body.append(host);roomFrameReady=false;$('#unityFrame').onload=notifyPublicState;}
+  // A Scribbi visit uses the project-built room (?env=studio); switching rebuilds the frame.
+  const env=S?.purpose==='scribbi'||roomStyle()==='studio'?'&env=studio':'';let host=$('#roomFrameHost');if(host&&(host.dataset.env||'')!==env){roomViewportObserver?.disconnect();host.remove();host=null;}
+  if(!host){host=document.createElement('div');host.id='roomFrameHost';host.dataset.env=env;host.innerHTML=`<iframe id="unityFrame" src="${ROOM_SRC+env}" title="Interactive patient and examination room" allow="autoplay"></iframe>`;document.body.append(host);roomFrameReady=false;$('#unityFrame').onload=notifyPublicState;}
   roomViewportObserver?.disconnect();roomViewportObserver=new ResizeObserver(positionRoomFrame);for(const target of [$('#roomViewport'),$('#patientVoiceSettings'),document.body])if(target)roomViewportObserver.observe(target);positionRoomFrame();if(roomFrameReady&&$('#unityStatus'))$('#unityStatus').textContent=patientDisplayLabel();notifyPublicState();
 }
 window.addEventListener('resize',positionRoomFrame);document.addEventListener('scroll',positionRoomFrame,true);
+window.pcmReleaseRoomFrame=()=>{if(S&&['briefing','encounter'].includes(S.phase))return false;roomViewportObserver?.disconnect();roomViewportObserver=null;$('#roomFrameHost')?.remove();roomFrameReady=false;return true;};
 function setEntryStatus(text){const el=$('#entryStatus');if(el)el.textContent=text;}
 async function completeEntrance(id){
   if(!entryPending||entryPending.id!==id||entryPending.starting||S?.id!==entryPending.sid||S.phase!=='briefing')return;
@@ -864,6 +897,7 @@ function renderDoorway(){
       <section class="doorway-vitals" aria-labelledby="doorwayVitals"><div class="card-head"><h2 id="doorwayVitals">Vital signs</h2><span class="badge b-mute">Supplied information</span></div>${chartHtml({vitals:st.vitals||{},supplied_results:[]})}</section>
       <div class="doorway-facts"><div class="fact"><dt>Encounter</dt><dd>${isUntimedAttempt()?'Untimed':phaseAllowance(pre.encounter_s)}</dd></div>${pre.organize_s?'<div class="fact"><dt>Organize</dt><dd>'+phaseAllowance(pre.organize_s)+'</dd></div>':''}<div class="fact"><dt>SOAP</dt><dd>${isUntimedAttempt()?'Untimed':phaseAllowance(pre.note_s)}</dd></div></div>
       <p class="tiny muted">${pre.modified?'Practice timing is modified; exam rehearsal uses the course’s 14-minute encounter and 9-minute SOAP period. ':''}The encounter starts after entry, when your controls are ready.</p>
+      ${S.purpose==='scribbi'?'<p class="scribbi-door-note"><b>Scribbi is listening.</b> Lead the visit your way. When you finish, Scribbi writes the SOAP note from what was said, with mistakes for you to catch. It can’t feel what you palpate.</p>':''}
       <label class="motion-preference"><input id="entryReduced" type="checkbox" ${LS.get('reducedMotion')||window.matchMedia('(prefers-reduced-motion: reduce)').matches?'checked':''}> Reduce motion and skip the entrance animation</label>
       <div class="doorway-enter">
       <button class="btn primary big" id="go" type="button">Enter room <span aria-hidden="true">→</span></button><button class="btn ghost" id="skipEntrance" type="button">Skip animation &amp; enter</button>
@@ -959,7 +993,7 @@ function renderRoom(){
   const m=mode(), chart=S.station_chart||{vitals:{},supplied_results:[],doorway:[]};
   view.innerHTML=`<div class="room room-integrated experience-room ${uiMeta(S.id).expandedPatient?'patient-focus':''}">
     <section class="unity-room card" aria-label="Interactive patient room">
-      <div class="unity-heading"><div><span class="eyebrow">In the room together</span><h2>${esc(S.patient_name||'Your patient')}</h2></div><div class="patient-heading-actions"><span id="ptState" class="state-pill"><span class="dot" aria-hidden="true"></span><span class="txt">Ready to listen</span></span><button class="btn sm ghost" id="patientFocus" type="button" aria-pressed="${!!uiMeta(S.id).expandedPatient}">${uiMeta(S.id).expandedPatient?'Return to split view':'Expand patient view'}</button></div></div>
+      <div class="unity-heading"><div><span class="eyebrow">In the room together</span><h2>${esc(S.patient_name||'Your patient')}</h2></div>${S.purpose==='scribbi'?'<span class="scribbi-listening" title="Scribbi hears everything said in the room and writes the note when you finish. It cannot feel what you palpate."><span class="dot" aria-hidden="true"></span>Scribbi is listening</span>':''}<div class="patient-heading-actions"><span id="ptState" class="state-pill"><span class="dot" aria-hidden="true"></span><span class="txt">Ready to listen</span></span><button class="btn sm ghost" id="patientFocus" type="button" aria-pressed="${!!uiMeta(S.id).expandedPatient}">${uiMeta(S.id).expandedPatient?'Return to split view':'Expand patient view'}</button></div></div>
       <div id="roomViewport"></div>
       ${S.visual_demo==='humgen-trial'?'<div class="trial-disclosure">Human Generator free trial · one male character · original trial watermarks retained</div>':''}
       <div class="patient-toolbar" aria-label="Encounter tools">
@@ -988,7 +1022,7 @@ function renderRoom(){
     <div class="room-left">
       ${m.coach?`<details class="card bedside-card"><summary>Bedside actions <span class="small muted">Introduce yourself, ask permission, offer comfort</span></summary><p class="tiny muted">Choose an action to say it to your patient. It records your stated behavior.</p><div class="rapport" id="rapport"></div><button class="btn sm ghost" id="toolPrompts">Explore interview moves</button></details><div id="coachDock"></div>`:''}
     </div>
-    <div class="room-right card encounter-next"><div><span class="eyebrow">When you are ready</span><h3>Bring the encounter together.</h3><p class="small muted">Finish your conversation, then move into documentation.</p></div><div class="row"><button class="btn ghost sm" id="toolRefuse">Propose a sensitive examination</button><button class="btn" id="btnEnd">Finish encounter →</button></div><span class="tiny muted" id="examProgressSub"></span></div>
+    <div class="room-right card encounter-next"><div><span class="eyebrow">When you are ready</span><h3>Bring the encounter together.</h3><p class="small muted">Finish your conversation, then move into documentation.</p></div><div class="row"><button class="btn ghost sm" id="toolRefuse">Propose a sensitive examination</button><button class="btn" id="btnEnd">${S.purpose==='scribbi'?'Finish · Scribbi writes the note →':'Finish encounter →'}</button></div><span class="tiny muted" id="examProgressSub"></span></div>
   </div>`;
   mountPatientFrame();paintRapport();paintStream(S.transcript||[]);
   $('#stopPatient').onclick=interruptPatient;$('#btnSay').onclick=()=>sendSay();$('#say').onkeydown=composerKey;$('#say').value=draftValue('conversation',S.id)||'';$('#say').onfocus=()=>requestAnimationFrame(()=>{const pair=$('.experience-room'),patient=$('.unity-room'),conversation=$('.convo');if(innerWidth>820&&pair&&patient&&conversation&&Math.max(patient.offsetHeight,conversation.offsetHeight)<innerHeight-76){window.scrollTo({top:Math.max(0,pair.getBoundingClientRect().top+scrollY-76),behavior:'instant'});positionRoomFrame();}});$('#say').oninput=e=>{autogrow(e.target);keepDraft('conversation',S.id,e.target.value);notifyPublicState();};
@@ -1043,6 +1077,28 @@ function portraitSvg(caseId, name){
       stroke-linecap="round" opacity=".7"/>
   </svg>`;
 }
+/* "Maya is thinking…" under the conversation while a reply is on its way. It
+   sits beside the log, never inside it, so the transcript stays exactly the
+   recorded turns. */
+function paintTyping(on){
+  let typing=$('#ptTyping');const stream=$('#stream');
+  if(on&&!typing&&stream){typing=document.createElement('div');typing.id='ptTyping';typing.className='pt-typing';typing.setAttribute('aria-hidden','true');stream.after(typing);}
+  if(!typing)return;
+  if(on){typing.innerHTML=`<span class="pt-dots"><i></i><i></i><i></i></span>${esc(String(S?.patient_name||'The patient').split(/\s+/)[0])} is thinking…`;typing.hidden=false;const log=typing.closest('.ew-talk-log,.convo,#ewTalkLog')||stream;log.scrollTop=log.scrollHeight;}
+  else typing.hidden=true;
+}
+/* Subtitles over the patient: the reply appears where the student is looking,
+   like a video call. The conversation log keeps the record; this is for eyes. */
+let roomCaptionTimer=0;
+function showRoomCaption(text){
+  const host=$('#roomFrameHost');if(!host||host.hidden||!text||!S)return;
+  let cap=$('#roomCaption');
+  if(!cap){cap=document.createElement('div');cap.id='roomCaption';cap.className='room-caption';cap.setAttribute('aria-hidden','true');host.append(cap);}
+  cap.innerHTML=`<b>${esc(String(S.patient_name||'Patient').split(/\s+/)[0])}</b><span>${esc(text)}</span>`;
+  cap.classList.remove('is-shown');void cap.offsetWidth;cap.classList.add('is-shown');
+  clearTimeout(roomCaptionTimer);
+  roomCaptionTimer=setTimeout(()=>cap.classList.remove('is-shown'),Math.max(3500,Math.min(15000,text.split(/\s+/).length/2.5*1000+1400)));
+}
 function setPatientState(state, detail){
   const el = $('#ptState'); if (!el) return;
   const map = { idle:['','Ready to listen'], listening:['listening','Listening'],
@@ -1052,6 +1108,7 @@ function setPatientState(state, detail){
   // Send as a permanently greyed button it read as a broken control.
   const stop=$('#stopPatient');if(stop){const live=['speaking','preparing'].includes(state);stop.disabled=!live;stop.hidden=!live;}
   const pair = map[state] || map.idle;
+  paintTyping(state==='thinking');
   el.className = 'state-pill ' + pair[0];
   $('.txt', el).textContent = pair[1];
 }
@@ -1197,6 +1254,7 @@ function pushEvent(ev){
     case 'patient':
       pushTurn('pt', name, ev.text,
         ev.volunteered ? '<span class="badge b-info">volunteered</span>' : '');
+      showRoomCaption(ev.text);
       if (voice.speak) speak(ev.text); else setPatientState('idle');
       return;
     case 'finding':
@@ -1356,7 +1414,22 @@ function paintTurnCount(){
   const n = (S.transcript || []).filter(t => t.kind === 'student_utterance').length;
   el.textContent = n + ' turn' + (n === 1 ? '' : 's');
 }
+/* A Scribbi visit: Scribbi writes the note. Release the encounter here (no
+   polling, no note autosave) and open Scribbi's draft. */
+function handOffToScribbi(roundId,replace){
+  stopVoice();if(poll)clearInterval(poll);if(tick)clearInterval(tick);poll=null;tick=null;
+  S=null;lastPhase=null;positionRoomFrame();clockEl.classList.add('hidden');chipEl.classList.add('hidden');homeBtn.classList.add('hidden');
+  const target='#scribbi'+(roundId?'/r/'+roundId:'');
+  if(replace)location.replace(target);else location.hash=target;
+}
+async function finishScribbiVisit(){
+  const sid=S?.id;if(!sid||S.phase!=='encounter'||!window.pcmScribbi?.finishVisit)return;
+  const round=await window.pcmScribbi.finishVisit(S);
+  if(!round||S?.id!==sid)return;
+  handOffToScribbi(round.id,false);
+}
 async function confirmEnd(){
+  if(S?.purpose==='scribbi')return finishScribbiVisit();
   const sid=S?.id;
   // A running examination is stopped by cancelRunningExam() below and releases
   // nothing. Ending on top of one silently threw the wait away, so say it.
@@ -2326,6 +2399,9 @@ function paintDebrief(){
   // "next practice" card between the score and the tabs pushed the first of
   // the three lessons 680px down the page.
   if(!historical&&S.case_id)view.insertAdjacentHTML('beforeend',`<div class="debrief-next"><div><b>Your next practice</b><span class="small muted">Repair one missed step, then try a fresh case.</span></div><a class="btn sm" href="#learn/${esc(S.case_id)}?variant=${encodeURIComponent(S.variant_id||'base')}">Read this case walkthrough →</a></div>`);
+  // Scribbi can draft this same patient's note, mistakes and all: review it
+  // right after writing your own.
+  if(!historical&&S.case_id&&window.pcmScribbi?.launchCard)view.insertAdjacentHTML('beforeend',window.pcmScribbi.launchCard(S.case_id,S.variant_id||'base',S.patient_name||'',S.id));
   // The result comes first. The page used to open on a repair exercise and a
   // "next practice" card, so the one thing the student came back for -- how did
   // I do -- was below the fold, under eleven tabs.
@@ -3089,7 +3165,7 @@ window.pcmEnterWorkbench=async kind=>{
   if(poll)clearInterval(poll);if(tick)clearInterval(tick);S=null;lastPhase=null;document.body.dataset.phase=kind;positionRoomFrame();clockEl.classList.add('hidden');chipEl.classList.add('hidden');homeBtn.classList.add('hidden');window.scrollTo(0,0);return true;
 };
 window.pcmNavigate=destination=>{
-  const target=['home','practice','cases','learn','progress','scoring','voice'].includes(destination)?destination:'home';
+  const target=['home','practice','scribbi','cases','learn','progress','scoring'].includes(destination)?destination:'home';
   if(location.hash==='#'+target)route();else location.hash='#'+target;
 };
 window.pcmPortalCases=()=>BOOT?.cases||[];
@@ -3101,7 +3177,7 @@ window.pcmRefreshLobbyHistory=refreshLobbyHistory;
 /* ======================================================================== */
 /* boot                                                                      */
 /* ======================================================================== */
-homeBtn.onclick = () => window.pcmNavigate('home');
+homeBtn.onclick = () => window.pcmNavigate(S?.purpose==='scribbi'?'scribbi':'home');
 window.addEventListener('hashchange', route);
 document.addEventListener('visibilitychange', () => { if (!document.hidden && S) refresh(); });
 window.addEventListener('offline', () => {

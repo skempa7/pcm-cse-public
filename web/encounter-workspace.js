@@ -121,6 +121,13 @@ function views(){
    } else closeSheet();
   };
  });
+ // Which exam room surrounds the patient (a Scribbi visit always uses the studio clinic).
+ if(window.pcmSetRoomStyle&&!(typeof S!=='undefined'&&S?.purpose==='scribbi')){
+  const row=document.createElement('div');row.className='ew-room-style';
+  const paintRoom=()=>{const style=window.pcmRoomStyle?.()||'studio';row.innerHTML=`<span>Exam room: <b>${style==='studio'?'Studio clinic':'Classic room'}</b></span>`;
+   const b=button(style==='studio'?'Use the classic room':'Use the studio clinic','');b.onclick=()=>{window.pcmSetRoomStyle(style==='studio'?'classic':'studio');paintRoom();status.textContent='Loading the other room. Your encounter is unchanged.';};row.append(b);};
+  paintRoom();q('.ew-view-grid',host).after(row);
+ }
  const helper=q('.scene-help',active.root);sheet('Patient view',[host,helper],q('#ewView'));}
 /* Patient speech is a direct on/off control, not a settings screen. It governs
    the PATIENT'S output only: it never touches the clinician's microphone or the
@@ -132,7 +139,8 @@ function paintVoiceToggle(){
  const unavailable=b.dataset.unavailable==='1';
  const on=speechOn()&&!unavailable;
  // A label and aria-pressed carry the state, so it never depends on colour.
- b.textContent=unavailable?'♫ Voice unavailable':(on?'♫ Voice on':'♪ Voice off');
+ b.textContent=unavailable?'♪ Text only':(on?'♫ Voice on':'♪ Voice off');
+ b.title=unavailable?'This browser does not have the patient’s voice. Replies still appear as text and captions.':'';
  b.setAttribute('aria-pressed',String(on));
  b.setAttribute('aria-label',unavailable
    ?'Patient voice unavailable in this browser'
@@ -604,7 +612,7 @@ function mount(s){
   requestPosition(b.dataset.pos,positionControl);
  };});
  const view=button('⊙ View','ewView');view.onclick=views;tools.append(view);const chart=q('#toolChart',root);chart.textContent='Vitals';tools.append(chart);const audio=button('','ewVoice');audio.className='btn sm ew-toggle';tools.append(audio);paintVoiceToggle();audio.onclick=toggleVoice;
- const end=q('#btnEnd',root);end.textContent='End encounter →';end.classList.add('primary');bar.append(end);
+ const end=q('#btnEnd',root);end.textContent=typeof S!=='undefined'&&S?.purpose==='scribbi'?'Finish · Scribbi writes the note →':'End encounter →';end.classList.add('primary');bar.append(end);
  const store=document.createElement('div');store.className='ew-stored';store.hidden=true;root.append(store);[q('.room-left',root),q('.room-right',root),q('.patient-toolbar',root),q('.scene-help',root)].filter(Boolean).forEach(n=>store.append(n));
  q('#toolExam',root).onclick=()=>selectTab('exam');q('#unityFallback',root).onclick=()=>selectTab('exam');if(q('#quickUnstuck',root))q('#quickUnstuck',root).onclick=()=>{selectTab('guide');q('#unstuckButton')?.click();};
  q('#toggleRecord',root).onclick=()=>selectTab(active.tab==='record'?'talk':'record');

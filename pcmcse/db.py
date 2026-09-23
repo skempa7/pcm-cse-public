@@ -74,6 +74,38 @@ CREATE TABLE IF NOT EXISTS bridge_requests (
     session_id TEXT NOT NULL, request_id TEXT NOT NULL, response_json TEXT NOT NULL,
     PRIMARY KEY (session_id,request_id)
 );
+
+-- Scribbi: reviews of an AI-scribe draft. The answer key never leaves the
+-- engine; the page only ever receives the visit, the draft and, once signed,
+-- the result.
+CREATE TABLE IF NOT EXISTS scribbi_rounds (
+    id                TEXT PRIMARY KEY,
+    created_at        INTEGER NOT NULL,
+    updated_at        INTEGER NOT NULL,
+    case_id           TEXT NOT NULL,
+    variant_id        TEXT NOT NULL DEFAULT 'base',
+    source            TEXT NOT NULL DEFAULT 'library',
+    source_attempt_id TEXT NOT NULL DEFAULT '',
+    mode              TEXT NOT NULL,
+    timed             INTEGER NOT NULL DEFAULT 0,
+    time_limit_s      INTEGER NOT NULL DEFAULT 0,
+    seed              INTEGER NOT NULL,
+    generator_version TEXT NOT NULL DEFAULT '',
+    engine_version    TEXT NOT NULL DEFAULT '',
+    status            TEXT NOT NULL DEFAULT 'reviewing',
+    visit_json        TEXT NOT NULL,
+    lines_json        TEXT NOT NULL,
+    key_json          TEXT NOT NULL,
+    review_json       TEXT NOT NULL DEFAULT '{}',
+    result_json       TEXT,
+    started_at        INTEGER,
+    signed_at         INTEGER,
+    elapsed_ms        INTEGER NOT NULL DEFAULT 0,
+    hints_json        TEXT NOT NULL DEFAULT '[]',
+    score             INTEGER,
+    stars             INTEGER
+);
+CREATE INDEX IF NOT EXISTS idx_scribbi_case ON scribbi_rounds(case_id);
 """
 
 
@@ -234,15 +266,31 @@ def update_session(sid, **fields):
         conn.close()
 
 
-def list_sessions(limit=40):
+def is_scribbi_visit(settings_json):
+    """A Scribbi visit: the student led the encounter and Scribbi wrote the note.
+
+    It is Scribbi practice, not a Chat CSE attempt, so attempt lists, progress
+    and the unfinished-attempt reset gate leave it out."""
+    try:
+        return (json.loads(settings_json or "{}") or {}).get("purpose") == "scribbi"
+    except (ValueError, AttributeError):
+        return False
+
+
+def list_sessions(limit=40, include_scribbi=False):
     conn = connect()
     try:
         rows = conn.execute(
             "SELECT id, created_at, case_id, preset, phase, submitted_at, "
-            "results_json IS NOT NULL AS graded, interaction_mode, assisted, settings_json, case_snapshot "
-            "FROM sessions ORDER BY created_at DESC LIMIT ?", (limit,)).fetchall()
+            "results_json IS NOT NULL AS graded, interaction_mode, assisted, settings_json, case_snapshot, "
+            "results_json "
+            "FROM sessions ORDER BY created_at DESC").fetchall()
         out = []
         for r in rows:
+            if len(out) >= limit:
+                break
+            if not include_scribbi and is_scribbi_visit(r["settings_json"]):
+                continue
             d = dict(r)
             d["graded"] = bool(d["graded"])
             d["assisted"] = bool(d["assisted"])
@@ -251,6 +299,15 @@ def list_sessions(limit=40):
             d["learning_mode"] = settings.get("learning_mode", "legacy")
             d["patient_name"] = snapshot.get("patient", {}).get("name", "Saved station")
             d["case_title"] = (snapshot.get("title", "") if d["phase"] == "submitted" or d["learning_mode"] != "rehearsal" or d["assisted"] else "Exam rehearsal")
+            # The rubric total, so a progress list can show how each attempt went.
+            d["score"] = d["score_available"] = None
+            raw = d.pop("results_json")
+            if raw:
+                try:
+                    rubric = json.loads(raw).get("rubric") or {}
+                    d["score"], d["score_available"] = rubric.get("total_earned"), rubric.get("total_available")
+                except (ValueError, AttributeError):
+                    pass
             out.append(d)
         return out
     finally:
@@ -387,9 +444,10 @@ def reset_progress(scope, case_id=None, *, confirmed=False, include_in_progress=
         # start/change an attempt between the protection check and deletion.
         conn.execute('BEGIN IMMEDIATE')
         targets = [dict(row) for row in conn.execute(
-            'SELECT id, case_id, phase FROM sessions WHERE ' + where +
+            'SELECT id, case_id, phase, settings_json FROM sessions WHERE ' + where +
             ' ORDER BY created_at, id', params)]
-        active = [row for row in targets if row['phase'] != 'submitted']
+        visits = [row for row in targets if is_scribbi_visit(row.pop('settings_json'))]
+        active = [row for row in targets if row['phase'] != 'submitted' and row not in visits]
         if active and not include_in_progress:
             raise ProgressResetConflict(active)
         tables = {r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type = 'table'")}
@@ -399,9 +457,13 @@ def reset_progress(scope, case_id=None, *, confirmed=False, include_in_progress=
                 'DELETE FROM ' + table + ' WHERE session_id IN '
                 '(SELECT id FROM sessions WHERE ' + where + ')', params).rowcount
                 if table in tables else 0)
-        deleted['attempts'] = conn.execute('DELETE FROM sessions WHERE ' + where, params).rowcount
+        deleted['attempts'] = conn.execute('DELETE FROM sessions WHERE ' + where, params).rowcount - len(visits)
+        deleted['scribbi_visits'] = len(visits)
         deleted['study_progress'] = (conn.execute('DELETE FROM study_progress WHERE ' + where, params).rowcount
                                      if 'study_progress' in tables else 0)
+        # Scribbi reviews are practice history for the same presentations.
+        deleted['scribbi_rounds'] = (conn.execute('DELETE FROM scribbi_rounds WHERE ' + where, params).rowcount
+                                     if 'scribbi_rounds' in tables else 0)
         conn.commit()
         return {'scope': scope, 'case_id': case_id, 'deleted': deleted,
                 'included_in_progress': include_in_progress,
@@ -429,11 +491,16 @@ def preview_progress_reset(scope, case_id=None):
     try:
         conn.execute('PRAGMA query_only = ON')
         conn.execute('BEGIN')
-        row = conn.execute("SELECT COUNT(*), SUM(CASE WHEN phase != 'submitted' THEN 1 ELSE 0 END) FROM sessions WHERE " + where, params).fetchone()
+        rows = [(r[0], is_scribbi_visit(r[1])) for r in conn.execute('SELECT phase, settings_json FROM sessions WHERE ' + where, params)]
+        attempts = [phase for phase, visit in rows if not visit]
+        row = (len(attempts), sum(1 for phase in attempts if phase != 'submitted'))
         has_study = conn.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='study_progress'").fetchone()
         study = conn.execute('SELECT COUNT(*) FROM study_progress WHERE ' + where, params).fetchone()[0] if has_study else 0
+        has_scribbi = conn.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='scribbi_rounds'").fetchone()
+        scribbi = conn.execute('SELECT COUNT(*) FROM scribbi_rounds WHERE ' + where, params).fetchone()[0] if has_scribbi else 0
         return {'scope': scope, 'case_id': case_id, 'attempt_count': row[0],
-                'unfinished_count': row[1] or 0, 'study_progress_count': study}
+                'unfinished_count': row[1] or 0, 'study_progress_count': study,
+                'scribbi_count': scribbi, 'scribbi_visit_count': len(rows) - len(attempts)}
     finally:
         conn.rollback()
         conn.close()

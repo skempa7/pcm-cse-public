@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ENTRY_FILES = (
     'web/index.html', 'web/patient3d/index.html', 'web/app.js',
     'web/public-runtime.js', 'web/engine-worker.mjs', 'web/study.js',
-    'web/walkthrough-print.js',
+    'web/walkthrough-print.js', 'web/scribbi-visit.js',
 )
 REFERENCE = re.compile(r'''(["'])([A-Za-z0-9._/-]+)(\?v=)([A-Za-z0-9._-]+)(["'])''')
 
@@ -51,7 +51,8 @@ def stamp_tree(root=ROOT, check=False):
 
     for page in sorted(entries):
         if not page.is_file():
-            missing.append(str(page.relative_to(root)))
+            # Entries are resolved; resolve the root too (macOS /var is /private/var).
+            missing.append(str(page.relative_to(Path(root).resolve())))
         else:
             render(page)
     if not check and not missing:

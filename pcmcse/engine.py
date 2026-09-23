@@ -1341,6 +1341,9 @@ def state_payload(s):
         "preset": s.preset,
         "interaction_mode": row["interaction_mode"],
         "learning_mode": s.settings.get("learning_mode", "coached" if row["assisted"] else "independent"),
+        # A Scribbi visit: the student leads the encounter, Scribbi writes the note.
+        "purpose": s.settings.get("purpose") or None,
+        "scribbi_round_id": s.settings.get("scribbi_round_id") or None,
         "variant_id": s.case.get("variant_id", "base"),
         "patient_posture": s.pstate.get("posture", "seated"),
         "patient_name": s.case["patient"]["name"],
