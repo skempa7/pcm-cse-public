@@ -224,18 +224,26 @@ class ReproductiveHistoryScopeTests(unittest.TestCase):
             self.assertRegex(concept['value'].lower(), r'not done a pregnancy test')
             self.assertNotRegex(concept['value'].lower(), r'period|week|condom')
 
-    def test_current_pregnancy_clause_does_not_disclose_unasked_lmp_or_iud(self):
-        case, engine, state = self.ready('pulm-episodic-wheeze')
-        reply, meta = engine.respond('Could you be pregnant now?', state)
-        self.assertRegex(reply.lower(), r'not think i am pregnant')
-        self.assertNotRegex(reply.lower(), r'period|week|iud|test')
-        self.assertEqual(meta.get('facts_released', []), [])
-        self.assertFalse(meta.get('checklist_hits'), (reply, meta))
-        self.assertFalse(meta.get('delivery_limits'), (reply, meta))
-        self.assertEqual(set(meta.get('concepts', {})), {'delivered_text_history_pregnancy_possibility'})
-        for concept in meta['concepts'].values():
-            self.assertRegex(concept['value'].lower(), r'not think i am pregnant')
-            self.assertNotRegex(concept['value'].lower(), r'period|week|iud|test')
+    def test_current_pregnancy_question_releases_the_complete_bundled_statement(self):
+        # The period and contraception are the patient's answer to this
+        # question, and the complete fact carries the checklist item.
+        for cid, fid, spoken in [('pulm-episodic-wheeze', 'history_pregnancy_possibility',
+                                  'My period was two weeks ago. I use an IUD and do not think I am pregnant.'),
+                                 ('msk-hand-stiffness', 'history_pregnancy',
+                                  'My period was one week ago. I use condoms and have not done a pregnancy test.')]:
+            for question in ['Could you be pregnant now?', 'Is there any chance you could be pregnant?']:
+                with self.subTest(case=cid, question=question):
+                    case, engine, state = self.ready(cid)
+                    reply, meta = engine.respond(question, state)
+                    self.assert_scope(case, reply, meta, {fid}, {fid})
+                    self.assertTrue(meta.get('checklist_hits'), (reply, meta))
+                    self.assertEqual(reply, spoken)
+        # One ask covering both dimensions says the complete statement once,
+        # not its focused pregnancy-test clause as well.
+        case, engine, state = self.ready('msk-hand-stiffness')
+        reply, meta = engine.respond('Could you be pregnant or have you taken a pregnancy test?', state)
+        self.assert_scope(case, reply, meta, {'history_pregnancy'}, {'history_pregnancy'})
+        self.assertEqual(reply, 'My period was one week ago. I use condoms and have not done a pregnancy test.')
 
     def test_prior_deliveries_do_not_establish_total_gravidity_or_absence_of_losses(self):
         case, engine, state = self.ready('gi-epigastric-melena')
@@ -312,7 +320,6 @@ class ReproductiveHistoryScopeTests(unittest.TestCase):
     def test_notes_show_only_approved_scoped_partial_answers(self):
         examples = [('gi-epigastric-melena', 'Have you had any deliveries?', 'psh', r'normal deliveries', r'gallbladder|cholecystectomy|twenty.five'),
                     ('msk-hand-stiffness', 'Have you taken a pregnancy test?', 'history_pregnancy', r'not done a pregnancy test', r'period|week|condom'),
-                    ('pulm-episodic-wheeze', 'Could you be pregnant now?', 'history_pregnancy_possibility', r'not think i am pregnant', r'period|week|iud|test'),
                     ('msk-hand-stiffness', 'Do you have any children?', 'history_support', r'toddler', r'work|appointment'),
                     ('pulm-chronic-productive-cough', 'Do you have any children?', 'history_home_and_access', r'daughter', r'pay|drive|live alone')]
         for cid, question, source_id, expected, forbidden in examples:
@@ -359,7 +366,6 @@ class ReproductiveHistoryScopeTests(unittest.TestCase):
     def test_legacy_snapshots_obtain_scoped_statements_without_mutating_their_facts(self):
         examples = [('gi-epigastric-melena', 'Have you had any deliveries?', r'normal deliveries', r'gallbladder|twenty.five'),
                     ('msk-hand-stiffness', 'Have you taken a pregnancy test?', r'not done a pregnancy test', r'period|week|condom'),
-                    ('pulm-episodic-wheeze', 'Could you be pregnant now?', r'not think i am pregnant', r'period|week|iud|test'),
                     ('msk-hand-stiffness', 'Do you have any children?', r'toddler', r'work|appointment'),
                     ('pulm-chronic-productive-cough', 'Do you have any children?', r'daughter', r'pay|drive|live alone')]
         for cid, question, expected, forbidden in examples:

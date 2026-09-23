@@ -4682,6 +4682,10 @@
         "requires_components": [
           "all four quadrants"
         ],
+        "covered_by_components": [
+          "all four quadrants",
+          "bruits"
+        ],
         "concepts": {
           "expanded_exam_abd_auscultate_all_four_quadrants": {
             "polarity": "positive",
@@ -4702,6 +4706,10 @@
         "id": "expanded_exam_abd_auscultate_bruits",
         "text": "No abdominal bruit heard.",
         "requires_components": [
+          "bruits"
+        ],
+        "covered_by_components": [
+          "all four quadrants",
           "bruits"
         ],
         "concepts": {
@@ -4854,6 +4862,12 @@
         "requires_components": [
           "chest"
         ],
+        "covered_by_components": [
+          "chest",
+          "back",
+          "arms",
+          "legs"
+        ],
         "concepts": {
           "expanded_exam_skin_inspect_chest": {
             "polarity": "positive",
@@ -4875,6 +4889,12 @@
         "text": "No rash or open lesion on the inspected back.",
         "requires_components": [
           "back"
+        ],
+        "covered_by_components": [
+          "chest",
+          "back",
+          "arms",
+          "legs"
         ],
         "concepts": {
           "expanded_exam_skin_inspect_back": {
@@ -4898,6 +4918,12 @@
         "requires_components": [
           "arms"
         ],
+        "covered_by_components": [
+          "chest",
+          "back",
+          "arms",
+          "legs"
+        ],
         "concepts": {
           "expanded_exam_skin_inspect_arms": {
             "polarity": "positive",
@@ -4918,6 +4944,12 @@
         "id": "expanded_exam_skin_inspect_legs",
         "text": "No rash or open lesion on the inspected legs.",
         "requires_components": [
+          "legs"
+        ],
+        "covered_by_components": [
+          "chest",
+          "back",
+          "arms",
           "legs"
         ],
         "concepts": {
@@ -15929,6 +15961,7 @@
     "date": "2026-09-14",
     "kind": "user_requested_fictional_case_expansion",
     "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
-    "review_status": "author_consistency_checked_not_clinician_approved"
+    "review_status": "author_consistency_checked_not_clinician_approved",
+    "consistency_20260923": "Routine-expansion repair requested by the user: 6 routine component rows restating a core aggregate finding are covered by it, so a complete maneuver reports each finding once. Not clinician approved."
   }
 }

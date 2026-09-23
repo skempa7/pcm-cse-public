@@ -74,10 +74,11 @@ def protected_question(utterance):
 _SCOPED_SPEECH = {
     'Gallbladder out at twenty-five. And two children, both normal deliveries.': [
         ('And two children, both normal deliveries.', ['pregnancy_history', 'deliveries'], ['obstetric_history'])],
+    # Bundled period/contraception statements deliberately have no
+    # current-pregnancy clause: that question receives the whole statement,
+    # which is the patient's answer and the only way its checklist item is earned.
     'My period was one week ago. I use condoms and have not done a pregnancy test.': [
         ('I have not done a pregnancy test.', ['pregnancy_test'], [])],
-    'My period was two weeks ago. I use an IUD and do not think I am pregnant.': [
-        ('I do not think I am pregnant.', ['current_pregnancy'], [])],
     'My partner helps with our toddler, but missing work for appointments is difficult.': [
         ('I have a toddler.', ['children', 'child_age'], [])],
     'I live alone. My daughter can drive me, but I lose pay for weekday visits.': [
@@ -148,6 +149,12 @@ def select(facts, asked):
                 spoken = dict(fact, sp_says=[versions[0]['text']])
             else:
                 spoken = fact
+            # The complete statement already contains its focused clauses, so
+            # a compound question must not repeat one of them after it.
+            if any(f is fact for f in selected):
+                continue
+            if spoken is fact:
+                selected = [f for f in selected if f['id'] != fact['id']]
             if not any(f['id'] == spoken['id'] and f.get('sp_says') == spoken.get('sp_says') for f in selected):
                 selected.append(spoken)
     return selected, missing

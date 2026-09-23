@@ -3940,6 +3940,10 @@
         "requires_components": [
           "extraocular movements"
         ],
+        "covered_by_components": [
+          "pupils",
+          "extraocular movements"
+        ],
         "concepts": {
           "expanded_exam_heent_eyes_extraocular_movements": {
             "polarity": "positive",
@@ -4072,6 +4076,11 @@
         "requires_components": [
           "cn vii"
         ],
+        "covered_by_components": [
+          "cn vii",
+          "cn ix-x",
+          "cn xii"
+        ],
         "concepts": {
           "expanded_exam_neuro_cn_cn_vii": {
             "polarity": "positive",
@@ -4115,6 +4124,11 @@
         "text": "Palate elevates symmetrically; voice clear.",
         "requires_components": [
           "cn ix-x"
+        ],
+        "covered_by_components": [
+          "cn vii",
+          "cn ix-x",
+          "cn xii"
         ],
         "concepts": {
           "expanded_exam_neuro_cn_cn_ix_x": {
@@ -4160,6 +4174,11 @@
         "requires_components": [
           "cn xii"
         ],
+        "covered_by_components": [
+          "cn vii",
+          "cn ix-x",
+          "cn xii"
+        ],
         "concepts": {
           "expanded_exam_neuro_cn_cn_xii": {
             "polarity": "positive",
@@ -4203,6 +4222,10 @@
         "requires_components": [
           "upper extremity"
         ],
+        "covered_by_components": [
+          "upper extremity",
+          "lower extremity"
+        ],
         "concepts": {
           "expanded_exam_msk_strength_upper_extremity": {
             "polarity": "positive",
@@ -4223,6 +4246,10 @@
         "id": "expanded_exam_msk_strength_lower_extremity",
         "text": "Lower extremity strength 5/5 bilaterally.",
         "requires_components": [
+          "lower extremity"
+        ],
+        "covered_by_components": [
+          "upper extremity",
           "lower extremity"
         ],
         "concepts": {
@@ -14730,6 +14757,7 @@
     "date": "2026-09-14",
     "kind": "user_requested_fictional_case_expansion",
     "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
-    "review_status": "author_consistency_checked_not_clinician_approved"
+    "review_status": "author_consistency_checked_not_clinician_approved",
+    "consistency_20260923": "Routine-expansion repair requested by the user: 6 routine component rows restating a core aggregate finding are covered by it, so a complete maneuver reports each finding once. Not clinician approved."
   }
 }

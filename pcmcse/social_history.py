@@ -25,9 +25,10 @@ def closing_invitation(text):
     q = normalized(text)
     # A clinician's plans after this invitation do not change what was asked.
     q = re.sub(r' before (?:i (?:go |leave|speak|talk|discuss|report|check)|we (?:finish|wrap up)).*$', '', q)
+    about = r'(?: for me| about (?:this|the plan|your care|(?:the )?next steps|what happens next))?'
     forms = [r'(?:is there )?(?:anything|something) (?:else )?(?:you (?:would like|want|need) (?:for )?me to know|you (?:would like|want) to (?:add|tell me|mention|discuss))',
-             r'(?:do you have |have you got |are there )?any (?:other |more |further )?(?:questions|concerns|comments)(?: for me| about (?:this|the plan|your care))?',
-             r'what (?:other )?questions do you have(?: for me)?',
+             r'(?:do you have |have you got |are there )?any (?:other |more |further )?(?:questions|concerns|comments)' + about,
+             r'what (?:other )?questions do you have' + about,
              r'(?:is there )?anything (?:else )?you (?:would like|want) to ask(?: me)?',
              r'is there anything you are worried about',
              r'does that make sense']

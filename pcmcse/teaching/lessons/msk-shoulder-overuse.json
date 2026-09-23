@@ -62,13 +62,26 @@
         },
         {
           "kind": "dialogue",
+          "section": "Connect",
+          "student": "May I confirm your name and age?",
+          "patient": "My name is Elena Torres. I am 46 years old.",
+          "why": "The note documents age only as the patient states it.",
+          "event_ids": [
+            8,
+            9,
+            10
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "dialogue",
           "section": "Listen to the opening",
           "student": "What brings you in today?",
           "patient": "My right shoulder hurts when I reach overhead.",
           "why": "Compare active and passive motion while checking neurologic symptoms and medication safety.",
           "event_ids": [
-            8,
-            9
+            11,
+            12
           ],
           "fact_ids": [
             "opening_complaint"
@@ -81,8 +94,8 @@
           "patient": "About 5 weeks ago after several days painting ceilings.",
           "why": "Is movement limited by pain, by weakness, or even when someone else moves the arm?",
           "event_ids": [
-            10,
-            11
+            13,
+            14
           ],
           "fact_ids": [
             "hpi_onset"
@@ -95,8 +108,8 @@
           "patient": "It feels a little stiff in the morning but loosens after about 10 minutes.",
           "why": "Change over time can change urgency even when the symptom is familiar.",
           "event_ids": [
-            12,
-            13
+            15,
+            16
           ],
           "fact_ids": [
             "hpi_chronology"
@@ -109,8 +122,8 @@
           "patient": "On the outer shoulder and the top of my arm.",
           "why": "",
           "event_ids": [
-            14,
-            15
+            17,
+            18
           ],
           "fact_ids": [
             "hpi_location"
@@ -123,8 +136,8 @@
           "patient": "Sometimes a tingle reaches my thumb when my neck is stiff, but the shoulder ache stays above the elbow.",
           "why": "Spread of discomfort can connect an apparent local complaint with another system.",
           "event_ids": [
-            16,
-            17
+            19,
+            20
           ],
           "fact_ids": [
             "hpi_radiation"
@@ -137,8 +150,8 @@
           "patient": "A dull ache that pinches when I lift the arm.",
           "why": "Use the patient\u2019s words before translating them into a clinical description.",
           "event_ids": [
-            18,
-            19
+            21,
+            22
           ],
           "fact_ids": [
             "hpi_quality"
@@ -151,8 +164,8 @@
           "patient": "About 5 out of 10. Reaching shelves and washing my hair hurt.",
           "why": "Intensity and functional effect are distinct; record only the dimension answered.",
           "event_ids": [
-            20,
-            21
+            23,
+            24
           ],
           "fact_ids": [
             "hpi_severity"
@@ -165,8 +178,8 @@
           "patient": "During overhead work and when I lie on that shoulder.",
           "why": "Separate time since onset from duration of one episode and from continuity.",
           "event_ids": [
-            22,
-            23
+            25,
+            26
           ],
           "fact_ids": [
             "hpi_timing"
@@ -179,8 +192,8 @@
           "patient": "No fall, pop or sudden pull.",
           "why": "",
           "event_ids": [
-            24,
-            25
+            27,
+            28
           ],
           "fact_ids": [
             "hpi_setting"
@@ -193,8 +206,8 @@
           "patient": "Resting it and a warm shower help.",
           "why": "Relief changes probability, but is not proof that a serious cause is excluded.",
           "event_ids": [
-            26,
-            27
+            29,
+            30
           ],
           "fact_ids": [
             "hpi_alleviating"
@@ -207,8 +220,8 @@
           "patient": "Turning my neck sometimes brings on the thumb tingle, but not the main shoulder pain.",
           "why": "Compare triggers with the chronology; one trigger does not establish a diagnosis.",
           "event_ids": [
-            28,
-            29
+            31,
+            32
           ],
           "fact_ids": [
             "hpi_aggravating"
@@ -221,8 +234,8 @@
           "patient": "Acetaminophen 500 milligrams once or twice a day on workdays. It helps a little.",
           "why": "",
           "event_ids": [
-            30,
-            31
+            33,
+            34
           ],
           "fact_ids": [
             "hpi_treatment"
@@ -235,8 +248,8 @@
           "patient": "No previous shoulder trouble. My neck has ached on and off for a year.",
           "why": "",
           "event_ids": [
-            32,
-            33
+            35,
+            36
           ],
           "fact_ids": [
             "hpi_past_occurrence"
@@ -249,8 +262,8 @@
           "patient": "Only this shoulder hurts regularly.",
           "why": "Use this answer to weigh the possibilities described in the reasoning section.",
           "event_ids": [
-            34,
-            35
+            37,
+            38
           ],
           "fact_ids": [
             "symptom_joint_pain"
@@ -263,8 +276,8 @@
           "patient": "The thumb tingle is brief, only now and then.",
           "why": "Use this answer to weigh the possibilities described in the reasoning section.",
           "event_ids": [
-            36,
-            37
+            39,
+            40
           ],
           "fact_ids": [
             "symptom_tingling"
@@ -277,8 +290,8 @@
           "patient": "I have not seen swelling of the shoulder or other joints.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            38,
-            39
+            41,
+            42
           ],
           "fact_ids": [
             "symptom_joint_swelling"
@@ -291,8 +304,8 @@
           "patient": "No aching all over my muscles.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            40,
-            41
+            43,
+            44
           ],
           "fact_ids": [
             "symptom_myalgia"
@@ -305,8 +318,8 @@
           "patient": "No constant numbness.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            42,
-            43
+            45,
+            46
           ],
           "fact_ids": [
             "symptom_numbness"
@@ -319,8 +332,8 @@
           "patient": "I can grip normally. Lifting hurts rather than feeling powerless.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            44,
-            45
+            47,
+            48
           ],
           "fact_ids": [
             "symptom_weakness"
@@ -333,8 +346,8 @@
           "patient": "No fever.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            46,
-            47
+            49,
+            50
           ],
           "fact_ids": [
             "symptom_fever"
@@ -347,8 +360,8 @@
           "patient": "My weight is unchanged.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            48,
-            49
+            51,
+            52
           ],
           "fact_ids": [
             "symptom_weight_loss"
@@ -361,8 +374,8 @@
           "patient": "I am not unusually tired.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            50,
-            51
+            53,
+            54
           ],
           "fact_ids": [
             "symptom_fatigue"
@@ -375,8 +388,8 @@
           "patient": "Type 2 diabetes for 8 years. My last A1c was 7.2 three months ago.",
           "why": "",
           "event_ids": [
-            52,
-            53
+            55,
+            56
           ],
           "fact_ids": [
             "history_medical_history"
@@ -389,8 +402,8 @@
           "patient": "A cesarean delivery 18 years ago.",
           "why": "",
           "event_ids": [
-            54,
-            55
+            57,
+            58
           ],
           "fact_ids": [
             "history_surgery"
@@ -403,8 +416,8 @@
           "patient": "Metformin 1000 milligrams twice daily, plus the acetaminophen for this shoulder.",
           "why": "Name, dose and frequency matter; do not fill in missing details.",
           "event_ids": [
-            56,
-            57
+            59,
+            60
           ],
           "fact_ids": [
             "history_medication"
@@ -417,8 +430,8 @@
           "patient": "Naproxen gave me hives and lip swelling, so I avoid it and other anti-inflammatory pain pills.",
           "why": "Distinguish the substance and reaction from a blanket allergy label.",
           "event_ids": [
-            58,
-            59
+            61,
+            62
           ],
           "fact_ids": [
             "history_drug_reactions"
@@ -431,8 +444,8 @@
           "patient": "I never smoked.",
           "why": "",
           "event_ids": [
-            60,
-            61
+            63,
+            64
           ],
           "fact_ids": [
             "history_smoking"
@@ -445,8 +458,8 @@
           "patient": "A glass of wine once or twice a month.",
           "why": "",
           "event_ids": [
-            62,
-            63
+            65,
+            66
           ],
           "fact_ids": [
             "history_alcohol"
@@ -459,8 +472,8 @@
           "patient": "No.",
           "why": "",
           "event_ids": [
-            64,
-            65
+            67,
+            68
           ],
           "fact_ids": [
             "history_drugs"
@@ -473,8 +486,8 @@
           "patient": "I paint houses. My boss can give me lower-wall work for a while.",
           "why": "",
           "event_ids": [
-            66,
-            67
+            69,
+            70
           ],
           "fact_ids": [
             "history_work"
@@ -487,8 +500,8 @@
           "patient": "I live with my teenage son. He can help with lifting.",
           "why": "",
           "event_ids": [
-            68,
-            69
+            71,
+            72
           ],
           "fact_ids": [
             "history_home"
@@ -501,8 +514,8 @@
           "patient": "My mother developed rheumatoid arthritis in her fifties.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
-            70,
-            71
+            73,
+            74
           ],
           "fact_ids": [
             "history_family_history"
@@ -515,8 +528,8 @@
           "patient": "My father has high blood pressure. My sister has no major illness.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
-            72,
-            73
+            75,
+            76
           ],
           "fact_ids": [
             "history_other_family"
@@ -529,8 +542,8 @@
           "patient": "I want to know what is causing this and how to get back to my usual activities.",
           "why": "",
           "event_ids": [
-            74,
-            75
+            77,
+            78
           ],
           "fact_ids": [
             "patient_concern"
@@ -543,8 +556,8 @@
           "patient": "I want to know what is causing this and how to get back to my usual activities. I'm not sure. What do you mean exactly?",
           "why": "",
           "event_ids": [
-            76,
-            77
+            79,
+            80
           ],
           "fact_ids": [
             "patient_concern"
@@ -557,9 +570,9 @@
           "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
-            78,
-            79,
-            80
+            81,
+            82,
+            83
           ],
           "fact_ids": []
         },
@@ -577,8 +590,8 @@
           "finding": "Alert and comfortable at rest.",
           "why": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
           "event_ids": [
-            81,
-            82
+            84,
+            85
           ],
           "maneuver_id": "general_inspect",
           "duration_s": 10
@@ -590,8 +603,8 @@
           "finding": "Regular rate and rhythm without murmur.",
           "why": "The course expects at least four listening posts, on skin.",
           "event_ids": [
-            83,
-            84
+            86,
+            87
           ],
           "maneuver_id": "heart_auscultate",
           "duration_s": 40
@@ -603,11 +616,11 @@
           "finding": "Clear bilateral breath sounds.",
           "why": "The course expects six posterior fields, mouth open, on skin, comparing sides.",
           "event_ids": [
-            85,
-            86
+            88,
+            89
           ],
           "maneuver_id": "lungs_auscultate",
-          "duration_s": 41
+          "duration_s": 24
         },
         {
           "kind": "action",
@@ -616,8 +629,8 @@
           "finding": "No shoulder deformity, erythema or visible swelling.",
           "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
           "event_ids": [
-            87,
-            88
+            90,
+            91
           ],
           "maneuver_id": "msk_inspect",
           "duration_s": 12
@@ -629,11 +642,11 @@
           "finding": "Tenderness over the right greater tuberosity and lateral shoulder; no acromioclavicular point tenderness.",
           "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
           "event_ids": [
-            89,
-            90
+            92,
+            93
           ],
           "maneuver_id": "msk_palpate",
-          "duration_s": 16
+          "duration_s": 12
         },
         {
           "kind": "action",
@@ -642,11 +655,11 @@
           "finding": "Right active shoulder elevation painful from 70 to 120 degrees; passive flexion nearly full with mild end-range discomfort. External rotation mildly limited by discomfort; left shoulder motion full.",
           "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
           "event_ids": [
-            91,
-            92
+            94,
+            95
           ],
           "maneuver_id": "msk_rom",
-          "duration_s": 22
+          "duration_s": 14
         },
         {
           "kind": "action",
@@ -655,11 +668,11 @@
           "finding": "Right shoulder elevation and external rotation 4+/5 with pain; elbow, wrist and grip strength 5/5 bilaterally.",
           "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
           "event_ids": [
-            93,
-            94
+            96,
+            97
           ],
           "maneuver_id": "msk_strength",
-          "duration_s": 19
+          "duration_s": 32
         },
         {
           "kind": "action",
@@ -668,11 +681,11 @@
           "finding": "Mildly reduced cervical rotation to the right with neck discomfort.",
           "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
           "event_ids": [
-            95,
-            96
+            98,
+            99
           ],
           "maneuver_id": "neck_rom",
-          "duration_s": 15
+          "duration_s": 8
         },
         {
           "kind": "action",
@@ -681,11 +694,11 @@
           "finding": "Light touch intact in both upper limbs, including thumbs.",
           "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
           "event_ids": [
-            97,
-            98
+            100,
+            101
           ],
           "maneuver_id": "neuro_sensory",
-          "duration_s": 21
+          "duration_s": 16
         },
         {
           "kind": "action",
@@ -694,11 +707,11 @@
           "finding": "C5 right paraspinal tissue texture change and tenderness.",
           "why": "Name the level examined; findings are released by region.",
           "event_ids": [
-            99,
-            100
+            102,
+            103
           ],
           "maneuver_id": "osteo_screen",
-          "duration_s": 25
+          "duration_s": 16
         },
         {
           "kind": "dialogue",
@@ -707,8 +720,8 @@
           "patient": "Thank you. I understand that the next steps depend on the examination and tests.",
           "why": "Proposed care, not a record of tests or treatment already completed.",
           "event_ids": [
-            101,
-            102
+            104,
+            105
           ],
           "fact_ids": []
         },
@@ -716,11 +729,11 @@
           "kind": "dialogue",
           "section": "Close and check understanding",
           "student": "What questions do you have about the next steps?",
-          "patient": "I want to know what is causing this and how to get back to my usual activities.",
+          "patient": "Thank you for listening. I do not have anything further to add right now.",
           "why": "",
           "event_ids": [
-            103,
-            104
+            106,
+            107
           ],
           "fact_ids": []
         },
@@ -729,11 +742,11 @@
           "section": "Address the patient\u2019s question",
           "student": "Modified work can help protect your income while the shoulder recovers. Persistent weakness or increasing stiffness would change the next steps.",
           "patient": "That would help. Thank you.",
-          "why": "Answer the concern that was just expressed. Give a defensible recommendation and explain uncertainty; do not promise a diagnosis or recovery before the evidence supports it.",
+          "why": "Return to the concern the patient named during the history; nothing new was raised at the close. Give a defensible recommendation and explain uncertainty; do not promise a diagnosis or recovery before the evidence supports it.",
           "event_ids": [
-            105,
-            106,
-            107
+            108,
+            109,
+            110
           ],
           "fact_ids": []
         }
@@ -757,7 +770,7 @@
           "section": "S",
           "statement": "My right shoulder hurts when I reach overhead.",
           "event_ids": [
-            9
+            12
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -767,17 +780,18 @@
           "section": "S",
           "statement": "46-year-old female.",
           "event_ids": [
+            10,
             2
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
           "statement": "Five weeks of right shoulder pain after ceiling painting.",
           "event_ids": [
-            11
+            14
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -787,7 +801,7 @@
           "section": "S",
           "statement": "Lateral shoulder and proximal upper-arm pain.",
           "event_ids": [
-            15
+            18
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -797,8 +811,8 @@
           "section": "S",
           "statement": "Shoulder ache remains proximal to elbow;",
           "event_ids": [
-            17,
-            94
+            20,
+            97
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -808,7 +822,7 @@
           "section": "S",
           "statement": "occasional thumb tingling with neck stiffness.",
           "event_ids": [
-            37
+            40
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -818,7 +832,7 @@
           "section": "S",
           "statement": "Aching with pain during elevation.",
           "event_ids": [
-            19
+            22
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -828,7 +842,7 @@
           "section": "S",
           "statement": "5/10;",
           "event_ids": [
-            21
+            24
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -839,8 +853,8 @@
           "statement": "limits overhead reach and hair washing.",
           "event_ids": [
             2,
-            9,
-            21
+            12,
+            24
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -850,7 +864,7 @@
           "section": "S",
           "statement": "Worse with overhead use and lying on right side.",
           "event_ids": [
-            23
+            26
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -860,7 +874,7 @@
           "section": "S",
           "statement": "Morning stiffness approximately 10 minutes.",
           "event_ids": [
-            13
+            16
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -870,7 +884,7 @@
           "section": "S",
           "statement": "No fall or sudden injury.",
           "event_ids": [
-            25
+            28
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -880,7 +894,7 @@
           "section": "S",
           "statement": "Neck rotation can reproduce thumb tingling",
           "event_ids": [
-            37
+            40
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -890,8 +904,8 @@
           "section": "S",
           "statement": "not the principal shoulder pain.",
           "event_ids": [
-            29,
-            94
+            32,
+            97
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -901,7 +915,7 @@
           "section": "S",
           "statement": "Relief with rest and warmth.",
           "event_ids": [
-            27
+            30
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -911,7 +925,7 @@
           "section": "S",
           "statement": "Partial relief with acetaminophen 500 mg once or twice on workdays.",
           "event_ids": [
-            31
+            34
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -921,7 +935,7 @@
           "section": "S",
           "statement": "No previous shoulder episode;",
           "event_ids": [
-            33
+            36
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -931,8 +945,8 @@
           "section": "S",
           "statement": "intermittent neck ache for 1 year.",
           "event_ids": [
-            17,
-            33
+            20,
+            36
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -942,7 +956,7 @@
           "section": "S",
           "statement": "Type 2 diabetes for 8 years;",
           "event_ids": [
-            53
+            56
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -952,7 +966,7 @@
           "section": "S",
           "statement": "reported A1c 7.2% 3 months ago.",
           "event_ids": [
-            53
+            56
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -962,7 +976,7 @@
           "section": "S",
           "statement": "Cesarean delivery 18 years ago.",
           "event_ids": [
-            55
+            58
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -972,7 +986,7 @@
           "section": "S",
           "statement": "Metformin 1000 mg twice daily;",
           "event_ids": [
-            57
+            60
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -990,7 +1004,7 @@
           "section": "S",
           "statement": "Never smoked.",
           "event_ids": [
-            61
+            64
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1000,7 +1014,7 @@
           "section": "S",
           "statement": "One or two glasses of wine monthly.",
           "event_ids": [
-            63
+            66
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1010,7 +1024,7 @@
           "section": "S",
           "statement": "No recreational drugs.",
           "event_ids": [
-            65
+            68
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1036,7 +1050,7 @@
           "section": "S",
           "statement": "Lives with teenage son;",
           "event_ids": [
-            69
+            72
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1046,7 +1060,7 @@
           "section": "S",
           "statement": "lifting help available.",
           "event_ids": [
-            69
+            72
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -1056,7 +1070,7 @@
           "section": "S",
           "statement": "Mother: rheumatoid arthritis in her 50s.",
           "event_ids": [
-            71
+            74
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1074,7 +1088,7 @@
           "section": "S",
           "statement": "sister: no known major illness.",
           "event_ids": [
-            73
+            76
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -1084,7 +1098,7 @@
           "section": "S",
           "statement": "Naproxen: hives and lip swelling;",
           "event_ids": [
-            59
+            62
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -1102,7 +1116,7 @@
           "section": "S",
           "statement": "Musculoskeletal: Joint pain limited to the right shoulder.",
           "event_ids": [
-            35
+            38
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1112,7 +1126,7 @@
           "section": "S",
           "statement": "No reported joint swelling.",
           "event_ids": [
-            39
+            42
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1122,7 +1136,7 @@
           "section": "S",
           "statement": "No generalized myalgia.",
           "event_ids": [
-            41
+            44
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1132,7 +1146,7 @@
           "section": "S",
           "statement": "Neurologic: No persistent numbness.",
           "event_ids": [
-            43
+            46
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1142,7 +1156,7 @@
           "section": "S",
           "statement": "Intermittent brief thumb paresthesia.",
           "event_ids": [
-            37
+            40
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1152,7 +1166,7 @@
           "section": "S",
           "statement": "No grip weakness;",
           "event_ids": [
-            45
+            48
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1162,8 +1176,8 @@
           "section": "S",
           "statement": "elevation pain-limited.",
           "event_ids": [
-            92,
-            94
+            95,
+            97
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -1173,7 +1187,7 @@
           "section": "S",
           "statement": "General: No fever.",
           "event_ids": [
-            47
+            50
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1183,7 +1197,7 @@
           "section": "S",
           "statement": "No weight loss.",
           "event_ids": [
-            49
+            52
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1193,7 +1207,7 @@
           "section": "S",
           "statement": "No unusual fatigue.",
           "event_ids": [
-            51
+            54
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1273,7 +1287,7 @@
           "section": "O",
           "statement": "Alert and comfortable at rest.",
           "event_ids": [
-            82
+            85
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1283,7 +1297,7 @@
           "section": "O",
           "statement": "Regular rate and rhythm without murmur.",
           "event_ids": [
-            84
+            87
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1293,7 +1307,7 @@
           "section": "O",
           "statement": "Clear bilateral breath sounds.",
           "event_ids": [
-            86
+            89
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1303,7 +1317,7 @@
           "section": "O",
           "statement": "No shoulder deformity, erythema or visible swelling.",
           "event_ids": [
-            88
+            91
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1313,7 +1327,7 @@
           "section": "O",
           "statement": "Tenderness over the right greater tuberosity and lateral shoulder;",
           "event_ids": [
-            90
+            93
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1323,7 +1337,7 @@
           "section": "O",
           "statement": "no acromioclavicular point tenderness.",
           "event_ids": [
-            90
+            93
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1333,7 +1347,7 @@
           "section": "O",
           "statement": "Right active shoulder elevation painful from 70 to 120 degrees;",
           "event_ids": [
-            92
+            95
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1343,7 +1357,7 @@
           "section": "O",
           "statement": "passive flexion nearly full with mild end-range discomfort.",
           "event_ids": [
-            92
+            95
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1353,7 +1367,7 @@
           "section": "O",
           "statement": "External rotation mildly limited by discomfort;",
           "event_ids": [
-            92
+            95
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1363,7 +1377,7 @@
           "section": "O",
           "statement": "left shoulder motion full.",
           "event_ids": [
-            92
+            95
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1373,7 +1387,7 @@
           "section": "O",
           "statement": "Right shoulder elevation and external rotation 4+/5 with pain;",
           "event_ids": [
-            94
+            97
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1383,7 +1397,7 @@
           "section": "O",
           "statement": "elbow, wrist and grip strength 5/5 bilaterally.",
           "event_ids": [
-            94
+            97
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1393,7 +1407,7 @@
           "section": "O",
           "statement": "Mildly reduced cervical rotation to the right with neck discomfort.",
           "event_ids": [
-            96
+            99
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1403,7 +1417,7 @@
           "section": "O",
           "statement": "Light touch intact in both upper limbs, including thumbs.",
           "event_ids": [
-            98
+            101
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1413,7 +1427,7 @@
           "section": "O",
           "statement": "C5 right paraspinal tissue texture change and tenderness.",
           "event_ids": [
-            100
+            103
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1436,7 +1450,7 @@
           "t_ms": 0,
           "phase": "encounter",
           "kind": "station_info",
-          "text": "Elena Torres, 46-year-old female. My right shoulder hurts when I reach overhead. Vital signs are available on the chart. Perform a focused history and physical examination, discuss your plan, and document only what you obtain. Use the time limit stated for your selected practice mode.",
+          "text": "Elena Torres, female. My right shoulder hurts when I reach overhead. Vital signs are available on the chart. Perform a focused history and physical examination, discuss your plan, and document only what you obtain. Use the time limit stated for your selected practice mode.",
           "meta": {
             "doorway": true
           }
@@ -1459,7 +1473,7 @@
         },
         {
           "seq": 4,
-          "t_ms": 0,
+          "t_ms": 1,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
@@ -1470,7 +1484,7 @@
         },
         {
           "seq": 5,
-          "t_ms": 0,
+          "t_ms": 1,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
@@ -1482,7 +1496,7 @@
         },
         {
           "seq": 6,
-          "t_ms": 0,
+          "t_ms": 1,
           "phase": "encounter",
           "kind": "courtesy",
           "text": "Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.",
@@ -1494,7 +1508,7 @@
         },
         {
           "seq": 7,
-          "t_ms": 8,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
@@ -1507,7 +1521,49 @@
         },
         {
           "seq": 8,
-          "t_ms": 8,
+          "t_ms": 14,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "May I confirm your name and age?",
+          "meta": {
+            "mode": "type"
+          }
+        },
+        {
+          "seq": 9,
+          "t_ms": 14,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "May I confirm your name and age?",
+          "meta": {
+            "courtesy_id": "confirm_name",
+            "label": "Confirm patient name / preferred address",
+            "components": [
+              "name"
+            ]
+          }
+        },
+        {
+          "seq": 10,
+          "t_ms": 17,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My name is Elena Torres. I am 46 years old.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "identity_response",
+            "identity_fields": [
+              "name",
+              "age"
+            ],
+            "composed_asks": 2
+          }
+        },
+        {
+          "seq": 11,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -1518,8 +1574,8 @@
           }
         },
         {
-          "seq": 9,
-          "t_ms": 12,
+          "seq": 12,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My right shoulder hurts when I reach overhead.",
@@ -1544,8 +1600,8 @@
           }
         },
         {
-          "seq": 10,
-          "t_ms": 12,
+          "seq": 13,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did your shoulder pain start?",
@@ -1555,8 +1611,8 @@
           }
         },
         {
-          "seq": 11,
-          "t_ms": 14,
+          "seq": 14,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "About 5 weeks ago after several days painting ceilings.",
@@ -1581,8 +1637,8 @@
           }
         },
         {
-          "seq": 12,
-          "t_ms": 14,
+          "seq": 15,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Has your movement become stiffer?",
@@ -1593,8 +1649,8 @@
           }
         },
         {
-          "seq": 13,
-          "t_ms": 16,
+          "seq": 16,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It feels a little stiff in the morning but loosens after about 10 minutes.",
@@ -1619,8 +1675,8 @@
           }
         },
         {
-          "seq": 14,
-          "t_ms": 16,
+          "seq": 17,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Where does the shoulder hurt?",
@@ -1630,8 +1686,8 @@
           }
         },
         {
-          "seq": 15,
-          "t_ms": 18,
+          "seq": 18,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "On the outer shoulder and the top of my arm.",
@@ -1656,8 +1712,8 @@
           }
         },
         {
-          "seq": 16,
-          "t_ms": 18,
+          "seq": 19,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does the pain go below the elbow?",
@@ -1668,8 +1724,8 @@
           }
         },
         {
-          "seq": 17,
-          "t_ms": 20,
+          "seq": 20,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Sometimes a tingle reaches my thumb when my neck is stiff, but the shoulder ache stays above the elbow.",
@@ -1694,8 +1750,8 @@
           }
         },
         {
-          "seq": 18,
-          "t_ms": 20,
+          "seq": 21,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does the pain feel like?",
@@ -1706,8 +1762,8 @@
           }
         },
         {
-          "seq": 19,
-          "t_ms": 22,
+          "seq": 22,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "A dull ache that pinches when I lift the arm.",
@@ -1732,8 +1788,8 @@
           }
         },
         {
-          "seq": 20,
-          "t_ms": 22,
+          "seq": 23,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad is the pain?",
@@ -1744,8 +1800,8 @@
           }
         },
         {
-          "seq": 21,
-          "t_ms": 23,
+          "seq": 24,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "About 5 out of 10. Reaching shelves and washing my hair hurt.",
@@ -1770,8 +1826,8 @@
           }
         },
         {
-          "seq": 22,
-          "t_ms": 24,
+          "seq": 25,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When is the pain worst?",
@@ -1781,8 +1837,8 @@
           }
         },
         {
-          "seq": 23,
-          "t_ms": 25,
+          "seq": 26,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "During overhead work and when I lie on that shoulder.",
@@ -1807,8 +1863,8 @@
           }
         },
         {
-          "seq": 24,
-          "t_ms": 26,
+          "seq": 27,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Was there a fall or sudden injury?",
@@ -1819,8 +1875,8 @@
           }
         },
         {
-          "seq": 25,
-          "t_ms": 27,
+          "seq": 28,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No fall, pop or sudden pull.",
@@ -1845,8 +1901,8 @@
           }
         },
         {
-          "seq": 26,
-          "t_ms": 28,
+          "seq": 29,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What relieves the shoulder pain?",
@@ -1857,8 +1913,8 @@
           }
         },
         {
-          "seq": 27,
-          "t_ms": 29,
+          "seq": 30,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Resting it and a warm shower help.",
@@ -1883,8 +1939,8 @@
           }
         },
         {
-          "seq": 28,
-          "t_ms": 30,
+          "seq": 31,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do neck movements change the shoulder pain?",
@@ -1895,8 +1951,8 @@
           }
         },
         {
-          "seq": 29,
-          "t_ms": 31,
+          "seq": 32,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Turning my neck sometimes brings on the thumb tingle, but not the main shoulder pain.",
@@ -1921,8 +1977,8 @@
           }
         },
         {
-          "seq": 30,
-          "t_ms": 32,
+          "seq": 33,
+          "t_ms": 48,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What have you taken for the pain?",
@@ -1933,8 +1989,8 @@
           }
         },
         {
-          "seq": 31,
-          "t_ms": 33,
+          "seq": 34,
+          "t_ms": 50,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Acetaminophen 500 milligrams once or twice a day on workdays. It helps a little.",
@@ -1959,8 +2015,8 @@
           }
         },
         {
-          "seq": 32,
-          "t_ms": 34,
+          "seq": 35,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had shoulder trouble before?",
@@ -1971,8 +2027,8 @@
           }
         },
         {
-          "seq": 33,
-          "t_ms": 35,
+          "seq": 36,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No previous shoulder trouble. My neck has ached on and off for a year.",
@@ -1997,8 +2053,8 @@
           }
         },
         {
-          "seq": 34,
-          "t_ms": 36,
+          "seq": 37,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Any other joint pain?",
@@ -2009,8 +2065,8 @@
           }
         },
         {
-          "seq": 35,
-          "t_ms": 37,
+          "seq": 38,
+          "t_ms": 55,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Only this shoulder hurts regularly.",
@@ -2026,6 +2082,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "joint_pain"
+            ],
             "checklist_hits": [
               "h_symptom_joint_pain"
             ],
@@ -2035,8 +2095,8 @@
           }
         },
         {
-          "seq": 36,
-          "t_ms": 38,
+          "seq": 39,
+          "t_ms": 56,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had tingling?",
@@ -2047,8 +2107,8 @@
           }
         },
         {
-          "seq": 37,
-          "t_ms": 39,
+          "seq": 40,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The thumb tingle is brief, only now and then.",
@@ -2064,6 +2124,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "tingling"
+            ],
             "checklist_hits": [
               "h_symptom_tingling"
             ],
@@ -2073,8 +2137,8 @@
           }
         },
         {
-          "seq": 38,
-          "t_ms": 39,
+          "seq": 41,
+          "t_ms": 58,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had joint swelling?",
@@ -2085,8 +2149,8 @@
           }
         },
         {
-          "seq": 39,
-          "t_ms": 41,
+          "seq": 42,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not seen swelling of the shoulder or other joints.",
@@ -2111,8 +2175,8 @@
           }
         },
         {
-          "seq": 40,
-          "t_ms": 41,
+          "seq": 43,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had myalgia?",
@@ -2123,8 +2187,8 @@
           }
         },
         {
-          "seq": 41,
-          "t_ms": 43,
+          "seq": 44,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No aching all over my muscles.",
@@ -2140,6 +2204,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "myalgia"
+            ],
             "checklist_hits": [
               "h_symptom_myalgia"
             ],
@@ -2149,8 +2217,8 @@
           }
         },
         {
-          "seq": 42,
-          "t_ms": 43,
+          "seq": 45,
+          "t_ms": 62,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had numbness?",
@@ -2161,8 +2229,8 @@
           }
         },
         {
-          "seq": 43,
-          "t_ms": 44,
+          "seq": 46,
+          "t_ms": 64,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No constant numbness.",
@@ -2178,6 +2246,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "numbness"
+            ],
             "checklist_hits": [
               "h_symptom_numbness"
             ],
@@ -2187,8 +2259,8 @@
           }
         },
         {
-          "seq": 44,
-          "t_ms": 45,
+          "seq": 47,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed weakness?",
@@ -2199,8 +2271,8 @@
           }
         },
         {
-          "seq": 45,
-          "t_ms": 46,
+          "seq": 48,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I can grip normally. Lifting hurts rather than feeling powerless.",
@@ -2216,6 +2288,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "weakness"
+            ],
             "checklist_hits": [
               "h_symptom_weakness"
             ],
@@ -2225,8 +2301,8 @@
           }
         },
         {
-          "seq": 46,
-          "t_ms": 47,
+          "seq": 49,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -2237,8 +2313,8 @@
           }
         },
         {
-          "seq": 47,
-          "t_ms": 48,
+          "seq": 50,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No fever.",
@@ -2254,6 +2330,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "fever"
+            ],
             "checklist_hits": [
               "h_symptom_fever"
             ],
@@ -2263,8 +2343,8 @@
           }
         },
         {
-          "seq": 48,
-          "t_ms": 48,
+          "seq": 51,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had weight loss?",
@@ -2275,8 +2355,8 @@
           }
         },
         {
-          "seq": 49,
-          "t_ms": 50,
+          "seq": 52,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My weight is unchanged.",
@@ -2292,6 +2372,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "weight_change"
+            ],
             "checklist_hits": [
               "h_symptom_weight_loss"
             ],
@@ -2301,8 +2385,8 @@
           }
         },
         {
-          "seq": 50,
-          "t_ms": 50,
+          "seq": 53,
+          "t_ms": 71,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had fatigue?",
@@ -2313,8 +2397,8 @@
           }
         },
         {
-          "seq": 51,
-          "t_ms": 52,
+          "seq": 54,
+          "t_ms": 73,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am not unusually tired.",
@@ -2330,6 +2414,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "fatigue"
+            ],
             "checklist_hits": [
               "h_symptom_fatigue"
             ],
@@ -2339,8 +2427,8 @@
           }
         },
         {
-          "seq": 52,
-          "t_ms": 52,
+          "seq": 55,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical conditions do you have?",
@@ -2351,8 +2439,8 @@
           }
         },
         {
-          "seq": 53,
-          "t_ms": 54,
+          "seq": 56,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Type 2 diabetes for 8 years. My last A1c was 7.2 three months ago.",
@@ -2377,8 +2465,8 @@
           }
         },
         {
-          "seq": 54,
-          "t_ms": 54,
+          "seq": 57,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What surgery have you had?",
@@ -2389,8 +2477,8 @@
           }
         },
         {
-          "seq": 55,
-          "t_ms": 55,
+          "seq": 58,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "A cesarean delivery 18 years ago.",
@@ -2415,8 +2503,8 @@
           }
         },
         {
-          "seq": 56,
-          "t_ms": 56,
+          "seq": 59,
+          "t_ms": 78,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you take?",
@@ -2427,8 +2515,8 @@
           }
         },
         {
-          "seq": 57,
-          "t_ms": 57,
+          "seq": 60,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Metformin 1000 milligrams twice daily, plus the acetaminophen for this shoulder.",
@@ -2453,8 +2541,8 @@
           }
         },
         {
-          "seq": 58,
-          "t_ms": 58,
+          "seq": 61,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medication allergies do you have?",
@@ -2465,8 +2553,8 @@
           }
         },
         {
-          "seq": 59,
-          "t_ms": 59,
+          "seq": 62,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Naproxen gave me hives and lip swelling, so I avoid it and other anti-inflammatory pain pills.",
@@ -2491,8 +2579,8 @@
           }
         },
         {
-          "seq": 60,
-          "t_ms": 60,
+          "seq": 63,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you smoke?",
@@ -2503,8 +2591,8 @@
           }
         },
         {
-          "seq": 61,
-          "t_ms": 61,
+          "seq": 64,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I never smoked.",
@@ -2529,8 +2617,8 @@
           }
         },
         {
-          "seq": 62,
-          "t_ms": 62,
+          "seq": 65,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol?",
@@ -2541,8 +2629,8 @@
           }
         },
         {
-          "seq": 63,
-          "t_ms": 63,
+          "seq": 66,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "A glass of wine once or twice a month.",
@@ -2567,8 +2655,8 @@
           }
         },
         {
-          "seq": 64,
-          "t_ms": 63,
+          "seq": 67,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use recreational drugs?",
@@ -2579,8 +2667,8 @@
           }
         },
         {
-          "seq": 65,
-          "t_ms": 65,
+          "seq": 68,
+          "t_ms": 90,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No.",
@@ -2605,8 +2693,8 @@
           }
         },
         {
-          "seq": 66,
-          "t_ms": 65,
+          "seq": 69,
+          "t_ms": 90,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What work do you do?",
@@ -2617,8 +2705,8 @@
           }
         },
         {
-          "seq": 67,
-          "t_ms": 67,
+          "seq": 70,
+          "t_ms": 92,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I paint houses. My boss can give me lower-wall work for a while.",
@@ -2643,8 +2731,8 @@
           }
         },
         {
-          "seq": 68,
-          "t_ms": 67,
+          "seq": 71,
+          "t_ms": 93,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who helps you at home?",
@@ -2654,8 +2742,8 @@
           }
         },
         {
-          "seq": 69,
-          "t_ms": 69,
+          "seq": 72,
+          "t_ms": 94,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my teenage son. He can help with lifting.",
@@ -2680,8 +2768,8 @@
           }
         },
         {
-          "seq": 70,
-          "t_ms": 69,
+          "seq": 73,
+          "t_ms": 95,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Does arthritis run in your family?",
@@ -2692,8 +2780,8 @@
           }
         },
         {
-          "seq": 71,
-          "t_ms": 71,
+          "seq": 74,
+          "t_ms": 97,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My mother developed rheumatoid arthritis in her fifties.",
@@ -2718,8 +2806,8 @@
           }
         },
         {
-          "seq": 72,
-          "t_ms": 71,
+          "seq": 75,
+          "t_ms": 97,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What about your father and siblings?",
@@ -2730,8 +2818,8 @@
           }
         },
         {
-          "seq": 73,
-          "t_ms": 73,
+          "seq": 76,
+          "t_ms": 99,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My father has high blood pressure. My sister has no major illness.",
@@ -2756,8 +2844,8 @@
           }
         },
         {
-          "seq": 74,
-          "t_ms": 73,
+          "seq": 77,
+          "t_ms": 100,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most?",
@@ -2768,8 +2856,8 @@
           }
         },
         {
-          "seq": 75,
-          "t_ms": 74,
+          "seq": 78,
+          "t_ms": 102,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I want to know what is causing this and how to get back to my usual activities.",
@@ -2794,8 +2882,8 @@
           }
         },
         {
-          "seq": 76,
-          "t_ms": 75,
+          "seq": 79,
+          "t_ms": 102,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -2805,8 +2893,8 @@
           }
         },
         {
-          "seq": 77,
-          "t_ms": 91,
+          "seq": 80,
+          "t_ms": 124,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I want to know what is causing this and how to get back to my usual activities. I'm not sure. What do you mean exactly?",
@@ -2835,8 +2923,8 @@
           }
         },
         {
-          "seq": 78,
-          "t_ms": 91,
+          "seq": 81,
+          "t_ms": 125,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -2846,8 +2934,8 @@
           }
         },
         {
-          "seq": 79,
-          "t_ms": 93,
+          "seq": 82,
+          "t_ms": 127,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Yes, that's fine. Go ahead.",
@@ -2856,8 +2944,8 @@
           }
         },
         {
-          "seq": 80,
-          "t_ms": 91,
+          "seq": 83,
+          "t_ms": 125,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -2868,8 +2956,8 @@
           }
         },
         {
-          "seq": 81,
-          "t_ms": 10093,
+          "seq": 84,
+          "t_ms": 10128,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -2888,8 +2976,8 @@
           }
         },
         {
-          "seq": 82,
-          "t_ms": 10093,
+          "seq": 85,
+          "t_ms": 10128,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert and comfortable at rest.",
@@ -2910,8 +2998,8 @@
           }
         },
         {
-          "seq": 83,
-          "t_ms": 50093,
+          "seq": 86,
+          "t_ms": 50128,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -2936,8 +3024,8 @@
           }
         },
         {
-          "seq": 84,
-          "t_ms": 50093,
+          "seq": 87,
+          "t_ms": 50128,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rate and rhythm without murmur.",
@@ -2958,8 +3046,8 @@
           }
         },
         {
-          "seq": 85,
-          "t_ms": 91093,
+          "seq": 88,
+          "t_ms": 74128,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -2978,13 +3066,13 @@
             "scopes": [
               "lungs"
             ],
-            "duration_s": 41,
+            "duration_s": 24,
             "withheld": []
           }
         },
         {
-          "seq": 86,
-          "t_ms": 91093,
+          "seq": 89,
+          "t_ms": 74128,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Clear bilateral breath sounds.",
@@ -3005,8 +3093,8 @@
           }
         },
         {
-          "seq": 87,
-          "t_ms": 103093,
+          "seq": 90,
+          "t_ms": 86128,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect the affected area",
@@ -3029,8 +3117,8 @@
           }
         },
         {
-          "seq": 88,
-          "t_ms": 103093,
+          "seq": 91,
+          "t_ms": 86128,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No shoulder deformity, erythema or visible swelling.",
@@ -3051,8 +3139,8 @@
           }
         },
         {
-          "seq": 89,
-          "t_ms": 119093,
+          "seq": 92,
+          "t_ms": 98128,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate the affected area",
@@ -3068,13 +3156,16 @@
             "scopes": [
               "msk.palpation"
             ],
-            "duration_s": 16,
-            "withheld": []
+            "duration_s": 12,
+            "withheld": [
+              "expanded_exam_msk_palpate_paraspinal_musculature",
+              "expanded_exam_msk_palpate_midline_spine"
+            ]
           }
         },
         {
-          "seq": 90,
-          "t_ms": 119093,
+          "seq": 93,
+          "t_ms": 98128,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Tenderness over the right greater tuberosity and lateral shoulder; no acromioclavicular point tenderness.",
@@ -3095,8 +3186,8 @@
           }
         },
         {
-          "seq": 91,
-          "t_ms": 141093,
+          "seq": 94,
+          "t_ms": 112128,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Range of motion",
@@ -3113,13 +3204,13 @@
             "scopes": [
               "msk.rom"
             ],
-            "duration_s": 22,
+            "duration_s": 14,
             "withheld": []
           }
         },
         {
-          "seq": 92,
-          "t_ms": 141093,
+          "seq": 95,
+          "t_ms": 112128,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Right active shoulder elevation painful from 70 to 120 degrees; passive flexion nearly full with mild end-range discomfort. External rotation mildly limited by discomfort; left shoulder motion full.",
@@ -3140,8 +3231,8 @@
           }
         },
         {
-          "seq": 93,
-          "t_ms": 160093,
+          "seq": 96,
+          "t_ms": 144128,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Muscle strength testing",
@@ -3157,13 +3248,16 @@
             "scopes": [
               "neuro.motor"
             ],
-            "duration_s": 19,
-            "withheld": []
+            "duration_s": 32,
+            "withheld": [
+              "expanded_exam_msk_strength_lower_extremity",
+              "expanded_exam_msk_strength_pronator_drift"
+            ]
           }
         },
         {
-          "seq": 94,
-          "t_ms": 160093,
+          "seq": 97,
+          "t_ms": 144128,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Right shoulder elevation and external rotation 4+/5 with pain; elbow, wrist and grip strength 5/5 bilaterally.",
@@ -3184,8 +3278,8 @@
           }
         },
         {
-          "seq": 95,
-          "t_ms": 175093,
+          "seq": 98,
+          "t_ms": 152128,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Neck range of motion / meningeal signs",
@@ -3201,13 +3295,16 @@
             "scopes": [
               "neck"
             ],
-            "duration_s": 15,
-            "withheld": []
+            "duration_s": 8,
+            "withheld": [
+              "expanded_exam_neck_rom_brudzinski",
+              "expanded_exam_neck_rom_kernig"
+            ]
           }
         },
         {
-          "seq": 96,
-          "t_ms": 175093,
+          "seq": 99,
+          "t_ms": 152128,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Mildly reduced cervical rotation to the right with neck discomfort.",
@@ -3228,8 +3325,8 @@
           }
         },
         {
-          "seq": 97,
-          "t_ms": 196093,
+          "seq": 100,
+          "t_ms": 168128,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Sensory examination",
@@ -3245,13 +3342,17 @@
             "scopes": [
               "neuro.sensory"
             ],
-            "duration_s": 21,
-            "withheld": []
+            "duration_s": 16,
+            "withheld": [
+              "expanded_exam_neuro_sensory_pinprick",
+              "expanded_exam_neuro_sensory_vibration",
+              "expanded_exam_neuro_sensory_proprioception"
+            ]
           }
         },
         {
-          "seq": 98,
-          "t_ms": 196093,
+          "seq": 101,
+          "t_ms": 168128,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Light touch intact in both upper limbs, including thumbs.",
@@ -3272,8 +3373,8 @@
           }
         },
         {
-          "seq": 99,
-          "t_ms": 221093,
+          "seq": 102,
+          "t_ms": 184128,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -3289,13 +3390,18 @@
             "scopes": [
               "osteopathic"
             ],
-            "duration_s": 25,
-            "withheld": []
+            "duration_s": 16,
+            "withheld": [
+              "expanded_exam_osteo_screen_thoracic",
+              "expanded_exam_osteo_screen_lumbar",
+              "expanded_exam_osteo_screen_sacrum",
+              "expanded_exam_osteo_screen_ribs"
+            ]
           }
         },
         {
-          "seq": 100,
-          "t_ms": 221093,
+          "seq": 103,
+          "t_ms": 184128,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "C5 right paraspinal tissue texture change and tenderness.",
@@ -3316,8 +3422,8 @@
           }
         },
         {
-          "seq": 101,
-          "t_ms": 221093,
+          "seq": 104,
+          "t_ms": 184128,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "We will reduce overhead strain and start a gentle rehabilitation plan. Because naproxen caused hives and lip swelling, I will not assume another anti-inflammatory pill is safe. We will reassess in three weeks.",
@@ -3326,8 +3432,8 @@
           }
         },
         {
-          "seq": 102,
-          "t_ms": 221093,
+          "seq": 105,
+          "t_ms": 184128,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Thank you. I understand that the next steps depend on the examination and tests.",
@@ -3339,8 +3445,8 @@
           }
         },
         {
-          "seq": 103,
-          "t_ms": 221093,
+          "seq": 106,
+          "t_ms": 184128,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -3352,11 +3458,11 @@
           }
         },
         {
-          "seq": 104,
-          "t_ms": 221093,
+          "seq": 107,
+          "t_ms": 184128,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "I want to know what is causing this and how to get back to my usual activities.",
+          "text": "Thank you for listening. I do not have anything further to add right now.",
           "meta": {
             "facts_released": [],
             "concepts": {},
@@ -3367,8 +3473,8 @@
           }
         },
         {
-          "seq": 105,
-          "t_ms": 221093,
+          "seq": 108,
+          "t_ms": 184128,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Modified work can help protect your income while the shoulder recovers. Persistent weakness or increasing stiffness would change the next steps.",
@@ -3379,8 +3485,8 @@
           }
         },
         {
-          "seq": 106,
-          "t_ms": 221093,
+          "seq": 109,
+          "t_ms": 184128,
           "phase": "encounter",
           "kind": "counseling",
           "text": "Modified work can help protect your income while the shoulder recovers. Persistent weakness or increasing stiffness would change the next steps.",
@@ -3391,8 +3497,8 @@
           }
         },
         {
-          "seq": 107,
-          "t_ms": 221093,
+          "seq": 110,
+          "t_ms": 184128,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "That would help. Thank you.",
@@ -3405,12 +3511,12 @@
         }
       ],
       "note_words": 484,
-      "estimated_encounter_s": 548,
+      "estimated_encounter_s": 517,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 17
+        "unresolved_count": 16
       },
       "reasoning": [
         {
@@ -3522,8 +3628,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "33197410e66f5fbd1d7026eeec8378d00bada478d883c0e589ee0b73d80fe469",
-      "engine_version": "4.1.0"
+      "case_hash": "d24f4fcdfb560faabb182b46ad4f1b99e724245fdce8ff36463e2e48f96aea5a",
+      "engine_version": "4.3.1"
     }
   ]
 }

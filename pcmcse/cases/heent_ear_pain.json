@@ -653,7 +653,12 @@
       "triggers": {
         "any": [
           "Have you had ear surgery or a perforated eardrum?",
-          "Have you had any operations?"
+          "Have you had any operations?",
+          "surgery",
+          "surgeries",
+          "operation",
+          "operations",
+          "past surgical"
         ]
       },
       "concepts": {
@@ -1449,7 +1454,10 @@
         "review_status": "author_statement_contract_checked_not_clinician_approved"
       },
       "authored_note": "No facial weakness.",
-      "ros_system": "neurologic"
+      "ros_system": "neurologic",
+      "ros_topics": [
+        "weakness"
+      ]
     },
     {
       "id": "patient_concern",
@@ -2152,45 +2160,6 @@
       },
       "ros_topics": [
         "mood_swings"
-      ]
-    },
-    {
-      "id": "expanded_ros_weakness",
-      "category": "pertinent_negative",
-      "value": "I have not noticed weakness in my face, arms or legs.",
-      "sp_says": [
-        "I have not noticed weakness in my face, arms or legs."
-      ],
-      "triggers": {},
-      "concepts": {
-        "expanded_ros_weakness": {
-          "polarity": "negative",
-          "value": "I have not noticed weakness in my face, arms or legs."
-        }
-      },
-      "delivery_contract": {
-        "versions": [
-          {
-            "text": "I have not noticed weakness in my face, arms or legs.",
-            "concepts": {
-              "expanded_ros_weakness": {
-                "polarity": "negative",
-                "value": "I have not noticed weakness in my face, arms or legs."
-              }
-            },
-            "complete_fact": true
-          }
-        ],
-        "review_status": "author_statement_contract_checked_not_clinician_approved"
-      },
-      "authoring": {
-        "date": "2026-09-14",
-        "kind": "user_requested_fictional_case_expansion",
-        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
-        "review_status": "author_consistency_checked_not_clinician_approved"
-      },
-      "ros_topics": [
-        "weakness"
       ]
     },
     {
@@ -3080,9 +3049,6 @@
     ],
     "expanded_ros_mood_swings": [
       "I have not had unusual mood swings."
-    ],
-    "expanded_ros_weakness": [
-      "I have not noticed weakness in my face, arms or legs."
     ],
     "expanded_ros_cramping": [
       "I have not had cramps."
@@ -5801,13 +5767,15 @@
     "classification_note": "Categories reflect the explicitly proposed mechanism; e.g., irritant exposure is I2. They are a course organizing aid, not confirmation of mechanism."
   },
   "content_revisions": {
-    "library_expansion_20260914": "New independently authored presentation. Single core path; no renamed cosmetic variants."
+    "library_expansion_20260914": "New independently authored presentation. Single core path; no renamed cosmetic variants.",
+    "expansion_consistency_20260923": "Consistency repair requested by the user: surgical history accepts the short surgery/operation triggers used by the other cases. Existing clinical facts and rubric preserved; not clinician approved."
   },
   "examination_display_note": "The case-specific skin, ear, nose and throat appearance is supplied in the labeled examination result; the generic patient model does not reliably display these findings.",
   "practice_expansion": {
     "date": "2026-09-14",
     "kind": "user_requested_fictional_case_expansion",
     "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
-    "review_status": "author_consistency_checked_not_clinician_approved"
+    "review_status": "author_consistency_checked_not_clinician_approved",
+    "consistency_20260923": "Routine-expansion repair requested by the user: the weakness screen is answered by the core checklist fact symptom_weakness again; duplicate expanded_ros_weakness removed. Not clinician approved."
   }
 }

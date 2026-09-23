@@ -6,6 +6,7 @@ must not come from manufacturing answers or widening evidence permissions.
 
     python3 tools/test_dialogue_review.py
 """
+import re
 import sys
 from pathlib import Path
 
@@ -122,8 +123,13 @@ def run():
     check(set(meta["facts_released"]) == {"symptom_dysuria", "symptom_frequency", "symptom_urgency"},
           ("broad urinary ROS missed authored symptoms", reply, meta))
     # Missing ROS authoring must never become an affirmative or negative fact.
-    for question in ("Have you had any muscle aches?", "Any shortness of breath?"):
+    # The probes must name symptoms this case still does not author: the
+    # routine screens added on 2026-09-14 answer muscle aches and dyspnea.
+    for question, symptom in (("Have you had any leg swelling?", r"swell|edema"),
+                              ("Any hemoptysis?", r"hemoptysis|cough\w* up")):
         missing = cases.resolve("renal-dysuria", "base")
+        check(not any(re.search(symptom, f["value"], re.I) for f in missing["facts"]),
+              ("probe symptom is authored; choose one this case lacks", question))
         reply, meta = ask(missing, question)
         check(bool(reply) and meta.get("no_information") and not meta["facts_released"]
               and not meta["concepts"], ("missing symptom invented", question, reply, meta))
