@@ -1,6 +1,11 @@
-/* Visible JVD attempt in a disposable browser profile; no clinical-state injection. */
+/* Visible JVD attempt that has no finding, in a disposable browser profile.
+   Since the 2026-09-14 routine expansion every visible action in the current
+   library has an authored result, so the profile is seeded with one unfinished
+   guided attempt saved before it: its own case snapshot is the pre-expansion
+   content the unit tests use, stored where the browser engine keeps attempts.
+   The engine and the page then run unmodified. */
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
-const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),os=require('node:os'),{execFileSync}=require('node:child_process');
 const base=process.env.CSE_TEST_URL||'http://127.0.0.1:8776/web/';
 const output=process.env.CSE_TEST_OUTPUT||path.join(require('node:os').tmpdir(),'cse-unavailable-exam');
 const source=path.resolve(__dirname,'../web/encounter-workspace.js');
@@ -9,22 +14,60 @@ const [width,height]=(process.env.CSE_TEST_VIEWPORT||'1440x900').split('x').map(
 const touch=process.env.CSE_TEST_TOUCH==='1',rotate=process.env.CSE_TEST_ROTATE==='1';
 const activate=locator=>touch?locator.tap():locator.click();
 const digest=data=>crypto.createHash('sha256').update(data).digest('hex');
+// The app's own routes create the guided attempt; only its saved snapshot and
+// version stamps are replaced with those of an attempt begun under engine 4.2.6.
+const SEED=`import json,os,sys
+root=sys.argv[1];sys.path[:0]=[root,os.path.join(root,'tests')]
+from pcmcse import db,version
+db.init()
+from offline_routes import request
+from sparse_case_fixtures import without_supplemental_content
+def call(path,body):
+    r=json.loads(request(path,'POST',json.dumps(body)));assert r['status']==200,(path,r);return r['body']
+sid=call('/api/session',{'case_id':'cardio-palpitations','learning_mode':'guided'})['id']
+with db.connect() as conn:
+    current=json.loads(conn.execute('SELECT case_snapshot FROM sessions WHERE id=?',(sid,)).fetchone()[0])
+    legacy=without_supplemental_content(current)
+    assert current['exam_findings'].get('jvd') and not legacy['exam_findings'].get('jvd')
+    conn.execute('UPDATE sessions SET case_snapshot=?,case_version=?,app_version=?,engine_version=? WHERE id=?',(json.dumps(legacy),version.case_version(legacy),'4.2.6','4.2.6',sid))
+call('/api/session/'+sid+'/start',{})
+print(sid)`;
+function seedAttempt(){
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'cse-legacy-attempt-')),file=path.join(dir,'attempts.sqlite');
+ const sid=execFileSync(process.env.PYTHON||'python3',['-B','-c',SEED,path.resolve(__dirname,'..')],{env:{...process.env,PCM_CSE_DB:file,PCM_CSE_SETTINGS:path.join(dir,'settings.json')},encoding:'utf8'}).trim();
+ return {sid,bytes:fs.readFileSync(file)};
+}
 (async()=>{
  const sourceHash=digest(fs.readFileSync(source)),engineHash=digest(fs.readFileSync(engineFile));
  if(process.env.CSE_EXPECT_ENGINE_SHA)assert.equal(engineHash,process.env.CSE_EXPECT_ENGINE_SHA,'Local engine differs from the requested final build.');
+ const seeded=seedAttempt();
  const browser=await chromium.launch({channel:process.env.CSE_BROWSER||'chrome',headless:true});
- const context=await browser.newContext({viewport:{width,height},hasTouch:touch,isMobile:touch}),page=await context.newPage(),errors=[],engineDownloads=[];
+ const context=await browser.newContext({viewport:{width,height},hasTouch:touch,isMobile:touch}),errors=[],engineDownloads=[];
  context.on('response',response=>{if(/\/engine\.zip(?:\?|$)/.test(response.url()))engineDownloads.push(response.body().then(body=>({url:response.url(),hash:digest(body)})));});
- page.on('pageerror',error=>errors.push(error.message));
+ let page=await context.newPage();page.on('pageerror',error=>errors.push(error.message));
  try{
+  // The first visit creates the engine's storage; the saved attempt then
+  // replaces its attempts.sqlite while no page holds the engine.
   await page.goto(base+'#practice');
   await page.locator('#filterCount').waitFor({timeout:120000});
-  await activate(page.locator('[data-case="cardio-palpitations"]'));
-  await activate(page.locator('[data-mode="guided"]'));
-  await activate(page.locator('#btnStart'));
-  await activate(page.locator('#skipEntrance'));
+  assert(await page.locator('#btnResume').isHidden());
+  await page.close();
+  page=await context.newPage();
+  await page.goto(new URL('app.webmanifest',base).href);
+  await page.evaluate(async bytes=>{
+   const db=await new Promise((resolve,reject)=>{const r=indexedDB.open('/pcm-cse-public-v1');r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});
+   if(!db.objectStoreNames.contains('FILE_DATA'))throw Error('Unexpected browser engine storage layout.');
+   await new Promise((resolve,reject)=>{const tx=db.transaction('FILE_DATA','readwrite');tx.objectStore('FILE_DATA').put({timestamp:new Date(),mode:0o100644,contents:new Uint8Array(bytes)},'/pcm-cse-public-v1/attempts.sqlite');tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});
+   db.close();
+  },[...seeded.bytes]);
+  await page.close();
+  page=await context.newPage();page.on('pageerror',error=>errors.push(error.message));
+  await page.goto(base+'#practice');
+  await page.locator('#filterCount').waitFor({timeout:120000});
+  await activate(page.locator('#btnResume'));
   await page.locator('#say').waitFor({timeout:120000});
   const sid=await page.evaluate(()=>S.id);
+  assert.equal(sid,seeded.sid);
   await activate(page.locator('[data-ew-tab=exam]'));
   const tile=page.locator('[data-exam-action="jvd:complete"]');
   if(!await tile.isVisible())await activate(page.locator('#ewExamRegions [data-region-jump="Heart"]'));
@@ -89,7 +132,7 @@ const digest=data=>crypto.createHash('sha256').update(data).digest('hex');
   assert(downloads.length>0,'The browser must actually download its engine during the disposable encounter.');
   assert(downloads.every(d=>d.hash===engineHash),'The running encounter downloaded an earlier engine package.');
   assert.equal(digest(fs.readFileSync(engineFile)),engineHash,'Engine package changed during the check.');
-  fs.writeFileSync(path.join(output,'results.json'),JSON.stringify({sourceHash,engineHash,downloads,viewport:{width,height},touch,rotated:rotate?{width:height,height:width}:null,case:'cardio-palpitations',checks:['unavailable not disclosed before attempting','visible JVD action completes without a finding','no performed mark or Notes finding','tile and count survive task switches, filter and reload','unsent Talk draft preserved','successful general examination remains performed'],errors},null,2));
+  fs.writeFileSync(path.join(output,'results.json'),JSON.stringify({sourceHash,engineHash,downloads,viewport:{width,height},touch,rotated:rotate?{width:height,height:width}:null,case:'cardio-palpitations',seeded_attempt:{sid:seeded.sid,snapshot:'pre-expansion case content (tests/sparse_case_fixtures.py)',versions:'4.2.6'},checks:['saved pre-expansion attempt resumes from the lobby','unavailable not disclosed before attempting','visible JVD action completes without a finding','no performed mark or Notes finding','tile and count survive task switches, filter and reload','unsent Talk draft preserved','successful general examination remains performed'],errors},null,2));
   console.log('PASS visible unavailable-exam status, counts, filtering, reload, Notes evidence boundary and distinct completed status');
  }finally{await context.close();await browser.close();}
 })().catch(error=>{console.error(error);process.exit(1);});

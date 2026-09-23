@@ -80,6 +80,17 @@ class SocialClosureTests(unittest.TestCase):
                 self.assert_diet_unavailable(case, reply, meta)
                 self.assertNotRegex(reply.lower(), r'2 weeks|two weeks|6 hours|six hours|continuous')
 
+    def test_questions_about_the_next_steps_invite_the_patients_own_question(self):
+        from pcmcse import social_history
+        for question in ['What questions do you have about the next steps?',
+                         'Do you have any questions about the next steps?',
+                         'What questions do you have about the plan?']:
+            self.assertTrue(social_history.closing_invitation(question), question)
+        case, patient_engine, state = self.ready()
+        reply, meta = patient_engine.respond('What questions do you have about the next steps?', state)
+        self.assertIn(case['patient']['closing_questions'][0], reply)
+        self.assertFalse(meta.get('no_information'), (reply, meta))
+
     def test_bare_anything_else_does_not_start_the_new_explicit_closing_queue(self):
         from pcmcse import social_history
         # This broad invitation retains the existing disclosure budget.

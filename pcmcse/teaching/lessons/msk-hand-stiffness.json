@@ -62,13 +62,26 @@
         },
         {
           "kind": "dialogue",
+          "section": "Connect",
+          "student": "May I confirm your name and age?",
+          "patient": "My name is Amina Reed. I am 38 years old.",
+          "why": "The note documents age only as the patient states it.",
+          "event_ids": [
+            8,
+            9,
+            10
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "dialogue",
           "section": "Listen to the opening",
           "student": "What brings you in today?",
           "patient": "Both hands are stiff and swollen when I wake up.",
           "why": "Recognize persistent inflammatory small-joint disease and refer without waiting for tests.",
           "event_ids": [
-            8,
-            9
+            11,
+            12
           ],
           "fact_ids": [
             "opening_complaint"
@@ -81,8 +94,8 @@
           "patient": "About 8 weeks ago.",
           "why": "How long does stiffness last, and are the swollen joints symmetric?",
           "event_ids": [
-            10,
-            11
+            13,
+            14
           ],
           "fact_ids": [
             "hpi_onset"
@@ -95,8 +108,8 @@
           "patient": "It started in a few fingers and now affects both hands most days.",
           "why": "Change over time can change urgency even when the symptom is familiar.",
           "event_ids": [
-            12,
-            13
+            15,
+            16
           ],
           "fact_ids": [
             "hpi_chronology"
@@ -109,8 +122,8 @@
           "patient": "The knuckles where my fingers meet my hands and the middle finger joints, on both sides.",
           "why": "",
           "event_ids": [
-            14,
-            15
+            17,
+            18
           ],
           "fact_ids": [
             "hpi_location"
@@ -123,8 +136,8 @@
           "patient": "Achy, puffy and hard to bend.",
           "why": "Use the patient\u2019s words before translating them into a clinical description.",
           "event_ids": [
-            16,
-            17
+            19,
+            20
           ],
           "fact_ids": [
             "hpi_quality"
@@ -137,8 +150,8 @@
           "patient": "It is about 5 out of 10. Opening jars and fastening buttons are difficult.",
           "why": "Intensity and functional effect are distinct; record only the dimension answered.",
           "event_ids": [
-            18,
-            19
+            21,
+            22
           ],
           "fact_ids": [
             "hpi_severity"
@@ -151,8 +164,8 @@
           "patient": "At least an hour, sometimes an hour and a half.",
           "why": "Separate time since onset from duration of one episode and from continuity.",
           "event_ids": [
-            20,
-            21
+            23,
+            24
           ],
           "fact_ids": [
             "hpi_timing"
@@ -165,8 +178,8 @@
           "patient": "I had a mild cold just before it began. A child at the daycare had a slapped-cheek rash.",
           "why": "",
           "event_ids": [
-            22,
-            23
+            25,
+            26
           ],
           "fact_ids": [
             "hpi_setting"
@@ -179,8 +192,8 @@
           "patient": "A warm shower and gently moving them.",
           "why": "Relief changes probability, but is not proof that a serious cause is excluded.",
           "event_ids": [
-            24,
-            25
+            27,
+            28
           ],
           "fact_ids": [
             "hpi_alleviating"
@@ -193,8 +206,8 @@
           "patient": "Sitting still for a long time makes me stiff again.",
           "why": "Compare triggers with the chronology; one trigger does not establish a diagnosis.",
           "event_ids": [
-            26,
-            27
+            29,
+            30
           ],
           "fact_ids": [
             "hpi_aggravating"
@@ -207,8 +220,8 @@
           "patient": "Ibuprofen 200 milligrams twice on a few days helped somewhat, but it upset my stomach.",
           "why": "",
           "event_ids": [
-            28,
-            29
+            31,
+            32
           ],
           "fact_ids": [
             "hpi_treatment"
@@ -221,8 +234,8 @@
           "patient": "No, not like this.",
           "why": "",
           "event_ids": [
-            30,
-            31
+            33,
+            34
           ],
           "fact_ids": [
             "hpi_past_occurrence"
@@ -235,8 +248,8 @@
           "patient": "The same finger joints look puffy on both hands.",
           "why": "Use this answer to weigh the possibilities described in the reasoning section.",
           "event_ids": [
-            32,
-            33
+            35,
+            36
           ],
           "fact_ids": [
             "symptom_joint_swelling"
@@ -249,8 +262,8 @@
           "patient": "My wrists ache too.",
           "why": "Use this answer to weigh the possibilities described in the reasoning section.",
           "event_ids": [
-            34,
-            35
+            37,
+            38
           ],
           "fact_ids": [
             "symptom_joint_pain"
@@ -263,8 +276,8 @@
           "patient": "I feel more tired than usual.",
           "why": "Use this answer to weigh the possibilities described in the reasoning section.",
           "event_ids": [
-            36,
-            37
+            39,
+            40
           ],
           "fact_ids": [
             "symptom_fatigue"
@@ -277,8 +290,8 @@
           "patient": "My muscles themselves do not ache.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            38,
-            39
+            41,
+            42
           ],
           "fact_ids": [
             "symptom_myalgia"
@@ -291,8 +304,8 @@
           "patient": "No fever.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            40,
-            41
+            43,
+            44
           ],
           "fact_ids": [
             "symptom_fever"
@@ -305,8 +318,8 @@
           "patient": "No weight loss.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            42,
-            43
+            45,
+            46
           ],
           "fact_ids": [
             "symptom_weight_loss"
@@ -319,8 +332,8 @@
           "patient": "I have not had a rash or scaly patches.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            44,
-            45
+            47,
+            48
           ],
           "fact_ids": [
             "symptom_rash"
@@ -333,8 +346,8 @@
           "patient": "Sunlight does not cause a rash.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            46,
-            47
+            49,
+            50
           ],
           "fact_ids": [
             "symptom_photosensitivity"
@@ -347,8 +360,8 @@
           "patient": "I have not noticed pits or changes in my nails.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            48,
-            49
+            51,
+            52
           ],
           "fact_ids": [
             "symptom_nail_changes"
@@ -361,8 +374,8 @@
           "patient": "I have hypothyroidism, treated for 6 years.",
           "why": "",
           "event_ids": [
-            50,
-            51
+            53,
+            54
           ],
           "fact_ids": [
             "history_medical_history"
@@ -375,8 +388,8 @@
           "patient": "My gallbladder was removed 4 years ago.",
           "why": "",
           "event_ids": [
-            52,
-            53
+            55,
+            56
           ],
           "fact_ids": [
             "history_surgery"
@@ -389,8 +402,8 @@
           "patient": "Levothyroxine 75 micrograms every morning, and the occasional ibuprofen I mentioned.",
           "why": "Name, dose and frequency matter; do not fill in missing details.",
           "event_ids": [
-            54,
-            55
+            57,
+            58
           ],
           "fact_ids": [
             "history_medicines"
@@ -403,8 +416,8 @@
           "patient": "Amoxicillin caused hives as an adult, without breathing trouble.",
           "why": "Distinguish the substance and reaction from a blanket allergy label.",
           "event_ids": [
-            56,
-            57
+            59,
+            60
           ],
           "fact_ids": [
             "history_drug_reactions"
@@ -417,8 +430,8 @@
           "patient": "I have never smoked.",
           "why": "",
           "event_ids": [
-            58,
-            59
+            61,
+            62
           ],
           "fact_ids": [
             "history_smoking"
@@ -431,8 +444,8 @@
           "patient": "I do not drink.",
           "why": "",
           "event_ids": [
-            60,
-            61
+            63,
+            64
           ],
           "fact_ids": [
             "history_alcohol"
@@ -445,8 +458,8 @@
           "patient": "No.",
           "why": "",
           "event_ids": [
-            62,
-            63
+            65,
+            66
           ],
           "fact_ids": [
             "history_drugs"
@@ -459,8 +472,8 @@
           "patient": "I work at a daycare, lifting children and opening food containers.",
           "why": "",
           "event_ids": [
-            64,
-            65
+            67,
+            68
           ],
           "fact_ids": [
             "history_work"
@@ -473,8 +486,8 @@
           "patient": "My partner helps with our toddler, but missing work for appointments is difficult.",
           "why": "",
           "event_ids": [
-            66,
-            67
+            69,
+            70
           ],
           "fact_ids": [
             "history_support"
@@ -487,8 +500,8 @@
           "patient": "My mother has rheumatoid arthritis. My father has arthritis in his finger tips.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
-            68,
-            69
+            71,
+            72
           ],
           "fact_ids": [
             "history_family_history"
@@ -501,8 +514,8 @@
           "patient": "One brother, with no major illness that I know of.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
-            70,
-            71
+            73,
+            74
           ],
           "fact_ids": [
             "history_sibling"
@@ -515,8 +528,8 @@
           "patient": "My period was one week ago. I use condoms and have not done a pregnancy test.",
           "why": "A reported possibility or menstrual date is not a pregnancy-test result.",
           "event_ids": [
-            72,
-            73
+            75,
+            76
           ],
           "fact_ids": [
             "history_pregnancy"
@@ -529,8 +542,8 @@
           "patient": "I want to know what is causing this and how to get back to my usual activities.",
           "why": "",
           "event_ids": [
-            74,
-            75
+            77,
+            78
           ],
           "fact_ids": [
             "patient_concern"
@@ -543,8 +556,8 @@
           "patient": "Right, I want to know what is causing this and how to get back to my usual activities. I'm not sure. What do you mean exactly?",
           "why": "",
           "event_ids": [
-            76,
-            77
+            79,
+            80
           ],
           "fact_ids": [
             "patient_concern"
@@ -557,9 +570,9 @@
           "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
-            78,
-            79,
-            80
+            81,
+            82,
+            83
           ],
           "fact_ids": []
         },
@@ -577,8 +590,8 @@
           "finding": "Alert, mildly tired appearing.",
           "why": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
           "event_ids": [
-            81,
-            82
+            84,
+            85
           ],
           "maneuver_id": "general_inspect",
           "duration_s": 10
@@ -590,8 +603,8 @@
           "finding": "Regular rate and rhythm without murmur.",
           "why": "The course expects at least four listening posts, on skin.",
           "event_ids": [
-            83,
-            84
+            86,
+            87
           ],
           "maneuver_id": "heart_auscultate",
           "duration_s": 40
@@ -603,11 +616,11 @@
           "finding": "Clear bilateral breath sounds.",
           "why": "The course expects six posterior fields, mouth open, on skin, comparing sides.",
           "event_ids": [
-            85,
-            86
+            88,
+            89
           ],
           "maneuver_id": "lungs_auscultate",
-          "duration_s": 41
+          "duration_s": 24
         },
         {
           "kind": "action",
@@ -616,11 +629,11 @@
           "finding": "Symmetric swelling of second and third MCP and PIP joints; no DIP swelling or deformity.",
           "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
           "event_ids": [
-            87,
-            88
+            90,
+            91
           ],
           "maneuver_id": "msk_inspect",
-          "duration_s": 10
+          "duration_s": 12
         },
         {
           "kind": "action",
@@ -629,11 +642,11 @@
           "finding": "Boggy tenderness of affected MCP/PIP joints and mild bilateral wrist tenderness.",
           "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
           "event_ids": [
-            89,
-            90
+            92,
+            93
           ],
           "maneuver_id": "msk_palpate",
-          "duration_s": 16
+          "duration_s": 12
         },
         {
           "kind": "action",
@@ -642,11 +655,11 @@
           "finding": "Finger flexion limited by pain and swelling; wrist flexion mildly painful bilaterally.",
           "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
           "event_ids": [
-            91,
-            92
+            94,
+            95
           ],
           "maneuver_id": "msk_rom",
-          "duration_s": 22
+          "duration_s": 14
         },
         {
           "kind": "action",
@@ -655,11 +668,11 @@
           "finding": "Grip strength mildly reduced bilaterally by pain; proximal arm strength 5/5.",
           "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
           "event_ids": [
-            93,
-            94
+            96,
+            97
           ],
           "maneuver_id": "msk_strength",
-          "duration_s": 19
+          "duration_s": 32
         },
         {
           "kind": "action",
@@ -668,11 +681,11 @@
           "finding": "No rash on inspected arms or palms; no nail pitting.",
           "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
           "event_ids": [
-            95,
-            96
+            98,
+            99
           ],
           "maneuver_id": "skin_inspect",
-          "duration_s": 22
+          "duration_s": 20
         },
         {
           "kind": "action",
@@ -681,11 +694,11 @@
           "finding": "T1 bilateral paraspinal tissue texture change and tenderness.",
           "why": "Name the level examined; findings are released by region.",
           "event_ids": [
-            97,
-            98
+            100,
+            101
           ],
           "maneuver_id": "osteo_screen",
-          "duration_s": 25
+          "duration_s": 16
         },
         {
           "kind": "dialogue",
@@ -694,8 +707,8 @@
           "patient": "Thank you. I understand that the next steps depend on the examination and tests.",
           "why": "Proposed care, not a record of tests or treatment already completed.",
           "event_ids": [
-            99,
-            100
+            102,
+            103
           ],
           "fact_ids": []
         },
@@ -703,11 +716,11 @@
           "kind": "dialogue",
           "section": "Close and check understanding",
           "student": "What questions do you have about the next steps?",
-          "patient": "I want to know what is causing this and how to get back to my usual activities.",
+          "patient": "Thank you for listening. I do not have anything further to add right now.",
           "why": "",
           "event_ids": [
-            101,
-            102
+            104,
+            105
           ],
           "fact_ids": []
         },
@@ -716,11 +729,11 @@
           "section": "Address the patient\u2019s question",
           "student": "We can discuss scheduling and a work note, plus practical tools that make buttons and jars easier while the assessment is underway.",
           "patient": "That would help. Thank you.",
-          "why": "Answer the concern that was just expressed. Give a defensible recommendation and explain uncertainty; do not promise a diagnosis or recovery before the evidence supports it.",
+          "why": "Return to the concern the patient named during the history; nothing new was raised at the close. Give a defensible recommendation and explain uncertainty; do not promise a diagnosis or recovery before the evidence supports it.",
           "event_ids": [
-            103,
-            104,
-            105
+            106,
+            107,
+            108
           ],
           "fact_ids": []
         }
@@ -744,7 +757,7 @@
           "section": "S",
           "statement": "Both hands are stiff and swollen when I wake up.",
           "event_ids": [
-            9
+            12
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -754,17 +767,18 @@
           "section": "S",
           "statement": "38-year-old female.",
           "event_ids": [
+            10,
             2
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
           "statement": "Eight weeks of bilateral hand symptoms.",
           "event_ids": [
-            11
+            14
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -774,7 +788,7 @@
           "section": "S",
           "statement": "Bilateral MCP and PIP symptoms.",
           "event_ids": [
-            15
+            18
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -784,7 +798,7 @@
           "section": "S",
           "statement": "Aching, swelling and stiffness.",
           "event_ids": [
-            17
+            20
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -794,7 +808,7 @@
           "section": "S",
           "statement": "5/10;",
           "event_ids": [
-            19
+            22
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -804,7 +818,7 @@
           "section": "S",
           "statement": "difficulty with jars and buttons.",
           "event_ids": [
-            19
+            22
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -814,7 +828,7 @@
           "section": "S",
           "statement": "Morning stiffness 60\u201390 minutes.",
           "event_ids": [
-            21
+            24
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -824,7 +838,7 @@
           "section": "S",
           "statement": "Progressed from several fingers to bilateral daily symptoms.",
           "event_ids": [
-            13
+            16
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -834,7 +848,7 @@
           "section": "S",
           "statement": "A mild cold preceded the joint symptoms.",
           "event_ids": [
-            23
+            26
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -844,7 +858,7 @@
           "section": "S",
           "statement": "A child at the daycare had a slapped-cheek rash.",
           "event_ids": [
-            23
+            26
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -854,7 +868,7 @@
           "section": "S",
           "statement": "Stiffness after inactivity.",
           "event_ids": [
-            27
+            30
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -864,7 +878,7 @@
           "section": "S",
           "statement": "Relief with warmth and movement.",
           "event_ids": [
-            25
+            28
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -874,7 +888,7 @@
           "section": "S",
           "statement": "Partial relief but dyspepsia with intermittent ibuprofen 200 mg twice daily.",
           "event_ids": [
-            29
+            32
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -884,7 +898,7 @@
           "section": "S",
           "statement": "No similar previous episode.",
           "event_ids": [
-            31
+            34
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -894,7 +908,7 @@
           "section": "S",
           "statement": "Hypothyroidism for 6 years.",
           "event_ids": [
-            51
+            54
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -904,7 +918,7 @@
           "section": "S",
           "statement": "Cholecystectomy 4 years ago.",
           "event_ids": [
-            53
+            56
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -930,7 +944,7 @@
           "section": "S",
           "statement": "Never smoked.",
           "event_ids": [
-            59
+            62
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -940,7 +954,7 @@
           "section": "S",
           "statement": "No alcohol.",
           "event_ids": [
-            61
+            64
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -950,7 +964,7 @@
           "section": "S",
           "statement": "No recreational drugs.",
           "event_ids": [
-            63
+            66
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -968,7 +982,7 @@
           "section": "S",
           "statement": "hand function affects lifting and containers.",
           "event_ids": [
-            65
+            68
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -978,7 +992,7 @@
           "section": "S",
           "statement": "Partner helps with toddler;",
           "event_ids": [
-            67
+            70
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -988,7 +1002,7 @@
           "section": "S",
           "statement": "appointment-related work absence is difficult.",
           "event_ids": [
-            67
+            70
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -998,7 +1012,7 @@
           "section": "S",
           "statement": "LMP 1 week ago;",
           "event_ids": [
-            73
+            76
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -1008,7 +1022,7 @@
           "section": "S",
           "statement": "condoms;",
           "event_ids": [
-            73
+            76
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -1018,7 +1032,7 @@
           "section": "S",
           "statement": "pregnancy test not obtained.",
           "event_ids": [
-            73
+            76
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -1028,7 +1042,7 @@
           "section": "S",
           "statement": "Mother: rheumatoid arthritis;",
           "event_ids": [
-            69
+            72
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -1038,7 +1052,7 @@
           "section": "S",
           "statement": "father: distal finger arthritis.",
           "event_ids": [
-            69
+            72
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -1048,7 +1062,7 @@
           "section": "S",
           "statement": "Brother: no known major illness.",
           "event_ids": [
-            71
+            74
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1058,7 +1072,7 @@
           "section": "S",
           "statement": "Amoxicillin: hives without respiratory symptoms.",
           "event_ids": [
-            57
+            60
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1068,7 +1082,7 @@
           "section": "S",
           "statement": "Musculoskeletal: Symmetric finger-joint swelling.",
           "event_ids": [
-            33
+            36
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1078,7 +1092,7 @@
           "section": "S",
           "statement": "Associated wrist arthralgia.",
           "event_ids": [
-            35
+            38
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1088,7 +1102,7 @@
           "section": "S",
           "statement": "No myalgia.",
           "event_ids": [
-            39
+            42
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1098,7 +1112,7 @@
           "section": "S",
           "statement": "General: Fatigue.",
           "event_ids": [
-            37
+            40
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1108,7 +1122,7 @@
           "section": "S",
           "statement": "No fever.",
           "event_ids": [
-            41
+            44
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1118,7 +1132,7 @@
           "section": "S",
           "statement": "No weight loss.",
           "event_ids": [
-            43
+            46
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1128,7 +1142,7 @@
           "section": "S",
           "statement": "Skin: No rash or psoriasis-like plaques.",
           "event_ids": [
-            45
+            48
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1138,8 +1152,8 @@
           "section": "S",
           "statement": "No photosensitive rash.",
           "event_ids": [
-            45,
-            47
+            48,
+            50
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1149,7 +1163,7 @@
           "section": "S",
           "statement": "No nail changes.",
           "event_ids": [
-            49
+            52
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1229,7 +1243,7 @@
           "section": "O",
           "statement": "Alert, mildly tired appearing.",
           "event_ids": [
-            82
+            85
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1239,7 +1253,7 @@
           "section": "O",
           "statement": "Regular rate and rhythm without murmur.",
           "event_ids": [
-            84
+            87
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1249,7 +1263,7 @@
           "section": "O",
           "statement": "Clear bilateral breath sounds.",
           "event_ids": [
-            86
+            89
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1259,7 +1273,7 @@
           "section": "O",
           "statement": "Symmetric swelling of second and third MCP and PIP joints;",
           "event_ids": [
-            88
+            91
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1269,7 +1283,7 @@
           "section": "O",
           "statement": "no DIP swelling or deformity.",
           "event_ids": [
-            88
+            91
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1279,7 +1293,7 @@
           "section": "O",
           "statement": "Boggy tenderness of affected MCP/PIP joints and mild bilateral wrist tenderness.",
           "event_ids": [
-            90
+            93
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1289,7 +1303,7 @@
           "section": "O",
           "statement": "Finger flexion limited by pain and swelling;",
           "event_ids": [
-            92
+            95
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1299,7 +1313,7 @@
           "section": "O",
           "statement": "wrist flexion mildly painful bilaterally.",
           "event_ids": [
-            92
+            95
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1309,7 +1323,7 @@
           "section": "O",
           "statement": "Grip strength mildly reduced bilaterally by pain;",
           "event_ids": [
-            94
+            97
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1319,7 +1333,7 @@
           "section": "O",
           "statement": "proximal arm strength 5/5.",
           "event_ids": [
-            94
+            97
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1329,7 +1343,7 @@
           "section": "O",
           "statement": "No rash on inspected arms or palms;",
           "event_ids": [
-            96
+            99
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1339,7 +1353,7 @@
           "section": "O",
           "statement": "no nail pitting.",
           "event_ids": [
-            96
+            99
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1372,7 +1386,7 @@
           "t_ms": 0,
           "phase": "encounter",
           "kind": "station_info",
-          "text": "Amina Reed, 38-year-old female. Both hands are stiff and swollen when I wake up. Vital signs are available on the chart. Perform a focused history and physical examination, discuss your plan, and document only what you obtain. Use the time limit stated for your selected practice mode.",
+          "text": "Amina Reed, female. Both hands are stiff and swollen when I wake up. Vital signs are available on the chart. Perform a focused history and physical examination, discuss your plan, and document only what you obtain. Use the time limit stated for your selected practice mode.",
           "meta": {
             "doorway": true
           }
@@ -1430,7 +1444,7 @@
         },
         {
           "seq": 7,
-          "t_ms": 8,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
@@ -1443,7 +1457,49 @@
         },
         {
           "seq": 8,
-          "t_ms": 8,
+          "t_ms": 14,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "May I confirm your name and age?",
+          "meta": {
+            "mode": "type"
+          }
+        },
+        {
+          "seq": 9,
+          "t_ms": 14,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "May I confirm your name and age?",
+          "meta": {
+            "courtesy_id": "confirm_name",
+            "label": "Confirm patient name / preferred address",
+            "components": [
+              "name"
+            ]
+          }
+        },
+        {
+          "seq": 10,
+          "t_ms": 17,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My name is Amina Reed. I am 38 years old.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "identity_response",
+            "identity_fields": [
+              "name",
+              "age"
+            ],
+            "composed_asks": 2
+          }
+        },
+        {
+          "seq": 11,
+          "t_ms": 18,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -1454,8 +1510,8 @@
           }
         },
         {
-          "seq": 9,
-          "t_ms": 12,
+          "seq": 12,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Both hands are stiff and swollen when I wake up.",
@@ -1480,8 +1536,8 @@
           }
         },
         {
-          "seq": 10,
-          "t_ms": 12,
+          "seq": 13,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did the hand symptoms start?",
@@ -1491,8 +1547,8 @@
           }
         },
         {
-          "seq": 11,
-          "t_ms": 14,
+          "seq": 14,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "About 8 weeks ago.",
@@ -1517,8 +1573,8 @@
           }
         },
         {
-          "seq": 12,
-          "t_ms": 14,
+          "seq": 15,
+          "t_ms": 27,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Has it improved or worsened?",
@@ -1529,8 +1585,8 @@
           }
         },
         {
-          "seq": 13,
-          "t_ms": 16,
+          "seq": 16,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It started in a few fingers and now affects both hands most days.",
@@ -1555,8 +1611,8 @@
           }
         },
         {
-          "seq": 14,
-          "t_ms": 16,
+          "seq": 17,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Which joints are affected?",
@@ -1566,8 +1622,8 @@
           }
         },
         {
-          "seq": 15,
-          "t_ms": 17,
+          "seq": 18,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The knuckles where my fingers meet my hands and the middle finger joints, on both sides.",
@@ -1592,8 +1648,8 @@
           }
         },
         {
-          "seq": 16,
-          "t_ms": 18,
+          "seq": 19,
+          "t_ms": 32,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How do the hands feel?",
@@ -1604,8 +1660,8 @@
           }
         },
         {
-          "seq": 17,
-          "t_ms": 19,
+          "seq": 20,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Achy, puffy and hard to bend.",
@@ -1630,8 +1686,8 @@
           }
         },
         {
-          "seq": 18,
-          "t_ms": 20,
+          "seq": 21,
+          "t_ms": 34,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How is this affecting you?",
@@ -1642,8 +1698,8 @@
           }
         },
         {
-          "seq": 19,
-          "t_ms": 21,
+          "seq": 22,
+          "t_ms": 36,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is about 5 out of 10. Opening jars and fastening buttons are difficult.",
@@ -1668,8 +1724,8 @@
           }
         },
         {
-          "seq": 20,
-          "t_ms": 21,
+          "seq": 23,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How long does the morning stiffness last?",
@@ -1680,8 +1736,8 @@
           }
         },
         {
-          "seq": 21,
-          "t_ms": 23,
+          "seq": 24,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "At least an hour, sometimes an hour and a half.",
@@ -1706,8 +1762,8 @@
           }
         },
         {
-          "seq": 22,
-          "t_ms": 23,
+          "seq": 25,
+          "t_ms": 39,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Were you sick before it started?",
@@ -1718,8 +1774,8 @@
           }
         },
         {
-          "seq": 23,
-          "t_ms": 25,
+          "seq": 26,
+          "t_ms": 41,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I had a mild cold just before it began. A child at the daycare had a slapped-cheek rash.",
@@ -1744,8 +1800,8 @@
           }
         },
         {
-          "seq": 24,
-          "t_ms": 25,
+          "seq": 27,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What helps your hands?",
@@ -1756,8 +1812,8 @@
           }
         },
         {
-          "seq": 25,
-          "t_ms": 26,
+          "seq": 28,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "A warm shower and gently moving them.",
@@ -1782,8 +1838,8 @@
           }
         },
         {
-          "seq": 26,
-          "t_ms": 27,
+          "seq": 29,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes the stiffness worse?",
@@ -1794,8 +1850,8 @@
           }
         },
         {
-          "seq": 27,
-          "t_ms": 28,
+          "seq": 30,
+          "t_ms": 46,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Sitting still for a long time makes me stiff again.",
@@ -1820,8 +1876,8 @@
           }
         },
         {
-          "seq": 28,
-          "t_ms": 29,
+          "seq": 31,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you tried pain medicine?",
@@ -1832,8 +1888,8 @@
           }
         },
         {
-          "seq": 29,
-          "t_ms": 30,
+          "seq": 32,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Ibuprofen 200 milligrams twice on a few days helped somewhat, but it upset my stomach.",
@@ -1858,8 +1914,8 @@
           }
         },
         {
-          "seq": 30,
-          "t_ms": 31,
+          "seq": 33,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Has this happened before?",
@@ -1870,8 +1926,8 @@
           }
         },
         {
-          "seq": 31,
-          "t_ms": 32,
+          "seq": 34,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No, not like this.",
@@ -1896,8 +1952,8 @@
           }
         },
         {
-          "seq": 32,
-          "t_ms": 32,
+          "seq": 35,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had joint swelling?",
@@ -1908,8 +1964,8 @@
           }
         },
         {
-          "seq": 33,
-          "t_ms": 34,
+          "seq": 36,
+          "t_ms": 53,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The same finger joints look puffy on both hands.",
@@ -1934,8 +1990,8 @@
           }
         },
         {
-          "seq": 34,
-          "t_ms": 34,
+          "seq": 37,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Any other joint pain?",
@@ -1946,8 +2002,8 @@
           }
         },
         {
-          "seq": 35,
-          "t_ms": 35,
+          "seq": 38,
+          "t_ms": 56,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My wrists ache too.",
@@ -1963,6 +2019,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "joint_pain"
+            ],
             "checklist_hits": [
               "h_symptom_joint_pain"
             ],
@@ -1972,8 +2032,8 @@
           }
         },
         {
-          "seq": 36,
-          "t_ms": 36,
+          "seq": 39,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had fatigue?",
@@ -1984,8 +2044,8 @@
           }
         },
         {
-          "seq": 37,
-          "t_ms": 37,
+          "seq": 40,
+          "t_ms": 58,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I feel more tired than usual.",
@@ -2001,6 +2061,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "fatigue"
+            ],
             "checklist_hits": [
               "h_symptom_fatigue"
             ],
@@ -2010,8 +2074,8 @@
           }
         },
         {
-          "seq": 38,
-          "t_ms": 38,
+          "seq": 41,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had myalgia?",
@@ -2022,8 +2086,8 @@
           }
         },
         {
-          "seq": 39,
-          "t_ms": 39,
+          "seq": 42,
+          "t_ms": 60,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My muscles themselves do not ache.",
@@ -2039,6 +2103,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "myalgia"
+            ],
             "checklist_hits": [
               "h_symptom_myalgia"
             ],
@@ -2048,8 +2116,8 @@
           }
         },
         {
-          "seq": 40,
-          "t_ms": 39,
+          "seq": 43,
+          "t_ms": 61,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -2060,8 +2128,8 @@
           }
         },
         {
-          "seq": 41,
-          "t_ms": 41,
+          "seq": 44,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No fever.",
@@ -2077,6 +2145,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "fever"
+            ],
             "checklist_hits": [
               "h_symptom_fever"
             ],
@@ -2086,8 +2158,8 @@
           }
         },
         {
-          "seq": 42,
-          "t_ms": 41,
+          "seq": 45,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had weight loss?",
@@ -2098,8 +2170,8 @@
           }
         },
         {
-          "seq": 43,
-          "t_ms": 42,
+          "seq": 46,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No weight loss.",
@@ -2115,6 +2187,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "weight_change"
+            ],
             "checklist_hits": [
               "h_symptom_weight_loss"
             ],
@@ -2124,8 +2200,8 @@
           }
         },
         {
-          "seq": 44,
-          "t_ms": 43,
+          "seq": 47,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had rash?",
@@ -2136,8 +2212,8 @@
           }
         },
         {
-          "seq": 45,
-          "t_ms": 44,
+          "seq": 48,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not had a rash or scaly patches.",
@@ -2153,6 +2229,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "rash"
+            ],
             "checklist_hits": [
               "h_symptom_rash"
             ],
@@ -2162,8 +2242,8 @@
           }
         },
         {
-          "seq": 46,
-          "t_ms": 45,
+          "seq": 49,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had photosensitivity?",
@@ -2174,8 +2254,8 @@
           }
         },
         {
-          "seq": 47,
-          "t_ms": 46,
+          "seq": 50,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Sunlight does not cause a rash.",
@@ -2200,8 +2280,8 @@
           }
         },
         {
-          "seq": 48,
-          "t_ms": 47,
+          "seq": 51,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had nail changes?",
@@ -2212,8 +2292,8 @@
           }
         },
         {
-          "seq": 49,
-          "t_ms": 48,
+          "seq": 52,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have not noticed pits or changes in my nails.",
@@ -2238,8 +2318,8 @@
           }
         },
         {
-          "seq": 50,
-          "t_ms": 48,
+          "seq": 53,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medical problems do you have?",
@@ -2250,8 +2330,8 @@
           }
         },
         {
-          "seq": 51,
-          "t_ms": 50,
+          "seq": 54,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have hypothyroidism, treated for 6 years.",
@@ -2276,8 +2356,8 @@
           }
         },
         {
-          "seq": 52,
-          "t_ms": 50,
+          "seq": 55,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What surgery have you had?",
@@ -2288,8 +2368,8 @@
           }
         },
         {
-          "seq": 53,
-          "t_ms": 51,
+          "seq": 56,
+          "t_ms": 76,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My gallbladder was removed 4 years ago.",
@@ -2314,8 +2394,8 @@
           }
         },
         {
-          "seq": 54,
-          "t_ms": 52,
+          "seq": 57,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medications do you take?",
@@ -2326,8 +2406,8 @@
           }
         },
         {
-          "seq": 55,
-          "t_ms": 53,
+          "seq": 58,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Levothyroxine 75 micrograms every morning, and the occasional ibuprofen I mentioned.",
@@ -2352,8 +2432,8 @@
           }
         },
         {
-          "seq": 56,
-          "t_ms": 54,
+          "seq": 59,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have medication allergies?",
@@ -2364,8 +2444,8 @@
           }
         },
         {
-          "seq": 57,
-          "t_ms": 55,
+          "seq": 60,
+          "t_ms": 81,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Amoxicillin caused hives as an adult, without breathing trouble.",
@@ -2390,8 +2470,8 @@
           }
         },
         {
-          "seq": 58,
-          "t_ms": 56,
+          "seq": 61,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you smoke?",
@@ -2402,8 +2482,8 @@
           }
         },
         {
-          "seq": 59,
-          "t_ms": 57,
+          "seq": 62,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have never smoked.",
@@ -2428,8 +2508,8 @@
           }
         },
         {
-          "seq": 60,
-          "t_ms": 57,
+          "seq": 63,
+          "t_ms": 84,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you drink alcohol?",
@@ -2440,8 +2520,8 @@
           }
         },
         {
-          "seq": 61,
-          "t_ms": 59,
+          "seq": 64,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I do not drink.",
@@ -2466,8 +2546,8 @@
           }
         },
         {
-          "seq": 62,
-          "t_ms": 59,
+          "seq": 65,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use recreational drugs?",
@@ -2478,8 +2558,8 @@
           }
         },
         {
-          "seq": 63,
-          "t_ms": 61,
+          "seq": 66,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No.",
@@ -2504,8 +2584,8 @@
           }
         },
         {
-          "seq": 64,
-          "t_ms": 61,
+          "seq": 67,
+          "t_ms": 89,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -2516,8 +2596,8 @@
           }
         },
         {
-          "seq": 65,
-          "t_ms": 63,
+          "seq": 68,
+          "t_ms": 90,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I work at a daycare, lifting children and opening food containers.",
@@ -2542,8 +2622,8 @@
           }
         },
         {
-          "seq": 66,
-          "t_ms": 63,
+          "seq": 69,
+          "t_ms": 91,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who helps at home?",
@@ -2553,8 +2633,8 @@
           }
         },
         {
-          "seq": 67,
-          "t_ms": 64,
+          "seq": 70,
+          "t_ms": 93,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My partner helps with our toddler, but missing work for appointments is difficult.",
@@ -2579,8 +2659,8 @@
           }
         },
         {
-          "seq": 68,
-          "t_ms": 65,
+          "seq": 71,
+          "t_ms": 93,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there arthritis in your family?",
@@ -2591,8 +2671,8 @@
           }
         },
         {
-          "seq": 69,
-          "t_ms": 66,
+          "seq": 72,
+          "t_ms": 95,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My mother has rheumatoid arthritis. My father has arthritis in his finger tips.",
@@ -2617,8 +2697,8 @@
           }
         },
         {
-          "seq": 70,
-          "t_ms": 67,
+          "seq": 73,
+          "t_ms": 96,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have siblings?",
@@ -2629,8 +2709,8 @@
           }
         },
         {
-          "seq": 71,
-          "t_ms": 68,
+          "seq": 74,
+          "t_ms": 97,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "One brother, with no major illness that I know of.",
@@ -2655,8 +2735,8 @@
           }
         },
         {
-          "seq": 72,
-          "t_ms": 69,
+          "seq": 75,
+          "t_ms": 98,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Could you be pregnant?",
@@ -2667,8 +2747,8 @@
           }
         },
         {
-          "seq": 73,
-          "t_ms": 70,
+          "seq": 76,
+          "t_ms": 100,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My period was one week ago. I use condoms and have not done a pregnancy test.",
@@ -2684,6 +2764,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "reproductive_history",
+            "reproductive_context": [
+              "current_pregnancy"
+            ],
             "checklist_hits": [
               "h_history_pregnancy"
             ],
@@ -2693,8 +2777,8 @@
           }
         },
         {
-          "seq": 74,
-          "t_ms": 71,
+          "seq": 77,
+          "t_ms": 101,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most?",
@@ -2705,8 +2789,8 @@
           }
         },
         {
-          "seq": 75,
-          "t_ms": 72,
+          "seq": 78,
+          "t_ms": 103,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I want to know what is causing this and how to get back to my usual activities.",
@@ -2731,8 +2815,8 @@
           }
         },
         {
-          "seq": 76,
-          "t_ms": 72,
+          "seq": 79,
+          "t_ms": 103,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -2742,8 +2826,8 @@
           }
         },
         {
-          "seq": 77,
-          "t_ms": 88,
+          "seq": 80,
+          "t_ms": 126,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Right, I want to know what is causing this and how to get back to my usual activities. I'm not sure. What do you mean exactly?",
@@ -2772,8 +2856,8 @@
           }
         },
         {
-          "seq": 78,
-          "t_ms": 89,
+          "seq": 81,
+          "t_ms": 127,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -2783,8 +2867,8 @@
           }
         },
         {
-          "seq": 79,
-          "t_ms": 91,
+          "seq": 82,
+          "t_ms": 128,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Yes, that's fine. Go ahead.",
@@ -2793,8 +2877,8 @@
           }
         },
         {
-          "seq": 80,
-          "t_ms": 89,
+          "seq": 83,
+          "t_ms": 127,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -2805,8 +2889,8 @@
           }
         },
         {
-          "seq": 81,
-          "t_ms": 10091,
+          "seq": 84,
+          "t_ms": 10129,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -2825,8 +2909,8 @@
           }
         },
         {
-          "seq": 82,
-          "t_ms": 10091,
+          "seq": 85,
+          "t_ms": 10129,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert, mildly tired appearing.",
@@ -2847,8 +2931,8 @@
           }
         },
         {
-          "seq": 83,
-          "t_ms": 50091,
+          "seq": 86,
+          "t_ms": 50129,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -2873,8 +2957,8 @@
           }
         },
         {
-          "seq": 84,
-          "t_ms": 50091,
+          "seq": 87,
+          "t_ms": 50129,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rate and rhythm without murmur.",
@@ -2895,8 +2979,8 @@
           }
         },
         {
-          "seq": 85,
-          "t_ms": 91091,
+          "seq": 88,
+          "t_ms": 74129,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -2915,13 +2999,13 @@
             "scopes": [
               "lungs"
             ],
-            "duration_s": 41,
+            "duration_s": 24,
             "withheld": []
           }
         },
         {
-          "seq": 86,
-          "t_ms": 91091,
+          "seq": 89,
+          "t_ms": 74129,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Clear bilateral breath sounds.",
@@ -2942,8 +3026,8 @@
           }
         },
         {
-          "seq": 87,
-          "t_ms": 101091,
+          "seq": 90,
+          "t_ms": 86129,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect the affected area",
@@ -2960,13 +3044,13 @@
             "scopes": [
               "msk.inspection"
             ],
-            "duration_s": 10,
+            "duration_s": 12,
             "withheld": []
           }
         },
         {
-          "seq": 88,
-          "t_ms": 101091,
+          "seq": 91,
+          "t_ms": 86129,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Symmetric swelling of second and third MCP and PIP joints; no DIP swelling or deformity.",
@@ -2987,8 +3071,8 @@
           }
         },
         {
-          "seq": 89,
-          "t_ms": 117091,
+          "seq": 92,
+          "t_ms": 98129,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate the affected area",
@@ -3004,13 +3088,16 @@
             "scopes": [
               "msk.palpation"
             ],
-            "duration_s": 16,
-            "withheld": []
+            "duration_s": 12,
+            "withheld": [
+              "expanded_exam_msk_palpate_paraspinal_musculature",
+              "expanded_exam_msk_palpate_midline_spine"
+            ]
           }
         },
         {
-          "seq": 90,
-          "t_ms": 117091,
+          "seq": 93,
+          "t_ms": 98129,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Boggy tenderness of affected MCP/PIP joints and mild bilateral wrist tenderness.",
@@ -3031,8 +3118,8 @@
           }
         },
         {
-          "seq": 91,
-          "t_ms": 139091,
+          "seq": 94,
+          "t_ms": 112129,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Range of motion",
@@ -3049,13 +3136,13 @@
             "scopes": [
               "msk.rom"
             ],
-            "duration_s": 22,
+            "duration_s": 14,
             "withheld": []
           }
         },
         {
-          "seq": 92,
-          "t_ms": 139091,
+          "seq": 95,
+          "t_ms": 112129,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Finger flexion limited by pain and swelling; wrist flexion mildly painful bilaterally.",
@@ -3076,8 +3163,8 @@
           }
         },
         {
-          "seq": 93,
-          "t_ms": 158091,
+          "seq": 96,
+          "t_ms": 144129,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Muscle strength testing",
@@ -3093,13 +3180,16 @@
             "scopes": [
               "neuro.motor"
             ],
-            "duration_s": 19,
-            "withheld": []
+            "duration_s": 32,
+            "withheld": [
+              "expanded_exam_msk_strength_lower_extremity",
+              "expanded_exam_msk_strength_pronator_drift"
+            ]
           }
         },
         {
-          "seq": 94,
-          "t_ms": 158091,
+          "seq": 97,
+          "t_ms": 144129,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Grip strength mildly reduced bilaterally by pain; proximal arm strength 5/5.",
@@ -3120,8 +3210,8 @@
           }
         },
         {
-          "seq": 95,
-          "t_ms": 180091,
+          "seq": 98,
+          "t_ms": 164129,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect skin",
@@ -3138,13 +3228,18 @@
             "scopes": [
               "skin"
             ],
-            "duration_s": 22,
-            "withheld": []
+            "duration_s": 20,
+            "withheld": [
+              "expanded_exam_skin_inspect_chest",
+              "expanded_exam_skin_inspect_back",
+              "expanded_exam_skin_inspect_legs",
+              "expanded_exam_skin_inspect_soles"
+            ]
           }
         },
         {
-          "seq": 96,
-          "t_ms": 180091,
+          "seq": 99,
+          "t_ms": 164129,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No rash on inspected arms or palms; no nail pitting.",
@@ -3165,8 +3260,8 @@
           }
         },
         {
-          "seq": 97,
-          "t_ms": 205091,
+          "seq": 100,
+          "t_ms": 180129,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -3182,13 +3277,18 @@
             "scopes": [
               "osteopathic"
             ],
-            "duration_s": 25,
-            "withheld": []
+            "duration_s": 16,
+            "withheld": [
+              "expanded_exam_osteo_screen_cervical",
+              "expanded_exam_osteo_screen_lumbar",
+              "expanded_exam_osteo_screen_sacrum",
+              "expanded_exam_osteo_screen_ribs"
+            ]
           }
         },
         {
-          "seq": 98,
-          "t_ms": 205091,
+          "seq": 101,
+          "t_ms": 180129,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "T1 bilateral paraspinal tissue texture change and tenderness.",
@@ -3209,8 +3309,8 @@
           }
         },
         {
-          "seq": 99,
-          "t_ms": 205091,
+          "seq": 102,
+          "t_ms": 180129,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "The swelling and long morning stiffness need prompt assessment by a joint specialist. We can arrange blood tests, but the referral should not wait for their results. We will check within one to two weeks that you have an appointment.",
@@ -3219,8 +3319,8 @@
           }
         },
         {
-          "seq": 100,
-          "t_ms": 205091,
+          "seq": 103,
+          "t_ms": 180129,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Thank you. I understand that the next steps depend on the examination and tests.",
@@ -3232,8 +3332,8 @@
           }
         },
         {
-          "seq": 101,
-          "t_ms": 205091,
+          "seq": 104,
+          "t_ms": 180129,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -3245,11 +3345,11 @@
           }
         },
         {
-          "seq": 102,
-          "t_ms": 205091,
+          "seq": 105,
+          "t_ms": 180129,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "I want to know what is causing this and how to get back to my usual activities.",
+          "text": "Thank you for listening. I do not have anything further to add right now.",
           "meta": {
             "facts_released": [],
             "concepts": {},
@@ -3260,8 +3360,8 @@
           }
         },
         {
-          "seq": 103,
-          "t_ms": 205091,
+          "seq": 106,
+          "t_ms": 180129,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "We can discuss scheduling and a work note, plus practical tools that make buttons and jars easier while the assessment is underway.",
@@ -3272,8 +3372,8 @@
           }
         },
         {
-          "seq": 104,
-          "t_ms": 205091,
+          "seq": 107,
+          "t_ms": 180129,
           "phase": "encounter",
           "kind": "counseling",
           "text": "We can discuss scheduling and a work note, plus practical tools that make buttons and jars easier while the assessment is underway.",
@@ -3284,8 +3384,8 @@
           }
         },
         {
-          "seq": 105,
-          "t_ms": 205091,
+          "seq": 108,
+          "t_ms": 180129,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "That would help. Thank you.",
@@ -3298,12 +3398,12 @@
         }
       ],
       "note_words": 428,
-      "estimated_encounter_s": 523,
+      "estimated_encounter_s": 504,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 15
+        "unresolved_count": 14
       },
       "reasoning": [
         {
@@ -3413,8 +3513,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "af2cefd775d139ea254cf52a53152d85ad1d0a729e1d9743a1233c4f1f864fe3",
-      "engine_version": "4.1.0"
+      "case_hash": "7e337ebd2eebca90a5bf9f7f325df31312191458413e7dd8339642bca5ff1805",
+      "engine_version": "4.3.1"
     }
   ]
 }

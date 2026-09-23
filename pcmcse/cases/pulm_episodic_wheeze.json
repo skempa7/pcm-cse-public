@@ -658,7 +658,12 @@
       "triggers": {
         "any": [
           "Have you had surgery?",
-          "Have you had any operations?"
+          "Have you had any operations?",
+          "surgery",
+          "surgeries",
+          "operation",
+          "operations",
+          "past surgical"
         ]
       },
       "concepts": {
@@ -1051,19 +1056,12 @@
               }
             },
             "complete_fact": true
-          },
-          {
-            "text": "I do not think I am pregnant.",
-            "concepts": {},
-            "complete_fact": false,
-            "history_dimensions": [
-              "current_pregnancy"
-            ]
           }
         ],
         "review_status": "author_statement_contract_checked_not_clinician_approved"
       },
-      "authored_note": "LMP 2 weeks ago; IUD; pregnancy not suspected by patient."
+      "authored_note": "LMP 2 weeks ago; IUD; pregnancy not suspected by patient.",
+      "history_topic": "pregnancy"
     },
     {
       "id": "history_father",
@@ -1363,7 +1361,9 @@
       },
       "authored_note": "Occasional throat tightness with episodes.",
       "ros_system": "heent",
-      "ros_topics": []
+      "ros_topics": [
+        "sore_throat"
+      ]
     },
     {
       "id": "symptom_hoarseness",
@@ -2918,45 +2918,6 @@
         "tablets",
         "frequency"
       ]
-    },
-    {
-      "id": "expanded_ros_sore_throat",
-      "category": "pertinent_negative",
-      "value": "I have not had a sore throat. My throat sometimes feels tight during a spell.",
-      "sp_says": [
-        "I have not had a sore throat. My throat sometimes feels tight during a spell."
-      ],
-      "triggers": {},
-      "concepts": {
-        "expanded_ros_sore_throat": {
-          "polarity": "negative",
-          "value": "I have not had a sore throat. My throat sometimes feels tight during a spell."
-        }
-      },
-      "delivery_contract": {
-        "versions": [
-          {
-            "text": "I have not had a sore throat. My throat sometimes feels tight during a spell.",
-            "concepts": {
-              "expanded_ros_sore_throat": {
-                "polarity": "negative",
-                "value": "I have not had a sore throat. My throat sometimes feels tight during a spell."
-              }
-            },
-            "complete_fact": true
-          }
-        ],
-        "review_status": "author_statement_contract_checked_not_clinician_approved"
-      },
-      "authoring": {
-        "date": "2026-09-14",
-        "kind": "user_requested_fictional_case_expansion",
-        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
-        "review_status": "author_consistency_checked_not_clinician_approved"
-      },
-      "ros_topics": [
-        "sore_throat"
-      ]
     }
   ],
   "concept_lexicon": {
@@ -3468,9 +3429,6 @@
     ],
     "expanded_exam_dix_left": [
       "Left Dix–Hallpike after suitability review does not elicit vertigo or nystagmus."
-    ],
-    "expanded_ros_sore_throat": [
-      "I have not had a sore throat. My throat sometimes feels tight during a spell."
     ]
   },
   "exam_findings": {
@@ -5923,12 +5881,14 @@
     "classification_note": "Categories reflect the explicitly proposed mechanism; e.g., irritant exposure is I2. They are a course organizing aid, not confirmation of mechanism."
   },
   "content_revisions": {
-    "library_expansion_20260914": "New independently authored presentation. Single core path; no renamed cosmetic variants."
+    "library_expansion_20260914": "New independently authored presentation. Single core path; no renamed cosmetic variants.",
+    "expansion_consistency_20260923": "Consistency repair requested by the user: surgical history accepts the short surgery/operation triggers used by the other cases; the bundled pregnancy statement answers current-pregnancy questions in full, like every other case. Existing clinical facts and rubric preserved; not clinician approved."
   },
   "practice_expansion": {
     "date": "2026-09-14",
     "kind": "user_requested_fictional_case_expansion",
     "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
-    "review_status": "author_consistency_checked_not_clinician_approved"
+    "review_status": "author_consistency_checked_not_clinician_approved",
+    "consistency_20260923": "Routine-expansion repair requested by the user: the sore throat screen is answered by the core checklist fact symptom_sore_throat again; duplicate expanded_ros_sore_throat removed. Not clinician approved."
   }
 }

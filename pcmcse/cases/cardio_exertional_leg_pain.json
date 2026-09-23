@@ -736,7 +736,12 @@
       "triggers": {
         "any": [
           "What operations have you had?",
-          "Have you had any operations?"
+          "Have you had any operations?",
+          "surgery",
+          "surgeries",
+          "operation",
+          "operations",
+          "past surgical"
         ]
       },
       "concepts": {
@@ -1479,7 +1484,10 @@
         "review_status": "author_statement_contract_checked_not_clinician_approved"
       },
       "authored_note": "Exertional left calf cramping.",
-      "ros_system": "musculoskeletal"
+      "ros_system": "musculoskeletal",
+      "ros_topics": [
+        "myalgia"
+      ]
     },
     {
       "id": "symptom_numbness",
@@ -1891,45 +1899,6 @@
       },
       "ros_topics": [
         "headache"
-      ]
-    },
-    {
-      "id": "expanded_ros_myalgia",
-      "category": "associated",
-      "value": "My left calf cramps when I walk; I do not ache all over.",
-      "sp_says": [
-        "My left calf cramps when I walk; I do not ache all over."
-      ],
-      "triggers": {},
-      "concepts": {
-        "expanded_ros_myalgia": {
-          "polarity": "positive",
-          "value": "My left calf cramps when I walk; I do not ache all over."
-        }
-      },
-      "delivery_contract": {
-        "versions": [
-          {
-            "text": "My left calf cramps when I walk; I do not ache all over.",
-            "concepts": {
-              "expanded_ros_myalgia": {
-                "polarity": "positive",
-                "value": "My left calf cramps when I walk; I do not ache all over."
-              }
-            },
-            "complete_fact": true
-          }
-        ],
-        "review_status": "author_statement_contract_checked_not_clinician_approved"
-      },
-      "authoring": {
-        "date": "2026-09-14",
-        "kind": "user_requested_fictional_case_expansion",
-        "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
-        "review_status": "author_consistency_checked_not_clinician_approved"
-      },
-      "ros_topics": [
-        "myalgia"
       ]
     },
     {
@@ -3331,9 +3300,6 @@
     "expanded_ros_headache": [
       "I have not had headaches."
     ],
-    "expanded_ros_myalgia": [
-      "My left calf cramps when I walk; I do not ache all over."
-    ],
     "expanded_ros_nausea": [
       "I have not felt nauseated."
     ],
@@ -3857,6 +3823,10 @@
         "requires_components": [
           "legs"
         ],
+        "covered_by_components": [
+          "legs",
+          "soles"
+        ],
         "concepts": {
           "expanded_exam_skin_inspect_legs": {
             "polarity": "positive",
@@ -3899,6 +3869,10 @@
         "id": "expanded_exam_skin_inspect_soles",
         "text": "No ulceration or tissue loss on either sole.",
         "requires_components": [
+          "soles"
+        ],
+        "covered_by_components": [
+          "legs",
           "soles"
         ],
         "concepts": {
@@ -3944,6 +3918,10 @@
         "requires_components": [
           "point tenderness"
         ],
+        "covered_by_components": [
+          "point tenderness",
+          "paraspinal musculature"
+        ],
         "concepts": {
           "expanded_exam_msk_palpate_point_tenderness": {
             "polarity": "positive",
@@ -3964,6 +3942,10 @@
         "id": "expanded_exam_msk_palpate_paraspinal_musculature",
         "text": "Mild paraspinal tenderness in the region of the structural finding.",
         "requires_components": [
+          "paraspinal musculature"
+        ],
+        "covered_by_components": [
+          "point tenderness",
           "paraspinal musculature"
         ],
         "concepts": {
@@ -6164,12 +6146,14 @@
     "classification_note": "Categories reflect the explicitly proposed mechanism; e.g., irritant exposure is I2. They are a course organizing aid, not confirmation of mechanism."
   },
   "content_revisions": {
-    "library_expansion_20260914": "New independently authored presentation. Single core path; no renamed cosmetic variants."
+    "library_expansion_20260914": "New independently authored presentation. Single core path; no renamed cosmetic variants.",
+    "expansion_consistency_20260923": "Consistency repair requested by the user: surgical history accepts the short surgery/operation triggers used by the other cases. Existing clinical facts and rubric preserved; not clinician approved."
   },
   "practice_expansion": {
     "date": "2026-09-14",
     "kind": "user_requested_fictional_case_expansion",
     "description": "Explicit routine history and examination outcomes for partner and interactive practice; original clinical facts and rubric preserved. Added simulation details are not claims from course source material.",
-    "review_status": "author_consistency_checked_not_clinician_approved"
+    "review_status": "author_consistency_checked_not_clinician_approved",
+    "consistency_20260923": "Routine-expansion repair requested by the user: 4 routine component rows restating a core aggregate finding are covered by it, so a complete maneuver reports each finding once; the myalgia screen is answered by the core checklist fact symptom_myalgia again; duplicate expanded_ros_myalgia removed. Not clinician approved."
   }
 }

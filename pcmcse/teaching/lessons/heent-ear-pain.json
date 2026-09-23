@@ -62,13 +62,26 @@
         },
         {
           "kind": "dialogue",
+          "section": "Connect",
+          "student": "May I confirm your name and age?",
+          "patient": "My name is Jordan Park. I am 24 years old.",
+          "why": "The note documents age only as the patient states it.",
+          "event_ids": [
+            8,
+            9,
+            10
+          ],
+          "fact_ids": []
+        },
+        {
+          "kind": "dialogue",
           "section": "Listen to the opening",
           "student": "What brings you in today?",
           "patient": "My left ear hurts and feels blocked.",
           "why": "Distinguish canal disease from referred ear pain and choose safe topical therapy.",
           "event_ids": [
-            8,
-            9
+            11,
+            12
           ],
           "fact_ids": [
             "opening_complaint"
@@ -81,8 +94,8 @@
           "patient": "Two days ago.",
           "why": "Does touching the outer ear hurt, and is there discharge or jaw-related pain?",
           "event_ids": [
-            10,
-            11
+            13,
+            14
           ],
           "fact_ids": [
             "hpi_onset"
@@ -95,8 +108,8 @@
           "patient": "The itching started first, then it became sore and muffled.",
           "why": "Change over time can change urgency even when the symptom is familiar.",
           "event_ids": [
-            12,
-            13
+            15,
+            16
           ],
           "fact_ids": [
             "hpi_chronology"
@@ -109,8 +122,8 @@
           "patient": "The left one, near the opening.",
           "why": "",
           "event_ids": [
-            14,
-            15
+            17,
+            18
           ],
           "fact_ids": [
             "hpi_location"
@@ -123,8 +136,8 @@
           "patient": "A steady sore ache with itching.",
           "why": "Use the patient\u2019s words before translating them into a clinical description.",
           "event_ids": [
-            16,
-            17
+            19,
+            20
           ],
           "fact_ids": [
             "hpi_quality"
@@ -137,8 +150,8 @@
           "patient": "About 5 out of 10.",
           "why": "Intensity and functional effect are distinct; record only the dimension answered.",
           "event_ids": [
-            18,
-            19
+            21,
+            22
           ],
           "fact_ids": [
             "hpi_severity"
@@ -151,8 +164,8 @@
           "patient": "It is there most of the day.",
           "why": "Separate time since onset from duration of one episode and from continuity.",
           "event_ids": [
-            20,
-            21
+            23,
+            24
           ],
           "fact_ids": [
             "hpi_timing"
@@ -165,8 +178,8 @@
           "patient": "I swam all weekend and started using new in-ear earbuds last week.",
           "why": "",
           "event_ids": [
-            22,
-            23
+            25,
+            26
           ],
           "fact_ids": [
             "hpi_setting"
@@ -179,8 +192,8 @@
           "patient": "Leaving the earbud out helps a little.",
           "why": "Relief changes probability, but is not proof that a serious cause is excluded.",
           "event_ids": [
-            24,
-            25
+            27,
+            28
           ],
           "fact_ids": [
             "hpi_alleviating"
@@ -193,8 +206,8 @@
           "patient": "Touching the ear and putting the earbud in hurt. Chewing aches a little near my jaw.",
           "why": "Compare triggers with the chronology; one trigger does not establish a diagnosis.",
           "event_ids": [
-            26,
-            27
+            29,
+            30
           ],
           "fact_ids": [
             "hpi_aggravating"
@@ -207,8 +220,8 @@
           "patient": "I took acetaminophen 500 milligrams last night. No ear drops.",
           "why": "",
           "event_ids": [
-            28,
-            29
+            31,
+            32
           ],
           "fact_ids": [
             "hpi_treatment"
@@ -221,8 +234,8 @@
           "patient": "Not ear pain, but earbuds have made my skin itchy before.",
           "why": "",
           "event_ids": [
-            30,
-            31
+            33,
+            34
           ],
           "fact_ids": [
             "hpi_past_occurrence"
@@ -235,8 +248,8 @@
           "patient": "Sounds are muffled on the left.",
           "why": "Use this answer to weigh the possibilities described in the reasoning section.",
           "event_ids": [
-            32,
-            33
+            35,
+            36
           ],
           "fact_ids": [
             "symptom_hearing_loss"
@@ -249,8 +262,8 @@
           "patient": "There was a little clear fluid on my pillow.",
           "why": "Use this answer to weigh the possibilities described in the reasoning section.",
           "event_ids": [
-            34,
-            35
+            37,
+            38
           ],
           "fact_ids": [
             "symptom_ear_discharge"
@@ -263,8 +276,8 @@
           "patient": "No sore throat.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            36,
-            37
+            39,
+            40
           ],
           "fact_ids": [
             "symptom_sore_throat"
@@ -277,8 +290,8 @@
           "patient": "No fever.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            38,
-            39
+            41,
+            42
           ],
           "fact_ids": [
             "symptom_fever"
@@ -291,8 +304,8 @@
           "patient": "No chills.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            40,
-            41
+            43,
+            44
           ],
           "fact_ids": [
             "symptom_chills"
@@ -305,8 +318,8 @@
           "patient": "I feel well apart from the ear.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            42,
-            43
+            45,
+            46
           ],
           "fact_ids": [
             "symptom_fatigue"
@@ -319,8 +332,8 @@
           "patient": "No spinning or dizziness.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            44,
-            45
+            47,
+            48
           ],
           "fact_ids": [
             "symptom_dizziness"
@@ -333,8 +346,8 @@
           "patient": "No headache.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            46,
-            47
+            49,
+            50
           ],
           "fact_ids": [
             "symptom_headache"
@@ -347,8 +360,8 @@
           "patient": "No weakness in my face.",
           "why": "A targeted negative changes probability; it does not justify unrelated normal statements.",
           "event_ids": [
-            48,
-            49
+            51,
+            52
           ],
           "fact_ids": [
             "symptom_weakness"
@@ -361,8 +374,8 @@
           "patient": "No chronic illness. I grind my teeth at night.",
           "why": "",
           "event_ids": [
-            50,
-            51
+            53,
+            54
           ],
           "fact_ids": [
             "history_medical_history"
@@ -375,8 +388,8 @@
           "patient": "No tubes, ear surgery or known hole in my eardrum.",
           "why": "",
           "event_ids": [
-            52,
-            53
+            55,
+            56
           ],
           "fact_ids": [
             "history_ear_procedures"
@@ -389,8 +402,8 @@
           "patient": "No regular medicine.",
           "why": "Name, dose and frequency matter; do not fill in missing details.",
           "event_ids": [
-            54,
-            55
+            57,
+            58
           ],
           "fact_ids": [
             "history_medication"
@@ -403,8 +416,8 @@
           "patient": "Neomycin ointment made my skin red and itchy.",
           "why": "Distinguish the substance and reaction from a blanket allergy label.",
           "event_ids": [
-            56,
-            57
+            59,
+            60
           ],
           "fact_ids": [
             "history_drug_reactions"
@@ -417,8 +430,8 @@
           "patient": "I have never smoked or vaped.",
           "why": "",
           "event_ids": [
-            58,
-            59
+            61,
+            62
           ],
           "fact_ids": [
             "history_smoking"
@@ -431,8 +444,8 @@
           "patient": "One or two beers on a weekend.",
           "why": "",
           "event_ids": [
-            60,
-            61
+            63,
+            64
           ],
           "fact_ids": [
             "history_alcohol"
@@ -445,8 +458,8 @@
           "patient": "No.",
           "why": "",
           "event_ids": [
-            62,
-            63
+            65,
+            66
           ],
           "fact_ids": [
             "history_drugs"
@@ -459,8 +472,8 @@
           "patient": "I am a lifeguard and wear earbuds during my commute.",
           "why": "",
           "event_ids": [
-            64,
-            65
+            67,
+            68
           ],
           "fact_ids": [
             "history_work"
@@ -473,8 +486,8 @@
           "patient": "I live with my brother.",
           "why": "",
           "event_ids": [
-            66,
-            67
+            69,
+            70
           ],
           "fact_ids": [
             "history_home"
@@ -487,8 +500,8 @@
           "patient": "My father needed hearing aids in his sixties.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
-            68,
-            69
+            71,
+            72
           ],
           "fact_ids": [
             "history_family_history"
@@ -501,8 +514,8 @@
           "patient": "My mother has high blood pressure. My brother has no major illness.",
           "why": "Record which relative and the condition; do not infer a family history from patient worry.",
           "event_ids": [
-            70,
-            71
+            73,
+            74
           ],
           "fact_ids": [
             "history_other_family"
@@ -515,8 +528,8 @@
           "patient": "I want to know what is causing this and how to get back to my usual activities.",
           "why": "",
           "event_ids": [
-            72,
-            73
+            75,
+            76
           ],
           "fact_ids": [
             "patient_concern"
@@ -529,8 +542,8 @@
           "patient": "I want to know what is causing this and how to get back to my usual activities. Hmm... I don't know how to answer that.",
           "why": "",
           "event_ids": [
-            74,
-            75
+            77,
+            78
           ],
           "fact_ids": [
             "patient_concern"
@@ -543,9 +556,9 @@
           "patient": "Yes, that's fine. Go ahead.",
           "why": "",
           "event_ids": [
-            76,
-            77,
-            78
+            79,
+            80,
+            81
           ],
           "fact_ids": []
         },
@@ -563,8 +576,8 @@
           "finding": "Alert, well appearing.",
           "why": "Use the supported case-specific maneuvers and document their actual findings; do not infer normal findings from the generic model.",
           "event_ids": [
-            79,
-            80
+            82,
+            83
           ],
           "maneuver_id": "general_inspect",
           "duration_s": 10
@@ -576,8 +589,8 @@
           "finding": "Regular rate and rhythm without murmur.",
           "why": "The course expects at least four listening posts, on skin.",
           "event_ids": [
-            81,
-            82
+            84,
+            85
           ],
           "maneuver_id": "heart_auscultate",
           "duration_s": 40
@@ -589,11 +602,11 @@
           "finding": "Clear bilateral breath sounds.",
           "why": "The course expects six posterior fields, mouth open, on skin, comparing sides.",
           "event_ids": [
-            83,
-            84
+            86,
+            87
           ],
           "maneuver_id": "lungs_auscultate",
-          "duration_s": 41
+          "duration_s": 24
         },
         {
           "kind": "action",
@@ -602,11 +615,11 @@
           "finding": "Left tragal/pinna manipulation tender; canal erythematous and edematous with scant debris. Left tympanic membrane visualized and intact without bulging. Right canal without erythema or edema; right membrane intact and nonbulging; no mastoid tenderness.",
           "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
           "event_ids": [
-            85,
-            86
+            88,
+            89
           ],
           "maneuver_id": "heent_ears",
-          "duration_s": 30
+          "duration_s": 16
         },
         {
           "kind": "action",
@@ -615,11 +628,11 @@
           "finding": "Mild left temporomandibular joint tenderness with jaw opening; no facial swelling.",
           "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
           "event_ids": [
-            87,
-            88
+            90,
+            91
           ],
           "maneuver_id": "msk_palpate",
-          "duration_s": 16
+          "duration_s": 12
         },
         {
           "kind": "action",
@@ -628,11 +641,11 @@
           "finding": "No enlarged or tender cervical nodes.",
           "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
           "event_ids": [
-            89,
-            90
+            92,
+            93
           ],
           "maneuver_id": "lymph_nodes",
-          "duration_s": 18
+          "duration_s": 8
         },
         {
           "kind": "action",
@@ -641,11 +654,11 @@
           "finding": "Oropharynx without erythema or exudate.",
           "why": "This specific action releases only the finding shown here. Interpret it with the history; it does not confirm a diagnosis by itself.",
           "event_ids": [
-            91,
-            92
+            94,
+            95
           ],
           "maneuver_id": "heent_throat",
-          "duration_s": 16
+          "duration_s": 18
         },
         {
           "kind": "action",
@@ -654,11 +667,11 @@
           "finding": "C2 left paraspinal tissue texture change and tenderness.",
           "why": "Name the level examined; findings are released by region.",
           "event_ids": [
-            93,
-            94
+            96,
+            97
           ],
           "maneuver_id": "osteo_screen",
-          "duration_s": 25
+          "duration_s": 16
         },
         {
           "kind": "dialogue",
@@ -667,9 +680,9 @@
           "patient": "Thank you. I understand that the next steps depend on the examination and tests.",
           "why": "Proposed care, not a record of tests or treatment already completed.",
           "event_ids": [
-            95,
-            96,
-            97
+            98,
+            99,
+            100
           ],
           "fact_ids": []
         },
@@ -677,11 +690,11 @@
           "kind": "dialogue",
           "section": "Close and check understanding",
           "student": "What questions do you have about the next steps?",
-          "patient": "I want to know what is causing this and how to get back to my usual activities.",
+          "patient": "Thank you for listening. I do not have anything further to add right now.",
           "why": "",
           "event_ids": [
-            98,
-            99
+            101,
+            102
           ],
           "fact_ids": []
         },
@@ -690,11 +703,11 @@
           "section": "Address the patient\u2019s question",
           "student": "We can discuss temporary dry duties at the pool so the ear can recover without unnecessary time off.",
           "patient": "That would help. Thank you.",
-          "why": "Answer the concern that was just expressed. Give a defensible recommendation and explain uncertainty; do not promise a diagnosis or recovery before the evidence supports it.",
+          "why": "Return to the concern the patient named during the history; nothing new was raised at the close. Give a defensible recommendation and explain uncertainty; do not promise a diagnosis or recovery before the evidence supports it.",
           "event_ids": [
-            100,
-            101,
-            102
+            103,
+            104,
+            105
           ],
           "fact_ids": []
         }
@@ -718,7 +731,7 @@
           "section": "S",
           "statement": "My left ear hurts and feels blocked.",
           "event_ids": [
-            9
+            12
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -728,17 +741,18 @@
           "section": "S",
           "statement": "24-year-old male.",
           "event_ids": [
+            10,
             2
           ],
           "classification": "reported / supplied history",
-          "trace_method": "related delivered quotations; not a semantic verification",
-          "audit_verdict": "not_evaluated"
+          "trace_method": "grader-linked delivered evidence",
+          "audit_verdict": "supported"
         },
         {
           "section": "S",
           "statement": "Left otalgia for 2 days.",
           "event_ids": [
-            11
+            14
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -748,7 +762,7 @@
           "section": "S",
           "statement": "Pain at left canal opening.",
           "event_ids": [
-            15
+            18
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -758,7 +772,7 @@
           "section": "S",
           "statement": "Aching and pruritus.",
           "event_ids": [
-            17
+            20
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -768,7 +782,7 @@
           "section": "S",
           "statement": "Pain 5/10.",
           "event_ids": [
-            19
+            22
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -778,7 +792,7 @@
           "section": "S",
           "statement": "Persistent daily discomfort.",
           "event_ids": [
-            21
+            24
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -788,8 +802,8 @@
           "section": "S",
           "statement": "Pruritus preceded pain and muffled hearing.",
           "event_ids": [
-            13,
-            33
+            16,
+            36
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -799,7 +813,7 @@
           "section": "S",
           "statement": "Recent swimming and new in-ear earbuds.",
           "event_ids": [
-            23
+            26
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -809,8 +823,8 @@
           "section": "S",
           "statement": "Pain with ear contact/earbud insertion;",
           "event_ids": [
-            27,
-            31
+            30,
+            34
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -820,8 +834,8 @@
           "section": "S",
           "statement": "mild chewing-related jaw ache.",
           "event_ids": [
-            27,
-            88
+            30,
+            91
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -831,7 +845,7 @@
           "section": "S",
           "statement": "Partial relief without earbud.",
           "event_ids": [
-            25
+            28
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -849,7 +863,7 @@
           "section": "S",
           "statement": "no ear drops.",
           "event_ids": [
-            29
+            32
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -859,7 +873,7 @@
           "section": "S",
           "statement": "Prior earbud-related itching, no prior otalgia.",
           "event_ids": [
-            31
+            34
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -869,7 +883,7 @@
           "section": "S",
           "statement": "No chronic illness;",
           "event_ids": [
-            51
+            54
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -887,7 +901,7 @@
           "section": "S",
           "statement": "No ear surgery, tympanostomy or known perforation.",
           "event_ids": [
-            53
+            56
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -897,7 +911,7 @@
           "section": "S",
           "statement": "No regular medication.",
           "event_ids": [
-            55
+            58
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -907,7 +921,7 @@
           "section": "S",
           "statement": "Never smoked or vaped.",
           "event_ids": [
-            59
+            62
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -917,7 +931,7 @@
           "section": "S",
           "statement": "One or two beers weekly.",
           "event_ids": [
-            61
+            64
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -927,7 +941,7 @@
           "section": "S",
           "statement": "No recreational drugs.",
           "event_ids": [
-            63
+            66
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -937,7 +951,7 @@
           "section": "S",
           "statement": "Lifeguard;",
           "event_ids": [
-            65
+            68
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -947,7 +961,7 @@
           "section": "S",
           "statement": "earbud use during commute.",
           "event_ids": [
-            65
+            68
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -957,7 +971,7 @@
           "section": "S",
           "statement": "Lives with brother.",
           "event_ids": [
-            67
+            70
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -967,8 +981,8 @@
           "section": "S",
           "statement": "Father: hearing loss requiring aids in his 60s.",
           "event_ids": [
-            69,
-            33
+            72,
+            36
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -986,7 +1000,7 @@
           "section": "S",
           "statement": "brother: no known major illness.",
           "event_ids": [
-            71
+            74
           ],
           "classification": "reported / supplied history",
           "trace_method": "related delivered quotations; not a semantic verification",
@@ -996,7 +1010,7 @@
           "section": "S",
           "statement": "Neomycin: pruritic erythematous skin reaction.",
           "event_ids": [
-            57
+            60
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1006,7 +1020,7 @@
           "section": "S",
           "statement": "Heent: Muffled left hearing.",
           "event_ids": [
-            33
+            36
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1016,7 +1030,7 @@
           "section": "S",
           "statement": "Small clear left ear discharge.",
           "event_ids": [
-            35
+            38
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1026,7 +1040,7 @@
           "section": "S",
           "statement": "No sore throat.",
           "event_ids": [
-            37
+            40
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1036,7 +1050,7 @@
           "section": "S",
           "statement": "General: No fever.",
           "event_ids": [
-            39
+            42
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1046,7 +1060,7 @@
           "section": "S",
           "statement": "No chills.",
           "event_ids": [
-            41
+            44
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1056,7 +1070,7 @@
           "section": "S",
           "statement": "No systemic malaise.",
           "event_ids": [
-            43
+            46
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1066,7 +1080,7 @@
           "section": "S",
           "statement": "Neurologic: No vertigo.",
           "event_ids": [
-            45
+            48
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1076,7 +1090,7 @@
           "section": "S",
           "statement": "No headache.",
           "event_ids": [
-            47
+            50
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1086,7 +1100,7 @@
           "section": "S",
           "statement": "No facial weakness.",
           "event_ids": [
-            49
+            52
           ],
           "classification": "reported / supplied history",
           "trace_method": "grader-linked delivered evidence",
@@ -1166,7 +1180,7 @@
           "section": "O",
           "statement": "Alert, well appearing.",
           "event_ids": [
-            80
+            83
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1176,7 +1190,7 @@
           "section": "O",
           "statement": "Regular rate and rhythm without murmur.",
           "event_ids": [
-            82
+            85
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1186,7 +1200,7 @@
           "section": "O",
           "statement": "Clear bilateral breath sounds.",
           "event_ids": [
-            84
+            87
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1196,7 +1210,7 @@
           "section": "O",
           "statement": "Left tragal/pinna manipulation tender;",
           "event_ids": [
-            86
+            89
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1206,7 +1220,7 @@
           "section": "O",
           "statement": "canal erythematous and edematous with scant debris.",
           "event_ids": [
-            86
+            89
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1216,7 +1230,7 @@
           "section": "O",
           "statement": "Left tympanic membrane visualized and intact without bulging.",
           "event_ids": [
-            86
+            89
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1226,7 +1240,7 @@
           "section": "O",
           "statement": "Right canal without erythema or edema;",
           "event_ids": [
-            86
+            89
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1236,7 +1250,7 @@
           "section": "O",
           "statement": "right membrane intact and nonbulging;",
           "event_ids": [
-            86
+            89
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1246,7 +1260,7 @@
           "section": "O",
           "statement": "no mastoid tenderness.",
           "event_ids": [
-            86
+            89
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1256,7 +1270,7 @@
           "section": "O",
           "statement": "Mild left temporomandibular joint tenderness with jaw opening;",
           "event_ids": [
-            88
+            91
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1266,7 +1280,7 @@
           "section": "O",
           "statement": "no facial swelling.",
           "event_ids": [
-            88
+            91
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1276,7 +1290,7 @@
           "section": "O",
           "statement": "No enlarged or tender cervical nodes.",
           "event_ids": [
-            90
+            93
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1286,7 +1300,7 @@
           "section": "O",
           "statement": "Oropharynx without erythema or exudate.",
           "event_ids": [
-            92
+            95
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1296,7 +1310,7 @@
           "section": "O",
           "statement": "C2 left paraspinal tissue texture change and tenderness.",
           "event_ids": [
-            94
+            97
           ],
           "classification": "supplied / examined finding",
           "trace_method": "grader-linked delivered evidence",
@@ -1319,7 +1333,7 @@
           "t_ms": 0,
           "phase": "encounter",
           "kind": "station_info",
-          "text": "Jordan Park, 24-year-old male. My left ear hurts and feels blocked. Vital signs are available on the chart. Perform a focused history and physical examination, discuss your plan, and document only what you obtain. Use the time limit stated for your selected practice mode.",
+          "text": "Jordan Park, male. My left ear hurts and feels blocked. Vital signs are available on the chart. Perform a focused history and physical examination, discuss your plan, and document only what you obtain. Use the time limit stated for your selected practice mode.",
           "meta": {
             "doorway": true
           }
@@ -1377,7 +1391,7 @@
         },
         {
           "seq": 7,
-          "t_ms": 7,
+          "t_ms": 13,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Hello. Thank you for introducing yourself. I am ready to talk.",
@@ -1390,7 +1404,49 @@
         },
         {
           "seq": 8,
-          "t_ms": 7,
+          "t_ms": 14,
+          "phase": "encounter",
+          "kind": "student_utterance",
+          "text": "May I confirm your name and age?",
+          "meta": {
+            "mode": "type"
+          }
+        },
+        {
+          "seq": 9,
+          "t_ms": 14,
+          "phase": "encounter",
+          "kind": "courtesy",
+          "text": "May I confirm your name and age?",
+          "meta": {
+            "courtesy_id": "confirm_name",
+            "label": "Confirm patient name / preferred address",
+            "components": [
+              "name"
+            ]
+          }
+        },
+        {
+          "seq": 10,
+          "t_ms": 16,
+          "phase": "encounter",
+          "kind": "patient_reply",
+          "text": "My name is Jordan Park. I am 24 years old.",
+          "meta": {
+            "facts_released": [],
+            "concepts": {},
+            "volunteered": false,
+            "kind": "identity_response",
+            "identity_fields": [
+              "name",
+              "age"
+            ],
+            "composed_asks": 2
+          }
+        },
+        {
+          "seq": 11,
+          "t_ms": 17,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What brings you in today?",
@@ -1401,8 +1457,8 @@
           }
         },
         {
-          "seq": 9,
-          "t_ms": 10,
+          "seq": 12,
+          "t_ms": 23,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My left ear hurts and feels blocked.",
@@ -1427,8 +1483,8 @@
           }
         },
         {
-          "seq": 10,
-          "t_ms": 11,
+          "seq": 13,
+          "t_ms": 24,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "When did the ear pain begin?",
@@ -1438,8 +1494,8 @@
           }
         },
         {
-          "seq": 11,
-          "t_ms": 12,
+          "seq": 14,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Two days ago.",
@@ -1464,8 +1520,8 @@
           }
         },
         {
-          "seq": 12,
-          "t_ms": 13,
+          "seq": 15,
+          "t_ms": 26,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How has it changed?",
@@ -1476,8 +1532,8 @@
           }
         },
         {
-          "seq": 13,
-          "t_ms": 14,
+          "seq": 16,
+          "t_ms": 28,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The itching started first, then it became sore and muffled.",
@@ -1502,8 +1558,8 @@
           }
         },
         {
-          "seq": 14,
-          "t_ms": 15,
+          "seq": 17,
+          "t_ms": 29,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Which ear hurts?",
@@ -1513,8 +1569,8 @@
           }
         },
         {
-          "seq": 15,
-          "t_ms": 16,
+          "seq": 18,
+          "t_ms": 30,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "The left one, near the opening.",
@@ -1539,8 +1595,8 @@
           }
         },
         {
-          "seq": 16,
-          "t_ms": 16,
+          "seq": 19,
+          "t_ms": 31,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What does the ear pain feel like?",
@@ -1551,8 +1607,8 @@
           }
         },
         {
-          "seq": 17,
-          "t_ms": 18,
+          "seq": 20,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "A steady sore ache with itching.",
@@ -1577,8 +1633,8 @@
           }
         },
         {
-          "seq": 18,
-          "t_ms": 18,
+          "seq": 21,
+          "t_ms": 33,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How bad is the pain?",
@@ -1589,8 +1645,8 @@
           }
         },
         {
-          "seq": 19,
-          "t_ms": 20,
+          "seq": 22,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "About 5 out of 10.",
@@ -1615,8 +1671,8 @@
           }
         },
         {
-          "seq": 20,
-          "t_ms": 20,
+          "seq": 23,
+          "t_ms": 35,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is it constant or intermittent?",
@@ -1627,8 +1683,8 @@
           }
         },
         {
-          "seq": 21,
-          "t_ms": 21,
+          "seq": 24,
+          "t_ms": 37,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "It is there most of the day.",
@@ -1653,8 +1709,8 @@
           }
         },
         {
-          "seq": 22,
-          "t_ms": 22,
+          "seq": 25,
+          "t_ms": 38,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you been swimming or put anything new in your ear?",
@@ -1665,8 +1721,8 @@
           }
         },
         {
-          "seq": 23,
-          "t_ms": 23,
+          "seq": 26,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I swam all weekend and started using new in-ear earbuds last week.",
@@ -1691,8 +1747,8 @@
           }
         },
         {
-          "seq": 24,
-          "t_ms": 24,
+          "seq": 27,
+          "t_ms": 40,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What helps?",
@@ -1703,8 +1759,8 @@
           }
         },
         {
-          "seq": 25,
-          "t_ms": 25,
+          "seq": 28,
+          "t_ms": 42,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Leaving the earbud out helps a little.",
@@ -1729,8 +1785,8 @@
           }
         },
         {
-          "seq": 26,
-          "t_ms": 25,
+          "seq": 29,
+          "t_ms": 43,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What makes the pain worse?",
@@ -1741,8 +1797,8 @@
           }
         },
         {
-          "seq": 27,
-          "t_ms": 27,
+          "seq": 30,
+          "t_ms": 44,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Touching the ear and putting the earbud in hurt. Chewing aches a little near my jaw.",
@@ -1767,8 +1823,8 @@
           }
         },
         {
-          "seq": 28,
-          "t_ms": 27,
+          "seq": 31,
+          "t_ms": 45,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you used drops or pain medicine?",
@@ -1779,8 +1835,8 @@
           }
         },
         {
-          "seq": 29,
-          "t_ms": 29,
+          "seq": 32,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I took acetaminophen 500 milligrams last night. No ear drops.",
@@ -1805,8 +1861,8 @@
           }
         },
         {
-          "seq": 30,
-          "t_ms": 29,
+          "seq": 33,
+          "t_ms": 47,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had this before?",
@@ -1817,8 +1873,8 @@
           }
         },
         {
-          "seq": 31,
-          "t_ms": 30,
+          "seq": 34,
+          "t_ms": 49,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Not ear pain, but earbuds have made my skin itchy before.",
@@ -1843,8 +1899,8 @@
           }
         },
         {
-          "seq": 32,
-          "t_ms": 31,
+          "seq": 35,
+          "t_ms": 50,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had hearing loss?",
@@ -1855,8 +1911,8 @@
           }
         },
         {
-          "seq": 33,
-          "t_ms": 32,
+          "seq": 36,
+          "t_ms": 51,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Sounds are muffled on the left.",
@@ -1881,8 +1937,8 @@
           }
         },
         {
-          "seq": 34,
-          "t_ms": 33,
+          "seq": 37,
+          "t_ms": 52,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had ear discharge?",
@@ -1893,8 +1949,8 @@
           }
         },
         {
-          "seq": 35,
-          "t_ms": 35,
+          "seq": 38,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "There was a little clear fluid on my pillow.",
@@ -1919,8 +1975,8 @@
           }
         },
         {
-          "seq": 36,
-          "t_ms": 35,
+          "seq": 39,
+          "t_ms": 54,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a sore throat?",
@@ -1931,8 +1987,8 @@
           }
         },
         {
-          "seq": 37,
-          "t_ms": 36,
+          "seq": 40,
+          "t_ms": 56,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No sore throat.",
@@ -1948,6 +2004,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "sore_throat"
+            ],
             "checklist_hits": [
               "h_symptom_sore_throat"
             ],
@@ -1957,8 +2017,8 @@
           }
         },
         {
-          "seq": 38,
-          "t_ms": 37,
+          "seq": 41,
+          "t_ms": 57,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had a fever?",
@@ -1969,8 +2029,8 @@
           }
         },
         {
-          "seq": 39,
-          "t_ms": 38,
+          "seq": 42,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No fever.",
@@ -1986,6 +2046,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "fever"
+            ],
             "checklist_hits": [
               "h_symptom_fever"
             ],
@@ -1995,8 +2059,8 @@
           }
         },
         {
-          "seq": 40,
-          "t_ms": 39,
+          "seq": 43,
+          "t_ms": 59,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had chills?",
@@ -2007,8 +2071,8 @@
           }
         },
         {
-          "seq": 41,
-          "t_ms": 40,
+          "seq": 44,
+          "t_ms": 61,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No chills.",
@@ -2024,6 +2088,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "chills"
+            ],
             "checklist_hits": [
               "h_symptom_chills"
             ],
@@ -2033,8 +2101,8 @@
           }
         },
         {
-          "seq": 42,
-          "t_ms": 40,
+          "seq": 45,
+          "t_ms": 61,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had fatigue?",
@@ -2045,8 +2113,8 @@
           }
         },
         {
-          "seq": 43,
-          "t_ms": 42,
+          "seq": 46,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I feel well apart from the ear.",
@@ -2062,6 +2130,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "fatigue"
+            ],
             "checklist_hits": [
               "h_symptom_fatigue"
             ],
@@ -2071,8 +2143,8 @@
           }
         },
         {
-          "seq": 44,
-          "t_ms": 42,
+          "seq": 47,
+          "t_ms": 63,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had dizziness?",
@@ -2083,8 +2155,8 @@
           }
         },
         {
-          "seq": 45,
-          "t_ms": 43,
+          "seq": 48,
+          "t_ms": 65,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No spinning or dizziness.",
@@ -2100,6 +2172,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "dizziness"
+            ],
             "checklist_hits": [
               "h_symptom_dizziness"
             ],
@@ -2109,8 +2185,8 @@
           }
         },
         {
-          "seq": 46,
-          "t_ms": 44,
+          "seq": 49,
+          "t_ms": 66,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had headache?",
@@ -2121,8 +2197,8 @@
           }
         },
         {
-          "seq": 47,
-          "t_ms": 45,
+          "seq": 50,
+          "t_ms": 67,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No headache.",
@@ -2138,6 +2214,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "headache"
+            ],
             "checklist_hits": [
               "h_symptom_headache"
             ],
@@ -2147,8 +2227,8 @@
           }
         },
         {
-          "seq": 48,
-          "t_ms": 46,
+          "seq": 51,
+          "t_ms": 68,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you noticed weakness?",
@@ -2159,8 +2239,8 @@
           }
         },
         {
-          "seq": 49,
-          "t_ms": 47,
+          "seq": 52,
+          "t_ms": 69,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No weakness in my face.",
@@ -2176,6 +2256,10 @@
             },
             "volunteered": false,
             "kind": "answer",
+            "context_subject": "ros",
+            "ros_context": [
+              "weakness"
+            ],
             "checklist_hits": [
               "h_symptom_weakness"
             ],
@@ -2185,8 +2269,8 @@
           }
         },
         {
-          "seq": 50,
-          "t_ms": 48,
+          "seq": 53,
+          "t_ms": 70,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you have chronic illnesses?",
@@ -2197,8 +2281,8 @@
           }
         },
         {
-          "seq": 51,
-          "t_ms": 49,
+          "seq": 54,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No chronic illness. I grind my teeth at night.",
@@ -2223,8 +2307,8 @@
           }
         },
         {
-          "seq": 52,
-          "t_ms": 49,
+          "seq": 55,
+          "t_ms": 72,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Have you had ear surgery or a perforated eardrum?",
@@ -2235,8 +2319,8 @@
           }
         },
         {
-          "seq": 53,
-          "t_ms": 51,
+          "seq": 56,
+          "t_ms": 74,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No tubes, ear surgery or known hole in my eardrum.",
@@ -2261,8 +2345,8 @@
           }
         },
         {
-          "seq": 54,
-          "t_ms": 51,
+          "seq": 57,
+          "t_ms": 75,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What medicines do you usually take?",
@@ -2273,8 +2357,8 @@
           }
         },
         {
-          "seq": 55,
-          "t_ms": 53,
+          "seq": 58,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No regular medicine.",
@@ -2299,8 +2383,8 @@
           }
         },
         {
-          "seq": 56,
-          "t_ms": 53,
+          "seq": 59,
+          "t_ms": 77,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Are you allergic to medicines?",
@@ -2311,8 +2395,8 @@
           }
         },
         {
-          "seq": 57,
-          "t_ms": 55,
+          "seq": 60,
+          "t_ms": 79,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Neomycin ointment made my skin red and itchy.",
@@ -2337,8 +2421,8 @@
           }
         },
         {
-          "seq": 58,
-          "t_ms": 55,
+          "seq": 61,
+          "t_ms": 80,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you smoke or vape?",
@@ -2349,8 +2433,8 @@
           }
         },
         {
-          "seq": 59,
-          "t_ms": 57,
+          "seq": 62,
+          "t_ms": 82,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I have never smoked or vaped.",
@@ -2375,8 +2459,8 @@
           }
         },
         {
-          "seq": 60,
-          "t_ms": 57,
+          "seq": 63,
+          "t_ms": 83,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "How much alcohol do you drink?",
@@ -2387,8 +2471,8 @@
           }
         },
         {
-          "seq": 61,
-          "t_ms": 58,
+          "seq": 64,
+          "t_ms": 85,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "One or two beers on a weekend.",
@@ -2413,8 +2497,8 @@
           }
         },
         {
-          "seq": 62,
-          "t_ms": 59,
+          "seq": 65,
+          "t_ms": 86,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Do you use recreational drugs?",
@@ -2425,8 +2509,8 @@
           }
         },
         {
-          "seq": 63,
-          "t_ms": 60,
+          "seq": 66,
+          "t_ms": 87,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "No.",
@@ -2451,8 +2535,8 @@
           }
         },
         {
-          "seq": 64,
-          "t_ms": 61,
+          "seq": 67,
+          "t_ms": 88,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What do you do for work?",
@@ -2463,8 +2547,8 @@
           }
         },
         {
-          "seq": 65,
-          "t_ms": 62,
+          "seq": 68,
+          "t_ms": 90,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I am a lifeguard and wear earbuds during my commute.",
@@ -2489,8 +2573,8 @@
           }
         },
         {
-          "seq": 66,
-          "t_ms": 63,
+          "seq": 69,
+          "t_ms": 91,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Who lives with you?",
@@ -2500,8 +2584,8 @@
           }
         },
         {
-          "seq": 67,
-          "t_ms": 64,
+          "seq": 70,
+          "t_ms": 92,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I live with my brother.",
@@ -2526,8 +2610,8 @@
           }
         },
         {
-          "seq": 68,
-          "t_ms": 64,
+          "seq": 71,
+          "t_ms": 93,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Is there hearing loss in your family?",
@@ -2538,8 +2622,8 @@
           }
         },
         {
-          "seq": 69,
-          "t_ms": 66,
+          "seq": 72,
+          "t_ms": 95,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My father needed hearing aids in his sixties.",
@@ -2564,8 +2648,8 @@
           }
         },
         {
-          "seq": 70,
-          "t_ms": 66,
+          "seq": 73,
+          "t_ms": 95,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What about your mother and siblings?",
@@ -2576,8 +2660,8 @@
           }
         },
         {
-          "seq": 71,
-          "t_ms": 68,
+          "seq": 74,
+          "t_ms": 97,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "My mother has high blood pressure. My brother has no major illness.",
@@ -2602,8 +2686,8 @@
           }
         },
         {
-          "seq": 72,
-          "t_ms": 68,
+          "seq": 75,
+          "t_ms": 98,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What worries you most?",
@@ -2614,8 +2698,8 @@
           }
         },
         {
-          "seq": 73,
-          "t_ms": 69,
+          "seq": 76,
+          "t_ms": 99,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I want to know what is causing this and how to get back to my usual activities.",
@@ -2640,8 +2724,8 @@
           }
         },
         {
-          "seq": 74,
-          "t_ms": 70,
+          "seq": 77,
+          "t_ms": 100,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "Thank you for explaining that. I can understand why this is concerning.",
@@ -2651,8 +2735,8 @@
           }
         },
         {
-          "seq": 75,
-          "t_ms": 86,
+          "seq": 78,
+          "t_ms": 123,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "I want to know what is causing this and how to get back to my usual activities. Hmm... I don't know how to answer that.",
@@ -2681,8 +2765,8 @@
           }
         },
         {
-          "seq": 76,
-          "t_ms": 87,
+          "seq": 79,
+          "t_ms": 124,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "May I have your permission to examine you?",
@@ -2692,8 +2776,8 @@
           }
         },
         {
-          "seq": 77,
-          "t_ms": 89,
+          "seq": 80,
+          "t_ms": 125,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Yes, that's fine. Go ahead.",
@@ -2702,8 +2786,8 @@
           }
         },
         {
-          "seq": 78,
-          "t_ms": 87,
+          "seq": 81,
+          "t_ms": 124,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "May I have your permission to examine you?",
@@ -2714,8 +2798,8 @@
           }
         },
         {
-          "seq": 79,
-          "t_ms": 10090,
+          "seq": 82,
+          "t_ms": 10126,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "General appearance",
@@ -2734,8 +2818,8 @@
           }
         },
         {
-          "seq": 80,
-          "t_ms": 10090,
+          "seq": 83,
+          "t_ms": 10126,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Alert, well appearing.",
@@ -2756,8 +2840,8 @@
           }
         },
         {
-          "seq": 81,
-          "t_ms": 50090,
+          "seq": 84,
+          "t_ms": 50126,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate heart",
@@ -2782,8 +2866,8 @@
           }
         },
         {
-          "seq": 82,
-          "t_ms": 50090,
+          "seq": 85,
+          "t_ms": 50126,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Regular rate and rhythm without murmur.",
@@ -2804,8 +2888,8 @@
           }
         },
         {
-          "seq": 83,
-          "t_ms": 91090,
+          "seq": 86,
+          "t_ms": 74126,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Auscultate lungs",
@@ -2824,13 +2908,13 @@
             "scopes": [
               "lungs"
             ],
-            "duration_s": 41,
+            "duration_s": 24,
             "withheld": []
           }
         },
         {
-          "seq": 84,
-          "t_ms": 91090,
+          "seq": 87,
+          "t_ms": 74126,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Clear bilateral breath sounds.",
@@ -2851,8 +2935,8 @@
           }
         },
         {
-          "seq": 85,
-          "t_ms": 121090,
+          "seq": 88,
+          "t_ms": 90126,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Otoscopic exam of ears",
@@ -2869,13 +2953,13 @@
             "scopes": [
               "heent.ears"
             ],
-            "duration_s": 30,
+            "duration_s": 16,
             "withheld": []
           }
         },
         {
-          "seq": 86,
-          "t_ms": 121090,
+          "seq": 89,
+          "t_ms": 90126,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Left tragal/pinna manipulation tender; canal erythematous and edematous with scant debris. Left tympanic membrane visualized and intact without bulging. Right canal without erythema or edema; right membrane intact and nonbulging; no mastoid tenderness.",
@@ -2896,8 +2980,8 @@
           }
         },
         {
-          "seq": 87,
-          "t_ms": 137090,
+          "seq": 90,
+          "t_ms": 102126,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate the affected area",
@@ -2913,13 +2997,16 @@
             "scopes": [
               "msk.palpation"
             ],
-            "duration_s": 16,
-            "withheld": []
+            "duration_s": 12,
+            "withheld": [
+              "expanded_exam_msk_palpate_paraspinal_musculature",
+              "expanded_exam_msk_palpate_midline_spine"
+            ]
           }
         },
         {
-          "seq": 88,
-          "t_ms": 137090,
+          "seq": 91,
+          "t_ms": 102126,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Mild left temporomandibular joint tenderness with jaw opening; no facial swelling.",
@@ -2940,8 +3027,8 @@
           }
         },
         {
-          "seq": 89,
-          "t_ms": 155090,
+          "seq": 92,
+          "t_ms": 110126,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Palpate lymph nodes",
@@ -2957,13 +3044,13 @@
             "scopes": [
               "lymph"
             ],
-            "duration_s": 18,
+            "duration_s": 8,
             "withheld": []
           }
         },
         {
-          "seq": 90,
-          "t_ms": 155090,
+          "seq": 93,
+          "t_ms": 110126,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "No enlarged or tender cervical nodes.",
@@ -2984,8 +3071,8 @@
           }
         },
         {
-          "seq": 91,
-          "t_ms": 171090,
+          "seq": 94,
+          "t_ms": 128126,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Inspect mouth and throat with light",
@@ -3001,13 +3088,13 @@
             "scopes": [
               "heent.throat"
             ],
-            "duration_s": 16,
+            "duration_s": 18,
             "withheld": []
           }
         },
         {
-          "seq": 92,
-          "t_ms": 171090,
+          "seq": 95,
+          "t_ms": 128126,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "Oropharynx without erythema or exudate.",
@@ -3028,8 +3115,8 @@
           }
         },
         {
-          "seq": 93,
-          "t_ms": 196090,
+          "seq": 96,
+          "t_ms": 144126,
           "phase": "encounter",
           "kind": "exam_action",
           "text": "Osteopathic structural screen",
@@ -3045,13 +3132,18 @@
             "scopes": [
               "osteopathic"
             ],
-            "duration_s": 25,
-            "withheld": []
+            "duration_s": 16,
+            "withheld": [
+              "expanded_exam_osteo_screen_thoracic",
+              "expanded_exam_osteo_screen_lumbar",
+              "expanded_exam_osteo_screen_sacrum",
+              "expanded_exam_osteo_screen_ribs"
+            ]
           }
         },
         {
-          "seq": 94,
-          "t_ms": 196090,
+          "seq": 97,
+          "t_ms": 144126,
           "phase": "encounter",
           "kind": "exam_finding",
           "text": "C2 left paraspinal tissue texture change and tenderness.",
@@ -3072,8 +3164,8 @@
           }
         },
         {
-          "seq": 95,
-          "t_ms": 196090,
+          "seq": 98,
+          "t_ms": 144126,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "The ear examination will guide treatment. If canal infection is confirmed, drops and keeping the ear dry usually help. We will avoid neomycin because of your reaction. Come back if it is not improving within two to three days.",
@@ -3084,8 +3176,8 @@
           }
         },
         {
-          "seq": 96,
-          "t_ms": 196090,
+          "seq": 99,
+          "t_ms": 144126,
           "phase": "encounter",
           "kind": "counseling",
           "text": "The ear examination will guide treatment. If canal infection is confirmed, drops and keeping the ear dry usually help. We will avoid neomycin because of your reaction. Come back if it is not improving within two to three days.",
@@ -3097,8 +3189,8 @@
           }
         },
         {
-          "seq": 97,
-          "t_ms": 196090,
+          "seq": 100,
+          "t_ms": 144126,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "Thank you. I understand that the next steps depend on the examination and tests.",
@@ -3110,8 +3202,8 @@
           }
         },
         {
-          "seq": 98,
-          "t_ms": 196090,
+          "seq": 101,
+          "t_ms": 144126,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "What questions do you have about the next steps?",
@@ -3123,11 +3215,11 @@
           }
         },
         {
-          "seq": 99,
-          "t_ms": 196090,
+          "seq": 102,
+          "t_ms": 144126,
           "phase": "encounter",
           "kind": "patient_reply",
-          "text": "I want to know what is causing this and how to get back to my usual activities.",
+          "text": "Thank you for listening. I do not have anything further to add right now.",
           "meta": {
             "facts_released": [],
             "concepts": {},
@@ -3138,8 +3230,8 @@
           }
         },
         {
-          "seq": 100,
-          "t_ms": 196090,
+          "seq": 103,
+          "t_ms": 144126,
           "phase": "encounter",
           "kind": "student_utterance",
           "text": "We can discuss temporary dry duties at the pool so the ear can recover without unnecessary time off.",
@@ -3150,8 +3242,8 @@
           }
         },
         {
-          "seq": 101,
-          "t_ms": 196090,
+          "seq": 104,
+          "t_ms": 144126,
           "phase": "encounter",
           "kind": "counseling",
           "text": "We can discuss temporary dry duties at the pool so the ear can recover without unnecessary time off.",
@@ -3162,8 +3254,8 @@
           }
         },
         {
-          "seq": 102,
-          "t_ms": 196090,
+          "seq": 105,
+          "t_ms": 144126,
           "phase": "encounter",
           "kind": "patient_reply",
           "text": "That would help. Thank you.",
@@ -3176,12 +3268,12 @@
         }
       ],
       "note_words": 405,
-      "estimated_encounter_s": 489,
+      "estimated_encounter_s": 443,
       "estimate_method": "150 spoken words/minute plus the full simulation examination durations and 55 seconds for introductions and transitions; explanatory commentary excluded. This is a planning estimate, not a measured student performance.",
       "missing_example_facts": [],
       "documentation_audit": {
         "unsupported": [],
-        "unresolved_count": 9
+        "unresolved_count": 8
       },
       "reasoning": [
         {
@@ -3292,8 +3384,8 @@
         }
       ],
       "review_status": "Source-linked authored lesson; all variants checked through the deterministic engine. Not faculty-approved. Timing and clinical review status are reported separately.",
-      "case_hash": "a5eb14bf3530b717be506e66f5858c9badfd066931718c43b43d91ee0222223b",
-      "engine_version": "4.1.0"
+      "case_hash": "ec2ac317d1a844e860eed00d4f2eaf21c6627df2c996a0988969aae86d8dac6c",
+      "engine_version": "4.3.1"
     }
   ]
 }

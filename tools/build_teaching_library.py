@@ -5,7 +5,7 @@ Uses only an isolated temporary DB. Never copies its attempts into learner histo
 import sys,os,json,re,copy,tempfile,hashlib
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from pcmcse import cases,config,db,engine,evidence,physexam,patient,audit,version,note as note_module
+from pcmcse import cases,config,db,engine,evidence,physexam,patient,audit,version,nlp,note as note_module
 ROOT=Path(__file__).resolve().parents[1]
 PLANS=json.loads((ROOT/'pcmcse/teaching/plans.json').read_text())
 CATEGORIES=['chief_complaint','current_status','onset','chronology','location','radiation','quality','severity','timing','setting','alleviating','aggravating','treatment','past_occurrence','associated','pertinent_negative','pmh','psh','medications','allergies','social','family','obgyn','fife','concern']
@@ -17,6 +17,12 @@ BARRIERS=json.loads((ROOT/'pcmcse/teaching/care-barrier-dialogue.json').read_tex
 CONCERNS=json.loads((ROOT/'pcmcse/teaching/concern-responses.json').read_text())
 OMIT_EXAMS={'cardio-chest-pressure':{'osteo_screen','skin_inspect','heent_eyes','carotid_auscultate'},'renal-flank-pain':{'heent_throat','lungs_percuss','msk_palpate','extremities'},'neuro-thunderclap-headache':{'gait','osteo_screen','neuro_coordination'}}
 COURSE=[{'label':'PCM syllabus: 14-minute encounter / 9-minute SOAP; invasive SP examinations refused','locator':'PCM syllabus.pdf pp. 4–5'},{'label':'SOAP rubric: S 28 / O 30 / A 15 / P 25 / style 2','locator':'2026 FALL M2 ILG - STUDENT MANUAL update.docx, SOAP evaluation table'},{'label':'FIFE and patient perspective; purposeful transitions','locator':'PCM syllabus.pdf p. 13; Interpersonal Skills lecture'}]
+
+def supplemental(item):
+    # Routine answers and outcomes added for partner and interactive practice.
+    # The patient still gives them when asked, but the written example demonstrates
+    # the original authored encounter, as the tests' sparse fixtures define it.
+    return (item.get('authoring') or {}).get('kind')=='user_requested_fictional_case_expansion'
 
 def build(c,variantmeta):
     plan=PLANS.get(c['id']) or c.get('teaching',{}).get('lesson_plan')
@@ -32,10 +38,11 @@ def build(c,variantmeta):
         timeline.append({'kind':'dialogue','section':section,'student':q,'patient':' '.join(e['text'] for e in replies),'why':why,'event_ids':[e['seq'] for e in ev],'fact_ids':list(dict.fromkeys(fid for e in replies for fid in e['meta'].get('facts_released',[])))})
         spoken+=len(q.split())+sum(len(e['text'].split()) for e in replies)
     say('Hello, I am a medical student. I will listen to your concerns, examine you with your permission, and discuss the next steps.','Connect')
+    say('May I confirm your name and age?','Connect','The note documents age only as the patient states it.')
     say('What brings you in today?','Listen to the opening',plan['notice'])
     if plan.get('urgent'):
         say('I will arrange urgent help from my supervising clinician now. We will not delay emergency care to finish routine questions.','Recognize urgency','Stated escalation in a simulation. Continue the remaining example only while care permits; do not delay transfer or stabilization for nonurgent checklist items.')
-    facts=sorted(c['facts'],key=lambda f:(-1 if 'current_status' in f.get('question_dimensions',[]) else CATEGORIES.index(f['category']) if f['category'] in CATEGORIES else 20))
+    facts=sorted((f for f in c['facts'] if not supplemental(f)),key=lambda f:(-1 if 'current_status' in f.get('question_dimensions',[]) else CATEGORIES.index(f['category']) if f['category'] in CATEGORIES else 20))
     missing=[]
     for f in facts:
         if c['id']=='neuro-positional-vertigo' and f['id']=='hpi_radiation':continue  # Spinning is not a pain-radiation complaint.
@@ -50,13 +57,13 @@ def build(c,variantmeta):
     say('May I have your permission to examine you?','Explain and ask permission')
     timeline.append({'kind':'action','section':'Prepare the examination','action':'Clean hands, provide privacy and appropriate draping, explain the selected examination and help the patient into a comfortable position.','why':'These are stated actions in this written example. A visual avatar does not verify hand hygiene, consent or hands-on technique.','event_ids':[]})
     examsecs=0
-    mids=[m for m in c['exam_findings'] if m!='vitals_review' and m not in OMIT_EXAMS.get(c['id'],set())]
+    mids=[m for m in c['exam_findings'] if m!='vitals_review' and m not in OMIT_EXAMS.get(c['id'],set()) and not all(supplemental(f) for f in c['exam_findings'][m])]
     order={'general_inspect':0,'heart_auscultate':1,'lungs_auscultate':2,'abd_inspect':3,'abd_auscultate':4,'abd_percuss':5,'abd_palpate':6,'abd_special':7}
     mids.sort(key=lambda m:order.get(m,8))
     for mid in mids:
         man=physexam.CATALOG_BY_ID.get(mid)
         if not man:continue
-        required=list(dict.fromkeys(x for f in c['exam_findings'][mid] for x in f.get('requires_components',[])))
+        required=list(dict.fromkeys(x for f in c['exam_findings'][mid] if not supplemental(f) for x in f.get('requires_components',[])))
         components=required or man['components']
         # Safety component is required even when it does not itself release a finding.
         if mid=='neuro_dix_hallpike' and 'cervical_suitability' not in components:components=['cervical_suitability']+components
@@ -90,9 +97,29 @@ def build(c,variantmeta):
     for i,p in enumerate(closings[:1]):
         say(re.sub(r'^\d+[.)]\s*','',p),'Explain next steps','Proposed care, not a record of tests or treatment already completed.' if i==0 else '')
     say('What questions do you have about the next steps?','Close and check understanding')
-    response=(BARRIERS.get(c['id']) or ('I will explain one step at a time and ask you to tell me what is clear and what needs another explanation.' if 'clarification' in c['variant_id'] else 'I recommend telling the care team about this practical barrier so we can arrange a safe transport and contact plan with you.')) if barrier else (CONCERNS.get(c['id']) or c.get('teaching',{}).get('concern_response'))
-    if not response:raise ValueError('Missing authored concern response for '+c['id'])
-    say(response,'Address the patient’s question','Answer the concern that was just expressed. Give a defensible recommendation and explain uncertainty; do not promise a diagnosis or recovery before the evidence supports it.')
+    # Answer what the patient actually raises, with authored wording only. A
+    # concern or care barrier already given in the history is not repeated at
+    # the close, so the example returns to it instead.
+    closing=timeline[-1]['patient']
+    raised=next((q for q in c['patient'].get('closing_questions') or [] if q in closing),None)
+    concern=CONCERNS.get(c['id']) or c.get('teaching',{}).get('concern_response')
+    if not concern:raise ValueError('Missing authored concern response for '+c['id'])
+    care=(BARRIERS.get(c['id']) or ('I will explain one step at a time and ask you to tell me what is clear and what needs another explanation.' if 'clarification' in c['variant_id'] else 'I recommend telling the care team about this practical barrier so we can arrange a safe transport and contact plan with you.')) if barrier else None
+    answered='Answer the concern that was just expressed.'
+    base_concern=(cases.resolve(c['id'])['patient'].get('closing_questions') or [None])[0]
+    replies=[]
+    if raised is None:pass
+    elif barrier and raised in (barrier.get('sp_says') or [barrier['value']]):replies.append((care,answered))
+    elif raised==base_concern:replies.append((concern,answered))
+    elif re.search(r'\bseek help\b',raised) and len(closings)>1:replies.append((re.sub(r'^\d+[.)]\s*','',closings[1]),answered))
+    else:raise ValueError('No authored response to the closing question %r for %s/%s'%(raised,c['id'],c['variant_id']))
+    earlier=nlp.normalize(' '.join(r.get('patient','') for r in timeline[:-1]))
+    if base_concern and raised!=base_concern and nlp.normalize(base_concern).strip(' .?') in earlier:
+        replies.append((concern,'Return to the concern the patient named during the history'+('; nothing new was raised at the close.' if raised is None else '.')))
+    if barrier and care not in [text for text,_ in replies]:replies.append((care,'Return to the practical barrier the patient named during the history.'))
+    if not replies:raise ValueError('No closing question or earlier concern to answer for %s/%s'%(c['id'],c['variant_id']))
+    for text,why in replies:
+        say(text,'Address the patient’s question',why+' Give a defensible recommendation and explain uncertainty; do not promise a diagnosis or recovery before the evidence supports it.')
     # O is assembled only from actual released findings, never copied from a hidden full-case O.
     vitals=c['station']['vitals'];note=selected_note
     findings=s.ledger.by_kind(evidence.EXAM_FINDING)
@@ -136,16 +163,20 @@ def main():
     finally:
         db.DB_PATH=original
     missing=[(r['case_id'],r['variant_id'],r['missing_example_facts']) for r in report if r['missing_example_facts']]
-    over_time=[(r['case_id'],r['variant_id'],r['estimated_encounter_s'],r['note_words']) for r in report if r['estimated_encounter_s']>840 or r['note_words']>550]
+    over_length=[(r['case_id'],r['variant_id'],r['note_words']) for r in report if r['note_words']>550]
+    # Full examination times can carry a complete walkthrough past the 14-minute
+    # encounter; the reader labels those for untimed study, so they are reported,
+    # not rejected. The example note must still fit the 9-minute SOAP.
+    untimed=[(r['case_id'],r['variant_id'],r['estimated_encounter_s']) for r in report if r['estimated_encounter_s']>840]
     # Build and validate the entire library before replacing any published lesson.
     # A failed dialogue must not leave the library half regenerated.
-    if missing or over_time:
-        raise ValueError(json.dumps({'missing':missing,'over_time':over_time}))
+    if missing or over_length:
+        raise ValueError(json.dumps({'missing':missing,'over_length':over_length}))
     out.mkdir(exist_ok=True)
     for cid,payload in built.items():
         (out/(cid+'.json')).write_text(json.dumps(payload,indent=2))
     if args.report:
         args.report.parent.mkdir(parents=True,exist_ok=True)
         args.report.write_text(json.dumps(report,indent=2))
-    print(json.dumps({'presentations':len(built),'walkthroughs':len(report),'missing':missing,'over_time':over_time},indent=2))
+    print(json.dumps({'presentations':len(built),'walkthroughs':len(report),'missing':missing,'over_length':over_length,'untimed_over_14_minutes':untimed},indent=2))
 if __name__=='__main__':main()
