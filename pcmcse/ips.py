@@ -507,6 +507,10 @@ _CLOSURE_TESTS = (
 
 def _signals(ledger, case):
     turns = ledger.student_turns()
+    # Time spent examining isn't silence: a gap is measured from the later of the
+    # student's last turn and the last examination step before the next turn.
+    exam_ts = sorted(e["t_ms"] for e in ledger.events
+                     if e.get("kind") in ("exam_action", "exam_finding") and e.get("t_ms") is not None)
     sig = {
         "turns": len(turns),
         "sections": [],
@@ -551,7 +555,8 @@ def _signals(ledger, case):
             sig["first_word_ms"] = ev["t_ms"]
         sig["last_word_ms"] = max(sig["last_word_ms"], ev["t_ms"])
         if prev_t is not None:
-            sig["longest_gap_ms"] = max(sig["longest_gap_ms"], ev["t_ms"] - prev_t)
+            start = max([prev_t] + [t for t in exam_ts if prev_t < t <= ev["t_ms"]])
+            sig["longest_gap_ms"] = max(sig["longest_gap_ms"], ev["t_ms"] - start)
         prev_t = ev["t_ms"]
 
         for section, cues in ([] if structural else _SECTION_CUES.items()):
@@ -658,7 +663,7 @@ def _count_closure(text):
 # A. Arizona Clinical Interview Rating Scale (manual's 10-item version)
 # ---------------------------------------------------------------------------
 
-def _acir(sig, ledger, case):
+def _acir(sig, ledger, case, mode="voice"):
     items = []
 
     def add(num, name, score, why, evidence_list=None, not_assessed=False, reason=""):
@@ -736,6 +741,11 @@ def _acir(sig, ledger, case):
     gap_s = sig["longest_gap_ms"] / 1000.0
     if sig["turns"] == 0:
         add(4, "Pacing of interview", 1, "No student turns recorded.")
+    elif mode != "voice":
+        # Typed pauses measure typing speed, so pacing is reported, never scored (the lobby says so).
+        add(4, "Pacing of interview", 0,
+            "Longest pause between your turns: %.0f seconds, typing time included." % gap_s,
+            not_assessed=True, reason="Typed encounter: pacing is reported, not scored.")
     elif gap_s > 45:
         add(4, "Pacing of interview", 3,
             "Longest silence was %.0f seconds. The course flags 'lots of "
@@ -1030,7 +1040,7 @@ def _relationship(sig, ledger, case, acir, mode):
 
 def assess(ledger, case, mode="type"):
     sig = _signals(ledger, case)
-    acir = _acir(sig, ledger, case)
+    acir = _acir(sig, ledger, case, mode)
     relationship = _relationship(sig, ledger, case, acir, mode)
 
     scored = [i["score"] for i in acir if not i["not_assessed"] and i["score"]]

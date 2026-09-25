@@ -21,7 +21,7 @@ import uuid
 import random
 import re
 
-from .. import cases, db, evidence, record, teaching, version
+from .. import cases, db, evidence, physexam, record, teaching, version
 from . import catalog as C
 from . import drafting as D
 from . import planting as P
@@ -42,8 +42,8 @@ class ScribbiError(ValueError):
 
 class Locked(ScribbiError):
     def __init__(self, attempts):
-        super().__init__("Scribbi shows complete example visits and notes. Finish, leave, or convert your active "
-                         "independent or exam rehearsal attempt to assisted practice first.", 409,
+        super().__init__("Scribbi shows complete example visits and notes. Submit your open Independent or "
+                         "Exam rehearsal encounter, or switch it to assisted practice, first.", 409,
                          {"requires_assistance": True, "attempts": attempts})
 
 
@@ -114,6 +114,35 @@ def _walkthrough_needs(walkthrough):
     return out
 
 
+# How a draft statement names a part of an examination. Generic parts (light,
+# deep, four quadrants) aren't checked: only parts a sentence can single out.
+_PART_WORDS = {
+    "cva tenderness": r"\bcva\b|costovertebral",
+    "cervical": r"cervical|\bc[1-7]\b",
+    "thoracic": r"thoracic|\bt(?:[1-9]|1[0-2])\b",
+    "lumbar": r"lumbar|\bl[1-5]\b",
+    "sacrum": r"sacr|\bs[1-5]\b",
+    "ribs": r"\bribs?\b",
+}
+_GENERIC_PARTS = {"light", "deep", "four quadrants", "anterior", "posterior", "lateral", "on skin",
+                  "mouth open", "compare side to side"}
+
+
+def _names_undone_part(text, maneuver_id, done):
+    """True when a statement is about part of an exam the student didn't do."""
+    if not done:
+        return False  # the part list is unknown, so keep the statement
+    man = physexam.CATALOG_BY_ID.get(maneuver_id) or {}
+    low = (text or "").lower()
+    for part in man.get("components") or []:
+        p = str(part).lower()
+        if p in _GENERIC_PARTS or p in done:
+            continue
+        if re.search(_PART_WORDS.get(p, r"\b" + re.escape(p.split()[0]) + r"\b"), low):
+            return True
+    return False
+
+
 def build_from_attempt(session, mode, seed, timed=False):
     """Scribbi drafts the student's own visit.
 
@@ -137,6 +166,14 @@ def build_from_attempt(session, mode, seed, timed=False):
             found_mans.setdefault(t["maneuver_id"], []).append(t["id"])
     needs = _walkthrough_needs(walkthrough)
     walk_turn_mid = {t["id"]: t.get("maneuver_id") for t in wvisit["turns"] if t["kind"] == "exam"}
+    # Which parts of each examination the student actually did (for example the
+    # CVA test but not Murphy sign; the cervical spine but not T10-L1). A shared
+    # maneuver id is not enough to keep a statement about a part never performed.
+    done_parts = {}
+    for ev in session.ledger.events:
+        meta = ev.get("meta") or {}
+        if ev.get("kind") == "exam_action" and meta.get("maneuver_id") and meta.get("status", "completed") == "completed":
+            done_parts.setdefault(meta["maneuver_id"], set()).update(str(c).lower() for c in (meta.get("components") or []))
     for ln in list(b.lines):
         if ln["section"] in ("A", "P"):
             continue
@@ -156,6 +193,8 @@ def build_from_attempt(session, mode, seed, timed=False):
             if not (facts or mans or chart):
                 continue
             if any(f not in released for f in facts) or any(m not in found_mans for m in mans):
+                continue
+            if any(_names_undone_part(ch["text"], m, done_parts.get(m)) for m in mans):
                 continue
             refs = []
             for f in facts:
@@ -542,7 +581,8 @@ def _progress(key, lines, visit, state):
         slot["total"] += 1
         slot["found"] += 1 if it["verdict"] != "missed" else 0
     hands = next((it for it in result["items"] if it["error"]["type"] == "hands_on"), None)
-    return {"found": len(found), "total": len(planted), "types": list(by_type.values()),
+    return {"found": len(found), "total": len(planted), "fixed": sum(1 for it in planted if it["verdict"] == "fixed"),
+            "types": list(by_type.values()),
             "hands_on": hands["verdict"] if hands else None,
             "false_alarms": len(result["false_alarms"]), "unsupported": len(result["unsupported"])}
 
@@ -561,7 +601,7 @@ def check(round_id, state, target):
     _guard()
     row = _expire_if_due(_load(round_id))
     if not C.MODES[row["mode"]]["instant_feedback"]:
-        raise ScribbiError("Instant checks are part of Learn mode.", 403)
+        raise ScribbiError("Instant checks are part of the Learn level.", 403)
     if row["status"] != "reviewing":
         raise ScribbiError("This note is already signed.", 409)
     visit, lines, key, _old, hints = _parts(row)
@@ -579,9 +619,14 @@ def check(round_id, state, target):
         if item:
             verdict = _instant(item)
         elif alarm:
+            # Assessment and plan lines are reasoning, so they have no single moment to point at.
+            section = next((ln["section"] for ln in lines if any(ch["id"] == chip_id for ch in ln["chips"])), "")
+            reasoning = section in ("A", "P")
             verdict = {"verdict": "false_alarm",
-                       "title": "That line was right." if alarm["kind"] == "removed" else "Careful: that detail was right.",
-                       "message": ("The visit supports it. Undo to put it back." if alarm["kind"] == "removed"
+                       "title": ("That line was reasonable." if reasoning else "That line was right.") if alarm["kind"] == "removed"
+                                else "Careful: that detail was right.",
+                       "message": (("It fits the findings in S and O. " if reasoning else "The visit supports it. ")
+                                   + "Select it and choose Restore (U) to put it back." if alarm["kind"] == "removed"
                                    else "Your edit changed a correct value. Check it against the visit."),
                        "evidence": _turn_snapshots(visit, alarm.get("evidence", []))}
         elif unsup:
@@ -622,7 +667,7 @@ def hint(round_id, state):
     row = _expire_if_due(_load(round_id))
     mode = C.MODES[row["mode"]]
     if not mode["hints"]:
-        raise ScribbiError("Hints aren't part of this mode.", 403)
+        raise ScribbiError("Hints aren't part of this level.", 403)
     if row["status"] != "reviewing":
         raise ScribbiError("This note is already signed.", 409)
     visit, lines, key, _old, hints = _parts(row)
@@ -633,21 +678,30 @@ def hint(round_id, state):
     open_items = [it for it in result["items"] if it["verdict"] == "missed"]
     open_items.sort(key=lambda it: (it["error"]["type"] == "hands_on",))
     if not open_items:
-        return {"hint": {"text": "Nothing left to find. Sign when you're ready.", "level": 0},
+        # Found, but a half-fix still needs what the visit supports.
+        half = any(it["verdict"] == "caught" for it in result["items"])
+        text = ("You've found them all. Make sure each fix says what the visit supports." if half
+                else "Nothing left to find. Sign when you're ready.")
+        return {"hint": {"text": text, "level": 0},
                 "used": len(hints), "left": mode["hints"] - len(hints)}
     err = open_items[0]["error"]
     level = 1 + sum(1 for h in hints if h.get("error") == err["id"])
     section = D.SECTION_TITLES.get(err["section"], "note")
     label = _line_label(err, lines)
+    info = C.ERROR_TYPES[err["type"]]
     if err["type"] == "hands_on":
         text = ("Something you felt with your hands isn't in the Objective." if level == 1
-                else "Scribbi can't feel. Your structural exam findings are missing. Check the exam in the visit.")
+                else "Scribbi can't feel. Your structural exam findings are missing. Check the exam in the visit." if level == 2
+                else "Add an Osteopathic line to the Objective with the levels and side you palpated.")
     elif err["check"]["kind"] == "omission":
         text = ("Something the patient said is missing from the %s." % section if level == 1
-                else "Compare the %s line with the conversation. Something was left out." % (label or section))
+                else "Compare the %s line with the conversation. Something was left out." % (label or section) if level == 2
+                else "The %s line has this kind of mistake: %s. %s" % (label or section, info["label"].lower(), info["habit"]))
     else:
+        # The third hint on the same mistake names its kind, so it says something new.
         text = ("Look closely at the %s." % section if level == 1
-                else "Check the %s line against the visit." % (label or section))
+                else "Check the %s line against the visit." % (label or section) if level == 2
+                else "The %s line has this kind of mistake: %s. %s" % (label or section, info["label"].lower(), info["habit"]))
     hints.append({"error": err["id"], "level": level, "text": text, "at": db.now_ms()})
     store.update(round_id, only_if_reviewing=True, hints_json=json.dumps(hints), review_json=json.dumps(clean))
     return {"hint": {"text": text, "level": level, "section": err["section"]},
@@ -684,14 +738,15 @@ def _finish(row, clean, timed_out=False):
     return changed
 
 
-def sign(round_id, state):
+def sign(round_id, state, auto=False):
     _guard()
     row = _expire_if_due(_load(round_id))
     if row["status"] == "signed":
         return payload(row)
     visit, lines, key, _old, hints = _parts(row)
     clean = R.sanitize(state, lines)
-    _finish(row, clean)
+    # The page signs by itself when the review clock reaches 0:00; that is a timeout.
+    _finish(row, clean, timed_out=bool(auto and row["timed"]))
     return payload(store.get(round_id))
 
 
@@ -905,7 +960,7 @@ def home():
                         "variant_label": p["variant_label"], "title": c["title"], "system": c["system"],
                         "station_label": c["station_label"], "best": best.get(k), "plays": plays.get(k, 0)})
     recent = []
-    for r in store.recent(limit=12):
+    for r in store.recent(limit=40):
         c = index.get(r["case_id"]) or {}
         recent.append({"id": r["id"], "case_id": r["case_id"], "variant_id": r["variant_id"], "source": r["source"],
                        "title": c.get("title", r["case_id"]), "system": c.get("system", ""),

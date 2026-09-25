@@ -137,8 +137,11 @@ class LibraryWideTests(unittest.TestCase):
                     self.assertEqual(perfect["unsupported"], [])
                     untouched = R.evaluate(key, lines, visit, R.sanitize({}, lines))
                     self.assertTrue(all(it["verdict"] == "missed" for it in untouched["items"]))
-                    if untouched["items"]:
+                    if key["errors"]:
                         self.assertEqual(untouched["score"], 0)
+                    elif untouched["items"]:
+                        # A clean draft signed as is loses only the missing structural findings.
+                        self.assertEqual(untouched["score"], 75)
         self.assertEqual(type_seen, set(C.ERROR_TYPES) - {"hands_on"})
 
     def test_draft_stays_in_chart_voice(self):

@@ -351,10 +351,15 @@ def evaluate(key, lines, visit, state, *, hints_used=0, elapsed_ms=0, timed_out=
     credit = sum(1.0 if it["verdict"] == "fixed" else 0.5 if it["verdict"] == "caught" else 0.0 for it in items)
     total = len(items)
     penalty = 0.5 * (len(false_alarms) + len(unsupported))
-    if total:
+    planted_n = sum(1 for it in items if it["error"]["type"] != "hands_on")
+    if total and planted_n:
         score = 100.0 * max(0.0, credit - penalty) / total
     else:
-        score = 100.0 - 20.0 * (len(false_alarms) + len(unsupported))
+        # Nothing was planted: signing the draft as it stands is mostly right, so
+        # missing structural findings cost a quarter of the score, not all of it.
+        hands = {"fixed": 0.0, "caught": 12.5, "missed": 25.0}
+        score = (100.0 - 20.0 * (len(false_alarms) + len(unsupported))
+                 - sum(hands[it["verdict"]] for it in items))
     score -= C.HINT_COST * hints_used
     score = int(round(max(0.0, min(100.0, score))))
 
@@ -373,9 +378,11 @@ def evaluate(key, lines, visit, state, *, hints_used=0, elapsed_ms=0, timed_out=
     if key.get("hands_on") and any(it["error"]["type"] == "hands_on" and it["verdict"] == "fixed" for it in items):
         badges.append("hands_on")
     highs = [it for it in planted if it["error"]["severity"] == "high"]
-    if highs and all(it["verdict"] != "missed" for it in highs):
+    # Badges never contradict the headline: none of these on a note that isn't safe to sign.
+    if safe and highs and all(it["verdict"] != "missed" for it in highs):
         badges.append("safety_net")
-    if not planted and not false_alarms and not unsupported:
+    hands_done = not key.get("hands_on") or any(it["error"]["type"] == "hands_on" and it["verdict"] == "fixed" for it in items)
+    if not planted and not false_alarms and not unsupported and hands_done:
         badges.append("trust_but_verify")
     if mode == "solo" and key.get("timed") and not timed_out and score >= 80:
         badges.append("clinic_pace")

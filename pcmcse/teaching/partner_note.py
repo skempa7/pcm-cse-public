@@ -209,9 +209,10 @@ def _clinical_ros(content):
         positive = [x.group(2) for x in statements if x.group(1) == 'Reports']
         negative = [x.group(2) for x in statements if x.group(1) == 'Denies']
         positive = [('paroxysmal nocturnal dyspnea' if x == 'pnd' else x) for x in positive]
-        def join(values):
-            return ', '.join(values[:-1]) + ' and ' + values[-1] if len(values) > 1 else values[0]
-        clauses = ([join(positive)] if positive else []) + (['no ' + join(negative)] if negative else [])
+        def join(values, word='and'):
+            return ', '.join(values[:-1]) + ' ' + word + ' ' + values[-1] if len(values) > 1 else values[0]
+        # "no edema or syncope": a list of denials reads with "or".
+        clauses = ([join(positive)] if positive else []) + (['no ' + join(negative, 'or')] if negative else [])
         sentence = '; '.join(clauses)
         result.append(match.group(1) + ': ' + sentence[:1].upper() + sentence[1:] + '.')
     return '\n\n'.join(result)
@@ -358,7 +359,7 @@ def build_example_note(case, lesson):
         {'kind': 'plan', 'text': 'Plan numbers correspond to the ranked differentials. Alternative treatment or referral branches apply only if their clinical conditions are met; shared diagnostic tests need not be ordered twice. Urgent parallel assessments are identified separately.'},
     ]
     if omitted:
-        outside.append({'kind': 'authoring_gap', 'text': 'This case needs additional authoring for a third supported differential. The unsupported entry has been left out of the clinical note rather than invented: ' + ' '.join(x['diagnosis'] + ' — ' + x['reason'] for x in omitted)})
+        outside.append({'kind': 'authoring_gap', 'text': 'Teaching note: only two differentials are well supported by this history. The course asks for three from different VINDICATE categories; rather than invent support, the example leaves out: ' + ' '.join(x['diagnosis'] + ' — ' + x['reason'] for x in omitted)})
     if case['id'] == 'renal-colicky-flank' and ('48–72 hours' not in note['P'][0] or 'consider acetaminophen' not in note['P'][2]):
         outside.append({'kind': 'authoring_gap', 'text': 'Course-format limitation: the leading plan says prompt follow-up without a specific routine interval. The third plan also lacks a clearly distinct third MOTHERR element. Clarify these with the instructor; the print edition does not invent an interval or add unnecessary treatment to fill the rubric.'})
     if case['id'] == 'cardio-palpitations' and 'excess thyroid hormone can accelerate the heartbeat' not in note['P'][2]:
@@ -367,7 +368,7 @@ def build_example_note(case, lesson):
                      if d.get('rank', 99) <= 3 and d.get('classification_status') in
                      ('shared_category_course_review_needed', 'unresolved_course_review_needed')]
     if category_gaps:
-        outside.append({'kind': 'authoring_gap', 'text': 'Course category review needed: these three clinical possibilities do not establish three distinct VINDICATE elements. ' + ' '.join(d['name'] + (' shares the inflammatory category.' if d.get('vindicate') else ' has no established etiologic category in this case.') for d in category_gaps) + ' The clinical alternative is retained without inventing an etiology; the automated course score cannot credit a missing or duplicate category.'})
+        outside.append({'kind': 'authoring_gap', 'text': 'Teaching note: these three possibilities don\'t span three different VINDICATE categories. ' + ' '.join(d['name'] + (' shares the inflammatory category.' if d.get('vindicate') else ' has no clear etiologic category in this case.') for d in category_gaps) + ' The example keeps the clinical alternative rather than invent an etiology; the automated score can\'t credit a missing or repeated category.'})
     if _relationship_conflict(case):
         outside.append({'kind': 'source_conflict', 'text': 'The source dialogue alternates between husband and boyfriend. The example note preserves the obtained household history and the neutral phrase one male sexual partner without inventing an explanation for that relationship-label conflict.'})
     return {'schema_version': 1, 'label': 'Example for the complete demonstrated encounter',

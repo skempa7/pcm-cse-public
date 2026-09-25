@@ -103,6 +103,33 @@ class LedVisitTests(LedVisit):
         self.assertEqual(reset["deleted"]["scribbi_visits"], 1)
         self.assertEqual(reset["deleted"]["attempts"], 0)
 
+    def test_statements_about_exam_parts_never_done_are_left_out(self):
+        """The CVA test doesn't put Murphy sign in the draft; palpating the neck doesn't put T10-L1 there."""
+        state = self.route("/api/session", {"case_id": "renal-flank-pain", "variant_id": "base",
+                                            "learning_mode": "coached", "purpose": "scribbi"})
+        sid = state["id"]
+        self.route("/api/session/%s/start" % sid, {})
+        walk = V.load_walkthrough("renal-flank-pain", "base")
+        for t in [t for t in walk["timeline"] if t["kind"] == "dialogue" and t.get("student")][:10]:
+            self.route("/api/session/%s/say" % sid, {"text": t["student"]})
+        for mid, comps in (("abd_special", ["cva tenderness"]), ("osteo_screen", ["cervical"]),
+                           ("general_inspect", []), ("heart_auscultate", ["aortic", "pulmonic", "tricuspid", "mitral", "on skin"])):
+            r = self.route("/api/session/%s/exam" % sid, {"maneuver_id": mid, "components": comps,
+                                                           "source_text": "Perform: " + mid})
+            ev = r["events"][0]
+            if ev.get("examination_id"):
+                self.route("/api/session/%s/exam_control" % sid, {"examination_id": ev["examination_id"], "operation": "skip"})
+        plant_nothing = lambda b, ctx, mode, seed: ([], scribbi.P.hands_on(b, ctx))
+        with patch.object(scribbi.P, "plant", side_effect=plant_nothing):
+            rnd = self.finish(sid)
+        row = scribbi.store.get(rnd["id"])
+        drafted = " ".join(ch["text"] for ln in json.loads(row["lines_json"]) for ch in ln["chips"]).lower()
+        for word in ("murphy", "mcburney", "psoas", "obturator"):
+            self.assertNotIn(word, drafted)
+        hands = json.loads(row["key_json"]).get("hands_on")
+        if hands:
+            self.assertNotRegex(hands["correct"], r"T10|L1\b")
+
     def test_an_unfinished_visit_waits_on_the_scribbi_home(self):
         sid = self.led_visit(talks=3, exams=0)
         visits = self.route("/api/scribbi")["open_visits"]

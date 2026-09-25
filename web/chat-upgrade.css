@@ -12,7 +12,7 @@
 #themeToggle .theme-ic{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
 /* ---------- subtitles over the patient (the room) ---------- */
-.room-caption{position:absolute;z-index:2;left:50%;bottom:14px;transform:translate(-50%,8px);width:min(640px,calc(100% - 28px));display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;padding:10px 14px;border-radius:14px;background:#0f1d1bd9;color:#fff;font-size:15px;line-height:1.45;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 10px 30px #0004}
+.room-caption{position:absolute;z-index:2;left:50%;bottom:14px;transform:translate(-50%,8px);width:min(640px,calc(100% - 28px));display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;padding:10px 14px;border-radius:14px;background:#12151dd9;color:#fff;font-size:15px;line-height:1.45;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 10px 30px #0004}
 .room-caption.is-shown{opacity:1;transform:translate(-50%,0)}
 .room-caption b{margin-top:1px;padding:3px 9px;border-radius:999px;background:#ffd9a8;color:#4a2c05;font-size:11px;letter-spacing:.02em;white-space:nowrap}
 .room-caption span{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}

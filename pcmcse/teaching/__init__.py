@@ -71,8 +71,9 @@ def progress():
 def save_progress(cid,variant,answers):
     lesson=read(cid,variant)
     if not lesson:raise ValueError('Unknown walkthrough')
-    if not isinstance(answers,list) or len(answers)!=len(lesson['recall']) or any(not isinstance(a,str) or len(a)>2000 for a in answers):raise ValueError('Enter a response for each recall prompt (maximum 2000 characters each).')
+    if not isinstance(answers,list) or len(answers)!=len(lesson['recall']) or any(not isinstance(a,str) or len(a)>2000 for a in answers):raise ValueError('Each answer can be up to 2000 characters.')
+    if not any(a.strip() for a in answers):raise ValueError('Write at least one answer before saving.')
     progress()
     with db.connect() as conn:
         conn.execute('INSERT OR REPLACE INTO study_progress VALUES(?,?,?,?)',(cid,variant,db.now_ms(),json.dumps(answers)))
-    return {'saved':True,'message':'Reflection saved separately from examination scores.'}
+    return {'saved':True,'message':'Saved. You’ll see “Reflection saved” on this case’s card. It doesn’t affect your scores.'}

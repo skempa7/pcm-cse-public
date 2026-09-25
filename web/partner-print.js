@@ -17,7 +17,7 @@ export const PRINT_EDITIONS={
 };
 const vitalLabels={T:'Temperature',P:'Pulse',BP:'Blood pressure',R:'Respirations','Pulse Ox':'Oxygen saturation',Ht:'Height',Wt:'Weight'};
 export function doorwaySections(l){return [section('Doorway information',[
- cover(l,'Doorway information',false),block((l.doorway.doorway||[]).map(x=>p(x)).join(''),'rp-doorway'),
+ cover(l,'Doorway information',false),block((l.doorway.doorway||[]).map(x=>p(/^Use the time limit stated/.test(x)?'You have 14 minutes.':x)).join(''),'rp-doorway'),
  heading('Supplied vital signs'),block(`<dl class="pw-vitals">${Object.entries(l.doorway.vitals||{}).map(([k,v])=>`<div><dt>${esc(vitalLabels[k]||k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>`),
  ...(l.doorway.supplied_results?.length?[heading('Supplied results'),...l.doorway.supplied_results.map(x=>block(`<b>${esc(x.label)}</b>${p(x.value)}`))]:[])
 ],{paper:'portrait',kind:'doorway'})];}
@@ -65,7 +65,7 @@ export function examinerSections(l){
 }
 export function blankSections(l){
  const field=(title,size)=>block(`<h2>${esc(title)}</h2><div class="rp-writing" style="height:${size}in" aria-label="Writing space for ${esc(title)}">${'<span class="rp-rule" aria-hidden="true"></span>'.repeat(Math.floor(size/.28))}</div>`,'rp-writing-block');
- return [section('Blank SOAP workspace',[cover(l,'Your SOAP note'),block('<p>Name: __________________________ &nbsp; Date: ______________</p>'),field('Subjective',4.1),field('Objective',2.6)],{paper:'portrait',kind:'blank'}),
+ return [section('Blank SOAP workspace',[cover(l,'Your SOAP note'),block('<p>Student: __________________________ &nbsp; Date: ______________</p>'),field('Subjective',4.1),field('Objective',2.6)],{paper:'portrait',kind:'blank'}),
  section('Blank SOAP workspace',[block('<p class="rp-instruction">Continue your note.</p>'),field('Assessment',2.6),field('Plan',5.2)],{paper:'portrait',kind:'blank'})];
 }
 export function soapSections(l){

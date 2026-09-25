@@ -50,7 +50,7 @@ SECTIONS = (
     ("ros",         "other",      "Review of systems",              ("ros",)),
 )
 GROUPS = (
-    ("subjective", "Patient & chief concern"),
+    ("subjective", "Patient & chief complaint"),
     ("hpi",        "History of present illness"),
     ("other",      "Other history"),
     ("objective",  "Vitals & examination findings"),
@@ -499,7 +499,8 @@ def summarize(case, events):
 
         elif kind == evidence.STATION_INFO:
             text = event.get("text", "")
-            if meta.get("vitals") or meta.get("result"):
+            # Supplied results (a dipstick, a hemoglobin) belong in the chart beside the vitals.
+            if meta.get("vitals") or meta.get("result") or meta.get("supplied_id"):
                 chart.append({
                     "label": meta.get("label") or ("Doorway vitals" if meta.get("vitals")
                                                    else "Supplied result"),
