@@ -17,11 +17,11 @@ const deferred=()=>{let resolve;const promise=new Promise(r=>resolve=r);return{p
   finally{await context.close();}
  }
  async function home(p){await p.locator('#btnBrand').click();await p.waitForFunction(()=>location.hash==='#home'&&document.body.dataset.workspace==='home');await p.locator('#view .portal-dashboard').waitFor({timeout:15000});}
- async function cases(p){await p.locator('[data-destination=cases]').click();await p.locator('#materialGrid .lesson-card').first().waitFor({timeout:120000});}
+ async function cases(p){await p.locator('[data-portal-go=cases]').click();await p.locator('#materialGrid .lesson-card').first().waitFor({timeout:120000});}
  async function choose(p,cid){await p.locator('#materialGrid a[href="#cases/'+cid+'"]').click();await p.locator('#material-student').waitFor();}
  async function ready(p){await p.goto(base+'#home');await p.locator('#view .portal-dashboard').waitFor({timeout:120000});}
  async function settle(p){await p.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));}
- async function assertHome(p){await settle(p);assert.equal(await p.evaluate(()=>location.hash),'#home');assert(await p.locator('#view .portal-dashboard').isVisible());assert.equal(await p.locator('body[data-walkthrough-preview]').count(),0);assert.equal(await p.locator('#walkthroughPrint').count(),0);assert.equal(await p.title(),'Chat CSE');}
+ async function assertHome(p){await settle(p);assert.equal(await p.evaluate(()=>location.hash),'#home');assert(await p.locator('#view .portal-dashboard').isVisible());assert.equal(await p.locator('body[data-walkthrough-preview]').count(),0);assert.equal(await p.locator('#walkthroughPrint').count(),0);assert.equal(await p.title(),'DocKnock');}
  async function holdResponse(p,mode){
   await p.evaluate(mode=>{
    const original=window.fetch;let release;
@@ -36,7 +36,7 @@ const deferred=()=>{let resolve;const promise=new Promise(r=>resolve=r);return{p
   },mode);
  }
  await scenario('Delayed printable index cannot replace Home',async p=>{
-  await ready(p);await holdResponse(p,'index');await p.locator('[data-destination=cases]').click();
+  await ready(p);await holdResponse(p,'index');await p.locator('[data-portal-go=cases]').click();
   await p.waitForFunction(()=>window.__printRace.held);await home(p);
   await p.evaluate(()=>window.__printRace.release());await p.waitForFunction(()=>window.__printRace.resumed);await assertHome(p);
  });

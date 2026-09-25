@@ -1,0 +1,83 @@
+/* DocKnock (2026-09-25): one app with two features. DocKnock's own pages (Home,
+   Scores) use a neutral navy palette so Chat CSE (green) and Scribbi (indigo)
+   stand level on them. Loaded after every other sheet. */
+:root{--dk-ink:#1f2640;--dk-ink-2:#4d5670;--dk-paper:#fffefb;--dk-soft:#f0eff4;--dk-line:#dcdae3;--dk-gold:#e3ad4c;
+ --dk-chat:#155c4e;--dk-chat-soft:#e3f0ea;--dk-chat-ink:#143f37;--dk-scribbi:#4a3fd4;--dk-scribbi-soft:#ecebff;--dk-scribbi-ink:#2b2380}
+[data-theme=night]{--dk-ink:#eef0f7;--dk-ink-2:#b6bccd;--dk-paper:#1f2433;--dk-soft:#282e40;--dk-line:#434b61;--dk-gold:#e9c27a;
+ --dk-chat:#8fd3b6;--dk-chat-soft:#1d352e;--dk-chat-ink:#d6efe4;--dk-scribbi:#b4acff;--dk-scribbi-soft:#29274f;--dk-scribbi-ink:#e4e1ff}
+body[data-tab=home],body[data-tab=scores]{--portal-ink:var(--dk-ink);--portal-muted:var(--dk-ink-2);--portal-paper:var(--dk-paper);--portal-soft:var(--dk-soft);--portal-line:var(--dk-line);--portal-accent:var(--dk-ink)}
+/* At night the shared top bar and DocKnock's own pages go neutral navy; Chat CSE keeps its green pages. */
+[data-theme=night] .topbar{background:#171c28}
+[data-theme=night] body[data-tab=home],[data-theme=night] body[data-tab=scores]{--bg:#12161f;background:#12161f}
+
+/* Top bar: the DocKnock mark and four destinations, each lit in its own color. */
+.topbar .brand-symbol{background:transparent!important;box-shadow:none!important;border-radius:10px}
+.workspace-nav .btn{font-size:13px}
+.workspace-nav .btn[aria-current=page]{background:var(--dk-soft);color:var(--dk-ink);box-shadow:inset 0 -2px 0 var(--dk-ink)}
+.workspace-nav .btn[data-destination=practice][aria-current=page]{background:var(--dk-chat-soft);color:var(--dk-chat-ink);box-shadow:inset 0 -2px 0 var(--dk-chat)}
+.workspace-nav .btn[data-destination=scribbi][aria-current=page]{background:var(--dk-scribbi-soft);color:var(--dk-scribbi-ink);box-shadow:inset 0 -2px 0 var(--dk-scribbi)}
+
+/* Feature bar: the current feature's name and its sections, under the top bar. */
+.feature-bar{background:var(--dk-soft);border-bottom:1px solid var(--dk-line)}
+.feature-bar[hidden]{display:none!important}
+.feature-bar.is-chat{background:var(--dk-chat-soft);border-bottom-color:color-mix(in srgb,var(--dk-chat) 24%,transparent)}
+.feature-bar.is-scribbi{background:var(--dk-scribbi-soft);border-bottom-color:color-mix(in srgb,var(--dk-scribbi) 24%,transparent)}
+.fb-inner{max-width:1260px;margin:0 auto;padding:10px 30px;display:flex;align-items:center;gap:10px 24px;flex-wrap:wrap}
+.fb-id{display:flex;align-items:center;gap:10px;min-width:0}
+.fb-mark{width:32px;height:32px;border-radius:9px;flex:none;display:inline-grid;place-items:center}
+.fb-mascot svg{width:36px;height:36px}
+.fb-icon{background:var(--dk-paper);color:var(--dk-ink);border:1px solid var(--dk-line)}
+.fb-icon svg{width:18px;height:18px}
+.fb-id b{display:block;font-size:15px;line-height:1.15;color:var(--dk-ink)}
+.fb-id small{display:block;font-size:11.5px;color:var(--dk-ink-2)}
+.feature-bar.is-chat .fb-id b{color:var(--dk-chat-ink)}
+.feature-bar.is-scribbi .fb-id b{color:var(--dk-scribbi-ink)}
+.fb-tabs{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+.fb-tab{appearance:none;border:1px solid transparent;background:transparent;border-radius:999px;padding:7px 14px;font:inherit;font-size:13px;font-weight:600;color:var(--dk-ink-2);cursor:pointer;white-space:nowrap}
+.fb-tab:hover{background:color-mix(in srgb,var(--dk-paper) 72%,transparent);color:var(--dk-ink)}
+.fb-tab[aria-current=page]{background:var(--dk-paper);color:var(--dk-ink);border-color:var(--dk-line)}
+.feature-bar.is-chat .fb-tab[aria-current=page]{color:var(--dk-chat-ink)}
+.fb-tab:focus-visible{outline:3px solid var(--dk-gold);outline-offset:2px}
+@media(max-width:800px){.fb-inner{padding:8px 14px;gap:8px}.fb-id small{display:none}.fb-tabs{margin-left:0;width:100%;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.fb-tabs::-webkit-scrollbar{display:none}.fb-tab{padding:6px 12px}}
+@media print{.feature-bar{display:none!important}}
+
+/* Home: what's open, the two features side by side, then a scores snapshot. */
+.dk-home-stack{display:flex!important;flex-direction:column;gap:28px}
+.dk-continue-list{display:grid;gap:10px}
+.dk-continue-item{display:grid;grid-template-columns:46px minmax(0,1fr) auto;align-items:center;gap:14px;padding:12px 16px;border:1px solid var(--portal-line);border-radius:14px;background:var(--portal-paper);box-shadow:inset 4px 0 0 var(--dk-chat)}
+.dk-continue-item.is-scribbi{box-shadow:inset 4px 0 0 var(--dk-scribbi)}
+.dk-ci-art{width:46px;height:46px;display:grid;place-items:center}
+.dk-ci-art svg{width:46px;height:46px}
+.dk-ci-text{display:grid;gap:1px;min-width:0}
+.dk-ci-text small{font-size:10px;font-weight:750;letter-spacing:.1em;text-transform:uppercase;color:var(--dk-chat)}
+.dk-continue-item.is-scribbi .dk-ci-text small{color:var(--dk-scribbi)}
+.dk-ci-text b{font-size:15px;color:var(--portal-ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dk-ci-text span{font-size:12.5px;color:var(--portal-muted)}
+.dk-continue-item .dk-ci-go{margin:0!important;white-space:nowrap}
+.dk-continue-item.is-scribbi .dk-ci-go{background:var(--dk-scribbi)!important;color:#fff!important;border-color:var(--dk-scribbi)!important;font-weight:750}
+.dk-continue-item.is-scribbi .dk-ci-go:hover{filter:brightness(1.08)}
+[data-theme=night] .dk-continue-item.is-scribbi .dk-ci-go{color:#17153a!important}
+@media(max-width:640px){.dk-continue-item{grid-template-columns:38px minmax(0,1fr);gap:10px}.dk-ci-art,.dk-ci-art svg{width:38px;height:38px}.dk-continue-item .dk-ci-go{grid-column:1/-1;justify-self:start}}
+.dk-mode-links{display:flex;gap:6px 16px;flex-wrap:wrap;margin-top:12px}
+.dk-mode-links button{appearance:none;border:0;background:transparent;padding:2px 0;font:inherit;font-size:12.5px;font-weight:650;color:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.dk-mode-links button:focus-visible{outline:3px solid var(--dk-gold);outline-offset:2px;border-radius:4px}
+.dk-snapshot .portal-section-heading .btn{font-size:13px}
+.dk-snapshot-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.dk-snapshot-grid>div{background:var(--portal-paper);border:1px solid var(--portal-line);border-radius:12px;padding:12px 14px;display:grid;gap:2px;align-content:start}
+.dk-snapshot-grid>div>span{font-size:10px;font-weight:750;letter-spacing:.1em;text-transform:uppercase}
+.dk-snapshot-grid>.is-chat>span{color:var(--dk-chat)}
+.dk-snapshot-grid>.is-scribbi>span{color:var(--dk-scribbi)}
+.dk-snapshot-grid b{font-size:24px;letter-spacing:-.5px;color:var(--portal-ink)}
+.dk-snapshot-grid b small{font-size:13px;color:var(--portal-muted)}
+.dk-snapshot-grid>div>small{font-size:12px;color:var(--portal-muted)}
+@media(max-width:1000px){.dk-snapshot-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:560px){.dk-snapshot-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Scores → How scoring works: each feature's rules, labeled in its color. */
+.dk-score-label{font-size:11px;font-weight:750;letter-spacing:.12em;text-transform:uppercase;margin:26px 0 10px}
+.dk-score-label.is-chat{color:var(--dk-chat)}
+.dk-score-label.is-scribbi{color:var(--dk-scribbi)}
+.dk-scribbi-scoring{background:var(--portal-paper);border:1px solid var(--portal-line);border-radius:14px;padding:18px 22px}
+.dk-scribbi-scoring h2{font-size:19px;margin:0 0 6px;color:var(--portal-ink)}
+.dk-scribbi-scoring p{margin:0 0 10px;font-size:14px;color:var(--portal-muted)}
+.dk-scribbi-scoring ul{margin:0;padding-left:18px;display:grid;gap:8px;font-size:14px;color:var(--portal-ink)}
