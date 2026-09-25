@@ -1,6 +1,11 @@
-# Chat CSE
+# DocKnock
 
-A browser-local clinical-skills practice app: read the doorway information, interview and examine a simulated adult patient, write a SOAP note, and review feedback against the evidence you obtained.
+A browser-local clinical-skills practice app with two features:
+
+- **Chat CSE:** read the doorway information, interview and examine a simulated adult patient, write a SOAP note, and review feedback against the evidence you obtained. Worked examples and printable cases sit in the same tab.
+- **Scribbi:** review the SOAP note a practice AI scribe drafted from a visit, catch its planted mistakes, add the hands-on findings it couldn't hear, and sign.
+
+Home shows anything still in progress, both features, and your scores. Scores holds your Chat CSE attempts and Scribbi reviews, plus how each is scored.
 
 **Public site:** https://skempa7.github.io/pcm-cse-public/web/
 
@@ -20,7 +25,7 @@ The current patient assets preserve the established bald male head with mustache
 
 ### Scribbi: review the AI scribe
 
-Scribbi is the second mode beside Chat CSE. A simulated ambient scribe drafts the SOAP note from a visit, with planted mistakes (invented exams or history, flipped answers, wrong details, a relative's history as the patient's, dropped concerns, anchored or unsupported assessments, a plan that ignores an allergy) and always without the hands-on structural finding, because it only hears. The student reviews every line against the visit and signs. Three ways to see the visit:
+Scribbi is DocKnock's second feature, beside Chat CSE. A simulated ambient scribe drafts the SOAP note from a visit, with planted mistakes (invented exams or history, flipped answers, wrong details, a relative's history as the patient's, dropped concerns, anchored or unsupported assessments, a plan that ignores an allergy) and always without the hands-on structural finding, because it only hears. The student reviews every line against the visit and signs. Three ways to see the visit:
 
 - **Watch** (`#scribbi/r/<id>/visit`): the demonstrated visit plays like a video on the 3D patient, with device voices, captions, each examination's technique demonstration, and Scribbi visibly listening. Palpation is felt in silence, so its finding never reaches Scribbi. A watched review's clock starts only when the review begins.
 - **Lead:** the student runs the visit in the Chat CSE room (an untimed coached encounter marked as a Scribbi visit). Finishing hands the encounter to Scribbi, which drafts from exactly what this student obtained. These visits never count as Chat CSE attempts.

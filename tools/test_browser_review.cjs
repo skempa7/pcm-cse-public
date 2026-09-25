@@ -73,9 +73,11 @@ const output=process.env.CSE_TEST_OUTPUT||require('node:os').tmpdir()+'/cse-brow
  await p.locator('#btnSubmit').click();await p.locator('.confirm-dialog button[value=confirm]').click();await p.waitForFunction(()=>S.phase==='submitted'&&RESULTS?.__for===S.id,{},{timeout:30000});
  assert.equal(await p.evaluate(()=>S.id),sid);assert.equal(await p.evaluate(()=>RESULTS.results.versions.recorded.engine),'4.3.3');await p.screenshot({path:path.join(output,'review-feedback.png'),fullPage:true});
  await p.locator('#btnBrand').click();await p.waitForFunction(()=>document.body.dataset.workspace==='home');
- const resume=p.locator('[data-resume="'+sid+'"]');assert(await resume.count());
- console.log('PASS cancel Home, finish encounter, note save/reload, submit feedback, Home and saved attempt');
- await p.locator('[data-destination=cases]').click();await p.locator('#materialGrid .lesson-card').first().waitFor();await p.locator('#materialGrid .lesson-card').first().click();await p.locator('.material-details summary').click();await p.getByRole('link',{name:'Read the demonstrated encounter and source references →'}).click();await p.locator('#printLesson').click();await p.locator('#preparePrintDocument').click();await p.waitForFunction(()=>document.body.hasAttribute('data-walkthrough-preview'),{},{timeout:30000});
+ // Home lists only unfinished work; a submitted attempt is kept under Scores.
+ await p.locator('.workspace-nav [data-destination=scores]').click();await p.waitForFunction(()=>document.body.dataset.workspace==='scores');
+ const savedRow=p.locator('[data-open="'+sid+'"]');await savedRow.first().waitFor();assert(await savedRow.count());
+ console.log('PASS cancel Home, finish encounter, note save/reload, submit feedback, Home, and the saved attempt under Scores');
+ await p.locator('.workspace-nav [data-destination=practice]').click();await p.locator('.feature-bar [data-destination=cases]').click();await p.locator('#materialGrid .lesson-card').first().waitFor();await p.locator('#materialGrid .lesson-card').first().click();await p.locator('.material-details summary').click();await p.getByRole('link',{name:'Read the demonstrated encounter and source references →'}).click();await p.locator('#printLesson').click();await p.locator('#preparePrintDocument').click();await p.waitForFunction(()=>document.body.hasAttribute('data-walkthrough-preview'),{},{timeout:30000});
  const print=await p.evaluate(()=>window.pcmPrintReport);assert.equal(print.oversized.length,0);assert(print.pages>0);await p.screenshot({path:path.join(output,'review-print.png'),fullPage:false});
  console.log('PASS rendered written walkthrough and print preview',JSON.stringify({pages:print.pages,images:print.images,oversized:print.oversized.length}));
  // Exercise course-timed note writing and the solution assistance boundary.

@@ -120,8 +120,8 @@ const api=(p,path,body)=>p.evaluate(([path,body])=>api(path,body),[path,body]);
  passed.push('a visit left open waits on the Scribbi home and resumes in the room');
  await page.click('#btnHome');await page.click('dialog.confirm-dialog button[value=confirm]');
  await page.waitForSelector('.sb-hero');await page.click('[data-destination=home]');
- await page.waitForFunction(()=>[...document.querySelectorAll('.portal-mode.is-scribbi button')].some(b=>b.textContent==='Back to the room'),null,{timeout:30000});
- await page.locator('.portal-mode.is-scribbi button',{hasText:'Back to the room'}).click();
+ await page.waitForFunction(()=>[...document.querySelectorAll('.dk-continue-item.is-scribbi button')].some(b=>b.textContent.trim().startsWith('Back to the room')),null,{timeout:30000});
+ await page.locator('.dk-continue-item.is-scribbi button',{hasText:'Back to the room'}).click();
  await page.waitForSelector('#say',{timeout:60000});assert.equal(await page.evaluate(()=>S.id),sid);
  passed.push('the Home page offers the open visit too');
 

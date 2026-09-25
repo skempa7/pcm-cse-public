@@ -295,7 +295,7 @@ async function leaveForWorkspace(kind){
     if(!await confirmChoice('Leave this visit? It stays open, and you can come back to it from Scribbi. Scribbi writes the note when you finish the visit.',{title:'Leave the visit?',confirm:'Leave for now',cancel:'Stay here'})){history.replaceState(null,'','#/'+S.id);return false;}
   }else if(active){
     const timed=!!S.phase_ends_at;
-    const message='Leave this attempt for '+({home:'Home',practice:'the case library',progress:'your progress',scoring:'the scoring guide',voice:'voice settings',session:'another attempt',scribbi:'Scribbi',cases:'case documents'}[kind]||'this workspace')+'? Your work will be saved and you can resume from Home or Progress.'+(timed?' The current timer keeps running; leaving does not add time.':' This attempt remains untimed.');
+    const message='Leave this attempt for '+({home:'Home',practice:'the case library',progress:'your scores',scores:'your scores',scoring:'the scoring guide',voice:'voice settings',session:'another attempt',scribbi:'Scribbi',cases:'case documents'}[kind]||'this workspace')+'? Your work will be saved and you can resume from Home or Progress.'+(timed?' The current timer keeps running; leaving does not add time.':' This attempt remains untimed.');
     if(!await confirmChoice(message,{title:'Leave this attempt?',confirm:'Leave attempt',cancel:'Stay here'})){history.replaceState(null,'','#/'+S.id);return false;}
   }
   if(!await window.pcmEnterWorkbench(kind))return false;
@@ -308,12 +308,12 @@ async function route(){
   window.pcmScribbiVisit?.close();
   if (/^cases(?:\/|$)/.test(id)) {if(!await leaveForWorkspace('cases')||epoch!==routeEpoch)return;document.body.dataset.workspace='cases';window.pcmStudy.renderMaterials(id);return;}
   if (/^learn(?:\/|$)/.test(id)) {document.body.dataset.workspace='learn';window.pcmStudy.render(id);return;}
-  if (/^scribbi(?:\/|$)/.test(id)) {if(!await leaveForWorkspace('scribbi')||epoch!==routeEpoch)return;document.body.dataset.workspace='scribbi';window.pcmPortal?.nav('scribbi');if(brandSub)brandSub.textContent='Your clinical skills workspace';window.pcmScribbi.render(id);return;}
-  const kind=!id||id==='home'?'home':['practice','progress','scoring'].includes(id)?id:null;
+  if (/^scribbi(?:\/|$)/.test(id)) {if(!await leaveForWorkspace('scribbi')||epoch!==routeEpoch)return;document.body.dataset.workspace='scribbi';window.pcmPortal?.nav('scribbi');if(brandSub)brandSub.textContent='Clinical skills practice';window.pcmScribbi.render(id);return;}
+  const kind=!id||id==='home'?'home':['practice','progress','scoring','scores'].includes(id)?id:null;
   if(kind){
     if(!await leaveForWorkspace(kind)||epoch!==routeEpoch)return;
     document.body.dataset.workspace=kind;window.pcmPortal?.nav(kind);
-    if(brandSub)brandSub.textContent='Your clinical skills workspace';
+    if(brandSub)brandSub.textContent='Clinical skills practice';
     if(kind==='practice')renderLobby();else window.pcmPortal.render(kind,portalContext());
     return;
   }
@@ -321,7 +321,7 @@ async function route(){
   document.body.dataset.workspace='encounter';openSession(id,epoch);
 }
 async function openSession(id,epoch=routeEpoch){
-  document.querySelectorAll('[data-destination]').forEach(b=>b.setAttribute('aria-current',b.dataset.destination==='practice'?'page':'false'));
+  window.pcmPortal?.nav('practice');
   const st = await api('/api/session/' + id);
   if(epoch!==routeEpoch)return;
   if (st.error || !st.phase) { location.hash = ''; return renderLobby(); }
@@ -360,8 +360,8 @@ async function refresh(){
 /* 1. LOBBY                                                                  */
 /* ======================================================================== */
 function renderLobby(){
-  document.querySelectorAll('[data-destination]').forEach(b=>b.setAttribute('aria-current',b.dataset.destination==='practice'?'page':'false'));
   document.body.dataset.workspace='practice';
+  window.pcmPortal?.nav('practice');
   clearContextFeedback();
   window.scrollTo({top:0,behavior:'instant'});
   if (poll) clearInterval(poll);
@@ -372,7 +372,7 @@ function renderLobby(){
   history.replaceState(null, '', location.pathname + location.search + '#practice');
   clockEl.classList.add('hidden'); chipEl.classList.add('hidden');
   homeBtn.classList.add('hidden');
-  if (brandSub) brandSub.textContent = 'Your clinical skills workspace';
+  if (brandSub) brandSub.textContent = 'Clinical skills practice';
 
   const prefs = LS.get('prefs') || {};
   const uiMode = normalizeMode(prefs.ui_mode);
@@ -3165,7 +3165,7 @@ window.pcmEnterWorkbench=async kind=>{
   if(poll)clearInterval(poll);if(tick)clearInterval(tick);S=null;lastPhase=null;document.body.dataset.phase=kind;positionRoomFrame();clockEl.classList.add('hidden');chipEl.classList.add('hidden');homeBtn.classList.add('hidden');window.scrollTo(0,0);return true;
 };
 window.pcmNavigate=destination=>{
-  const target=['home','practice','scribbi','cases','learn','progress','scoring'].includes(destination)?destination:'home';
+  const target=['home','practice','scribbi','cases','learn','progress','scoring','scores'].includes(destination)?destination:'home';
   if(location.hash==='#'+target)route();else location.hash='#'+target;
 };
 window.pcmPortalCases=()=>BOOT?.cases||[];

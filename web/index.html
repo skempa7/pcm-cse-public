@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self' blob:; media-src 'self' blob:; font-src 'self' data:; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta charset="utf-8">
-<title>Chat CSE</title>
+<title>DocKnock</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>try{if(JSON.parse(localStorage.getItem('pcmcse.theme'))==='night')document.documentElement.dataset.theme='night';}catch(e){}</script>
 <link rel="stylesheet" href="public.css?v=09d6848d7e">
@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="study.css?v=6b609261b9">
 <link rel="stylesheet" href="readability.css?v=5860f1a00f">
 <link rel="stylesheet" href="portal.css?v=73d17c5f47">
-<link rel="icon" type="image/png" sizes="32x32" href="brand/chat-cse-32.png?v=8189c774bb"><link rel="icon" type="image/png" sizes="192x192" href="brand/chat-cse-192.png?v=f6a3219a60"><link rel="apple-touch-icon" sizes="180x180" href="brand/chat-cse-180.png?v=8c43df94e2"><link rel="manifest" href="app.webmanifest?v=cfbecd4159"><meta name="theme-color" content="#16302b"><meta name="apple-mobile-web-app-title" content="Chat CSE">
+<link rel="icon" type="image/png" sizes="32x32" href="brand/docknock-32.png?v=af75e65447"><link rel="icon" type="image/png" sizes="192x192" href="brand/docknock-192.png?v=00cc926647"><link rel="apple-touch-icon" sizes="180x180" href="brand/docknock-180.png?v=ea8a5ffb16"><link rel="manifest" href="app.webmanifest?v=6c9d7b7bbb"><meta name="theme-color" content="#1f2640"><meta name="apple-mobile-web-app-title" content="DocKnock">
 <link rel="stylesheet" href="encounter-workspace.css?v=ef75cdfea5">
 <link rel="stylesheet" href="note-workspace.css?v=175b58b27f">
 <link rel="stylesheet" href="frontend-polish.css?v=23f1ec439b">
@@ -22,16 +22,17 @@
 <link rel="stylesheet" href="scribbi.css?v=824b4ae121">
 <link rel="stylesheet" href="scribbi-visit.css?v=37e1a4ded1">
 <link rel="stylesheet" href="chat-upgrade.css?v=c056c57050">
+<link rel="stylesheet" href="docknock.css?v=b30050d11e">
 </head>
 <body>
-<a class="skip-link" href="#view">Skip to the station</a>
+<a class="skip-link" href="#view">Skip to main content</a>
 <div id="app">
   <header class="topbar">
-    <button class="brand" id="btnBrand" type="button" aria-label="Chat CSE — Home">
-      <img class="brand-symbol" src="brand/chat-cse-128.png?v=ba36365167" alt="" aria-hidden="true"><span class="mark">Chat <span class="brand-light">CSE</span></span>
-      <span class="sub" id="brandSub">Your clinical skills workspace</span>
+    <button class="brand" id="btnBrand" type="button" aria-label="DocKnock — Home">
+      <img class="brand-symbol" src="brand/docknock-128.png?v=b33715189f" alt="" aria-hidden="true"><span class="mark">Doc<span class="brand-light">Knock</span></span>
+      <span class="sub" id="brandSub">Clinical skills practice</span>
     </button>
-    <nav class="workspace-nav" aria-label="Main navigation"><button class="btn ghost sm" data-destination="practice">Practice</button><button class="btn ghost sm" data-destination="cases">Cases & print</button><button class="btn ghost sm" data-destination="progress">Progress</button></nav>
+    <nav class="workspace-nav" aria-label="Main navigation"><button class="btn ghost sm" data-destination="home">Home</button><button class="btn ghost sm" data-destination="practice">Chat CSE</button><button class="btn ghost sm" data-destination="scribbi">Scribbi</button><button class="btn ghost sm" data-destination="scores">Scores</button></nav>
     <div class="spacer"></div>
     <span id="phaseChip" class="phase-chip hidden"></span>
     <div id="clock" class="clock hidden" role="timer" aria-label="Time remaining in this phase">
@@ -41,15 +42,16 @@
     <button id="themeToggle" class="btn ghost sm" type="button">Evening</button>
     <button id="btnHome" class="btn ghost sm hidden" type="button">Home</button>
   </header>
+  <nav class="feature-bar" id="featureBar" aria-label="Section" hidden></nav>
   <main id="view" tabindex="-1"></main>
 </div>
 <div id="liveRegion" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
 <div id="alertRegion" class="sr-only" role="alert" aria-live="assertive" aria-atomic="true"></div>
 <div id="overlayRoot"></div>
 <script src="device-voice.js?v=625a711ba8"></script>
-<script src="study.js?v=5f7724699a"></script>
-<script src="portal.js?v=8782460c15"></script>
-<script src="app.js?v=43f559722c"></script>
+<script src="study.js?v=e2ef4fee8a"></script>
+<script src="portal.js?v=322e004abd"></script>
+<script src="app.js?v=336040df9c"></script>
 
 <script src="learning.js?v=dac7ccac7b"></script>
 

@@ -57,43 +57,93 @@ function groupPractice(grid,cases,reveal){
 }
 function groupedCaseLinks(cases,renderCard){return orderedSystems(cases).map((system,i)=>{const rows=cases.filter(c=>c.system===system);return `<section class="case-library-system" data-system="${E(system)}" aria-labelledby="caseLibrarySystem-${i}"><div class="case-system-heading"><h2 id="caseLibrarySystem-${i}">${E(systemLabel(system))}</h2><span class="system-count">${rows.length} presentation${rows.length===1?'':'s'}</span></div><div class="system-case-grid">${rows.map(renderCard).join('')}</div></section>`;}).join('');}
 const phaseLabel={briefing:'At the doorway',encounter:'Patient encounter',organize:'Organization interval',note:'SOAP note',submitted:'Feedback ready'};
-function nav(kind){document.querySelectorAll('[data-destination]').forEach(b=>{const on=b.dataset.destination===kind;b.setAttribute('aria-current',on?'page':'false');if(on&&b.parentElement&&b.parentElement.scrollWidth>b.parentElement.clientWidth)b.scrollIntoView({block:'nearest',inline:'center'});});const bar=$('.workspace-nav');if(bar)bar.dispatchEvent(new Event('scroll'));}
-function buttons(root){root.querySelectorAll('[data-portal-go]').forEach(b=>b.onclick=()=>window.pcmNavigate?.(b.dataset.portalGo));root.querySelectorAll('[data-resume]').forEach(b=>b.onclick=()=>{location.hash='#/'+b.dataset.resume;});}
+// DocKnock holds two features, Chat CSE and Scribbi, plus Home and Scores.
+// Every route belongs to one top-level tab; Chat CSE, Scribbi and Scores
+// also get a feature bar under the top bar with their own sections.
+const TABS=[['home','Home','home'],['practice','Chat CSE','chat'],['scribbi','Scribbi','scribbi'],['scores','Scores','progress']];
+const TAB_OF={home:'home',practice:'practice',cases:'practice',learn:'practice',scribbi:'scribbi',progress:'scores',scores:'scores',scoring:'scores'};
+const SECTIONS={
+ practice:{cls:'is-chat',title:'Chat CSE',tagline:'Patient encounters and SOAP notes',items:[['practice','Encounters'],['learn','Worked examples'],['cases','Printable cases']]},
+ scribbi:{cls:'is-scribbi',title:'Scribbi',tagline:'AI scribe review',jumps:[['.sb-setup','Start a review'],['#sbStatsHead','Your record'],['#sbGuideHead','Field guide']]},
+ scores:{cls:'is-scores',title:'Scores',tagline:'Chat CSE attempts and Scribbi reviews',items:[['scores','Your scores'],['scoring','How scoring works']]},
+};
+const TITLES={practice:'Encounters · Chat CSE',learn:'Worked examples · Chat CSE',cases:'Printable cases · Chat CSE',scribbi:'Scribbi',progress:'Scores',scores:'Scores',scoring:'How scoring works · Scores'};
+function sectionMark(tab){
+ if(tab==='practice')return '<img class="fb-mark" src="brand/chat-cse-64.png" alt="" aria-hidden="true">';
+ if(tab==='scribbi')return `<span class="fb-mark fb-mascot" aria-hidden="true">${window.pcmScribbi?.mascot?.('happy','')||''}</span>`;
+ return `<span class="fb-mark fb-icon" aria-hidden="true">${icon('progress')}</span>`;
+}
+function featureBar(kind,tab){
+ const bar=$('#featureBar');if(!bar)return;
+ const sec=SECTIONS[tab],session=document.body.dataset.workspace==='encounter',round=tab==='scribbi'&&!/^#scribbi\/?$/.test(location.hash);
+ if(!sec||session||round){bar.hidden=true;bar.dataset.tab='';bar.replaceChildren();return;}
+ const current=kind==='progress'?'scores':kind;
+ if(bar.dataset.tab!==tab){
+  bar.dataset.tab=tab;bar.className='feature-bar '+sec.cls;
+  const items=(sec.items||[]).map(([key,label])=>`<button type="button" class="fb-tab" data-destination="${key}">${label}</button>`).join('')+(sec.jumps||[]).map(([target,label])=>`<button type="button" class="fb-tab" data-jump="${target}">${label}</button>`).join('');
+  bar.innerHTML=`<div class="fb-inner"><div class="fb-id">${sectionMark(tab)}<span><b>${sec.title}</b><small>${sec.tagline}</small></span></div><div class="fb-tabs">${items}</div></div>`;
+  bar.querySelectorAll('[data-destination]').forEach(b=>b.onclick=()=>window.pcmNavigate?.(b.dataset.destination));
+  bar.querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>document.querySelector(b.dataset.jump)?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'}));
+ }
+ bar.querySelectorAll('[data-destination]').forEach(b=>b.setAttribute('aria-current',b.dataset.destination===current?'page':'false'));
+ bar.hidden=false;
+}
+function nav(kind){
+ const tab=TAB_OF[kind]||kind;document.body.dataset.tab=tab;
+ document.querySelectorAll('.workspace-nav [data-destination]').forEach(b=>{const on=b.dataset.destination===tab;b.setAttribute('aria-current',on?'page':'false');if(on&&b.parentElement&&b.parentElement.scrollWidth>b.parentElement.clientWidth)b.scrollIntoView({block:'nearest',inline:'center'});});
+ const bar=$('.workspace-nav');if(bar)bar.dispatchEvent(new Event('scroll'));
+ featureBar(kind,tab);
+ if(document.body.dataset.workspace!=='encounter')document.title=TITLES[kind]?TITLES[kind]+' · DocKnock':'DocKnock';
+}
+function buttons(root){root.querySelectorAll('[data-portal-go]').forEach(b=>b.onclick=()=>{const jump=b.dataset.portalJump;window.pcmNavigate?.(b.dataset.portalGo);if(jump){const t=Date.now(),seek=()=>{const el=document.querySelector(jump);if(el)el.scrollIntoView({block:'start'});else if(Date.now()-t<4000)setTimeout(seek,120);};setTimeout(seek,120);}});root.querySelectorAll('[data-resume]').forEach(b=>b.onclick=()=>{location.hash='#/'+b.dataset.resume;});}
 function when(ms){const d=new Date(ms),now=new Date();
  return d.toDateString()===now.toDateString()
   ? d.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'})
   : d.toLocaleDateString(undefined,{month:'short',day:'numeric'});}
-function activity(rows,cases){return rows.slice(0,4).map(s=>{const c=cases.find(c=>c.id===s.case_id);return `<button class="portal-activity" data-resume="${E(s.id)}"><span class="portal-activity-icon">${icon(s.phase==='submitted'?'progress':'practice')}</span><span><b>${E(c?.title||c?.station_label||'Saved station')}</b><small>${E(phaseLabel[s.phase]||s.phase)} · ${E(when(s.created_at))}</small></span><span aria-hidden="true">↗</span></button>`;}).join('')||'<div class="portal-empty">Your encounters will appear here as you practice. Start with a guided encounter whenever you’re ready.</div>';}
 function heading(kicker,title,detail){return `<header class="portal-heading"><div><span class="portal-kicker">${kicker}</span><h1>${title}</h1><p>${detail}</p></div></header>`;}
 function completedCount(data){const counts=data.progress?.completed_by_mode;if(counts&&Object.keys(counts).length)return Object.values(counts).reduce((sum,n)=>sum+(Number(n)||0),0);return (data.sessions||[]).filter(s=>s.phase==='submitted').length;}
+function continueItem({feature,art,title,detail,action,resume,href}){
+ const target=resume?`data-resume="${E(resume)}"`:`data-href="${E(href)}"`;
+ return `<article class="dk-continue-item is-${feature}"><span class="dk-ci-art" aria-hidden="true">${art}</span><span class="dk-ci-text"><small>${feature==='chat'?'Chat CSE':'Scribbi'}</small><b>${E(title)}</b><span>${E(detail)}</span></span><button class="btn ${feature==='chat'?'portal-primary':'portal-scribbi'} dk-ci-go" ${target}>${E(action)} <span aria-hidden="true">→</span></button></article>`;
+}
 function home(data){
- const rows=data.sessions||[],cases=data.cases||[],progress=data.progress||{},completed=rows.filter(s=>s.phase==='submitted'),unfinished=rows.find(s=>s.phase!=='submitted'),coverage=(progress.completed_cases||[]).length;
- // "Pick up your encounter" named neither the patient nor the presentation,
- // so a student with several saved attempts could not tell which one the
- // button would open. The row list had the same problem: four "Station 2".
- const unfinishedCase=cases.find(c=>c.id===unfinished?.case_id);
- const chatResume=unfinished?`<p class="portal-mode-resume"><b>In progress:</b> ${E(unfinishedCase?.title||'Saved attempt')} · ${E(phaseLabel[unfinished.phase]||'Saved attempt')}</p>`:'';
- const resume=`<section class="portal-modes" aria-label="Choose how to practice">
-  <article class="portal-mode is-chat"><span class="portal-mode-art" aria-hidden="true">${illustration('cardio')}</span><span class="portal-kicker">Chat CSE · Patient encounter</span><h2>See the patient.</h2><p>Interview and examine a virtual patient, then write your SOAP note and get feedback on the evidence you actually obtained.</p>${chatResume}<div class="portal-mode-actions">${unfinished?`<button class="btn portal-primary" data-resume="${E(unfinished.id)}">Resume ${unfinished.phase==='note'?'your SOAP note':'your encounter'} <span aria-hidden="true">→</span></button><button class="btn portal-mode-quiet" data-portal-go="practice">New encounter</button>`:`<button class="btn portal-primary" data-portal-go="practice">Start an encounter <span aria-hidden="true">→</span></button>`}</div><span class="portal-mode-foot">${cases.length} presentations · ${completedCount(data)} completed</span></article>
-  <article class="portal-mode is-scribbi"><span class="portal-mode-art portal-mode-mascot" aria-hidden="true">${window.pcmScribbi?.mascot?.('happy','is-bobbing is-listening')||''}</span><span class="portal-kicker">Scribbi · AI scribe review</span><h2>Review the AI scribe.</h2><p>Watch a patient visit, or lead it yourself, while Scribbi listens. Then catch what its note got wrong, add what it couldn't feel, and sign.</p><p class="portal-mode-resume" id="portalScribbiResume" hidden></p><div class="portal-mode-actions"><button class="btn portal-scribbi" data-portal-go="scribbi">Open Scribbi <span aria-hidden="true">→</span></button></div><span class="portal-mode-foot" id="portalScribbiFoot">Watch, lead or read the visit · Learn, Coached, or On your own</span></article>
+ const rows=data.sessions||[],cases=data.cases||[],progress=data.progress||{},coverage=(progress.completed_cases||[]).length;
+ // Everything still open, named by patient and presentation, so a student with
+ // several saved attempts can tell which one each button opens.
+ const open=rows.filter(s=>s.phase!=='submitted').sort((a,b)=>(b.created_at||0)-(a.created_at||0)).slice(0,3);
+ const chat=open.map(s=>{const c=cases.find(c=>c.id===s.case_id);return continueItem({feature:'chat',art:illustration(family(c?.system)),title:c?.title||'Saved encounter',detail:`${phaseLabel[s.phase]||'Saved attempt'} · ${when(s.created_at)}`,action:s.phase==='note'?'Resume your note':'Resume',resume:s.id});}).join('');
+ const cont=`<section class="dk-continue" id="dkContinue" aria-labelledby="dkContinueHead"${chat?'':' hidden'}><div class="portal-section-heading"><h2 id="dkContinueHead">Continue where you left off</h2></div><div class="dk-continue-list" id="dkContinueList">${chat}</div></section>`;
+ const modes=`<section class="portal-modes" aria-label="Choose how to practice">
+  <article class="portal-mode is-chat"><span class="portal-mode-art" aria-hidden="true">${illustration('cardio')}</span><span class="portal-kicker">Chat CSE · Patient encounter</span><h2>See the patient.</h2><p>Interview and examine a virtual patient, then write your SOAP note and get feedback on the evidence you actually obtained.</p><div class="portal-mode-actions"><button class="btn portal-primary" data-portal-go="practice">Start an encounter <span aria-hidden="true">→</span></button></div><div class="dk-mode-links"><button type="button" data-portal-go="learn">Worked examples</button><button type="button" data-portal-go="cases">Printable cases</button></div><span class="portal-mode-foot">${cases.length} presentations · ${completedCount(data)} completed</span></article>
+  <article class="portal-mode is-scribbi"><span class="portal-mode-art portal-mode-mascot" aria-hidden="true">${window.pcmScribbi?.mascot?.('happy','is-bobbing is-listening')||''}</span><span class="portal-kicker">Scribbi · AI scribe review</span><h2>Review the AI scribe.</h2><p>Watch a patient visit, or lead it yourself, while Scribbi listens. Then catch what its note got wrong, add what it couldn't feel, and sign.</p><div class="portal-mode-actions"><button class="btn portal-scribbi" data-portal-go="scribbi">Open Scribbi <span aria-hidden="true">→</span></button></div><div class="dk-mode-links"><button type="button" data-portal-go="scribbi" data-portal-jump="#sbGuideHead">Field guide</button></div><span class="portal-mode-foot" id="portalScribbiFoot">Watch, lead or read the visit · Learn, Coached, or On your own</span></article>
  </section>`;
- return `<div class="portal-workspace">${heading('Student portal','Your practice desk.','Two ways to practice: see the patient yourself, or review the note an AI scribe wrote.')}<section class="portal-metrics" aria-label="Your practice at a glance"><div><b>${cases.length}</b><span>patient presentations</span></div><div><b>${completedCount(data)}</b><span>completed attempts</span></div><div><b>${coverage}<small> / ${cases.length}</small></b><span>presentations explored</span></div><div><b>${progress.conditions?.independent||0}</b><span>independent completions</span></div></section><div class="portal-dashboard"><div class="portal-main">${resume}<section><div class="portal-section-heading"><h2>Your workspaces</h2><span>Choose how you want to learn</span></div><div class="portal-destinations">${[
-  ['cases','Practice with a partner','Print a patient script, examination findings and a blank note. Compare with the example afterward.','Open case documents','general'],
-  ['learn','Study a worked example','Read a complete demonstrated encounter and its example note, linked line by line.','Open walkthroughs','pulmonary'],
-  ['progress','Reflect and improve','Revisit your original attempts, feedback, and focused repair exercises.','Review your practice','neuro'],
-  ['scoring','Know where the points are','See the SOAP requirements and the actions that support each point.','Open scoring guide','sealed'],
- ].map(([key,title,description,cta,art])=>`<button class="portal-destination" data-portal-go="${key}"><span class="portal-tile-art">${illustration(art)}</span><span class="portal-tile-copy"><b>${title}</b><span>${description}</span><strong>${cta} <span aria-hidden="true">→</span></strong></span></button>`).join('')}</div></section></div><aside class="portal-side"><section class="portal-side-card"><div class="portal-section-heading"><h2>Recent practice</h2>${icon('progress')}</div>${activity(rows,cases)}<button class="btn ghost" data-portal-go="progress">All attempts &amp; progress →</button></section><section class="portal-routine"><span class="portal-kicker">Keep your place</span><h2>One useful step at a time.</h2><ol><li><b>Understand</b><span>Hear the concern.</span></li><li><b>Explore</b><span>Ask, examine, interpret.</span></li><li><b>Explain</b><span>Share the next steps.</span></li><li><b>Document</b><span>Use the evidence you obtained.</span></li></ol></section></aside></div></div>`;
+ const cell=(cls,label,value,note,id)=>`<div class="${cls}"><span>${label}</span><b${id?` id="${id}"`:''}>${value}</b><small>${note}</small></div>`;
+ const snapshot=`<section class="dk-snapshot" aria-labelledby="dkScoresHead"><div class="portal-section-heading"><h2 id="dkScoresHead">Your scores</h2><button class="btn ghost" data-portal-go="scores">See all scores <span aria-hidden="true">→</span></button></div><div class="dk-snapshot-grid">${cell('is-chat','Chat CSE',completedCount(data),'completed encounters')}${cell('is-chat','Chat CSE',`${coverage}<small> / ${cases.length}</small>`,'presentations explored')}${cell('is-chat','Chat CSE',progress.conditions?.independent||0,'independent completions')}${cell('is-scribbi','Scribbi','0','signed notes','dkScribbiSigned')}${cell('is-scribbi','Scribbi','–','average score','dkScribbiAvg')}${cell('is-scribbi','Scribbi','–','of mistakes caught','dkScribbiCatch')}</div></section>`;
+ return `<div class="portal-workspace dk-home">${heading('DocKnock','What are you practicing today?','Two ways to practice: see the patient yourself in Chat CSE, or review the note an AI scribe wrote in Scribbi.')}<div class="portal-dashboard dk-home-stack">${cont}${modes}${snapshot}</div></div>`;
 }
 async function fillScribbi(token){
  const info=await window.pcmScribbi?.summary?.();if(!info||token!==generation)return;
- const foot=document.getElementById('portalScribbiFoot'),resume=document.getElementById('portalScribbiResume');
- const st=info.stats||{},open=(info.recent||[]).find(r=>r.status==='reviewing');
+ const foot=document.getElementById('portalScribbiFoot'),st=info.stats||{};
  if(foot&&st.rounds)foot.textContent=`${st.rounds} signed note${st.rounds===1?'':'s'} · average ${st.average??'–'}${st.catch_rate!=null?` · ${st.catch_rate}% of mistakes caught`:''}`;
- const visit=(info.open_visits||[])[0];
- if(resume&&visit&&!info.locked?.blocked){resume.hidden=false;resume.innerHTML=`<b>Your visit with ${E(String(visit.patient_name||'your patient').split(/\s+/)[0])} is still open.</b> Scribbi writes the note when you finish.`;const btn=document.createElement('button');btn.className='btn portal-mode-quiet';btn.textContent='Back to the room';btn.onclick=()=>{location.hash='#/'+visit.id;};resume.parentElement.querySelector('.portal-mode-actions')?.append(btn);}
- else if(resume&&open){resume.hidden=false;resume.innerHTML=`<b>In progress:</b> ${E(open.title)} · ${E(open.mode_label)} review`;const btn=document.createElement('button');btn.className='btn portal-mode-quiet';btn.textContent='Resume review';btn.onclick=()=>{location.hash='#scribbi/r/'+open.id;};resume.parentElement.querySelector('.portal-mode-actions')?.append(btn);}
- if(info.locked?.blocked&&foot)foot.textContent='Paused while an exam attempt is open';
+ const set=(id,value)=>{const el=document.getElementById(id);if(el&&value!=null&&value!=='')el.textContent=value;};
+ set('dkScribbiSigned',String(st.rounds||0));set('dkScribbiAvg',st.average!=null?String(st.average):'–');set('dkScribbiCatch',st.catch_rate!=null?st.catch_rate+'%':'–');
+ if(info.locked?.blocked){if(foot)foot.textContent='Paused while an exam attempt is open';return;}
+ const mascot=window.pcmScribbi?.mascot?.('happy','')||'';
+ const items=(info.open_visits||[]).slice(0,2).map(v=>continueItem({feature:'scribbi',art:mascot,title:`Your visit with ${String(v.patient_name||'your patient').split(/\s+/)[0]}`,detail:'Still open. Scribbi writes the note when you finish.',action:'Back to the room',href:'#/'+v.id}))
+  .concat((info.recent||[]).filter(r=>r.status==='reviewing').slice(0,2).map(r=>continueItem({feature:'scribbi',art:mascot,title:r.title||'Scribbi review',detail:`${r.mode_label||'Scribbi'} review in progress`,action:'Resume review',href:'#scribbi/r/'+r.id})));
+ const list=document.getElementById('dkContinueList'),section=document.getElementById('dkContinue');
+ if(!list||!section||!items.length)return;
+ list.insertAdjacentHTML('beforeend',items.join(''));section.hidden=false;
+ list.querySelectorAll('[data-href]').forEach(b=>b.onclick=()=>{location.hash=b.dataset.href;});
 }
+// How Scribbi scores a review (pcmcse/scribbi/review.py is the authority).
+function scribbiScoring(){return `<section class="portal-card dk-scribbi-scoring"><h2>Scribbi · your review of its draft</h2><p>Scribbi plants its mistakes, so it holds the answer key for every draft.</p><ul>
+ <li><b>Each planted mistake is one item, and so is the hands-on finding</b> (the structural exam Scribbi couldn't feel).</li>
+ <li><b>Fixed:</b> the mistake is gone and the right information is there, for full credit. <b>Caught:</b> the mistake is gone but the right information is missing, for half. <b>Missed:</b> none.</li>
+ <li><b>Breaking what was right costs half an item:</b> removing or changing a correct line, or adding an exam, history or drug the visit doesn't support.</li>
+ <li><b>Hints</b> in Coached reviews cost 5 points each.</li>
+ <li><b>Safe to sign</b> only when no mistake that could change care was missed and nothing unsupported was added. Three stars need 90 or more and a safe note; two need 70; one needs 40.</li>
+</ul></section>`;}
 async function render(kind,ctx){
  restoreVoicePanel();context=ctx;const token=++generation;nav(kind);
  ctx.view.innerHTML='<div class="portal-workspace"><p class="portal-loading" role="status">Opening your workspace…</p></div>';
@@ -101,8 +151,8 @@ async function render(kind,ctx){
  if(data.error){ctx.view.innerHTML=`<div class="portal-workspace"><section class="portal-side-card"><h1>Your workspace could not refresh</h1><p>${E(data.message||'Reconnect and try again. Saved attempts have not been removed.')}</p><button class="btn primary" id="portalRetry">Try again</button></section></div>`;$('#portalRetry').onclick=()=>render(kind,ctx);return;}
  ctx.onData(data);
  if(kind==='home'){ctx.view.innerHTML=home(data);fillScribbi(token);}
- else if(kind==='progress'){ctx.view.innerHTML=`<div class="portal-workspace" id="progressWorkspace">${heading('Practice record','Your progress, in context.','Chat CSE attempts and Scribbi reviews. Original notes, assistance, retries, and feedback remain separate.')}<section class="portal-progress-intro"><b>${completedCount(data)} completed attempt${completedCount(data)===1?'':'s'}</b><span>Use a previous attempt to review evidence or practice a repair. ${(n=>n?n===1?'Showing your one attempt.':`Showing the ${n} most recent attempts.`:'Finish a Chat CSE encounter and it will appear here.')(Math.min((data.sessions||[]).length,40))}</span></section><div class="disclosure open" id="extraPanel" data-open="past">${ctx.past()}</div></div>`;ctx.wirePast();window.pcmScribbi?.progressPanel?.(document.getElementById('progressWorkspace'));}
- else if(kind==='scoring')ctx.view.innerHTML=`<div class="portal-workspace portal-reading">${ctx.scoring()}</div>`;
+ else if(kind==='progress'||kind==='scores'){ctx.view.innerHTML=`<div class="portal-workspace" id="progressWorkspace">${heading('Scores','Your scores, in context.','Chat CSE attempts and Scribbi reviews. Original notes, assistance, retries and feedback stay separate.')}<section class="portal-progress-intro"><b>${completedCount(data)} completed attempt${completedCount(data)===1?'':'s'}</b><span>Use a previous attempt to review evidence or practice a repair. ${(n=>n?n===1?'Showing your one attempt.':`Showing the ${n} most recent attempts.`:'Finish a Chat CSE encounter and it will appear here.')(Math.min((data.sessions||[]).length,40))}</span></section><div class="disclosure open" id="extraPanel" data-open="past">${ctx.past()}</div></div>`;ctx.wirePast();window.pcmScribbi?.progressPanel?.(document.getElementById('progressWorkspace'));}
+ else if(kind==='scoring')ctx.view.innerHTML=`<div class="portal-workspace portal-reading dk-scoring">${heading('Scores','How scoring works.','Chat CSE grades your SOAP note. Scribbi grades your review of its draft.')}<div class="dk-score-label is-chat">Chat CSE · your SOAP note</div>${ctx.scoring()}<div class="dk-score-label is-scribbi">Scribbi · your review</div>${scribbiScoring()}</div>`;
  buttons(ctx.view);ctx.view.focus({preventScroll:true});
 }
 function restoreVoicePanel(){
@@ -134,7 +184,7 @@ function setupNavigation(){
  if(header){const measure=()=>document.documentElement.style.setProperty('--portal-header-height',header.getBoundingClientRect().height+'px');headerObserver?.disconnect();if(window.ResizeObserver){headerObserver=new ResizeObserver(measure);headerObserver.observe(header);}measure();}
 
  const skip=$('.skip-link');if(skip)skip.onclick=e=>{e.preventDefault();const view=$('#view');view?.focus({preventScroll:true});view?.scrollIntoView({block:'start',behavior:'instant'});};
- const bar=$('.workspace-nav');if(bar)bar.innerHTML=[['home','Home','home'],['practice','Chat CSE','chat'],['scribbi','Scribbi','scribbi'],['cases','Cases & print','cases'],['progress','Progress','progress'],['scoring','Scoring','scoring']].map(([key,label,art])=>`<button class="btn ghost sm" type="button" data-destination="${key}">${icon(art)}<span>${label}</span></button>`).join('');
+ const bar=$('.workspace-nav');if(bar)bar.innerHTML=TABS.map(([key,label,art])=>`<button class="btn ghost sm" type="button" data-destination="${key}">${icon(art)}<span>${label}</span></button>`).join('');
  document.querySelectorAll('[data-destination]').forEach(b=>b.onclick=()=>window.pcmNavigate?.(b.dataset.destination));
  // On a phone the destinations scroll in one row; fade only the edge that has more.
  if(bar){const fade=()=>{const more=bar.scrollWidth-bar.clientWidth;bar.dataset.fade=more<=2?'none':bar.scrollLeft<=2?'right':bar.scrollLeft>=more-2?'left':'both';};bar.addEventListener('scroll',fade,{passive:true});window.addEventListener('resize',fade);fade();}
