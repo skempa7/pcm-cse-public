@@ -103,7 +103,7 @@ async function chipByText(page,predicate){
  await page.waitForSelector('#sbHint');
  await page.click('#sbHint');
  await page.waitForFunction(()=>/Hint 1 of 3/.test(document.querySelector('.sb-coach')?.innerText||''));
- assert.equal((await page.locator('#sbHint .sb-pill').innerText()).trim(),'2');
+ assert.equal((await page.locator('#sbHintLeft').innerText()).trim(),'2');
  passed.push('Coached mode gives section hints and counts them down');
 
  // Phone layout: pane switch.

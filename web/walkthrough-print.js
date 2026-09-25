@@ -1,4 +1,4 @@
-import {buildPartnerSections, PRINT_EDITIONS} from './partner-print.js?v=136c87f6e7';
+import {buildPartnerSections, PRINT_EDITIONS} from './partner-print.js?v=f2f855ba0a';
 export {PRINT_EDITIONS};
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const assetURL=path=>new URL(path,import.meta.url).href;
@@ -9,7 +9,7 @@ export function showWalkthroughPreview({onPrint,onClose}){
  if(!previewContext)previewContext={title:document.title};document.title=activeRoot.dataset.documentTitle;
  let bar=document.getElementById('walkthroughPrintToolbar');
  if(!bar){bar=document.createElement('nav');bar.id='walkthroughPrintToolbar';bar.setAttribute('aria-label','Print preview controls');document.body.insertBefore(bar,activeRoot);}
- bar.innerHTML=`<div><b>${esc(PRINT_EDITIONS[window.pcmPrintReport.edition].label)}</b><span>${window.pcmPrintReport.pages} Letter sheets · ${PRINT_EDITIONS[window.pcmPrintReport.edition].paper==='portrait'?'portrait':window.pcmPrintReport.edition==='study'?'separate sections; answer key last':'read left column, then right'}</span></div><button type="button" id="pwNativePrint">Print / Save PDF</button><button type="button" id="pwClosePrint">Return to case</button>`;
+ bar.innerHTML=`<div><b>${esc(PRINT_EDITIONS[window.pcmPrintReport.edition].label)}</b><span>${window.pcmPrintReport.pages} page${window.pcmPrintReport.pages===1?'':'s'} · US Letter · ${PRINT_EDITIONS[window.pcmPrintReport.edition].paper==='portrait'?'portrait':window.pcmPrintReport.edition==='study'?'answer key last':'landscape; read the left column, then the right'}</span></div><button type="button" id="pwNativePrint">Print / Save PDF</button><button type="button" id="pwClosePrint">Close preview</button>`;
  bar.querySelector('#pwNativePrint').onclick=onPrint;bar.querySelector('#pwClosePrint').onclick=onClose;
  activeRoot.setAttribute('aria-hidden','false');activeRoot.setAttribute('aria-label',PRINT_EDITIONS[window.pcmPrintReport.edition].label+' preview');
  document.body.setAttribute('data-walkthrough-preview','true');document.body.setAttribute('data-walkthrough-print','approved');
@@ -19,7 +19,7 @@ export function showWalkthroughPreview({onPrint,onClose}){
 async function loadStyle(){
  if(stylePromise)return stylePromise;
  if(document.getElementById('walkthroughPrintCSS')?.sheet)return;
- stylePromise=new Promise((resolve,reject)=>{const link=document.createElement('link');link.id='walkthroughPrintCSS';link.rel='stylesheet';link.href=assetURL('walkthrough-print.css?v=0893d1f366');link.onload=resolve;link.onerror=()=>{link.remove();reject(Error('The print layout could not load. Please reconnect and try again.'));};document.head.append(link);});
+ stylePromise=new Promise((resolve,reject)=>{const link=document.createElement('link');link.id='walkthroughPrintCSS';link.rel='stylesheet';link.href=assetURL('walkthrough-print.css?v=939a1d4d8a');link.onload=resolve;link.onerror=()=>{link.remove();reject(Error('The print layout could not load. Please reconnect and try again.'));};document.head.append(link);});
  try{await stylePromise;}catch(error){stylePromise=null;throw error;}
 }
 function makePage(root,l,title,kind,paper='landscape'){

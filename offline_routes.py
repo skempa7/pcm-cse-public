@@ -32,16 +32,17 @@ class Handler:
                 pending = teaching.blockers()
                 if p == '/api/teaching/status':
                     return self._json({'requires_assistance': bool(pending), 'attempts': pending})
-                if pending:
-                    return self._json({'error': 'Written solutions change active independent or exam rehearsal attempts to assisted practice before answers are shown. Deadlines and work are preserved.', 'requires_assistance': True, 'attempts': pending}, 409)
+                # The list of worked examples shows no answers, so it stays open during an unassisted encounter.
                 if p == '/api/teaching':
-                    return self._json({'cases': teaching.index(), 'progress': teaching.progress()})
+                    return self._json({'cases': teaching.index(), 'progress': teaching.progress(), 'requires_assistance': bool(pending), 'attempts': pending})
+                if pending:
+                    return self._json({'error': 'Worked examples show the answers, so opening one marks your open Independent or Exam rehearsal encounter as assisted practice. Your work and timer are kept.', 'requires_assistance': True, 'attempts': pending}, 409)
                 try:
                     cid = p.split('/')[3]
                     lesson = teaching.read(cid, parse_qs(url.query).get('variant', ['base'])[0])
-                    return self._json({'lesson': lesson}) if lesson else self._json({'error': 'Unknown variation'}, 404)
+                    return self._json({'lesson': lesson}) if lesson else self._json({'error': "That variation doesn't exist.", 'not_found': True}, 404)
                 except (ValueError, IndexError, FileNotFoundError):
-                    return self._json({'error': 'Walkthrough unavailable'}, 404)
+                    return self._json({'error': "We can't find that worked example.", 'not_found': True}, 404)
         if p == '/api/scribbi' or p.startswith('/api/scribbi/'):
             from pcmcse import scribbi
             with _LOCK:
@@ -58,7 +59,7 @@ class Handler:
             return self._json({'error': 'not found'}, 404)
         if p == '/api/bootstrap':
             settings = config.load_settings()
-            return self._json({'progress': learning.progress(), 'presets': config.PRESETS, 'settings': settings, 'cases': cases.index(reveal_titles=True), 'systems': cases.systems(), 'assumptions': config.assumption_manifest(settings), 'exam_catalog': physexam.catalog_for_ui(), 'sessions': db.list_sessions(), 'vindicate': {k: v['name'] for (k, v) in config.VINDICATE.items()}, 'motherr': {k: v['name'] for (k, v) in config.MOTHERR.items()}, 'provenance': config.MNEMONIC_PROVENANCE})
+            return self._json({'progress': learning.progress(), 'presets': config.PRESETS, 'settings': settings, 'cases': cases.index(reveal_titles=True), 'systems': cases.systems(), 'assumptions': config.assumption_manifest(settings, general=True), 'exam_catalog': physexam.catalog_for_ui(), 'sessions': db.list_sessions(), 'vindicate': {k: v['name'] for (k, v) in config.VINDICATE.items()}, 'motherr': {k: v['name'] for (k, v) in config.MOTHERR.items()}, 'provenance': config.MNEMONIC_PROVENANCE})
         if p.startswith('/api/session/'):
             parts = p.split('/')
             sid = parts[3]
@@ -156,7 +157,7 @@ class Handler:
                     if action == 'hint':
                         return self._json(scribbi.hint(rid, body.get('state')))
                     if action == 'sign':
-                        return self._json(scribbi.sign(rid, body.get('state')))
+                        return self._json(scribbi.sign(rid, body.get('state'), auto=body.get('auto') is True))
                     if action == 'delete':
                         return self._json(scribbi.delete(rid))
                     if action == 'begin':

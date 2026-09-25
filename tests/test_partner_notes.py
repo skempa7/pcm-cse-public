@@ -109,7 +109,7 @@ class PartnerNotesTests(unittest.TestCase):
             self.assertEqual(note['assessment'][2]['text'], name)
             self.assertTrue(note['assessment'][2]['fact_ids'])
             self.assertEqual(note['omitted_authored_alternatives'], [])
-            self.assertTrue(any('Course category review needed' in x['text'] for x in note['outside_note']))
+            self.assertTrue(any("don't span three different VINDICATE categories" in x['text'] for x in note['outside_note']))
         for cid in ['cardio-palpitations', 'renal-colicky-flank']:
             self.assertFalse(any(x['kind'] == 'authoring_gap' for x in example(cid)['outside_note']))
 

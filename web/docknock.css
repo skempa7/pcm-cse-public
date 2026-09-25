@@ -1,16 +1,22 @@
-/* DocKnock (2026-09-25): one app with two features. DocKnock's own pages (Home,
-   Scores) use a neutral navy palette so Chat CSE (green) and Scribbi (indigo)
-   stand level on them. Loaded after every other sheet. */
-:root{--dk-ink:#1f2640;--dk-ink-2:#4d5670;--dk-paper:#fffefb;--dk-soft:#f0eff4;--dk-line:#dcdae3;--dk-gold:#e3ad4c;
- --dk-chat:#155c4e;--dk-chat-soft:#e3f0ea;--dk-chat-ink:#143f37;--dk-scribbi:#4a3fd4;--dk-scribbi-soft:#ecebff;--dk-scribbi-ink:#2b2380}
-[data-theme=night]{--dk-ink:#eef0f7;--dk-ink-2:#b6bccd;--dk-paper:#1f2433;--dk-soft:#282e40;--dk-line:#434b61;--dk-gold:#e9c27a;
- --dk-chat:#8fd3b6;--dk-chat-soft:#1d352e;--dk-chat-ink:#d6efe4;--dk-scribbi:#b4acff;--dk-scribbi-soft:#29274f;--dk-scribbi-ink:#e4e1ff}
-body[data-tab=home],body[data-tab=scores]{--portal-ink:var(--dk-ink);--portal-muted:var(--dk-ink-2);--portal-paper:var(--dk-paper);--portal-soft:var(--dk-soft);--portal-line:var(--dk-line);--portal-accent:var(--dk-ink)}
-/* At night the shared top bar and DocKnock's own pages go neutral navy; Chat CSE keeps its green pages. */
-[data-theme=night] .topbar{background:#171c28}
-[data-theme=night] body[data-tab=home],[data-theme=night] body[data-tab=scores]{--bg:#12161f;background:#12161f}
+/* One look for the whole app (2026-09-25). The shared base is neutral: warm paper and
+   slate ink by day, charcoal by night. Chat CSE keeps green and Scribbi keeps violet,
+   matched in weight and used the same way (their tab, their feature bar, their cards).
+   The green-to-violet gradient belongs to the app itself (logo, top bar line). Gold,
+   from the logo's earpieces, is the shared color for "go" buttons. Loaded last. */
+:root{--dk-ink:#1f2433;--dk-ink-2:#4d5466;--dk-paper:#fffefb;--dk-soft:#f0efea;--dk-line:#dcd9d1;--dk-gold:#e7b85a;--dk-gold-soft:#f3d38c;--dk-gold-ink:#2a2412;
+ --dk-chat:#1a7560;--dk-chat-soft:#e2f1ea;--dk-chat-ink:#103d33;
+ --dk-scribbi:#5549dc;--dk-scribbi-hover:#4337c9;--dk-scribbi-soft:#efedfe;--dk-scribbi-ink:#2a2280;--dk-on-scribbi:#fff;
+ --dk-brand:linear-gradient(90deg,#1a7560 0%,#2f6fb4 50%,#5549dc 100%)}
+[data-theme=night]{--dk-ink:#eceef5;--dk-ink-2:#b6bbca;--dk-paper:#1c2029;--dk-soft:#262b37;--dk-line:#3a4152;--dk-gold:#eec46f;--dk-gold-soft:#f1cf84;--dk-gold-ink:#2a2412;
+ --dk-chat:#7fd1b3;--dk-chat-soft:#1c3a31;--dk-chat-ink:#d4efe4;
+ --dk-scribbi:#a59dff;--dk-scribbi-hover:#c1bbff;--dk-scribbi-soft:#2c2a55;--dk-scribbi-ink:#e4e1ff;--dk-on-scribbi:#17153a;
+ --dk-brand:linear-gradient(90deg,#4fb896 0%,#5a8fe0 50%,#9b8cff 100%)}
+/* Each tab lends its own accent to the shared components on it. */
+body[data-tab=home],body[data-tab=scores]{--portal-accent:var(--dk-ink)}
+body[data-tab=scribbi]{--accent:var(--dk-scribbi);--accent-hover:var(--dk-scribbi-hover);--accent-soft:var(--dk-scribbi-soft);--accent-line:color-mix(in srgb,var(--dk-scribbi) 40%,transparent);--on-accent:var(--dk-on-scribbi);--portal-accent:var(--dk-scribbi)}
 
-/* Top bar: the DocKnock mark and four destinations, each lit in its own color. */
+/* Top bar: the app mark, its gradient signature line, and four destinations lit in their own colors. */
+.topbar::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--dk-brand);pointer-events:none}
 .topbar .brand-symbol{background:transparent!important;box-shadow:none!important;border-radius:10px}
 .workspace-nav .btn{font-size:13px}
 .workspace-nav .btn[aria-current=page]{background:var(--dk-soft);color:var(--dk-ink);box-shadow:inset 0 -2px 0 var(--dk-ink)}
@@ -39,7 +45,19 @@ body[data-tab=home],body[data-tab=scores]{--portal-ink:var(--dk-ink);--portal-mu
 .feature-bar.is-chat .fb-tab[aria-current=page]{color:var(--dk-chat-ink)}
 .fb-tab:focus-visible{outline:3px solid var(--dk-gold);outline-offset:2px}
 @media(max-width:800px){.fb-inner{padding:8px 14px;gap:8px}.fb-id small{display:none}.fb-tabs{margin-left:0;width:100%;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.fb-tabs::-webkit-scrollbar{display:none}.fb-tab{padding:6px 12px}}
-@media print{.feature-bar{display:none!important}}
+@media print{.feature-bar,.topbar::after{display:none!important}}
+
+/* Home's two feature cards: the same structure and weight, each in its own color. */
+.portal-mode{color:#fbfaf4;box-shadow:0 14px 34px #1f243318}
+.portal-mode.is-chat{background:linear-gradient(120deg,#0f4c3f 0%,#175f4f 55%,#1a7560 100%)}
+.portal-mode.is-scribbi{background:linear-gradient(120deg,#2e2690 0%,#4337c9 55%,#5a4ce0 100%);box-shadow:0 14px 34px #1f243318}
+[data-theme=night] .portal-mode.is-chat{background:linear-gradient(120deg,#0b362d 0%,#135c4b 62%,#1a735c 100%)}
+[data-theme=night] .portal-mode.is-scribbi{background:linear-gradient(120deg,#211b66 0%,#362ca2 62%,#4d40c8 100%)}
+.portal-mode .portal-kicker{color:#cdeee0}
+.portal-mode.is-scribbi .portal-kicker{color:#dcd8ff}
+/* Gold is the one "go" color, on both cards and in the Continue list. */
+.portal-primary,.portal-scribbi{background:var(--dk-gold-soft)!important;color:var(--dk-gold-ink)!important;border-color:var(--dk-gold-soft)!important;font-weight:750}
+.portal-primary:hover,.portal-scribbi:hover{background:#ffe2a4!important}
 
 /* Home: what's open, the two features side by side, then a scores snapshot. */
 .dk-home-stack{display:flex!important;flex-direction:column;gap:28px}
@@ -54,9 +72,6 @@ body[data-tab=home],body[data-tab=scores]{--portal-ink:var(--dk-ink);--portal-mu
 .dk-ci-text b{font-size:15px;color:var(--portal-ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .dk-ci-text span{font-size:12.5px;color:var(--portal-muted)}
 .dk-continue-item .dk-ci-go{margin:0!important;white-space:nowrap}
-.dk-continue-item.is-scribbi .dk-ci-go{background:var(--dk-scribbi)!important;color:#fff!important;border-color:var(--dk-scribbi)!important;font-weight:750}
-.dk-continue-item.is-scribbi .dk-ci-go:hover{filter:brightness(1.08)}
-[data-theme=night] .dk-continue-item.is-scribbi .dk-ci-go{color:#17153a!important}
 @media(max-width:640px){.dk-continue-item{grid-template-columns:38px minmax(0,1fr);gap:10px}.dk-ci-art,.dk-ci-art svg{width:38px;height:38px}.dk-continue-item .dk-ci-go{grid-column:1/-1;justify-self:start}}
 .dk-mode-links{display:flex;gap:6px 16px;flex-wrap:wrap;margin-top:12px}
 .dk-mode-links button{appearance:none;border:0;background:transparent;padding:2px 0;font:inherit;font-size:12.5px;font-weight:650;color:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
@@ -73,11 +88,132 @@ body[data-tab=home],body[data-tab=scores]{--portal-ink:var(--dk-ink);--portal-mu
 @media(max-width:1000px){.dk-snapshot-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:560px){.dk-snapshot-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
-/* Scores → How scoring works: each feature's rules, labeled in its color. */
-.dk-score-label{font-size:11px;font-weight:750;letter-spacing:.12em;text-transform:uppercase;margin:26px 0 10px}
-.dk-score-label.is-chat{color:var(--dk-chat)}
-.dk-score-label.is-scribbi{color:var(--dk-scribbi)}
+/* Scores > How scoring works: each feature's rules, labeled in its color. */
 .dk-scribbi-scoring{background:var(--portal-paper);border:1px solid var(--portal-line);border-radius:14px;padding:18px 22px}
 .dk-scribbi-scoring h2{font-size:19px;margin:0 0 6px;color:var(--portal-ink)}
 .dk-scribbi-scoring p{margin:0 0 10px;font-size:14px;color:var(--portal-muted)}
 .dk-scribbi-scoring ul{margin:0;padding-left:18px;display:grid;gap:8px;font-size:14px;color:var(--portal-ink)}
+
+/* Scores: Chat CSE encounters and Scribbi reviews as matching cards, then Reset progress below both. */
+#progressWorkspace>#extraPanel{margin:0}
+#progressWorkspace>#extraPanel>.disclosure-body,#progressWorkspace .sb-progress-card{background:var(--portal-paper);border:1px solid var(--portal-line);border-radius:16px;padding:20px 22px;box-shadow:none}
+#progressWorkspace .sb-progress-card{margin-top:18px}
+.past-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.past-head h2,#progressWorkspace .sb-progress-card h2{display:flex;align-items:center;gap:10px;margin:0;font-size:19px;color:var(--portal-ink)}
+.past-mark{width:32px;height:32px;border-radius:9px}
+#progressWorkspace .sb-progress-card .sb-section-head{align-items:center;margin-bottom:6px}
+#progressWorkspace .sb-progress-card .sb-empty{padding:0;margin:0;font-size:13px;color:var(--portal-muted)}
+#progressWorkspace .sb-progress-card h2>span{width:32px!important}
+.past-head .btn{border-radius:12px;min-height:38px;font-weight:650}
+.dk-reset{margin-top:28px}
+.dk-reset .progress-reset-tools{background:transparent;border:1px dashed var(--portal-line);border-radius:14px;padding:12px 18px}
+.dk-reset .progress-reset-tools[open]{background:var(--portal-paper);border-style:solid}
+.dk-reset .progress-reset-tools>summary{cursor:pointer;font-weight:700;color:var(--portal-ink)}
+
+/* The technique picture is always drawn on light paper; its hand and arrows take the feature's color. */
+.exam-demo-canvas{--demo-accent:#1a7560;--demo-accent-soft:#a8d9c6}
+body[data-tab=scribbi] .exam-demo-canvas{--demo-accent:#5549dc;--demo-accent-soft:#cdc8ff}
+
+/* Home cards: every line of text on the colored cards meets AA contrast. */
+.portal-mode .portal-kicker{color:#ffffffeb!important;font-size:11px}
+.portal-mode p{color:#fffffff2!important}
+.portal-mode .portal-mode-foot{color:#ffffffe6!important}
+.dk-mode-links button{color:#fff}
+.dk-pause{margin:0 0 10px;font-size:13px;line-height:1.5;color:#fff;background:#ffffff1f;border-radius:10px;padding:8px 12px;max-width:34em}
+
+/* Home: the score snapshot in two labeled groups, one per feature. */
+.dk-snapshot-groups{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.dk-snap-group h3{margin:0 0 8px;font-size:11px;font-weight:750;letter-spacing:.1em;text-transform:uppercase}
+.dk-snap-group.is-chat h3{color:var(--dk-chat)}
+.dk-snap-group.is-scribbi h3{color:var(--dk-scribbi)}
+.dk-snap-group .dk-snapshot-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:900px){.dk-snapshot-groups{grid-template-columns:1fr}}
+@media(max-width:560px){.dk-snap-group .dk-snapshot-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.dk-snapshot-grid>div{padding:10px}.dk-snapshot-grid b{font-size:20px}}
+#dkContinueMore{font-size:13px}
+
+/* Scores: the Chat CSE card's summary tiles match Scribbi's. */
+.past-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0 14px}
+.past-stats>div{background:var(--portal-soft);border:1px solid var(--portal-line);border-radius:14px;padding:12px 13px}
+.past-stats b{display:block;font-size:24px;letter-spacing:-.6px;color:var(--portal-ink)}
+.past-stats b small{font-size:13px;color:var(--portal-muted)}
+.past-stats span{font-size:11.5px;color:var(--portal-muted)}
+@media(max-width:640px){.past-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.attempt-status .badge+.badge{margin-left:6px}
+.progress-reset-tools[data-confirming]>.progress-reset-actions{display:none}
+.missing-encounter{max-width:640px}
+.missing-encounter h1{font-size:26px;margin:0 0 8px}
+
+/* Feature bar: Scribbi's entries are links within the page, labeled as such; phones fade the overflowing edge. */
+.fb-onpage{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dk-ink-2);align-self:center;margin-right:2px;white-space:nowrap}
+.fb-tab.fb-jump{border-radius:6px;text-decoration:underline;text-decoration-color:color-mix(in srgb,currentColor 35%,transparent);text-underline-offset:4px;padding:6px 10px}
+.fb-tab.fb-jump:hover{background:transparent;text-decoration-color:currentColor}
+.fb-tabs[data-fade=right]{mask-image:linear-gradient(90deg,#000 86%,transparent)}
+.fb-tabs[data-fade=left]{mask-image:linear-gradient(270deg,#000 86%,transparent)}
+.fb-tabs[data-fade=both]{mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+@media(max-width:800px){.fb-onpage{display:none}}
+
+/* In-page jumps land below the sticky top bar. */
+#sbStatsHead,#sbGuideHead,.sb-setup,.dk-score-part{scroll-margin-top:calc(var(--portal-header-height,64px) + 16px)}
+
+/* How scoring works: a two-part switch at the top, then each feature's guide. */
+.dk-score-switch{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}
+.dk-score-switch button{appearance:none;font:inherit;font-size:13.5px;font-weight:650;border-radius:999px;padding:8px 16px;cursor:pointer;background:var(--portal-paper);border:1px solid var(--portal-line);color:var(--portal-ink)}
+.dk-score-switch button.is-chat{box-shadow:inset 3px 0 0 var(--dk-chat)}
+.dk-score-switch button.is-scribbi{box-shadow:inset 3px 0 0 var(--dk-scribbi)}
+.dk-score-switch button:hover{border-color:var(--portal-ink)}
+.dk-score-part+.dk-score-part{margin-top:28px}
+.dk-score-part.is-scribbi .dk-scribbi-scoring{border-top:3px solid var(--dk-scribbi)}
+.dk-score-part.is-chat>.disclosure-body{border-top:3px solid var(--dk-chat)}
+
+/* Inside a live encounter the tabs step aside; one exit names what it leaves. */
+body[data-workspace=encounter]:is([data-phase=briefing],[data-phase=encounter],[data-phase=organize],[data-phase=note]) .workspace-nav{display:none!important}
+#btnHome{font-weight:650;border:1px solid var(--dk-line);border-radius:10px}
+#btnHome:hover{border-color:var(--dk-ink)}
+
+/* Phones: all four tabs fit at 320 px. */
+@media(max-width:400px){.workspace-nav .btn svg{display:none}.workspace-nav .btn{padding-left:9px;padding-right:9px}}
+
+/* Scribbi record: a visible heading over the per-type bars; unearned stars are outlined, not invisible. */
+.sb-typehead{margin:4px 0 8px;font-size:13px;font-weight:700;color:var(--sb-ink)}
+.sb-stars .off{color:var(--sb-muted)}
+.sb-progress-card .attempt-filter{margin:6px 0 0}
+
+/* Encounters: an open encounter is offered first, above the level and case pickers. */
+.lobby-resume{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 var(--sp-4,16px);padding:12px 16px;border-radius:14px;background:var(--accent-soft);border:1px solid var(--accent-line)}
+.lobby-resume[hidden]{display:none}
+.lobby-resume small{display:block;font-size:11px;font-weight:750;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.lobby-resume b{font-size:15px;color:var(--ink)}
+
+/* Scribbi fixes from the 2026-09-25 audit. */
+.sb-ring-num .sb-stars,.sb-ring-num .sb-stars span{display:inline}
+.sb-compare .was.is-still p{text-decoration:underline wavy var(--sb-missed) 1.5px;text-underline-offset:3px}
+.sb-chip.is-removed{opacity:1}
+.sb-chip.is-open{box-shadow:0 0 0 2px var(--sb-accent)}
+.sb-lower{align-items:start}
+.sb-pop{flex-wrap:wrap;max-width:calc(100vw - 24px)}
+@media(hover:none){.sb-pop kbd{display:none}}
+.sb-drafting{place-items:start center}
+.sb-drafting-card{position:sticky;top:38vh;margin-top:18vh}
+/* The watched visit: playback controls sit right under the video on narrower screens. */
+@media(max-width:1100px){.sv-main{display:contents}.sv-top{order:0}.sv-stage{order:1}.sv-controls{order:2}.sv-side{order:3}}
+/* Nothing shows through the cover before the visit starts. */
+.sv-stage:has(.sv-cover:not(.is-gone)) :is(.sv-standin,.sv-caption){visibility:hidden}
+@media(min-width:761px){.sv-pip{bottom:112px}}
+.sv-pip-step{min-height:2.7em}
+
+/* Phones: every room action is reachable; End encounter gets its own full-width row. */
+@media(max-width:640px){
+ .ew-bottom{flex-wrap:wrap!important;overflow-x:visible!important}
+ .ew-bottom-tools{flex-wrap:wrap!important;min-width:0;max-width:100%}
+ .ew-bottom #btnEnd{flex:1 1 100%;order:99}
+}
+
+/* Worked example: the section nav stays visible below the sticky top bar. */
+.reader-toc{top:var(--portal-header-height,64px)!important}
+.lesson-reader section{scroll-margin-top:calc(var(--portal-header-height,64px) + 72px)}
+
+/* Review bar: one row on wide screens; the case title gives way first. */
+@media(min-width:1000px){.sb-bar{flex-wrap:nowrap}.sb-who{flex:1 1 auto}.sb-meter,.sb-save,#sbHint,#sbSign{flex:none}}
+
+/* Phones: the exit reads "← Leave" so the top bar stays on one line. */
+@media(max-width:480px){#btnHome .lv-noun{display:none}}

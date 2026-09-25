@@ -1395,6 +1395,10 @@ def state_payload(s):
             "vitals": dict(s.case["station"]["vitals"]),
             "vitals_source": "Supplied doorway information",
             "hidden_label": s.case.get("hidden_label", "Station"),
+            # Results the medical assistant obtained before entry are on the chart at the door.
+            "supplied_results": [
+                {"label": r["label"], "value": r["value"]}
+                for r in s.case["station"].get("supplied_results", [])],
         }
     if row["phase"] in ("encounter", "organize", "note", "submitted"):
         payload["station_chart"] = {

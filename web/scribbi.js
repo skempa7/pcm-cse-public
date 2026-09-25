@@ -76,10 +76,10 @@ const STYLES=[
 const STYLE_ICON={watch:'eye',lead:'stethoscope',read:'book'};
 const styleOf=k=>STYLES.find(x=>x.key===k)||STYLES[0];
 const own=p=>p.source==='attempt'||p.source==='visit';
-function heroMeta(){const sel=homeSel;return (sel.style==='read'?'':sel.style==='lead'?'You lead · ':'About 10 minutes · ')+modeLabel(sel.mode)+' review';}
+function heroMeta(){const sel=homeSel;return (sel.style==='read'?'Straight to the draft · ':sel.style==='lead'?'You lead the visit · ':'5–12 minutes to watch · ')+modeLabel(sel.mode)+' level';}
 function visitResume(d){
  const v=(d.open_visits||[])[0];if(!v||d.locked?.blocked)return '';
- return `<div class="sb-resume sb-resume-visit"><div><b>Your visit with ${E(firstName(v.patient_name))} is still open</b><span>${E(v.title)} · Scribbi is waiting to write the note</span></div><button class="sb-btn sb-primary sb-sm" data-resume-visit="${E(v.id)}">Back to the room ${ic('arrow')}</button></div>`;
+ return `<div class="sb-resume sb-resume-visit"><div><b>Your visit with ${E(firstName(v.patient_name))} is still open</b><span>${E(v.title)} · Scribbi is waiting to write the note</span></div><button class="sb-btn sb-primary sb-sm" data-resume-visit="${E(v.id)}">Back to the visit ${ic('arrow')}</button></div>`;
 }
 const TYPE_ICON={fabricated_exam:'stethoscope',fabricated_history:'question',flipped:'flip',wrong_detail:'hash',misattributed:'people',dropped:'gap',hands_on:'hand',anchored_dx:'anchor',unsupported_dx:'ghost',allergy_conflict:'alert'};
 const BADGE_ICON={eagle_eye:'eye',clean_hands:'check',hands_on:'hand',safety_net:'shield',trust_but_verify:'seal',clinic_pace:'clock'};
@@ -137,35 +137,37 @@ async function renderHome(){
 function paintHome(){
  const d=HOME,s=d.stats||{},sel=homeSel;
  const unfinished=(d.recent||[]).find(r=>r.status==='reviewing');
- const lock=d.locked?.blocked?`<section class="sb-lock" role="alert">${mascot('oops')}<div><h2>Scribbi is paused while an exam attempt is open.</h2><p>Scribbi shows complete example visits and notes, which would reveal answers. Finish or leave your independent or exam rehearsal attempt${(d.locked.attempts||[]).length>1?'s':''} first, or convert ${(d.locked.attempts||[]).length>1?'them':'it'} to assisted practice. Your deadlines and work are kept.</p><div class="sb-hero-actions"><button class="sb-btn sb-primary" data-go="progress">Open Progress</button><button class="sb-btn" id="sbConvert">Convert to assisted practice</button></div></div></section>`:'';
+ // Name the encounter that pauses Scribbi and link straight to it.
+ const held=d.locked?.attempts||[],first=held[0],where=first?`${first.station||'Station'}, ${({briefing:'at the doorway',encounter:'in the room',organize:'organizing',note:'writing the note'})[first.phase]||'in progress'}`:'';
+ const lock=d.locked?.blocked?`<section class="sb-lock" role="alert">${mascot('oops')}<div><h2>Scribbi is paused while you have an unassisted encounter open.</h2><p>Scribbi shows complete visits and notes, which would give away answers. Submit your open Independent or Exam rehearsal encounter${held.length>1?'s':''}${where?` (${E(where)})`:''}, or switch ${held.length>1?'them':'it'} to assisted practice. Your timer and your work are kept either way.</p><div class="sb-hero-actions">${first?`<button class="sb-btn sb-primary" data-open-attempt="${E(first.id)}">Go to that encounter</button>`:''}<button class="sb-btn" id="sbConvert">Switch to assisted practice</button></div></div></section>`:'';
  const resume=unfinished&&!d.locked?.blocked?`<div class="sb-resume"><div><b>Pick up where you left off</b><span>${E(unfinished.title)} · ${E(unfinished.mode_label)} review, not yet signed</span></div><button class="sb-btn sb-primary sb-sm" data-open="${E(unfinished.id)}">Resume review ${ic('arrow')}</button></div>`:'';
  const systems=sortSystems(d.library.map(x=>x.system));
  const cards=patientsFor(sel.system);
  view().innerHTML=`<div class="sb-shell sb-home">
  <section class="sb-hero">
-  <div class="sb-hero-copy"><span class="sb-kicker">Scribbi · AI scribe review</span><h1>Scribbi writes the note.<br>You sign it.</h1><p>Watch a patient visit, or run it yourself, while Scribbi listens. Then Scribbi drafts the SOAP note. Some of it is wrong, and it never includes what you felt with your hands. Find the mistakes, fix them, then sign.</p>
+  <div class="sb-hero-copy"><span class="sb-kicker">Scribbi · AI scribe review</span><h1>Scribbi writes the note.<br>You sign it.</h1><p>Watch a patient visit, or lead it yourself, while Scribbi listens. Then Scribbi drafts the SOAP note. Some of it is wrong, and it never includes what you felt with your hands. Find the mistakes, fix them, then sign.</p>
    <div class="sb-hero-actions"><button class="sb-btn sb-bright" id="sbQuick" ${d.locked?.blocked?'disabled':''}>${ic(STYLE_ICON[sel.style]||'dice')} ${E(styleOf(sel.style).quick)}</button><span class="sb-hero-meta">${E(heroMeta())}</span></div></div>
-  <div class="sb-hero-art" aria-hidden="true"><div class="sb-mini-note"><b>Draft · Scribbi</b><p>Lungs: <span class="m-strike">clear to auscultation bilaterally</span> <span class="m-fix">not examined</span></p><p>ROS: <span class="m-strike">Denies</span> <span class="m-fix">Reports</span> fever and chills.</p><span class="m-add">Osteopathic: T10–L1 right paraspinal TTC.</span><span class="sb-mini-stamp">Reviewed ✓</span></div>${mascot('happy','is-bobbing is-listening')}</div>
+  <div class="sb-hero-art" aria-hidden="true"><div class="sb-mini-note"><b>Draft · Scribbi</b><p>Lungs: <span class="m-strike">clear to auscultation bilaterally</span> <span class="m-fix">not examined</span></p><p>ROS: <span class="m-strike">Denies</span> <span class="m-fix">Reports</span> fever and chills.</p><span class="m-add">Osteopathic: T10–L1 right paraspinal TTC.</span><span class="sb-mini-stamp">Signed ✓</span></div>${mascot('happy','is-bobbing is-listening')}</div>
  </section>
  ${lock}${visitResume(d)}${resume}
  <div class="sb-strip">
-  <div class="sb-step"><span class="sb-step-num">1</span><div><b>Scribbi listens to the visit</b><span>Watch it play out, or lead it yourself. Scribbi hears every word and drafts the note.</span></div></div>
-  <div class="sb-step"><span class="sb-step-num">2</span><div><b>You verify every line</b><span>Check each statement against the visit. Fix what's wrong, restore what's missing.</span></div></div>
-  <div class="sb-step is-feel"><span class="sb-step-num">${ic('hand')}</span><div><b>Scribbi can't feel</b><span>Palpatory findings never reach the draft. Your structural exam is yours to add.</span></div></div>
+  <div class="sb-step"><span class="sb-step-num">1</span><div><b>Scribbi listens and drafts</b><span>Watch the visit, lead it yourself, or go straight to the draft. Scribbi hears every word.</span></div></div>
+  <div class="sb-step is-feel"><span class="sb-step-num">2</span><div><b>You check every statement</b><span>Fix what's wrong and add what's missing, including your structural findings: Scribbi can't feel.</span></div></div>
+  <div class="sb-step"><span class="sb-step-num">3</span><div><b>You sign</b><span>See what you caught, what you missed, and why it matters.</span></div></div>
  </div>
  <section class="sb-setup" aria-label="Set up a review">
-  <div><div class="sb-section-head"><h2>How do you want the visit?</h2><span>Scribbi listens either way</span></div>
+  <div><div class="sb-section-head"><h2>How do you want the visit?</h2><span>Scribbi drafts from the same visit either way</span></div>
    <div class="sb-modes sb-styles" role="radiogroup" aria-label="Visit">${STYLES.map(x=>`<button class="sb-mode" role="radio" aria-checked="${x.key===sel.style}" data-style="${x.key}"><span class="sb-mode-check">${ic('check')}</span><span class="sb-mode-top"><span class="sb-mode-icon">${ic(STYLE_ICON[x.key])}</span><b>${E(x.label)}</b></span><span class="sb-mode-tag">${E(x.tag)}</span><p>${E(x.detail)}</p></button>`).join('')}</div></div>
-  <div><div class="sb-section-head"><h2>Choose your review</h2><span>You can switch any time</span></div>
-   <div class="sb-modes" role="radiogroup" aria-label="Review mode">${d.modes.map(m=>`<button class="sb-mode" role="radio" aria-checked="${m.key===sel.mode}" data-mode="${m.key}"><span class="sb-mode-check">${ic('check')}</span><span class="sb-mode-top"><span class="sb-mode-icon">${ic(MODE_ICON[m.key])}</span><b>${E(m.label)}</b></span><span class="sb-mode-tag">${E(m.tagline)}</span><p>${E(m.detail)}</p></button>`).join('')}</div>
-   <label class="sb-timer-toggle" id="sbTimerRow" ${sel.mode==='solo'?'':'hidden'}><input class="sb-switch" type="checkbox" id="sbTimed" ${sel.timed?'checked':''}> Add a five-minute clock to this review</label></div>
-  <div><div class="sb-section-head"><h2>Choose a patient</h2><span>${presentations().length} patients · ${d.library.length} demonstrated visits</span></div>
+  <div><div class="sb-section-head"><h2>Choose your level</h2><span>Pick a level for each review</span></div>
+   <div class="sb-modes" role="radiogroup" aria-label="Review level">${d.modes.map(m=>`<button class="sb-mode" role="radio" aria-checked="${m.key===sel.mode}" data-mode="${m.key}"><span class="sb-mode-check">${ic('check')}</span><span class="sb-mode-top"><span class="sb-mode-icon">${ic(MODE_ICON[m.key])}</span><b>${E(m.label)}</b></span><span class="sb-mode-tag">${E(m.tagline)}</span><p>${E(m.detail)}</p></button>`).join('')}</div>
+   <label class="sb-timer-toggle" id="sbTimerRow" ${sel.mode==='solo'?'':'hidden'}><input class="sb-switch" type="checkbox" id="sbTimed" ${sel.timed?'checked':''}> Add a 5-minute clock</label></div>
+  <div><div class="sb-section-head"><h2>Choose a patient</h2><span>${presentations().length} cases · ${d.library.length} visits</span></div>
    <div class="sb-systems" role="group" aria-label="Filter by system"><button class="sb-system is-all" aria-pressed="${!sel.system}" data-system="">All systems</button>${systems.map(x=>`<button class="sb-system" aria-pressed="${sel.system===x}" data-system="${E(x)}">${art(x)}<span>${E(x)}</span></button>`).join('')}</div>
    <div class="sb-patients" role="radiogroup" aria-label="Patient">${patientCard(null)}${cards.map(patientCard).join('')}</div></div>
   <div class="sb-start-bar"><p>${startSummary()}</p><button class="sb-btn sb-primary" id="sbStart" ${d.locked?.blocked?'disabled':''}>${E(styleOf(sel.style).start)} ${ic('arrow')}</button></div>
  </section>
  <div class="sb-lower">
-  <section class="sb-card" aria-labelledby="sbStatsHead"><div class="sb-section-head"><h2 id="sbStatsHead">Your Scribbi record</h2><span>${s.rounds?plural(s.rounds,'signed note'):'No signed notes yet'}</span></div>${statsHtml(s)}<div class="sb-section-head" style="margin-top:18px"><h2 style="font-size:16px">Recent reviews</h2></div>${recentHtml(d.recent)}</section>
+  <section class="sb-card" aria-labelledby="sbStatsHead"><div class="sb-section-head"><h2 id="sbStatsHead">Your Scribbi record</h2>${s.rounds?'':'<span>No signed notes yet</span>'}</div>${statsHtml(s)}<div class="sb-section-head" style="margin-top:18px"><h2 style="font-size:16px">Recent reviews</h2></div>${recentHtml(d.recent)}</section>
   <div style="display:grid;gap:18px;align-content:start">
    <section class="sb-card" aria-labelledby="sbGuideHead"><div class="sb-section-head"><h2 id="sbGuideHead">Field guide: what scribes get wrong</h2></div><div class="sb-guide">${d.types.map(t=>`<details><summary><span class="sb-type-icon">${ic(TYPE_ICON[t.type])}</span><span>${E(t.label)}<small>${E(t.short)}</small></span></summary><dl><div><dt>Why it happens</dt><dd>${E(t.why)}</dd></div><div><dt>Why it matters</dt><dd>${E(t.risk)}</dd></div><div><dt>How to fix it</dt><dd>${E(t.fix)}</dd></div><div><dt>Habit</dt><dd>${E(t.habit)}</dd></div></dl></details>`).join('')}</div></section>
    <section class="sb-card" aria-labelledby="sbWhyHead"><div class="sb-section-head"><h2 id="sbWhyHead">Why this matters</h2></div><div class="sb-research">${d.research.map(r=>`<div class="sb-fact"><b>${E(r.stat)}</b><p>${E(r.text)}</p><a href="https://doi.org/${E(r.doi)}" target="_blank" rel="noopener noreferrer">${E(r.cite)}</a></div>`).join('')}</div></section>
@@ -186,12 +188,12 @@ function selectedCase(){return presentations().find(p=>p.case_id===homeSel.patie
 function patientCard(p){
  const sel=homeSel.patient;
  if(!p)return `<button class="sb-patient sb-random" role="radio" aria-checked="${!sel}" data-patient=""><span class="sb-patient-art">${ic('dice')}</span><b>Surprise me</b><small>${homeSel.system?E(homeSel.system):'Any system'} · any variation</small></button>`;
- return `<button class="sb-patient" role="radio" aria-checked="${sel===p.case_id}" data-patient="${E(p.case_id)}"><span class="sb-patient-art">${art(p.system)}</span><b>${E(p.title)}</b><small>${p.variants.length>1?plural(p.variants.length,'variation'):'1 visit'}${p.best!=null?`<span class="sb-best" title="Your best score">${ic('star')}${p.best}</span>`:''}</small></button>`;
+ return `<button class="sb-patient" role="radio" aria-checked="${sel===p.case_id}" data-patient="${E(p.case_id)}"><span class="sb-patient-art">${art(p.system)}</span><b>${E(p.title)}</b><small>${plural(p.variants.length,'variation')}${p.best!=null?`<span class="sb-best" title="Your best score">Best ${p.best}</span>`:''}</small></button>`;
 }
 function startSummary(){
  const sel=homeSel,c=selectedCase();
  const variant=c&&c.variants.length>1?`<label class="sb-variant">Variation <select id="sbVariant"><option value="random">Any (surprise me)</option>${c.variants.map(v=>`<option value="${E(v.id)}" ${sel.variant===v.id?'selected':''}>${E(v.label)}</option>`).join('')}</select></label>`:'';
- return `<span><b>${E(styleOf(sel.style).label)}</b> · <b>${E(modeLabel(sel.mode))}</b> review${sel.mode==='solo'&&sel.timed?' · 5-minute clock':''} · ${c?`<b>${E(c.title)}</b>`:`<b>Random patient</b>${sel.system?' · '+E(sel.system):''}`}</span>${variant}`;
+ return `<span><b>${E(styleOf(sel.style).label)}</b> · <b>${E(modeLabel(sel.mode))}</b> level${sel.mode==='solo'&&sel.timed?' · 5-minute clock':''} · ${c?`<b>${E(c.title)}</b>`:`<b>Random patient</b>${sel.system?' · '+E(sel.system):''}`}</span>${variant}`;
 }
 function wireHome(){
  const root=view();
@@ -211,6 +213,7 @@ function wireHome(){
  const start=$('#sbStart',root);if(start)start.onclick=()=>{const c=selectedCase();startWith(c?{case_id:c.case_id,variant_id:homeSel.variant||'random'}:{random:true,system:homeSel.system},start);};
  root.querySelectorAll('[data-resume-visit]').forEach(b=>b.onclick=()=>{location.hash='#/'+b.dataset.resumeVisit;});
  const convert=$('#sbConvert',root);if(convert)convert.onclick=convertAttempts;
+ root.querySelectorAll('[data-open-attempt]').forEach(b=>b.onclick=()=>{location.hash='#/'+b.dataset.openAttempt;});
 }
 function repaintSetup(){
  const root=view();
@@ -228,7 +231,7 @@ function savePrefs(){store.set('prefs',{mode:homeSel.mode,timed:!!homeSel.timed,
 function wireVariant(){const v=$('#sbVariant');if(v)v.onchange=()=>{homeSel.variant=v.value;};}
 async function convertAttempts(){
  const attempts=HOME?.locked?.attempts||[];if(!attempts.length)return;
- const ok=await confirmBox('Converting changes your open independent or exam rehearsal attempt'+(attempts.length>1?'s':'')+' to assisted practice. Your work and deadlines are kept, but the attempt will count as assisted.',{title:'Convert to assisted practice?',confirm:'Convert and open Scribbi',cancel:'Keep it unassisted'});
+ const ok=await confirmBox('Switching marks your open Independent or Exam rehearsal encounter'+(attempts.length>1?'s':'')+' as assisted practice in Scores. Your work and timer are kept.',{title:'Switch to assisted practice?',confirm:'Switch and open Scribbi',cancel:'Keep it unassisted'});
  if(!ok)return;
  const r=await call('/api/teaching/access',{confirm:true,attempt_ids:attempts.map(a=>a.id)});
  if(r.error){pop(r.error==='offline'?'The local engine is unavailable.':r.error);return;}
@@ -237,14 +240,14 @@ async function convertAttempts(){
 function statsHtml(s){
  if(!s.rounds)return `<p class="sb-empty">Sign your first note to start your record. Scribbi tracks how often you catch each kind of mistake, so you can see what slips past you.</p>`;
  const types=(s.by_type||[]).filter(t=>t.planted).sort((a,b)=>(a.fixed+a.caught)/a.planted-(b.fixed+b.caught)/b.planted);
- return `<div class="sb-stats-grid"><div class="sb-stat"><b>${s.rounds}</b><span>signed notes</span></div><div class="sb-stat"><b>${s.average??'–'}</b><span>average score</span></div><div class="sb-stat"><b>${s.catch_rate!=null?s.catch_rate+'%':'–'}</b><span>mistakes caught</span></div><div class="sb-stat"><b>${s.safe_streak||0}</b><span>safe signs in a row</span></div></div>
- ${types.length?`<div aria-label="Catch rate by mistake type">${types.map(t=>{const pct=Math.round(100*(t.fixed+t.caught)/t.planted);return `<div class="sb-typebar"><span>${E(t.label)}</span><span class="bar" role="img" aria-label="${pct}% caught"><i style="width:${pct}%"></i></span><em>${t.fixed+t.caught}/${t.planted}</em></div>`;}).join('')}</div>`:''}
+ return `<div class="sb-stats-grid"><div class="sb-stat"><b>${s.rounds}</b><span>${s.rounds===1?'signed note':'signed notes'}</span></div><div class="sb-stat"><b>${s.average??'–'}</b><span>average score, out of 100</span></div><div class="sb-stat"><b>${s.catch_rate!=null?s.catch_rate+'%':'–'}</b><span>mistakes caught</span></div><div class="sb-stat" title="Signed without missing a mistake that could change care, and without adding anything unsupported"><b>${s.safe_streak||0}</b><span>safe sign-offs in a row</span></div></div>
+ ${types.length?`<h3 class="sb-typehead">Mistakes caught, by type</h3><div aria-label="Catch rate by mistake type">${types.map(t=>{const pct=Math.round(100*(t.fixed+t.caught)/t.planted);return `<div class="sb-typebar"><span>${E(t.label)}</span><span class="bar" role="img" aria-label="${pct}% caught"><i style="width:${pct}%"></i></span><em>${t.fixed+t.caught}/${t.planted}</em></div>`;}).join('')}</div>`:''}
  ${(s.badges||[]).length?`<div class="sb-badge-row" style="margin-top:14px">${s.badges.map(b=>`<span class="sb-badge">${ic(BADGE_ICON[b.key]||'star')}${E(b.label)} <small>×${b.count}</small></span>`).join('')}</div>`:''}`;
 }
-function starsHtml(n){return `<span class="sb-stars" aria-label="${n} of 3 stars">${[0,1,2].map(i=>i<n?'★':'<span class="off">★</span>').join('')}</span>`;}
-function recentHtml(rows){
- if(!rows||!rows.length)return `<p class="sb-empty">Your reviews will appear here.</p>`;
- return `<div class="sb-recent">${rows.slice(0,6).map(r=>`<button class="sb-recent-row" data-open="${E(r.id)}"><span class="sb-score-dot ${r.status!=='signed'?'is-open':''}">${r.status==='signed'?E(r.score):ic('pen')}</span><span><b>${E(r.title)}</b><small>${r.source==='attempt'?'Your visit · ':''}${E(r.mode_label)} · ${r.status==='signed'?'signed '+when(r.signed_at):'not yet signed'}</small></span>${r.status==='signed'?starsHtml(r.stars||0):'<span class="sb-pill">Resume</span>'}</button>`).join('')}</div>`;
+function starsHtml(n){return `<span class="sb-stars" aria-label="${n} of 3 stars">${[0,1,2].map(i=>i<n?'★':'<span class="off">☆</span>').join('')}</span>`;}
+function recentHtml(rows,max=6,extra=''){
+ if((!rows||!rows.length)&&!extra)return `<p class="sb-empty">Your reviews will appear here.</p>`;
+ return `<div class="sb-recent">${extra}${(rows||[]).slice(0,max).map(r=>`<button class="sb-recent-row" data-state="${r.status==='signed'?'done':'open'}" data-open="${E(r.id)}"><span class="sb-score-dot ${r.status!=='signed'?'is-open':''}">${r.status==='signed'?E(r.score):ic('pen')}</span><span><b>${E(r.title)}</b><small>${own(r)?'Your visit · ':''}${E(r.mode_label)} · ${r.status==='signed'?'signed '+when(r.signed_at):'not yet signed'}</small></span>${r.status==='signed'?starsHtml(r.stars||0):'<span class="sb-pill">Resume</span>'}</button>`).join('')}</div>`;
 }
 function when(ms){if(!ms)return '';const d=new Date(ms),n=new Date();return d.toDateString()===n.toDateString()?d.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'}):d.toLocaleDateString(undefined,{month:'short',day:'numeric'});}
 
@@ -253,7 +256,7 @@ async function startRound(body,button){
  const r=await call('/api/scribbi/rounds',body);
  if(button&&button.isConnected){button.disabled=false;button.innerHTML=button.dataset.label;}
  if(r.error||!r.id){
-  if(r.requires_assistance){pop('Scribbi is paused while an exam attempt is open.');if(location.hash.startsWith('#scribbi'))renderHome();else location.hash='#scribbi';return;}
+  if(r.requires_assistance){pop('Scribbi is paused while an unassisted encounter is open.');if(location.hash.startsWith('#scribbi'))renderHome();else location.hash='#scribbi';return;}
   pop(r.error==='offline'?(r.message||'The local engine is unavailable.'):(r.error||'Scribbi could not start a review.'));return;
  }
  if(body.watch){location.hash='#scribbi/r/'+r.id+'/visit';return;}
@@ -281,7 +284,7 @@ async function finishVisit(session){
  if(!session?.id)return false;
  const prefs=store.get('visitmode.'+session.id)||store.get('prefs')||{};
  const mode=['learn','coached','solo'].includes(prefs.mode)?prefs.mode:'learn';
- const ok=await confirmBox('Scribbi will write the note from everything you asked and every examination you did. You can’t go back to the patient afterwards.',{title:'Finish the visit?',confirm:'Finish · Scribbi writes the note',cancel:'Keep going'});
+ const ok=await confirmBox('Scribbi will write the note from everything you asked and every examination you did, except what you palpated: add that yourself. You can’t go back to the patient afterwards.',{title:'Finish the visit?',confirm:'Finish · Scribbi writes the note',cancel:'Keep going'});
  if(!ok)return false;
  const r=await call('/api/scribbi/rounds',{attempt_id:session.id,mode,timed:mode==='solo'&&!!prefs.timed});
  if(r.too_short){pop(r.error||'Scribbi needs more of the visit to write a useful note. Keep going: cover more of the history, and do at least two examinations that produce findings.');return false;}
@@ -324,18 +327,19 @@ function chipState(id){return R.review.chips[id]||{status:'kept'};}
 
 function paintReview(){
  const p=R.round,v=p.visit;
+ document.title=['Review',v.title,'Scribbi','DocKnock'].filter(Boolean).join(' · ');
  const count=p.expect?.count;
  view().innerHTML=`<div class="sb-shell sb-round">
-  <header class="sb-bar" aria-label="Review controls">${mascot('happy','is-listening')}<div class="sb-who"><b>${E(v.patient?.name||'Patient')} · ${E(v.title)}</b><span>${own(p)?'<span class="sb-yours">Your visit</span> · ':''}${E(v.station_label||'')}${v.variant_label&&v.variant_id!=='base'?' · '+E(v.variant_label):''} · ${E(p.mode.label)} review</span></div>
+  <header class="sb-bar" aria-label="Review controls">${mascot('happy','is-listening')}<div class="sb-who"><b>${E(v.patient?.name||'Patient')} · ${E(v.title)}</b><span>${own(p)?'<span class="sb-yours">Your visit</span>':'Demonstrated visit'}${v.variant_label&&v.variant_id!=='base'?' · '+E(v.variant_label):''} · ${E(p.mode.label)} level</span></div>
    <div class="sb-meter" id="sbMeter">${meterHtml()}</div>${p.timed?`<span class="sb-clock" id="sbClock" role="timer" aria-label="Time remaining">--:--</span>`:''}
    <span class="sb-save" id="sbSave" role="status">Saved</span>
-   ${p.hints?`<button class="sb-btn sb-sm" id="sbHint" ${p.hints.left?'':'disabled'}>${ic('bulb')} Hint <span class="sb-pill" style="padding:1px 7px">${p.hints.left}</span></button>`:''}
+   ${p.hints?`<button class="sb-btn sb-sm" id="sbHint" ${p.hints.left?'':'disabled'} aria-label="Get a hint: ${p.hints.left} left, 5 points each" title="Each hint costs 5 points">${ic('bulb')} Hint · <span id="sbHintLeft">${p.hints.left}</span> left</button>`:''}
    <button class="sb-btn sb-primary" id="sbSign">${ic('seal')} Sign note</button></header>
   <div class="sb-pane-switch" role="tablist" aria-label="Show"><button class="sb-btn sb-sm" role="tab" data-pane="visit" aria-selected="false">${ic('chat')} The visit</button><button class="sb-btn sb-sm" role="tab" data-pane="draft" aria-selected="true">${ic('pen')} Scribbi's draft</button></div>
   <div class="sb-work" data-pane="${R.pane}">
    <aside class="sb-visit" aria-label="The visit">${visitHtml()}</aside>
    <main class="sb-draft"><article class="sb-paper" id="sbPaper" aria-label="Scribbi's draft note">
-    <div class="sb-paper-head"><div><h2>Progress note</h2><p>${E(v.patient?.name||'')} · Drafted by Scribbi from ${own(p)?'your encounter':'the visit'} · ${count!=null?`Scribbi made ${plural(count,'mistake')}`:'Unsigned'}</p></div><span class="sb-draft-stamp">${ic('pen')} Draft · not signed</span></div>
+    <div class="sb-paper-head"><div><h2>Progress note</h2><p>${E(v.patient?.name||'')} · Drafted by Scribbi from ${own(p)?'your visit':'the visit'} · ${count!=null?`Scribbi made ${plural(count,'mistake')}`:'Draft for your review'}</p></div><span class="sb-draft-stamp">${ic('pen')} Draft · not signed</span></div>
     <div id="sbDraft">${draftHtml()}</div>
     <div class="sb-sign-foot"><p class="sb-kbd-hint">Select a line to check it. Keys: <kbd>V</kbd> looks right · <kbd>E</kbd> edit · <kbd>R</kbd> remove${p.mode.sources?' · <kbd>F</kbd> find in visit':''}</p><span class="sb-sign-line">Awaiting your signature</span></div>
    </article>
@@ -380,14 +384,17 @@ function paintVisit(keepScroll){
  $$('.sb-tab').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.tab===R.tab)));
  body.setAttribute('aria-labelledby','sbTab-'+R.tab);body.innerHTML=visitBody();if(keepScroll)body.scrollTop=top;
 }
-function showSources(refs){
- if(!refs||!refs.length){showCoach({kind:'alarm',title:'Nothing in the visit supports this line.',message:'Scribbi wrote it, but no question, answer, exam, or chart entry backs it up. That is exactly what to look for.'});return;}
+function showSources(refs,section){
+ if(!refs||!refs.length){
+  if(section==='A'||section==='P'){showCoach({kind:'info',title:'Assessment and plan lines are reasoning, not quotes.',message:'Check this one against the findings in Subjective and Objective. Does the visit make it a reasonable choice?'});return;}
+  showCoach({kind:'alarm',title:'Scribbi couldn’t link this line to the visit.',message:'No single question, answer, exam or chart entry is tied to it. Search the visit to check it; if nothing supports it, that is exactly what to look for.'});return;
+ }
  const first=refs[0],v=R.round.visit;
  let tab='chart';if(!first.startsWith('chart:')){const t=v.turns.find(x=>x.id===first);tab=t&&t.kind==='talk'?'talk':'exam';}
  R.tab=tab;R.q='';const s=$('#sbSearch');if(s)s.value='';setPane('visit',true);paintVisit();
  const body=$('#sbVisitBody');const hits=refs.map(r=>body.querySelector(`[data-turn="${CSS.escape(r)}"]`)).filter(Boolean);
  hits.forEach(h=>h.classList.add('is-hit'));
- if(hits[0]){const top=hits[0].offsetTop-Math.max(0,(body.clientHeight-hits[0].offsetHeight)/2);body.scrollTo({top:Math.max(0,top),behavior:reduced()?'instant':'smooth'});}
+ if(hits[0]){if(body.scrollHeight>body.clientHeight+4){const top=hits[0].offsetTop-Math.max(0,(body.clientHeight-hits[0].offsetHeight)/2);body.scrollTo({top:Math.max(0,top),behavior:reduced()?'instant':'smooth'});}else hits[0].scrollIntoView({block:'center',behavior:reduced()?'instant':'smooth'});}
  setTimeout(()=>hits.forEach(h=>h.classList.remove('is-hit')),3200);
  say('Showing '+plural(hits.length,'matching moment')+' in the visit.');
 }
@@ -519,7 +526,7 @@ function closePop(refocus){
 function doAction(act,id){
  const info=chipById(id);if(!info)return;
  const st=chipState(id);
- if(act==='find'){closePop();showSources(info.ch.sources||[]);return;}
+ if(act==='find'){closePop();showSources(info.ch.sources||[],info.sec||info.ln?.section);return;}
  if(act==='edit'){closePop();R.editing=id;paintDraft();return;}
  closePop();
  if(act==='verify'){R.review.chips[id]={status:'kept',verified:true};say('Marked as checked.');}
@@ -641,13 +648,14 @@ function quoteHtml(q){
 function verdictFeedback(res,target){
  const sel=target.chip?`[data-chip="${CSS.escape(target.chip)}"]`:target.added?`[data-added="${CSS.escape(target.added)}"] .txt`:null;
  const el=sel&&$('#sbDraft '+sel);
- const kind={fixed:'fixed',caught:'fixed',false_alarm:'alarm',unsupported:'alarm',still_wrong:'wrong'}[res.verdict];
+ const kind={fixed:'fixed',caught:'wrong',false_alarm:'alarm',unsupported:'alarm',still_wrong:'wrong'}[res.verdict];
  if(el&&kind){el.classList.remove('flash-fixed','flash-alarm','flash-wrong');void el.offsetWidth;el.classList.add(kind==='fixed'?'flash-fixed':kind==='alarm'?'flash-alarm':'flash-wrong');}
  if(res.verdict==='neutral'){if(R.coach&&(R.coach.kind==='alarm'||R.coach.kind==='wrong')){const slot=$('#sbCoachSlot');if(slot)slot.innerHTML='';R.coach=null;}return;}
  showCoach({kind,title:res.title,message:res.message,evidence:res.evidence});
  const bar=$('.sb-bar .sb-mascot');if(bar){bar.classList.remove('mood-happy','mood-proud','mood-oops','mood-think');bar.classList.add(kind==='fixed'?'mood-proud':kind==='alarm'?'mood-oops':'mood-think');setTimeout(()=>{if(bar.isConnected){bar.classList.remove('mood-proud','mood-oops','mood-think');bar.classList.add('mood-happy');}},2200);}
  paintTypeChips();
- if(R.progress&&R.progress.found===R.progress.total&&(!R.round.expect?.hands_on||R.progress.hands_on&&R.progress.hands_on!=='missed')&&kind==='fixed'){
+ const pr=R.progress;
+ if(pr&&(pr.fixed??pr.found)===pr.total&&(!R.round.expect?.hands_on||pr.hands_on==='fixed')&&!pr.unsupported&&!pr.false_alarms&&kind==='fixed'){
   showCoach({kind:'fixed',title:'That’s everything I got wrong.',message:'Give the draft one last read, then sign your note.'});
  }
 }
@@ -658,7 +666,7 @@ async function askHint(){
  if(!R)return;
  if(r.error){pop(r.error==='offline'?'The local engine is unavailable.':r.error);if(b)b.disabled=!(R.round.hints&&R.round.hints.left);return;}
  R.round.hints.used=r.used;R.round.hints.left=r.left;
- if(b){b.disabled=!r.left;const n=b.querySelector('.sb-pill');if(n)n.textContent=r.left;}
+ if(b){b.disabled=!r.left;const n=b.querySelector('#sbHintLeft');if(n)n.textContent=r.left;b.setAttribute('aria-label',`Get a hint: ${r.left} left, 5 points each`);}
  showCoach({kind:'hint',title:r.hint.level?`Hint ${r.used} of ${r.used+r.left}`:'All found',message:r.hint.text});
  if(r.hint.section){const sec=$(`.sb-sec[data-sec="${r.hint.section}"]`);if(sec){setPane('draft');sec.classList.remove('is-hinted');void sec.offsetWidth;sec.classList.add('is-hinted');scrollUnderBars(sec);setTimeout(()=>sec.classList.remove('is-hinted'),4500);}}
 }
@@ -673,7 +681,7 @@ function scrollUnderBars(el){
 /* ---------- timer ---------- */
 function startClock(){
  const p=R.round;if(!p.timed||!p.deadline)return;
- const el=$('#sbClock'),tick=()=>{if(!R){return;}const left=p.deadline-clockNow();if(el){el.textContent=mmss(left);el.classList.toggle('is-low',left<60000);}
+ const el=$('#sbClock'),tick=()=>{if(!R){return;}const left=p.deadline-clockNow();if(el){el.textContent=mmss(left)+' left';el.classList.toggle('is-low',left<60000);}
   if(left<=0&&!R.autoSigned){R.autoSigned=true;clearInterval(R.timer);signNote(true);}};
  tick();R.timer=setInterval(tick,250);
 }
@@ -701,12 +709,13 @@ async function signNote(auto){
  if(!auto){
   const c=Object.values(R.review.chips);const edits=c.filter(x=>x.status==='edited').length,removed=c.filter(x=>x.status==='removed').length,added=R.review.added.length,checked=c.filter(x=>x.verified).length,total=allChips().length;
   const found=R.progress&&R.round.mode.instant_feedback?` You've found ${R.progress.found} of ${R.progress.total}.`:'';
-  const msg=`You edited ${plural(edits,'line')}, removed ${removed}, added ${added}, and marked ${checked} of ${total} as checked.${found} Once signed, the note is final and Scribbi shows you what it got wrong.`;
+  const structural=R.round.expect?.hands_on&&!(R.review.added||[]).some(a=>a.section==='O'&&/osteopath|paraspinal|tissue texture|\bT\d|\bL\d|\bC\d/i.test(a.text))?' Your structural findings aren’t in the note yet.':'';
+  const msg=`You edited ${plural(edits,'line')}, removed ${removed} and added ${added}.${found}${structural} Once signed, the note is final and you’ll see what you caught, missed and changed.`;
   if(!await confirmBox(msg,{title:'Sign this note?',confirm:'Sign note',cancel:'Keep reviewing'}))return;
  }
  R.signing=true;const btn=$('#sbSign');if(btn){btn.disabled=true;btn.textContent='Signing…';}
  await R.saveChain;
- const id=R.round.id,res=await call(`/api/scribbi/rounds/${id}/sign`,{state:R.review});
+ const id=R.round.id,res=await call(`/api/scribbi/rounds/${id}/sign`,{state:R.review,auto:!!auto});
  if(!R||R.round.id!==id)return;
  if(res.error||res.status!=='signed'){R.signing=false;if(btn){btn.disabled=false;btn.innerHTML=ic('seal')+' Sign note';}pop(res.error==='offline'?'The local engine is unavailable. Your review is kept in this browser.':(res.error||'The note could not be signed.'));return;}
  store.del('round.'+id);
@@ -726,12 +735,13 @@ function paintDebrief(p,animate){
  const handsMissing=(r.items||[]).some(i=>i.type==='hands_on'&&i.verdict==='missed');
  const headline=unsafe?(missedN?`${plural(missedN,'mistake')} would reach the chart${handsMissing?', and your structural findings would not':''}.`:'Something unsupported would reach the chart.'):(r.score>=90?'Clean note. Safe to sign.':missedN?`Safe to sign, but ${plural(missedN,'mistake')} slipped through.`:handsMissing?'Safe to sign, but your hands-on findings are missing.':'Safe to sign, with room to sharpen.');
  const mood=unsafe?'oops':r.score>=90?'proud':'happy';
- const summary=c.planted?`Scribbi planted ${plural(c.planted,'mistake')}. You fixed ${c.fixed}${c.caught?`, caught ${c.caught} without fixing ${c.caught===1?'it':'them'}`:''}${c.missed?`, and missed ${c.missed}`:''}.`:'This draft had no planted mistakes.';
+ const summary=c.planted?`Scribbi made ${plural(c.planted,'mistake')}. You fixed ${c.fixed}${c.caught?`, caught ${c.caught} without fixing ${c.caught===1?'it':'them'}`:''}${c.missed?`, and missed ${c.missed}`:''}.`:'Scribbi made no mistakes in this draft.';
  const items=[...(r.items||[])].sort((a,b)=>({missed:0,caught:1,fixed:2}[a.verdict]-{missed:0,caught:1,fixed:2}[b.verdict]));
  const hands=(r.items||[]).find(i=>i.type==='hands_on');
+ document.title=['Debrief',p.visit?.title,'Scribbi','DocKnock'].filter(Boolean).join(' · ');
  view().innerHTML=`<div class="sb-shell sb-debrief">
  <section class="sb-result ${unsafe?'is-unsafe':''}">${mascot(mood,'is-bobbing')}<div><span class="sb-kicker">Signed note · ${E(name)} · ${E(p.mode.label)}</span><h1>${E(headline)}</h1><p>${E(summary)}${hands?(hands.verdict==='fixed'?' You added the structural findings Scribbi couldn’t feel.':' The structural findings Scribbi couldn’t feel are still missing.'):''}</p>
-  <div class="sb-result-pills"><span class="sb-pill">${ic('target')} ${c.fixed+c.caught}/${c.planted} found</span>${hands?`<span class="sb-pill">${ic('hand')} Hands-on ${hands.verdict==='fixed'?'added':hands.verdict==='caught'?'partly added':'missing'}</span>`:''}<span class="sb-pill">${ic('alert')} ${plural(c.false_alarms||0,'false alarm')}</span>${c.unsupported?`<span class="sb-pill">${ic('ghost')} ${c.unsupported} unsupported</span>`:''}<span class="sb-pill">${ic('clock')} ${mmss(r.elapsed_ms)}${r.timed_out?' · time ran out':''}</span>${r.hints_used?`<span class="sb-pill">${ic('bulb')} ${plural(r.hints_used,'hint')}</span>`:''}</div></div>
+  <div class="sb-result-pills"><span class="sb-pill">${ic('target')} ${c.planted?`${c.fixed+c.caught}/${c.planted} found`:'No planted mistakes'}</span>${hands?`<span class="sb-pill">${ic('hand')} Hands-on ${hands.verdict==='fixed'?'added':hands.verdict==='caught'?'partly added':'missing'}</span>`:''}<span class="sb-pill">${ic('alert')} ${plural(c.false_alarms||0,'false alarm')}</span>${c.unsupported?`<span class="sb-pill">${ic('ghost')} ${c.unsupported} unsupported</span>`:''}<span class="sb-pill">${ic('clock')} Review time ${mmss(r.elapsed_ms)}${r.timed_out?' · time ran out':''}</span>${r.hints_used?`<span class="sb-pill">${ic('bulb')} ${plural(r.hints_used,'hint')} · −${5*r.hints_used}</span>`:''}</div></div>
   <div class="sb-ring" role="img" aria-label="Score ${r.score} out of 100, ${r.stars} of 3 stars"><svg viewBox="0 0 120 120"><circle class="track" cx="60" cy="60" r="52"/><circle class="fill" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="${animate&&!reduced()?326.7:326.7*(1-r.score/100)}"/></svg><div class="sb-ring-num"><div><b id="sbScoreNum">${animate&&!reduced()?0:r.score}</b><span>score</span>${starsHtml(r.stars)}</div></div></div>
  </section>
  ${(r.badges||[]).length?`<div class="sb-badge-row" style="margin:0 0 18px">${r.badges.map(b=>`<span class="sb-badge" title="${E(b.text)}">${ic(BADGE_ICON[b.key]||'star')}${E(b.label)}</span>`).join('')}</div>`:''}
@@ -742,9 +752,9 @@ function paintDebrief(p,animate){
   ${!items.length&&!(r.false_alarms||[]).length?`<div class="sb-card"><b>Nothing to fix.</b><p class="sb-muted">This draft was clean. Trusting it after checking is the right call.</p></div>`:''}
  </div>
  <aside class="sb-side"><section class="sb-card"><div class="sb-section-head"><h2 style="font-size:16px">What next?</h2></div><div class="sb-next">
-  <button class="sb-btn sb-primary" data-next="again">${ic('dice')} Another draft of ${E(firstName(name))}</button>
+  <button class="sb-btn sb-primary" data-next="again">${ic('dice')} Review a new draft of ${E(firstName(name))}’s visit</button>
   <button class="sb-btn" data-next="new">${ic('arrow')} A new patient</button>
-  <button class="sb-btn" data-next="chatcse">${ic('chat')} Meet ${E(firstName(name))} in Chat CSE</button>
+  <button class="sb-btn" data-next="chatcse">${ic('chat')} Practice ${E(firstName(name))}’s visit in Chat CSE (Guided)</button>
   <button class="sb-btn sb-ghost" data-next="home">${ic('home')} Scribbi home</button></div></section>
   <details class="sb-final" ${items.length?'':'open'}><summary>Your signed note</summary><div class="sb-legend"><span><i style="background:var(--sb-fixed-soft)"></i>Fixed mistake</span><span><i style="background:var(--sb-missed-soft)"></i>Missed mistake</span><span><i style="background:var(--sb-caught-soft)"></i>Caught / false alarm</span><span><i style="background:var(--sb-added)"></i>You added</span></div>${finalNoteHtml(r.final_note)}</details>
  </aside></div></div>`;
@@ -770,10 +780,10 @@ function itemHtml(it,name){
  const where=[it.section_title,it.label].filter(Boolean).join(' · ');
  const yours=it.student_text?E(it.student_text):it.verdict==='missed'?(gap?'Not added':'Left as Scribbi wrote it'):(gap?'Not added':'Removed');
  return `<article class="sb-item v-${it.verdict}"><div class="sb-item-head"><span class="sb-type-icon">${ic(TYPE_ICON[it.type])}</span><div><b>${E(it.type_label)}</b><small>${E(where)}${it.severity==='high'?' · could change care':''}</small></div><span class="sb-verdict">${ic(vi)}${E(vl)}</span></div>
- <div class="sb-item-body"><div class="sb-compare"><div class="was ${gap?'is-gap':''}"><h4>${gap?(it.type==='hands_on'?'Scribbi couldn’t feel':'Scribbi left out'):'Scribbi wrote'}</h4><p>${E(gap?it.original:it.planted)}</p></div><div class="now ${it.verdict==='missed'?'is-none':''}"><h4>Your note</h4><p>${yours}</p></div></div>
+ <div class="sb-item-body"><div class="sb-compare"><div class="was ${gap?'is-gap':''} ${!gap&&it.verdict==='missed'?'is-still':''}"><h4>${gap?(it.type==='hands_on'?'Scribbi couldn’t feel':'Scribbi left out'):it.verdict==='missed'?'Still in your note':'Scribbi wrote'}</h4><p>${E(gap?it.original:it.planted)}</p></div><div class="now ${it.verdict==='missed'?'is-none':''}"><h4>Your note</h4><p>${yours}</p></div></div>
  ${it.correct&&!gap?`<div class="sb-evid"><h4>${E(it.correct_label||'What the visit supports')}</h4><div class="q">${E(it.correct)}</div></div>`:''}
  ${(it.evidence||[]).length?`<div class="sb-evid"><h4>In the visit</h4>${it.evidence.slice(0,3).map(q=>`<div class="q">${quoteBody(q,name)}</div>`).join('')}</div>`:''}
- <div class="sb-why"><div><h4>Why it happened</h4><p>${E(it.note)}</p></div><div><h4>Why it matters</h4><p>${E(it.risk)}</p></div><div class="sb-habit">${ic('bulb')}<span>${E(it.habit)}</span></div></div></div></article>`;
+ <div class="sb-why"><div><h4>What went wrong</h4><p>${E(it.note)}</p>${it.why?`<h4 style="margin-top:10px">Why scribes do this</h4><p>${E(it.why)}</p>`:''}</div><div><h4>Why it matters</h4><p>${E(it.risk)}</p></div><div class="sb-habit">${ic('bulb')}<span>${E(it.habit)}</span></div></div></div></article>`;
 }
 function finalNoteHtml(sections){
  return (sections||[]).map(sec=>`<div class="sb-sec"><div class="sb-sec-head"><span class="sb-sec-letter">${sec.key}</span><h3>${E(sec.title)}</h3></div>${sec.lines.map(ln=>{const ap=sec.key==='A'||sec.key==='P';const chips=ln.chips.map(ch=>{const v=ch.error?.verdict||'';const txt=ch.status==='edited'?ch.edited:ch.text;return `<span class="sb-fnote-chip ${ch.status==='removed'?'is-removed':''} ${v?'v-'+v:''}">${E(txt)}</span>`;}).join(' ');return `<div class="sb-line ${ap?'is-ap':''}"><span class="sb-label">${E(ap?ln.label+'.':ln.label)}</span><p class="sb-text">${chips}</p></div>`;}).join('')}${(sec.added||[]).map(a=>`<span class="sb-fnote-add">${E(a.text)}</span>`).join('')}</div>`).join('');
@@ -781,7 +791,9 @@ function finalNoteHtml(sections){
 async function nextAction(kind,p,btn){
  if(kind==='home'){location.hash='#scribbi';return;}
  if(kind==='again')return startRound(own(p)&&p.source_attempt_id?{attempt_id:p.source_attempt_id,mode:p.mode.key,timed:p.timed,again:true}:{case_id:p.case_id,variant_id:p.variant_id,mode:p.mode.key,timed:p.timed},btn);
- if(kind==='new')return startRound({random:true,mode:p.mode.key,timed:p.timed},btn);
+ // A new patient keeps the way this student likes to meet the visit: watch, lead or read.
+ const style=homeSel?.style||store.get('prefs')?.style||'read';
+ if(kind==='new'){if(style==='lead')return startLead({random:true},btn);return startRound({random:true,mode:p.mode.key,timed:p.timed,watch:style==='watch'},btn);}
  if(kind==='chatcse'){
   btn.disabled=true;
   const s=await call('/api/session',{case_id:p.case_id,variant_id:p.variant_id,learning_mode:'guided',interaction_mode:'type'});
@@ -827,10 +839,17 @@ async function progressPanel(container){
  if(!container)return;
  const d=await call('/api/scribbi');if(d.error||!container.isConnected)return;
  const box=document.createElement('section');box.className='sb-card sb-progress-card';box.setAttribute('aria-labelledby','sbProgHead');
- box.innerHTML=`<div class="sb-section-head"><h2 id="sbProgHead" style="display:flex;align-items:center;gap:10px"><span style="width:34px;display:inline-block">${mascot('happy')}</span>Scribbi reviews</h2><button class="sb-btn sb-sm" data-go-scribbi>Open Scribbi ${ic('arrow')}</button></div>${statsHtml(d.stats||{})}<div style="margin-top:12px">${recentHtml(d.recent)}</div>`;
+ // Scores lists every review, open visits included, with the same filters as Chat CSE.
+ const rows=d.recent||[],visits=d.open_visits||[];
+ const visitRows=visits.map(v=>`<button class="sb-recent-row" data-state="open" data-visit="${E(v.id)}"><span class="sb-score-dot is-open">${ic('pen')}</span><span><b>${E(v.title||'Your visit')}</b><small>Your visit · still open · started ${when(v.created_at)}</small></span><span class="sb-pill">Back to the visit</span></button>`).join('');
+ const open=visits.length+rows.filter(r=>r.status!=='signed').length,signed=rows.filter(r=>r.status==='signed').length,all=open+signed;
+ const filters=all?`<div class="attempt-filter" role="group" aria-label="Show reviews">${[['all','All',all],['open','In progress',open],['done','Signed',signed]].map(([k,l,n])=>`<button class="btn sm ghost" type="button" data-review-filter="${k}" aria-pressed="${k==='all'}">${l} <span class="attempt-count">${n}</span></button>`).join('')}</div>`:'';
+ box.innerHTML=`<div class="sb-section-head"><h2 id="sbProgHead" style="display:flex;align-items:center;gap:10px"><span style="width:34px;display:inline-block">${mascot('happy')}</span>Scribbi reviews</h2><button class="sb-btn sb-sm" data-go-scribbi>Open Scribbi ${ic('arrow')}</button></div>${statsHtml(d.stats||{})}${filters}${all?`<div style="margin-top:12px">${recentHtml(rows,40,visitRows)}</div>`:''}`;
  container.appendChild(box);
  box.querySelector('[data-go-scribbi]').onclick=()=>{location.hash='#scribbi';};
  box.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>{location.hash='#scribbi/r/'+b.dataset.open;});
+ box.querySelectorAll('[data-visit]').forEach(b=>b.onclick=()=>{location.hash='#/'+b.dataset.visit;});
+ box.querySelectorAll('[data-review-filter]').forEach(b=>b.onclick=()=>{const k=b.dataset.reviewFilter;box.querySelectorAll('[data-review-filter]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));box.querySelectorAll('.sb-recent-row').forEach(r=>{r.hidden=k!=='all'&&r.dataset.state!==k;});});
 }
 async function summary(){const d=await call('/api/scribbi');return d.error?null:{stats:d.stats,recent:d.recent,locked:d.locked,open_visits:d.open_visits||[]};}
 window.pcmScribbi={render,startFor,launchCard,progressPanel,summary,mascot,finishVisit,kit:{ic,mascot,call,store,reduced,pop}};

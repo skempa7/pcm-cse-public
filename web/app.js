@@ -69,7 +69,7 @@ const LS = {
              catch(e){ return false; } }
 };
 
-function setTheme(theme){document.documentElement.dataset.theme=theme==='night'?'night':'day';LS.set('theme',document.documentElement.dataset.theme);const b=$('#themeToggle');if(b){b.innerHTML=(theme==='night'?'<svg class="theme-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg>':'<svg class="theme-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8.4 8.4 0 0 1 9.4 4a8.4 8.4 0 1 0 10.6 10.6z"/></svg>')+'<span class="theme-label">'+(theme==='night'?'Daylight':'Evening')+'</span>';b.setAttribute('aria-label',theme==='night'?'Use daylight appearance':'Use evening appearance');}}
+function setTheme(theme){document.documentElement.dataset.theme=theme==='night'?'night':'day';LS.set('theme',document.documentElement.dataset.theme);document.querySelector('meta[name=theme-color]')?.setAttribute('content',theme==='night'?'#161b26':'#fbfaf7');const b=$('#themeToggle');if(b){b.innerHTML=(theme==='night'?'<svg class="theme-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg>':'<svg class="theme-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8.4 8.4 0 0 1 9.4 4a8.4 8.4 0 1 0 10.6 10.6z"/></svg>')+'<span class="theme-label">'+(theme==='night'?'Daylight':'Evening')+'</span>';b.setAttribute('aria-label',theme==='night'?'Use daylight appearance':'Use evening appearance');}}
 setTheme(LS.get('theme')||'day');$('#themeToggle').onclick=()=>setTheme(document.documentElement.dataset.theme==='night'?'day':'night');
 
 function keepDraft(kind,sid,value){return LS.set('draft.'+kind+'.'+sid,{value,at:Date.now()});}
@@ -197,9 +197,9 @@ function stations() {
    never presented as something the engine scored. */
 const MODES = {
   guided:{key:'guided',name:'Guided encounter',icon:'☀',preset:'guided_untimed',time:'Untimed encounter and SOAP note',desc:'Build a repeatable approach with memory cues, demonstrations and immediate practice.',reveal:true,coach:true},
-  coached:{key:'coached',name:'Coached encounter',icon:'◐',preset:'coached_untimed',time:'Untimed encounter and SOAP note',desc:'Lead at your own pace, with targeted help whenever you need it. Assistance is tracked separately.',reveal:true,coach:true},
-  independent:{key:'independent',name:'Independent practice',icon:'◇',preset:'independent_extended',time:'30 min encounter → 5 min organize → 20 min note',desc:'Complete the encounter yourself with extended practice time, then reflect on the evidence-based feedback.',reveal:true,coach:false},
-  rehearsal:{key:'rehearsal',name:'Exam rehearsal',icon:'◆',preset:'course',time:'14 min encounter → 9 min note',desc:'Course timing, sealed case titles and no teaching help during the encounter or SOAP period.',reveal:false,coach:false}
+  coached:{key:'coached',name:'Coached encounter',icon:'◐',preset:'coached_untimed',time:'Untimed encounter and SOAP note',desc:'Lead at your own pace, with targeted help whenever you need it. Using a hint marks the encounter as assisted.',reveal:true,coach:true},
+  independent:{key:'independent',name:'Independent practice',icon:'◇',preset:'independent_extended',time:'30 min encounter → 5 min organize → 20 min note',desc:'Do the encounter yourself with extra time. While writing, you see only the chart and your scratchpad.',reveal:true,coach:false},
+  rehearsal:{key:'rehearsal',name:'Exam rehearsal',icon:'◆',preset:'course',time:'14 min encounter → 9 min note',desc:'Course timing and sealed case titles. No coach, and no notes while writing.',reveal:false,coach:false}
 };
 function normalizeMode(value){return value==='practice'||value==='drill'?'coached':(MODES[value]?value:'coached');}
 const DRILLS = {
@@ -207,7 +207,7 @@ const DRILLS = {
     goal:'Summarize what you heard back to the patient, with at least three items, and ask them to verify it.',
     measure:'ACIR item 5 and relationship item 14 (summary of at least three items).' },
   focused_exam: { key:'focused_exam', name:'Focused examination',
-    goal:'Cover the region the complaint points at, with the technique components named, before the clock runs out.',
+    goal:'Cover the region the complaint points at, with the technique components named.',
     measure:'the case checklist’s physical examination items and the examinations you left incomplete.' },
   safety_net: { key:'safety_net', name:'Safety-netting and closure',
     goal:'Close by saying what you will do, what the patient should do, and when you will see them again.',
@@ -228,12 +228,16 @@ function drillOf() {
 }
 
 /* ---------- one timer, many faces ---------- */
+let timeWarned='';
 function startTick(){ if (tick) clearInterval(tick); tick = setInterval(paintClock, 250); paintClock(); }
 function paintClock(){
   if (!S) { clockEl.classList.add('hidden'); return; }
-  if(!S.phase_ends_at){if(['briefing','submitted'].includes(S.phase)){clockEl.classList.add('hidden');return;}clockEl.classList.remove('hidden');clockDigits.textContent='Untimed';clockLabel.textContent=S.purpose==='scribbi'?'Scribbi visit':S.learning_mode==='guided'?'guided learning':'coached practice';clockEl.setAttribute('aria-label','Untimed '+clockLabel.textContent);clockEl.classList.remove('warn','crit');$$('[data-clock]').forEach(el=>el.textContent='Untimed');return;}
+  if(!S.phase_ends_at){if(['briefing','submitted'].includes(S.phase)){clockEl.classList.add('hidden');return;}clockEl.classList.remove('hidden');clockDigits.textContent='Untimed';clockLabel.textContent=S.purpose==='scribbi'?'Scribbi visit':S.learning_mode==='guided'?'Guided':'Coached';clockEl.setAttribute('aria-label','Untimed '+clockLabel.textContent);clockEl.classList.remove('warn','crit');$$('[data-clock]').forEach(el=>el.textContent='Untimed');return;}
   const left = S.phase_ends_at - now();
   clockEl.classList.remove('hidden');
+  const part={encounter:'the encounter',organize:'organizing',note:'your SOAP note'}[S.phase];
+  if(part&&left<=120000&&left>0&&timeWarned!==S.id+S.phase+'2'){timeWarned=S.id+S.phase+'2';toast('2 minutes left for '+part+'.');}
+  if(part&&left<=0&&timeWarned!==S.id+S.phase+'0'){timeWarned=S.id+S.phase+'0';toast(S.phase==='note'?"Time's up. Your note is being submitted.":"Time's up for "+part+'. Moving on.');}
   const txt = mmss(left);
   clockDigits.textContent = txt;
   clockLabel.textContent = { encounter:'encounter', organize:'organize', note:'note' }[S.phase] || 'remaining';
@@ -251,20 +255,36 @@ function paintClock(){
   if (left <= 0) { clearInterval(tick); tick = null; refresh(); }
 }
 function paintChip(){
-  const map = { briefing:['Doorway',''], encounter:['In the room','enc'],
-    organize:['Organization interval','org'], note:['SOAP note','note'],
-    submitted:['Debrief','done'] };
+  const map = { briefing:['At the doorway',''], encounter:['In the room','enc'],
+    organize:['Organizing','org'], note:['SOAP note','note'],
+    submitted:['Feedback','done'] };
   const pair = map[S.phase] || ['', ''];
   chipEl.className = 'phase-chip ' + pair[1]; chipEl.textContent = pair[0];
-  chipEl.classList.remove('hidden'); homeBtn.classList.remove('hidden');
-  // A Scribbi visit returns to Scribbi, where it waits to be finished.
-  homeBtn.textContent=S.purpose==='scribbi'?'Scribbi':'Home';
+  chipEl.classList.remove('hidden');
+  // While an encounter is live the tabs step aside and one exit names what it
+  // leaves; a Scribbi visit returns to Scribbi, where it waits to be finished.
+  // At the feedback the tabs come back and the exit is not needed.
+  homeBtn.classList.toggle('hidden',S.phase==='submitted');
+  const leaving=S.purpose==='scribbi'?'visit':'encounter';
+  homeBtn.innerHTML='<span aria-hidden="true">←</span> Leave<span class="lv-noun"> '+leaving+'</span>';homeBtn.setAttribute('aria-label','Leave '+leaving);
+  setEncounterTitle();
   if (brandSub) brandSub.textContent = stationTitle(S.case_id) + ' · ' + mode().name;
+}
+// The browser tab names the phase and case, and keeps an Exam rehearsal sealed.
+function setEncounterTitle(){
+  if(!S)return;
+  const sealed=S.learning_mode==='rehearsal'&&!S.assisted&&S.phase!=='submitted';
+  const phase={briefing:'Doorway',encounter:'In the room',organize:'Organizing',note:'SOAP note',submitted:'Feedback'}[S.phase]||'';
+  const name=sealed?'Exam rehearsal · '+stationTitle(S.case_id):(caseById(S.case_id)?.title||stationTitle(S.case_id));
+  document.title=[phase,name,S.purpose==='scribbi'?'Scribbi':'Chat CSE','DocKnock'].filter(Boolean).join(' · ');
 }
 function renderPhase(force){
   if (!S) return;
   if(S.purpose==='scribbi'&&!['briefing','encounter'].includes(S.phase)){handOffToScribbi(S.scribbi_round_id,true);return;}
   document.body.dataset.phase=S.phase;entryPending=null;
+  // Every encounter phase is a task page, whichever way it was opened; a late
+  // lobby callback must not leave the Chat CSE section bar in the room.
+  if(document.body.dataset.workspace!=='encounter'){document.body.dataset.workspace='encounter';window.pcmPortal?.nav(S.purpose==='scribbi'?'scribbi':'practice');}
   paintChip();
   if (S.phase !== lastPhase || force) {
     clearContextFeedback();
@@ -281,7 +301,9 @@ function renderPhase(force){
     const placed = document.activeElement
       && document.activeElement !== document.body
       && document.activeElement !== view;
-    if (!placed) { try { view.focus({ preventScroll:true }); } catch(e) { try { view.focus(); } catch(e2){} } }
+    // The note places its own cursor a frame later (Subjective, or where the
+    // student left off); focusing the view first would cancel that.
+    if (!placed && S.phase!=='note') { try { view.focus({ preventScroll:true }); } catch(e) { try { view.focus(); } catch(e2){} } }
   }
   startTick(); notifyPublicState();
   window.pcmLearningRender?.(S);
@@ -292,22 +314,36 @@ let routeEpoch=0;
 async function leaveForWorkspace(kind){
   const active=S&&S.phase!=='submitted'&&!(S.purpose==='scribbi'&&!['briefing','encounter'].includes(S.phase));
   if(active&&S.purpose==='scribbi'){
-    if(!await confirmChoice('Leave this visit? It stays open, and you can come back to it from Scribbi. Scribbi writes the note when you finish the visit.',{title:'Leave the visit?',confirm:'Leave for now',cancel:'Stay here'})){history.replaceState(null,'','#/'+S.id);return false;}
+    if(!await confirmChoice('It stays open. Come back to it from Scribbi or Home. Scribbi writes the note when you finish the visit.',{title:'Leave this visit?',confirm:'Leave for now',cancel:'Stay here'})){history.replaceState(null,'','#/'+S.id);return false;}
   }else if(active){
     const timed=!!S.phase_ends_at;
-    const message='Leave this attempt for '+({home:'Home',practice:'the case library',progress:'your scores',scores:'your scores',scoring:'the scoring guide',voice:'voice settings',session:'another attempt',scribbi:'Scribbi',cases:'case documents'}[kind]||'this workspace')+'? Your work will be saved and you can resume from Home or Progress.'+(timed?' The current timer keeps running; leaving does not add time.':' This attempt remains untimed.');
-    if(!await confirmChoice(message,{title:'Leave this attempt?',confirm:'Leave attempt',cancel:'Stay here'})){history.replaceState(null,'','#/'+S.id);return false;}
+    const where={home:'Home',practice:'Encounters',progress:'your scores',scores:'your scores',scoring:'How scoring works',session:'another encounter',scribbi:'Scribbi',cases:'Printable cases',learn:'Worked examples'}[kind];
+    const clock=S.phase==='briefing'&&!isUntimedAttempt()?" The encounter clock hasn't started; it starts when you enter the room.":timed?' The timer keeps running while you are away.':' It is untimed, so nothing is lost.';
+    const message=(where?'Leave this encounter for '+where+'? ':'')+'Your work is saved; resume it any time from Home or Scores.'+clock;
+    if(!await confirmChoice(message,{title:'Leave this encounter?',confirm:'Leave encounter',cancel:'Stay here'})){history.replaceState(null,'','#/'+S.id);return false;}
   }
   if(!await window.pcmEnterWorkbench(kind))return false;
   clearContextFeedback();return true;
 }
-function portalContext(){return {boot:BOOT,view,api,onData:data=>Object.assign(BOOT,data),past:panelPast,scoring:panelAssume,wirePast:wirePastPanel};}
+function portalContext(){return {boot:BOOT,view,api,onData:data=>Object.assign(BOOT,data),past:panelPast,reset:panelReset,scoring:panelAssume,wirePast:wirePastPanel};}
 async function route(){
-  const epoch=++routeEpoch,id=location.hash.replace(/^#\/?/, '');
+  const epoch=++routeEpoch,raw=location.hash,session=/^#\//.test(raw);
+  let id=raw.replace(/^#\/?/, '');
+  if(!session){
+    const page=id.replace(/\/+$/,''),lower=page.toLowerCase();
+    if(lower==='progress'){history.replaceState(null,'','#scores');id='scores';}
+    else if(/^(home|practice|scores|scoring|scribbi|learn|cases)$/.test(lower))id=lower;
+    else if(page!==id)id=page;
+  }
   window.pcmPortal?.invalidate();
   window.pcmScribbiVisit?.close();
   if (/^cases(?:\/|$)/.test(id)) {if(!await leaveForWorkspace('cases')||epoch!==routeEpoch)return;document.body.dataset.workspace='cases';window.pcmStudy.renderMaterials(id);return;}
-  if (/^learn(?:\/|$)/.test(id)) {document.body.dataset.workspace='learn';window.pcmStudy.render(id);return;}
+  if (/^learn(?:\/|$)/.test(id)) {
+    // Opening a worked example from an unassisted encounter already asks, in the
+    // answer guard, whether to mark it assisted; a second "leave?" would repeat it.
+    const guarded=/^learn\/./.test(id)&&S&&S.phase!=='submitted'&&!S.assisted&&['independent','rehearsal'].includes(S.learning_mode);
+    if(!guarded&&(!await leaveForWorkspace('learn')||epoch!==routeEpoch))return;
+    document.body.dataset.workspace='learn';window.pcmStudy.render(id);return;}
   if (/^scribbi(?:\/|$)/.test(id)) {if(!await leaveForWorkspace('scribbi')||epoch!==routeEpoch)return;document.body.dataset.workspace='scribbi';window.pcmPortal?.nav('scribbi');if(brandSub)brandSub.textContent='Clinical skills practice';window.pcmScribbi.render(id);return;}
   const kind=!id||id==='home'?'home':['practice','progress','scoring','scores'].includes(id)?id:null;
   if(kind){
@@ -317,14 +353,23 @@ async function route(){
     if(kind==='practice')renderLobby();else window.pcmPortal.render(kind,portalContext());
     return;
   }
+  if(!session&&!/^[0-9a-f]{8,}$/i.test(id)){toast("That page doesn't exist, so here's Home.");history.replaceState(null,'','#home');return route();}
   if(S?.id&&S.id!==id&&(!await leaveForWorkspace('session')||epoch!==routeEpoch))return;
   document.body.dataset.workspace='encounter';openSession(id,epoch);
+}
+// A link to an encounter that no longer exists (reset, or saved in another browser).
+function showMissingEncounter(){
+  S=null;lastPhase=null;document.body.dataset.workspace='practice';document.body.dataset.phase='missing';
+  clockEl.classList.add('hidden');chipEl.classList.add('hidden');homeBtn.classList.add('hidden');
+  window.pcmPortal?.nav('practice');document.title='Encounter not found · Chat CSE · DocKnock';
+  view.innerHTML=`<div class="portal-workspace"><section class="portal-side-card missing-encounter"><h1>That encounter isn't available</h1><p>It may have been removed by a progress reset, or it was saved in a different browser.</p><div class="row" style="gap:10px;flex-wrap:wrap"><button class="btn primary" type="button" data-go="scores">See your scores</button><button class="btn" type="button" data-go="practice">Choose an encounter</button></div></section></div>`;
+  $$('[data-go]',view).forEach(b=>b.onclick=()=>window.pcmNavigate?.(b.dataset.go));
 }
 async function openSession(id,epoch=routeEpoch){
   window.pcmPortal?.nav('practice');
   const st = await api('/api/session/' + id);
   if(epoch!==routeEpoch)return;
-  if (st.error || !st.phase) { location.hash = ''; return renderLobby(); }
+  if (st.error || !st.phase) { return showMissingEncounter(); }
   clearPendingReveals();
   S = st;recoverScratch();lastPhase = null;
   if(S.purpose==='scribbi')window.pcmPortal?.nav('scribbi');
@@ -385,16 +430,16 @@ function renderLobby(){
   view.innerHTML = `
   <div class="wrap-mid">
     <div class="lobby-hero">
-      <div class="eyebrow">Patient encounter library</div>
       <h1>Choose your next encounter.</h1>
-      <p>Choose a practice mode and a patient presentation.</p>
+      <p>Pick how much help you want, then a case.</p>
       <div class="hero-path" aria-label="Practice journey"><span>01 &nbsp; Meet</span><span>02 &nbsp; Explore</span><span>03 &nbsp; Reflect</span></div>
     </div>
 
 
 
+    <div class="lobby-resume" id="lobbyResume" ${open ? '' : 'hidden'}><div><small>Encounter in progress</small><b id="lobbyResumeTitle"></b></div><button class="btn primary" id="btnResume" type="button">Resume</button></div>
     <section class="card" aria-labelledby="modeH">
-      <div class="card-head"><h2 id="modeH">Choose your support</h2></div>
+      <div class="card-head"><h2 id="modeH">Choose a support level</h2></div>
       <div class="mode-grid" role="radiogroup" aria-labelledby="modeH">
         ${Object.keys(MODES).map(k => { const m = MODES[k]; return `
         <label class="mode-card ${k === uiMode ? 'sel' : ''}" data-mode="${k}">
@@ -422,7 +467,7 @@ function renderLobby(){
     </section>
 
     <section class="card" aria-labelledby="stationH">
-      <div class="card-head station-head"><h2 id="stationH">Explore the patient presentations</h2>
+      <div class="card-head station-head"><h2 id="stationH">Choose a case</h2>
         <span class="lobby-chosen tiny muted" id="lobbyChosen"></span>
         <div class="spacer"></div>
         <label class="sr-only" for="sysPick">System</label>
@@ -457,17 +502,14 @@ function renderLobby(){
     </section>
 
     <div class="card row lobby-reference" style="gap:var(--sp-3)">
-      <button class="btn" id="btnResume" type="button" ${open ? '' : 'hidden'}>Resume in-progress station</button>
+      <button class="btn ghost" id="btnPast" type="button" data-go="scores">Your encounters (${(BOOT.sessions || []).length}) <span aria-hidden="true">→</span></button>
+      <button class="btn ghost" id="btnAssume" type="button" data-go="scoring">How scoring works <span aria-hidden="true">→</span></button>
       <div class="spacer" style="flex:1"></div>
-      <button class="btn ghost" id="btnAssume" type="button" aria-expanded="false"
-        aria-controls="extraPanel">Scoring assumptions</button>
       <button class="btn ghost" id="btnReview" type="button" aria-expanded="false"
         aria-controls="extraPanel">Case review status</button>
-      <button class="btn ghost" id="btnPast" type="button" aria-expanded="false"
-        aria-controls="extraPanel">Past attempts (${(BOOT.sessions || []).length})</button>
     </div>
     <div id="extraPanel" class="disclosure"></div>
-    <p class="tiny muted" id="capNote">Attempts, notes and scores stay in this browser. No paid AI services are included. Computer voice uses browser speech; optional microphone recognition may use your browser provider. Nothing is sent to the app creator. Clearing site data deletes local progress.</p>
+    <p class="tiny muted" id="capNote">Encounters, notes and scores stay in this browser. No paid AI services are included. Computer voice uses browser speech; optional microphone recognition may use your browser provider. Nothing is sent to the app creator. Clearing site data deletes local progress.</p>
   </div>`;
 
   $$('.mode-card').forEach(card => {
@@ -491,7 +533,7 @@ function renderLobby(){
     const reveal = (MODES[currentUiMode()] || MODES.coached).reveal;
     if (chosen) chosen.textContent = c
       ? ((reveal ? stationTitle(c.id) + ' — ' + c.title : stationTitle(c.id) + ' — contents sealed') + (picked.closest('.station-card').hidden ? ' · selected outside this filter' : ''))
-      : 'Choose a presentation to begin.';
+      : 'Choose a case to begin.';
     if (row) row.classList.toggle('is-ready', !!c);
   };
   $$('#stationGrid .station-card').forEach(l => { $('input', l).onchange = () => {
@@ -506,9 +548,8 @@ function renderLobby(){
 
   $('#btnStart').onclick = () => begin(false);
   $('#btnRandom').onclick = () => begin(true);
-  $('#btnAssume').onclick = e => togglePanel('assume', e.currentTarget);
+  $$('.lobby-reference [data-go]').forEach(b => { b.onclick = () => window.pcmNavigate(b.dataset.go); });
   $('#btnReview').onclick = e => togglePanel('review', e.currentTarget);
-  $('#btnPast').onclick = e => togglePanel('past', e.currentTarget);
   refreshLobbyHistory();
 
   applyReveal(uiMode); paintTalkNote(); probeVoice();
@@ -517,15 +558,16 @@ function renderLobby(){
 function refreshLobbyHistory(){
   if(S || (!$('#stationGrid')&&!$('#progressWorkspace'))) return;
   const rows=BOOT.sessions||[], past=$('#btnPast'), resume=$('#btnResume');
-  if(past) past.textContent=`Past attempts (${rows.length})`;
-  const open=rows.find(s=>s.phase!=='submitted');
-  if(resume){resume.hidden=!open;resume.onclick=()=>{
+  if(past&&$('#stationGrid')) past.innerHTML=`Your encounters (${rows.length}) <span aria-hidden="true">→</span>`;
+  const open=rows.find(s=>s.phase!=='submitted'),banner=$('#lobbyResume');
+  if(banner){banner.hidden=!open;const t=$('#lobbyResumeTitle');if(t&&open){const sealed=open.case_title==='Exam rehearsal';t.textContent=(sealed?'Exam rehearsal · '+stationTitle(open.case_id):(caseById(open.case_id)?.title||stationTitle(open.case_id)))+' · '+(ATTEMPT_PHASE[open.phase]||'In progress');}}
+  if(resume){resume.onclick=()=>{
     const latest=(BOOT.sessions||[]).find(s=>s.phase!=='submitted');
     if(latest) location.hash='#/'+latest.id;
   };}
   const panel=$('#extraPanel');
   if(panel?.dataset.open==='past'){
-    panel.innerHTML=panelPast();
+    panel.innerHTML=panelPast({scores:!!$('#progressWorkspace')});
     wirePastPanel();
   }
 }
@@ -567,8 +609,8 @@ function applyReveal(uiMode){
 function paintTalkNote(){
   const el = $('#talkNote'); if (!el) return;
   el.textContent = currentTalk() === 'voice'
-    ? 'Speaking is closest to the real station. Recognition adds its own delay, so the pauses the debrief measures include that delay and are reported, not graded as conversational rhythm. Typed entry stays available at all times.'
-    : 'Typing is fully supported and obeys exactly the same clinical rules as speaking. Pauses reflect your typing speed, so pacing is reported but not scored as conversational rhythm.';
+    ? 'Speak: closest to the real exam. Your browser turns your speech into text, and you can always type instead. Pacing is scored; pauses include a little recognition delay.'
+    : 'Type: works in every browser and follows the same clinical rules as speaking. Pauses reflect typing speed, so they are reported, not graded.';
 }
 function togglePanel(which, btn){
   const p = $('#extraPanel');
@@ -582,6 +624,7 @@ function togglePanel(which, btn){
   if (which === 'past') wirePastPanel();
   const h = $('h2', p); if (h) { h.setAttribute('tabindex', '-1'); h.focus(); }
 }
+const ASSUMPTION_LABEL={'design-decision':'Design choice',limitation:'Known limitation','practice-mod':'Practice-only change',provisional:'Not settled by the course',assumption:'App assumption','confirmed-absent':'Confirmed: none published',confirmed:'Confirmed by the course'};
 function panelAssume(){
   // Point values and row names: PCM 2026 Student Manual, SOAP grading Table 4.
   // This is a learner guide only; pcmcse/grader.py remains the scoring authority.
@@ -611,7 +654,7 @@ function panelAssume(){
   ];
   const table = (rows, points) => `<div class="table-scroll"><table class="rows"><thead><tr><th scope="col">Scored item</th><th scope="col">What to do</th><th scope="col">Points</th></tr></thead><tbody>${rows.map(([id,label,action])=>`<tr data-scoring-row="${id}"><th scope="row">${esc(label)}</th><td>${esc(action)}</td><td class="pts">${points}</td></tr>`).join('')}</tbody></table></div>`;
   const weights = [['Subjective',28],['Objective',30],['Assessment',15],['Plan',25],['Spelling / style',2]];
-  return `<div class="disclosure-body" id="scoring-guide"><h2>How to earn the SOAP points</h2>
+  return `<div class="disclosure-body" id="scoring-guide"><h2>Chat CSE: how your SOAP note is scored</h2>
     <p>The PCM SOAP rubric has <b>100 available points</b>. Use this guide to collect the information you need and put it in the correct part of your note. It describes the rubric; the app’s automated feedback can still make mistakes.</p>
     <div class="exam-summary" aria-label="SOAP rubric point distribution">${weights.map(([label,points])=>`<div class="es" data-scoring-category="${esc(label)}" data-points="${points}"><div class="n">${points}</div><div class="k">${esc(label)}</div></div>`).join('')}</div>
     <p class="small muted">Course source: Student Manual, PCM 2026 SOAP note grading table (Table 4). Source details are listed below.</p>
@@ -654,7 +697,7 @@ function panelAssume(){
 
     <h3>A final check before submitting</h3>
     <p class="small"><b>History:</b> relevant chronology, background history, and 3 × 3 ROS. <b>Objective:</b> supplied vitals first, specific obtained findings, and correct headers. <b>Assessment:</b> 3 numbered, defensible diagnoses, most likely first. <b>Plan:</b> 3 corresponding plans, 3 distinct elements each, specific education, and follow-up/disposition in Plan 1.</p>
-    <p class="small">The confirmed timing is <b>14 minutes for the encounter and 9 minutes for the SOAP note</b>. Guided and Coached are untimed. Independent practice allows 30 minutes for the encounter, 5 to organize, and 20 for the note. Exam rehearsal uses the course timing without an organization break. Earlier saved attempts retain their original preset.</p>
+    <p class="small">The confirmed timing is <b>14 minutes for the encounter and 9 minutes for the SOAP note</b>. Guided and Coached encounters are untimed. Independent practice allows 30 minutes for the encounter, 5 to organize, and 20 for the note. Exam rehearsal uses the course timing without an organization break. Encounters saved earlier keep the timing they started with.</p>
 
     <h3 id="scoring-guide-sources">Where these requirements come from</h3>
     <ul class="tight small"><li><b>Student Manual, revised June 2026:</b> SOAP grading Table 4 supplies the point values and conditions; the blank note form and patient/interpersonal checklists supply the structure and separate encounter expectations.</li><li><b>PCM I syllabus, Fall 2026:</b> §III, pages 4–5, supplies timing, focused encounter, documentation, and invasive-examination refusal rules; §VII describes competency-based pass/fail.</li><li><b>Intro to PCM I:</b> PDF pages 21–27 clarify abbreviations, supplied results/refusals, specificity, section placement, and false documentation.</li><li><b>Interpersonal Skills:</b> PDF pages 27–33 clarify examination sequence, draping, structural examination, and Heart/Lungs header wording.</li></ul>
@@ -663,8 +706,8 @@ function panelAssume(){
 
     <h3>Assumptions, app defaults, and what remains unknown</h3>
     <p class="small">The point values above are confirmed. These details are not all settled by the course, or describe the simulator rather than the real examination. There is no published numeric SOAP passing cutoff or stated weighting that combines SOAP, encounter, and interpersonal performance.</p>
-    <details class="item"><summary><b>Review the active interpretations and limitations</b></summary>
-      ${(BOOT.assumptions || []).map(a => `<div class="item ${a.status === 'provisional' ? 'warn' : a.status === 'practice-mod' ? 'info' : 'mute'}"><h4>${esc(a.topic)} <span class="badge ${a.status === 'provisional' ? 'b-warn' : 'b-mute'}">${esc(a.status)}</span></h4><div class="small"><b>${esc(a.value)}</b></div><div class="small muted">${esc(a.detail)}</div></div>`).join('')}
+    <details class="item"><summary><b>Assumptions and limits of this simulator</b></summary>
+      ${(BOOT.assumptions || []).map(a => `<div class="item ${a.status === 'provisional' ? 'warn' : a.status === 'practice-mod' ? 'info' : 'mute'}"><h4>${esc(a.topic)} <span class="badge ${a.status === 'provisional' ? 'b-warn' : 'b-mute'}">${esc(ASSUMPTION_LABEL[a.status]||a.status)}</span></h4><div class="small"><b>${esc(a.value)}</b></div><div class="small muted">${esc(a.detail)}</div></div>`).join('')}
     </details></div>`;
 }
 function panelReview(){
@@ -683,37 +726,59 @@ function panelReview(){
     <span class="badge b-warn">Guideline-checked, not clinician-approved</span>.
     None of them is clinician approval.</p></div>`;
 }
-function panelPast(){
+function panelPast(opts={}){
   const rows = BOOT.sessions || [], reveal=!!MODES[currentUiMode()]?.reveal;
-  const choices=(BOOT.cases||[]).map(c=>`<option value="${esc(c.id)}">${esc(stationTitle(c.id))}${reveal?' — '+esc(c.title):''}</option>`).join('');
-  return `<div class="disclosure-body"><h2>Past attempts</h2>
-    <p class="small muted">Retries and revisions keep each original attempt intact. Use Reset progress below only when you want to remove saved work.</p>
-    ${!rows.length ? '<p class="muted small">No saved attempts yet.</p>' : `<div class="attempt-filter" role="group" aria-label="Show attempts">${[['all','All',rows.length],['open','In progress',rows.filter(h=>h.phase!=='submitted').length],['done','Completed',rows.filter(h=>h.phase==='submitted').length]].map(([k,l,n])=>`<button class="btn sm ghost" type="button" data-attempt-filter="${k}" aria-pressed="${k==='all'}">${l} <span class="attempt-count">${n}</span></button>`).join('')}</div>
-    <div class="attempt-list">${rows.map(h=>attemptRow(h,reveal)).join('')}</div><p class="small muted attempt-empty" hidden>No attempts in this view yet.</p>`}
-    ${S?'':`<details class="progress-reset-tools" id="progressResetTools"><summary>Reset progress</summary>
-      <p class="small">Start fresh for one presentation, including all its variations, or for the whole library. You can review what will be removed before confirming.</p>
-      <div class="progress-reset-actions"><label for="resetProgressCase">Presentation<select id="resetProgressCase"><option value="">Choose a presentation…</option>${choices}</select></label>
-        <button class="btn" type="button" id="resetCaseProgress" disabled>Reset case progress</button>
-        <button class="btn" type="button" id="resetAllProgress">Reset all progress</button></div>
+  // On Scores this panel sits beside "Scribbi reviews", so it names its feature the same way.
+  const head=opts.scores
+    ?`<div class="past-head"><h2><img class="past-mark" src="brand/chat-cse-64.png" alt="" aria-hidden="true">Chat CSE encounters</h2><button class="btn sm" type="button" data-portal-go="practice">Open Chat CSE <span aria-hidden="true">→</span></button></div>`
+    :'<h2>Past encounters</h2>';
+  let stats='';
+  if(opts.scores){
+    const done=rows.filter(h=>h.phase==='submitted'),scored=done.filter(h=>h.score!=null&&h.score_available);
+    const total=Object.values(BOOT.progress?.completed_by_mode||{}).reduce((a,n)=>a+(Number(n)||0),0)||done.length;
+    const avg=scored.length?Math.round(scored.reduce((a,h)=>a+100*h.score/h.score_available,0)/scored.length):null;
+    const cases=(BOOT.progress?.completed_cases||[]).length,unassisted=BOOT.progress?.conditions?.independent||0;
+    stats=`<div class="past-stats"><div><b>${total}</b><span>completed</span></div><div><b>${cases}<small> / ${(BOOT.cases||[]).length}</small></b><span>cases completed</span></div><div><b>${avg??'–'}</b><span>average score, out of 100</span></div><div title="Submitted without cues, hints or answer materials"><b>${unassisted}</b><span>unassisted</span></div></div>`;
+  }
+  return `<div class="disclosure-body">${head}${stats}
+    <p class="small muted">Open a completed encounter to see its feedback, or resume one in progress. Retries are saved separately and never change the original score.</p>
+    ${!rows.length ? '<p class="muted small">No encounters yet. Start one in Chat CSE and it appears here.</p>' : `<div class="attempt-filter" role="group" aria-label="Show encounters">${[['all','All',rows.length],['open','In progress',rows.filter(h=>h.phase!=='submitted').length],['done','Completed',rows.filter(h=>h.phase==='submitted').length]].map(([k,l,n])=>`<button class="btn sm ghost" type="button" data-attempt-filter="${k}" aria-pressed="${k==='all'}">${l} <span class="attempt-count">${n}</span></button>`).join('')}</div>
+    <div class="attempt-list">${rows.map(h=>attemptRow(h,reveal)).join('')}</div><p class="small muted attempt-empty" hidden>No encounters in this view yet.</p>`}</div>`;
+}
+/* Reset covers everything saved for a scope: Chat CSE encounters and notes,
+   Scribbi reviews and visits, and worked-example reflections. It lives at the
+   bottom of Scores, below both features, and never while an encounter is open. */
+function panelReset(){
+  if(S)return '';
+  const reveal=!!MODES[currentUiMode()]?.reveal;
+  const num=c=>Number(/\d+/.exec(stationTitle(c.id))?.[0])||999;
+  const choices=[...(BOOT.cases||[])].sort((a,b)=>num(a)-num(b)).map(c=>`<option value="${esc(c.id)}">${esc(stationTitle(c.id))}${reveal?' — '+esc(c.title):''}</option>`).join('');
+  return `<details class="progress-reset-tools" id="progressResetTools"><summary>Reset progress</summary>
+      <p class="small">Everything is saved only in this browser. Start fresh for one case, including all its variations, or for everything. A reset deletes Chat CSE encounters and notes, Scribbi reviews and visits, and worked-example reflections. You see exactly what will be deleted before you confirm, and it can't be undone.</p>
+      <div class="progress-reset-actions"><label for="resetProgressCase">Case<select id="resetProgressCase"><option value="">Choose a case…</option>${choices}</select></label>
+        <button class="btn" type="button" id="resetCaseProgress" disabled>Reset this case</button>
+        <button class="btn" type="button" id="resetAllProgress">Reset everything</button></div>
       <p id="progressResetStatus" class="small muted" role="status"></p><div id="progressResetConfirm"></div>
-    </details>`}</div>`;
+    </details>`;
 }
 /* One saved attempt, readable at a glance: which patient, which mode, when,
    where it stands, and the score once graded. Like the station grid, exam
    rehearsal mode keeps every title and picture sealed. */
 const ATTEMPT_MODE={guided:'Guided',coached:'Coached',independent:'Independent',rehearsal:'Exam rehearsal',practice:'Guided',drill:'Coached',legacy:'Practice'};
-const ATTEMPT_PHASE={briefing:'At the doorway',encounter:'Encounter in progress',organize:'Organizing',note:'SOAP note in progress',submitted:'Submitted'};
+const ATTEMPT_PHASE={briefing:'At the doorway',encounter:'In the room',organize:'Organizing',note:'Writing the SOAP note',submitted:'Submitted'};
 function attemptWhen(ms){const d=new Date(ms),n=new Date();return d.toDateString()===n.toDateString()?'Today, '+d.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'}):d.toLocaleDateString(undefined,{month:'short',day:'numeric',year:d.getFullYear()===n.getFullYear()?undefined:'numeric'});}
 function attemptRow(h,reveal){
   const done=h.phase==='submitted',sealed=!reveal||(h.case_title==='Exam rehearsal'&&!done);
   const system=(BOOT.cases||[]).find(c=>c.id===h.case_id)?.system;
   const art=window.pcmPortal?.illustration?.(sealed?'sealed':window.pcmPortal?.family?.(system)||'general')||'';
-  const title=sealed?(h.case_title==='Exam rehearsal'&&!done?'Exam rehearsal':stationTitle(h.case_id)):(h.case_title||stationTitle(h.case_id));
+  const rehearsal=h.case_title==='Exam rehearsal'&&!done;
+  const title=sealed?(rehearsal?stationTitle(h.case_id)+' (sealed)':stationTitle(h.case_id)):(h.case_title||stationTitle(h.case_id));
+  const pauses=!done&&!h.assisted&&['independent','rehearsal'].includes(h.learning_mode);
   const score=h.score!=null&&h.score_available?`<span class="attempt-score" title="Rubric score"><b>${esc(String(h.score))}</b><small>/${esc(String(h.score_available))}</small></span>`:'';
   return `<div class="hist-row attempt-row ${done?'is-done':'is-open'}" data-attempt-state="${done?'done':'open'}">
       <span class="attempt-art" aria-hidden="true">${art}</span>
-      <span class="attempt-main"><b>${esc(title)}</b><span class="small muted">${esc(stationTitle(h.case_id))} · ${esc(ATTEMPT_MODE[h.learning_mode]||'Practice')}${h.assisted&&h.learning_mode!=='guided'?' · assisted':''} · ${esc(attemptWhen(h.created_at))}</span></span>
-      <span class="attempt-status">${done?(score||'<span class="badge b-ok">Submitted</span>'):`<span class="badge b-warn">${esc(ATTEMPT_PHASE[h.phase]||h.phase)}</span>`}</span>
+      <span class="attempt-main"><b>${esc(title)}</b><span class="small muted">${sealed?'':esc(stationTitle(h.case_id))+' · '}${esc(ATTEMPT_MODE[h.learning_mode]||'Practice')}${h.assisted&&h.learning_mode!=='guided'?' · assisted':''} · ${esc(attemptWhen(h.created_at))}</span></span>
+      <span class="attempt-status">${done?(score||'<span class="badge b-ok">Submitted</span>'):`<span class="badge b-warn">${esc(ATTEMPT_PHASE[h.phase]||h.phase)}</span>`}${pauses?'<span class="badge b-mute" title="Scribbi is paused until you submit this encounter or switch it to assisted practice.">Pauses Scribbi</span>':''}</span>
       <span><button class="btn sm ${done?'':'primary'}" type="button" data-open="${esc(h.id)}" aria-label="${done?'Review':'Resume'} ${esc(title)}">${done?'Review':'Resume'}</button></span>
     </div>`;
 }
@@ -736,41 +801,59 @@ function wirePastPanel(){
   const panel=$('#extraPanel');if(!panel)return;
   $$('[data-open]',panel).forEach(b=>{b.onclick=()=>{location.hash='#/'+b.dataset.open;};});
   $$('[data-attempt-filter]',panel).forEach(b=>{b.onclick=()=>{const k=b.dataset.attemptFilter;$$('[data-attempt-filter]',panel).forEach(x=>x.setAttribute('aria-pressed',String(x===b)));let shown=0;$$('.attempt-row',panel).forEach(r=>{r.hidden=k!=='all'&&r.dataset.attemptState!==k;shown+=!r.hidden;});const empty=$('.attempt-empty',panel);if(empty)empty.hidden=!!shown;};});
-  if(S)return;
-  const select=$('#resetProgressCase',panel),caseButton=$('#resetCaseProgress',panel),allButton=$('#resetAllProgress',panel);
+  wireResetTools();
+}
+function wireResetTools(){
+  const tools=$('#progressResetTools');if(S||!tools)return;
+  const select=$('#resetProgressCase',tools),caseButton=$('#resetCaseProgress',tools),allButton=$('#resetAllProgress',tools);
   if(!select||!caseButton||!allButton)return;
-  select.onchange=()=>{progressResetPreview++;caseButton.disabled=!select.value;$('#progressResetConfirm',panel).innerHTML='';$('#progressResetStatus',panel).textContent='';};
+  select.onchange=()=>{progressResetPreview++;caseButton.disabled=!select.value;$('#progressResetConfirm',tools).innerHTML='';$('#progressResetStatus',tools).textContent='';};
   caseButton.onclick=()=>showProgressResetConfirmation('case',select.value,caseButton);
   allButton.onclick=()=>showProgressResetConfirmation('all',null,allButton);
 }
+/* Put Reset progress back to its starting state after a reset or a refused one. */
+function redrawResetTools(open){
+  const tools=$('#progressResetTools');if(!tools)return;
+  tools.outerHTML=panelReset();wireResetTools();
+  const fresh=$('#progressResetTools');if(fresh&&open)fresh.open=true;
+}
 let progressResetPreview=0;
+// "3 Chat CSE encounters, 1 Scribbi review and 2 reflections": zero counts are left out.
+function resetList(rows){
+  const parts=rows.filter(r=>r[0]>0).map(([n,one,many,extra=''])=>`${n} ${n===1?one:many}${extra}`);
+  return parts.length<2?(parts[0]||''):parts.slice(0,-1).join(', ')+' and '+parts.at(-1);
+}
 async function showProgressResetConfirmation(scope,caseId,trigger){
   if(S||(!$('#stationGrid')&&!$('#progressWorkspace'))||(scope==='case'&&!caseById(caseId)))return;
   const host=$('#progressResetConfirm'),status=$('#progressResetStatus');if(!host||!status)return;
   const requestId=++progressResetPreview;
-  const label=scope==='all'?'all presentations':stationTitle(caseId)+' and all its variations';
-  status.textContent='Checking all saved progress, including older attempts…';
+  const reveal=!!MODES[currentUiMode()]?.reveal,picked=caseById(caseId);
+  const label=scope==='all'?'everything':stationTitle(caseId)+(reveal&&picked?.title?' — '+picked.title:'')+' (all variations)';
+  const tools=$('#progressResetTools');if(tools?.dataset)tools.dataset.confirming=scope;
+  const done=()=>{if(tools?.dataset)delete tools.dataset.confirming;};
+  status.textContent='Checking everything saved for this reset…';
   host.innerHTML='<button class="btn" type="button" id="cancelResetPreview">Cancel</button>';
-  const previewCancel=$('#cancelResetPreview');previewCancel.focus();previewCancel.onclick=()=>{progressResetPreview++;host.innerHTML='';status.textContent='';trigger?.focus();};
+  const previewCancel=$('#cancelResetPreview');previewCancel.focus();previewCancel.onclick=()=>{progressResetPreview++;host.innerHTML='';status.textContent='';done();trigger?.focus();};
   const previewPayload={scope};if(scope==='case')previewPayload.case_id=caseId;
   let preview;
   try{
     const response=await fetch('/api/progress/reset-preview',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(previewPayload)});preview=await response.json();
     if(!response.ok||preview.error)throw Error(preview.message||preview.error||'Reset details could not be loaded.');
     if(!Number.isInteger(preview.attempt_count)||!Number.isInteger(preview.unfinished_count)||preview.attempt_count<0||preview.unfinished_count<0)throw Error('Reset counts could not be verified.');
-  }catch(error){if(requestId===progressResetPreview&&host.isConnected){status.textContent=error.message+' No progress was removed.';host.innerHTML='';trigger?.focus();}return;}
+  }catch(error){if(requestId===progressResetPreview&&host.isConnected){status.textContent=error.message+' No progress was removed.';host.innerHTML='';done();trigger?.focus();}return;}
   if(S||(!$('#stationGrid')&&!$('#progressWorkspace'))||!host.isConnected||requestId!==progressResetPreview)return;
-  const unfinished=preview.unfinished_count,attemptCount=preview.attempt_count,reflections=preview.study_progress_count||0,reviews=preview.scribbi_count||0;
+  const unfinished=preview.unfinished_count,attemptCount=preview.attempt_count,reflections=preview.study_progress_count||0,reviews=preview.scribbi_count||0,visits=preview.scribbi_visit_count||0;
+  const what=resetList([[attemptCount,'Chat CSE encounter','Chat CSE encounters',' (with notes, scores and feedback)'],[reviews,'Scribbi review','Scribbi reviews'],[visits,'open Scribbi visit','open Scribbi visits'],[reflections,'worked-example reflection','worked-example reflections']]);
   status.textContent='';
   host.innerHTML=`<section class="callout warn" role="group" aria-labelledby="progressResetHeading" aria-describedby="progressResetDescription">
     <h3 id="progressResetHeading">Reset ${esc(label)}?</h3>
-    <p id="progressResetDescription">This permanently removes ${attemptCount} saved attempt${attemptCount===1?'':'s'}, including their notes, scores, encounter records and learning activity, plus ${reflections} saved written reflection${reflections===1?'':'s'}${reviews?`, ${reviews} Scribbi review${reviews===1?'':'s'}`:''} and any browser reflection drafts for ${esc(label)}. This cannot be undone.</p>
-    ${unfinished?`<label class="opt"><input type="checkbox" id="resetIncludeUnfinished"><span>Also remove ${unfinished} unfinished attempt${unfinished===1?'':'s'} and ${unfinished===1?'its':'their'} notes</span></label>`:''}
+    <p id="progressResetDescription">This permanently deletes ${esc(what||'nothing that is saved yet')}, plus any reflection drafts kept in this browser. It can't be undone.</p>
+    ${unfinished?`<p class="small">${unfinished===1?'One of these encounters is':unfinished+' of these encounters are'} unfinished. A reset includes unfinished work, so tick the box to continue.</p><label class="opt"><input type="checkbox" id="resetIncludeUnfinished"><span>Also delete ${unfinished} unfinished encounter${unfinished===1?'':'s'} and ${unfinished===1?'its':'their'} notes</span></label>`:''}
     <div class="progress-reset-actions"><button class="btn" type="button" id="cancelProgressReset">Cancel</button>
-      <button class="btn danger" type="button" id="confirmProgressReset" ${unfinished?'disabled':''}>Permanently reset ${scope==='all'?'all progress':'case progress'}</button></div>
+      <button class="btn danger" type="button" id="confirmProgressReset" ${unfinished?'disabled':''}>Delete permanently</button></div>
   </section>`;
   const cancel=$('#cancelProgressReset'),confirm=$('#confirmProgressReset'),checkbox=$('#resetIncludeUnfinished');
-  cancel.onclick=()=>{host.innerHTML='';if(trigger?.isConnected)trigger.focus();};
+  cancel.onclick=()=>{host.innerHTML='';done();if(trigger?.isConnected)trigger.focus();};
   if(checkbox)checkbox.onchange=()=>{confirm.disabled=!checkbox.checked;};
   cancel.focus();
   confirm.onclick=async()=>{
@@ -782,18 +865,20 @@ async function showProgressResetConfirmation(scope,caseId,trigger){
       const response=await fetch('/api/progress/reset',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}),result=await response.json();
       if(response.status===409){
         const latest=await api('/api/bootstrap');if(!latest.error){BOOT.sessions=latest.sessions||[];BOOT.progress=latest.progress||{};}
-        refreshLobbyHistory();const tools=$('#progressResetTools');if(tools)tools.open=true;
-        const message='Saved attempts changed. Nothing was reset. Review the refreshed history, then choose Reset progress again.';
+        refreshLobbyHistory();redrawResetTools(true);
+        const message='Your saved work changed while you were confirming. Nothing was reset. Check the updated lists, then try again.';
         const updated=$('#progressResetStatus');if(updated)updated.textContent=message;alertNow(message);return;
       }
       if(!response.ok||!result.ok)throw Error(result.message||result.error||'The reset could not be confirmed.');
       if(!Array.isArray(result.sessions)||!Array.isArray(result.deleted_attempt_ids))throw Error('The reset response was incomplete.');
       const remaining=result.sessions,ids=result.deleted_attempt_ids;
       const cleared=clearResetLocalWork(scope,caseId,ids);BOOT.sessions=remaining;BOOT.progress=result.progress||{};
-      refreshLobbyHistory();$('#learningLibrary')?.remove();window.pcmLearningRender?.(null);
+      refreshLobbyHistory();redrawResetTools(true);$('#learningLibrary')?.remove();window.pcmLearningRender?.(null);
       window.dispatchEvent(new CustomEvent('pcm-progress-reset',{detail:{scope,case_id:caseId,attempt_ids:ids}}));
-      const message=`Progress reset for ${label}: ${result.deleted?.attempts??ids.length} attempt${(result.deleted?.attempts??ids.length)===1?'':'s'} removed.`+(cleared?'':' Saved progress was removed, but browser draft storage could not be cleared.');
-      toast(message);$('#btnPast')?.focus();
+      const d=result.deleted||{},gone=resetList([[d.attempts??ids.length,'Chat CSE encounter','Chat CSE encounters'],[d.scribbi_rounds||0,'Scribbi review','Scribbi reviews'],[d.scribbi_visits||0,'Scribbi visit','Scribbi visits'],[d.study_progress||0,'reflection','reflections']]);
+      const message=`Reset complete for ${label}: ${gone||'nothing was saved'} deleted.`+(cleared?'':' Saved progress was removed, but browser draft storage could not be cleared.');
+      toast(message);const done=$('#progressResetStatus');if(done)done.textContent=message;
+      ($('#btnPast')||$('#progressResetTools')?.querySelector?.('summary'))?.focus();
     }catch(error){
       if(status.isConnected)status.textContent=(error.message||'The reset could not be confirmed.')+' Cancel and reopen Reset progress to refresh history before trying again.';
       controls.forEach(c=>c.disabled=disabledBefore.get(c));confirm.disabled=true;host.removeAttribute('aria-busy');
@@ -834,6 +919,8 @@ async function begin(random, opts){
   room = { view:'front', region:null, instrument:'', position:'seated',
            running:null, runTimer:null, runEnd:null, performed:{} };
   history.pushState(null,'','#/'+st.id);
+  // A new encounter is a task page: the Chat CSE section bar steps aside, as it does on resume.
+  document.body.dataset.workspace='encounter';window.pcmPortal?.nav('practice');
   startPolling(); renderPhase(true);
 }
 
@@ -885,7 +972,7 @@ function beginEntrance(skip=false){
   if(entryPending){if(skip&&!entryPending.starting){entryPending.skip=true;if(roomFrameReady)dispatchEntrance();}return;}
   entryPending={id:crypto.randomUUID(),sid:S.id,skip:skip||reduced,at:performance.now(),starting:false};
   $('#go').disabled=true;setEntryStatus(roomFrameReady?'Entering the room… The encounter clock has not started.':'Preparing your room… Your encounter clock has not started.');
-  const id=entryPending.id;setTimeout(()=>{if(entryPending?.id===id&&!entryPending.starting){entryPending=null;$('#unityFrame')?.contentWindow?.postMessage({type:'pcm-room-reset-entry'},location.origin);$('#go').disabled=false;$('#skipEntrance').disabled=false;setEntryStatus('The room did not finish responding. Retry, or enter with accessible controls.');$('#entryFallback').hidden=false;}},(S.visual_demo==='humgen-trial'||S.appearance?.model==='mpfb-young-woman')?45000:7000);
+  const id=entryPending.id;setTimeout(()=>{if(entryPending?.id===id&&!entryPending.starting){entryPending=null;$('#unityFrame')?.contentWindow?.postMessage({type:'pcm-room-reset-entry'},location.origin);$('#go').disabled=false;$('#skipEntrance').disabled=false;setEntryStatus('The room did not finish responding. Retry, or enter without the 3D room.');$('#entryFallback').hidden=false;}},(S.visual_demo==='humgen-trial'||S.appearance?.model==='mpfb-young-woman')?45000:7000);
   if(roomFrameReady)dispatchEntrance();
 }
 function renderDoorway(){
@@ -893,19 +980,19 @@ function renderDoorway(){
   view.innerHTML=`<div class="arrival-layout">
     <section class="arrival-scene card" aria-label="Outside the examination room"><div class="arrival-caption"><span class="eyebrow">${esc(st.hidden_label||stationTitle(S.case_id))}</span><h2>Outside the room</h2><p>Take a moment. Your patient is just inside.</p></div><div id="roomViewport"></div><div class="arrival-foot"><span class="arrival-dot" aria-hidden="true"></span>Encounter not started</div></section>
     <section class="doorway" aria-label="Posted station information"><div class="doorway-head"><span class="eyebrow">Posted beside the door</span><h1>Your station brief</h1><p class="small muted">Review this information before you enter.</p></div><div class="doorway-body">
-      <ul class="doorway-lines">${(st.doorway||[]).map(l=>`<li>${esc(/^You have \d+ minutes/.test(l)?(isUntimedAttempt()?'This practice encounter is untimed.':'This encounter allows '+phaseAllowance(pre.encounter_s)+'.'):/^Vital signs (?:are|can be)/i.test(l)?'Vital signs are supplied at this station.':l)}</li>`).join('')}</ul>
-      <section class="doorway-vitals" aria-labelledby="doorwayVitals"><div class="card-head"><h2 id="doorwayVitals">Vital signs</h2><span class="badge b-mute">Supplied information</span></div>${chartHtml({vitals:st.vitals||{},supplied_results:[]})}</section>
-      <div class="doorway-facts"><div class="fact"><dt>Encounter</dt><dd>${isUntimedAttempt()?'Untimed':phaseAllowance(pre.encounter_s)}</dd></div>${pre.organize_s?'<div class="fact"><dt>Organize</dt><dd>'+phaseAllowance(pre.organize_s)+'</dd></div>':''}<div class="fact"><dt>SOAP</dt><dd>${isUntimedAttempt()?'Untimed':phaseAllowance(pre.note_s)}</dd></div></div>
-      <p class="tiny muted">${pre.modified?'Practice timing is modified; exam rehearsal uses the course’s 14-minute encounter and 9-minute SOAP period. ':''}The encounter starts after entry, when your controls are ready.</p>
-      ${S.purpose==='scribbi'?'<p class="scribbi-door-note"><b>Scribbi is listening.</b> Lead the visit your way. When you finish, Scribbi writes the SOAP note from what was said, with mistakes for you to catch. It can’t feel what you palpate.</p>':''}
+      ${S.purpose==='scribbi'?'<p class="scribbi-door-note"><b>Scribbi is listening.</b> Lead the visit your way. When you finish, Scribbi writes the SOAP note from what was said, with mistakes for you to catch. It can’t feel what you palpate. To draft a useful note it needs at least four history answers and two examinations with findings.</p>':''}
+      <ul class="doorway-lines">${(st.doorway||[]).map(l=>`<li>${esc(/^You have \d+ minutes|^Use the time limit stated/.test(l)?(isUntimedAttempt()?'This practice encounter is untimed.':'You have '+phaseAllowance(pre.encounter_s)+' for this encounter.'):/^Vital signs (?:are|can be)/i.test(l)?'Vital signs are supplied at this station.':l)}</li>`).join('')}</ul>
+      <section class="doorway-vitals" aria-labelledby="doorwayVitals"><div class="card-head"><h2 id="doorwayVitals">Chart</h2><span class="badge b-mute">Supplied information</span></div>${chartHtml({vitals:st.vitals||{},supplied_results:st.supplied_results||[]})}</section>
+      ${S.purpose==='scribbi'?'<p class="tiny muted">This visit is untimed.</p>':`<div class="doorway-facts"><div class="fact"><dt>Encounter</dt><dd>${isUntimedAttempt()?'Untimed':phaseAllowance(pre.encounter_s)}</dd></div>${pre.organize_s?'<div class="fact"><dt>Organize</dt><dd>'+phaseAllowance(pre.organize_s)+'</dd></div>':''}<div class="fact"><dt>SOAP</dt><dd>${isUntimedAttempt()?'Untimed':phaseAllowance(pre.note_s)}</dd></div></div>
+      <p class="tiny muted">${pre.modified?'Practice timing. Exam rehearsal uses the course timing: 14-minute encounter, 9-minute note. ':''}${isUntimedAttempt()?'This encounter is untimed.':'The encounter clock starts after you enter.'}</p>`}
       <label class="motion-preference"><input id="entryReduced" type="checkbox" ${LS.get('reducedMotion')||window.matchMedia('(prefers-reduced-motion: reduce)').matches?'checked':''}> Reduce motion and skip the entrance animation</label>
       <div class="doorway-enter">
       <button class="btn primary big" id="go" type="button">Enter room <span aria-hidden="true">→</span></button><button class="btn ghost" id="skipEntrance" type="button">Skip animation &amp; enter</button>
-      <p id="entryStatus" class="entry-status" role="status">Preparing the room. Review your station while it loads.</p><button class="btn sm ghost" id="entryFallback" type="button">Enter with accessible controls</button>
+      <p id="entryStatus" class="entry-status" role="status">Preparing the room. Review your station while it loads.</p><button class="btn sm ghost" id="entryFallback" type="button" hidden>Enter without the 3D room</button>
       </div>
     </div></section></div>`;
   $('#go').onclick=()=>beginEntrance(false);$('#skipEntrance').onclick=()=>beginEntrance(true);$('#entryFallback').onclick=()=>{if(entryPending?.starting)return;entryPending={id:crypto.randomUUID(),sid:S.id,skip:true,at:performance.now(),starting:false};completeEntrance(entryPending.id);};
-  $('#entryReduced').onchange=e=>{LS.set('reducedMotion',e.target.checked);notifyPublicState();};mountPatientFrame();if(roomFrameReady)setEntryStatus('Ready when you are. Entering starts your encounter after the short transition.');
+  $('#entryReduced').onchange=e=>{LS.set('reducedMotion',e.target.checked);notifyPublicState();};mountPatientFrame();if(roomFrameReady)setEntryStatus(isUntimedAttempt()?'Ready when you are. This encounter is untimed.':'Ready when you are. The clock starts after you enter.');
 }
 
 /* ======================================================================== */
@@ -917,7 +1004,7 @@ function renderDoorway(){
    draping / comfort thread instead of a row of dead buttons. */
 const BEDSIDE = [
   { id:'introduce',    short:'Introduce yourself',
-    say:"Hello, my name is Sebastian, I'm a student doctor and I'll be seeing you today." },
+    say:"Hello, I'm a student doctor, and I'll be seeing you today." },
   { id:'confirm_name', short:'Confirm name and how to address them',
     say:'Can you confirm your name for me, and how would you like to be addressed?' },
   { id:'hand_hygiene', short:'Wash your hands',
@@ -1022,12 +1109,12 @@ function renderRoom(){
     <div class="room-left">
       ${m.coach?`<details class="card bedside-card"><summary>Bedside actions <span class="small muted">Introduce yourself, ask permission, offer comfort</span></summary><p class="tiny muted">Choose an action to say it to your patient. It records your stated behavior.</p><div class="rapport" id="rapport"></div><button class="btn sm ghost" id="toolPrompts">Explore interview moves</button></details><div id="coachDock"></div>`:''}
     </div>
-    <div class="room-right card encounter-next"><div><span class="eyebrow">When you are ready</span><h3>Bring the encounter together.</h3><p class="small muted">Finish your conversation, then move into documentation.</p></div><div class="row"><button class="btn ghost sm" id="toolRefuse">Propose a sensitive examination</button><button class="btn" id="btnEnd">${S.purpose==='scribbi'?'Finish · Scribbi writes the note →':'Finish encounter →'}</button></div><span class="tiny muted" id="examProgressSub"></span></div>
+    <div class="room-right card encounter-next"><div><span class="eyebrow">When you are ready</span>${S.purpose==='scribbi'?'<h3>Finish the visit.</h3><p class="small muted">Scribbi drafts the note; you check it and sign.</p>':'<h3>Bring the encounter together.</h3><p class="small muted">Finish your conversation, then write your SOAP note.</p>'}</div><div class="row"><button class="btn ghost sm" id="toolRefuse">Name an exam you won’t perform</button><button class="btn" id="btnEnd">${S.purpose==='scribbi'?'Finish · Scribbi writes the note →':'Finish encounter →'}</button></div><span class="tiny muted" id="examProgressSub"></span></div>
   </div>`;
   mountPatientFrame();paintRapport();paintStream(S.transcript||[]);
   $('#stopPatient').onclick=interruptPatient;$('#btnSay').onclick=()=>sendSay();$('#say').onkeydown=composerKey;$('#say').value=draftValue('conversation',S.id)||'';$('#say').onfocus=()=>requestAnimationFrame(()=>{const pair=$('.experience-room'),patient=$('.unity-room'),conversation=$('.convo');if(innerWidth>820&&pair&&patient&&conversation&&Math.max(patient.offsetHeight,conversation.offsetHeight)<innerHeight-76){window.scrollTo({top:Math.max(0,pair.getBoundingClientRect().top+scrollY-76),behavior:'instant'});positionRoomFrame();}});$('#say').oninput=e=>{autogrow(e.target);keepDraft('conversation',S.id,e.target.value);notifyPublicState();};
   $('#btnEnd').onclick=confirmEnd;$('#toolExam').onclick=openExamPanel;$('#unityFallback').onclick=openExamPanel;
-  $('#toolChart').onclick=e=>openOverlay('Doorway information & vital signs',`<div class="doorway-vitals">${chartHtml(chart)}</div><ul class="doorway-lines">${(chart.doorway||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`,null,e.currentTarget);
+  $('#toolChart').onclick=e=>openOverlay('Door sign & chart',`<div class="doorway-vitals">${chartHtml(chart)}</div><ul class="doorway-lines">${(chart.doorway||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`,null,e.currentTarget);
   if($('#quickUnstuck'))$('#quickUnstuck').onclick=()=>{const guide=$('#encounterGuide');if(guide){guide.scrollIntoView({block:'center',behavior:LS.get('reducedMotion')?'instant':'smooth'});$('#unstuckButton')?.click();}};
   $('#patientFocus').onclick=e=>{const active=$('.experience-room').classList.toggle('patient-focus');setUiMeta(S.id,{...uiMeta(S.id),expandedPatient:active});e.currentTarget.setAttribute('aria-pressed',String(active));e.currentTarget.textContent=active?'Return to split view':'Expand patient view';positionRoomFrame();$('.unity-room').scrollIntoView({block:'start',behavior:LS.get('reducedMotion')||window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});};
   $('#toggleRecord').onclick=e=>{const active=$('.convo').classList.toggle('full-record');e.currentTarget.setAttribute('aria-pressed',String(active));e.currentTarget.textContent=active?'Dialogue view':'Full record';};
@@ -1436,8 +1523,9 @@ async function confirmEnd(){
   const running=S?.pending_exam?(' The examination you started ('+
       (S.pending_exam.source_text||'').replace(/^Perform:\s*/,'').replace(/\s*\(.*$/,'').trim()+
       ') is still running and will be stopped without a finding.'):'';
+  const nextStep=S.preset?.organize_s?' Next: organize your thoughts, then write your SOAP note.':' Next: write your SOAP note'+(isUntimedAttempt()?' (untimed).':'.');
   if (!await confirmChoice('End the encounter now? The record freezes and no further information ' +
-               'can be obtained from the patient.'+running,
+               'can be obtained from the patient.'+running+nextStep,
                {title:'End the encounter?',confirm:'End encounter',cancel:'Keep interviewing'})) return;
   if(!S||S.id!==sid||S.phase!=='encounter')return;
   stopVoice(); cancelRunningExam();
@@ -2175,17 +2263,18 @@ function renderOrganize(){
   recoverScratch();stopVoice(); cancelRunningExam();
   view.innerHTML = `<div class="wrap-narrow">
     <div class="center-stage">
-      <div class="phase-chip org">Organization interval · practice modification</div>
+      <div class="phase-chip org">Organize your thoughts · practice extra</div>
       <div class="clock" role="timer" aria-label="Organization interval remaining">
         <span class="digits" data-clock>--:--</span></div>
       <p class="small muted" style="max-width:56ch">Organize your thinking. The encounter
       record is frozen. ${isUntimedAttempt()?'The untimed SOAP workspace opens':'The SOAP timer starts'} automatically when this ends. No new patient contact happens here.</p>
-      <button class="btn primary" id="skip" type="button">Start the SOAP note now</button>
+      <button class="btn primary" id="skip" type="button">${isUntimedAttempt()?'Start the SOAP note now':'Start the note now: the note timer starts'}</button>
+      <p class="small muted">Your scratchpad stays beside your note.${S.assisted||['guided','coached'].includes(S.learning_mode)?'':' Your Notes and the conversation won’t.'}</p>
     </div>
     <div class="card"><div class="card-head">
-      <h3>Scratchpad</h3><span class="badge b-mute">optional · never graded</span></div>
+      <h3>Scratchpad</h3><span class="badge b-mute">Optional · not graded</span></div>
       <label class="sr-only" for="scratch">Scratchpad</label>
-      <textarea class="scratch" id="scratch" placeholder="Jot your structure. This carries into the note phase and is never scored.">${esc(S.scratch || '')}</textarea><p id="scratchStatus" class="scratch-status" role="status">Your draft is saved as you type.</p>
+      <textarea class="scratch" id="scratch" placeholder="Jot your structure. It carries into the note phase.">${esc(S.scratch || '')}</textarea><p id="scratchStatus" class="scratch-status" role="status">Your draft is saved as you type.</p>
     </div></div>`;
   const scratchSid=S.id;
   $('#scratch').oninput=e=>{clearTimeout(scratchSaveTimer);const value=e.target.value;S.scratch=value;const local=keepDraft('scratch',scratchSid,value);scratchNeedsSave=true;scratchProtected=local;scratchMessage(local?'Saved in this browser · syncing…':'Browser recovery storage unavailable. Keep this page open while saving.');scratchSaveTimer=setTimeout(()=>saveScratch(scratchSid,value),350);};
@@ -2220,7 +2309,7 @@ function renderNote(){
     <div class="note-layout">
       <section class="note-editor" id="noteEditor" aria-label="SOAP note editor"><nav class="note-section-nav" aria-label="Go to a note section"><button type="button" data-note-section="noteS">Subjective</button><button type="button" data-note-section="noteO">Objective</button><button type="button" data-note-section="noteA0">Assessment &amp; plan</button></nav>
         <div class="note-sheet">
-          <div class="note-sec"><div class="sec-head"><span class="sec-letter">S</span><span class="sec-name">Subjective</span>${exam?'':`<span class="sec-hint">${esc(NOTE_HINTS.S)}</span>`}</div><label class="sr-only" for="noteS">Subjective</label><textarea id="noteS" spellcheck="true" autocomplete="off" placeholder="${exam?'':'Chief concern and HPI, followed by relevant history and review of systems.'}">${esc(n.S||'')}</textarea></div>
+          <div class="note-sec"><div class="sec-head"><span class="sec-letter">S</span><span class="sec-name">Subjective</span>${exam?'':`<span class="sec-hint">${esc(NOTE_HINTS.S)}</span>`}</div><label class="sr-only" for="noteS">Subjective</label><textarea id="noteS" spellcheck="true" autocomplete="off" placeholder="${exam?'':'Chief complaint and HPI, followed by relevant history and review of systems.'}">${esc(n.S||'')}</textarea></div>
           <div class="note-sec"><div class="sec-head"><span class="sec-letter">O</span><span class="sec-name">Objective</span>${exam?'':`<span class="sec-hint">${esc(NOTE_HINTS.O)}</span>`}</div><label class="sr-only" for="noteO">Objective</label><textarea id="noteO" spellcheck="true" autocomplete="off" placeholder="${exam?'':'Supplied vitals and the findings you obtained.'}">${esc(n.O||'')}</textarea></div>
           <div class="note-sec"><div class="sec-head"><span class="sec-letter">A/P</span><span class="sec-name">Assessment &amp; plan</span><span class="sec-hint">Three numbered pairs</span></div>${[0,1,2].map(i=>`<div class="ap-pair"><div class="pair-head"><span class="pair-no">${i+1}</span><span>Assessment and its plan</span></div><div class="ap-cols"><div><label class="ap-lab" id="alab${i}" for="noteA${i}">Assessment ${i+1}</label><textarea id="noteA${i}" rows="2" spellcheck="true" aria-labelledby="alab${i}" autocomplete="off" placeholder="Differential diagnosis ${i+1}">${esc(A[i])}</textarea></div><div><label class="ap-lab" id="plab${i}" for="noteP${i}">Plan ${i+1}</label><textarea id="noteP${i}" rows="2" spellcheck="true" aria-labelledby="plab${i}" autocomplete="off" placeholder="Plan for assessment ${i+1}">${esc(Pn[i])}</textarea></div></div></div>`).join('')}</div>
         </div><p class="note-submit-explanation">Your draft saves automatically. Submitting locks the note and opens feedback. Assessment and plan entries are submitted with the numbers shown.</p>
@@ -2398,7 +2487,7 @@ function paintDebrief(){
   // The result, then the feedback, then what to do next. An exercise and a
   // "next practice" card between the score and the tabs pushed the first of
   // the three lessons 680px down the page.
-  if(!historical&&S.case_id)view.insertAdjacentHTML('beforeend',`<div class="debrief-next"><div><b>Your next practice</b><span class="small muted">Repair one missed step, then try a fresh case.</span></div><a class="btn sm" href="#learn/${esc(S.case_id)}?variant=${encodeURIComponent(S.variant_id||'base')}">Read this case walkthrough →</a></div>`);
+  if(!historical&&S.case_id)view.insertAdjacentHTML('beforeend',`<div class="debrief-next"><div><b>Your next practice</b><span class="small muted">Repair one missed step, then try a fresh case.</span></div><a class="btn sm" href="#learn/${esc(S.case_id)}?variant=${encodeURIComponent(S.variant_id||'base')}">Read the worked example →</a></div>`);
   // Scribbi can draft this same patient's note, mistakes and all: review it
   // right after writing your own.
   if(!historical&&S.case_id&&window.pcmScribbi?.launchCard)view.insertAdjacentHTML('beforeend',window.pcmScribbi.launchCard(S.case_id,S.variant_id||'base',S.patient_name||'',S.id));
@@ -2412,10 +2501,10 @@ function paintDebrief(){
     view.insertAdjacentHTML('afterbegin', `<section class="debrief-result card">
       <div class="dr-score"><span class="dr-num">${esc(String(earned))}<span class="dr-of">/${esc(String(available))}</span></span>
         <span class="tiny muted">${pct===null?'':esc(pct + '%')} \u00b7 ${esc(rub.grade_kind || 'PCM 2026 SOAP rubric')}</span></div>
-      <div class="dr-lead"><p class="eyebrow">${esc([S.learning_mode, r.assisted ? 'assisted' : 'unassisted'].filter(Boolean).join(' \u00b7 '))}</p>
+      <div class="dr-lead"><p class="eyebrow">${esc([ATTEMPT_MODE[S.learning_mode]||S.learning_mode, r.assisted ? 'help used' : 'no help used'].filter(Boolean).join(' \u00b7 '))}</p>
         ${top ? `<p class="dr-first"><b>Start here:</b> ${esc(top.title || '')}</p>` : ''}
         <p class="tiny muted">${r.grading_review?.status === 'needs_review' ? 'Automatic review incomplete: some wording needs checking. Open Score to see the unverified passages.' : 'Review each criterion alongside your wording and the recorded evidence.'}</p></div>
-      <div class="dr-actions"><button type="button" class="btn sm" id="recheckNote">Recheck this note</button><a class="btn sm primary" href="#practice">Start another encounter</a></div>
+      <div class="dr-actions">${RESULTS.reader_versions?.is_regrade?'<button type="button" class="btn sm" id="recheckNote" title="Grade this note again with the current grader">Recheck this note</button>':''}<a class="btn sm primary" href="#practice">Start another encounter</a></div>
     </section>`);
   }
   const recheck = $('#recheckNote');
@@ -2499,7 +2588,7 @@ function tabLessons(r){
   const rev = r.clinical_review || {}, d = drillOf();
   return `<div class="card">
     <div class="card-head"><h2>Three things to work on</h2><div class="spacer"></div>
-      <span class="badge b-mute">${esc(r.label)}</span></div>
+      <span class="badge b-mute">${esc(/untimed submission$/.test(r.label||'')?'Untimed':r.label==='timed submission'?'Timed':(r.label||''))}</span></div>
     <p class="small muted">Your exact action or wording, why it matters, and what to do
     instead next time. Everything else in this debrief is detail underneath these.</p>
   </div>
@@ -2520,7 +2609,7 @@ function tabLessons(r){
     <div class="l-links">
       ${(l.evidence || []).length && l.evidence[0].time
         ? `<button class="btn sm" type="button" data-jump="${esc(l.evidence[0].time)}">Show it on the timeline</button>` : ''}
-      <button class="btn sm" type="button" data-goto="about">Clinical evidence for this case</button>
+      <button class="btn sm" type="button" data-goto="about">Case sources</button>
       <button class="btn sm ghost" type="button" data-rule="${esc(l.rule)}">Course rule</button>
       <button class="btn sm" type="button" data-branch="${esc(l.title)}"
         data-at="${esc((l.evidence || [])[0] ? l.evidence[0].time : '')}">Practice this moment</button>
@@ -2682,8 +2771,8 @@ function tabScore(r){
   <div class="card"><h2>Timing</h2>
     <p class="small">${esc(r.timing.preset)} — encounter ${mmss(r.timing.encounter_used_s * 1000)}
     ${r.timing.untimed ? 'elapsed, without a deadline; SOAP writing was also untimed.' : 'of '+mmss(r.timing.encounter_allowed_s * 1000)+' used; note '+mmss(r.timing.note_allowed_s * 1000)+'.'}
-    Submitted: <b>${esc(r.timing.submit_reason || 'submitted')}</b>.
-    Interaction mode: <b>${esc(S.interaction_mode)}</b> — ${S.interaction_mode === 'voice'
+    ${esc(({submitted:'You submitted the note',time_expired:'Submitted automatically when time ran out'})[r.timing.submit_reason]||'Submitted')}.
+    You <b>${esc(S.interaction_mode==='voice'?'spoke':'typed')}</b> — ${S.interaction_mode === 'voice'
       ? 'recognition latency is inside every measured pause, so pacing is reported, not graded.'
       : 'pauses reflect typing speed, so pacing is reported, not graded as conversational rhythm.'}</p>
     ${r.timing.modified ? `<div class="callout warn small">${esc(r.timing.modification_note)}</div>` : ''}
@@ -2825,7 +2914,7 @@ function tabComm(r){
       .filter(Boolean).map(l => vin[l] || l).join(', ') || 'none matched')}</div>
     <div class="small muted">Acceptable differentials for this case:
       ${ap.case_acceptable_differentials.map(d => `${esc(d.name)} <span class="tiny">(${esc(vin[d.vindicate] || d.vindicate)}, rank ${d.rank})</span>`).join(' · ')}</div></div>
-  <div class="card"><h3>Worked examples</h3>${(r.feedback.worked_examples || []).map(w => `
+  <div class="card"><h3>Before and after</h3>${(r.feedback.worked_examples || []).map(w => `
     <div class="item info"><h4>${esc(w.kind)}</h4>
       <div class="quote del">${esc(w.before)}</div>
       <div class="quote ins">${esc(w.after)}</div>
@@ -2907,7 +2996,7 @@ function tabPractice(r){
     attempt and the moment it grew from, and never overwrites the attempt you just
     finished.</p>
     <div class="row">
-      <button class="btn primary" id="btnRetry" type="button">Run the whole station again</button>
+      <button class="btn primary" id="btnRetry" type="button">Start this case again</button>
       ${revs.length ? `<span class="small">Revisions so far: ${revs.map(x =>
         `<span class="badge b-info">${esc(x.kind)} — ${x.results ? x.results.rubric.total_earned : '?'}/100</span>`).join(' ')}</span>` : ''}
     </div>
@@ -2941,7 +3030,7 @@ function tabPractice(r){
   </div>
 
   <div class="card"><h3>Revise the note against the same encounter</h3>
-    <p class="small muted">Untimed, clearly labelled, kept as an extra record beside the
+    <p class="small muted">Untimed, clearly labeled, kept as an extra record beside the
     original, and it cannot fix what you did not obtain in the room.</p>
     <div class="note-sheet">
       <div class="note-sec"><div class="sec-head"><span class="sec-letter">S</span>
@@ -3015,7 +3104,7 @@ function wirePractice(r){
       <div class="card-head"><h3>Revision score</h3>
         <span class="badge b-info">untimed practice</span></div>
       <div class="score-hero"><div><div class="score-big">${got}<small>/100</small></div>
-      <div class="small muted">original timed submission: ${orig}/100 — unchanged</div></div></div>
+      <div class="small muted">original submission: ${orig}/100, unchanged</div></div></div>
       ${gradingReviewNotice(d.results)}
       ${d.results.rubric.rows.filter(x => !x.earned).map(x => `<div class="item ${x.recognition_limited?'warn':'bad'}">
         <h4>${esc(x.label)} — ${x.recognition_limited?'needs review':'not met'}</h4><div class="small">${esc(x.why)}</div></div>`).join('')}
@@ -3087,7 +3176,7 @@ function notifyPublicState(){
 }
 window.addEventListener('message',event=>{
   const frame=$('#unityFrame');if(!frame||event.source!==frame.contentWindow||event.origin!==location.origin)return;const d=event.data||{};
-  if(d.type==='pcm-unity-ready'||d.type==='pcm-room-ready'){roomFrameReady=true;if(S?.phase==='briefing'&&!entryPending)setEntryStatus('Ready when you are. The clock starts after you enter.');notifyPublicState();if(entryPending)dispatchEntrance();}
+  if(d.type==='pcm-unity-ready'||d.type==='pcm-room-ready'){roomFrameReady=true;if(S?.phase==='briefing'&&!entryPending)setEntryStatus(isUntimedAttempt()?'Ready when you are. This encounter is untimed.':'Ready when you are. The clock starts after you enter.');notifyPublicState();if(entryPending)dispatchEntrance();}
   if(d.type==='pcm-room-entered')completeEntrance(d.requestId);
   if(['pcm-trial-status','pcm-patient-status'].includes(d.type)&&S&&d.sessionId===S.id){patientDisplayStates.set(S.id,d.status);const b=$('#unityStatus');if(b)b.textContent=patientDisplayLabel();if(S.phase==='briefing'&&entryPending&&d.status==='loading')setEntryStatus('Preparing the detailed patient… Your encounter clock has not started.');}
   if(d.type==='pcm-motion-preference'&&S&&d.sessionId===S.id&&typeof d.reducedMotion==='boolean'){LS.set('reducedMotion',d.reducedMotion);if($('#entryReduced'))$('#entryReduced').checked=d.reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;notifyPublicState();}

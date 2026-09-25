@@ -1,10 +1,10 @@
 /* Scribbi: review the AI scribe's draft before you sign.
-   Its own palette (ink indigo) sits beside Chat CSE's green; everything else
+   Its own palette (violet) sits beside Chat CSE's green on the shared slate base; everything else
    reuses the app's tokens so both modes feel like one product. */
 :root{
  --sb-ink:#28265f;--sb-muted:#5d5a8a;--sb-accent:#5549dc;--sb-accent-hover:#4337c9;--sb-accent-2:#8a80ff;--sb-on-accent:#fff;
  --sb-soft:#efedfe;--sb-soft-2:#f7f6ff;--sb-line:#dcd8f8;--sb-glow:#8a80ff33;
- --sb-paper:#fffefa;--sb-paper-ink:#1f2a26;--sb-paper-muted:#5d6b64;--sb-paper-line:#ece7da;--sb-rule:#f3eee2;
+ --sb-paper:#fffefa;--sb-paper-ink:#1f2433;--sb-paper-muted:#5a6070;--sb-paper-line:#ece7da;--sb-rule:#f3eee2;
  --sb-fixed:#1f7a4a;--sb-fixed-soft:#e1f3e7;--sb-fixed-line:#a7d8b8;
  --sb-caught:#8c5a0a;--sb-caught-soft:#fdf0d5;--sb-caught-line:#ecd29a;
  --sb-missed:#b0362c;--sb-missed-soft:#fbe6e2;--sb-missed-line:#eab7ae;
@@ -16,7 +16,7 @@
 [data-theme=night]{
  --sb-ink:#ecebff;--sb-muted:#b8b5e6;--sb-accent:#a59dff;--sb-accent-hover:#c1bbff;--sb-accent-2:#c9c4ff;--sb-on-accent:#17153a;
  --sb-soft:#2c2a55;--sb-soft-2:#24224a;--sb-line:#4a4785;--sb-glow:#a59dff33;
- --sb-paper:#1c2a25;--sb-paper-ink:#eef3ea;--sb-paper-muted:#b4c4b8;--sb-paper-line:#34483f;--sb-rule:#243630;
+ --sb-paper:#1d212b;--sb-paper-ink:#eceef5;--sb-paper-muted:#b6bbca;--sb-paper-line:#363d4e;--sb-rule:#262b37;
  --sb-fixed:#9fe0b6;--sb-fixed-soft:#1d3a2a;--sb-fixed-line:#3f6f52;
  --sb-caught:#f0cb86;--sb-caught-soft:#3f3420;--sb-caught-line:#7a6437;
  --sb-missed:#f3aa9d;--sb-missed-soft:#462a26;--sb-missed-line:#86534a;
@@ -234,7 +234,7 @@ body[data-workspace=scribbi] #view{padding-top:0}
 .sb-t{font-size:10px;color:var(--sb-muted);font-family:var(--font-mono)}
 .sb-bubble{max-width:92%;padding:9px 12px;border-radius:14px;font-size:13px;line-height:1.55}
 .sb-bubble.you{justify-self:end;background:var(--sb-soft);border-bottom-right-radius:5px}
-.sb-bubble.pt{justify-self:start;background:var(--surface-2,#f4f6f1);border:1px solid var(--line);border-bottom-left-radius:5px}
+.sb-bubble.pt{justify-self:start;background:var(--surface-2,#f7f6f2);border:1px solid var(--line);border-bottom-left-radius:5px}
 .sb-bubble .who{display:block;font-size:10px;font-weight:760;letter-spacing:.08em;text-transform:uppercase;color:var(--sb-muted);margin-bottom:2px}
 .sb-exam-item{display:grid;grid-template-columns:34px minmax(0,1fr);gap:4px 11px;padding:11px 12px;border-radius:14px;border:1px solid var(--line);background:var(--surface)}
 .sb-exam-item .ico{grid-row:1/3;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--sb-soft);color:var(--sb-accent)}
@@ -384,7 +384,7 @@ mark.sb-q{background:#ffe66a;color:inherit;border-radius:3px;padding:0 1px}
 .sb-compare .now{background:var(--sb-fixed-soft);border-color:var(--sb-fixed-line)}
 .sb-compare .now.is-none{background:var(--sb-missed-soft);border-color:var(--sb-missed-line)}
 .sb-evid{display:grid;gap:6px}
-.sb-evid .q{font-size:12.5px;line-height:1.55;padding:8px 11px;border-radius:11px;background:var(--surface-2,#f4f6f1);border:1px solid var(--line)}
+.sb-evid .q{font-size:12.5px;line-height:1.55;padding:8px 11px;border-radius:11px;background:var(--surface-2,#f7f6f2);border:1px solid var(--line)}
 .sb-evid .q b{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--sb-muted);margin-right:6px}
 .sb-why{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px 18px;font-size:12.5px;line-height:1.6}
 .sb-why p{margin:0}
@@ -491,7 +491,7 @@ body[data-workspace=scribbi] .confirm-dialog .btn.primary:hover{background:var(-
 .sb-launch-card a{color:var(--sb-accent);font-weight:600;white-space:nowrap}
 
 /* ---------- Scribbi inside the Chat CSE room (a visit the student leads) ---------- */
-.scribbi-listening{display:inline-flex;align-items:center;gap:7px;margin-left:auto;margin-right:10px;padding:6px 12px;border-radius:999px;background:var(--sb-soft);color:var(--sb-ink);border:1px solid var(--sb-line);font:600 12px/1 inherit;white-space:nowrap}
+.scribbi-listening{display:inline-flex;align-items:center;gap:7px;margin-left:auto;margin-right:10px;padding:6px 12px;border-radius:999px;background:var(--sb-soft);color:var(--sb-ink);border:1px solid var(--sb-line);font-family:inherit;font-weight:600;font-size:12px;line-height:1;white-space:nowrap}
 .scribbi-listening .dot{width:8px;height:8px;border-radius:50%;background:#ff5a5f;animation:sb-rec 1.6s ease-out infinite}
 @keyframes sb-rec{0%{box-shadow:0 0 0 0 #ff5a5f88}70%{box-shadow:0 0 0 8px #ff5a5f00}100%{box-shadow:0 0 0 0 #ff5a5f00}}
 .scribbi-door-note{margin:12px 0 4px;padding:12px 14px;border-radius:14px;background:var(--sb-soft);border:1px solid var(--sb-line);color:var(--sb-ink);font-size:13px;line-height:1.55}

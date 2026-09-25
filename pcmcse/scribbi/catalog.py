@@ -14,7 +14,7 @@ GENERATOR_VERSION = "scribbi-1.0"
 MODES = {
     "learn": {
         "label": "Learn",
-        "tagline": "Scribbi coaches you line by line.",
+        "tagline": "Scribbi guides you line by line.",
         "detail": "See how many mistakes to find and what kinds, check any line against the visit, and get instant feedback on every change.",
         "errors": (3, 3),
         "hints": None,           # unlimited, free
@@ -26,8 +26,8 @@ MODES = {
     },
     "coached": {
         "label": "Coached",
-        "tagline": "You lead. Hints when you need them.",
-        "detail": "Scribbi tells you how many mistakes it made. Up to three hints point you to a section, then a line. Feedback comes when you sign.",
+        "tagline": "Scribbi says how many. Hints if you're stuck.",
+        "detail": "Scribbi tells you how many mistakes it made. Up to three hints point you to a section, then a line, then the kind of mistake; each costs 5 points. Feedback comes when you sign.",
         "errors": (3, 4),
         "hints": 3,
         "show_count": True,
@@ -39,7 +39,7 @@ MODES = {
     "solo": {
         "label": "On your own",
         "tagline": "Like clinic: nobody tells you what's wrong.",
-        "detail": "No count, no hints. The draft might have five mistakes, or none. Add a five-minute clock if you want the pressure.",
+        "detail": "No count, no hints. The draft might have up to five mistakes, or none, and it never includes what you palpated. Add a 5-minute clock if you want the pressure.",
         "errors": (0, 5),
         "hints": 0,
         "show_count": False,
@@ -338,7 +338,7 @@ RESEARCH = [
      "text": "AI scribe uses in one large medical group's first year.",
      "cite": "Tierney et al., NEJM Catalyst 2025", "doi": "10.1056/CAT.25.0040"},
     {"stat": "18% · 11.5%",
-     "text": "of 356 reviewed AI-drafted notes had omissions and hallucinations; 5% had errors rated as serious risk.",
+     "text": "omissions (18%) and hallucinations (11.5%) in 356 reviewed AI-drafted notes; 5% had errors rated as serious risk.",
      "cite": "Taylor et al., JMIR Med Inform 2026", "doi": "10.2196/86474"},
     {"stat": "15%",
      "text": "of AI drafts in that health system were left entirely unedited.",

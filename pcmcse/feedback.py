@@ -17,7 +17,7 @@ from __future__ import annotations
 import re
 
 from . import claims as claims_mod
-from . import evidence, lexicon, nlp, physexam, differential_supplements
+from . import config, evidence, lexicon, nlp, physexam, differential_supplements
 
 _SEVERITY = {
     "contradicts": 100,
@@ -166,13 +166,15 @@ def _priority_errors(audit_result, rubric, chk, case):
                      % (category, lost, len(rows)),
             "what_happened": "Nothing was credited for: " + ", ".join(labels) + ".",
             "why_it_matters": rows[0].get("why_it_matters") or "",
-            "what_to_do": ("This is the largest single loss in this attempt. "
-                           "Work through these together rather than one at a "
+            "what_to_do": ("Work through these together rather than one at a "
                            "time: " + (rows[0].get("what_to_do") or "")),
             "passage": "", "evidence": [], "points": lost,
         })
 
     items.sort(key=lambda x: -x["rank_score"])
+    # Only the top-ranked section can be the largest loss.
+    if items and items[0]["kind"] == "rubric_section":
+        items[0]["what_to_do"] = "This is the largest single loss in this attempt. " + items[0]["what_to_do"]
     return items[:18]
 
 
@@ -275,8 +277,10 @@ def _doc_fix(c):
     if c["section"] == "O" and c["verdict"] == "contradicts":
         return 'Compare the linked examination finding or supplied chart or result, then correct the documented value, side, or finding.'
     if c["verdict"] == "unsupported":
-        return ("Either ask the question in the encounter, or leave the line out. "
-                "If you want the negative, you have to earn it.")
+        # Only a denial needs "earning"; a positive statement just needs a source.
+        negative = re.search(r"\b(denies|denied|no|not|negative|without|none)\b", c.get("text", ""), re.I)
+        return ("Either ask the question in the encounter, or leave the line out."
+                + (" If you want the negative, you have to earn it." if negative else ""))
     if c["verdict"] == "contradicts":
         return "Check the transcript and write what the patient actually said."
     if c["verdict"] == "overbroad":
@@ -382,6 +386,11 @@ def _exam_how(item, case):
     if "refus" in text:
         return ("State the proposal out loud so the refusal is recorded and can "
                 "be documented.")
+    if "hygiene" in text or "glove" in text or "introduc" in text:
+        return ("Say it as you do it: introduce yourself, then clean your hands and "
+                "put on gloves before you touch the patient.")
+    if "drap" in text:
+        return "Offer a gown or drape, and say what you are uncovering before you examine."
     return "Name the region and the method, and cover the components."
 
 
@@ -394,19 +403,20 @@ def _assessment_plan_feedback(rubric, case):
     distinct = meta_a.get("distinct_letters", 0)
     if distinct < 3:
         notes.append(
-            "Your three differentials cover %d distinct VINDICATE element(s). The "
+            "Your differentials cover %d distinct VINDICATE element%s. The "
             "rubric requires three different ones. Choosing across categories is "
             "also just better differential practice — it stops three names for "
-            "the same idea." % distinct)
+            "the same idea." % (distinct, "" if distinct == 1 else "s"))
     for i, els in enumerate(meta_p.get("elements", []), start=1):
         if not els:
             continue
         if len(els) < 3:
             notes.append(
-                "Plan %d has %d element(s): %s. Add a different kind of action — "
+                "Plan %d has %d MOTHERR element%s: %s. Add a different kind of action — "
                 "if you already have tests and a medication, add education, a "
                 "referral, OMT, or a return interval."
-                % (i, len(els), ", ".join(els.keys())))
+                % (i, len(els), "" if len(els) == 1 else "s",
+                   ", ".join(config.MOTHERR.get(k, {}).get("name", k) for k in els.keys())))
     return {
         "notes": notes,
         "vindicate_used": meta_a.get("letters", []),
@@ -1294,7 +1304,8 @@ def _worked_examples(audit_result, chk, case, interp):
             "kind": "documentation",
             "before": c["text"],
             "after": "(remove it, or ask the question in the encounter first)",
-            "note": "A negative has to be earned in the room.",
+            "note": ("A negative has to be earned in the room." if re.search(r"\b(denies|denied|no|not|negative|without|none)\b", c["text"], re.I)
+                     else "Every line needs something in the encounter behind it."),
         })
     for item in chk["history"]:
         if item["status"] == "omitted":

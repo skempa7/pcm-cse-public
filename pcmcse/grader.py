@@ -440,7 +440,7 @@ def _row_age_sex(row, parsed, case, ledger):
                  "documentation")
     if not candidates:
         return row.deny(
-            "Age and sex are not documented in a recognisable form. The manual's "
+            "Age and sex are not documented in a recognizable form. The manual's "
             "own examples open the HPI '67 yo f ...'.",
             condition=condition)
     for age, sex, passage in candidates:

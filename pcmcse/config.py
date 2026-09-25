@@ -294,8 +294,11 @@ def save_settings(settings: dict) -> None:
         json.dump(settings, fh, indent=2)
 
 
-def assumption_manifest(settings: dict) -> list:
-    """The list printed on the results screen so no interpretation is hidden."""
+def assumption_manifest(settings: dict, general: bool = False) -> list:
+    """The list printed on the results screen so no interpretation is hidden.
+
+    general=True is the app-wide list (How scoring works), which describes every
+    support level's timing instead of one encounter's preset."""
     scoring = settings.get("scoring", SCORING_DEFAULTS)
     preset = PRESETS[settings.get("preset", DEFAULT_PRESET)]
     items = [
@@ -305,11 +308,11 @@ def assumption_manifest(settings: dict) -> list:
             "detail": (
                 "The patient answers from a fixed set of authored facts, matched "
                 "by trigger phrases and by the topic under discussion. That is "
-                "how a real standardized patient works, and it is why she never "
-                "invents a symptom, a medication or a result. It also means she "
-                "can miss an unusual phrasing, and that a question the case does "
-                "not script has no answer to give. When that happens she says so "
-                "rather than guessing. Nothing here is natural-language "
+                "how a real standardized patient works, and it is why the patient "
+                "never invents a symptom, a medication or a result. It also means "
+                "the patient can miss an unusual phrasing, and that a question the "
+                "case does not script has no answer to give. When that happens the "
+                "patient says so rather than guessing. Nothing here is natural-language "
                 "understanding, and no score should be read as though it were."),
             "status": "design-decision",
         },
@@ -321,7 +324,7 @@ def assumption_manifest(settings: dict) -> list:
                 "complete examination cannot be performed in the last ten "
                 "seconds. One begun too late to finish is recorded as "
                 "interrupted and releases nothing. Shortened durations are an "
-                "assisted practice condition and are labelled as such on the "
+                "assisted practice condition and are labeled as such on the "
                 "results."),
             "status": "design-decision",
         },
@@ -329,14 +332,20 @@ def assumption_manifest(settings: dict) -> list:
             "topic": "Clinical review of the cases",
             "value": "No clinician has approved any case",
             "detail": (
-                "Two cases have had their management direction checked against "
-                "published guidelines during the build, one has had an internal "
-                "consistency check, and one has had no review at all. Automated "
-                "guideline retrieval is not clinical validation. The per-case "
-                "status and its sources appear on the results screen."),
+                "No licensed clinician has reviewed or approved any case. Each "
+                "case's review status and sources appear on its feedback page. "
+                "Automated guideline retrieval is not clinical validation."),
             "status": "limitation",
         },
         {
+            "topic": "Timing by support level",
+            "value": "Guided and Coached untimed · Independent 30/5/20 · Exam rehearsal 14/9",
+            "detail": ("Guided and Coached encounters are untimed. Independent practice allows a "
+                       "30-minute encounter, 5 minutes to organize and a 20-minute note; that extra "
+                       "time is a practice change. Exam rehearsal uses the course timing: a 14-minute "
+                       "encounter and a 9-minute note, with no organizing break."),
+            "status": "practice-mod",
+        } if general else {
             "topic": "Timing preset",
             "value": preset["label"],
             "detail": ("Untimed encounter and SOAP writing; advance to the next phase when ready." if preset.get("untimed") else "Encounter %d:%02d, organization %d:%02d, note %d:%02d." % (

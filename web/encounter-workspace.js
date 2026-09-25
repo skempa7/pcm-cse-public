@@ -192,7 +192,7 @@ function bedsideGroups(){
   const coached=['guided','coached'].includes(latest?.learning_mode);
   const groups=[{
     title:'Preparation & comfort', kind:'action',
-    note:'Stating one of these sends it to your patient and records the behaviour.',
+    note:'Stating one of these sends it to your patient and records the behavior.',
     items:(typeof BEDSIDE!=='undefined'?BEDSIDE:[]).map(b=>({id:b.id,label:b.short,say:b.say})),
   }];
   // Interview moves are teaching aids. They are withheld in unassisted modes
@@ -346,7 +346,7 @@ function statedTechnique(m){
  const parts=(m.components||[]).filter(Boolean);
  if(parts.length<2)return '';
  const readable=parts.map(c=>String(c).replace(/_/g,' '));
- return 'Declares: '+readable.join(', ');
+ return 'Includes: '+readable.join(', ');
 }
 
 /* What has already been performed, from the ledger the engine keeps -- never
@@ -504,7 +504,7 @@ function renderRecord(){
 // to say nothing was available even in the modes that supply it.
 function recordHtml(summary){
  if(!summary||!summary.groups?.length){
-  return '<p class="ew-rec-empty">Nothing recorded yet. What the patient tells you, the chart supplies and your completed examinations find will be summarised here, ready to write up.</p>';
+  return '<p class="ew-rec-empty">Nothing recorded yet. What the patient tells you, the chart supplies and your completed examinations find will be summarized here, ready to write up.</p>';
  }
  const row=(item,repeat)=>{
   // A denial is history the patient reported, never a measurement. Saying so
